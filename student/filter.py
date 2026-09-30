@@ -16,8 +16,15 @@ def noise_covariances(part: int) -> tuple[np.ndarray, np.ndarray]:
     These are covariance matrices, not standard deviations. Use your chosen
     values for report runs; the checker supplies its own Q and R to run_filter().
     """
-    # TODO: choose and tune the process and measurement noise covariances.
-    raise NotImplementedError("Choose Q and R in filter.py: noise_covariances")
+
+    Q = np.eye(12)
+    
+    if part == 0:
+        R = np.eye(6)
+    elif part == 1:
+        R = np.eye(3)
+
+    return Q, R
 
 
 def run_filter(
