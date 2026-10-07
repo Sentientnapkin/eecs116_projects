@@ -46,7 +46,7 @@ def noise_covariances(part: int) -> tuple[np.ndarray, np.ndarray]:
         R = np.eye(3)
         R[0, 0] *= 3 * 1e-2
         R[1, 1] *= 3 * 1e-2
-        R[2, 2] *= 4 * 1e-2
+        R[2, 2] *= 4 * 1e-3
     else:
         raise ValueError("part must be 1 or 2")
 
@@ -79,6 +79,8 @@ def run_filter(
         dt = time - prev_time
 
         measurement = measurements[:, index]
+
+        # Kalman filter!!
 
         estimate = predict(estimate, angular_velo, accel, dt, process_noise)
 

@@ -17,17 +17,21 @@ def update_pose(
 
     mean, cov = estimate.state, estimate.covariance
 
+    # Our update model g
     z_t = np.asarray(measurement)
 
+    # Jacobian of our process model wrt our state
     Ct = np.zeros((6, 15))
     Ct[:, :6] = np.eye(6)
     
     Wt = np.eye(6)
 
+    # Our Kalman Gain
     Kt = cov @ Ct.T @ np.linalg.inv(Ct @ cov @ Ct.T + Wt @ measurement_noise @ Wt.T)
 
     innovation = z_t - np.array(mean[:6])
 
+    # Wrap orientations to [-pi, pi)
     innovation[3:6] = (innovation[3:6] + np.pi) % (2 * np.pi) - np.pi
 
     new_mean = mean + Kt @ (innovation)
@@ -43,14 +47,17 @@ def update_velocity(
     """Part 2: world-frame velocity measurement (3,) and its covariance R (3, 3)."""
 
     mean, cov = estimate.state, estimate.covariance
-   
+
+    # Our update process model
     z_t = np.asarray(measurement)
 
+    # Jacobian of our process model wrt our state
     Ct = np.zeros((3, 15))
     Ct[:, 6:9] = np.eye(3)
     
     Wt = np.eye(3)
 
+    # Kalman Gain
     Kt = cov @ Ct.T @ np.linalg.inv(Ct @ cov @ Ct.T + Wt @ measurement_noise @ Wt.T)
 
     innovation = z_t - np.array(mean[6:9])

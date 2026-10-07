@@ -22,8 +22,10 @@ def predict(
     For gravity use 9.8 m/s^2.
     """
 
+    # Unpack our values
     x, y, z, roll, pitch, yaw, vx, vy, vz, gxb, gyb, gzb, axb, ayb, azb= estimate.state
-   
+
+   # Define G, how our euler angle velocities are affected by previous euler rotations
     G = np.array([
         [1, 0, -np.sin(pitch)],
         [0, np.cos(roll), np.sin(roll) * np.cos(pitch)],
@@ -44,20 +46,25 @@ def predict(
 
     G_inv = np.linalg.inv(G)
 
+    # Using properties of matrix inverse derivatives, calculate Jacobians
     g_dot_roll_inv = -G_inv @ G_dot_roll @ G_inv
 
     g_dot_pitch_inv = -G_inv @ G_dot_pitch @ G_inv
 
+    # Normalized velocity values
     w_bar = np.asarray(angular_velocity) - np.array([gxb, gyb, gzb])
 
     rpy_model = G_inv @ w_bar
 
+    # Create our Euler Angle rotation matrix, Intrinsic ZYX
     R = Rotation.from_euler("ZYX", [yaw, pitch, roll]).as_matrix()
 
+    # Normalized acceleration vectors
     a_bar = np.asarray(acceleration) - np.array([axb, ayb, azb])
 
     world_accel_model = np.array([0, 0, -9.8]) + R @ a_bar
 
+    # Calculate rotation Jacobians of Euler Rotation matrix
     R_yaw = Rotation.from_euler("ZYX", [yaw, 0, 0]).as_matrix()
 
     R_yaw_dot = np.array([
@@ -82,10 +89,13 @@ def predict(
         [0, np.cos(roll), -np.sin(roll)]
     ])
 
+    # Calculate the Jacobians of our rotation matrix
     Jacob_yaw = R_yaw_dot @ R_pitch @ R_roll
     Jacob_pitch = R_yaw @ R_pitch_dot @ R_roll
     Jacob_roll = R_yaw @ R_pitch @ R_roll_dot
 
+
+    # Our predictions model
     f = np.array([
             vx,
             vy,
@@ -104,6 +114,7 @@ def predict(
             0
         ])
 
+    # Jacobian of prediction model with respect to our state
     A = np.zeros((15, 15))
 
     A[0:3, 6:9] = np.eye(3)
@@ -119,7 +130,7 @@ def predict(
 
     A[6:9, 12:15] = -R
 
-
+    # Jacobian of prediction model with respect to our noise
     U = np.zeros((15, 12))
 
     U[3:6, 0:3] = -G_inv
@@ -128,6 +139,7 @@ def predict(
     U[9:12, 6:9] = np.eye(3)
     U[12:15, 9:12] = np.eye(3)
 
+    # Calculate new estimate of state
     new_mean = np.array([
         x + vx * dt,
         y + vy * dt,
@@ -150,5 +162,6 @@ def predict(
 
     Q_d = np.asarray(process_noise) * dt
 
+    # Calculate new covariance estimate of state
     new_covariance = F @ estimate.covariance @ F.T + U @ Q_d @ U.T
     return Estimate(new_mean, new_covariance)
