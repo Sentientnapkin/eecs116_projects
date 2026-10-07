@@ -15,12 +15,12 @@ def update_pose(
     Wrap orientation innovations to [-pi, pi); leave state angles unwrapped.
     """
 
-    mean, cov = estimate
+    mean, cov = estimate.state, estimate.covariance
 
-    z_t = measurement
+    z_t = np.asarray(measurement)
 
     Ct = np.zeros((6, 15))
-    Ct[:,6] = np.eye(6)
+    Ct[:, :6] = np.eye(6)
     
     Wt = np.eye(6)
 
@@ -28,9 +28,7 @@ def update_pose(
 
     innovation = z_t - np.array(mean[:6])
 
-    innovation[3] = innovation[3] % (2 * np.pi) - np.pi
-    innovation[4] = innovation[4] % (2 * np.pi) - np.pi
-    innovation[5] = innovation[5] % (2 * np.pi) - np.pi
+    innovation[3:6] = (innovation[3:6] + np.pi) % (2 * np.pi) - np.pi
 
     new_mean = mean + Kt @ (innovation)
 
@@ -44,12 +42,12 @@ def update_velocity(
 ) -> Estimate:
     """Part 2: world-frame velocity measurement (3,) and its covariance R (3, 3)."""
 
-    mean, cov = estimate
+    mean, cov = estimate.state, estimate.covariance
    
-    z_t = measurement
+    z_t = np.asarray(measurement)
 
     Ct = np.zeros((3, 15))
-    Ct[6, 9:,3] = np.eye(3)
+    Ct[:, 6:9] = np.eye(3)
     
     Wt = np.eye(3)
 
@@ -62,4 +60,3 @@ def update_velocity(
     new_cov = cov - Kt @ Ct @ cov
 
     return Estimate(new_mean, new_cov)
-
