@@ -8,7 +8,8 @@ from scipy.io import loadmat
 
 
 CAMERA_MATRIX = np.array([[311.0520, 0, 201.8724],
-                          [0, 311.3885, 113.6210], [0, 0, 1]])
+                          [0, 311.3885, 113.6210], 
+                          [0, 0, 1]])
 # Homogeneous transform: point_camera = BODY_TO_CAMERA @ point_body.
 # Translation is the body origin expressed in camera coordinates, in metres.
 _c = np.sqrt(0.5)
