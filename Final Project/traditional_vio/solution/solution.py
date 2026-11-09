@@ -1,7 +1,8 @@
-"""Traditional VIO with IMU propagation and consecutive-frame visual motion."""
+"""Traditional VIO with an IMU prediction and two-view EKF corrections."""
 
 import numpy as np
 
+from fusion import INITIAL_VARIANCE, camera_innovation, correct_covariance, predict_covariance, skew
 from vision import VisualOdometry
 
 GRAVITY = 9.81
@@ -28,8 +29,7 @@ def exp_so3(omega):
     angle = np.linalg.norm(omega)
     if angle < 1e-12:
         return np.eye(3)
-    k = omega / angle
-    K = np.array([[0, -k[2], k[1]], [k[2], 0, -k[0]], [-k[1], k[0], 0]])
+    K = skew(omega / angle)
     return np.eye(3) + np.sin(angle) * K + (1 - np.cos(angle)) * K @ K
 
 
@@ -39,6 +39,8 @@ class Solution:
     def __init__(self, config):
         self.vision = VisualOdometry(config)
         self.visual_motion = None
+        self.visual_update_applied = False
+        self.covariance = np.diag(INITIAL_VARIANCE)
         T_cam_imu = np.asarray(config["T_cam_imu"], dtype=float)
         self.R_cam_imu = T_cam_imu[:3, :3]
         self.camera_offset = -self.R_cam_imu.T @ T_cam_imu[:3, 3]
@@ -54,18 +56,42 @@ class Solution:
         self.accel = -self.gravity.copy()
         self.gyro = np.zeros(3)
 
-    def _propagate(self, dt):
+    def _propagate(self, dt, cross):
         # Project 1's bias-corrected inertial model, with rotation increments
         # applied directly and acceleration evaluated at the midpoint attitude.
         rotation_step = (self.gyro - self.gyro_bias) * dt
         R_mid = self.R_world_imu @ exp_so3(0.5 * rotation_step)
-        acceleration = R_mid @ (self.accel - self.accel_bias) + self.gravity
+        R_step = exp_so3(rotation_step)
+        specific_force = self.accel - self.accel_bias
+        acceleration = R_mid @ specific_force + self.gravity
         self.position += self.velocity * dt + 0.5 * acceleration * dt**2
         self.velocity += acceleration * dt
-        self.R_world_imu = self.R_world_imu @ exp_so3(rotation_step)
+        self.R_world_imu = self.R_world_imu @ R_step
+        self.covariance, cross = predict_covariance(
+            self.covariance, cross, R_mid, R_step, specific_force, dt,
+        )
+        return cross
+
+    def _correct(self, previous_position, previous_rotation, previous_covariance, cross):
+        residual, H, noise = camera_innovation(
+            self.position, self.R_world_imu, previous_position, previous_rotation,
+            self.R_cam_imu, self.camera_offset, self.visual_motion,
+        )
+        result = correct_covariance(self.covariance, cross, previous_covariance, residual, H, noise)
+        if result is None:
+            return
+
+        correction, self.covariance = result
+        self.position += correction[:3]
+        self.R_world_imu = self.R_world_imu @ exp_so3(correction[3:6])
+        self.velocity += correction[6:9]
+        self.gyro_bias += correction[9:12]
+        self.accel_bias += correction[12:15]
+        self.visual_update_applied = True
 
     def step(self, t, frame, imu):
         self.visual_motion = self.vision.step(frame)
+        self.visual_update_applied = False
         if self.last_time is None:
             # The first batch precedes the pose origin. Use it only to seed
             # gravity and rates. The gravity estimate assumes low acceleration.
@@ -77,17 +103,26 @@ class Solution:
                 self.accel, self.gyro = imu[-1, 1:4].copy(), imu[-1, 4:7].copy()
             self.last_time = t
         else:
+            cross = None
+            if self.visual_motion is not None:
+                previous_position = self.position.copy()
+                previous_rotation = self.R_world_imu
+                previous_covariance = self.covariance[:6, :6]
+                cross = self.covariance[:, :6]
+
             for sample_time, ax, ay, az, gx, gy, gz in imu:
                 # The ABI allows a floating-point tolerance at the frame boundary.
                 sample_time = min(sample_time, t)
                 if sample_time > self.last_time:
                     self.accel = np.array([ax, ay, az])
                     self.gyro = np.array([gx, gy, gz])
-                    self._propagate(sample_time - self.last_time)
+                    cross = self._propagate(sample_time - self.last_time, cross)
                     self.last_time = sample_time
             if t > self.last_time:
-                self._propagate(t - self.last_time)
+                cross = self._propagate(t - self.last_time, cross)
                 self.last_time = t
+            if cross is not None:
+                self._correct(previous_position, previous_rotation, previous_covariance, cross)
 
         # The first camera center lies at camera_offset in the integration frame.
         R = self.R_world_imu
