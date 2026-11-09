@@ -87,3 +87,14 @@ All ten public episodes completed in WebAssembly with no filled frames.
 | Mean linear velocity RMSE (m/s) | 70.376 | 0.656 | 0.621 |
 
 In a separate host replay, Stage 5 supplied 2,169 translation axes and the EKF accepted all of them. The median unsigned axis error against ground truth fell from 52.2° in Stage 3 to 6.8° in Stage 5. The median Stage 5 track spanned four frame intervals and 7.8 cm of actual camera travel. The host diagnostic uses ground truth only to score each estimated axis.
+
+## VIOBench KLT + IMU example
+
+Using the same runtime and ten public episodes, the unmodified `python/klt_imu` example completed every frame. It scored 2.042 m mean Sim(3) ATE, 141,887,507 peak fuel per frame, 152.697 m mean unaligned ATE, and 7.541 m/s mean linear velocity RMSE. It uses a half-second initialization and replaces the IMU displacement direction with the visual direction when available, preserving the predicted distance. It then blends that displacement divided by the time interval into velocity.
+
+```sh
+viobench bundle "Final Project/viobench/viobench/solution/examples/python/klt_imu" --runtime "$runtime" -o "$work/viobench_klt_imu.wasm"
+(cd "$work" && viobench evaluate viobench_klt_imu.wasm)
+```
+
+On the first public episode, a host call-count profile showed 2,398 Lucas–Kanade passes in both Stage 3 and Stage 5. Stage 3 ran 1,199 corner detections and 1,199 calls each to `findEssentialMat` and `recoverPose`. Stage 5 ran 260 corner detections and 308 SVD refits. These counts explain where Stage 5 avoids work, while the peak fuel values above come from the WebAssembly runs.
