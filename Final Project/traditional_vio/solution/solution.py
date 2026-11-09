@@ -1,6 +1,8 @@
-"""Stage 1 of traditional VIO: IMU propagation and camera-frame output."""
+"""Traditional VIO with IMU propagation and consecutive-frame visual motion."""
 
 import numpy as np
+
+from vision import VisualOdometry
 
 GRAVITY = 9.81
 
@@ -35,6 +37,8 @@ class Solution:
     frame_width = 320
 
     def __init__(self, config):
+        self.vision = VisualOdometry(config)
+        self.visual_motion = None
         T_cam_imu = np.asarray(config["T_cam_imu"], dtype=float)
         self.R_cam_imu = T_cam_imu[:3, :3]
         self.camera_offset = -self.R_cam_imu.T @ T_cam_imu[:3, 3]
@@ -61,6 +65,7 @@ class Solution:
         self.R_world_imu = self.R_world_imu @ exp_so3(rotation_step)
 
     def step(self, t, frame, imu):
+        self.visual_motion = self.vision.step(frame)
         if self.last_time is None:
             # The first batch precedes the pose origin. Use it only to seed
             # gravity and rates. The gravity estimate assumes low acceleration.
