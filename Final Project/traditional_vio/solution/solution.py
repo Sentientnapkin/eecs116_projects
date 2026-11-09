@@ -1,8 +1,10 @@
-"""Traditional VIO with an IMU prediction and two-view EKF corrections."""
+"""116_traditional_combination: inertial prediction and keyframe translation updates."""
 
 import numpy as np
 
-from fusion import INITIAL_VARIANCE, camera_innovation, correct_covariance, predict_covariance, skew
+from traditional_combination import (
+    INITIAL_VARIANCE, camera_innovation, correct_covariance, predict_covariance, skew,
+)
 from vision import VisualOdometry
 
 GRAVITY = 9.81
@@ -41,6 +43,10 @@ class Solution:
         self.visual_motion = None
         self.visual_update_applied = False
         self.covariance = np.diag(INITIAL_VARIANCE)
+        self.key_position = None
+        self.key_rotation = None
+        self.key_covariance = None
+        self.key_cross = None
         T_cam_imu = np.asarray(config["T_cam_imu"], dtype=float)
         self.R_cam_imu = T_cam_imu[:3, :3]
         self.camera_offset = -self.R_cam_imu.T @ T_cam_imu[:3, 3]
@@ -56,7 +62,7 @@ class Solution:
         self.accel = -self.gravity.copy()
         self.gyro = np.zeros(3)
 
-    def _propagate(self, dt, cross):
+    def _propagate(self, dt):
         # Project 1's bias-corrected inertial model, with rotation increments
         # applied directly and acceleration evaluated at the midpoint attitude.
         rotation_step = (self.gyro - self.gyro_bias) * dt
@@ -67,17 +73,18 @@ class Solution:
         self.position += self.velocity * dt + 0.5 * acceleration * dt**2
         self.velocity += acceleration * dt
         self.R_world_imu = self.R_world_imu @ R_step
-        self.covariance, cross = predict_covariance(
-            self.covariance, cross, R_mid, R_step, specific_force, dt,
+        self.covariance, self.key_cross = predict_covariance(
+            self.covariance, self.key_cross, R_mid, R_step, specific_force, dt,
         )
-        return cross
 
-    def _correct(self, previous_position, previous_rotation, previous_covariance, cross):
+    def _correct(self):
         residual, H, noise = camera_innovation(
-            self.position, self.R_world_imu, previous_position, previous_rotation,
-            self.R_cam_imu, self.camera_offset, self.visual_motion,
+            self.position, self.R_world_imu, self.key_position, self.key_rotation,
+            self.R_cam_imu, self.camera_offset, self.visual_motion, min(self.vision.focal),
         )
-        result = correct_covariance(self.covariance, cross, previous_covariance, residual, H, noise)
+        result = correct_covariance(
+            self.covariance, self.key_cross, self.key_covariance, residual, H, noise,
+        )
         if result is None:
             return
 
@@ -89,8 +96,14 @@ class Solution:
         self.accel_bias += correction[12:15]
         self.visual_update_applied = True
 
+    def _reset_keyframe(self):
+        self.vision.reset_keyframe()
+        self.key_position = self.position.copy()
+        self.key_rotation = self.R_world_imu
+        self.key_covariance = self.covariance[:6, :6]
+        self.key_cross = self.covariance[:, :6]
+
     def step(self, t, frame, imu):
-        self.visual_motion = self.vision.step(frame)
         self.visual_update_applied = False
         if self.last_time is None:
             # The first batch precedes the pose origin. Use it only to seed
@@ -103,26 +116,30 @@ class Solution:
                 self.accel, self.gyro = imu[-1, 1:4].copy(), imu[-1, 4:7].copy()
             self.last_time = t
         else:
-            cross = None
-            if self.visual_motion is not None:
-                previous_position = self.position.copy()
-                previous_rotation = self.R_world_imu
-                previous_covariance = self.covariance[:6, :6]
-                cross = self.covariance[:, :6]
-
             for sample_time, ax, ay, az, gx, gy, gz in imu:
                 # The ABI allows a floating-point tolerance at the frame boundary.
                 sample_time = min(sample_time, t)
                 if sample_time > self.last_time:
                     self.accel = np.array([ax, ay, az])
                     self.gyro = np.array([gx, gy, gz])
-                    cross = self._propagate(sample_time - self.last_time, cross)
+                    self._propagate(sample_time - self.last_time)
                     self.last_time = sample_time
             if t > self.last_time:
-                cross = self._propagate(t - self.last_time, cross)
+                self._propagate(t - self.last_time)
                 self.last_time = t
-            if cross is not None:
-                self._correct(previous_position, previous_rotation, previous_covariance, cross)
+        C = self.R_cam_imu
+        # No visual correction occurs within a keyframe interval. This relative
+        # orientation therefore comes from the bias-corrected gyro integration.
+        relative_rotation = None
+        if self.key_rotation is not None:
+            relative_rotation = C @ self.key_rotation.T @ self.R_world_imu @ C.T
+        self.visual_motion = self.vision.step(frame, relative_rotation)
+        if self.visual_motion is not None:
+            self._correct()
+        # Use a track set for at most one EKF update. Clone the corrected pose
+        # when starting fresh so the filter does not reuse correlated tracks.
+        if self.key_rotation is None or self.visual_motion is not None or self.vision.needs_keyframe:
+            self._reset_keyframe()
 
         # The first camera center lies at camera_offset in the integration frame.
         R = self.R_world_imu

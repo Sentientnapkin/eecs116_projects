@@ -1,4 +1,4 @@
-"""Consecutive-frame camera motion from sparse optical flow."""
+"""Known-rotation translation from keyframe feature tracks."""
 
 from dataclasses import dataclass
 
@@ -7,93 +7,122 @@ import numpy as np
 
 
 MIN_TRACKS = 15
-MIN_INLIER_FRACTION = 0.5
-MIN_PARALLAX_DEGREES = 0.5
+MIN_KEYFRAME_AGE = 4
+MAX_KEYFRAME_AGE = 10
+MIN_PARALLAX = np.radians(0.5)
 
 
 @dataclass(frozen=True)
 class VisualMotion:
-    """Current camera rotation and unit displacement in previous camera axes."""
+    """Unsigned translation axis in keyframe camera coordinates."""
 
-    rotation: np.ndarray
     direction: np.ndarray
     track_count: int
     inlier_count: int
-    parallax_degrees: float
+    parallax_radians: float
+    geometry_ratio: float
 
 
 class VisualOdometry:
     def __init__(self, config):
-        self.K = np.array([
-            [config["fx"], 0, config["cx"]],
-            [0, config["fy"], config["cy"]],
-            [0, 0, 1],
-        ], dtype=float)
-        self.K_inv = np.linalg.inv(self.K)
-        self.previous_gray = None
+        self.center = np.array([config["cx"], config["cy"]])
+        self.focal = np.array([config["fx"], config["fy"]])
+        self.epipolar_threshold = 1.0 / min(self.focal)
+        self.rng = np.random.default_rng(116)
+        self.gray = None
+        self.points = np.empty((0, 1, 2), dtype=np.float32)
+        self.keyframe_points = self.points
+        self.age = 0
 
-    def step(self, frame):
-        gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-        previous_gray = self.previous_gray
-        self.previous_gray = gray
-        if previous_gray is None:
+    def reset_keyframe(self):
+        points = cv2.goodFeaturesToTrack(self.gray, maxCorners=100, qualityLevel=0.01, minDistance=8)
+        self.points = points if points is not None else np.empty((0, 1, 2), dtype=np.float32)
+        self.keyframe_points = self.points
+        self.age = 0
+
+    @property
+    def needs_keyframe(self):
+        return len(self.points) < MIN_TRACKS or self.age >= MAX_KEYFRAME_AGE
+
+    def step(self, frame, rotation):
+        """Track one image hop. Rotation maps current bearings into the keyframe."""
+        previous_gray = self.gray
+        self.gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+        if rotation is None or self.needs_keyframe:
             return None
 
-        points = cv2.goodFeaturesToTrack(previous_gray, maxCorners=100, qualityLevel=0.01, minDistance=8)
-        if points is None or len(points) < MIN_TRACKS:
-            return None
-
-        tracked, status, _ = cv2.calcOpticalFlowPyrLK(previous_gray, gray, points, None)
+        self.age += 1
+        tracked, status, _ = cv2.calcOpticalFlowPyrLK(previous_gray, self.gray, self.points, None)
         if tracked is None or status is None:
+            self.points = self.points[:0]
             return None
-        points = points[status.ravel() != 0]
-        tracked = tracked[status.ravel() != 0]
-        height, width = gray.shape
         pixels = tracked.reshape(-1, 2)
-        inside = ((pixels[:, 0] >= 0) & (pixels[:, 0] < width)
-                  & (pixels[:, 1] >= 0) & (pixels[:, 1] < height))
-        points, tracked = points[inside], tracked[inside]
-        if len(points) < MIN_TRACKS:
+        height, width = self.gray.shape
+        valid = ((status.ravel() != 0) & (pixels[:, 0] >= 0) & (pixels[:, 0] < width)
+                 & (pixels[:, 1] >= 0) & (pixels[:, 1] < height))
+        tracked, previous = tracked[valid], self.points[valid]
+        self.keyframe_points = self.keyframe_points[valid]
+        self.points = tracked
+        if len(tracked) < MIN_TRACKS:
             return None
 
-        returned, status, _ = cv2.calcOpticalFlowPyrLK(gray, previous_gray, tracked, None)
+        returned, status, _ = cv2.calcOpticalFlowPyrLK(self.gray, previous_gray, tracked, None)
         if returned is None or status is None:
+            self.points = self.points[:0]
             return None
-        error = np.linalg.norm((returned - points).reshape(-1, 2), axis=1)
+        error = np.linalg.norm((returned - previous).reshape(-1, 2), axis=1)
         valid = (status.ravel() != 0) & (error <= 1.0)
-        return self._relative_motion(points[valid].reshape(-1, 2), tracked[valid].reshape(-1, 2))
-
-    def _relative_motion(self, previous, current):
-        if len(previous) < MIN_TRACKS:
+        self.keyframe_points = self.keyframe_points[valid]
+        self.points = tracked[valid]
+        if self.age < MIN_KEYFRAME_AGE or len(self.points) < MIN_TRACKS:
             return None
-
-        essential, mask = cv2.findEssentialMat(
-            previous, current, self.K, method=cv2.RANSAC, prob=0.999,
-            threshold=1.0, maxIters=200,
-        )
-        if essential is None or essential.shape != (3, 3) or mask is None:
-            return None
-        count, rotation, translation, mask = cv2.recoverPose(
-            essential, previous, current, self.K, mask=mask,
-        )
-        if count < MIN_TRACKS or count < MIN_INLIER_FRACTION * len(previous):
-            return None
-
-        # OpenCV maps points from the previous camera to the current camera.
-        # Invert that transform to describe the motion of the camera itself.
-        rotation = rotation.T
-        direction = -rotation @ translation.ravel()
-
-        # Measure parallax after removing the recovered camera rotation.
-        inliers = mask.ravel() != 0
-        previous_rays = self._rays(previous[inliers])
-        current_rays = self._rays(current[inliers]) @ rotation.T
-        dot = np.sum(previous_rays * current_rays, axis=1)
-        parallax = float(np.degrees(np.median(np.arccos(np.clip(dot, -1.0, 1.0)))))
-        if not np.isfinite(parallax) or parallax < MIN_PARALLAX_DEGREES:
-            return None
-        return VisualMotion(rotation, direction, len(previous), count, parallax)
+        return self._fit_axis(self.keyframe_points.reshape(-1, 2), self.points.reshape(-1, 2), rotation)
 
     def _rays(self, pixels):
-        rays = np.column_stack((pixels, np.ones(len(pixels)))) @ self.K_inv.T
+        rays = np.column_stack(((pixels - self.center) / self.focal, np.ones(len(pixels))))
         return rays / np.linalg.norm(rays, axis=1, keepdims=True)
+
+    def _fit_axis(self, keyframe, current, rotation):
+        key_rays = self._rays(keyframe)
+        current_rays = self._rays(current) @ rotation.T
+        normals = np.cross(key_rays, current_rays)
+        parallax = np.arcsin(np.clip(np.linalg.norm(normals, axis=1), 0.0, 1.0))
+        if np.median(parallax) < MIN_PARALLAX:
+            return None
+
+        # Two epipolar planes intersect along the translation axis. Score
+        # hypotheses by angular distance to the corresponding epipolar plane.
+        pairs = self.rng.integers(len(normals), size=(48, 2))
+        axes = np.cross(normals[pairs[:, 0]], normals[pairs[:, 1]])
+        lengths = np.linalg.norm(axes, axis=1)
+        axes = axes[lengths > 1e-7]
+        if len(axes) == 0:
+            return None
+        axes /= np.linalg.norm(axes, axis=1, keepdims=True)
+        errors = self._epipolar_error(normals, key_rays, axes)
+        support = errors <= self.epipolar_threshold
+        best = int(np.argmax(support.sum(axis=0)))
+        inliers = support[:, best]
+        minimum = max(MIN_TRACKS, 0.6 * len(normals))
+        if inliers.sum() < minimum:
+            return None
+
+        _, singular, basis = np.linalg.svd(normals[inliers], full_matrices=False)
+        geometry_ratio = singular[1] / singular[0]
+        if geometry_ratio < 0.12 or singular[2] > 0.4 * singular[1]:
+            return None
+        direction = basis[-1]
+        inliers = self._epipolar_error(normals, key_rays, direction[None])[:, 0] <= self.epipolar_threshold
+        count = int(inliers.sum())
+        if count < minimum:
+            return None
+        median_parallax = float(np.median(parallax[inliers]))
+        if median_parallax < MIN_PARALLAX:
+            return None
+        return VisualMotion(direction, len(normals), count, median_parallax, float(geometry_ratio))
+
+    @staticmethod
+    def _epipolar_error(normals, rays, axes):
+        cosine = np.clip(rays @ axes.T, -1.0, 1.0)
+        plane_norm = np.sqrt(np.maximum(1.0 - cosine**2, 1e-8))
+        return np.abs(normals @ axes.T) / plane_norm

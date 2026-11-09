@@ -1,6 +1,5 @@
-"""Error-state EKF for inertial propagation and two-view camera motion."""
+"""Error-state EKF for inertial propagation and keyframe translation measurements."""
 
-import cv2
 import numpy as np
 
 
@@ -36,38 +35,33 @@ def predict_covariance(covariance, cross, R_mid, R_step, specific_force, dt):
     return predicted, None if cross is None else F @ cross
 
 
-def camera_innovation(position, rotation, previous_position, previous_rotation,
-                      R_cam_imu, camera_offset, motion):
-    """Residual and Jacobian for the current state and a six-error pose clone."""
+def camera_innovation(position, rotation, key_position, key_rotation,
+                      R_cam_imu, camera_offset, motion, focal_length):
+    """Translation residual and Jacobian for the live state and keyframe clone."""
     C = R_cam_imu
-    world_to_previous = C @ previous_rotation.T
-    relative_rotation = world_to_previous @ rotation @ C.T
-    delta_world = position - previous_position + rotation @ camera_offset
-    delta_previous_imu = previous_rotation.T @ delta_world
-    displacement = C @ (delta_previous_imu - camera_offset)
+    world_to_key = C @ key_rotation.T
+    delta_world = position - key_position + rotation @ camera_offset
+    delta_key_imu = key_rotation.T @ delta_world
+    displacement = C @ (delta_key_imu - camera_offset)
 
-    # Left rotation residual in previous camera axes.
-    rotation_error = cv2.Rodrigues(motion.rotation @ relative_rotation.T)[0].ravel()
-    H = np.zeros((5, 21))
-    H[:3, 3:6] = relative_rotation @ C
-    H[:3, 18:21] = -C
-
-    # Two perpendicular components constrain the direction of travel.
-    # Distance along the bearing does not appear in the measurement.
     direction = motion.direction
     normal = skew(direction)[:, np.argmin(np.abs(direction))]
     normal /= np.linalg.norm(normal)
     tangent = np.stack((normal, np.cross(direction, normal)))
-    H[3:, 0:3] = tangent @ world_to_previous
-    H[3:, 3:6] = -tangent @ world_to_previous @ rotation @ skew(camera_offset)
-    H[3:, 15:18] = -H[3:, 0:3]
-    H[3:, 18:21] = tangent @ C @ skew(delta_previous_imu)
+    H = np.zeros((2, 21))
+    H[:, 0:3] = tangent @ world_to_key
+    H[:, 3:6] = -tangent @ world_to_key @ rotation @ skew(camera_offset)
+    H[:, 15:18] = -H[:, 0:3]
+    H[:, 18:21] = tangent @ C @ skew(delta_key_imu)
 
-    residual = np.concatenate((rotation_error, -tangent @ displacement))
-    # Heuristic noise for two-view geometry, with a floor near zero baseline.
-    lateral_std = 0.01 + 0.15 * np.linalg.norm(displacement)
-    noise = np.diag(np.repeat(np.square([0.035, lateral_std]), [3, 2]))
-    return residual, H, noise
+    # Weaker parallax and poorer plane spread make a pixel of angular
+    # uncertainty correspond to a larger error in the fitted translation axis.
+    axis_std = np.clip(
+        1.0 / (focal_length * motion.parallax_radians * motion.geometry_ratio),
+        0.10, 0.60,
+    )
+    lateral_std = 0.01 + axis_std * np.linalg.norm(displacement)
+    return -tangent @ displacement, H, np.eye(2) * lateral_std**2
 
 
 def correct_covariance(covariance, cross, previous_covariance, residual, H, noise):
@@ -75,7 +69,7 @@ def correct_covariance(covariance, cross, previous_covariance, residual, H, nois
     HP = H @ joint
     innovation_covariance = HP @ H.T + noise
     weighted = np.linalg.solve(innovation_covariance, residual)
-    if not np.isfinite(weighted).all() or residual @ weighted > 20.5:
+    if not np.isfinite(weighted).all() or residual @ weighted > 13.82:
         return None
 
     # Only the current state survives this step. Keep the clone in the Joseph
