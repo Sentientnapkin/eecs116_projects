@@ -134,7 +134,11 @@ Stage 6 improved Sim(3) ATE on eight of ten episodes versus IMU only, seven vers
 Stage 7 retains Stage 6's signed visual direction, keyframe tracker, and hard position update. Each accepted measurement redirects the camera displacement to the signed visual direction while preserving the predicted length. The velocity update instead uses the two components of the predicted average camera velocity perpendicular to the visual axis. Their expected value is zero. A three-state Kalman filter models the covariance shared by the interval-average and end velocities under white acceleration noise. It weights the constraint using track geometry and adds no independent measurement of along-axis speed. Position and attitude are outside this filter.
 
 ```sh
-viobench bundle "$workspace/solution" --runtime "$runtime" -o "$work/116_traditional_combination_stage7.wasm"
+mkdir "$work/stage7"
+for module in solution.py vision.py traditional_combination.py; do
+  git show "90b4b1b:$workspace/solution/$module" > "$work/stage7/$module"
+done
+viobench bundle "$work/stage7" --runtime "$runtime" -o "$work/116_traditional_combination_stage7.wasm"
 viobench check "$work/116_traditional_combination_stage7.wasm"
 (cd "$work" && viobench evaluate 116_traditional_combination_stage7.wasm)
 ```
@@ -150,3 +154,22 @@ Stage 7 passed the WebAssembly smoke test and completed all ten public episodes 
 | Mean fitted scale | 0.04058 | 0.00950 |
 
 Stage 7 improved the aligned error on six episodes. Its direction constraint leaves along-axis speed unmeasured, and the hard position update keeps the predicted length. The 50/50 blend in Stage 6 provided more damping on these flights.
+
+## Stage 8: consecutive-frame corner matching
+
+Stage 8 detects fresh corners in the previous image and matches them to the current image with forward and backward KLT on each pair. It advances the reference pose and image every step, including when matching fails. It keeps Stage 7's 320 × 240 resolution, gyro de-rotation, signed translation fit, minimum 0.5° parallax, hard position redirection, and Kalman velocity correction.
+
+```sh
+viobench bundle "$workspace/solution" --runtime "$runtime" -o "$work/116_traditional_combination_stage8.wasm"
+viobench check "$work/116_traditional_combination_stage8.wasm"
+(cd "$work" && viobench evaluate 116_traditional_combination_stage8.wasm)
+```
+
+Stage 8 passed the WebAssembly smoke test and completed all ten public episodes without filled frames. The host replay recorded 408 visual updates versus 2,159 in Stage 7. Synthetic checks confirmed an immediate correction on a valid pair, fresh corner detection for every pair, and recovery after a blank frame.
+
+| Metric | Stage 7 keyframes | Stage 8 consecutive frames |
+| --- | ---: | ---: |
+| Mean Sim(3) ATE (m) | 1.572 | 2.155 |
+| Maximum fuel per frame | 133,412,127 | 146,527,025 |
+| Mean unaligned ATE (m) | 614.936 | 1,314.982 |
+| Mean linear velocity RMSE (m/s) | 68.094 | 69.841 |

@@ -40,9 +40,9 @@ class Solution:
         self.vision = VisualOdometry(config)
         self.visual_motion = None
         self.visual_update_applied = False
-        self.key_position = None
-        self.key_rotation = None
-        self.key_time = None
+        self.previous_position = None
+        self.previous_rotation = None
+        self.previous_time = None
         self.velocity_covariance = INITIAL_VELOCITY_VARIANCE * np.eye(3)
         T_cam_imu = np.asarray(config["T_cam_imu"], dtype=float)
         self.R_cam_imu = T_cam_imu[:3, :3]
@@ -69,17 +69,17 @@ class Solution:
         self.R_world_imu = self.R_world_imu @ R_step
 
     def _correct(self, t):
-        elapsed = t - self.key_time
+        elapsed = t - self.previous_time
         if elapsed <= 0:
             return
-        key_camera_rotation = self.key_rotation @ self.R_cam_imu.T
-        direction_world = key_camera_rotation @ self.visual_motion.direction
-        offset_change = (self.R_world_imu - self.key_rotation) @ self.camera_offset
-        predicted_displacement = self.position - self.key_position + offset_change
+        previous_camera_rotation = self.previous_rotation @ self.R_cam_imu.T
+        direction_world = previous_camera_rotation @ self.visual_motion.direction
+        offset_change = (self.R_world_imu - self.previous_rotation) @ self.camera_offset
+        predicted_displacement = self.position - self.previous_position + offset_change
         distance = np.linalg.norm(predicted_displacement)
 
         # Keep Stage 6's camera position correction, then return to the IMU origin.
-        self.position = self.key_position + distance * direction_world - offset_change
+        self.position = self.previous_position + distance * direction_world - offset_change
 
         motion = self.visual_motion
         axis_std = np.clip(
@@ -91,12 +91,6 @@ class Solution:
             direction_world, elapsed, axis_std,
         )
         self.visual_update_applied = True
-
-    def _reset_keyframe(self, t):
-        self.vision.reset_keyframe()
-        self.key_position = self.position.copy()
-        self.key_rotation = self.R_world_imu
-        self.key_time = t
 
     def step(self, t, frame, imu):
         self.visual_update_applied = False
@@ -124,16 +118,17 @@ class Solution:
                 self.last_time = t
         C = self.R_cam_imu
         relative_rotation = None
-        if self.key_rotation is not None:
-            relative_rotation = C @ self.key_rotation.T @ self.R_world_imu @ C.T
+        if self.previous_rotation is not None:
+            relative_rotation = C @ self.previous_rotation.T @ self.R_world_imu @ C.T
         self.visual_motion = self.vision.step(frame, relative_rotation)
         if self.visual_motion is not None:
             self._correct(t)
-        # Start the next displacement interval from the corrected pose.
-        if self.key_rotation is None or self.visual_motion is not None or self.vision.needs_keyframe:
-            if self.key_time is not None and not self.visual_update_applied:
-                self.velocity_covariance += ACCEL_NOISE * max(t - self.key_time, 0.0) * np.eye(3)
-            self._reset_keyframe(t)
+        if self.previous_time is not None and not self.visual_update_applied:
+            elapsed = max(t - self.previous_time, 0.0)
+            self.velocity_covariance += ACCEL_NOISE * elapsed * np.eye(3)
+        self.previous_position = self.position.copy()
+        self.previous_rotation = self.R_world_imu
+        self.previous_time = t
 
         # The first camera center lies at camera_offset in the integration frame.
         R = self.R_world_imu
