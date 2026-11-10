@@ -197,3 +197,29 @@ Stage 9 passed the WebAssembly smoke test and completed all ten public episodes 
 | Mean fuel per frame | 76,233,888 | 72,433,174 |
 | Mean unaligned ATE (m) | 614.936 | 653.533 |
 | Mean linear velocity RMSE (m/s) | 68.094 | 68.481 |
+
+### Stage 9 fuel profile
+
+On public episode `0386e5c941b5`, a host call profile counted 2,398 Lucas–Kanade passes, 150 corner detections, and 139 SVD refits. The two KLT passes per image hop accounted for about 77% of estimator wall time in that profile. A one-episode WebAssembly ablation removed the backward KLT pass and its round-trip filter. Mean fuel fell from 74.74M to 43.65M per frame and peak fuel fell from 124.36M to 91.77M. Removing the check also changes the accepted tracks, so those differences include downstream effects. The ablation was diagnostic only.
+
+## Stage 10: batched dead reckoning
+
+Stage 10 is a separate IMU-only solution. It preserves Stage 1's gravity initialization, camera transforms, and latest gyro sample for reported angular velocity. It reduces roughly ten IMU propagations per image to one by taking a timestamp-weighted mean of acceleration and angular rate and integrating at the interval midpoint attitude. It uses every sample but discards variation within the interval. The keyframe VIO implementation remains available in `solution/`.
+
+```sh
+viobench bundle "$workspace/dead_reckoning" --runtime "$runtime" -o "$work/116_dead_reckoning_stage10.wasm"
+viobench check "$work/116_dead_reckoning_stage10.wasm"
+(cd "$work" && viobench evaluate 116_dead_reckoning_stage10.wasm)
+```
+
+Stage 10 passed the WebAssembly smoke test and completed all ten public episodes with zero filled frames. Synthetic checks covered timestamp weighting, an empty IMU window, and camera lever-arm motion.
+
+| Metric | Stage 1 per-sample | Stage 10 batched |
+| --- | ---: | ---: |
+| Mean Sim(3) ATE (m) | 2.15261 | 2.15272 |
+| Maximum fuel per frame | 6,458,348 | 1,632,058 |
+| Mean fuel per frame | 6,334,467 | 1,491,122 |
+| Mean unaligned ATE (m) | 1,377.553 | 1,377.519 |
+| Mean linear velocity RMSE (m/s) | 70.376 | 70.376 |
+
+The peak fuel reduction was 74.7%. This approximation preserves the public-set aligned score to within 0.2 mm. It does not address inertial drift.
