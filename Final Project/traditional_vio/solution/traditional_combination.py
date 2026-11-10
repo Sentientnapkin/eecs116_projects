@@ -1,6 +1,11 @@
-"""Direct IMU and visual displacement combination over a keyframe interval."""
+"""Direct position redirection and a velocity-only Kalman correction."""
 
 import numpy as np
+
+
+# Project 1's accelerometer process-noise intensity, in (m/s²)² per Hz.
+ACCEL_NOISE = 0.01
+INITIAL_VELOCITY_VARIANCE = 0.5**2
 
 
 def skew(v):
@@ -8,13 +13,24 @@ def skew(v):
     return np.array([[0, -z, y], [z, 0, -x], [-y, x, 0]])
 
 
-def combine_displacement(position, velocity, key_position, camera_offset_change,
-                         direction_world, elapsed):
-    """Replace the camera displacement direction and blend its average velocity."""
-    imu_displacement = position - key_position
-    camera_distance = np.linalg.norm(imu_displacement + camera_offset_change)
-    # Convert the corrected camera displacement back to IMU-centre displacement
-    # before using it to update position or velocity.
-    displacement = camera_distance * direction_world - camera_offset_change
-    corrected_velocity = 0.5 * (velocity + displacement / elapsed)
-    return key_position + displacement, corrected_velocity
+def correct_velocity(velocity, key_covariance, camera_displacement, direction,
+                     elapsed, axis_std):
+    """Use zero average camera velocity perpendicular to the visual axis."""
+    normal = skew(direction)[:, np.argmin(np.abs(direction))]
+    normal /= np.linalg.norm(normal)
+    tangent = np.stack((normal, np.cross(direction, normal)))
+    mean_camera_velocity = camera_displacement / elapsed
+    residual = -tangent @ mean_camera_velocity
+
+    # Under white acceleration noise, end velocity and interval-average
+    # velocity share the keyframe uncertainty and part of the process noise.
+    process = ACCEL_NOISE * elapsed * np.eye(3)
+    end_covariance = key_covariance + process
+    average_covariance = key_covariance + process / 3.0
+    cross_covariance = (key_covariance + process / 2.0) @ tangent.T
+
+    lateral_std = 0.05 + axis_std * np.linalg.norm(mean_camera_velocity)
+    innovation_covariance = tangent @ average_covariance @ tangent.T + lateral_std**2 * np.eye(2)
+    gain = np.linalg.solve(innovation_covariance, cross_covariance.T).T
+    posterior = end_covariance - gain @ cross_covariance.T
+    return velocity + gain @ residual, 0.5 * (posterior + posterior.T)

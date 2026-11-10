@@ -108,7 +108,11 @@ On the first public episode, a host call-count profile showed 2,398 Lucas–Kana
 Stage 6 reuses Stage 5's 320 × 240 keyframe tracking and gyro-aided translation fit. It resolves the axis sign by checking that at least 70% of inlier features triangulate in front of both cameras. A valid update replaces the direction of the predicted camera displacement while retaining its IMU-derived length. The estimator then blends the corrected displacement divided by the keyframe interval with its predicted velocity using the example's 50/50 weight. The camera lever arm is accounted for in both conversions. The first-frame gravity initialization is the same as Stage 5, with no half-second calibration delay. The direct variant carries no EKF covariance or online bias estimates.
 
 ```sh
-viobench bundle "$workspace/solution" --runtime "$runtime" -o "$work/116_traditional_combination_stage6.wasm"
+mkdir "$work/stage6"
+for module in solution.py vision.py traditional_combination.py; do
+  git show "e11ac0b:$workspace/solution/$module" > "$work/stage6/$module"
+done
+viobench bundle "$work/stage6" --runtime "$runtime" -o "$work/116_traditional_combination_stage6.wasm"
 viobench check "$work/116_traditional_combination_stage6.wasm"
 (cd "$work" && viobench evaluate 116_traditional_combination_stage6.wasm)
 ```
@@ -124,3 +128,25 @@ Both the smoke test and all ten public WebAssembly episodes passed with no fille
 | Mean fitted scale | 0.00373 | 0.08503 | 1.31920 | 0.04058 |
 
 Stage 6 improved Sim(3) ATE on eight of ten episodes versus IMU only, seven versus the bundled KLT + IMU example, and nine versus Stage 5. The direct update inherits the IMU's displacement magnitude, so inertial drift can become excess travel along a visually plausible path. The scale fit can absorb much of that excess travel. Stage 5 remains the stronger metric estimator.
+
+## Stage 7: hard position redirection with a Kalman velocity update
+
+Stage 7 retains Stage 6's signed visual direction, keyframe tracker, and hard position update. Each accepted measurement redirects the camera displacement to the signed visual direction while preserving the predicted length. The velocity update instead uses the two components of the predicted average camera velocity perpendicular to the visual axis. Their expected value is zero. A three-state Kalman filter models the covariance shared by the interval-average and end velocities under white acceleration noise. It weights the constraint using track geometry and adds no independent measurement of along-axis speed. Position and attitude are outside this filter.
+
+```sh
+viobench bundle "$workspace/solution" --runtime "$runtime" -o "$work/116_traditional_combination_stage7.wasm"
+viobench check "$work/116_traditional_combination_stage7.wasm"
+(cd "$work" && viobench evaluate 116_traditional_combination_stage7.wasm)
+```
+
+Stage 7 passed the WebAssembly smoke test and completed all ten public episodes with zero filled frames. Synthetic tests checked that redirection preserves displacement length, the velocity update responds to measurement uncertainty, and a rendered keyframe interval triggers both corrections.
+
+| Metric | Stage 6 direct | Stage 7 Kalman velocity |
+| --- | ---: | ---: |
+| Mean Sim(3) ATE (m) | 1.713 | 1.572 |
+| Maximum fuel per frame | 132,473,107 | 133,412,127 |
+| Mean unaligned ATE (m) | 212.038 | 614.936 |
+| Mean linear velocity RMSE (m/s) | 13.002 | 68.094 |
+| Mean fitted scale | 0.04058 | 0.00950 |
+
+Stage 7 improved the aligned error on six episodes. Its direction constraint leaves along-axis speed unmeasured, and the hard position update keeps the predicted length. The 50/50 blend in Stage 6 provided more damping on these flights.

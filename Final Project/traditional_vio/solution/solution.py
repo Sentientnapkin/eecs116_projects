@@ -1,8 +1,8 @@
-"""116_traditional_combination: inertial prediction and direct keyframe correction."""
+"""116_traditional_combination: hard position redirection with Kalman velocity correction."""
 
 import numpy as np
 
-from traditional_combination import combine_displacement, skew
+from traditional_combination import ACCEL_NOISE, INITIAL_VELOCITY_VARIANCE, correct_velocity, skew
 from vision import VisualOdometry
 
 GRAVITY = 9.81
@@ -43,6 +43,7 @@ class Solution:
         self.key_position = None
         self.key_rotation = None
         self.key_time = None
+        self.velocity_covariance = INITIAL_VELOCITY_VARIANCE * np.eye(3)
         T_cam_imu = np.asarray(config["T_cam_imu"], dtype=float)
         self.R_cam_imu = T_cam_imu[:3, :3]
         self.camera_offset = -self.R_cam_imu.T @ T_cam_imu[:3, 3]
@@ -74,8 +75,20 @@ class Solution:
         key_camera_rotation = self.key_rotation @ self.R_cam_imu.T
         direction_world = key_camera_rotation @ self.visual_motion.direction
         offset_change = (self.R_world_imu - self.key_rotation) @ self.camera_offset
-        self.position, self.velocity = combine_displacement(
-            self.position, self.velocity, self.key_position, offset_change, direction_world, elapsed,
+        predicted_displacement = self.position - self.key_position + offset_change
+        distance = np.linalg.norm(predicted_displacement)
+
+        # Keep Stage 6's camera position correction, then return to the IMU origin.
+        self.position = self.key_position + distance * direction_world - offset_change
+
+        motion = self.visual_motion
+        axis_std = np.clip(
+            1.0 / (min(self.vision.focal) * motion.parallax_radians * motion.geometry_ratio),
+            0.10, 0.60,
+        )
+        self.velocity, self.velocity_covariance = correct_velocity(
+            self.velocity, self.velocity_covariance, predicted_displacement,
+            direction_world, elapsed, axis_std,
         )
         self.visual_update_applied = True
 
@@ -118,6 +131,8 @@ class Solution:
             self._correct(t)
         # Start the next displacement interval from the corrected pose.
         if self.key_rotation is None or self.visual_motion is not None or self.vision.needs_keyframe:
+            if self.key_time is not None and not self.visual_update_applied:
+                self.velocity_covariance += ACCEL_NOISE * max(t - self.key_time, 0.0) * np.eye(3)
             self._reset_keyframe(t)
 
         # The first camera center lies at camera_offset in the integration frame.
