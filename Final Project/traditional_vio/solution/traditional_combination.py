@@ -13,7 +13,7 @@ def skew(v):
     return np.array([[0, -z, y], [z, 0, -x], [-y, x, 0]])
 
 
-def correct_velocity(velocity, previous_covariance, camera_displacement, direction,
+def correct_velocity(velocity, key_covariance, camera_displacement, direction,
                      elapsed, axis_std):
     """Use zero average camera velocity perpendicular to the visual axis."""
     normal = skew(direction)[:, np.argmin(np.abs(direction))]
@@ -23,11 +23,11 @@ def correct_velocity(velocity, previous_covariance, camera_displacement, directi
     residual = -tangent @ mean_camera_velocity
 
     # Under white acceleration noise, end velocity and interval-average
-    # velocity share the previous velocity uncertainty and part of the process noise.
+    # velocity share the keyframe uncertainty and part of the process noise.
     process = ACCEL_NOISE * elapsed * np.eye(3)
-    end_covariance = previous_covariance + process
-    average_covariance = previous_covariance + process / 3.0
-    cross_covariance = (previous_covariance + process / 2.0) @ tangent.T
+    end_covariance = key_covariance + process
+    average_covariance = key_covariance + process / 3.0
+    cross_covariance = (key_covariance + process / 2.0) @ tangent.T
 
     lateral_std = 0.05 + axis_std * np.linalg.norm(mean_camera_velocity)
     innovation_covariance = tangent @ average_covariance @ tangent.T + lateral_std**2 * np.eye(2)

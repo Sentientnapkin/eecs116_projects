@@ -1,4 +1,4 @@
-"""Known-rotation translation from consecutive-frame feature tracks."""
+"""Known-rotation translation from keyframe feature tracks."""
 
 from dataclasses import dataclass
 
@@ -7,12 +7,13 @@ import numpy as np
 
 
 MIN_TRACKS = 15
+KEYFRAME_HOPS = 8
 MIN_PARALLAX = np.radians(0.5)
 
 
 @dataclass(frozen=True)
 class VisualMotion:
-    """Signed translation direction in previous camera coordinates."""
+    """Signed translation direction in keyframe camera coordinates."""
 
     direction: np.ndarray
     track_count: int
@@ -27,46 +28,61 @@ class VisualOdometry:
         self.focal = np.array([config["fx"], config["fy"]])
         self.epipolar_threshold = 1.0 / min(self.focal)
         self.rng = np.random.default_rng(116)
-        self.previous_gray = None
+        self.gray = None
+        self.points = np.empty((0, 1, 2), dtype=np.float32)
+        self.keyframe_points = self.points
+        self.age = 0
+
+    def reset_keyframe(self):
+        points = cv2.goodFeaturesToTrack(self.gray, maxCorners=100, qualityLevel=0.01, minDistance=8)
+        self.points = points if points is not None else np.empty((0, 1, 2), dtype=np.float32)
+        self.keyframe_points = self.points
+        self.age = 0
+
+    @property
+    def needs_keyframe(self):
+        return len(self.points) < MIN_TRACKS or self.age >= KEYFRAME_HOPS
 
     def step(self, frame, rotation):
-        """Match fresh corners. Rotation maps current bearings into previous axes."""
-        previous_gray = self.previous_gray
-        gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-        self.previous_gray = gray
-        if previous_gray is None or rotation is None:
+        """Track one image hop. Rotation maps current bearings into the keyframe."""
+        previous_gray = self.gray
+        self.gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+        if rotation is None or self.needs_keyframe:
             return None
 
-        points = cv2.goodFeaturesToTrack(previous_gray, maxCorners=100, qualityLevel=0.01, minDistance=8)
-        if points is None or len(points) < MIN_TRACKS:
-            return None
-
-        tracked, status, _ = cv2.calcOpticalFlowPyrLK(previous_gray, gray, points, None)
+        self.age += 1
+        tracked, status, _ = cv2.calcOpticalFlowPyrLK(previous_gray, self.gray, self.points, None)
         if tracked is None or status is None:
+            self.points = self.points[:0]
             return None
         pixels = tracked.reshape(-1, 2)
-        height, width = gray.shape
+        height, width = self.gray.shape
         valid = ((status.ravel() != 0) & (pixels[:, 0] >= 0) & (pixels[:, 0] < width)
                  & (pixels[:, 1] >= 0) & (pixels[:, 1] < height))
-        tracked, previous = tracked[valid], points[valid]
+        tracked, previous = tracked[valid], self.points[valid]
+        self.keyframe_points = self.keyframe_points[valid]
+        self.points = tracked
         if len(tracked) < MIN_TRACKS:
             return None
 
-        returned, status, _ = cv2.calcOpticalFlowPyrLK(gray, previous_gray, tracked, None)
+        returned, status, _ = cv2.calcOpticalFlowPyrLK(self.gray, previous_gray, tracked, None)
         if returned is None or status is None:
+            self.points = self.points[:0]
             return None
         error = np.linalg.norm((returned - previous).reshape(-1, 2), axis=1)
         valid = (status.ravel() != 0) & (error <= 1.0)
-        if np.count_nonzero(valid) < MIN_TRACKS:
+        self.keyframe_points = self.keyframe_points[valid]
+        self.points = tracked[valid]
+        if self.age < KEYFRAME_HOPS or len(self.points) < MIN_TRACKS:
             return None
-        return self._fit_axis(previous[valid].reshape(-1, 2), tracked[valid].reshape(-1, 2), rotation)
+        return self._fit_axis(self.keyframe_points.reshape(-1, 2), self.points.reshape(-1, 2), rotation)
 
     def _rays(self, pixels):
         rays = np.column_stack(((pixels - self.center) / self.focal, np.ones(len(pixels))))
         return rays / np.linalg.norm(rays, axis=1, keepdims=True)
 
-    def _fit_axis(self, previous, current, rotation):
-        key_rays = self._rays(previous)
+    def _fit_axis(self, keyframe, current, rotation):
+        key_rays = self._rays(keyframe)
         current_rays = self._rays(current) @ rotation.T
         normals = np.cross(key_rays, current_rays)
         parallax = np.arcsin(np.clip(np.linalg.norm(normals, axis=1), 0.0, 1.0))

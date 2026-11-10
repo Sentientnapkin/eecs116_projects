@@ -160,7 +160,11 @@ Stage 7 improved the aligned error on six episodes. Its direction constraint lea
 Stage 8 detects fresh corners in the previous image and matches them to the current image with forward and backward KLT on each pair. It advances the reference pose and image every step, including when matching fails. It keeps Stage 7's 320 × 240 resolution, gyro de-rotation, signed translation fit, minimum 0.5° parallax, hard position redirection, and Kalman velocity correction.
 
 ```sh
-viobench bundle "$workspace/solution" --runtime "$runtime" -o "$work/116_traditional_combination_stage8.wasm"
+mkdir "$work/stage8"
+for module in solution.py vision.py traditional_combination.py; do
+  git show "1343e7b:$workspace/solution/$module" > "$work/stage8/$module"
+done
+viobench bundle "$work/stage8" --runtime "$runtime" -o "$work/116_traditional_combination_stage8.wasm"
 viobench check "$work/116_traditional_combination_stage8.wasm"
 (cd "$work" && viobench evaluate 116_traditional_combination_stage8.wasm)
 ```
@@ -173,3 +177,23 @@ Stage 8 passed the WebAssembly smoke test and completed all ten public episodes 
 | Maximum fuel per frame | 133,412,127 | 146,527,025 |
 | Mean unaligned ATE (m) | 614.936 | 1,314.982 |
 | Mean linear velocity RMSE (m/s) | 68.094 | 69.841 |
+
+## Stage 9: 400 ms keyframes
+
+Stage 9 takes Stage 7's tracker, gyro-aided signed translation fit, hard position redirection, and Kalman velocity correction. It attempts one fit after eight frame hops (400 ms at 20 Hz), then starts a new keyframe whether the fit passes or fails. It starts a new keyframe sooner if too few tracks survive. The estimator still returns a state on every frame.
+
+```sh
+viobench bundle "$workspace/solution" --runtime "$runtime" -o "$work/116_traditional_combination_stage9.wasm"
+viobench check "$work/116_traditional_combination_stage9.wasm"
+(cd "$work" && viobench evaluate 116_traditional_combination_stage9.wasm)
+```
+
+Stage 9 passed the WebAssembly smoke test and completed all ten public episodes without filled frames. The host replay applied 1,137 visual corrections versus 2,159 with Stage 7. Synthetic checks confirmed an eight-hop correction and a fresh keyframe after both successful and unsuccessful fits.
+
+| Metric | Stage 7 adaptive keyframes | Stage 9 400 ms |
+| --- | ---: | ---: |
+| Mean Sim(3) ATE (m) | 1.572 | 1.607 |
+| Maximum fuel per frame | 133,412,127 | 132,754,468 |
+| Mean fuel per frame | 76,233,888 | 72,433,174 |
+| Mean unaligned ATE (m) | 614.936 | 653.533 |
+| Mean linear velocity RMSE (m/s) | 68.094 | 68.481 |
