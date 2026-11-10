@@ -223,3 +223,37 @@ Stage 10 passed the WebAssembly smoke test and completed all ten public episodes
 | Mean linear velocity RMSE (m/s) | 70.376 | 70.376 |
 
 The peak fuel reduction was 74.7%. This approximation preserves the public-set aligned score to within 0.2 mm. It does not address inertial drift.
+
+## Stage 11: IMU integration sweep
+
+The sweep uses the same first-frame initialization and camera output as Stage 10. Each variant reports the latest gyro reading for angular twist. The hold variants change which readings drive pose integration.
+
+- **Average 5, 15, and 20:** average the latest N readings and integrate once per image. At 200 Hz these are nominal 25, 75, and 100 ms windows. The longer windows reuse past samples, and the 5-sample window omits the older half of each regular image interval.
+- **Previous reading:** use the last reading from the preceding image for the entire new interval, usually ten IMU ticks.
+- **Hold 109:** hold one reading for 109 incoming IMU ticks (545 ms at 200 Hz). A hold boundary can split an image interval into two propagation steps.
+- **Five steps:** combine two adjacent samples with timestamp weights and propagate once per pair.
+- **Twenty steps:** split each sample interval into two substeps with the same reading. This adds integration work without adding sensor observations.
+- **Taylor ten:** integrate every sample. Use Taylor polynomials for the Rodrigues coefficients at small angles and the exact trigonometric form for larger increments.
+- **Reuse midpoint:** preserve the Stage 10 packet average. Compute one exact half-interval rotation and apply it twice, reusing the midpoint attitude for acceleration.
+
+```sh
+python "$workspace/imu_experiments/benchmark.py" "$runtime" "$work/imu_experiments"
+```
+
+All nine variants completed all ten public episodes with zero filled frames. Synthetic checks covered the rolling window, substep counts, the exact 109-tick refresh boundary, and agreement between Taylor and exact rotations.
+
+| IMU variant | Mean Sim(3) ATE (m) | Maximum fuel/frame | Mean unaligned ATE (m) |
+| --- | ---: | ---: | ---: |
+| Stage 1, original per-sample | 2.15261 | 6,458,348 | 1,377.55 |
+| Stage 10, weighted packet average | 2.15272 | 1,632,058 | 1,377.52 |
+| Average 5 | 2.14696 | 1,440,705 | 1,337.18 |
+| Average 15 | 2.15060 | 1,449,836 | 1,364.83 |
+| Average 20 | 2.15360 | 1,452,228 | 1,379.87 |
+| Previous reading | 2.17342 | 1,330,495 | 1,462.50 |
+| Hold 109 ticks | 2.22751 | 1,923,614 | 2,258.00 |
+| Five steps | 2.15261 | 3,974,827 | 1,377.53 |
+| Twenty steps | 2.15261 | 11,743,672 | 1,377.55 |
+| Taylor ten | 2.15261 | 4,276,130 | 1,377.55 |
+| Reuse midpoint | 2.15272 | 1,432,804 | 1,377.52 |
+
+Average 5 had the best aligned score in the sweep. The one-frame hold used the least peak fuel, while the 109-tick hold sometimes split an image interval into two propagations and had a higher peak. Midpoint reuse cut peak fuel by 12.2% relative to Stage 10 with the same public scores to the reported precision. The Taylor variant includes midpoint reuse and a different sample loop, so its comparison with Stage 1 measures the combined changes. Metric drift remains large in every variant.

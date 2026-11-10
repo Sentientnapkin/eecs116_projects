@@ -56,6 +56,26 @@ class Solution:
         self.velocity += acceleration * dt
         self.R_world_imu = self.R_world_imu @ exp_so3(rotation_step)
 
+    def _integrate_window(self, t, imu):
+        dt = t - self.last_time
+        if len(imu):
+            # Use Stage 1's sample intervals, including the final hold
+            # from the last valid sample to the image timestamp.
+            times = np.clip(imu[:, 0], self.last_time, t)
+            durations = np.diff(times, prepend=self.last_time)
+            valid = np.flatnonzero(durations > 0)
+            if len(valid):
+                latest = valid[-1]
+                durations[latest] += t - times[latest]
+                accel, gyro = (durations @ imu[:, 1:] / dt).reshape(2, 3)
+                self.accel, self.gyro = imu[latest, 1:4].copy(), imu[latest, 4:7].copy()
+            else:
+                accel, gyro = self.accel, self.gyro
+        else:
+            accel, gyro = self.accel, self.gyro
+        self._propagate(dt, accel, gyro)
+        self.last_time = t
+
     def step(self, t, frame, imu):
         if self.last_time is None:
             # The first batch precedes the pose origin. Use it only to seed
@@ -68,24 +88,7 @@ class Solution:
                 self.accel, self.gyro = imu[-1, 1:4].copy(), imu[-1, 4:7].copy()
             self.last_time = t
         elif t > self.last_time:
-            dt = t - self.last_time
-            if len(imu):
-                # Use Stage 1's sample intervals, including the final hold
-                # from the last valid sample to the image timestamp.
-                times = np.clip(imu[:, 0], self.last_time, t)
-                durations = np.diff(times, prepend=self.last_time)
-                valid = np.flatnonzero(durations > 0)
-                if len(valid):
-                    latest = valid[-1]
-                    durations[latest] += t - times[latest]
-                    accel, gyro = (durations @ imu[:, 1:] / dt).reshape(2, 3)
-                    self.accel, self.gyro = imu[latest, 1:4].copy(), imu[latest, 4:7].copy()
-                else:
-                    accel, gyro = self.accel, self.gyro
-            else:
-                accel, gyro = self.accel, self.gyro
-            self._propagate(dt, accel, gyro)
-            self.last_time = t
+            self._integrate_window(t, imu)
 
         # The first camera center lies at camera_offset in the integration frame.
         R = self.R_world_imu
