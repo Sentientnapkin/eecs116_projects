@@ -38,7 +38,7 @@ def compare(episode, baseline, fused):
         accepted += estimators[1].visual_update_applied
 
     truth = episode.ground_truth_state()
-    report = {"episode": episode.key, "visual_pairs": available, "ekf_updates": accepted}
+    report = {"episode": episode.key, "visual_pairs": available, "visual_updates": accepted}
     for mode, name in enumerate(("imu_only", "fused")):
         if not valid_states(states[mode]).all():
             raise ValueError(f"{episode.key}: {name} returned an invalid state")

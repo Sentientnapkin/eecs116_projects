@@ -14,7 +14,7 @@ MIN_PARALLAX = np.radians(0.5)
 
 @dataclass(frozen=True)
 class VisualMotion:
-    """Unsigned translation axis in keyframe camera coordinates."""
+    """Signed translation direction in keyframe camera coordinates."""
 
     direction: np.ndarray
     track_count: int
@@ -119,7 +119,25 @@ class VisualOdometry:
         median_parallax = float(np.median(parallax[inliers]))
         if median_parallax < MIN_PARALLAX:
             return None
-        return VisualMotion(direction, len(normals), count, median_parallax, float(geometry_ratio))
+        sign = self._translation_sign(key_rays[inliers], current_rays[inliers], direction)
+        if sign is None:
+            return None
+        return VisualMotion(sign * direction, len(normals), count, median_parallax, float(geometry_ratio))
+
+    @staticmethod
+    def _translation_sign(key_rays, current_rays, direction):
+        # Triangulate the two depths up to a common positive denominator.
+        # Reversing the translation reverses both depths (cheirality test).
+        cosine = np.sum(key_rays * current_rays, axis=1)
+        key_projection = key_rays @ direction
+        current_projection = current_rays @ direction
+        key_depth = key_projection - cosine * current_projection
+        current_depth = cosine * key_projection - current_projection
+        positive = np.count_nonzero((key_depth > 0) & (current_depth > 0))
+        negative = np.count_nonzero((key_depth < 0) & (current_depth < 0))
+        if max(positive, negative) < 0.7 * len(key_rays):
+            return None
+        return 1 if positive > negative else -1
 
     @staticmethod
     def _epipolar_error(normals, rays, axes):

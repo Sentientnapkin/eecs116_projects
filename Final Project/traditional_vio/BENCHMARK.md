@@ -6,7 +6,7 @@ Run these commands from the repository root with VIOBench installed. Both versio
 python "Final Project/traditional_vio/benchmark.py" > /tmp/traditional-vio-host.jsonl
 ```
 
-Pass `--max-episodes 1` for a quick check. Each JSON line contains VIOBench trajectory and twist metrics for both estimators, plus the number of frame pairs with usable visual motion and the number accepted by the EKF. Host timing measures local Python execution.
+Pass `--max-episodes 1` for a quick check. Each JSON line contains VIOBench trajectory and twist metrics for both estimators, plus the number of frame pairs with usable visual motion and the number used to correct the estimate. Host timing measures local Python execution.
 
 ## WebAssembly accuracy and fuel
 
@@ -69,10 +69,14 @@ Fusion improved unaligned ATE on all ten episodes and Sim(3) ATE on three. Sim(3
 
 The visual front end tracks up to 100 corners from a keyframe using consecutive Lucas–Kanade hops. Starting at four hops (200 ms at 20 Hz), it de-rotates the current bearings using the integrated gyro and fits a translation axis with two-track RANSAC and an SVD refit. The fit requires at least 0.5° of median inlier parallax and a well-conditioned set of epipolar planes. The EKF retains the keyframe pose and its cross-covariance, then uses at most one translation-axis measurement per keyframe. The camera still operates at 320 × 240.
 
-Run the host comparison above against the current solution. For the WebAssembly comparison, reuse the same runtime and label the new build separately.
+For the WebAssembly comparison, extract the Stage 5 solution and reuse the same runtime.
 
 ```sh
-viobench bundle "$workspace/solution" --runtime "$runtime" -o "$work/116_traditional_combination.wasm"
+mkdir "$work/stage5"
+for module in solution.py vision.py traditional_combination.py; do
+  git show "0ecb9fc:$workspace/solution/$module" > "$work/stage5/$module"
+done
+viobench bundle "$work/stage5" --runtime "$runtime" -o "$work/116_traditional_combination.wasm"
 viobench check "$work/116_traditional_combination.wasm"
 (cd "$work" && viobench evaluate 116_traditional_combination.wasm)
 ```
@@ -98,3 +102,25 @@ viobench bundle "Final Project/viobench/viobench/solution/examples/python/klt_im
 ```
 
 On the first public episode, a host call-count profile showed 2,398 Lucas–Kanade passes in both Stage 3 and Stage 5. Stage 3 ran 1,199 corner detections and 1,199 calls each to `findEssentialMat` and `recoverPose`. Stage 5 ran 260 corner detections and 308 SVD refits. These counts explain where Stage 5 avoids work, while the peak fuel values above come from the WebAssembly runs.
+
+## Stage 6: direct keyframe correction
+
+Stage 6 reuses Stage 5's 320 × 240 keyframe tracking and gyro-aided translation fit. It resolves the axis sign by checking that at least 70% of inlier features triangulate in front of both cameras. A valid update replaces the direction of the predicted camera displacement while retaining its IMU-derived length. The estimator then blends the corrected displacement divided by the keyframe interval with its predicted velocity using the example's 50/50 weight. The camera lever arm is accounted for in both conversions. The first-frame gravity initialization is the same as Stage 5, with no half-second calibration delay. The direct variant carries no EKF covariance or online bias estimates.
+
+```sh
+viobench bundle "$workspace/solution" --runtime "$runtime" -o "$work/116_traditional_combination_stage6.wasm"
+viobench check "$work/116_traditional_combination_stage6.wasm"
+(cd "$work" && viobench evaluate 116_traditional_combination_stage6.wasm)
+```
+
+Both the smoke test and all ten public WebAssembly episodes passed with no filled frames. The host replay applied 2,159 direct visual corrections.
+
+| Metric | IMU only | VIOBench KLT + IMU | Stage 5 EKF | Stage 6 direct |
+| --- | ---: | ---: | ---: | ---: |
+| Mean Sim(3) ATE (m) | 2.153 | 2.042 | 2.512 | 1.713 |
+| Maximum fuel per frame | 6,458,348 | 141,887,507 | 141,367,669 | 132,473,107 |
+| Mean unaligned ATE (m) | 1,377.553 | 152.697 | 4.662 | 212.038 |
+| Mean linear velocity RMSE (m/s) | 70.376 | 7.541 | 0.621 | 13.002 |
+| Mean fitted scale | 0.00373 | 0.08503 | 1.31920 | 0.04058 |
+
+Stage 6 improved Sim(3) ATE on eight of ten episodes versus IMU only, seven versus the bundled KLT + IMU example, and nine versus Stage 5. The direct update inherits the IMU's displacement magnitude, so inertial drift can become excess travel along a visually plausible path. The scale fit can absorb much of that excess travel. Stage 5 remains the stronger metric estimator.

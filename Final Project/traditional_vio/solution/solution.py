@@ -1,10 +1,8 @@
-"""116_traditional_combination: inertial prediction and keyframe translation updates."""
+"""116_traditional_combination: inertial prediction and direct keyframe correction."""
 
 import numpy as np
 
-from traditional_combination import (
-    INITIAL_VARIANCE, camera_innovation, correct_covariance, predict_covariance, skew,
-)
+from traditional_combination import combine_displacement, skew
 from vision import VisualOdometry
 
 GRAVITY = 9.81
@@ -42,11 +40,9 @@ class Solution:
         self.vision = VisualOdometry(config)
         self.visual_motion = None
         self.visual_update_applied = False
-        self.covariance = np.diag(INITIAL_VARIANCE)
         self.key_position = None
         self.key_rotation = None
-        self.key_covariance = None
-        self.key_cross = None
+        self.key_time = None
         T_cam_imu = np.asarray(config["T_cam_imu"], dtype=float)
         self.R_cam_imu = T_cam_imu[:3, :3]
         self.camera_offset = -self.R_cam_imu.T @ T_cam_imu[:3, 3]
@@ -55,53 +51,39 @@ class Solution:
         self.R_world_imu = np.eye(3)
         self.position = np.zeros(3)
         self.velocity = np.zeros(3)
-        self.gyro_bias = np.zeros(3)
-        self.accel_bias = np.zeros(3)
         self.gravity = np.array([0.0, 0.0, -GRAVITY])
         self.last_time = None
         self.accel = -self.gravity.copy()
         self.gyro = np.zeros(3)
 
     def _propagate(self, dt):
-        # Project 1's bias-corrected inertial model, with rotation increments
+        # Project 1's inertial model, with rotation increments
         # applied directly and acceleration evaluated at the midpoint attitude.
-        rotation_step = (self.gyro - self.gyro_bias) * dt
+        rotation_step = self.gyro * dt
         R_mid = self.R_world_imu @ exp_so3(0.5 * rotation_step)
         R_step = exp_so3(rotation_step)
-        specific_force = self.accel - self.accel_bias
-        acceleration = R_mid @ specific_force + self.gravity
+        acceleration = R_mid @ self.accel + self.gravity
         self.position += self.velocity * dt + 0.5 * acceleration * dt**2
         self.velocity += acceleration * dt
         self.R_world_imu = self.R_world_imu @ R_step
-        self.covariance, self.key_cross = predict_covariance(
-            self.covariance, self.key_cross, R_mid, R_step, specific_force, dt,
-        )
 
-    def _correct(self):
-        residual, H, noise = camera_innovation(
-            self.position, self.R_world_imu, self.key_position, self.key_rotation,
-            self.R_cam_imu, self.camera_offset, self.visual_motion, min(self.vision.focal),
-        )
-        result = correct_covariance(
-            self.covariance, self.key_cross, self.key_covariance, residual, H, noise,
-        )
-        if result is None:
+    def _correct(self, t):
+        elapsed = t - self.key_time
+        if elapsed <= 0:
             return
-
-        correction, self.covariance = result
-        self.position += correction[:3]
-        self.R_world_imu = self.R_world_imu @ exp_so3(correction[3:6])
-        self.velocity += correction[6:9]
-        self.gyro_bias += correction[9:12]
-        self.accel_bias += correction[12:15]
+        key_camera_rotation = self.key_rotation @ self.R_cam_imu.T
+        direction_world = key_camera_rotation @ self.visual_motion.direction
+        offset_change = (self.R_world_imu - self.key_rotation) @ self.camera_offset
+        self.position, self.velocity = combine_displacement(
+            self.position, self.velocity, self.key_position, offset_change, direction_world, elapsed,
+        )
         self.visual_update_applied = True
 
-    def _reset_keyframe(self):
+    def _reset_keyframe(self, t):
         self.vision.reset_keyframe()
         self.key_position = self.position.copy()
         self.key_rotation = self.R_world_imu
-        self.key_covariance = self.covariance[:6, :6]
-        self.key_cross = self.covariance[:, :6]
+        self.key_time = t
 
     def step(self, t, frame, imu):
         self.visual_update_applied = False
@@ -128,18 +110,15 @@ class Solution:
                 self._propagate(t - self.last_time)
                 self.last_time = t
         C = self.R_cam_imu
-        # No visual correction occurs within a keyframe interval. This relative
-        # orientation therefore comes from the bias-corrected gyro integration.
         relative_rotation = None
         if self.key_rotation is not None:
             relative_rotation = C @ self.key_rotation.T @ self.R_world_imu @ C.T
         self.visual_motion = self.vision.step(frame, relative_rotation)
         if self.visual_motion is not None:
-            self._correct()
-        # Use a track set for at most one EKF update. Clone the corrected pose
-        # when starting fresh so the filter does not reuse correlated tracks.
+            self._correct(t)
+        # Start the next displacement interval from the corrected pose.
         if self.key_rotation is None or self.visual_motion is not None or self.vision.needs_keyframe:
-            self._reset_keyframe()
+            self._reset_keyframe(t)
 
         # The first camera center lies at camera_offset in the integration frame.
         R = self.R_world_imu
@@ -147,7 +126,7 @@ class Solution:
         p_c0_camera = self.R_cam_imu @ (self.position + R @ self.camera_offset - self.camera_offset)
         q = matrix_to_quaternion(R_c0_camera)
 
-        omega = self.gyro - self.gyro_bias
+        omega = self.gyro
         v_camera = self.R_cam_imu @ (R.T @ self.velocity + np.cross(omega, self.camera_offset))
         w_camera = self.R_cam_imu @ omega
         return np.concatenate([p_c0_camera, q / np.linalg.norm(q), v_camera, w_camera])
