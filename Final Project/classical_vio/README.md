@@ -15,6 +15,9 @@ benchmark notes are in Git history at `a0d6eb0`.
 
 ## Dead reckoning equations
 
+The [LaTeX subsection](imu_avg5_derivation.tex) gives the full derivation
+for the latest-five estimator.
+
 Let $p$ and $v$ be the IMU position and velocity in world coordinates, and
 let $R$ map vectors from IMU axes into world axes. Let $T$ be the time
 between images, typically 50 ms. Each image packet contains accelerometer

@@ -1,0 +1,86 @@
+% Include with \input{imu_avg5_derivation} and \usepackage{amsmath}.
+\subsection{IMU dead reckoning with the latest five samples}
+\label{sec:imu-avg5}
+
+Let $t_k$ be the timestamp of image $k$ and let
+$\Delta t_k=t_k-t_{k-1}$. The VIOBench stream nominally provides camera
+frames at $20\,\mathrm{Hz}$ and IMU readings at $200\,\mathrm{Hz}$.
+Each IMU reading supplies the body-frame specific force $f_i$ in
+$\mathrm{m/s^2}$ and angular rate $\omega_i$ in $\mathrm{rad/s}$.
+The estimator propagates once per camera interval using the arithmetic
+mean of the five newest IMU readings. The camera timestamps set the
+integration interval.
+
+\paragraph{State and initialization.}
+Let $p_k$ and $v_k$ denote the IMU position and velocity in the world frame,
+and let $R_k$ map IMU-frame vectors into world coordinates. The world axes
+coincide with the IMU axes at the first image, so
+\begin{equation}
+    p_0=v_0=0,\qquad R_0=I_3.
+\end{equation}
+The first packet contains $N_0$ samples. Assuming low initial linear
+acceleration, the estimator uses the mean specific force $\mu_0$ to
+initialize the fixed gravity vector:
+\begin{align}
+    \mu_0 &= \frac{1}{N_0}\sum_{i=1}^{N_0} f_i, \\
+    g &=
+    \begin{cases}
+        -g_0\,\mu_0/\lVert\mu_0\rVert,
+            & N_0>0,\ \lVert\mu_0\rVert>10^{-6},\\
+        (0,0,-g_0)^\top, & \text{otherwise},
+    \end{cases}
+    \qquad g_0=9.81\,\mathrm{m/s^2}.
+\end{align}
+The mean $\mu_0$ is evaluated only when $N_0>0$.
+
+\paragraph{Sample averaging and propagation.}
+Let $\mathcal H_k$ contain the latest $m_k$ readings received by image
+$k$, where $m_k$ is at most five. For a full ten-reading packet,
+$\mathcal H_k$ is the last five readings of that packet.
+\begin{equation}
+    \bar f_k=\frac{1}{m_k}\sum_{i\in\mathcal H_k} f_i,
+    \qquad
+    \bar\omega_k=\frac{1}{m_k}\sum_{i\in\mathcal H_k}\omega_i .
+\end{equation}
+Before any IMU readings arrive, the propagation uses the initial
+specific force $(0,0,g_0)^\top$ and zero angular rate.
+
+For a rotation vector $\phi$, let $[\phi]_\times x=\phi\times x$ and
+$\theta=\lVert\phi\rVert$. The code uses Rodrigues' formula,
+\begin{equation}
+    \mathcal R(\phi)
+    = I_3+\frac{\sin\theta}{\theta}[\phi]_\times
+      +\frac{1-\cos\theta}{\theta^2}[\phi]_\times^2 ,
+\end{equation}
+returning $I_3$ for $\theta<10^{-12}$. It rotates the averaged specific
+force at the midpoint attitude, adds gravity, and assumes the resulting
+world-frame acceleration is constant over the image interval:
+\begin{align}
+    \phi_k &= \bar\omega_k\Delta t_k,\\
+    R_{k-\frac12} &= R_{k-1}\mathcal R(\phi_k/2),\\
+    a_k &= R_{k-\frac12}\bar f_k + g,\\
+    p_k &= p_{k-1}+v_{k-1}\Delta t_k+\tfrac12 a_k\Delta t_k^2,\\
+    v_k &= v_{k-1}+a_k\Delta t_k,\\
+    R_k &= R_{k-1}\mathcal R(\phi_k).
+\end{align}
+
+\paragraph{Camera pose and twist.}
+Write the calibrated IMU-to-camera transform as
+$(R_{CI},t_{CI})$, so $x_C=R_{CI}x_I+t_{CI}$. The camera center in IMU
+coordinates is $r=-R_{CI}^\top t_{CI}$. With the first camera as the pose
+reference, the output translation and rotation matrix are
+\begin{align}
+    p_{C_0 C_k} &= R_{CI}(p_k+R_k r-r),\\
+    R_{C_0 C_k} &= R_{CI}R_kR_{CI}^\top .
+\end{align}
+The rotation is converted to a unit quaternion $q_{C_0 C_k}$
+in scalar-last order $(q_x,q_y,q_z,q_w)$. The twist is expressed in the
+current camera axes and uses the latest individual gyro reading
+$\omega_{\mathrm{last}}$:
+\begin{align}
+    v_{C_k} &= R_{CI}\bigl(R_k^\top v_k
+                   +\omega_{\mathrm{last}}\times r\bigr),\\
+    \omega_{C_k} &= R_{CI}\omega_{\mathrm{last}} .
+\end{align}
+The returned state is the concatenation of $p_{C_0 C_k}$,
+$q_{C_0 C_k}$, $v_{C_k}$, and $\omega_{C_k}$.
