@@ -7,7 +7,8 @@ import numpy as np
 
 
 MIN_TRACKS = 15
-KEYFRAME_HOPS = 8
+MIN_KEYFRAME_AGE = 4
+MAX_KEYFRAME_AGE = 10
 MIN_PARALLAX = np.radians(0.5)
 
 
@@ -41,7 +42,7 @@ class VisualOdometry:
 
     @property
     def needs_keyframe(self):
-        return len(self.points) < MIN_TRACKS or self.age >= KEYFRAME_HOPS
+        return len(self.points) < MIN_TRACKS or self.age >= MAX_KEYFRAME_AGE
 
     def step(self, frame, rotation):
         """Track one image hop. Rotation maps current bearings into the keyframe."""
@@ -73,7 +74,7 @@ class VisualOdometry:
         valid = (status.ravel() != 0) & (error <= 1.0)
         self.keyframe_points = self.keyframe_points[valid]
         self.points = tracked[valid]
-        if self.age < KEYFRAME_HOPS or len(self.points) < MIN_TRACKS:
+        if self.age < MIN_KEYFRAME_AGE or len(self.points) < MIN_TRACKS:
             return None
         return self._fit_axis(self.keyframe_points.reshape(-1, 2), self.points.reshape(-1, 2), rotation)
 
