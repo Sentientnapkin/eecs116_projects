@@ -10,3 +10,4 @@ __pycache__/
 /results/loop/*/
 /results/preflight-*/
 /results/logs/
+optix7cache.db
