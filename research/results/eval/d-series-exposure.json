@@ -1,0 +1,83 @@
+{
+ "D0": {
+  "windows_containing_mean": {
+   "backward": 0.007,
+   "lateral": 0.038,
+   "vertical": 0.214,
+   "braking": 0.019,
+   "turning": 0.042,
+   "hover": 0.394
+  },
+  "scored_label_fraction_epoch1": {
+   "backward": 0.002,
+   "lateral": 0.0101,
+   "vertical": 0.124,
+   "braking": 0.0036,
+   "turning": 0.0089,
+   "hover": 0.2402
+  },
+  "unique_parents_12ep": 122,
+  "of_parents": 122,
+  "unique_scenes_12ep": 36,
+  "max_windows_per_parent_12ep": 24,
+  "domain_tier_epoch1": {
+   "?/?": 244
+  }
+ },
+ "D1": {
+  "windows_containing_mean": {
+   "backward": 0.072,
+   "lateral": 0.215,
+   "vertical": 0.319,
+   "braking": 0.281,
+   "turning": 0.155,
+   "hover": 0.361
+  },
+  "scored_label_fraction_epoch1": {
+   "backward": 0.0168,
+   "lateral": 0.0914,
+   "vertical": 0.1304,
+   "braking": 0.0607,
+   "turning": 0.0402,
+   "hover": 0.1789
+  },
+  "unique_parents_12ep": 586,
+  "of_parents": 586,
+  "unique_scenes_12ep": 36,
+  "max_windows_per_parent_12ep": 6,
+  "domain_tier_epoch1": {
+   "proxy/?": 48,
+   "proxy/base": 38,
+   "proxy/mid": 74,
+   "proxy/agile": 84
+  }
+ },
+ "D2": {
+  "windows_containing_mean": {
+   "backward": 0.215,
+   "lateral": 0.417,
+   "vertical": 0.344,
+   "braking": 0.335,
+   "turning": 0.146,
+   "hover": 0.259
+  },
+  "scored_label_fraction_epoch1": {
+   "backward": 0.0542,
+   "lateral": 0.1774,
+   "vertical": 0.1418,
+   "braking": 0.0705,
+   "turning": 0.0322,
+   "hover": 0.1209
+  },
+  "unique_parents_12ep": 569,
+  "of_parents": 586,
+  "unique_scenes_12ep": 36,
+  "max_windows_per_parent_12ep": 36,
+  "domain_tier_epoch1": {
+   "proxy/?": 84,
+   "proxy/agile": 70,
+   "proxy/base": 31,
+   "proxy/mid": 59
+  }
+ }
+}

@@ -1,0 +1,93 @@
+{
+ "cache_version": 3,
+ "width": 32,
+ "height": 24,
+ "baselines": [
+  0.25,
+  1.0
+ ],
+ "horizons": [
+  0.25,
+  1,
+  3,
+  6
+ ],
+ "startup_seconds": 1.0,
+ "still_gyro": 0.12,
+ "still_accel": 0.7,
+ "still_image_difference": 0.025,
+ "policy": "rolling",
+ "training_tier": "base",
+ "parents_per_scene": 1,
+ "reserved_scenes": [
+  "ProcTHOR-Train-162",
+  "ProcTHOR-Train-163",
+  "ProcTHOR-Train-164",
+  "ProcTHOR-Train-165"
+ ],
+ "seeds": [
+  0,
+  1
+ ],
+ "epochs": 4,
+ "head_epochs": 4,
+ "chunk": 240,
+ "burn_in": 60,
+ "joint": {
+  "seeds": [
+   0,
+   1,
+   2
+  ],
+  "epochs": 8,
+  "patience": 4,
+  "hidden": 64,
+  "embedding": 48,
+  "chunk": 240,
+  "burn_in": 80,
+  "horizons": [
+   0.25,
+   1,
+   3,
+   6
+  ],
+  "pilot_duration_s": 30,
+  "pilot_train": [
+   34,
+   35,
+   36,
+   37,
+   38,
+   39,
+   40,
+   41,
+   42,
+   43,
+   44,
+   45
+  ],
+  "pilot_dev": [
+   166,
+   167,
+   168,
+   169,
+   170,
+   171
+  ],
+  "final_test": [
+   162,
+   163,
+   164,
+   165,
+   172,
+   173,
+   174,
+   175
+  ],
+  "peak_archive_estimate_bytes": 7600000000,
+  "max_epochs": 12,
+  "chunks_per_parent": 1
+ },
+ "ordered_packet": true,
+ "portable_pixels": "remap"
+}

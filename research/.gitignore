@@ -1,0 +1,12 @@
+data/
+results/*.pt
+*.log
+__pycache__/
+
+/results/20*-*/
+/results/teacher-*/
+/results/hub/
+# Run directories (checkpoints, source snapshots) are mirrored to the private Hub lab repo.
+/results/loop/*/
+/results/preflight-*/
+/results/logs/

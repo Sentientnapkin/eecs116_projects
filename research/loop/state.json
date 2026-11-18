@@ -1,0 +1,141 @@
+{
+  "gru-recipe": {
+    "status": "done",
+    "note": "v1 GRU + weight EMA, cosine LR, 12 ep (baseline gru-v1 best 1.48)",
+    "minutes": 128.6,
+    "result": {
+      "best_epoch": 12,
+      "epochs_run": 12,
+      "selection_score": 1.4463,
+      "nominal_ate": 1.3263,
+      "moving_ate": 1.5664,
+      "sim3_ate": 0.4805,
+      "final_loss": 0.0617,
+      "parameters": 1848979
+    }
+  },
+  "ssm-recipe": {
+    "status": "done",
+    "note": "v1 SSM + same recipe (baseline ssm-v1 best 1.51)",
+    "minutes": 152.1,
+    "result": {
+      "best_epoch": 12,
+      "epochs_run": 12,
+      "selection_score": 1.2918,
+      "nominal_ate": 1.2192,
+      "moving_ate": 1.3643,
+      "sim3_ate": 0.5027,
+      "final_loss": 0.0628,
+      "parameters": 1286355
+    }
+  },
+  "gru-w160": {
+    "status": "pending",
+    "note": "longer context windows (earlier SSM work used 140-280 frames)"
+  },
+  "gru-w160-h6": {
+    "status": "pending",
+    "note": "add 6 s displacement horizon: drift over long spans dominates error (Team 1, Team 11 oracle)"
+  },
+  "gru-w160-wide": {
+    "status": "pending",
+    "note": "capacity check"
+  },
+  "gru-w160-att": {
+    "status": "pending",
+    "note": "AirIO attitude encoding (gravity dir in body) as input [1 window/parent: equal compute]"
+  },
+  "gru-w160-h6-att": {
+    "status": "pending",
+    "note": "combine 6 s horizon + attitude [1 window/parent: equal compute]"
+  },
+  "gru-blind": {
+    "status": "done",
+    "note": "diagnostic: identical to gru-recipe with images blanked; tests whether vision contributes",
+    "minutes": 57.0,
+    "result": {
+      "best_epoch": 3,
+      "epochs_run": 6,
+      "selection_score": 1.5941,
+      "nominal_ate": 1.4673,
+      "moving_ate": 1.7209,
+      "sim3_ate": 0.4722,
+      "final_loss": 0.1273,
+      "parameters": 1848979
+    }
+  },
+  "data-teacher-v2-gru-recipe": {
+    "status": "done",
+    "note": "gru-recipe config on teacher-v2: 224 train shards (+100 generated)",
+    "minutes": 176.7,
+    "result": {
+      "best_epoch": 7,
+      "epochs_run": 10,
+      "selection_score": 1.3877,
+      "nominal_ate": 1.2708,
+      "moving_ate": 1.5045,
+      "sim3_ate": 0.512,
+      "final_loss": 0.0729,
+      "parameters": 1848979
+    }
+  },
+  "ssm-w160-h6": {
+    "status": "done",
+    "note": "leader SSM + longer context and 6 s horizon (equal compute)",
+    "minutes": 169.2,
+    "result": {
+      "best_epoch": 12,
+      "epochs_run": 12,
+      "selection_score": 1.4351,
+      "nominal_ate": 1.4005,
+      "moving_ate": 1.4697,
+      "sim3_ate": 0.5033,
+      "final_loss": 0.0266,
+      "parameters": 1286355
+    }
+  },
+  "ssm-w160-h6-att": {
+    "status": "pending",
+    "note": "+ AirIO attitude input"
+  },
+  "data-teacher-v3-ssm-recipe": {
+    "status": "done",
+    "note": "ssm-recipe config on teacher-v3: 322 train shards (+200 generated)",
+    "minutes": 177.2,
+    "result": {
+      "best_epoch": 6,
+      "epochs_run": 6,
+      "selection_score": 1.2595,
+      "nominal_ate": 1.1519,
+      "moving_ate": 1.3672,
+      "sim3_ate": 0.4778,
+      "final_loss": 0.0878,
+      "parameters": 1286355
+    }
+  },
+  "ssm-att": {
+    "status": "done",
+    "note": "leader SSM + AirIO attitude input (10 epochs to finish by morning)",
+    "minutes": 80.6,
+    "result": {
+      "best_epoch": 2,
+      "epochs_run": 7,
+      "selection_score": 1.5165,
+      "nominal_ate": 1.43,
+      "moving_ate": 1.6029,
+      "sim3_ate": 0.4712,
+      "final_loss": 0.0973,
+      "parameters": 1286547
+    }
+  },
+  "ssm-att-nopatience": {
+    "status": "running",
+    "note": "rerun of ssm-att without early stopping (patience cut it mid-cosine at epoch 7)"
+  },
+  "data-teacher-v4-ssm-recipe": {
+    "status": "failed",
+    "note": "leader SSM on all generated data so far (v4), 6 epochs; runs into late morning, resumable",
+    "minutes": 29.5,
+    "result": null
+  }
+}

@@ -1,0 +1,25 @@
+[
+ {
+  "name": "data-teacher-v4-ssm-recipe",
+  "data": "hf:teacher-v4",
+  "args": [
+   "--group-size",
+   "16",
+   "--cache-gb",
+   "20",
+   "--epochs",
+   "6",
+   "--set",
+   "training.weight_ema=0.995",
+   "--set",
+   "training.schedule=\"cosine\"",
+   "--set",
+   "training.warmup_epochs=0.5",
+   "--set",
+   "training.patience=5",
+   "--head",
+   "ssm"
+  ],
+  "note": "leader SSM on all generated data so far (v4), 6 epochs; runs into late morning, resumable"
+ }
+]

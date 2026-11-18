@@ -1,0 +1,183 @@
+{
+  "version": "robustness-v2",
+  "stress": {
+    "crops_s": [
+      0,
+      2,
+      5,
+      12
+    ],
+    "conditions": [
+      "clean",
+      "constant",
+      "changing",
+      "gaps",
+      "jitter",
+      "original-combined"
+    ],
+    "sensor_seed": 651
+  },
+  "training": {
+    "nominal_fraction": 0.45,
+    "nominal_ate_allowance_m": 0.05,
+    "min_stress_improvement_m": 0.02,
+    "train_seeds": [
+      0,
+      1
+    ],
+    "confirmation_seed": 2,
+    "crop_start_s": [
+      1.5,
+      18.0
+    ],
+    "window_frames": [
+      140,
+      280
+    ],
+    "min_epochs": 4,
+    "max_epochs": 10,
+    "patience": 3,
+    "learning_rate": 0.00035
+  },
+  "simulation": {
+    "required_free_bytes": 5000000000,
+    "confirmation": [
+      {
+        "scene": 176,
+        "split": "confirmation",
+        "seconds": 30,
+        "regime": "benchmark"
+      },
+      {
+        "scene": 177,
+        "split": "confirmation",
+        "seconds": 30,
+        "regime": "benchmark"
+      },
+      {
+        "scene": 178,
+        "split": "confirmation",
+        "seconds": 30,
+        "regime": "benchmark"
+      },
+      {
+        "scene": 179,
+        "split": "confirmation",
+        "seconds": 55,
+        "regime": "long-moving-start"
+      }
+    ],
+    "yaw-pilot": [
+      {
+        "scene": 34,
+        "split": "train",
+        "seconds": 20,
+        "regime": "independent-yaw"
+      },
+      {
+        "scene": 166,
+        "split": "development",
+        "seconds": 20,
+        "regime": "independent-yaw"
+      }
+    ],
+    "yaw-train": [
+      {
+        "scene": 46,
+        "split": "train",
+        "seconds": 60,
+        "regime": "independent-yaw"
+      },
+      {
+        "scene": 47,
+        "split": "train",
+        "seconds": 60,
+        "regime": "independent-yaw"
+      },
+      {
+        "scene": 48,
+        "split": "train",
+        "seconds": 60,
+        "regime": "independent-yaw"
+      },
+      {
+        "scene": 49,
+        "split": "train",
+        "seconds": 60,
+        "regime": "independent-yaw"
+      },
+      {
+        "scene": 50,
+        "split": "train",
+        "seconds": 60,
+        "regime": "independent-yaw"
+      },
+      {
+        "scene": 51,
+        "split": "train",
+        "seconds": 60,
+        "regime": "independent-yaw"
+      },
+      {
+        "scene": 52,
+        "split": "train",
+        "seconds": 60,
+        "regime": "independent-yaw"
+      },
+      {
+        "scene": 53,
+        "split": "train",
+        "seconds": 60,
+        "regime": "independent-yaw"
+      },
+      {
+        "scene": 54,
+        "split": "train",
+        "seconds": 60,
+        "regime": "independent-yaw"
+      },
+      {
+        "scene": 55,
+        "split": "train",
+        "seconds": 60,
+        "regime": "independent-yaw"
+      },
+      {
+        "scene": 56,
+        "split": "train",
+        "seconds": 60,
+        "regime": "independent-yaw"
+      },
+      {
+        "scene": 57,
+        "split": "train",
+        "seconds": 60,
+        "regime": "independent-yaw"
+      },
+      {
+        "scene": 180,
+        "split": "development",
+        "seconds": 60,
+        "regime": "independent-yaw"
+      },
+      {
+        "scene": 181,
+        "split": "development",
+        "seconds": 60,
+        "regime": "independent-yaw"
+      },
+      {
+        "scene": 182,
+        "split": "development",
+        "seconds": 60,
+        "regime": "independent-yaw"
+      },
+      {
+        "scene": 183,
+        "split": "development",
+        "seconds": 60,
+        "regime": "independent-yaw"
+      }
+    ]
+  }
+}

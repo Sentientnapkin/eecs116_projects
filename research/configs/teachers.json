@@ -1,0 +1,19 @@
+{
+  "seed": 217,
+  "roster": "results/20261118T005559Z-joint-finalists-5d4b4de0/manifest.json",
+  "sensor_config": "results/20261118T024046Z-robust-guest-7e90eb87/ssm/config.json",
+  "additional_manifests": ["results/20261118T023133Z-robust-yaw-pilot-b35de75e/manifest.json"],
+  "data": {"crops_s": [0, 5]},
+  "model": {
+    "head": "gru", "width": 128, "height": 96,
+    "channels": [24, 48, 96, 128], "embedding": 128,
+    "hidden": 256, "layers": 2, "states": 16,
+    "correlation": true, "correlation_radius": 2, "frame_chunk": 8
+  },
+  "training": {
+    "epochs": 8, "batch_size": 1, "accumulation": 2,
+    "window_frames": 64, "burn_in": 32, "windows_per_parent": 2,
+    "learning_rate": 0.0003, "horizons": [0.25, 1, 3],
+    "cpu_threads": 4, "distillation_weight": 0.2
+  }
+}

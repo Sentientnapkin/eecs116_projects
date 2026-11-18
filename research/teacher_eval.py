@@ -1,0 +1,218 @@
+"""Full-trajectory evaluation of teacher runs and deployed baselines on identical flights.
+
+    ./teacher_env.sh teacher_eval.py --runs results/loop/D0-ssm results/loop/D2-ssm \
+        --deployed ema ssm --control D0-ssm --output results/eval/d-series [--set dev|proxy-val]
+
+Every replay carries state continuously through the whole (cropped) flight. Teachers run on
+the prepared shards (the training preprocessing); deployed models replay the raw flight
+through their own guest preprocessing; all are scored against the same camera-frame-zero
+ground truth. Overlapping crops of one parent are reported but never counted as independent
+trials: scene-level paired comparisons average a scene's rows first.
+"""
+import argparse
+import io
+import json
+from pathlib import Path
+
+import numpy as np
+import torch
+from safetensors.torch import load_file
+
+from teacher_data import load_row, CATEGORIES, motion_labels
+from teacher_models import Teacher
+from teacher_store import open_store
+from teacher_train import sim3_ate
+
+ROOT = Path(__file__).resolve().parent
+GUEST = Path("/Users/School/Desktop/Fa26 Berkeley/EECS 116/eecs116_projects/.claude/worktrees/"
+             "metric-speed-sources-9eeecc/research/results/20261118T024046Z-robust-guest-7e90eb87")
+
+
+def umeyama_scale(estimate, truth):
+    e, t = estimate-estimate.mean(0), truth-truth.mean(0)
+    u, d, vt = np.linalg.svd(t.T@e/len(e))
+    s = np.eye(3); s[2, 2] = np.sign(np.linalg.det(u@vt))
+    var = (e**2).sum()/len(e)
+    return float(np.trace(np.diag(d)@s)/var) if var > 1e-12 else float("nan")
+
+
+def metrics(p, truth, times, v_pred=None, v_true=None):
+    err = np.linalg.norm(p-truth, axis=1)
+    out = {"ate": float(np.sqrt(np.mean(err**2))), "sim3_ate": sim3_ate(p, truth),
+           "sim3_scale": umeyama_scale(p, truth), "final_error": float(err[-1])}
+    for lo, hi in ((0, 10), (10, 20), (20, 30), (30, 60)):
+        m = (times >= lo) & (times < hi)
+        if m.any(): out[f"ate_{lo}_{hi}s"] = float(np.sqrt(np.mean(err[m]**2)))
+    if v_pred is not None:
+        sp, st = np.linalg.norm(v_pred, axis=1), np.linalg.norm(v_true, axis=1)
+        moving = st > .2
+        out.update({"velocity_rmse": float(np.sqrt(np.mean(np.sum((v_pred-v_true)**2, axis=1)))),
+                    "speed_rmse": float(np.sqrt(np.mean((sp-st)**2))), "speed_bias": float(np.mean(sp-st)),
+                    "signed_velocity_error_xyz": np.mean(v_pred-v_true, axis=0).round(4).tolist()})
+        if moving.any():
+            cos = np.sum(v_pred[moving]*v_true[moving], 1)/np.maximum(sp[moving]*st[moving], 1e-9)
+            out["direction_error_deg"] = float(np.degrees(np.median(np.arccos(np.clip(cos, -1, 1)))))
+        back = v_true[:, 0] < -.2
+        out["backward_frames"] = int(back.sum())
+        if back.any():
+            out["backward_sign_accuracy"] = float(np.mean(v_pred[back, 0] < 0))
+            out["backward_velocity_rmse"] = float(np.sqrt(np.mean(np.sum((v_pred[back]-v_true[back])**2, 1))))
+            out["backward_forward_speed_ratio"] = float(np.mean(v_pred[back, 0])/np.mean(v_true[back, 0]))
+    return out
+
+
+def integrate(v, row):
+    world = (row["R"] @ v[..., None]).squeeze(-1)
+    p = np.zeros_like(world)
+    p[1:] = np.cumsum(.5*(world[1:]+world[:-1])*np.diff(row["times"])[:, None], axis=0)
+    arm, rot = row["T_bc"][:3, 3], row["T_bc"][:3, :3]
+    return (p+row["R"]@arm-arm)@rot
+
+
+@torch.no_grad()
+def teacher_velocities(run, weights, row, device, chunk=32):
+    cfg = json.loads((run/"config.json").read_text())
+    net = Teacher(cfg["model"]).to(device).eval()
+    net.load_state_dict(weights)
+    out, state = [], None
+    for b in range(0, len(row["v"]), chunk):
+        im = torch.as_tensor(row["images"][b:b+chunk], device=device)[None]
+        u = torch.as_tensor(row["imu"][b:b+chunk], device=device)[None]
+        rot = torch.as_tensor(row["R"][b:b+chunk], device=device, dtype=torch.float32)[None]
+        pred, state = net(im, u, state, rot)
+        out.append(pred[0].cpu().numpy())
+    return np.concatenate(out).astype(np.float64)
+
+
+def load_weights(run, which):
+    if which == "best":
+        return load_file(str(run/"best.safetensors"))
+    last = sorted(run.glob("checkpoints/epoch-*/model.safetensors"))[-1]
+    state = load_file(str(last))
+    return state
+
+
+def deployed_trajectory(kind, raw_path, crop):
+    """Host replay of a submitted guest model on the raw flight (its own preprocessing)."""
+    import sys
+    from common import Flight
+    from pairs import variant_rows
+    from robust_replay import camera_config, prepare_pixels
+    sys.path.insert(0, str(GUEST/kind))
+    from streaming import Estimator  # guest copy shadows the research module for exactness
+    settings = json.loads((GUEST/kind/"config.json").read_text())
+    with np.load(GUEST/kind/"weights.npz", allow_pickle=False) as archive:
+        weights = dict(archive)
+    model = {"variant": settings["variant"], "kind": settings["kind"], "settings": settings.get("settings"),
+             "rotation_method": settings.get("rotation_method"), "rotation_weights": weights.get("rotation"),
+             "encoder": {k[4:]: v for k, v in weights.items() if k.startswith("enc/")},
+             "temporal": {k[5:]: v for k, v in weights.items() if k.startswith("head/")}}
+    flight = prepare_pixels(Flight(raw_path, crop=crop), settings["config"])
+    est = Estimator(camera_config(flight), model, settings["config"])
+    states = np.array([est.step(t, frame, packet) for t, frame, packet in variant_rows(flight, "clean", 217)])
+    sys.path.remove(str(GUEST/kind))
+    return states[:, :3], flight.cam_gt, flight.ft
+
+
+def scene_paired(results, name, control, key="ate"):
+    """Paired scene-level differences (scene means first), with a bootstrap 90% interval."""
+    def by_scene(model):
+        acc = {}
+        for r in results[model]: acc.setdefault(r["scene"], []).append(r[key])
+        return {s: float(np.mean(v)) for s, v in acc.items()}
+    a, b = by_scene(name), by_scene(control)
+    scenes = sorted(set(a) & set(b))
+    d = np.array([a[s]-b[s] for s in scenes])
+    rng = np.random.default_rng(0)
+    boot = [rng.choice(d, len(d)).mean() for _ in range(4000)] if len(d) > 1 else [d.mean()]
+    return {"scenes": len(scenes), "mean_difference": float(d.mean()), "relative": float(d.mean()/np.mean([b[s] for s in scenes])),
+            "interval90": [float(np.percentile(boot, 5)), float(np.percentile(boot, 95))],
+            "per_scene": {s: round(float(x), 4) for s, x in zip(scenes, d)}}
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--runs", nargs="*", default=[])
+    parser.add_argument("--checkpoint", choices=("best", "last"), default="best")
+    parser.add_argument("--deployed", nargs="*", default=[])
+    parser.add_argument("--control")
+    parser.add_argument("--set", default="dev", choices=("dev", "proxy-val"))
+    parser.add_argument("--ledger", default="data/ledger/ledger.json")
+    parser.add_argument("--output", required=True)
+    args = parser.parse_args()
+    store = open_store("hf:teacher-full", "data/hub-cache", 20)
+    if args.set == "dev":
+        records = json.loads(store.manifest_path().read_text())["datasets"]["development"]
+    else:
+        records = json.loads(Path("data/expand/proxy-proxy_validation-0.json").read_text())["records"]
+        records = [r for r in records if r["crop_s"] == 0]
+    ledger = {r["sha256"]: r for r in json.loads(Path(args.ledger).read_text())["rows"]}
+    device = "mps" if torch.backends.mps.is_available() else "cpu"
+    results = {}
+    rows_cache = {}
+    for record in records:
+        rows_cache[record["file"]] = load_row(store, record)
+    def describe(record, row):
+        parent = ledger.get(record.get("parent_sha256"), {})
+        lab = motion_labels(row["v"], row["times"], row["cam_gt"])
+        return {"scene": record["scene"], "file": record["file"], "crop_s": record["crop_s"],
+                "domain": parent.get("domain", record.get("domain")), "tier": parent.get("tier", record.get("tier")),
+                "regime": "backward/lateral" if lab["backward"].mean() > .05 or lab["lateral"].mean() > .1 else "ordinary",
+                "start": "static" if record["crop_s"] == 0 else "moving"}
+    # Zero output: the trivial baseline every model must beat.
+    results["zero"] = []
+    for record in records:
+        row = rows_cache[record["file"]]
+        results["zero"].append({**describe(record, row), **metrics(np.zeros_like(row["cam_gt"]), row["cam_gt"], row["times"])})
+    for run in map(Path, args.runs):
+        name = run.name
+        weights = load_weights(run, args.checkpoint)
+        results[name] = []
+        for record in records:
+            row = rows_cache[record["file"]]
+            v = teacher_velocities(run, weights, row, device)
+            results[name].append({**describe(record, row), **metrics(integrate(v, row), row["cam_gt"], row["times"], v, row["v"])})
+    for kind in args.deployed:
+        name = f"deployed-{kind}"
+        results[name] = []
+        for record in records:
+            raw = ledger[record["parent_sha256"]]["path"]
+            p, truth, times = deployed_trajectory(kind, raw, record["crop_s"])
+            row = rows_cache[record["file"]]
+            if not np.allclose(truth, row["cam_gt"], atol=1e-4):
+                raise ValueError("Deployed replay truth differs from the shard truth")
+            results[name].append({**describe(record, row), **metrics(p, truth, times)})
+    summary = {}
+    for name, rows in results.items():
+        def mean(sel, key="ate"):
+            vals = [r[key] for r in rows if sel(r) and key in r]
+            return round(float(np.mean(vals)), 4) if vals else None
+        summary[name] = {"equal_flight_mean_ate": mean(lambda r: True),
+                         "worst_flight_ate": round(max(r["ate"] for r in rows), 4),
+                         "ordinary_ate": mean(lambda r: r["regime"] == "ordinary"),
+                         "backward_lateral_ate": mean(lambda r: r["regime"] != "ordinary"),
+                         "static_start_ate": mean(lambda r: r["start"] == "static"),
+                         "moving_start_ate": mean(lambda r: r["start"] == "moving"),
+                         "sim3_ate_diagnostic": mean(lambda r: True, "sim3_ate"),
+                         "sim3_scale_median": round(float(np.median([r["sim3_scale"] for r in rows])), 3),
+                         "speed_rmse": mean(lambda r: True, "speed_rmse"),
+                         "direction_error_deg": mean(lambda r: True, "direction_error_deg"),
+                         "backward_sign_accuracy": mean(lambda r: True, "backward_sign_accuracy"),
+                         "backward_velocity_rmse": mean(lambda r: True, "backward_velocity_rmse")}
+        if args.control and name != args.control and args.control in results:
+            summary[name]["vs_control"] = scene_paired(results, name, args.control)
+    out = Path(args.output); out.mkdir(parents=True, exist_ok=True)
+    (out/f"{args.set}-{args.checkpoint}.json").write_text(json.dumps({"summary": summary, "rows": results}, indent=1))
+    width = max(len(n) for n in summary)
+    print(f"{'model':{width}}  mean   worst  ordin  bk/lat  static moving sim3   spdRMSE dirdeg bksign")
+    for name, s in summary.items():
+        cells = [s[k] for k in ("equal_flight_mean_ate", "worst_flight_ate", "ordinary_ate", "backward_lateral_ate",
+                                "static_start_ate", "moving_start_ate", "sim3_ate_diagnostic", "speed_rmse",
+                                "direction_error_deg", "backward_sign_accuracy")]
+        print(f"{name:{width}}  " + "  ".join("  –  " if c is None else f"{c:5.3f}" if c < 10 else f"{c:5.1f}" for c in cells))
+        if "vs_control" in s:
+            c = s["vs_control"]; print(f"{'':{width}}  vs {args.control}: {c['mean_difference']:+.3f} m ({c['relative']:+.1%}), 90% {c['interval90']}, scenes {c['scenes']}")
+
+
+if __name__ == "__main__":
+    main()

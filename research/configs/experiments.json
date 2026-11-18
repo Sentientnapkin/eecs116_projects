@@ -1,0 +1,135 @@
+{
+  "_doc": "Experiment definitions. Each entry resolves to teacher_train.py arguments: --config configs/teachers.json, --data <data>, then 'args'. Shared blocks are referenced by name in 'use'. Decision gates are declared before results exist.",
+  "blocks": {
+    "recipe": [
+      "--cache-gb",
+      "20",
+      "--epochs",
+      "12",
+      "--set",
+      "training.weight_ema=0.995",
+      "--set",
+      "training.schedule=\"cosine\"",
+      "--set",
+      "training.warmup_epochs=0.5",
+      "--set",
+      "training.patience=0"
+    ],
+    "original_sampler": [
+      "--set",
+      "training.sampler={\"mode\":\"original\",\"windows_per_epoch\":244}"
+    ],
+    "balanced_sampler": [
+      "--set",
+      "training.sampler={\"mode\":\"balanced\",\"windows_per_epoch\":244,\"per_parent_cap\":4,\"mixture\":{\"startup\":0.15,\"uniform\":0.35,\"backward\":0.15,\"lateral\":0.15,\"braking\":0.05,\"turning\":0.05,\"vertical\":0.05,\"hover\":0.05}}"
+    ],
+    "balanced_native213": [
+      "--set",
+      "training.sampler={\"mode\":\"balanced\",\"windows_per_epoch\":244,\"per_parent_cap\":4,\"domain_share\":{\"native\":0.213,\"proxy\":0.787},\"mixture\":{\"startup\":0.15,\"uniform\":0.35,\"backward\":0.15,\"lateral\":0.15,\"braking\":0.05,\"turning\":0.05,\"vertical\":0.05,\"hover\":0.05}}"
+    ],
+    "uniform_native213": [
+      "--set",
+      "training.sampler={\"mode\":\"balanced\",\"windows_per_epoch\":244,\"domain_share\":{\"native\":0.213,\"proxy\":0.787},\"mixture\":{\"startup\":0.5,\"uniform\":0.5}}"
+    ]
+  },
+  "budget": {
+    "optimizer_updates": 1464,
+    "windows": 2928,
+    "scored_frames_per_window": 64,
+    "scored_frames": 187392,
+    "note": "12 epochs x 244 windows (batch 1, accumulation 2). Identical for every D run regardless of dataset size."
+  },
+  "selection_rule": "Checkpoint = epoch with the lowest selection_score (mean of nominal and 5 s moving-start unaligned ATE on the fixed development roster) evaluated on EMA weights. Last checkpoint retained for diagnostics.",
+  "gates": {
+    "screen_improvement": "At least 10% lower equal-flight mean unaligned development ATE than the paired control (engineering gate, not statistical significance).",
+    "ordinary_motion_guardrail": "No more than 5% regression on ordinary-motion (benchmark-regime, non-yaw) development flights.",
+    "advance": "Runs passing both gates advance to three paired seeds (217, 218, 219).",
+    "domain_followup": "If D1/D2 fail the native-development gate but improve on the proxy-validation holdout, run D1n/D2n to separate motion coverage from reduced native exposure (21.3% in D0 vs 4.4% in D1/D2)."
+  },
+  "datasets": {
+    "teacher-full": "D0 restricted control: the exact old teacher roster (48 proxy base + 12 native + 1 native yaw parents, crops 0/5 s), development roster of 7 native parents.",
+    "d1-expanded-tiers": "D1/D2: all 280 eligible proxy training parents (base/mid/agile) + the same 13 native training parents; identical development roster.",
+    "d1-expanded-tiers-labeled": "Same shards and splits as d1-expanded-tiers, with domain/tier labels from the audited ledger (needed for domain_share)."
+  },
+  "experiments": {
+    "D0-ssm": {
+      "data": "hf:teacher-full",
+      "use": [
+        "recipe",
+        "original_sampler"
+      ],
+      "args": [
+        "--head",
+        "ssm"
+      ]
+    },
+    "D1-ssm": {
+      "data": "hf:d1-expanded-tiers",
+      "use": [
+        "recipe",
+        "original_sampler"
+      ],
+      "args": [
+        "--head",
+        "ssm"
+      ]
+    },
+    "D2-ssm": {
+      "data": "hf:d1-expanded-tiers",
+      "use": [
+        "recipe",
+        "balanced_sampler"
+      ],
+      "args": [
+        "--head",
+        "ssm"
+      ]
+    },
+    "D0-gru": {
+      "data": "hf:teacher-full",
+      "use": [
+        "recipe",
+        "original_sampler"
+      ],
+      "args": [
+        "--head",
+        "gru"
+      ]
+    },
+    "D2-gru": {
+      "data": "hf:d1-expanded-tiers",
+      "use": [
+        "recipe",
+        "balanced_sampler"
+      ],
+      "args": [
+        "--head",
+        "gru"
+      ]
+    },
+    "D1n-ssm": {
+      "data": "hf:d1-expanded-tiers-labeled",
+      "use": [
+        "recipe",
+        "uniform_native213"
+      ],
+      "args": [
+        "--head",
+        "ssm"
+      ],
+      "note": "Follow-up (declared 09:40 before D results): expanded tiers with native share pinned to D0's 21.3%, startup/uniform windows only."
+    },
+    "D2n-ssm": {
+      "data": "hf:d1-expanded-tiers-labeled",
+      "use": [
+        "recipe",
+        "balanced_native213"
+      ],
+      "args": [
+        "--head",
+        "ssm"
+      ],
+      "note": "Follow-up: balanced motion mixture plus native share pinned to 21.3%."
+    }
+  }
+}
