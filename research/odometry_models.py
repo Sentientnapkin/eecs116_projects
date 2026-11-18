@@ -128,6 +128,37 @@ class ResidualGRU(nn.Module):
         return x + y, h
 
 
+def correct_gyro_attitude(rotations, bias, dt, state=None):
+    """Apply residual body gyro bias to the attitude stream, keeping its initial frame."""
+    # Keep SO(3) accumulation in FP32 even when the feature network is autocast.
+    with torch.autocast(device_type=rotations.device.type, enabled=False):
+        rotations = rotations.float()
+        if state is None:
+            correction = torch.eye(3, device=rotations.device).expand(rotations.shape[0], 3, 3)
+            previous = rotations[:, 0]
+            dt = torch.cat((torch.zeros_like(dt[:, :1]), dt[:, 1:]), dim=1)
+        else:
+            correction, previous = state
+        old = torch.cat((previous[:, None], rotations[:, :-1]), dim=1)
+        # R_old exp(-bias dt) R_old^T = exp(-R_old bias dt). Factoring
+        # out the raw attitude avoids reintegrating the original gyro stream.
+        delta = (old @ (-bias.float() * dt[..., None]).unsqueeze(-1)).squeeze(-1)
+        angle = torch.linalg.vector_norm(delta, dim=-1)[..., None, None]
+        x, y, z = delta.unbind(-1)
+        zero = torch.zeros_like(x)
+        cross = torch.stack((zero, -z, y, z, zero, -x, -y, x, zero), dim=-1)
+        cross = cross.reshape(*delta.shape[:-1], 3, 3)
+        increments = (torch.eye(3, device=rotations.device)
+                      + torch.sinc(angle / torch.pi) * cross
+                      + .5 * torch.sinc(angle / (2 * torch.pi)).square() * (cross @ cross))
+        corrections = []
+        for step in increments.unbind(1):
+            correction = correction @ step
+            corrections.append(correction)
+        corrected = torch.stack(corrections, dim=1) @ rotations
+        return corrected, (correction, rotations[:, -1])
+
+
 class OdometryNet(nn.Module):
     def __init__(self, cfg):
         super().__init__()
@@ -154,8 +185,16 @@ class OdometryNet(nn.Module):
         else:
             raise ValueError(f"Unknown head: {self.kind}")
         self.output = nn.Sequential(nn.LayerNorm(nout), nn.Linear(nout, 128), nn.SiLU(), nn.Linear(128, 3))
+        self.gyro_bias = None
+        if cfg.get("gyro_bias_correction", False):
+            self.gyro_bias = nn.Sequential(nn.LayerNorm(nout), nn.Linear(nout, 3))
+            nn.init.zeros_(self.gyro_bias[-1].weight)
+            nn.init.zeros_(self.gyro_bias[-1].bias)
 
-    def forward(self, images, imu, state=None, R=None):
+    def forward(self, images, imu, state=None, R=None, *, return_attitude=False):
+        gyro_state = None
+        if self.gyro_bias is not None and state is not None:
+            state, gyro_state = state
         z = self.visual(images, imu, R)
         dt = imu[..., 13].float()
         if self.kind == "gru":
@@ -174,4 +213,11 @@ class OdometryNet(nn.Module):
                 h = a*h+(1-a)*z[:, i]
                 ys.append(torch.cat((z[:, i], h), dim=-1))
             y, state = torch.stack(ys, dim=1), h
-        return self.output(y), state
+        if self.gyro_bias is not None:
+            if R is None:
+                raise ValueError("Gyro-bias correction requires the raw attitude stream")
+            bias = .12 * self.gyro_bias(y).float().tanh()
+            R, gyro_state = correct_gyro_attitude(R, bias, dt, gyro_state)
+            state = (state, gyro_state)
+        velocity = self.output(y)
+        return (velocity, state, R) if return_attitude else (velocity, state)

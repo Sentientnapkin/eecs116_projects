@@ -28,14 +28,16 @@ class Progress:
         self.__dict__.update(state)
 
 
-def loss_fn(pred, row, burn, horizons):
+def loss_fn(pred, row, burn, horizons, rotations=None):
     loss = F.smooth_l1_loss(pred[:, burn:], row["v"][:, burn:], beta=.1)
-    world = (row["R"] @ pred.unsqueeze(-1)).squeeze(-1)
+    if rotations is None:
+        rotations = row["R"]
+    world = (rotations @ pred.unsqueeze(-1)).squeeze(-1)
     times = row["times"]
     steps = .5*(world[:, 1:]+world[:, :-1])*torch.diff(times, dim=1).unsqueeze(-1)
     body = torch.cat((torch.zeros_like(world[:, :1]), steps.cumsum(1)), dim=1)
     offset = row["T_bc"][:, :3, 3]
-    rotated_offset = (row["R"] @ offset[:, None, :, None]).squeeze(-1)
+    rotated_offset = (rotations @ offset[:, None, :, None]).squeeze(-1)
     camera = (body+rotated_offset-rotated_offset[:, :1]) @ row["T_bc"][:, :3, :3]
     target = row["cam_gt"]-row["cam_gt"][:, :1]
     error = camera-target
@@ -106,19 +108,22 @@ def evaluate(net, root, records, device, chunk=32):
     scores = []
     for record in records:
         row = load_row(root, record)
-        output, state = [], None
+        output, corrected, state = [], [], None
         for begin in range(0, len(row["v"]), chunk):
             im = torch.as_tensor(row["images"][begin:begin+chunk], device=device)[None]
             u = torch.as_tensor(row["imu"][begin:begin+chunk], device=device)[None]
             rot = torch.as_tensor(row["R"][begin:begin+chunk], device=device, dtype=torch.float32)[None]
-            pred, state = net(im, u, state, rot)
+            pred, state, attitude = net(im, u, state, rot, return_attitude=True)
             output.append(pred[0].cpu().numpy())
+            if net.gyro_bias is not None:
+                corrected.append(attitude[0].cpu().numpy())
         v = np.concatenate(output).astype(np.float64)
-        world = (row["R"] @ v[..., None]).squeeze(-1)
+        rotations = np.concatenate(corrected).astype(np.float64) if corrected else row["R"]
+        world = (rotations @ v[..., None]).squeeze(-1)
         p = np.zeros_like(world)
         p[1:] = np.cumsum(.5*(world[1:]+world[:-1])*np.diff(row["times"])[:, None], axis=0)
         arm, rotation = row["T_bc"][:3, 3], row["T_bc"][:3, :3]
-        p = (p+row["R"]@arm-arm)@rotation
+        p = (p+rotations@arm-arm)@rotation
         backwards = row["v"][:, 0] < -.2
         scores.append({"scene": record["scene"], "file": record["file"], "crop_s": record["crop_s"],
                        "ate": float(np.sqrt(np.mean(np.sum((p-row["cam_gt"])**2, axis=1)))),
@@ -235,8 +240,8 @@ def main():
             total, count = 0., 0
             for row in loader:
                 with accelerator.accumulate(net):
-                    pred, _ = net(row["images"], row["imu"], R=row["R"])
-                    loss = loss_fn(pred, row, options["burn_in"], options["horizons"])
+                    pred, _, rotations = net(row["images"], row["imu"], R=row["R"], return_attitude=True)
+                    loss = loss_fn(pred, row, options["burn_in"], options["horizons"], rotations)
                     if not torch.isfinite(loss): raise ValueError("Nonfinite training loss")
                     accelerator.backward(loss)
                     if accelerator.sync_gradients: accelerator.clip_grad_norm_(net.parameters(), 1.)

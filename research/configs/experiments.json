@@ -46,6 +46,7 @@
     "advance": "Runs passing both gates advance to three paired seeds (217, 218, 219).",
     "domain_followup": "If D1/D2 fail the native-development gate but improve on the proxy-validation holdout, run D1n/D2n to separate motion coverage from reduced native exposure (21.3% in D0 vs 4.4% in D1/D2).",
     "architecture_block": "T-series runs use D0 data and recipe; each is compared scene-paired to D0-ssm (seed 217) with the same screen (>=10% lower dev mean unaligned ATE), the ordinary-motion guardrail, and the 30 s proxy-validation criterion as a second, independent check. If the D-series selects expanded data, the T-series is rerun on it instead.",
+    "attitude_block": "A-D0-ssm-x3 versus B-D0-ssm-x3 at 36 epochs with seeds 217/218/219. Require at least 10% lower mean development unaligned ATE and at most 5% ordinary-development regression. Check proxy validation at 30 s and campaign development at 30 s and full length, separately for ProcTHOR and HSSD. The campaign attitude oracle is a diagnostic and uses dev rotations only.",
     "native_campaign_block": "N1-ssm-x3 vs B-D0-ssm-x3, three seeds each, decided on three-seed means: screen >=10% lower development mean unaligned ATE and the ordinary-motion guardrail; independent checks are the 30 s proxy-validation criterion and campaign-dev (new flights in ProcTHOR 166-171 and in 15 never-used HSSD Val43 houses, reported separately). The reserved campaign test split (ProcTHOR 162-165/172-175, 28 HSSD Val43 houses) stays unscored.",
     "proxy_validation_criterion": "Declared 2026-11-18 ~15:30, before any D1/D2 result: the proxy-validation holdout is scored on each replay's first 30 s (benchmark flight length; odometry_eval.py --set proxy-val --max-seconds 30), scene-paired against the control. The full 90 s score is a long-horizon diagnostic only: there even true velocity through our attitude scores 1.04 m, so it mostly measures attitude drift."
   },
@@ -175,6 +176,12 @@
       "use": ["recipe", "original_sampler"],
       "args": ["--head", "ssm", "--epochs", "36"],
       "note": "Budget follow-up (declared 2026-11-18 ~19:00 after D results, before running): D0 at 3x optimizer updates (4,392). D0 was still improving steeply at epoch 12 and D1/D2 saw each parent ~5x less often, so equal-budget results may reflect undertraining of the larger dataset."
+    },
+    "A-D0-ssm-x3": {
+      "data": "hf:teacher-full",
+      "use": ["recipe", "original_sampler"],
+      "args": ["--head", "ssm", "--epochs", "36", "--set", "model.gyro_bias_correction=true"],
+      "note": "Predeclared before attitude results: causal SSM gyro-bias residual, initialized to zero and learned through the camera displacement loss. Only the attitude used to integrate velocity is corrected."
     },
     "B-D2-ssm-x3": {
       "data": "hf:d1-expanded-tiers",

@@ -63,18 +63,24 @@ def integrate(v, row):
 
 
 @torch.no_grad()
-def model_velocities(run, weights, row, device, chunk=32):
+def model_velocities(run, weights, row, device, chunk=32, *, return_attitude=False):
     cfg = json.loads((run/"config.json").read_text())
     net = OdometryNet(cfg["model"]).to(device).eval()
     net.load_state_dict(weights)
-    out, state = [], None
+    out, corrected, state = [], [], None
     for b in range(0, len(row["v"]), chunk):
         im = torch.as_tensor(row["images"][b:b+chunk], device=device)[None]
         u = torch.as_tensor(row["imu"][b:b+chunk], device=device)[None]
         rot = torch.as_tensor(row["R"][b:b+chunk], device=device, dtype=torch.float32)[None]
-        pred, state = net(im, u, state, rot)
+        pred, state, attitude = net(im, u, state, rot, return_attitude=True)
         out.append(pred[0].cpu().numpy())
-    return np.concatenate(out).astype(np.float64)
+        if return_attitude and net.gyro_bias is not None:
+            corrected.append(attitude[0].cpu().numpy())
+    velocity = np.concatenate(out).astype(np.float64)
+    if return_attitude:
+        rotations = np.concatenate(corrected).astype(np.float64) if corrected else row["R"]
+        return velocity, rotations
+    return velocity
 
 
 def load_weights(run, which):
@@ -156,11 +162,12 @@ def main():
     parser.add_argument("--control")
     parser.add_argument("--set", default="dev", choices=("dev", "proxy-val", "campaign-dev"))
     parser.add_argument("--ledger", default="data/ledger/ledger.json")
+    parser.add_argument("--cache-dir", default="data/hub-cache", help="Shard cache for this evaluator")
     parser.add_argument("--output", required=True)
     parser.add_argument("--max-seconds", type=float, help="Score only each replay's first N seconds (all models are causal)")
     parser.add_argument("--plots", action="store_true", help="Write learning curves and error-over-time figures")
     args = parser.parse_args()
-    store = open_store("hf:teacher-full", "data/hub-cache", 20)
+    store = open_store("hf:teacher-full", args.cache_dir, 20)
     if args.set == "dev":
         records = json.loads(store.manifest_path().read_text())["datasets"]["development"]
     elif args.set == "proxy-val":
@@ -202,8 +209,8 @@ def main():
         results[name] = []
         for record in records:
             row = rows_cache[record["file"]]
-            v = model_velocities(run, weights, row, device)
-            p = integrate(v, row)
+            v, rotations = model_velocities(run, weights, row, device, return_attitude=True)
+            p = integrate(v, {**row, "R": rotations})
             results[name].append({**describe(record, row), **metrics(p, row["cam_gt"], row["times"], v, row["v"])})
             if record["crop_s"] == 0:
                 curves.setdefault(name, []).append((row["times"]-row["times"][0], np.linalg.norm(p-row["cam_gt"], axis=1)))

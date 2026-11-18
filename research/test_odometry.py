@@ -9,7 +9,7 @@ import torch
 
 from odometry_data import CATEGORIES, WindowPlan, motion_labels, validate_roster
 from odometry_ledger import checks, split_for
-from odometry_models import OdometryNet
+from odometry_models import OdometryNet, correct_gyro_attitude
 from odometry_train import loss_fn
 
 
@@ -133,6 +133,37 @@ class Models(unittest.TestCase):
                 a, state = net(images[:, :4], imu[:, :4])
                 b, _ = net(images[:, 4:], imu[:, 4:], state)
                 torch.testing.assert_close(torch.cat((a, b), 1), full, atol=1e-5, rtol=1e-4)  # chunked == whole
+
+    def test_gyro_bias_cancels_known_drift(self):
+        dt = torch.full((1, 60), .05)
+        angle = torch.arange(dt.shape[1]) * .05 * .1
+        sin, cos = angle.sin(), angle.cos()
+        zero, one = torch.zeros_like(sin), torch.ones_like(sin)
+        raw = torch.stack((cos, -sin, zero, sin, cos, zero, zero, zero, one), dim=1).reshape(1, -1, 3, 3)
+        bias = torch.tensor([0., 0., .1]).expand(1, dt.shape[1], 3)
+        corrected, _ = correct_gyro_attitude(raw, bias, dt)
+        torch.testing.assert_close(corrected, torch.eye(3).expand_as(raw), atol=1e-5, rtol=0.)
+
+    def test_gyro_bias_head_is_streaming_and_learns_from_displacement(self):
+        net = OdometryNet(dict(self.cfg, head="ssm", gyro_bias_correction=True))
+        images, imu = self.inputs()
+        raw = torch.eye(3).expand(1, images.shape[1], 3, 3)
+        pred, _, corrected = net(images, imu, R=raw, return_attitude=True)
+        torch.testing.assert_close(corrected, raw)
+        v = torch.tensor([1., 0., 0.]).expand_as(pred)
+        times = torch.arange(images.shape[1])[None] * .05
+        # Lateral acceleration in the camera truth gives the correction a training signal.
+        cam_gt = torch.stack((times, times.square(), torch.zeros_like(times)), dim=-1)
+        row = {"v": v, "R": raw, "times": times, "T_bc": torch.eye(4)[None], "cam_gt": cam_gt}
+        loss_fn(v, row, 2, [.1], corrected).backward()
+        gradient = net.gyro_bias[-1].bias.grad
+        self.assertTrue(torch.isfinite(gradient).all() and gradient.norm() > 0)
+        with torch.no_grad():
+            net.gyro_bias[-1].bias.add_(torch.tensor([.3, -.1, .2]))
+            _, _, full = net(images, imu, R=raw, return_attitude=True)
+            _, state, first = net(images[:, :4], imu[:, :4], R=raw[:, :4], return_attitude=True)
+            _, _, last = net(images[:, 4:], imu[:, 4:], state, raw[:, 4:], return_attitude=True)
+        torch.testing.assert_close(torch.cat((first, last), 1), full)
 
 
     @unittest.skipUnless(torch.cuda.is_available(), "cuDNN flat GRU buffers exist only on CUDA")
