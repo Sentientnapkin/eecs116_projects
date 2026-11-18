@@ -103,12 +103,24 @@ from training logs, evaluation and plots on 2026-11-18); earlier notes that quot
   GRU→SSM hybrid all land at 1.31–1.34 on the 30 s holdout, inside the control's seed range.
   Residual GRU is much better than the plain stacked GRU. 12 s context at matched scored frames
   hurts (fewer updates). Zeroing direct IMU features costs about 5%.
-- **Training longer helps.** The same seed at 3× updates reaches 1.06 dev (vs 1.15 at 12 epochs);
-  B-series seeds are running.
-- **Native data is the open lever:** the native campaign (`native_campaign.py`; 600 train / 60 dev /
-  88 reserved-test simulated flights, 25% independent yaw) feeds the declared N1-ssm-x3 vs
-  B-D0-ssm-x3 comparison.
-- Rotation floor: true velocity through our attitude scores 0.41 m (dev) and 0.35 m (holdout, 30 s);
-  current models are at 1.1–1.4, so velocity remains the main error source.
-- Nothing is ready for distillation or deployment yet; no model has a three-seed full-replay
-  gain over the submitted EMA (dev 1.291, ordinary 1.055).
+- **Training longer helps.** At 3× updates, B-D0 reaches 1.095 m dev and 1.276 m on the 30 s
+  proxy holdout, down from 1.337 m and 1.359 m across the three 12-epoch seeds. All three B-D0
+  seeds beat the submitted EMA on dev.
+- **The fast training recipe cleared its accuracy gates.** The one-H100 pilot took 4.83 s per
+  warm epoch versus 103.02 s for the control at 122 updates per epoch. Across 36 epochs and three
+  seeds, the optimized recipe reached 1.091 m dev, 0.906 m ordinary dev, and 1.259 m on the 30 s
+  proxy holdout, versus 1.095 m, 0.921 m, and 1.276 m for B-D0. Cold compilation cost 75.52 s in
+  the pilot's first epoch. The fast path is opt-in on `odometry/throughput`.
+- **N1 improves backward/lateral motion but fails the dev screen.** Across three seeds, N1 reaches
+  1.164 m dev and 1.076 m on ordinary flights, versus 1.095 m and 0.922 m for B-D0. Backward/lateral
+  ATE falls from 2.136 m to 1.690 m. B-D2n reaches 1.341 m dev and 1.019 m on ordinary flights.
+  On campaign dev at 30 s, N1 improves mean ATE from 1.353 m to 1.219 m, with gains on both
+  ProcTHOR and HSSD. On proxy validation at 30 s, N1 scores 1.302 m and B-D2n scores 1.186 m,
+  versus 1.276 m for B-D0. The N2 and full-duration campaign comparisons are pending.
+- With true velocity, the measured attitude path scores 0.41 m on dev, 0.35 m on the 30 s proxy
+  holdout, and 0.967 m on full campaign dev. Ideal yaw correction lowers the latter to 0.209 m.
+  Three learned yaw-correction runs are training.
+- The B-D0 C++ FP32 port passed parity. On the four raw replay crops across three seeds, the
+  opt-in SIMD kernel preserved pose and twist bit-for-bit and lowered peak WebAssembly fuel by
+  19.87%, from 1.075 billion to 861.2 million per frame. The fuel remains far above the historical
+  EMA peak of 16.93 million measured on its own roster.
