@@ -197,7 +197,7 @@
     "N1-ssm-x3": {
       "data": "hf:n1-campaign",
       "use": ["recipe", "original_sampler"],
-      "args": ["--head", "ssm", "--epochs", "36"],
+      "args": ["--head", "ssm", "--epochs", "36", "--cache-gb", "60"],
       "note": "Native campaign (declared 2026-11-18 ~20:30, before the data were composed): teacher-full-labeled plus the campaign's train flights (ProcTHOR 0-9/46-149/180-199 + HSSD Train125, 30-90 s, 25% independent yaw). Control B-D0-ssm-x3 at the same 4,392 updates. Seeds 217/218/219 for both arms."
     }
   }
