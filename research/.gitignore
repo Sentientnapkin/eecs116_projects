@@ -11,3 +11,4 @@ __pycache__/
 /results/preflight-*/
 /results/logs/
 optix7cache.db
+/results/loop/*.txt
