@@ -156,11 +156,13 @@ def main():
     parser.add_argument("--control")
     parser.add_argument("--set", default="dev", choices=("dev", "proxy-val", "campaign-dev"))
     parser.add_argument("--ledger", default="data/ledger/ledger.json")
+    parser.add_argument("--cache-dir", default="data/hub-cache",
+                        help="Use a dedicated shard cache for concurrent evaluations")
     parser.add_argument("--output", required=True)
     parser.add_argument("--max-seconds", type=float, help="Score only each replay's first N seconds (all models are causal)")
     parser.add_argument("--plots", action="store_true", help="Write learning curves and error-over-time figures")
     args = parser.parse_args()
-    store = open_store("hf:teacher-full", "data/hub-cache", 20)
+    store = open_store("hf:teacher-full", args.cache_dir, 20)
     if args.set == "dev":
         records = json.loads(store.manifest_path().read_text())["datasets"]["development"]
     elif args.set == "proxy-val":
