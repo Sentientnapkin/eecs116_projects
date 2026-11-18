@@ -1,0 +1,34 @@
+# CPU and WebAssembly inference for B-D0-ssm-x3
+
+This opt-in C++17 path exports the best EMA weights from the PyTorch SSM checkpoint. It implements the three shared-weight residual CNN passes, normalized local correlation, IMU branch, projection, selective SSM, rolling gyro calibration, image history warps, and camera-frame pose and twist. The VIOBench v1 reactor accepts the standard 320×240 RGB feed. The model consumes 128×96 images. Inference and calibration use fixed-size reusable buffers. The host library exposes additional entry points for numerical comparison.
+
+## Build and replay
+
+From `research/` in the teacher environment, with the packaged VIOBench 0.0.1 runtime and a local VIOBench wasi-sdk. Use a fresh build directory for each checkpoint. For seeds 218 and 219 use the corresponding `B-D0-ssm-x3-s218-gpu` or `B-D0-ssm-x3-s219-gpu` run.
+
+```bash
+export CUDA_VISIBLE_DEVICES="" TMPDIR=/dev/shm
+export XDG_CACHE_HOME="$PWD/results/loop/native-deploy/cache"
+RUN=/path/to/runs/B-D0-ssm-x3-gpu
+MANIFEST=data/hub-cache/B-D0-ssm-x3-gpu/manifests/teacher-full.json
+BUILD=results/loop/native-deploy/bd0-217
+SDK=/path/to/wasi-sdk
+RAW_DEV=/path/to/campaign/raw/dev
+
+python -B native_odometry/export.py "$RUN" "$MANIFEST" "$BUILD" --wasi-sdk "$SDK"
+python -B -m viobench check "$BUILD/odometry.wasm"
+python -B native_odometry/test_guest.py "$BUILD" "$MANIFEST"
+python -B native_odometry/replay.py "$RUN" "$MANIFEST" "$BUILD" "$BUILD/prepared.json" --mode prepared
+python -B native_odometry/replay.py "$RUN" "$MANIFEST" "$BUILD" "$BUILD/raw.json" --mode raw \
+  --campaign-manifest data/native-campaign/dev-records.json --raw-dev "$RAW_DEV"
+```
+
+Omit `--wasi-sdk` when building for prepared CPU replay alone. The three reference checkpoints were exported with GCC 11.4 and WASI SDK 34 (Clang 23.1), with SIMD128 for WebAssembly and floating-point contraction disabled. The generated weight blob is little-endian FP32. Run the host library on an architecture supported by the local `-march=native` build. The experiment and tolerances are recorded under `deployment` in [experiments.json](../configs/experiments.json).
+
+Prepared evaluation replays each entire shard with a fresh recurrent state. Both velocity streams use the reference Python integration, isolating model math. Raw evaluation passes the same adapted RGB and absolute timestamp packets to both binaries through the VIOBench ABI. Python builds the corresponding reset-relative feature stream separately. The raw run measures all 13 state components, the camera position trajectory, peak per-step fuel and initialization fuel. Successful runs require every frame to produce a finite state. The archived original D0 development flights were unavailable for raw replay on this machine. The fuel and raw ATE sample uses two frozen campaign-dev parents and two crop origins per parent.
+
+## Arithmetic and fuel
+
+The exported SSM has **1,286,355 FP32 parameters** and **356.20 M MACs/frame** in the convolutions, dense layers and valid correlation dot products. The three CNN passes account for 354.34 M MACs/frame. These counts exclude normalization, activations, pooling, SSM elementwise updates, sensor preprocessing and integration. The last residual block alone accounts for 155.71 M MACs/frame across the three image planes.
+
+The archived 32×24 EMA uses the two-convolution visual encoder and 32-dimensional embedding in `learned_probe.py` and `seq_heads.py`. With a three-plane input that architecture has 20,175 stored parameters and 175,328 convolution/dense MACs/frame. With five planes it has 20,575 parameters and 252,128 MACs/frame. These are architecture estimates because the exact archived EMA weight bundle was unavailable. They count the deployed encoder's serialized auxiliary head, which contributes no inference MACs. The historical replay reports 16.93 M peak fuel/frame for the previous EMA on its own roster. See [the historical fuel report](../ROBUSTNESS.md).
