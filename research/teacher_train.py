@@ -245,6 +245,7 @@ def main():
     if accelerator.is_main_process:
         run["provenance"] = provenance(args, out)
         write_json(out/"manifest.json", run); write_json(out/"config.json", cfg)
+    sync = None  # background Hub sync (main process only)
     try:
         for epoch in range(progress.epoch, options["epochs"]):
             dataset.epoch = epoch
@@ -290,7 +291,8 @@ def main():
                 progress.best = score
                 if accelerator.is_main_process:
                     state = {k:v.detach().cpu().contiguous() for k,v in scored.state_dict().items()}
-                    save_file(state, str(out/"best.safetensors"))
+                    save_file(state, str(out/"best.safetensors.partial"))  # atomic: a background
+                    (out/"best.safetensors.partial").replace(out/"best.safetensors")  # upload may be reading it
             if accelerator.is_main_process:
                 write_json(out/"metrics.json", progress.history)
                 print(json.dumps({k:v for k,v in item.items() if k not in ("rows", "exposure")}), flush=True)
@@ -301,14 +303,17 @@ def main():
                 write_json(checkpoint/"complete.json", {"epoch": epoch+1})
                 if args.hub_repo:
                     write_json(out/"manifest.json", run)
-                    from teacher_hub import push_epoch
-                    push_epoch(out, epoch+1, args.hub_repo)
+                    if sync is None:
+                        from teacher_hub import BackgroundSync
+                        sync = BackgroundSync(out, args.hub_repo)
+                    sync.epoch(epoch+1)
             patience = options.get("patience")
             best_epoch = min(progress.history, key=lambda h: h["selection_score"])["epoch"]
             if patience and epoch+1-best_epoch >= patience:
                 if accelerator.is_main_process: print(f"Early stop: no gain since epoch {best_epoch}", flush=True)
                 break
         run["status"] = "completed"
+        if sync is not None: sync.finish()
     except BaseException as error:
         run.update(status="failed", error=type(error).__name__+": "+str(error))
         raise
