@@ -30,6 +30,11 @@ def correlate(current, previous, radius=2):
     return torch.stack([(a*b[..., i:i+h, j:j+w]).sum(1) for i in range(k) for j in range(k)], dim=1)
 
 
+# Compiling the local correlation fuses the shifted products and channel reductions,
+# without changing the state_dict or requiring a compiler for the default path.
+_compiled_correlate = None
+
+
 class VisualMotion(nn.Module):
     def __init__(self, cfg):
         super().__init__()
@@ -40,6 +45,10 @@ class VisualMotion(nn.Module):
             previous = channels_out
         self.cnn = nn.Sequential(*layers)
         self.radius = cfg.get("correlation_radius", 2)
+        self.channels_last = cfg.get("channels_last", False)
+        if self.channels_last:
+            self.cnn.to(memory_format=torch.channels_last)
+        self.compile_correlation = cfg.get("compile_correlation", False)
         self.use_correlation = cfg.get("correlation", True)
         self.grid = (3, 4)
         correlation_channels = 2*(2*self.radius+1)**2 if self.use_correlation else 0
@@ -69,18 +78,27 @@ class VisualMotion(nn.Module):
             flat = torch.cat((torch.full_like(flat[:, :3], .5), torch.zeros_like(flat[:, 3:])), dim=1)
         if (height, width) != self.image_size:
             flat = F.interpolate(flat, size=self.image_size, mode="bilinear", align_corners=False)
+        correlation = correlate
+        if self.compile_correlation and images.is_cuda:
+            global _compiled_correlate
+            if _compiled_correlate is None:
+                _compiled_correlate = torch.compile(correlate, dynamic=False)
+            correlation = _compiled_correlate
         outputs = []
         sensors = self.sensor(imu.float().reshape(batch*steps, -1))
         for begin in range(0, len(flat), self.frame_chunk):
             x = flat[begin:begin+self.frame_chunk]
-            f = self.cnn((x[:, :3] - .5).reshape(-1, 1, *self.image_size))
+            frames = (x[:, :3] - .5).reshape(-1, 1, *self.image_size)
+            if self.channels_last:
+                frames = frames.to(memory_format=torch.channels_last)
+            f = self.cnn(frames)
             f = f.reshape(len(x), 3, *f.shape[1:])
             cur, short, long = f.unbind(1)
             masks = F.interpolate(x[:, 3:], size=cur.shape[-2:], mode="bilinear", align_corners=False)
             components = [cur, (cur-short)*masks[:, :1], (cur-long)*masks[:, 1:]]
             if self.use_correlation:
-                components += [correlate(cur, short, self.radius)*masks[:, :1],
-                               correlate(cur, long, self.radius)*masks[:, 1:]]
+                components += [correlation(cur, short, self.radius)*masks[:, :1],
+                               correlation(cur, long, self.radius)*masks[:, 1:]]
             components.append(masks)
             spatial = F.adaptive_avg_pool2d(torch.cat(components, dim=1), self.grid).flatten(1)
             outputs.append(self.projection(torch.cat((spatial, sensors[begin:begin+len(x)]), dim=1)))
@@ -88,8 +106,18 @@ class VisualMotion(nn.Module):
 
 
 class SelectiveBlock(nn.Module):
-    def __init__(self, width, states):
+    """scan="loop" (default) steps frame by frame; scan="parallel" evaluates the same diagonal
+    recurrence h_t = a_t h_{t-1} + (1-a_t) d_t in chunks of `chunk` frames, with a masked
+    segment-sum decay matrix inside each chunk and the state carried between chunks. It is
+    exact up to float rounding (~1e-6) and keeps chunked == whole streaming.
+    scan="prefix" composes the affine steps directly in logarithmic depth."""
+    def __init__(self, width, states, scan="loop", chunk=32):
         super().__init__()
+        if scan not in ("loop", "parallel", "prefix"):
+            raise ValueError(f"Unknown ssm_scan: {scan}")
+        if not isinstance(chunk, int) or chunk < 1:
+            raise ValueError("ssm_chunk must be a positive integer")
+        self.scan, self.chunk = scan, chunk
         self.norm = nn.LayerNorm(width)
         self.input = nn.Linear(width, width*2)
         self.parameters_in = nn.Linear(width, width + states*2)
@@ -106,6 +134,14 @@ class SelectiveBlock(nn.Module):
         delta = F.softplus(delta).clamp(.05, 5) * dt.clamp(min=.001).unsqueeze(-1)
         rate = self.log_rate.clamp(-4, 4).exp()
         h = x.new_zeros(x.shape[0], self.width, self.states) if memory is None else memory
+        if self.scan != "loop":
+            scan = self._chunk if self.scan == "parallel" else self._prefix
+            outputs = []
+            for begin in range(0, x.shape[1], self.chunk):
+                part = slice(begin, begin+self.chunk)
+                y, h = scan(u[:, part], delta[:, part], b[:, part], c[:, part], rate, h)
+                outputs.append(y*F.silu(gate[:, part]))
+            return x + self.output(torch.cat(outputs, dim=1)), h
         outputs = []
         for i in range(x.shape[1]):
             a = torch.exp(-delta[:, i, :, None]*rate)
@@ -114,6 +150,37 @@ class SelectiveBlock(nn.Module):
             y = (h*torch.tanh(c[:, i, None, :])).sum(-1)/(self.states**.5) + self.skip*u[:, i]
             outputs.append(y*F.silu(gate[:, i]))
         return x + self.output(torch.stack(outputs, dim=1)), h
+
+    def _chunk(self, u, delta, b, c, rate, h):
+        """All L frames of one chunk at once. u, delta: (B, L, W); b, c: (B, L, N); h: (B, W, N)."""
+        steps = u.shape[1]
+        s = delta[..., None]*rate                                      # -log a_t, (B, L, W, N)
+        weighted = (1-torch.exp(-s))*(u[..., None]*torch.tanh(b[:, :, None, :]))
+        # seg[t, k] = sum_{k<j<=t} delta_j, accumulated from zero for each k (no large-number
+        # cancellation, unlike differences of one cumulative sum).
+        strict = torch.ones(steps, steps, dtype=torch.bool, device=u.device).tril(-1)
+        d = delta.transpose(1, 2)                                      # (B, W, L)
+        seg = d[..., :, None].expand(*d.shape, steps).masked_fill(~strict, 0).cumsum(-2)  # (B, W, t, k)
+        lower = strict | torch.eye(steps, dtype=torch.bool, device=u.device)
+        decay = torch.exp(-seg[..., None]*rate[:, None, None, :]) * lower[..., None]     # (B, W, t, k, N)
+        carried = torch.exp(-(seg[..., 0] + d[..., :1])[..., None]*rate[:, None, :])     # (B, W, t, N)
+        states = torch.einsum("bwtkn,bkwn->btwn", decay, weighted) + carried.transpose(1, 2)*h[:, None]
+        y = (states*torch.tanh(c[:, :, None, :])).sum(-1)/(self.states**.5) + self.skip*u
+        return y, states[:, -1]
+
+    def _prefix(self, u, delta, b, c, rate, h):
+        """Inclusive prefix of affine maps (a, z), representing h -> a*h + z."""
+        decay = torch.exp(-delta[..., None]*rate)
+        drive = (1-decay)*(u[..., None]*torch.tanh(b[:, :, None, :]))
+        stride = 1
+        while stride < u.shape[1]:
+            suffix = decay[:, stride:]
+            drive = torch.cat((drive[:, :stride], drive[:, stride:] + suffix*drive[:, :-stride]), dim=1)
+            decay = torch.cat((decay[:, :stride], suffix*decay[:, :-stride]), dim=1)
+            stride *= 2
+        states = drive + decay*h[:, None]
+        y = (states*torch.tanh(c[:, :, None, :])).sum(-1)/(self.states**.5) + self.skip*u
+        return y, states[:, -1]
 
 
 class ResidualGRU(nn.Module):
@@ -135,11 +202,12 @@ class OdometryNet(nn.Module):
         self.visual = VisualMotion(cfg)
         self.kind = cfg["head"]
         d = cfg["embedding"]
+        scan = (cfg.get("ssm_scan", "loop"), cfg.get("ssm_chunk", 32))
         if self.kind == "gru":
             self.temporal = nn.GRU(d, cfg["hidden"], cfg["layers"], batch_first=True)
             nout = cfg["hidden"]
         elif self.kind == "ssm":
-            self.temporal = nn.ModuleList([SelectiveBlock(d, cfg["states"]) for _ in range(cfg["layers"])])
+            self.temporal = nn.ModuleList([SelectiveBlock(d, cfg["states"], *scan) for _ in range(cfg["layers"])])
             nout = d
         elif self.kind == "gru_res":
             self.temporal = nn.ModuleList([ResidualGRU(d) for _ in range(cfg["layers"])])
@@ -147,7 +215,7 @@ class OdometryNet(nn.Module):
         elif self.kind == "gru_ssm":
             # Hybrid: residual GRU layers first, then selective SSM blocks, at the same width.
             self.temporal = nn.ModuleList([ResidualGRU(d) for _ in range(cfg.get("gru_layers", 1))] +
-                                          [SelectiveBlock(d, cfg["states"]) for _ in range(cfg.get("ssm_layers", 1))])
+                                          [SelectiveBlock(d, cfg["states"], *scan) for _ in range(cfg.get("ssm_layers", 1))])
             nout = d
         elif self.kind == "ema":
             nout = d*2

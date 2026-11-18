@@ -1,18 +1,19 @@
 """Local/MPS or Accelerate/DDP training of the learned odometry networks, with resumable checkpoints."""
 import argparse
 import json
+import time
 from pathlib import Path
 
 import numpy as np
 import torch
 from torch.nn import functional as F
 from torch.utils.data import DataLoader
-from accelerate import Accelerator
+from accelerate import Accelerator, DataLoaderConfiguration
 from accelerate.utils import set_seed
 from safetensors.torch import save_file, load_file
 
 from odometry_models import OdometryNet
-from odometry_data import Windows, PlannedWindows, load_row, write_json, ROOT
+from odometry_data import Windows, PlannedWindows, Preloaded, load_row, write_json, ROOT
 from odometry_store import open_store, GroupedSampler, DATA_REPO
 from pairs import digest
 
@@ -101,36 +102,60 @@ def schedule(options, steps_per_epoch):
 
 
 @torch.no_grad()
-def evaluate(net, root, records, device, chunk=32):
+def replay(net, rows, device, chunk=32):
+    """Stream several flights through the causal network side by side. Shorter flights are
+    padded at the end with their last frame; every layer is per frame or causal, so the
+    padding only affects outputs after a flight ends, which are dropped."""
+    n = max(len(row["v"]) for row in rows)
+    output, state = [], None
+    for begin in range(0, n, chunk):
+        def batch(key, dtype=None):
+            parts = []
+            for row in rows:
+                x = torch.as_tensor(row[key][begin:begin+chunk], device=device, dtype=dtype)
+                if len(x) < min(chunk, n-begin):
+                    tail = row[key][-1:] if len(x) == 0 else x[-1:]
+                    tail = torch.as_tensor(tail, device=device, dtype=dtype)
+                    x = torch.cat((x, tail.expand(min(chunk, n-begin)-len(x), *tail.shape[1:])))
+                parts.append(x)
+            return torch.stack(parts)
+        pred, state = net(batch("images"), batch("imu"), state, batch("R", torch.float32))
+        output.append(pred.cpu().numpy())
+    output = np.concatenate(output, axis=1)
+    return [output[i, :len(row["v"])] for i, row in enumerate(rows)]
+
+
+def evaluate(net, root, records, device, chunk=32, flights=1):
+    """flights>1 replays that many development flights per batch (same outputs as one at a time)."""
     net.eval()
     scores = []
-    for record in records:
-        row = load_row(root, record)
-        output, state = [], None
-        for begin in range(0, len(row["v"]), chunk):
-            im = torch.as_tensor(row["images"][begin:begin+chunk], device=device)[None]
-            u = torch.as_tensor(row["imu"][begin:begin+chunk], device=device)[None]
-            rot = torch.as_tensor(row["R"][begin:begin+chunk], device=device, dtype=torch.float32)[None]
-            pred, state = net(im, u, state, rot)
-            output.append(pred[0].cpu().numpy())
-        v = np.concatenate(output).astype(np.float64)
-        world = (row["R"] @ v[..., None]).squeeze(-1)
-        p = np.zeros_like(world)
-        p[1:] = np.cumsum(.5*(world[1:]+world[:-1])*np.diff(row["times"])[:, None], axis=0)
-        arm, rotation = row["T_bc"][:3, 3], row["T_bc"][:3, :3]
-        p = (p+row["R"]@arm-arm)@rotation
-        backwards = row["v"][:, 0] < -.2
-        scores.append({"scene": record["scene"], "file": record["file"], "crop_s": record["crop_s"],
-                       "ate": float(np.sqrt(np.mean(np.sum((p-row["cam_gt"])**2, axis=1)))),
-                       "velocity_rmse": float(np.sqrt(np.mean(np.sum((v-row["v"])**2, axis=1)))),
-                       "backward_frames": int(backwards.sum()),
-                       "backward_sign_accuracy": float(np.mean(v[backwards, 0] < 0)) if backwards.any() else None})
+    for first in range(0, len(records), flights):
+        group = records[first:first+flights]
+        rows = [load_row(root, record) for record in group]
+        for record, row, v in zip(group, rows, replay(net, rows, device, chunk)):
+            scores.append(score_row(record, row, v))
     if not all(np.isfinite(r["ate"]) for r in scores):
         raise ValueError("Nonfinite development replay")
     return scores
 
 
+def score_row(record, row, v):
+    v = v.astype(np.float64)
+    world = (row["R"] @ v[..., None]).squeeze(-1)
+    p = np.zeros_like(world)
+    p[1:] = np.cumsum(.5*(world[1:]+world[:-1])*np.diff(row["times"])[:, None], axis=0)
+    arm, rotation = row["T_bc"][:3, 3], row["T_bc"][:3, :3]
+    p = (p+row["R"]@arm-arm)@rotation
+    backwards = row["v"][:, 0] < -.2
+    return {"scene": record["scene"], "file": record["file"], "crop_s": record["crop_s"],
+            "ate": float(np.sqrt(np.mean(np.sum((p-row["cam_gt"])**2, axis=1)))),
+            "velocity_rmse": float(np.sqrt(np.mean(np.sum((v-row["v"])**2, axis=1)))),
+            "backward_frames": int(backwards.sum()),
+            "backward_sign_accuracy": float(np.mean(v[backwards, 0] < 0)) if backwards.any() else None}
+
+
 def main():
+    startup_started = time.perf_counter()
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", default=str(ROOT/"configs/odometry.json"))
     parser.add_argument("--data", required=True,
@@ -155,8 +180,19 @@ def main():
     if args.seed is not None: cfg["seed"] = args.seed
     if args.epochs is not None: cfg["training"]["epochs"] = args.epochs
     apply_overrides(cfg, args.overrides)
-    accelerator = Accelerator(cpu=args.cpu, mixed_precision="no",
-                              gradient_accumulation_steps=cfg["training"].get("accumulation", 1))
+    # Throughput options (all opt-in; absent keys leave the original behaviour and run identity):
+    #   preload: decompress every record into RAM once; num_workers/pin_memory: DataLoader workers
+    #   (order is unchanged, the plan is fixed per epoch); eval_flights: dev flights replayed per
+    #   batch; tf32: TF32 matmuls; mixed_precision: "bf16" autocast; fused_adamw: CUDA fused optimizer.
+    #   deferred_loss_check: verify nonfinite losses once per epoch instead of synchronizing per batch.
+    options = cfg["training"]
+    accelerator = Accelerator(cpu=args.cpu, mixed_precision=options.get("mixed_precision", "no"),
+                              gradient_accumulation_steps=options.get("accumulation", 1),
+                              dataloader_config=DataLoaderConfiguration(
+                                  non_blocking=options.get("pin_memory", False),
+                                  split_batches=options.get("split_batches", False)))
+    if cfg["training"].get("tf32"):
+        torch.backends.cuda.matmul.allow_tf32 = torch.backends.cudnn.allow_tf32 = True
     torch.set_num_threads(cfg["training"].get("cpu_threads", 4))
     set_seed(cfg["seed"])
     data = open_store(args.data, args.cache_dir, args.cache_gb, args.data_repo)
@@ -188,16 +224,22 @@ def main():
         if identity != old["identity"]: raise ValueError("Resume configuration/data/world size changed")
         if not (args.resume/"complete.json").exists(): raise ValueError("Incomplete checkpoint")
     progress = Progress()
-    options = cfg["training"]
     dataset = Windows(data, manifest["datasets"]["train"], options["window_frames"],
                       options["burn_in"], options["windows_per_parent"], cfg["seed"])
     sampler = None
     if options.get("sampler"):
         # Planned windows: fixed windows per epoch, so optimizer updates match across datasets.
         data.prefetch(manifest["datasets"]["train"] + manifest["datasets"]["development"])
+        if options.get("preload"):
+            data = Preloaded(data, manifest["datasets"]["train"] + manifest["datasets"]["development"])
         dataset = PlannedWindows(data, manifest["datasets"]["train"], options["window_frames"],
                                  options["burn_in"], options["sampler"], cfg["seed"])
-        loader = DataLoader(dataset, batch_size=options["batch_size"], shuffle=False, num_workers=0)
+        workers = options.get("num_workers", 0)
+        if workers and streaming and not options.get("preload"):
+            raise ValueError("Streaming DataLoader workers require training.preload")
+        loader = DataLoader(dataset, batch_size=options["batch_size"], shuffle=False, num_workers=workers,
+                            pin_memory=options.get("pin_memory", False),
+                            **({"prefetch_factor": options.get("prefetch_factor", 4)} if workers else {}))
     elif args.group_size:
         sampler = GroupedSampler(manifest["datasets"]["train"], options["windows_per_parent"],
                                  args.group_size, cfg["seed"], data,
@@ -206,7 +248,8 @@ def main():
     else:
         loader = DataLoader(dataset, batch_size=options["batch_size"], shuffle=True, num_workers=0)
     net = OdometryNet(cfg["model"])
-    opt = torch.optim.AdamW(net.parameters(), lr=options["learning_rate"], weight_decay=.01)
+    opt = torch.optim.AdamW(net.parameters(), lr=options["learning_rate"], weight_decay=.01,
+                            fused=True if options.get("fused_adamw") else None)
     steps = -(-len(loader)//options.get("accumulation", 1))
     lr_schedule = torch.optim.lr_scheduler.LambdaLR(opt, schedule(options, steps))
     net, opt, loader, lr_schedule = accelerator.prepare(net, opt, loader, lr_schedule)
@@ -224,6 +267,8 @@ def main():
     if accelerator.is_main_process:
         run["provenance"] = provenance(args, out)
         write_json(out/"manifest.json", run); write_json(out/"config.json", cfg)
+    if options.get("report_throughput") and accelerator.is_main_process:
+        print(json.dumps({"startup_seconds": round(time.perf_counter()-startup_started, 2)}), flush=True)
     sync = None  # background Hub sync (main process only)
     try:
         for epoch in range(progress.epoch, options["epochs"]):
@@ -232,24 +277,42 @@ def main():
             if sampler is not None: sampler.set_epoch(epoch)
             if hasattr(loader, "set_epoch"): loader.set_epoch(epoch)
             net.train()
-            total, count = 0., 0
+            total, count, data_s = 0., 0, 0.
+            defer_check = options.get("deferred_loss_check", False)
+            if defer_check:
+                total = torch.zeros((), device=accelerator.device, dtype=torch.float64)
+            measure_gpu = options.get("report_throughput") and accelerator.device.type == "cuda"
+            if measure_gpu:
+                torch.cuda.reset_peak_memory_stats(accelerator.device)
+            started = waited = time.perf_counter()
             for row in loader:
+                data_s += time.perf_counter()-waited
                 with accelerator.accumulate(net):
                     pred, _ = net(row["images"], row["imu"], R=row["R"])
                     loss = loss_fn(pred, row, options["burn_in"], options["horizons"])
-                    if not torch.isfinite(loss): raise ValueError("Nonfinite training loss")
+                    if not defer_check and not torch.isfinite(loss):
+                        raise ValueError("Nonfinite training loss")
                     accelerator.backward(loss)
                     if accelerator.sync_gradients: accelerator.clip_grad_norm_(net.parameters(), 1.)
                     opt.step(); opt.zero_grad()
                     if accelerator.sync_gradients:
                         lr_schedule.step()
                         if averaged is not None: averaged.update_parameters(accelerator.unwrap_model(net))
-                total += float(loss.detach()); count += 1
+                total += loss.detach() if defer_check else float(loss.detach())
+                count += 1
+                waited = time.perf_counter()
+            if defer_check:
+                total = float(total)
+            train_s = time.perf_counter()-started
             sums = accelerator.reduce(torch.tensor([total, count], device=accelerator.device), reduction="sum")
+            if defer_check and not torch.isfinite(sums[0]):
+                raise ValueError("Nonfinite training loss")
             # Each rank evaluates disjoint complete episodes without DDP forward collectives.
             records = manifest["datasets"]["development"][accelerator.process_index::accelerator.num_processes]
             scored = averaged.module if averaged is not None else accelerator.unwrap_model(net)
-            rows = evaluate(scored, data, records, accelerator.device)
+            started = time.perf_counter()
+            rows = evaluate(scored, data, records, accelerator.device, flights=options.get("eval_flights", 1))
+            eval_s = time.perf_counter()-started
             from accelerate.utils import gather_object
             rows = gather_object(rows)
             nominal = np.mean([r["ate"] for r in rows if r["crop_s"] == 0])
@@ -259,7 +322,11 @@ def main():
             item = {"epoch": epoch+1, "loss": float(sums[0]/sums[1]), "nominal_ate": float(nominal),
                     "moving_ate": moving, "selection_score": score,
                     "lr": float(opt.param_groups[0]["lr"]), **data.stats(),
-                    "optimizer_updates": (epoch+1)*steps, "exposure": getattr(dataset, "exposure", None), "rows": rows}
+                    "optimizer_updates": (epoch+1)*steps,
+                    "seconds": {"train": round(train_s, 2), "data_wait": round(data_s, 2), "eval": round(eval_s, 2)},
+                    "exposure": getattr(dataset, "exposure", None), "rows": rows}
+            if measure_gpu:
+                item["peak_gpu_bytes"] = torch.cuda.max_memory_allocated(accelerator.device)
             progress.history.append(item); progress.epoch = epoch+1
             if score < progress.best:
                 progress.best = score
