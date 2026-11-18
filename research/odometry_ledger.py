@@ -1,11 +1,11 @@
-"""Audited ledger of every raw parent flight available to teacher training.
+"""Audited ledger of every raw parent flight available for training.
 
 One row per parent: identity and checksum, scene/seed/domain/tier, measured duration and
 frame rate (from timestamps, not frame counts), calibration, realized motion statistics,
 consistency checks, and split by scene. Splits are assigned by scene, so every crop or
 augmentation of a parent inherits its parent's split.
 
-    ./teacher_env.sh teacher_ledger.py --source <research dir with data/> --output data/ledger
+    ./odometry_env.sh odometry_ledger.py --source <research dir with data/> --output data/ledger
 """
 import argparse
 import hashlib

@@ -106,12 +106,12 @@ The teacher family is chosen using average development ATE across seeds. The com
 
 The [robustness milestone report](ROBUSTNESS.md) contains the parity diagnosis, paired development stress tests, training ablations, and fresh-scene Wasm comparison. Its reproduction commands use `robustness_env.sh` for development and deployment and `robust_sim.sh` for the simulator.
 
-## Teacher models (GRU and selective SSM)
+## Learned odometry (CNN + IMU features into GRU/SSM; guide: ODOMETRY.md)
 
-Run locally on MPS with `./teacher_env.sh`. `teacher_data.py` prepares checksummed
-episodes. `teacher_train.py` trains with resumable Accelerate checkpoints, and
+Run locally on MPS with `./odometry_env.sh`. `odometry_data.py` prepares checksummed
+episodes. `odometry_train.py` trains with resumable Accelerate checkpoints, and
 `--hub-repo` pushes each completed epoch to the private repo
-`SentientNapkin/viobench-teacher-lab` (`teacher_hub.py init|push|pull`).
+`SentientNapkin/viobench-teacher-lab` (`odometry_hub.py init|push|pull`).
 Resuming reproduces the uninterrupted loss exactly, including from a pulled copy.
 
 ### Performance: where a C/C++ (or Metal/CUDA) rewrite would help

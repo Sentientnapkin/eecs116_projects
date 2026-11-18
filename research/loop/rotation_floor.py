@@ -3,9 +3,9 @@ what attitude (gyro) errors alone cost, i.e. the floor for any velocity-only tea
 import json, sys
 import numpy as np
 sys.path.insert(0, ".")
-from teacher_store import open_store
-from teacher_data import load_row
-from teacher_train import sim3_ate
+from odometry_store import open_store
+from odometry_data import load_row
+from odometry_train import sim3_ate
 store = open_store("hf:teacher-full", "data/hub-cache", 20)
 manifest = json.loads(store.manifest_path().read_text())
 rows = []

@@ -5,7 +5,7 @@
     python native_campaign.py upload [--raw]                 # roster + audits (+ raw archives) -> private Hub repo
     python native_campaign.py prepare --split train --worker 0 --workers 32   # raw -> training shards (training env)
     python native_campaign.py publish --split train          # shards -> data repo; records file for compose
-    python teacher_store.py compose --name <name> --base teacher-full-labeled --records data/native-campaign/train-records.json
+    python odometry_store.py compose --name <name> --base teacher-full-labeled --records data/native-campaign/train-records.json
 
 Splits never share a scene with each other or with earlier splits:
   train  ProcTHOR-Train 0-9, 46-149, 180-199 and HSSD Train125 (training-only scenes; earlier
@@ -222,12 +222,12 @@ def prepare(args):
     """Training-format shards (the exact preprocessing of every earlier shard) for train or dev
     flights. Workers share one content-addressed staging folder and write their own record files;
     `publish` pushes them. The reserved test split is refused."""
-    from teacher_pool import prepare as prepare_flight
+    from odometry_pool import prepare as prepare_flight
     if "test" in (args.split or []):
         raise ValueError("the reserved test split is never prepared before a final candidate is frozen")
-    teachers = json.loads((ROOT/"configs/teachers.json").read_text())
+    base = json.loads((ROOT/"configs/odometry.json").read_text())
     sensor = json.loads((ROOT/"configs/sensor.json").read_text())
-    sensor.update(width=teachers["model"]["width"], height=teachers["model"]["height"],
+    sensor.update(width=base["model"]["width"], height=base["model"]["height"],
                   portable_pixels="remap", ordered_packet=True)
     staging = Path(args.staging); shards = staging/"shards"; shards.mkdir(parents=True, exist_ok=True)
     metas = sorted(p for s in args.split for p in (RAW/s).glob("*.json"))[args.worker::args.workers]
@@ -238,7 +238,7 @@ def prepare(args):
         records, _ = prepare_flight(RAW/meta["split"]/meta["file"],
                                     {"scene": meta["scene"], "domain": "native-campaign", "tier": meta["regime"],
                                      "regime": meta["regime"]},
-                                    sensor, teachers["data"]["crops_s"], teachers["seed"], shards, gate_flights=False)
+                                    sensor, base["data"]["crops_s"], base["seed"], shards, gate_flights=False)
         for r in records:
             r.update(parent_file=meta["file"], parent_sha256=meta["sha256"], split=meta["split"], catalog=meta["catalog"],
                      flight_id=meta["id"], seconds=meta["seconds"], flags=meta["audit"]["flags"])
@@ -251,7 +251,7 @@ def publish(args):
     """Push prepared shards (large batches, to stay clear of the Hub commit rate limit) and write
     data/native-campaign/<split>-records.json plus an immutable copy on the data repo."""
     from huggingface_hub import HfApi
-    from teacher_store import push_shards, DATA_REPO
+    from odometry_store import push_shards, DATA_REPO
     staging = Path(args.staging)
     split, = args.split
     records = [r for p in sorted((staging/"records").glob(f"{split}-*.json")) for r in json.loads(p.read_text())]

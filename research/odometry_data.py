@@ -1,4 +1,4 @@
-"""Portable, checksummed teacher data; reuse the audited causal sensor pipeline."""
+"""Portable, checksummed training data; reuse the audited causal sensor pipeline."""
 import argparse
 import hashlib
 import json
@@ -60,7 +60,7 @@ def prepare(config_path, output, pilot=False, max_frames=None):
     result = {"status": "preparing", "pilot": pilot, "max_frames": max_frames,
               "sensor_config": sensor, "datasets": {k: [] for k in groups},
               "sources": {name: digest(ROOT/name) for name in
-                          ("teacher_data.py", "streaming.py", "orientation.py", "common.py", "pairs.py")}}
+                          ("odometry_data.py", "streaming.py", "orientation.py", "common.py", "pairs.py")}}
     write_json(manifest_path, result)
     for split, parents in groups.items():
         for parent in parents:
@@ -95,7 +95,7 @@ def prepare(config_path, output, pilot=False, max_frames=None):
 
 
 def load_row(root, record):
-    """`root` is a prepared directory or a store (teacher_store) that resolves records."""
+    """`root` is a prepared directory or a store (odometry_store) that resolves records."""
     path = root.path(record) if hasattr(root, "path") else Path(root)/record["file"]
     with np.load(path, allow_pickle=False) as data:
         return {key: data[key] for key in data.files}
@@ -324,7 +324,7 @@ class PlannedWindows(Dataset):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", default=str(ROOT/"configs/teachers.json"))
+    parser.add_argument("--config", default=str(ROOT/"configs/odometry.json"))
     parser.add_argument("--output", required=True)
     parser.add_argument("--pilot", action="store_true")
     parser.add_argument("--max-frames", type=int)

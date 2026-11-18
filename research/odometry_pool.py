@@ -6,7 +6,7 @@ For each simulated flight in the spool:
      no stall (the autopilot can park forever near the start), finite truth. Hover, dark
      and low-texture stretches are legitimate conditions and are only audited (2026-11-18).
   2. Prepare crops at 0 s and 5 s with the same causal sensor pipeline and settings as
-     the base teacher dataset, written content-addressed (<sha256>.npz).
+     the base training dataset, written content-addressed (<sha256>.npz).
   3. Every --batch shards, upload them plus the growing pool manifest
      (manifests/<pool>.json) to the private data repo, move them into the local shard
      cache (so training never re-downloads them), and delete the raw flight.
@@ -24,7 +24,7 @@ import numpy as np
 from common import Flight
 from pairs import digest, variant_rows
 from streaming import Inputs
-from teacher_store import push_shards, push_manifest, DATA_REPO
+from odometry_store import push_shards, push_manifest, DATA_REPO
 
 ROOT = Path(__file__).resolve().parent
 
@@ -91,17 +91,17 @@ def main():
     parser.add_argument("--repo", default=DATA_REPO)
     parser.add_argument("--idle-exit-minutes", type=float, default=90)
     args = parser.parse_args()
-    teachers = json.loads((ROOT/"configs/teachers.json").read_text())
+    base = json.loads((ROOT/"configs/odometry.json").read_text())
     sensor = json.loads((ROOT/"configs/sensor.json").read_text())
-    sensor.update(width=teachers["model"]["width"], height=teachers["model"]["height"],
+    sensor.update(width=base["model"]["width"], height=base["model"]["height"],
                   portable_pixels="remap", ordered_packet=True)
-    crops, seed = teachers["data"]["crops_s"], teachers["seed"]
+    crops, seed = base["data"]["crops_s"], base["seed"]
     spool = Path(args.spool); staging = spool/"staging"; staging.mkdir(parents=True, exist_ok=True)
     shards = Path(args.cache_dir)/"shards"; shards.mkdir(parents=True, exist_ok=True)
     state_path = spool/f"{args.pool}.json"
     pool = json.loads(state_path.read_text()) if state_path.exists() else {
         "status": "growing", "pool": args.pool, "sensor_config": sensor, "crops_s": crops,
-        "sources": {n: digest(ROOT/n) for n in ("teacher_pool.py", "streaming.py", "common.py", "pairs.py")},
+        "sources": {n: digest(ROOT/n) for n in ("odometry_pool.py", "streaming.py", "common.py", "pairs.py")},
         "datasets": {"train": []}, "rejected": []}
     pending, done_zips, last_work = [], [], time.time()
 
@@ -162,7 +162,7 @@ def main():
 def expand(args_list=None):
     """Prepare ledger parents into content-addressed shards in bounded, verified batches.
 
-    ./teacher_env.sh -c 'from teacher_pool import expand; expand()' --select proxy-train --worker 0 --workers 2
+    ./odometry_env.sh -c 'from odometry_pool import expand; expand()' --select proxy-train --worker 0 --workers 2
     Writes data/expand/<selection>-<worker>.json (records so far); upload happens per batch and
     a shard is moved into the local cache only after the Hub lists it.
     """
@@ -177,9 +177,9 @@ def expand(args_list=None):
     parser.add_argument("--cache-dir", default="data/hub-cache")
     parser.add_argument("--repo", default=DATA_REPO)
     args = parser.parse_args(args_list)
-    teachers = json.loads((ROOT/"configs/teachers.json").read_text())
+    base = json.loads((ROOT/"configs/odometry.json").read_text())
     sensor = json.loads((ROOT/"configs/sensor.json").read_text())
-    sensor.update(width=teachers["model"]["width"], height=teachers["model"]["height"],
+    sensor.update(width=base["model"]["width"], height=base["model"]["height"],
                   portable_pixels="remap", ordered_packet=True)
     ledger = json.loads(Path(args.ledger).read_text())
     domain, split = args.select.split("-")
@@ -210,7 +210,7 @@ def expand(args_list=None):
     for row in parents:
         if row["sha256"] in state["done"]: continue
         meta = {"scene": row["scene"], "domain": row["domain"], "tier": row["tier"], "seed": row.get("seed")}
-        records, _ = prepare(row["path"], meta, sensor, teachers["data"]["crops_s"], teachers["seed"], staging,
+        records, _ = prepare(row["path"], meta, sensor, base["data"]["crops_s"], base["seed"], staging,
                              gate_flights=False)
         for r in records: r["parent_file"] = row["file"]
         pending += records; state["done"].append(row["sha256"])

@@ -1,4 +1,4 @@
-"""Prepared teacher datasets on a private Hugging Face dataset repo, streamed through a
+"""Prepared training datasets on a private Hugging Face dataset repo, streamed through a
 size-capped local cache.
 
 Layout on the Hub: every prepared episode lives once in shards/<file>.npz (names are
@@ -246,7 +246,7 @@ class GroupedSampler(Sampler):
 def compose(name, base, record_files, repo=DATA_REPO, expected_new_parents=None):
     """Immutable snapshot: base train + development records unchanged, plus verified extra
     training records (e.g. data/expand/*.json). Rejects scene or parent leakage into dev."""
-    from teacher_data import validate_roster
+    from odometry_data import validate_roster
     if f"manifests/{name}.json" in HfApi().list_repo_files(repo, repo_type="dataset"):
         raise ValueError(f"Manifest {name} already exists; snapshots are immutable")
     root = fetch_manifest(base, repo)

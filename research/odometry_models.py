@@ -1,4 +1,4 @@
-"""Causal residual CNN, explicit local correspondence, and GRU/SSM teachers.
+"""Causal residual CNN, explicit local correspondence, and GRU/SSM odometry heads.
 
 The SSM is a portable input-dependent diagonal state-space block, not an
 implementation or performance claim for the published Mamba architecture.
@@ -128,7 +128,7 @@ class ResidualGRU(nn.Module):
         return x + y, h
 
 
-class Teacher(nn.Module):
+class OdometryNet(nn.Module):
     def __init__(self, cfg):
         super().__init__()
         self.cfg = dict(cfg)

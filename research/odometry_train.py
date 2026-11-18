@@ -1,4 +1,4 @@
-"""Local/MPS or Accelerate/DDP teacher training with resumable checkpoints."""
+"""Local/MPS or Accelerate/DDP training of the learned odometry networks, with resumable checkpoints."""
 import argparse
 import json
 from pathlib import Path
@@ -11,9 +11,9 @@ from accelerate import Accelerator
 from accelerate.utils import set_seed
 from safetensors.torch import save_file, load_file
 
-from teacher_models import Teacher
-from teacher_data import Windows, PlannedWindows, load_row, write_json, ROOT
-from teacher_store import open_store, GroupedSampler, DATA_REPO
+from odometry_models import OdometryNet
+from odometry_data import Windows, PlannedWindows, load_row, write_json, ROOT
+from odometry_store import open_store, GroupedSampler, DATA_REPO
 from pairs import digest
 
 
@@ -132,7 +132,7 @@ def evaluate(net, root, records, device, chunk=32):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--config", default=str(ROOT/"configs/teachers.json"))
+    parser.add_argument("--config", default=str(ROOT/"configs/odometry.json"))
     parser.add_argument("--data", required=True,
                         help="Prepared directory, or hf:<name> to stream from the private data repo")
     parser.add_argument("--data-repo", default=DATA_REPO)
@@ -145,7 +145,6 @@ def main():
     parser.add_argument("--epochs", type=int)
     parser.add_argument("--seed", type=int)
     parser.add_argument("--resume", type=Path)
-    parser.add_argument("--teacher", type=Path, help="Frozen teacher run for velocity distillation")
     parser.add_argument("--cpu", action="store_true")
     parser.add_argument("--hub-repo", help="Private HF repo to sync each completed epoch to")
     parser.add_argument("--set", action="append", dest="overrides", metavar="KEY=JSON",
@@ -178,11 +177,11 @@ def main():
     identity = {"data_manifest_sha256": digest(manifest_path), "model": cfg["model"],
                 "seed": cfg["seed"], "training": {k:v for k,v in cfg["training"].items() if k != "epochs"},
                 "world_size": accelerator.num_processes,
-                "teacher_sha256": digest(args.teacher/"best.safetensors") if args.teacher else None}
+                "teacher_sha256": None}  # legacy field (removed distillation option); kept so checkpoints resume
     if args.group_size:  # only present when used, so older runs still resume
         identity["shard_group"] = args.group_size
     if args.hub_repo and accelerator.is_main_process:
-        from teacher_hub import ensure_private
+        from odometry_hub import ensure_private
         ensure_private(args.hub_repo)  # fail before training, not after the first epoch
     if args.resume:
         old = json.loads((out/"manifest.json").read_text())
@@ -206,7 +205,7 @@ def main():
         loader = DataLoader(dataset, batch_size=options["batch_size"], sampler=sampler, num_workers=0)
     else:
         loader = DataLoader(dataset, batch_size=options["batch_size"], shuffle=True, num_workers=0)
-    net = Teacher(cfg["model"])
+    net = OdometryNet(cfg["model"])
     opt = torch.optim.AdamW(net.parameters(), lr=options["learning_rate"], weight_decay=.01)
     steps = -(-len(loader)//options.get("accumulation", 1))
     lr_schedule = torch.optim.lr_scheduler.LambdaLR(opt, schedule(options, steps))
@@ -219,15 +218,9 @@ def main():
                                  multi_avg_fn=get_ema_multi_avg_fn(options["weight_ema"]))
         accelerator.register_for_checkpointing(averaged)
     if args.resume: accelerator.load_state(str(args.resume))
-    teacher = None
-    if args.teacher:
-        teacher_cfg = json.loads((args.teacher/"config.json").read_text())
-        teacher = Teacher(teacher_cfg["model"]).to(accelerator.device)
-        teacher.load_state_dict(load_file(str(args.teacher/"best.safetensors")))
-        teacher.eval().requires_grad_(False)
     run = {"status": "running", "identity": identity, "device": str(accelerator.device),
            "parameters": sum(p.numel() for p in net.parameters()), "pilot_data": manifest.get("pilot", False),
-           "sources": {n:digest(ROOT/n) for n in ("teacher_train.py", "teacher_models.py", "teacher_data.py")}}
+           "sources": {n:digest(ROOT/n) for n in ("odometry_train.py", "odometry_models.py", "odometry_data.py")}}
     if accelerator.is_main_process:
         run["provenance"] = provenance(args, out)
         write_json(out/"manifest.json", run); write_json(out/"config.json", cfg)
@@ -244,10 +237,6 @@ def main():
                 with accelerator.accumulate(net):
                     pred, _ = net(row["images"], row["imu"], R=row["R"])
                     loss = loss_fn(pred, row, options["burn_in"], options["horizons"])
-                    if teacher is not None:
-                        with torch.no_grad(): target, _ = teacher(row["images"], row["imu"], R=row["R"])
-                        loss += options.get("distillation_weight", .2)*F.smooth_l1_loss(
-                            pred[:, options["burn_in"]:], target[:, options["burn_in"]:], beta=.1)
                     if not torch.isfinite(loss): raise ValueError("Nonfinite training loss")
                     accelerator.backward(loss)
                     if accelerator.sync_gradients: accelerator.clip_grad_norm_(net.parameters(), 1.)
@@ -291,7 +280,7 @@ def main():
                 if args.hub_repo:
                     write_json(out/"manifest.json", run)
                     if sync is None:
-                        from teacher_hub import BackgroundSync
+                        from odometry_hub import BackgroundSync
                         sync = BackgroundSync(out, args.hub_repo)
                     sync.epoch(epoch+1)
             patience = options.get("patience")

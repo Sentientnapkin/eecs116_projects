@@ -1,5 +1,5 @@
 #!/bin/bash
-# Usage: ./teacher_env.sh teacher_data.py|teacher_train.py|teacher_hub.py [args...]
+# Usage: ./odometry_env.sh odometry_data.py|odometry_train.py|odometry_hub.py [args...]
 set -euo pipefail
 cd "$(dirname "$0")"
 stage1_data="$PWD/../../../../Final Project/classical_vio/research/data"

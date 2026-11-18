@@ -1,4 +1,4 @@
-"""Private Hugging Face sync for teacher runs: create the repo, push a run, pull one to resume."""
+"""Private Hugging Face sync for training runs: create the repo, push a run, pull one to resume."""
 import argparse
 import threading
 from pathlib import Path
@@ -56,7 +56,7 @@ class BackgroundSync:
 
 
 def pull(run_name, destination, repo=DEFAULT_REPO):
-    """Download a run so teacher_train.py --resume can continue it on this machine."""
+    """Download a run so odometry_train.py --resume can continue it on this machine."""
     ensure_private(repo)
     root = snapshot_download(repo, allow_patterns=[f"runs/{run_name}/*"], local_dir=destination)
     return Path(root)/"runs"/run_name

@@ -1,9 +1,9 @@
 #!/bin/bash
-# Restart teacher_gen.py after native renderer crashes, marking the crashing scene as failed.
+# Restart odometry_gen.py after native renderer crashes, marking the crashing scene as failed.
 cd "$(dirname "$0")"
 spool=data/gen-spool
 while true; do
-  ./gen_env.sh teacher_gen.py --spool "$spool" "$@" >> "$spool/gen.log" 2>&1
+  ./gen_env.sh odometry_gen.py --spool "$spool" "$@" >> "$spool/gen.log" 2>&1
   code=$?
   [ $code -eq 0 ] && exit 0
   key=$(/opt/miniconda3/bin/python -c "import json;print(json.load(open('$spool/current.json'))['key'])" 2>/dev/null)

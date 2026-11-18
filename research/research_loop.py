@@ -1,4 +1,4 @@
-"""Unattended experiment queue for teacher training.
+"""Unattended experiment queue for odometry training.
 
 loop/queue.json is an append-only list of specs:
   {"name": "gru-recipe", "data": "<dir or hf:name>", "args": ["--head", "gru", "--set", "..."],
@@ -53,7 +53,7 @@ def summarize(run_dir):
 def leaderboard(state):
     done = [(n, s) for n, s in state.items() if s.get("result")]
     done.sort(key=lambda item: item[1]["result"]["selection_score"])
-    lines = ["# Teacher leaderboard", "",
+    lines = ["# Odometry leaderboard", "",
              "Selection score = mean of nominal and moving-start unaligned ATE on the fixed",
              "development set (lower is better). Sim(3) ATE is the course-scorer alignment.", "",
              "| Rank | Run | Score (m) | Nominal (m) | Moving (m) | Sim(3) (m) | Best epoch | Params | Note |",
@@ -79,7 +79,7 @@ def push_loop():
 
 
 def command(spec, run_dir, resume=None):
-    cmd = [str(ROOT/"teacher_env.sh"), "teacher_train.py", "--data", spec["data"],
+    cmd = [str(ROOT/"odometry_env.sh"), "odometry_train.py", "--data", spec["data"],
            "--output", str(run_dir), "--hub-repo", LAB_REPO, *spec.get("args", [])]
     if resume:
         cmd += ["--resume", str(resume)]

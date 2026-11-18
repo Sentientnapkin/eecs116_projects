@@ -8,7 +8,7 @@ import json
 import time
 from pathlib import Path
 
-from teacher_store import snapshot
+from odometry_store import snapshot
 
 ROOT = Path(__file__).resolve().parent
 LOOP = ROOT/"loop"

@@ -4,8 +4,8 @@
 
 Runs go to results/loop/<name>[-s<seed>] with logs alongside, and sync to the private lab
 repo each epoch. A run directory that already has a completed checkpoint is resumed.
-On the Mac the course environment wrapper (teacher_env.sh) is used; elsewhere the current
-Python runs teacher_train.py directly. --gpu pins each launched run to one CUDA device,
+On the Mac the course environment wrapper (odometry_env.sh) is used; elsewhere the current
+Python runs odometry_train.py directly. --gpu pins each launched run to one CUDA device,
 consecutive runs taking consecutive devices (e.g. --gpu 0 with three names uses 0, 1, 2).
 """
 import argparse
@@ -38,12 +38,12 @@ def main():
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
     runs = ROOT/"results"/"loop"; runs.mkdir(parents=True, exist_ok=True)
-    mac = sys.platform == "darwin" and (ROOT/"teacher_env.sh").exists() and Path("/opt/miniconda3/bin/python").exists()
-    python = [str(ROOT/"teacher_env.sh")] if mac else [sys.executable, "-B"]
+    mac = sys.platform == "darwin" and (ROOT/"odometry_env.sh").exists() and Path("/opt/miniconda3/bin/python").exists()
+    python = [str(ROOT/"odometry_env.sh")] if mac else [sys.executable, "-B"]
     for index, name in enumerate(args.names):
         run, data, extra = resolve(name, args.seed, args.tag)
         out = runs/run
-        cmd = [*python, "teacher_train.py", "--config", str(ROOT/"configs/teachers.json"),
+        cmd = [*python, "odometry_train.py", "--config", str(ROOT/"configs/odometry.json"),
                "--data", data, "--output", str(out), "--hub-repo", LAB_REPO,
                # One cache per run: concurrent runs must never evict or rewrite each other's shards.
                "--cache-dir", str(ROOT/"data"/"hub-cache"/run), *extra]

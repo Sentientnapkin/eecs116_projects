@@ -1,16 +1,16 @@
-"""Focused regressions for the teacher data, sampling, metrics and models.
+"""Focused regressions for the odometry data, sampling, metrics and models.
 
-    ./teacher_env.sh -m unittest test_teacher     (or: ./teacher_env.sh test_teacher.py)
+    ./odometry_env.sh -m unittest test_odometry     (or: ./odometry_env.sh test_odometry.py)
 """
 import unittest
 
 import numpy as np
 import torch
 
-from teacher_data import CATEGORIES, WindowPlan, motion_labels, validate_roster
-from teacher_ledger import checks, split_for
-from teacher_models import Teacher
-from teacher_train import loss_fn
+from odometry_data import CATEGORIES, WindowPlan, motion_labels, validate_roster
+from odometry_ledger import checks, split_for
+from odometry_models import OdometryNet
+from odometry_train import loss_fn
 
 
 def labels_for(v, dt=.05):
@@ -122,7 +122,7 @@ class Models(unittest.TestCase):
     def test_causal_and_streaming(self):
         for head in ("gru", "ssm", "gru_res", "gru_ssm"):
             torch.manual_seed(0)
-            net = Teacher(dict(self.cfg, head=head)).eval()
+            net = OdometryNet(dict(self.cfg, head=head)).eval()
             images, imu = self.inputs()
             with torch.no_grad():
                 full, _ = net(images, imu)
@@ -141,10 +141,10 @@ class Models(unittest.TestCase):
         from accelerate import Accelerator
         accelerator = Accelerator()
         for head in ("gru", "gru_res", "gru_ssm", "ssm"):
-            net = accelerator.prepare(Teacher(dict(self.cfg, head=head)))
+            net = accelerator.prepare(OdometryNet(dict(self.cfg, head=head)))
             want = {k: v.detach().cpu().clone() for k, v in net.state_dict().items()}
             with tempfile.TemporaryDirectory() as tmp:
-                accelerator.save_state(tmp, safe_serialization=False)  # as teacher_train.py does
+                accelerator.save_state(tmp, safe_serialization=False)  # as odometry_train.py does
                 with torch.no_grad():
                     for p in net.parameters(): p.zero_()
                 accelerator.load_state(tmp)

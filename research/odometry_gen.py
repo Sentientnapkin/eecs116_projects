@@ -5,7 +5,7 @@ confirmation scenes of earlier work) interleaved with HSSD-Train scenes for visu
 diversity. Each pass over the scene list uses a new seed, so later passes add new
 routes in the same rooms. Flights follow the benchmark defaults (60 s, 1 s hover,
 FOV 120 +/- 15 deg); a fraction use the independent-yaw autopilot for backward and
-lateral motion. teacher_pool.py gates, prepares and uploads what lands in the spool.
+lateral motion. odometry_pool.py gates, prepares and uploads what lands in the spool.
 """
 import argparse
 import json

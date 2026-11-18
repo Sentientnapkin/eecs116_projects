@@ -1,9 +1,9 @@
-"""Full-trajectory evaluation of teacher runs and deployed baselines on identical flights.
+"""Full-trajectory evaluation of trained odometry runs and deployed baselines on identical flights.
 
-    ./teacher_env.sh teacher_eval.py --runs results/loop/D0-ssm results/loop/D2-ssm \
+    ./odometry_env.sh odometry_eval.py --runs results/loop/D0-ssm results/loop/D2-ssm \
         --deployed ema ssm --control D0-ssm --output results/eval/d-series [--set dev|proxy-val]
 
-Every replay carries state continuously through the whole (cropped) flight. Teachers run on
+Every replay carries state continuously through the whole (cropped) flight. Trained models run on
 the prepared shards (the training preprocessing); deployed models replay the raw flight
 through their own guest preprocessing; all are scored against the same camera-frame-zero
 ground truth. Overlapping crops of one parent are reported but never counted as independent
@@ -18,14 +18,14 @@ import numpy as np
 import torch
 from safetensors.torch import load_file
 
-from teacher_data import load_row, CATEGORIES, motion_labels
-from teacher_models import Teacher
-from teacher_store import open_store
+from odometry_data import load_row, CATEGORIES, motion_labels
+from odometry_models import OdometryNet
+from odometry_store import open_store
 
 ROOT = Path(__file__).resolve().parent
-# Submitted guest models (only needed for --deployed). Override with TEACHER_GUEST_DIR elsewhere.
+# Submitted guest models (only needed for --deployed). Override with GUEST_DIR elsewhere.
 import os
-GUEST = Path(os.environ.get("TEACHER_GUEST_DIR",
+GUEST = Path(os.environ.get("GUEST_DIR",
              "/Users/School/Desktop/Fa26 Berkeley/EECS 116/eecs116_projects/.claude/worktrees/"
              "metric-speed-sources-9eeecc/research/results/20261118T024046Z-robust-guest-7e90eb87"))
 
@@ -63,9 +63,9 @@ def integrate(v, row):
 
 
 @torch.no_grad()
-def teacher_velocities(run, weights, row, device, chunk=32):
+def model_velocities(run, weights, row, device, chunk=32):
     cfg = json.loads((run/"config.json").read_text())
-    net = Teacher(cfg["model"]).to(device).eval()
+    net = OdometryNet(cfg["model"]).to(device).eval()
     net.load_state_dict(weights)
     out, state = [], None
     for b in range(0, len(row["v"]), chunk):
@@ -202,7 +202,7 @@ def main():
         results[name] = []
         for record in records:
             row = rows_cache[record["file"]]
-            v = teacher_velocities(run, weights, row, device)
+            v = model_velocities(run, weights, row, device)
             p = integrate(v, row)
             results[name].append({**describe(record, row), **metrics(p, row["cam_gt"], row["times"], v, row["v"])})
             if record["crop_s"] == 0:
