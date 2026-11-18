@@ -180,6 +180,12 @@
       "use": ["recipe", "balanced_sampler"],
       "args": ["--head", "ssm", "--epochs", "36"],
       "note": "Budget follow-up: D2 at 3x updates. Gate: same screen and guardrail against B-D0-ssm-x3 (equal budget), plus the 30 s proxy-validation criterion."
+    },
+    "P-imu-blind": {
+      "data": "hf:teacher-full",
+      "use": ["recipe", "original_sampler"],
+      "args": ["--head", "ssm", "--set", "model.imu_blind=true"],
+      "note": "Probe (plan step 6): D0-ssm with direct IMU features zeroed (frame interval kept). Measures what the network takes from the IMU beyond derotation; compare with D0-ssm and gru-blind (images blanked)."
     }
   }
 }

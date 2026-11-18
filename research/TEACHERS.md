@@ -32,6 +32,20 @@ plus the course benchmark packages). Generated data and results live in ignored 
 ./teacher_env.sh test_teacher.py
 ```
 
+Off the Mac (e.g. the GPU box) run the same scripts with plain `python`. `launch.py --gpu N --tag gpu`
+pins consecutive runs to consecutive devices, gives each run its own shard cache, and keeps
+run names distinct on the Hub. Evaluation there needs no raw flights except for `--deployed`:
+
+```bash
+python teacher_eval.py --runs results/loop/D0-ssm-gpu results/loop/D2-ssm-gpu --control D0-ssm-gpu \
+    --output results/eval/d-series --plots                       # dev: 14 replays, 6 scenes
+python teacher_eval.py ... --set proxy-val --max-seconds 30     # holdout criterion: 68 replays, 12 scenes, first 30 s
+python teacher_eval.py ... --set proxy-val                      # 90 s long-horizon diagnostic
+```
+
+`--set proxy-val` reads `data/expand/proxy-proxy_validation-0.json`; it is on the data repo as
+`manifests/proxy-validation-records.json` (copy it to that path).
+
 To restore a run elsewhere: `teacher_hub.py pull --run <name>` brings its checkpoints,
 `config.json`, and `source/` (a copy of the exact research sources and configs). Its
 `manifest.json` records the git HEAD, uncommitted files, the data repo commit, packages and
@@ -43,6 +57,7 @@ the command line; `--resume` continues from a pulled checkpoint.
 | --- | --- | --- |
 | `teacher-full` | Restricted control: 48 proxy base + 12 native + 1 native yaw parents, crops 0/5 s (122 shards); 7 native development parents (14 replays, 6 scenes). | The exact old teacher roster. Re-preparing a parent reproduces its shards bit for bit. |
 | `d1-expanded-tiers` | `teacher-full` + all other 232 eligible proxy training parents (96 mid, 88 agile, 48 base; 586 shards). Same development roster. | Adds motion coverage, not scenes: the same 36 scenes. |
+| `proxy-validation-records` | 136 records (68 parents, crops 0/5 s, 12 scenes) of the proxy-validation holdout; 90 s flights. | Recovered from the upload commits; two parents (scene 155, seed 906, `-00`/`-01`) have identical truth and are flagged `ambiguous_parent`. |
 | `teacher-v2/v3/v4` | `teacher-full` + generated native pool snapshots. | Pool includes scenes 150–161 (proxy validation), so proxy validation is not a clean holdout for these. |
 
 Scene policy (`teacher_ledger.py`): development 166–171; final test 162–165, 172–175;

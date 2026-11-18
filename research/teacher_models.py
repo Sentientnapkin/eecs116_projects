@@ -47,6 +47,9 @@ class VisualMotion(nn.Module):
         # Optional AirIO-style attitude encoding: estimated gravity direction in body axes.
         self.attitude = cfg.get("attitude_input", False)
         self.blind = cfg.get("blind", False)
+        # Ablation: zero the direct IMU features except the frame interval (column 13). Gyro still
+        # enters through the derotated image history, and attitude still integrates the output.
+        self.imu_blind = cfg.get("imu_blind", False)
         self.sensor = nn.Sequential(nn.Linear(51 + 3*self.attitude, 64), nn.SiLU(), nn.Linear(64, 64), nn.SiLU())
         self.projection = nn.Sequential(nn.Linear(visual_size + 64, cfg["embedding"]),
                                         nn.LayerNorm(cfg["embedding"]), nn.SiLU())
@@ -54,6 +57,9 @@ class VisualMotion(nn.Module):
         self.frame_chunk = cfg.get("frame_chunk", 16)
 
     def forward(self, images, imu, R=None):
+        if self.imu_blind:
+            keep = torch.zeros(imu.shape[-1], device=imu.device); keep[13] = 1
+            imu = imu.float()*keep
         if self.attitude:
             imu = torch.cat((imu.float(), R[..., 2, :].float()), dim=-1)  # world z in body axes
         # Channels: current, gyro-warped short history, long history, two masks.
