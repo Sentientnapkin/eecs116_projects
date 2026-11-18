@@ -1,5 +1,13 @@
 {
   "_doc": "Experiment definitions. Each entry resolves to odometry_train.py arguments: --config configs/odometry.json, --data <data>, then 'args'. Shared blocks are referenced by name in 'use'. Decision gates are declared before results exist.",
+  "deployment": {
+    "B-D0-cpp-fp32": {
+      "checkpoints": "B-D0-ssm-x3 best EMA, seeds 217/218/219",
+      "prepared": "All 14 teacher-full development shards, continuous state from frame zero, compare C++ to CPU PyTorch on identical prepared inputs.",
+      "raw": "First 30 seconds inclusive, both 0 s and 5 s crops of the lexicographically first 30 s ProcTHOR campaign-dev parent, and the first 30 s HSSD campaign-dev parent. Use manifest split dev only. Compare C++ and WASM on identical delivered packets and RGB, and compare C++ preprocessing and ATE to Python on those observations.",
+      "gates": "Prepared max absolute velocity delta <= 0.0002 m/s, max trajectory position delta <= 0.002 m. Raw Python to C++ max IMU delta <= 0.00002, max attitude element delta <= 0.00000001, and max pixel delta <= 1. Raw host to WASM max state element delta <= 0.002, zero failed or filled frames. Report per-episode unaligned ATE, equal-episode mean, max step fuel, and separate init fuel. Compare to historical EMA fuel as contextual only because its raw roster is unavailable."
+    }
+  },
   "blocks": {
     "recipe": [
       "--cache-gb",
