@@ -21,7 +21,6 @@ from safetensors.torch import load_file
 from teacher_data import load_row, CATEGORIES, motion_labels
 from teacher_models import Teacher
 from teacher_store import open_store
-from teacher_train import sim3_ate
 
 ROOT = Path(__file__).resolve().parent
 # Submitted guest models (only needed for --deployed). Override with TEACHER_GUEST_DIR elsewhere.
@@ -31,18 +30,9 @@ GUEST = Path(os.environ.get("TEACHER_GUEST_DIR",
              "metric-speed-sources-9eeecc/research/results/20261118T024046Z-robust-guest-7e90eb87"))
 
 
-def umeyama_scale(estimate, truth):
-    e, t = estimate-estimate.mean(0), truth-truth.mean(0)
-    u, d, vt = np.linalg.svd(t.T@e/len(e))
-    s = np.eye(3); s[2, 2] = np.sign(np.linalg.det(u@vt))
-    var = (e**2).sum()/len(e)
-    return float(np.trace(np.diag(d)@s)/var) if var > 1e-12 else float("nan")
-
-
 def metrics(p, truth, times, v_pred=None, v_true=None):
     err = np.linalg.norm(p-truth, axis=1)
-    out = {"ate": float(np.sqrt(np.mean(err**2))), "sim3_ate": sim3_ate(p, truth),
-           "sim3_scale": umeyama_scale(p, truth), "final_error": float(err[-1])}
+    out = {"ate": float(np.sqrt(np.mean(err**2))), "final_error": float(err[-1])}
     for lo, hi in ((0, 10), (10, 20), (20, 30), (30, 60), (60, 90)):
         m = (times >= lo) & (times < hi)
         if m.any(): out[f"ate_{lo}_{hi}s"] = float(np.sqrt(np.mean(err[m]**2)))
@@ -135,7 +125,8 @@ def scene_paired(results, name, control, key="ate"):
 
 
 def plot(args, curves, out):
-    """Learning curves (development selection score and Sim(3) per epoch) and mean position error over time."""
+    """Learning curves (development nominal, moving-start and selection mean ATE per epoch, log scale)
+    and mean position error over time. Mean unaligned ATE is the only metric."""
     import matplotlib; matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     fig, axes = plt.subplots(1, 2, figsize=(11, 4))
@@ -143,15 +134,16 @@ def plot(args, curves, out):
         history = json.loads((run/"metrics.json").read_text())
         epochs = [h["epoch"] for h in history]
         line, = axes[0].plot(epochs, [h["selection_score"] for h in history], marker="o", label=run.name)
-        axes[1].plot(epochs, [h["sim3_ate"] for h in history], marker="o", color=line.get_color(), label=run.name)
-    for ax, title in zip(axes, ("selection score (unaligned, m)", "Sim(3) ATE (m)")):
-        ax.set_xlabel("epoch"); ax.set_title(title); ax.grid(alpha=.3)
+        axes[1].plot(epochs, [h["nominal_ate"] for h in history], marker="o", color=line.get_color(), label=run.name)
+        axes[1].plot(epochs, [h["moving_ate"] for h in history], ls="--", color=line.get_color())
+    for ax, title in zip(axes, ("selection: mean ATE (m)", "nominal (solid) / moving start (dashed) mean ATE (m)")):
+        ax.set_xlabel("epoch"); ax.set_title(title); ax.set_yscale("log"); ax.grid(alpha=.3, which="both")
     axes[0].legend(fontsize=7); fig.tight_layout(); fig.savefig(out/"learning-curves.png", dpi=120); plt.close(fig)
     fig, ax = plt.subplots(figsize=(7, 4))
     for name, series in curves.items():
-        grid = np.arange(0, min(t[-1] for t, _ in series), .5)
+        grid = np.arange(.5, min(t[-1] for t, _ in series), .5)  # log axis: skip t = 0
         ax.plot(grid, np.mean([np.interp(grid, t, e) for t, e in series], 0), label=name)
-    ax.set_xlabel("time since start (s)"); ax.set_ylabel("mean position error (m)")
+    ax.set_xlabel("time since start (s)"); ax.set_ylabel("mean position error (m)"); ax.set_yscale("log")
     ax.set_title(f"{args.set}: static-start replays, {args.checkpoint} checkpoint"); ax.grid(alpha=.3); ax.legend(fontsize=7)
     fig.tight_layout(); fig.savefig(out/(f"{args.set}-{args.checkpoint}" + (f"-{args.max_seconds:g}s" if args.max_seconds else "") + "-error-over-time.png"), dpi=120); plt.close(fig)
 
@@ -236,8 +228,6 @@ def main():
                          "backward_lateral_ate": mean(lambda r: r["regime"] != "ordinary"),
                          "static_start_ate": mean(lambda r: r["start"] == "static"),
                          "moving_start_ate": mean(lambda r: r["start"] == "moving"),
-                         "sim3_ate_diagnostic": mean(lambda r: True, "sim3_ate"),
-                         "sim3_scale_median": round(float(np.median([r["sim3_scale"] for r in rows])), 3),
                          "speed_rmse": mean(lambda r: True, "speed_rmse"),
                          "direction_error_deg": mean(lambda r: True, "direction_error_deg"),
                          "backward_sign_accuracy": mean(lambda r: True, "backward_sign_accuracy"),
@@ -252,10 +242,10 @@ def main():
     tag = f"{args.set}-{args.checkpoint}" + (f"-{args.max_seconds:g}s" if args.max_seconds else "")
     (out/f"{tag}.json").write_text(json.dumps({"summary": summary, "rows": results}, indent=1))
     width = max(len(n) for n in summary)
-    print(f"{'model':{width}}  mean   worst  ordin  bk/lat  static moving sim3   spdRMSE dirdeg bksign")
+    print(f"{'model':{width}}  mean   worst  ordin  bk/lat  static moving spdRMSE dirdeg bksign")
     for name, s in summary.items():
         cells = [s[k] for k in ("equal_flight_mean_ate", "worst_flight_ate", "ordinary_ate", "backward_lateral_ate",
-                                "static_start_ate", "moving_start_ate", "sim3_ate_diagnostic", "speed_rmse",
+                                "static_start_ate", "moving_start_ate", "speed_rmse",
                                 "direction_error_deg", "backward_sign_accuracy")]
         print(f"{name:{width}}  " + "  ".join("  –  " if c is None else f"{c:5.3f}" if c < 10 else f"{c:5.1f}" for c in cells))
         by_catalog = {k[:-4]: v for k, v in s.items() if k.endswith("_ate") and k[:-4] in ("procthor", "hssd-val", "hssd-train")}

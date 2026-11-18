@@ -18,7 +18,7 @@ plus the course benchmark packages). Generated data and results live in ignored 
 | `teacher_eval.py` | Full-trajectory replays: teachers, deployed guest models, zero output; per-flight, regime and scene-paired results. |
 | `launch.py` + `configs/experiments.json` | Named experiment definitions, decision gates, budgets; `launch.py <names>` starts them. |
 | `native_campaign.py` + `configs/native_campaign.json` | Split-safe native flight campaign: roster, simulator workers (raw 640×480 archives, failure-only gates, truth-integration check), shard preparation and publishing. Reserved test split is never prepared. |
-| `test_teacher.py` | Regressions: leakage, sampling determinism/exposure, Sim(3), loss horizons, causality, chunked streaming. |
+| `test_teacher.py` | Regressions: leakage, sampling determinism/exposure, loss horizons, causality, chunked streaming. |
 
 ## Commands
 
@@ -82,6 +82,9 @@ the restricted roster has 75 (one native yaw flight). Every benchmark-regime nat
 See `loop/NOTES.md` for the chronological log and `results/eval/` for full replays.
 
 ## Current verdict (2026-11-18 evening, GPU box)
+
+**Metric: mean unaligned ATE (m, log scale) only.** Sim(3)-aligned ATE is not used anywhere (removed
+from training logs, evaluation and plots on 2026-11-18); earlier notes that quote it are historical.
 
 - **Seed noise dominates single-run comparisons.** Identical D0-ssm runs differ by 0.29 m on dev
   (1.152 / 1.439 / 1.420) and 0.10 m on the 30 s holdout. The scene-paired bootstrap covers flight

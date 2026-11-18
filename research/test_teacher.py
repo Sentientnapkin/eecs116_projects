@@ -10,7 +10,7 @@ import torch
 from teacher_data import CATEGORIES, WindowPlan, motion_labels, validate_roster
 from teacher_ledger import checks, split_for
 from teacher_models import Teacher
-from teacher_train import loss_fn, sim3_ate
+from teacher_train import loss_fn
 
 
 def labels_for(v, dt=.05):
@@ -100,15 +100,6 @@ class DomainShare(unittest.TestCase):
 
 
 class Metrics(unittest.TestCase):
-    def test_sim3_invariance(self):
-        rng = np.random.default_rng(0)
-        truth = np.cumsum(rng.normal(size=(200, 3)), axis=0)
-        q, _ = np.linalg.qr(rng.normal(size=(3, 3)))
-        if np.linalg.det(q) < 0: q[:, 0] *= -1
-        estimate = 2.5*truth@q.T + np.array([1., -2, 3])
-        self.assertLess(sim3_ate(estimate, truth), 1e-9)
-        self.assertGreater(sim3_ate(estimate + rng.normal(size=estimate.shape), truth), .1)
-
     def test_horizon_longer_than_window_is_finite(self):
         n = 20
         row = {"v": torch.zeros(1, n, 3), "R": torch.eye(3).repeat(1, n, 1, 1),

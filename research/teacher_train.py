@@ -50,19 +50,6 @@ def loss_fn(pred, row, burn, horizons):
     return loss
 
 
-def sim3_ate(estimate, truth):
-    """Umeyama similarity alignment, as the course scorer does, then position RMSE."""
-    mu_e, mu_t = estimate.mean(0), truth.mean(0)
-    e, t = estimate-mu_e, truth-mu_t
-    u, d, vt = np.linalg.svd(t.T@e/len(e))
-    s_fix = np.eye(3); s_fix[2, 2] = np.sign(np.linalg.det(u@vt))
-    rotation = u@s_fix@vt
-    variance = (e**2).sum()/len(e)
-    scale = float(np.trace(np.diag(d)@s_fix)/variance) if variance > 1e-12 else 1.
-    aligned = scale*e@rotation.T + mu_t
-    return float(np.sqrt(np.mean(np.sum((aligned-truth)**2, axis=1))))
-
-
 def provenance(args, out):
     """Everything needed to restore this run elsewhere: a copy of the research sources and
     configs (they may be uncommitted), git state, the data repo commit, and the environment."""
@@ -135,7 +122,6 @@ def evaluate(net, root, records, device, chunk=32):
         backwards = row["v"][:, 0] < -.2
         scores.append({"scene": record["scene"], "file": record["file"], "crop_s": record["crop_s"],
                        "ate": float(np.sqrt(np.mean(np.sum((p-row["cam_gt"])**2, axis=1)))),
-                       "sim3_ate": sim3_ate(p, row["cam_gt"]),
                        "velocity_rmse": float(np.sqrt(np.mean(np.sum((v-row["v"])**2, axis=1)))),
                        "backward_frames": int(backwards.sum()),
                        "backward_sign_accuracy": float(np.mean(v[backwards, 0] < 0)) if backwards.any() else None})
@@ -281,9 +267,8 @@ def main():
             moving_rows = [r["ate"] for r in rows if r["crop_s"] > 0]
             moving = float(np.mean(moving_rows)) if moving_rows else float(nominal)
             score = float(.5*(nominal+moving))
-            sim3 = float(np.mean([r["sim3_ate"] for r in rows]))
             item = {"epoch": epoch+1, "loss": float(sums[0]/sums[1]), "nominal_ate": float(nominal),
-                    "moving_ate": moving, "selection_score": score, "sim3_ate": sim3,
+                    "moving_ate": moving, "selection_score": score,
                     "lr": float(opt.param_groups[0]["lr"]), **data.stats(),
                     "optimizer_updates": (epoch+1)*steps, "exposure": getattr(dataset, "exposure", None), "rows": rows}
             progress.history.append(item); progress.epoch = epoch+1
