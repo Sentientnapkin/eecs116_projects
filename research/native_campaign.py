@@ -150,7 +150,7 @@ def generate(args):
     from pairs import digest
     roster = json.loads(ROSTER.read_text())["flights"]
     mine = [f for i, f in enumerate(roster) if i % args.workers == args.worker
-            and (not args.split or f["split"] in args.split)][:args.limit]
+            and (not args.split or f["split"] in args.split) and (not args.ids or f["id"] in args.ids)][:args.limit]
     log_path = RAW/"generated.jsonl"
     hssd_val = None
     for f in mine:
@@ -278,6 +278,7 @@ def main():
     parser.add_argument("--workers", type=int, default=1)
     parser.add_argument("--split", nargs="*")
     parser.add_argument("--limit", type=int)
+    parser.add_argument("--ids", nargs="*", help="generate: only these flights (one process per flight isolates native crashes)")
     parser.add_argument("--min-free-gb", type=float, default=200)
     parser.add_argument("--batch", type=int, default=400)
     parser.add_argument("--raw", action="store_true", help="upload: include the raw archives")
