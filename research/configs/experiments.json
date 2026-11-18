@@ -44,7 +44,8 @@
     "screen_improvement": "At least 10% lower equal-flight mean unaligned development ATE than the paired control (engineering gate, not statistical significance).",
     "ordinary_motion_guardrail": "No more than 5% regression on ordinary-motion (benchmark-regime, non-yaw) development flights.",
     "advance": "Runs passing both gates advance to three paired seeds (217, 218, 219).",
-    "domain_followup": "If D1/D2 fail the native-development gate but improve on the proxy-validation holdout, run D1n/D2n to separate motion coverage from reduced native exposure (21.3% in D0 vs 4.4% in D1/D2)."
+    "domain_followup": "If D1/D2 fail the native-development gate but improve on the proxy-validation holdout, run D1n/D2n to separate motion coverage from reduced native exposure (21.3% in D0 vs 4.4% in D1/D2).",
+    "proxy_validation_criterion": "Declared 2026-11-18 ~15:30, before any D1/D2 result: the proxy-validation holdout is scored on each replay's first 30 s (benchmark flight length; teacher_eval.py --set proxy-val --max-seconds 30), scene-paired against the control. The full 90 s score is a long-horizon diagnostic only: there even true velocity through our attitude scores 1.04 m, so it mostly measures attitude drift."
   },
   "datasets": {
     "teacher-full": "D0 restricted control: the exact old teacher roster (48 proxy base + 12 native + 1 native yaw parents, crops 0/5 s), development roster of 7 native parents.",

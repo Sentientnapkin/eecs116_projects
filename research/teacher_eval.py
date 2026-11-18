@@ -43,7 +43,7 @@ def metrics(p, truth, times, v_pred=None, v_true=None):
     err = np.linalg.norm(p-truth, axis=1)
     out = {"ate": float(np.sqrt(np.mean(err**2))), "sim3_ate": sim3_ate(p, truth),
            "sim3_scale": umeyama_scale(p, truth), "final_error": float(err[-1])}
-    for lo, hi in ((0, 10), (10, 20), (20, 30), (30, 60)):
+    for lo, hi in ((0, 10), (10, 20), (20, 30), (30, 60), (60, 90)):
         m = (times >= lo) & (times < hi)
         if m.any(): out[f"ate_{lo}_{hi}s"] = float(np.sqrt(np.mean(err[m]**2)))
     if v_pred is not None:
@@ -152,7 +152,7 @@ def plot(args, curves, out):
         ax.plot(grid, np.mean([np.interp(grid, t, e) for t, e in series], 0), label=name)
     ax.set_xlabel("time since start (s)"); ax.set_ylabel("mean position error (m)")
     ax.set_title(f"{args.set}: static-start replays, {args.checkpoint} checkpoint"); ax.grid(alpha=.3); ax.legend(fontsize=7)
-    fig.tight_layout(); fig.savefig(out/f"{args.set}-{args.checkpoint}-error-over-time.png", dpi=120); plt.close(fig)
+    fig.tight_layout(); fig.savefig(out/(f"{args.set}-{args.checkpoint}" + (f"-{args.max_seconds:g}s" if args.max_seconds else "") + "-error-over-time.png"), dpi=120); plt.close(fig)
 
 
 def main():
@@ -164,6 +164,7 @@ def main():
     parser.add_argument("--set", default="dev", choices=("dev", "proxy-val"))
     parser.add_argument("--ledger", default="data/ledger/ledger.json")
     parser.add_argument("--output", required=True)
+    parser.add_argument("--max-seconds", type=float, help="Score only each replay's first N seconds (all models are causal)")
     parser.add_argument("--plots", action="store_true", help="Write learning curves and error-over-time figures")
     args = parser.parse_args()
     store = open_store("hf:teacher-full", "data/hub-cache", 20)
@@ -177,7 +178,11 @@ def main():
     results, curves = {}, {}  # curves: model -> list of (times, position error) per static-start replay
     rows_cache = {}
     for record in records:
-        rows_cache[record["file"]] = load_row(store, record)
+        row = load_row(store, record)
+        if args.max_seconds:
+            keep = int(np.sum(row["times"]-row["times"][0] <= args.max_seconds+1e-6))
+            row = {k: (v[:keep] if k != "T_bc" else v) for k, v in row.items()}
+        rows_cache[record["file"]] = row
     def describe(record, row):
         parent = ledger.get(record.get("parent_sha256"), {})
         lab = motion_labels(row["v"], row["times"], row["cam_gt"])
@@ -239,7 +244,8 @@ def main():
     out = Path(args.output); out.mkdir(parents=True, exist_ok=True)
     if args.plots:
         plot(args, curves, out)
-    (out/f"{args.set}-{args.checkpoint}.json").write_text(json.dumps({"summary": summary, "rows": results}, indent=1))
+    tag = f"{args.set}-{args.checkpoint}" + (f"-{args.max_seconds:g}s" if args.max_seconds else "")
+    (out/f"{tag}.json").write_text(json.dumps({"summary": summary, "rows": results}, indent=1))
     width = max(len(n) for n in summary)
     print(f"{'model':{width}}  mean   worst  ordin  bk/lat  static moving sim3   spdRMSE dirdeg bksign")
     for name, s in summary.items():
