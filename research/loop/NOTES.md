@@ -134,3 +134,26 @@ Mean of nominal and 5 s moving-start unaligned ATE on the fixed 7-flight develop
 
 - Reused the existing small-rotation fit after a low-flow gate and used a cheirality- and parallax-gated essential matrix for higher-flow pairs. Replayed the same frozen velocity vector sequence through gyro-only and corrected rotations for each of B-D0 seeds 217/218/219. Focal lengths matched the stored sensor features. The synthetic pure-rotation direction and causal prefix checks passed.
 - Three-seed mean unaligned ATE in metres (gyro-only → visual): dev overall 1.0950 → 1.0863, nominal/static 1.0456 → 1.0362, moving 1.1443 → 1.1364. Campaign-dev 30 s overall 1.3534 → 1.3454, nominal/static 1.2419 → 1.2342, moving 1.4648 → 1.4565. Campaign ProcTHOR 1.4914 → 1.4849, HSSD 1.2153 → 1.2059. The 0.79% dev gain missed the 10% advancement gate. Hybrid and peak-fuel evaluation stayed gated. Per-replay results and checkpoint hashes are in `results/eval/visual-attitude/`.
+
+## Native training-data coverage, 2026-11-18
+
+The 592 successful native train parents match both prepared crops and the N2 roster exactly by audited flight ID, scene, catalog, regime and parent SHA. They cover 256 scenes and 29,460 configured seconds. ProcTHOR contributes 394 parents, including 110 independent-yaw flights. HSSD Train125 contributes 198, including 45 independent-yaw flights. Five audits flag darkness and five flag low texture. All coverage calculations use training data.
+
+A usable backward or lateral window has at least seven corresponding labels over the 64 scored frames after 32 burn-in frames. The uncropped native bank has 160 backward-eligible parents with 54,876 candidate starts and 316 lateral-eligible parents with 98,929 candidate starts. Candidate starts overlap within flights. All 155 independent-yaw parents contain usable windows of both kinds. In the exact N2 plans across 36 epochs and seeds 217/218/219, native campaign records supply 81.74% of backward draws and 87.37% of lateral draws. The seeds cover 304/307/308 distinct native hard-motion parents respectively.
+
+| Early support within 1 s | ProcTHOR scenes | HSSD Train125 scenes |
+| --- | ---: | ---: |
+| Backward, uncropped start | 49 | 23 |
+| Lateral, uncropped start | 2 | 0 |
+| Backward, 5 s moving crop | 79 | 37 |
+| Lateral, 5 s moving crop | 71 | 39 |
+
+At the exact uncropped start, only 15 parents have an eligible backward window and none have an eligible lateral window. Broad conversion of hard proxy draws or broad new generation would address a bank that already has extensive mid-flight native coverage.
+
+The predeclared `N2-early-native-x3` changes the placement of existing native hard draws. At least 25% of draws in each supported kind, catalog and crop stratum start within the first second of that crop. Supported strata have at least 12 eligible training scenes. Each seed and epoch preserves the original draw order, kind, domain, catalog and crop at every slot and preserves all untargeted windows. The six supported strata met their quota for all 108 CPU-replayed epoch plans. Retargeting replaced 411/414/405 of the 8,784 draws for seeds 217/218/219 using 144/143/139 distinct replacement parents. The resulting early windows included 148/148/147 distinct native parents. Near-crop native backward draws increased from 229 to 992 across all seeds, and near-crop lateral draws increased from 45 to 512 using the moving crop.
+
+The comparison uses the original N2 numerical recipe and control checkpoints, the identical manifest, 36 epochs, 244 windows per epoch and 4,392 optimizer updates. The primary gate is at least 10% lower dev mean unaligned ATE across the three paired seeds, with no more than 5% regression on ordinary dev or on either dev start group. Report 30 s proxy-val and both 30 s and full campaign dev, including separate ProcTHOR/HSSD, static/moving and backward/lateral rows. The reserved test stays sealed.
+
+For the remaining raw-lateral gap, a targeted train-only generation pilot would use 16 already validated training scenes in each catalog, two opposite lateral yaw offsets per scene, 30 s durations and 0.2 s initial holds. Freeze IDs, seeds, directions and generator settings before rendering. Require label-only support in at least 12 distinct scenes per catalog within 1 s of the uncropped start after burn-in, with both lateral directions represented and the existing finite-truth and integration checks. Existing 30 s archive sizes imply about 7.6 GiB for the 64 pilot flights, before prepared shards. A successful bank would fill only the absent raw-lateral training slots in a separately declared matched-budget arm, with the feasible resample arm as the reference. The generation pilot remains a proposal.
+
+The local queue stages hardlinks to the 1,770 training and 14 development records in the frozen N2 manifest. The three training commands were dry-run checked, and the queue checks device occupancy before starting. Source shard storage is approximately 21 GiB and the three checkpoint trees should add about 2.9 GiB. Recent control epochs took 113–118 s by median across seeds, implying about 68–71 minutes per 36-epoch seed or 3.4–3.6 GPU-hours total before evaluation. The queue awaits released GPU slots.

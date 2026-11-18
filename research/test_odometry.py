@@ -77,6 +77,36 @@ class Sampling(unittest.TestCase):
                 self.assertGreaterEqual(labels[i][kind][start+16:start+48].sum(), 4)
         self.assertGreater(e["windows_containing"]["backward"], .2)
 
+    def test_native_early_keeps_unmatched_windows_and_budget(self):
+        records, labels = synthetic(n_parents=24)
+        for i, (row, label) in enumerate(zip(records, labels)):
+            row.update(domain="native-campaign" if i < 20 else "proxy",
+                       catalog="procthor", crop_s=0, parent_sha256=str(i))
+            for kind in ("backward", "lateral"):
+                label[kind][:] = False
+                label[kind][120:] = True
+            if i < 12:
+                label["backward"][16:28] = True
+        opts = {"mode": "balanced", "windows_per_epoch": 40,
+                "mixture": {"uniform": .4, "backward": .5, "lateral": .1}}
+        early = {"fraction": .25, "max_start": 4, "min_scenes": 6}
+        control = WindowPlan(records, labels, 48, 16, opts, 217)
+        targeted = WindowPlan(records, labels, 48, 16, dict(opts, native_early=early), 217)
+        first, second = control.plan(0), targeted.plan(0)
+        self.assertEqual(second, targeted.plan(0))
+        self.assertEqual(len(first), len(second))
+        changed = [(before, after) for before, after in zip(first, second) if before != after]
+        self.assertTrue(changed)
+        for (old, start, kind), (new, early_start, new_kind) in changed:
+            self.assertEqual((kind, new_kind), ("backward", "backward"))
+            self.assertEqual(records[old]["domain"], "native-campaign")
+            self.assertEqual(records[new]["domain"], "native-campaign")
+            self.assertGreater(start, 4)
+            self.assertLessEqual(early_start, 4)
+            self.assertIn(early_start, targeted.eligible[new]["backward"])
+        native_hard = [s for i, s, k in second if k == "backward" and i < 20]
+        self.assertGreaterEqual(np.mean(np.array(native_hard) <= 4), .25)
+
     def test_original_mode_covers_parents_evenly(self):
         records, labels = synthetic(n_parents=10)
         plan = WindowPlan(records, labels, 48, 16, {"mode": "original", "windows_per_epoch": 10}, 1)
