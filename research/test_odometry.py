@@ -10,7 +10,7 @@ import torch
 from odometry_data import CATEGORIES, WindowPlan, motion_labels, validate_roster
 from odometry_ledger import checks, split_for
 from odometry_models import OdometryNet
-from odometry_train import loss_fn
+from odometry_train import loss_fn, make_optimizer
 
 
 def labels_for(v, dt=.05):
@@ -107,6 +107,14 @@ class Metrics(unittest.TestCase):
                "T_bc": torch.eye(4)[None], "cam_gt": torch.zeros(1, n, 3)}
         loss = loss_fn(torch.zeros(1, n, 3), row, burn=5, horizons=[6.])
         self.assertTrue(torch.isfinite(loss) and float(loss) == 0.)
+
+
+class Optimizer(unittest.TestCase):
+    def test_weight_decay_defaults_to_legacy_value(self):
+        p = [torch.nn.Parameter(torch.zeros(2))]
+        self.assertEqual(make_optimizer(p, {"learning_rate": 3e-4}).param_groups[0]["weight_decay"], .01)
+        opt = make_optimizer(p, {"learning_rate": 1e-3, "weight_decay": .05})
+        self.assertEqual((opt.param_groups[0]["lr"], opt.param_groups[0]["weight_decay"]), (1e-3, .05))
 
 
 class Models(unittest.TestCase):
