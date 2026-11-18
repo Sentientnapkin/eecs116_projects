@@ -32,3 +32,21 @@ Prepared evaluation replays each entire shard with a fresh recurrent state. Both
 The exported SSM has **1,286,355 FP32 parameters** and **356.20 M MACs/frame** in the convolutions, dense layers and valid correlation dot products. The three CNN passes account for 354.34 M MACs/frame. These counts exclude normalization, activations, pooling, SSM elementwise updates, sensor preprocessing and integration. The last residual block alone accounts for 155.71 M MACs/frame across the three image planes.
 
 The archived 32×24 EMA uses the two-convolution visual encoder and 32-dimensional embedding in `learned_probe.py` and `seq_heads.py`. With a three-plane input that architecture has 20,175 stored parameters and 175,328 convolution/dense MACs/frame. With five planes it has 20,575 parameters and 252,128 MACs/frame. These are architecture estimates because the exact archived EMA weight bundle was unavailable. They count the deployed encoder's serialized auxiliary head, which contributes no inference MACs. The historical replay reports 16.93 M peak fuel/frame for the previous EMA on its own roster. See [the historical fuel report](../ROBUSTNESS.md).
+
+## Verified results
+
+ATE is unaligned trajectory RMSE in metres, averaged equally across replays.
+
+| Seed | Prepared dev PyTorch / C++ ATE | Raw campaign-dev sample WASM ATE |
+| --- | ---: | ---: |
+| 217 | 1.0535 / 1.0535 | 0.4477 |
+| 218 | 1.1202 / 1.1202 | 0.6144 |
+| 219 | 1.1112 / 1.1112 | 0.9139 |
+| Mean | 1.0950 / 1.0950 | 0.6587 |
+
+- **Prepared development, 42 replays and 21,900 frames.** The largest per-component velocity delta was 0.626 µm/s. Maximum trajectory separation was 0.418 µm.
+- **Raw campaign-dev sample, 12 replays and 6,600 frames.** The C++ image planes and IMU features were bitwise identical to Python. The maximum attitude element delta was 7.22 × 10⁻¹⁵. Maximum C++–WASM trajectory separation was 0.122 µm. Every frame produced a finite state.
+- **Fuel and artifact.** Peak was 1,074,754,835 fuel/frame and initialization used 100,800–101,187 fuel. Each WASM artifact was 5,229,373 bytes and used 64 MiB of linear memory. Peak fuel was 63.5× the historical EMA on its separate roster. This artifact serves as the FP32 parity reference. The CNN accounts for 99.5% of counted MACs.
+- **Regression checks.** The VIOBench ABI check, synthetic RGB/lever-arm/reset regression, 16 causal tests and 11 CPU odometry tests passed. The CUDA-only checkpoint test was skipped.
+
+[Versioned per-replay results, hashes and runtime versions](../results/eval/native-deploy/b-d0-cpp-fp32.json)

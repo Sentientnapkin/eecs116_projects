@@ -117,3 +117,10 @@ Mean of nominal and 5 s moving-start unaligned ATE on the fixed 7-flight develop
 - N2-ssm-x3 (expanded tiers + campaign, balanced sampler, 3× budget, three seeds) declared and started 21:55 on `n2-campaign-tiers` (1,770 train records).
 - `git push` from the GPU box fails (no GitHub credentials); the branch is committed locally only.
 - **Renamed (Sebastian's request):** this is learned odometry, not teacher–student distillation. Branch `research/learned-odometry` (was `claude/teacher-model-training-60911a`); `teacher_*.py` → `odometry_*.py`, `test_teacher.py` → `test_odometry.py`, `TEACHERS.md` → `ODOMETRY.md`, `configs/teachers.json` → `configs/odometry.json`, class `Teacher` → `OdometryNet`, `TEACHER_GUEST_DIR` → `GUEST_DIR`. The unused `--teacher` distillation option is removed (its identity field and `distillation_weight` stay as inert legacy keys so existing checkpoints resume). Hub repos, manifests and run names keep their names; earlier entries in these notes use the old names.
+
+## 2026-11-18 deploy workstream
+
+- Completed the opt-in C++17/VIOBench WASM port of the existing B-D0 SSM. Predeclared the protocol in `a4f13f9`. The separate visual-motion checkout retains its compact EMA work.
+- Seeds 217/218/219 reproduced **1.0535 / 1.1202 / 1.1112 m** mean unaligned ATE on the 14 prepared dev replays per seed. C++ agreed with PyTorch to 0.626 µm/s per velocity component and 0.418 µm in trajectory position.
+- Raw replay used two campaign-dev parents and both crop origins per parent because the original dev archives were unavailable here. Across all seeds it returned 6,600 complete frames, 0.6587 m mean unaligned WASM ATE and a 0.122 µm maximum host–WASM position separation. Pixels and IMU matched Python exactly. Peak was **1,074,754,835 fuel/frame**, 63.5× the historical EMA on its separate roster. FP32 B-D0 is a deployment parity reference. Its CNN accounts for 354.34 M of 356.20 M counted MACs/frame.
+- CPU verification passed. The reserved splits were preserved. [Reproduction](../native_odometry/README.md) · [Per-replay results](../results/eval/native-deploy/b-d0-cpp-fp32.json)
