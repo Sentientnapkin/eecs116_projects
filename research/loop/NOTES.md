@@ -133,3 +133,17 @@ Mean of nominal and 5 s moving-start unaligned ATE on the fixed 7-flight develop
 - `P-speed-ddp` holds the batch at four globally and uses the same 244 windows and 61 optimizer updates at every H100 count. The reported distributed phase times use the slowest rank, with per-rank timing and peak allocation recorded in metrics.
 - The 1-H100 GPU 7 reference finished its three epochs. Trainer startup was 6.08 s, first epoch 5.06 s, and steady-state epoch 4.20 s (3.78 s training and 0.42 s replay). The loader accounted for 0.26 s of the training phase. GPU 5 and GPU 7 share the same NUMA node and a direct NVLink path.
 - The 2-H100 test is queued behind GPU 5's three-seed validation and replay jobs. All 14 regressions passed on GPU 7.
+
+### Three-seed throughput validation
+
+The compiled recipe and B-D0 control each finished 36 epochs at 244 windows and 122 optimizer updates per epoch. Full replays on the best checkpoint use mean unaligned ATE in metres.
+
+| Replay | B-D0 mean | Compiled mean | Relative change |
+| --- | ---: | ---: | ---: |
+| Dev | 1.09497 | 1.09053 | −0.40% |
+| Dev ordinary motion | 0.92147 | 0.90610 | −1.67% |
+| Proxy validation, first 30 s | 1.27647 | 1.25870 | −1.39% |
+
+Both predeclared dev tolerances passed and the independent proxy check also improved. Compiled dev scores for seeds 217/218/219 were 1.0900/1.0609/1.1207 m. Ordinary-motion scores were 0.8997/0.8531/0.9655 m. Proxy 30 s scores were 1.2692/1.2264/1.2805 m. Backward/lateral dev was 2.1973 m versus 2.1359 m for the control (+2.88%).
+
+The initial 2-GPU launch failed before training with CUDA error 802 during NCCL NVLink SHARP multicast initialization. The retry and the queued 4-GPU run disable NVLS through `NCCL_NVLS_ENABLE=0` for the benchmark processes.
