@@ -50,6 +50,7 @@
     "domain_followup": "If D1/D2 fail the native-development gate but improve on the proxy-validation holdout, run D1n/D2n to separate motion coverage from reduced native exposure (21.3% in D0 vs 4.4% in D1/D2).",
     "architecture_block": "T-series runs use D0 data and recipe; each is compared scene-paired to D0-ssm (seed 217) with the same screen (>=10% lower dev mean unaligned ATE), the ordinary-motion guardrail, and the 30 s proxy-validation criterion as a second, independent check. If the D-series selects expanded data, the T-series is rerun on it instead.",
     "native_campaign_block": "N1-ssm-x3 vs B-D0-ssm-x3, three seeds each, decided on three-seed means: screen >=10% lower development mean unaligned ATE and the ordinary-motion guardrail; independent checks are the 30 s proxy-validation criterion and campaign-dev (new flights in ProcTHOR 166-171 and in 15 never-used HSSD Val43 houses, reported separately). The reserved campaign test split (ProcTHOR 162-165/172-175, 28 HSSD Val43 houses) stays unscored.",
+    "long_budget_block": "Compare 72 epochs against the validated 36-epoch B-speed-compiled-x3 control on seeds 217/218/219, holding D0 data, optimizer, batch, sampler, EMA and initial LR fixed, with the cosine schedule stretched to each budget. Use equal-flight mean unaligned dev ATE and the <=5% ordinary-motion guardrail. Promote to 144 epochs only if the three-seed dev mean falls at least 10% and 30 s proxy ATE does not regress. Report start splits and both campaign catalogs at 30 s and full duration. Reserved test unscored.",
     "throughput_block": "D0 timing pilots (seed 217) use the existing 244 windows and same model, comparing median steady-state epoch (train + development replay), timings per component, and peak GPU memory. Timing-pilot accuracy is diagnostic. The fastest successful steady-state pilot among prefix, compiled, and batch4 advances to its matching B-speed trial. The full 36-epoch candidate is compared at equal scored frame exposure against B-D0-ssm-x3, over seeds 217/218/219, with a development ATE tolerance of +5%, ordinary-motion guardrail, and proxy-val 30 s as independent check. Target is 10x per epoch-equivalent. Report GPU count and separate initialization/compile time.",
     "proxy_validation_criterion": "Declared 2026-11-18 ~15:30, before any D1/D2 result: the proxy-validation holdout is scored on each replay's first 30 s (benchmark flight length; odometry_eval.py --set proxy-val --max-seconds 30), scene-paired against the control. The full 90 s score is a long-horizon diagnostic only: there even true velocity through our attitude scores 1.04 m, so it mostly measures attitude drift."
   },
@@ -88,6 +89,16 @@
       "use": ["recipe", "original_sampler", "throughput_common", "throughput_prefix"],
       "args": ["--epochs", "36"],
       "note": "36 epochs and 244 windows per epoch. Candidate for the throughput block; seeds 217/218/219."
+    },
+    "B-speed-compiled-x6": {
+      "data": "hf:teacher-full",
+      "use": ["recipe", "original_sampler", "throughput_common", "throughput_prefix"],
+      "args": ["--epochs", "72", "--set", "model.compile_correlation=true"]
+    },
+    "B-speed-compiled-x12": {
+      "data": "hf:teacher-full",
+      "use": ["recipe", "original_sampler", "throughput_common", "throughput_prefix"],
+      "args": ["--epochs", "144", "--set", "model.compile_correlation=true"]
     },
     "B-speed-compiled-x3": {
       "data": "hf:teacher-full",
