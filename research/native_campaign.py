@@ -3,7 +3,9 @@
     python native_campaign.py roster                         # write configs/native_campaign.json (deterministic)
     python native_campaign.py generate --worker 0 --workers 8 [--split train] [--limit N]   (simulator env)
     python native_campaign.py upload [--raw]                 # roster + audits (+ raw archives) -> private Hub repo
-    python native_campaign.py prepare --split train          # raw -> training shards + immutable manifest
+    python native_campaign.py prepare --split train --worker 0 --workers 32   # raw -> training shards (training env)
+    python native_campaign.py publish --split train          # shards -> data repo; records file for compose
+    python teacher_store.py compose --name <name> --base teacher-full-labeled --records data/native-campaign/train-records.json
 
 Splits never share a scene with each other or with earlier splits:
   train  ProcTHOR-Train 0-9, 46-149, 180-199 and HSSD Train125 (training-only scenes; earlier
@@ -217,46 +219,67 @@ def upload(args):
 
 
 def prepare(args):
-    """Training shards (same preprocessing as every earlier shard) for the train or dev split,
-    pushed to the teacher data repo, plus an immutable manifest of the prepared records."""
+    """Training-format shards (the exact preprocessing of every earlier shard) for train or dev
+    flights. Workers share one content-addressed staging folder and write their own record files;
+    `publish` pushes them. The reserved test split is refused."""
     from teacher_pool import prepare as prepare_flight
-    from teacher_store import push_shards, push_manifest, DATA_REPO
-    if "test" in args.split:
+    if "test" in (args.split or []):
         raise ValueError("the reserved test split is never prepared before a final candidate is frozen")
     teachers = json.loads((ROOT/"configs/teachers.json").read_text())
     sensor = json.loads((ROOT/"configs/sensor.json").read_text())
     sensor.update(width=teachers["model"]["width"], height=teachers["model"]["height"],
                   portable_pixels="remap", ordered_packet=True)
-    out = Path(args.staging); out.mkdir(parents=True, exist_ok=True)
-    state_path = out/"records.json"
-    state = json.loads(state_path.read_text()) if state_path.exists() else {"records": [], "done": []}
-    for meta_path in sorted(p for s in args.split for p in (RAW/s).glob("*.json")):
+    staging = Path(args.staging); shards = staging/"shards"; shards.mkdir(parents=True, exist_ok=True)
+    metas = sorted(p for s in args.split for p in (RAW/s).glob("*.json"))[args.worker::args.workers]
+    for meta_path in metas:
         meta = json.loads(meta_path.read_text())
-        if meta["id"] in state["done"]: continue
+        done = staging/"records"/f"{meta['id']}.json"
+        if done.exists() or not (RAW/meta["split"]/meta["file"]).exists(): continue
         records, _ = prepare_flight(RAW/meta["split"]/meta["file"],
                                     {"scene": meta["scene"], "domain": "native-campaign", "tier": meta["regime"],
                                      "regime": meta["regime"]},
-                                    sensor, teachers["data"]["crops_s"], teachers["seed"], out, gate_flights=False)
+                                    sensor, teachers["data"]["crops_s"], teachers["seed"], shards, gate_flights=False)
         for r in records:
-            r.update(parent_file=meta["file"], parent_sha256=meta["sha256"], split=meta["split"],
+            r.update(parent_file=meta["file"], parent_sha256=meta["sha256"], split=meta["split"], catalog=meta["catalog"],
                      flight_id=meta["id"], seconds=meta["seconds"], flags=meta["audit"]["flags"])
-        state["records"] += records; state["done"].append(meta["id"])
-        state_path.write_text(json.dumps(state, indent=1))
+        done.parent.mkdir(exist_ok=True)
+        done.write_text(json.dumps(records, indent=1))
         print(time.strftime("%H:%M"), meta["id"], len(records), "shards", flush=True)
-    names = {r["file"] for r in state["records"]}
-    push_shards(out, names, DATA_REPO, f"native campaign {'+'.join(args.split)}: {len(names)} shards")
-    print("prepared", len(state["records"]), "records; compose a manifest with teacher_store.py compose")
+
+
+def publish(args):
+    """Push prepared shards (large batches, to stay clear of the Hub commit rate limit) and write
+    data/native-campaign/<split>-records.json plus an immutable copy on the data repo."""
+    from huggingface_hub import HfApi
+    from teacher_store import push_shards, DATA_REPO
+    staging = Path(args.staging)
+    split, = args.split
+    records = [r for p in sorted((staging/"records").glob(f"{split}-*.json")) for r in json.loads(p.read_text())]
+    have = {f[len("shards/"):] for f in HfApi().list_repo_files(DATA_REPO, repo_type="dataset") if f.startswith("shards/")}
+    todo = sorted({r["file"] for r in records} - have)
+    for b in range(0, len(todo), args.batch):
+        push_shards(staging/"shards", todo[b:b+args.batch], DATA_REPO, f"native campaign {split}: +{len(todo[b:b+args.batch])} shards")
+        print(time.strftime("%H:%M"), f"pushed {b+len(todo[b:b+args.batch])}/{len(todo)}", flush=True)
+    listed = {f[len("shards/"):] for f in HfApi().list_repo_files(DATA_REPO, repo_type="dataset") if f.startswith("shards/")}
+    if {r["file"] for r in records} - listed: raise RuntimeError("some shards are not visible on the Hub")
+    out = staging/f"{split}-records.json"
+    out.write_text(json.dumps({"records": records, "flights": len({r["flight_id"] for r in records})}, indent=1))
+    name = f"manifests/native-campaign-{split}-records-{len(records)}.json"
+    if name not in listed:
+        HfApi().upload_file(path_or_fileobj=str(out), path_in_repo=name, repo_id=DATA_REPO, repo_type="dataset",
+                            commit_message=f"native campaign {split} records ({len(records)})")
+    print("records:", out, "and", name)
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("action", choices=("roster", "generate", "upload", "prepare"))
+    parser.add_argument("action", choices=("roster", "generate", "upload", "prepare", "publish"))
     parser.add_argument("--worker", type=int, default=0)
     parser.add_argument("--workers", type=int, default=1)
     parser.add_argument("--split", nargs="*")
     parser.add_argument("--limit", type=int)
     parser.add_argument("--min-free-gb", type=float, default=200)
-    parser.add_argument("--batch", type=int, default=40)
+    parser.add_argument("--batch", type=int, default=400)
     parser.add_argument("--raw", action="store_true", help="upload: include the raw archives")
     parser.add_argument("--staging", default=str(ROOT/"data"/"native-campaign"))
     args = parser.parse_args()
@@ -268,7 +291,7 @@ def main():
         print(Counter(f["split"] for f in roster["flights"]), "flights;",
               Counter((f["split"], f["catalog"]) for f in roster["flights"]))
     else:
-        {"generate": generate, "upload": upload, "prepare": prepare}[args.action](args)
+        {"generate": generate, "upload": upload, "prepare": prepare, "publish": publish}[args.action](args)
 
 
 if __name__ == "__main__":

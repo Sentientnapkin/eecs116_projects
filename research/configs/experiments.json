@@ -46,6 +46,7 @@
     "advance": "Runs passing both gates advance to three paired seeds (217, 218, 219).",
     "domain_followup": "If D1/D2 fail the native-development gate but improve on the proxy-validation holdout, run D1n/D2n to separate motion coverage from reduced native exposure (21.3% in D0 vs 4.4% in D1/D2).",
     "architecture_block": "T-series runs use D0 data and recipe; each is compared scene-paired to D0-ssm (seed 217) with the same screen (>=10% lower dev mean unaligned ATE), the ordinary-motion guardrail, and the 30 s proxy-validation criterion as a second, independent check. If the D-series selects expanded data, the T-series is rerun on it instead.",
+    "native_campaign_block": "N1-ssm-x3 vs B-D0-ssm-x3, three seeds each, decided on three-seed means: screen >=10% lower development mean unaligned ATE and the ordinary-motion guardrail; independent checks are the 30 s proxy-validation criterion and campaign-dev (new flights in ProcTHOR 166-171 and in 15 never-used HSSD Val43 houses, reported separately). The reserved campaign test split (ProcTHOR 162-165/172-175, 28 HSSD Val43 houses) stays unscored.",
     "proxy_validation_criterion": "Declared 2026-11-18 ~15:30, before any D1/D2 result: the proxy-validation holdout is scored on each replay's first 30 s (benchmark flight length; teacher_eval.py --set proxy-val --max-seconds 30), scene-paired against the control. The full 90 s score is a long-horizon diagnostic only: there even true velocity through our attitude scores 1.04 m, so it mostly measures attitude drift."
   },
   "datasets": {
@@ -186,6 +187,12 @@
       "use": ["recipe", "original_sampler"],
       "args": ["--head", "ssm", "--set", "model.imu_blind=true"],
       "note": "Probe (plan step 6): D0-ssm with direct IMU features zeroed (frame interval kept). Measures what the network takes from the IMU beyond derotation; compare with D0-ssm and gru-blind (images blanked)."
+    },
+    "N1-ssm-x3": {
+      "data": "hf:n1-campaign",
+      "use": ["recipe", "original_sampler"],
+      "args": ["--head", "ssm", "--epochs", "36"],
+      "note": "Native campaign (declared 2026-11-18 ~20:30, before the data were composed): teacher-full-labeled plus the campaign's train flights (ProcTHOR 0-9/46-149/180-199 + HSSD Train125, 30-90 s, 25% independent yaw). Control B-D0-ssm-x3 at the same 4,392 updates. Seeds 217/218/219 for both arms."
     }
   }
 }

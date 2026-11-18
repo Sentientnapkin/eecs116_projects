@@ -162,7 +162,7 @@ def main():
     parser.add_argument("--checkpoint", choices=("best", "last"), default="best")
     parser.add_argument("--deployed", nargs="*", default=[])
     parser.add_argument("--control")
-    parser.add_argument("--set", default="dev", choices=("dev", "proxy-val"))
+    parser.add_argument("--set", default="dev", choices=("dev", "proxy-val", "campaign-dev"))
     parser.add_argument("--ledger", default="data/ledger/ledger.json")
     parser.add_argument("--output", required=True)
     parser.add_argument("--max-seconds", type=float, help="Score only each replay's first N seconds (all models are causal)")
@@ -171,9 +171,11 @@ def main():
     store = open_store("hf:teacher-full", "data/hub-cache", 20)
     if args.set == "dev":
         records = json.loads(store.manifest_path().read_text())["datasets"]["development"]
-    else:
+    elif args.set == "proxy-val":
         records = json.loads(Path("data/expand/proxy-proxy_validation-0.json").read_text())["records"]
         records = [r for r in records if r["crop_s"] == 0]
+    else:  # native campaign dev flights (native_campaign.py publish --split dev); both crops, like dev
+        records = json.loads(Path("data/native-campaign/dev-records.json").read_text())["records"]
     ledger = {r["sha256"]: r for r in json.loads(Path(args.ledger).read_text())["rows"]}
     device = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
     results, curves = {}, {}  # curves: model -> list of (times, position error) per static-start replay
@@ -187,7 +189,7 @@ def main():
     def describe(record, row):
         parent = ledger.get(record.get("parent_sha256"), {})
         lab = motion_labels(row["v"], row["times"], row["cam_gt"])
-        return {"scene": record["scene"], "file": record["file"], "crop_s": record["crop_s"],
+        return {"scene": record["scene"], "file": record["file"], "crop_s": record["crop_s"], "catalog": record.get("catalog"),
                 "domain": parent.get("domain", record.get("domain")), "tier": parent.get("tier", record.get("tier")),
                 "regime": "backward/lateral" if lab["backward"].mean() > .05 or lab["lateral"].mean() > .1 else "ordinary",
                 "start": "static" if record["crop_s"] == 0 else "moving"}
@@ -240,6 +242,8 @@ def main():
                          "direction_error_deg": mean(lambda r: True, "direction_error_deg"),
                          "backward_sign_accuracy": mean(lambda r: True, "backward_sign_accuracy"),
                          "backward_velocity_rmse": mean(lambda r: True, "backward_velocity_rmse")}
+        for catalog in sorted({r["catalog"] for r in rows if r.get("catalog")}):
+            summary[name][f"{catalog}_ate"] = mean(lambda r: r.get("catalog") == catalog)
         if args.control and name != args.control and args.control in results:
             summary[name]["vs_control"] = scene_paired(results, name, args.control)
     out = Path(args.output); out.mkdir(parents=True, exist_ok=True)
@@ -254,6 +258,8 @@ def main():
                                 "static_start_ate", "moving_start_ate", "sim3_ate_diagnostic", "speed_rmse",
                                 "direction_error_deg", "backward_sign_accuracy")]
         print(f"{name:{width}}  " + "  ".join("  –  " if c is None else f"{c:5.3f}" if c < 10 else f"{c:5.1f}" for c in cells))
+        by_catalog = {k[:-4]: v for k, v in s.items() if k.endswith("_ate") and k[:-4] in ("procthor", "hssd-val", "hssd-train")}
+        if by_catalog: print(f"{'':{width}}  by catalog: " + ", ".join(f"{k} {v:.3f}" for k, v in by_catalog.items()))
         if "vs_control" in s:
             c = s["vs_control"]; print(f"{'':{width}}  vs {args.control}: {c['mean_difference']:+.3f} m ({c['relative']:+.1%}), 90% {c['interval90']}, scenes {c['scenes']}")
 
