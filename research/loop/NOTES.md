@@ -124,3 +124,9 @@ Mean of nominal and 5 s moving-start unaligned ATE on the fixed 7-flight develop
 - Seeds 217/218/219 reproduced **1.0535 / 1.1202 / 1.1112 m** mean unaligned ATE on the 14 prepared dev replays per seed. C++ agreed with PyTorch to 0.626 µm/s per velocity component and 0.418 µm in trajectory position.
 - Raw replay used two campaign-dev parents and both crop origins per parent because the original dev archives were unavailable here. Across all seeds it returned 6,600 complete frames, 0.6587 m mean unaligned WASM ATE and a 0.122 µm maximum host–WASM position separation. Pixels and IMU matched Python exactly. Peak was **1,074,754,835 fuel/frame**, 63.5× the historical EMA on its separate roster. FP32 B-D0 is a deployment parity reference. Its CNN accounts for 354.34 M of 356.20 M counted MACs/frame.
 - CPU verification passed. The reserved splits were preserved. [Reproduction](../native_odometry/README.md) · [Per-replay results](../results/eval/native-deploy/b-d0-cpp-fp32.json)
+
+### Convolution SIMD fuel pilot
+
+- Predeclared and screened the original 4×16 tile and two 8×32 SIMD128 variants on seed 217. The tile with two sequential K iterations per loop won the synthetic screen at 861,235,039 peak fuel and advanced to raw replay. The exporter retains the default 4×16 and explicit scalar builds.
+- The three-seed matched raw replay reproduced all 12 archived control peaks. The selected kernel reduced peak fuel from **1,074,754,835 to 861,235,415 (19.87%)**. Pose and twist were bitwise identical across all 6,600 frames. Mean unaligned ATE was 0.658690 m in both arms. No failed or filled frames. Init fuel matched on every replay.
+- Reserved test data was preserved. [Pilot results](../results/eval/native-deploy/b-d0-cpp-fp32-convolution-pilot.json)

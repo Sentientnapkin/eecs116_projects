@@ -65,3 +65,15 @@ python -B native_odometry/replay.py "$RUN" "$MANIFEST" "$BUILD" "$BUILD/matched-
 ```
 
 The matched replay verifies the checkpoint and control WASM hashes. It meters both guests on each of the same delivered observations and checks the control peaks against the verified report. Each frame's full pose and twist are compared.
+
+| Seed 217 synthetic screen | Peak step fuel |
+| --- | ---: |
+| Original 4×16 | 1,074,754,459 |
+| 8×32 | 956,583,271 |
+| 8×32, K unrolled by two | 861,235,039 |
+
+The unrolled variant advanced to raw replay. The regenerated default artifact matched the original byte for byte. The scalar artifact passed the five-frame ABI smoke and the RGB, lever-arm and reset regression.
+
+On all 12 matched campaign-dev replays across seeds 217–219, the selected kernel reduced peak step fuel by **19.87%**, from **1,074,754,835** to **861,235,415**. All 13 output components were bitwise identical over 6,600 frames. Mean unaligned ATE stayed at 0.658690 m, with zero failed or filled frames. Initialization fuel matched on every replay (100,800–101,187), and the WASM artifact grew by 4,896 bytes. The optimized kernel remains opt-in.
+
+[Versioned synthetic and matched raw results](../results/eval/native-deploy/b-d0-cpp-fp32-convolution-pilot.json)
