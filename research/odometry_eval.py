@@ -19,7 +19,7 @@ import torch
 from safetensors.torch import load_file
 
 from odometry_data import load_row, CATEGORIES, motion_labels
-from odometry_models import OdometryNet
+from odometry_models import OdometryNet, split_output
 from odometry_store import open_store
 
 ROOT = Path(__file__).resolve().parent
@@ -62,19 +62,137 @@ def integrate(v, row):
     return (p+row["R"]@arm-arm)@rot
 
 
-@torch.no_grad()
-def model_velocities(run, weights, row, device, chunk=32):
+# Causal velocity/IMU fusion (opt-in post-processor, --ekf). Fixed-size dense state so it ports to C:
+#   p (3) body origin and v (3) velocity in the attitude's world frame (camera frame zero for the
+#   origin, not gravity aligned), g (3) gravity in that frame (absorbs the initial tilt and slow
+#   tilt drift), optionally a body-frame accelerometer bias (3), and with "attitude":
+#   phi (3) world-frame attitude error of R and b (3) residual gyro
+#   bias, R_true = Exp(phi) R. Propagation uses the per-frame mean accelerometer (imu[:, 0:3], in g,
+#   body axes, specific force); the update is the network's body velocity with a fixed per-axis
+#   covariance, or exp(log-variance) * variance_scale from the uncertainty head.
+# Defaults describe the prototype. The training-selected settings are recorded with the experiment.
+EKF = {"attitude": False, "accel_sigma": 2.0, "gravity_walk": 0.05, "gravity_sigma": 0.5,
+       "accel_bias_sigma": 0.0, "accel_bias_walk": 0.02,
+       "attitude_walk": 1e-3, "gyro_bias_walk": 1e-4, "gyro_bias_sigma": 2e-3,
+       "velocity_sigma": [0.15, 0.15, 0.15], "variance_scale": 1.0, "use_variance": True}
+
+
+def skew(a):
+    return np.array([[0, -a[2], a[1]], [a[2], 0, -a[0]], [-a[1], a[0], 0]])
+
+
+def so3_exp(phi):
+    angle = np.linalg.norm(phi)
+    if angle < 1e-9: return np.eye(3)+skew(phi)
+    k = skew(phi/angle)
+    return np.eye(3)+np.sin(angle)*k+(1-np.cos(angle))*k@k
+
+
+def ekf_fuse(v, row, params=None, log_variance=None, R=None, check=False):
+    """Fuse network body velocities `v` (N, 3) with the accelerometer. `R` overrides row["R"] (e.g. a
+    corrected attitude). Returns camera positions (like integrate), fused body velocities, and info
+    (mean normalized innovation squared; with check=True the minimum covariance eigenvalue)."""
+    q = {**EKF, **(params or {})}
+    R = row["R"] if R is None else R
+    times, accel, packet = row["times"], row["imu"][:, :3].astype(np.float64)*9.81, row["imu"][:, 12] > 0
+    estimate_attitude = q["attitude"]
+    estimate_bias = q["accel_bias_sigma"] > 0
+    bias_start = 15 if estimate_attitude else 9
+    iC = slice(bias_start, bias_start+3)
+    n = bias_start + 3*estimate_bias
+    iP, iV, iG, iA, iB = slice(0, 3), slice(3, 6), slice(6, 9), slice(9, 12), slice(12, 15)
+    eye = np.eye(3)
+    def noise(k):
+        return (np.diag(np.exp(log_variance[k]))*q["variance_scale"] if log_variance is not None and q["use_variance"]
+                else np.diag(np.square(q["velocity_sigma"])))
+    def attitude(k):
+        return so3_exp(x[iA])@R[k] if estimate_attitude else R[k]
+    x, P = np.zeros(n), np.zeros((n, n))
+    x[iV], x[iG] = R[0]@v[0], [0, 0, -9.81]
+    P[iP, iP], P[iV, iV], P[iG, iG] = 1e-6*eye, R[0]@noise(0)@R[0].T, q["gravity_sigma"]**2*eye
+    if estimate_attitude:
+        P[iA, iA], P[iB, iB] = 1e-8*eye, q["gyro_bias_sigma"]**2*eye
+    if estimate_bias:
+        P[iC, iC] = q["accel_bias_sigma"]**2*eye
+    positions, fused, rotations = np.zeros((len(v), 3)), np.zeros((len(v), 3)), np.zeros((len(v), 3, 3))
+    rotations[0], fused[0], nis = R[0], v[0], []
+    min_eig = float(np.linalg.eigvalsh(P).min()) if check else None
+    for k in range(1, len(v)):
+        dt = times[k]-times[k-1]
+        Rc = attitude(k)
+        F, Q, sa2 = np.eye(n), np.zeros((n, n)), q["accel_sigma"]**2
+        F[iP, iV] = dt*eye
+        if packet[k]:
+            body_force = accel[k]-x[iC] if estimate_bias else accel[k]
+            specific = Rc@body_force
+            a = specific+x[iG]
+            F[iP, iG], F[iV, iG] = .5*dt*dt*eye, dt*eye
+            if estimate_attitude:
+                F[iP, iA], F[iV, iA] = -.5*dt*dt*skew(specific), -dt*skew(specific)
+            if estimate_bias:
+                F[iP, iC], F[iV, iC] = -.5*dt*dt*Rc, -dt*Rc
+        else:  # no IMU samples in this frame: constant velocity with inflated acceleration noise
+            a, sa2 = np.zeros(3), 100*sa2
+        Q[iP, iP], Q[iV, iV] = .25*dt**4*sa2*eye, dt*dt*sa2*eye
+        Q[iP, iV] = Q[iV, iP] = .5*dt**3*sa2*eye
+        Q[iG, iG] = q["gravity_walk"]**2*dt*eye
+        if estimate_bias:
+            Q[iC, iC] = q["accel_bias_walk"]**2*dt*eye
+        x[iP] += x[iV]*dt+.5*a*dt*dt
+        x[iV] += a*dt
+        if estimate_attitude:
+            F[iA, iB] = -dt*Rc
+            x[iA] -= Rc@x[iB]*dt
+            Q[iA, iA], Q[iB, iB] = q["attitude_walk"]**2*dt*eye, q["gyro_bias_walk"]**2*dt*eye
+        P = F@P@F.T+Q
+        # Update with the body-frame velocity measurement h = Rc^T v_world.
+        Rc = attitude(k)
+        H = np.zeros((3, n))
+        H[:, iV] = Rc.T
+        if estimate_attitude:
+            H[:, iA] = Rc.T@skew(x[iV])
+        Rm = noise(k)
+        innovation = v[k]-Rc.T@x[iV]
+        S = H@P@H.T+Rm
+        K = np.linalg.solve(S, H@P).T
+        x = x+K@innovation
+        IKH = np.eye(n)-K@H
+        P = IKH@P@IKH.T+K@Rm@K.T  # Joseph form: stays symmetric positive definite
+        P = .5*(P+P.T)
+        nis.append(float(innovation@np.linalg.solve(S, innovation)))
+        if check: min_eig = min(min_eig, float(np.linalg.eigvalsh(P).min()))
+        Rc = attitude(k)
+        positions[k], rotations[k], fused[k] = x[iP], Rc, Rc.T@x[iV]
+    arm, rot = row["T_bc"][:3, 3], row["T_bc"][:3, :3]
+    camera = (positions+rotations@arm-arm)@rot
+    return camera, fused, {"nis": float(np.mean(nis)) if nis else None, "min_eigenvalue": min_eig}
+
+
+def load_model(run, weights, device):
     cfg = json.loads((run/"config.json").read_text())
     net = OdometryNet(cfg["model"]).to(device).eval()
     net.load_state_dict(weights)
-    out, state = [], None
+    return net
+
+
+def model_velocities(run, weights, row, device, chunk=32, with_variance=False):
+    return replay_velocities(load_model(run, weights, device), row, device, chunk, with_variance)
+
+
+@torch.no_grad()
+def replay_velocities(net, row, device, chunk=32, with_variance=False):
+    out, variance, state = [], [], None
     for b in range(0, len(row["v"]), chunk):
         im = torch.as_tensor(row["images"][b:b+chunk], device=device)[None]
         u = torch.as_tensor(row["imu"][b:b+chunk], device=device)[None]
         rot = torch.as_tensor(row["R"][b:b+chunk], device=device, dtype=torch.float32)[None]
         pred, state = net(im, u, state, rot)
-        out.append(pred[0].cpu().numpy())
-    return np.concatenate(out).astype(np.float64)
+        velocity, log_variance = split_output(pred)
+        out.append(velocity[0].cpu().numpy())
+        if log_variance is not None: variance.append(log_variance[0].cpu().numpy())
+    v = np.concatenate(out).astype(np.float64)
+    if not with_variance: return v
+    return v, (np.concatenate(variance).astype(np.float64) if variance else None)
 
 
 def load_weights(run, which):
@@ -159,6 +277,8 @@ def main():
     parser.add_argument("--output", required=True)
     parser.add_argument("--max-seconds", type=float, help="Score only each replay's first N seconds (all models are causal)")
     parser.add_argument("--plots", action="store_true", help="Write learning curves and error-over-time figures")
+    parser.add_argument("--ekf", action="store_true", help="Also score each run through the EKF post-processor (<run>+ekf)")
+    parser.add_argument("--ekf-params", default="{}", help="JSON overrides of odometry_eval.EKF")
     args = parser.parse_args()
     store = open_store("hf:teacher-full", "data/hub-cache", 20)
     if args.set == "dev":
@@ -202,11 +322,20 @@ def main():
         results[name] = []
         for record in records:
             row = rows_cache[record["file"]]
-            v = model_velocities(run, weights, row, device)
+            v, log_variance = model_velocities(run, weights, row, device, with_variance=True)
             p = integrate(v, row)
-            results[name].append({**describe(record, row), **metrics(p, row["cam_gt"], row["times"], v, row["v"])})
+            extra = {}
+            if log_variance is not None:  # calibration: fraction of per-axis errors within 1 and 2 sigma
+                z = np.abs(v-row["v"])*np.exp(-.5*log_variance)
+                extra = {"within_1sigma": float(np.mean(z < 1)), "within_2sigma": float(np.mean(z < 2)),
+                         "within_1sigma_xyz": np.mean(z < 1, 0).round(4).tolist()}
+            results[name].append({**describe(record, row), **metrics(p, row["cam_gt"], row["times"], v, row["v"]), **extra})
             if record["crop_s"] == 0:
                 curves.setdefault(name, []).append((row["times"]-row["times"][0], np.linalg.norm(p-row["cam_gt"], axis=1)))
+            if args.ekf:
+                pe, ve, info = ekf_fuse(v, row, json.loads(args.ekf_params), log_variance)
+                results.setdefault(name+"+ekf", []).append(
+                    {**describe(record, row), **metrics(pe, row["cam_gt"], row["times"], ve, row["v"]), "nis": info["nis"]})
     for kind in args.deployed:
         name = f"deployed-{kind}"
         results[name] = []
@@ -232,6 +361,8 @@ def main():
                          "direction_error_deg": mean(lambda r: True, "direction_error_deg"),
                          "backward_sign_accuracy": mean(lambda r: True, "backward_sign_accuracy"),
                          "backward_velocity_rmse": mean(lambda r: True, "backward_velocity_rmse")}
+        for key in ("within_1sigma", "within_2sigma", "nis"):  # uncertainty head / EKF diagnostics
+            if any(key in r for r in rows): summary[name][key] = mean(lambda r: True, key)
         for catalog in sorted({r["catalog"] for r in rows if r.get("catalog")}):
             summary[name][f"{catalog}_ate"] = mean(lambda r: r.get("catalog") == catalog)
         if args.control and name != args.control and args.control in results:

@@ -135,6 +135,28 @@ class Models(unittest.TestCase):
                 torch.testing.assert_close(torch.cat((a, b), 1), full, atol=1e-5, rtol=1e-4)  # chunked == whole
 
 
+    def test_uncertainty_head(self):
+        from odometry_models import split_output
+        images, imu = self.inputs()
+        torch.manual_seed(0)
+        plain, _ = OdometryNet(dict(self.cfg, head="ssm")).eval()(images, imu)
+        self.assertEqual(plain.shape[-1], 3)
+        self.assertIsNone(split_output(plain)[1])
+        net = OdometryNet(dict(self.cfg, head="ssm", uncertainty=True))
+        pred, _ = net(images, imu)
+        velocity, log_variance = split_output(pred)
+        self.assertEqual((velocity.shape[-1], log_variance.shape[-1]), (3, 3))
+        n = images.shape[1]
+        row = {"v": torch.zeros(1, n, 3), "R": torch.eye(3).repeat(1, n, 1, 1),
+               "times": torch.arange(n, dtype=torch.float32)[None]*.05, "T_bc": torch.eye(4)[None],
+               "cam_gt": torch.zeros(1, n, 3)}
+        base = loss_fn(pred, row, burn=2, horizons=[.25])
+        with_nll = loss_fn(pred, row, burn=2, horizons=[.25], nll_weight=.1)
+        self.assertTrue(torch.isfinite(with_nll) and float(with_nll.detach()) != float(base.detach()))
+        torch.testing.assert_close(base, loss_fn(velocity, row, burn=2, horizons=[.25]))  # weight 0 ignores the head
+        with_nll.backward()
+        self.assertGreater(float(net.output[-1].weight.grad[3:].abs().sum()), 0)
+
     @unittest.skipUnless(torch.cuda.is_available(), "cuDNN flat GRU buffers exist only on CUDA")
     def test_checkpoint_keeps_every_tensor(self):
         import tempfile
@@ -153,6 +175,71 @@ class Models(unittest.TestCase):
             for k in want: torch.testing.assert_close(got[k].cpu(), want[k], msg=f"{head} {k}")
             accelerator._models.clear()
 
+
+
+class Fusion(unittest.TestCase):
+    """EKF post-processor (odometry_eval.ekf_fuse) on a synthetic flight with exact kinematics."""
+
+    def flight(self, n=400, dt=.05, accel_noise=0., seed=0):
+        from odometry_eval import so3_exp
+        rng = np.random.default_rng(seed)
+        t = np.arange(n)*dt
+        R = np.stack([so3_exp(np.array([.05*np.sin(.7*s), .04*np.cos(.5*s)-.04, .3*s])) for s in t])
+        world = np.stack((np.sin(.3*t), .5*np.cos(.2*t)-.5, .1*np.sin(.5*t)), 1)
+        g = so3_exp(np.array([.03, -.02, 0]))@np.array([0, 0, -9.81])  # frame zero is tilted from gravity
+        a = np.zeros_like(world); a[1:] = np.diff(world, axis=0)/dt  # frame k's packet spans (t[k-1], t[k]]
+        accel = np.einsum("nji,nj->ni", R, a-g)+accel_noise*rng.standard_normal((n, 3))
+        imu = np.zeros((n, 51)); imu[:, :3] = accel/9.81; imu[1:, 12] = 1; imu[:, 13] = dt
+        T_bc = np.eye(4); T_bc[:3, 3] = [.1, 0, .05]
+        row = {"times": t, "R": R, "imu": imu, "T_bc": T_bc, "v": np.einsum("nji,nj->ni", R, world)}
+        return row
+
+    def test_bias_filter_is_causal_with_missing_packet(self):
+        from odometry_eval import ekf_fuse, integrate
+        row = self.flight(n=400)
+        row["imu"][:, :3] += np.array([.25, -.15, .1])/9.81
+        row["imu"][100, :13] = 0
+        cfg = {"accel_bias_sigma": .3, "accel_sigma": .2, "velocity_sigma": [1e-3]*3}
+        track, velocities, info = ekf_fuse(row["v"], row, cfg, check=True)
+        self.assertGreater(info["min_eigenvalue"], 0)
+        np.testing.assert_allclose(track, integrate(row["v"], row), atol=2e-3)
+        stop = 103
+        prefix = {k: v if k == "T_bc" else v[:stop] for k, v in row.items()}
+        prefix_track, prefix_velocities, _ = ekf_fuse(prefix["v"], prefix, cfg)
+        np.testing.assert_array_equal(track[:stop], prefix_track)
+        np.testing.assert_array_equal(velocities[:stop], prefix_velocities)
+
+    def test_perfect_measurements_reproduce_truth(self):
+        from odometry_eval import ekf_fuse, integrate
+        row = self.flight()
+        truth = integrate(row["v"], row)
+        for attitude in (False, True):
+            p, fused, info = ekf_fuse(row["v"], row, {"attitude": attitude, "velocity_sigma": [1e-4]*3}, check=True)
+            # With the attitude state, the unknown gravity tilt briefly leaks into phi (a few mm).
+            self.assertLess(np.abs(p-truth).max(), 5e-3 if attitude else 1e-3, attitude)
+            self.assertLess(np.abs(fused-row["v"]).max(), 1e-3)
+            self.assertGreater(info["min_eigenvalue"], 0)
+
+    def test_consistent_and_positive_definite_under_noise(self):
+        from odometry_eval import ekf_fuse
+        row = self.flight(n=1200, accel_noise=.5, seed=1)
+        rng = np.random.default_rng(2)
+        sigma = np.array([.1, .05, .08])
+        noisy = row["v"]+sigma*rng.standard_normal(row["v"].shape)
+        for attitude in (False, True):
+            params = {"attitude": attitude, "velocity_sigma": sigma.tolist(), "accel_sigma": .5}
+            _, fused, info = ekf_fuse(noisy, row, params, check=True)
+            self.assertGreater(info["min_eigenvalue"], 0)
+            self.assertTrue(2.4 < info["nis"] < 3.6, info["nis"])  # chi-square with 3 dof
+            self.assertLess(np.sqrt(np.mean((fused-row["v"])**2)), np.sqrt(np.mean((noisy-row["v"])**2)))
+        # Predicted per-frame log-variance gives the same filter as the equal fixed covariance.
+        lv = np.tile(np.log(sigma**2), (len(noisy), 1))
+        a, _, _ = ekf_fuse(noisy, row, {"velocity_sigma": sigma.tolist(), "accel_sigma": .5})
+        b, _, _ = ekf_fuse(noisy, row, {"accel_sigma": .5}, log_variance=lv)
+        np.testing.assert_allclose(a, b, atol=1e-9)
+        # A supplied attitude replaces the row's.
+        c, _, _ = ekf_fuse(noisy, row, {"velocity_sigma": sigma.tolist(), "accel_sigma": .5}, R=row["R"].copy())
+        np.testing.assert_allclose(a, c, atol=1e-12)
 
 
 class NativeCampaign(unittest.TestCase):

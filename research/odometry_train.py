@@ -11,7 +11,7 @@ from accelerate import Accelerator
 from accelerate.utils import set_seed
 from safetensors.torch import save_file, load_file
 
-from odometry_models import OdometryNet
+from odometry_models import OdometryNet, split_output
 from odometry_data import Windows, PlannedWindows, load_row, write_json, ROOT
 from odometry_store import open_store, GroupedSampler, DATA_REPO
 from pairs import digest
@@ -28,8 +28,15 @@ class Progress:
         self.__dict__.update(state)
 
 
-def loss_fn(pred, row, burn, horizons):
+def loss_fn(pred, row, burn, horizons, nll_weight=0.):
+    pred, log_variance = split_output(pred)
     loss = F.smooth_l1_loss(pred[:, burn:], row["v"][:, burn:], beta=.1)
+    if log_variance is not None and nll_weight:
+        # Gaussian NLL of the velocity error per axis. The mean is detached, so the head learns the
+        # error scale without changing what the velocity objective asks for.
+        error2 = (pred[:, burn:].detach()-row["v"][:, burn:])**2
+        lv = log_variance[:, burn:]
+        loss = loss+nll_weight*(.5*(lv+error2*torch.exp(-lv))).mean()
     world = (row["R"] @ pred.unsqueeze(-1)).squeeze(-1)
     times = row["times"]
     steps = .5*(world[:, 1:]+world[:, :-1])*torch.diff(times, dim=1).unsqueeze(-1)
@@ -112,7 +119,7 @@ def evaluate(net, root, records, device, chunk=32):
             u = torch.as_tensor(row["imu"][begin:begin+chunk], device=device)[None]
             rot = torch.as_tensor(row["R"][begin:begin+chunk], device=device, dtype=torch.float32)[None]
             pred, state = net(im, u, state, rot)
-            output.append(pred[0].cpu().numpy())
+            output.append(split_output(pred)[0][0].cpu().numpy())
         v = np.concatenate(output).astype(np.float64)
         world = (row["R"] @ v[..., None]).squeeze(-1)
         p = np.zeros_like(world)
@@ -236,7 +243,7 @@ def main():
             for row in loader:
                 with accelerator.accumulate(net):
                     pred, _ = net(row["images"], row["imu"], R=row["R"])
-                    loss = loss_fn(pred, row, options["burn_in"], options["horizons"])
+                    loss = loss_fn(pred, row, options["burn_in"], options["horizons"], options.get("nll_weight", 0.))
                     if not torch.isfinite(loss): raise ValueError("Nonfinite training loss")
                     accelerator.backward(loss)
                     if accelerator.sync_gradients: accelerator.clip_grad_norm_(net.parameters(), 1.)

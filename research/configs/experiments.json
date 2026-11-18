@@ -49,6 +49,27 @@
     "native_campaign_block": "N1-ssm-x3 vs B-D0-ssm-x3, three seeds each, decided on three-seed means: screen >=10% lower development mean unaligned ATE and the ordinary-motion guardrail; independent checks are the 30 s proxy-validation criterion and campaign-dev (new flights in ProcTHOR 166-171 and in 15 never-used HSSD Val43 houses, reported separately). The reserved campaign test split (ProcTHOR 162-165/172-175, 28 HSSD Val43 houses) stays unscored.",
     "proxy_validation_criterion": "Declared 2026-11-18 ~15:30, before any D1/D2 result: the proxy-validation holdout is scored on each replay's first 30 s (benchmark flight length; odometry_eval.py --set proxy-val --max-seconds 30), scene-paired against the control. The full 90 s score is a long-horizon diagnostic only: there even true velocity through our attitude scores 1.04 m, so it mostly measures attitude drift."
   },
+  "postprocessing": {
+    "B-D0-fixed-ekf": {
+      "control": "B-D0-ssm-x3",
+      "seeds": [217, 218, 219],
+      "tune": {
+        "parents_per_catalog_regime": 4,
+        "rng_seed": 20261118,
+        "seconds": 30,
+        "accel_sigma": [0.2, 0.6, 2.0, 6.0],
+        "gravity_walk": [0.0, 0.05],
+        "accel_bias_sigma": [0.0, 0.2],
+        "note": "CPU only. Use native-campaign training records, both 0 s and 5 s crops. Sample four distinct parents from each catalog x regime group after sorting, using a fixed RNG. Use a pooled per-axis RMS velocity residual from all tuning frames and all three frozen best checkpoints as the fixed measurement standard deviation (floor 0.01 m/s). Select the grid member with lowest equal-replay ATE averaged over the three seeds, breaking ties in grid order. Use fixed gyro attitude, gravity prior sigma 0.5 m/s², accelerometer bias walk 0.02 m/s²/sqrt(s) when enabled, and disable learned variance. Freeze before reading development predictions."
+      },
+      "evaluate": {
+        "dev": null,
+        "proxy-val": 30,
+        "campaign-dev": 30
+      },
+      "gate": "Advance to uncertainty learning only on at least 10% lower three-seed mean full dev ATE and no more than 5% ordinary-dev regression. Require no more than 5% regression on proxy-val 30 s or either campaign-dev 30 s catalog before recommending adoption. All four comparisons use the frozen training-selected setting against the same checkpoint predictions integrated directly. Reserved test and confirmation are excluded."
+    }
+  },
   "datasets": {
     "teacher-full": "D0 restricted control: the exact old teacher roster (48 proxy base + 12 native + 1 native yaw parents, crops 0/5 s), development roster of 7 native parents.",
     "d1-expanded-tiers": "D1/D2: all 280 eligible proxy training parents (base/mid/agile) + the same 13 native training parents; identical development roster.",
@@ -205,6 +226,18 @@
       "use": ["recipe", "original_sampler"],
       "args": ["--head", "ssm", "--epochs", "36", "--cache-gb", "60"],
       "note": "Native campaign (declared 2026-11-18 ~20:30, before the data were composed): teacher-full-labeled plus the campaign's train flights (ProcTHOR 0-9/46-149/180-199 + HSSD Train125, 30-90 s, 25% independent yaw). Control B-D0-ssm-x3 at the same 4,392 updates. Seeds 217/218/219 for both arms."
+    },
+    "U-D0-ssm": {
+      "data": "hf:teacher-full",
+      "use": ["recipe", "original_sampler"],
+      "args": ["--head", "ssm", "--set", "model.uncertainty=true", "--set", "training.nll_weight=0.02"],
+      "note": "EKF fusion workstream: D0-ssm plus a per-axis velocity log-variance head (Gaussian NLL on velocity, detached mean, weight 0.02). 12-epoch screen; compared with D0-ssm (velocity unchanged?) and through odometry_eval.py --ekf."
+    },
+    "U-D0-ssm-x3": {
+      "data": "hf:teacher-full",
+      "use": ["recipe", "original_sampler"],
+      "args": ["--head", "ssm", "--epochs", "36", "--set", "model.uncertainty=true", "--set", "training.nll_weight=0.02"],
+      "note": "EKF fusion workstream: U-D0-ssm at the B-D0-ssm-x3 budget (4,392 updates), seeds 217/218/219; control B-D0-ssm-x3."
     }
   }
 }
