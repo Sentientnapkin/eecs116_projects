@@ -40,6 +40,20 @@
     "note": "12 epochs x 244 windows (batch 1, accumulation 2). Identical for every D run regardless of dataset size."
   },
   "selection_rule": "Checkpoint = epoch with the lowest selection_score (mean of nominal and 5 s moving-start unaligned ATE on the fixed development roster) evaluated on EMA weights. Last checkpoint retained for diagnostics.",
+  "refinement_screen": {
+    "declared": "2026-11-18 before refinement training or replay",
+    "runner": "odometry_refine.py",
+    "control": "Frozen B-D0-ssm-x3 best checkpoint for each paired seed",
+    "data": "teacher-full train only for fitting; frozen head features computed by causal continuous replay. Development selects the best epoch; no reserved or confirmation test data.",
+    "seeds": [217, 218, 219],
+    "iterations": [1, 3],
+    "model": {"refine_signals": ["inertial"], "refine_hidden": 32, "refine_gamma": 0.8},
+    "epochs": 8,
+    "batch_size": 16,
+    "learning_rate": 0.001,
+    "weight_ema": 0.95,
+    "gate": "K=3 must lower paired three-seed mean dev ATE by at least 10% versus frozen K=0, regress ordinary dev by at most 5%, and improve on the matched K=1 arm. Report the first 30 s on proxy-val and campaign-dev (ProcTHOR/HSSD separately) as independent checks for all arms. Correlation is a separate implementation path with no accuracy claim in this screen."
+  },
   "gates": {
     "screen_improvement": "At least 10% lower equal-flight mean unaligned development ATE than the paired control (engineering gate, not statistical significance).",
     "ordinary_motion_guardrail": "No more than 5% regression on ordinary-motion (benchmark-regime, non-yaw) development flights.",

@@ -2,6 +2,7 @@
 
     ./odometry_env.sh -m unittest test_odometry     (or: ./odometry_env.sh test_odometry.py)
 """
+import shutil
 import unittest
 
 import numpy as np
@@ -134,6 +135,119 @@ class Models(unittest.TestCase):
                 b, _ = net(images[:, 4:], imu[:, 4:], state)
                 torch.testing.assert_close(torch.cat((a, b), 1), full, atol=1e-5, rtol=1e-4)  # chunked == whole
 
+    def test_refinement_causal_and_streaming(self):
+        """Iterative refinement (model.refine_iters) keeps the causal and chunked-streaming
+        guarantees: past outputs ignore future frames, and a stream split anywhere matches."""
+        steps = 10
+        g = torch.Generator().manual_seed(1)
+        R = torch.linalg.qr(torch.randn(1, steps, 3, 3, generator=g))[0]
+        for signals in (["inertial"], ["corr"], ["inertial", "corr"]):
+            for head in ("ssm", "gru"):
+                torch.manual_seed(0)
+                net = OdometryNet(dict(self.cfg, head=head, refine_iters=3, refine_signals=signals)).eval()
+                for p in net.refiner.delta.parameters():  # zero-initialized: make the updates nontrivial
+                    torch.nn.init.normal_(p, std=.1)
+                images, imu = self.inputs(steps)
+                imu[..., 14] = .36
+                with torch.no_grad():
+                    full, _ = net(images, imu, R=R)
+                    every, _ = net(images, imu, R=R, iterations=True)
+                    self.assertEqual(tuple(every.shape), (4, 1, steps, 3))
+                    torch.testing.assert_close(every[-1], full)
+                    self.assertGreater(float((every[-1]-every[0]).abs().max()), 1e-4)  # refinement acts
+                    changed = images.clone(); changed[:, 6:] = 0
+                    imu2 = imu.clone(); imu2[:, 6:, :3] += 3
+                    R2 = R.clone(); R2[:, 6:] = torch.eye(3)
+                    prefix, _ = net(changed, imu2, R=R2)
+                    torch.testing.assert_close(full[:, :6], prefix[:, :6])
+                    for split in (1, 4, 7):
+                        a, state = net(images[:, :split], imu[:, :split], R=R[:, :split])
+                        b, _ = net(images[:, split:], imu[:, split:], state, R[:, split:])
+                        torch.testing.assert_close(torch.cat((a, b), 1), full, atol=1e-5, rtol=1e-4)
+
+    def test_refinement_is_opt_in(self):
+        torch.manual_seed(0)
+        plain = OdometryNet(dict(self.cfg, head="ssm"))
+        torch.manual_seed(0)
+        zero = OdometryNet(dict(self.cfg, head="ssm", refine_iters=0))
+        self.assertIsNone(zero.refiner)
+        for (k, a), (_, b) in zip(plain.state_dict().items(), zero.state_dict().items()):
+            torch.testing.assert_close(a, b, msg=k)
+        torch.manual_seed(0)
+        refined = OdometryNet(dict(self.cfg, head="ssm", refine_iters=2))
+        shared = {k: v for k, v in refined.state_dict().items() if not k.startswith("refiner.")}
+        self.assertEqual(set(shared), set(plain.state_dict()))
+        for k, v in plain.state_dict().items():
+            torch.testing.assert_close(shared[k], v, msg=k)  # refiner created last: same initialization
+        images, imu = self.inputs()
+        with torch.no_grad():  # zero-initialized update: refined output starts at the head estimate
+            torch.testing.assert_close(refined.eval()(images, imu)[0], plain.eval()(images, imu)[0])
+
+    def test_inertial_residual_vanishes_for_consistent_motion(self):
+        """Constant world acceleration exactly matched by the accelerometer gives a zero inertial
+        residual once the estimate equals the true velocity."""
+        from odometry_models import Refiner
+        net = Refiner(dict(self.cfg, refine_iters=1, refine_signals=["inertial"]), 16, None)
+        captured = []
+        net.input.register_forward_hook(lambda m, i, o: captured.append(i[0][:, 5:8].clone()))
+        steps, dt = 6, .05
+        g = torch.Generator().manual_seed(2)
+        R = torch.linalg.qr(torch.randn(1, steps, 3, 3, generator=g))[0]
+        accel = torch.tensor([.3, -.2, .5])
+        v_world = torch.stack([torch.tensor([1., 0, 0]) + accel*dt*i for i in range(steps)])[None]
+        v_body = (R.transpose(-1, -2) @ v_world.unsqueeze(-1)).squeeze(-1)
+        imu = torch.zeros(1, steps, 51); imu[..., 12] = 1; imu[..., 13] = dt
+        imu[..., :3] = ((R.transpose(-1, -2) @ (accel - torch.tensor([0, 0, -9.81])).unsqueeze(-1)).squeeze(-1))/9.81
+        with torch.no_grad():
+            net(v_body, torch.zeros(1, steps, 16), imu, R, None)
+        residual = torch.stack(captured)
+        self.assertEqual(float(residual[0].abs().max()), 0.)  # no previous frame yet
+        torch.testing.assert_close(residual[1:], torch.zeros_like(residual[1:]), atol=1e-5, rtol=0)
+
+        captured.clear()
+        imu[:, 2, 12] = 0
+        with torch.no_grad():
+            net(v_body, torch.zeros(1, steps, 16), imu, R, None)
+        expected = ((v_world[:, 1] - v_world[:, 2]).unsqueeze(1) @ R[:, 2]).squeeze(1)
+        torch.testing.assert_close(captured[2], expected, atol=1e-5, rtol=0)
+
+    def test_refinement_correlation_lookup(self):
+        from odometry_models import Refiner
+
+        cfg = dict(self.cfg, refine_iters=1, refine_signals=["corr"])
+        net = Refiner(cfg, 16, (4, 2))
+        # Offset values encode horizontal displacement. A leftward body velocity
+        # predicts negative horizontal displacement in camera coordinates.
+        bins = torch.arange(-2., 3.).repeat(5)
+        volume = bins[None, None, :, None, None].expand(1, 2, 25, 3, 4)
+        mask = torch.ones(1, 2, 3, 4)
+        mask[:, 1] = 0
+        depth = torch.ones(1, 3, 4, requires_grad=True)
+        fx = torch.tensor([cfg["width"]/4])
+        features = net.lookup(volume, mask, depth, torch.tensor([[0., 2., 0.]]), fx)
+        sampled = features.view(1, 2, 9, 3, 4)
+        torch.testing.assert_close(sampled[:, 0, 4], torch.full((1, 3, 4), -.5))
+        torch.testing.assert_close(sampled[:, 1], torch.zeros_like(sampled[:, 1]))
+        sampled[:, 0, 4].sum().backward()
+        torch.testing.assert_close(depth.grad, torch.full_like(depth, -.5))
+
+    @unittest.skipUnless(shutil.which("cc"), "C compiler required for C parity")
+    def test_inertial_refinement_c_parity(self):
+        from odometry_models import Refiner
+        from refine_c.check import compare
+
+        torch.manual_seed(1)
+        cfg = dict(self.cfg, refine_iters=3, refine_signals=["inertial"], refine_hidden=8)
+        refiner = Refiner(cfg, 16, None)
+        torch.nn.init.normal_(refiner.delta.weight, std=.2)
+        initial = torch.randn(2, 14, 3)*2
+        context = torch.randn(2, 14, 16)
+        imu = torch.randn(2, 14, 51)
+        imu[..., 12] = (imu[..., 12] > 0).float()
+        imu[..., 13] = torch.rand(2, 14)*.15
+        R = torch.linalg.qr(torch.randn(2, 14, 3, 3))[0]
+        R[..., 2] *= torch.linalg.det(R).unsqueeze(-1)
+        compare(refiner, cfg, (initial, context, imu, R))
 
     @unittest.skipUnless(torch.cuda.is_available(), "cuDNN flat GRU buffers exist only on CUDA")
     def test_checkpoint_keeps_every_tensor(self):
