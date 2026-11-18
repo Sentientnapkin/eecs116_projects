@@ -17,6 +17,7 @@ plus the course benchmark packages). Generated data and results live in ignored 
 | `teacher_train.py` | Training with Accelerate checkpoints, weight EMA, cosine schedule, provenance snapshot, per-epoch Hub sync. |
 | `teacher_eval.py` | Full-trajectory replays: teachers, deployed guest models, zero output; per-flight, regime and scene-paired results. |
 | `launch.py` + `configs/experiments.json` | Named experiment definitions, decision gates, budgets; `launch.py <names>` starts them. |
+| `native_campaign.py` + `configs/native_campaign.json` | Split-safe native flight campaign: roster, simulator workers (raw 640×480 archives, failure-only gates, truth-integration check), shard preparation and publishing. Reserved test split is never prepared. |
 | `test_teacher.py` | Regressions: leakage, sampling determinism/exposure, Sim(3), loss horizons, causality, chunked streaming. |
 
 ## Commands
@@ -41,6 +42,15 @@ python teacher_eval.py --runs results/loop/D0-ssm-gpu results/loop/D2-ssm-gpu --
     --output results/eval/d-series --plots                       # dev: 14 replays, 6 scenes
 python teacher_eval.py ... --set proxy-val --max-seconds 30     # holdout criterion: 68 replays, 12 scenes, first 30 s
 python teacher_eval.py ... --set proxy-val                      # 90 s long-horizon diagnostic
+```
+
+Native campaign (GPU box; simulator in `/data/backups/rganapa/Sebastian/venv-sim`, see `gen/env.sh`):
+
+```bash
+N=40 /data/backups/rganapa/Sebastian/gen/run_campaign.sh          # generation workers (resume-safe)
+python native_campaign.py prepare --split train dev --worker 0 --workers 24   # training env
+python native_campaign.py publish --split train                  # then compose onto teacher-full-labeled
+python teacher_eval.py ... --set campaign-dev                    # ProcTHOR and HSSD houses reported separately
 ```
 
 `--set proxy-val` reads `data/expand/proxy-proxy_validation-0.json`; it is on the data repo as
@@ -71,6 +81,26 @@ the restricted roster has 75 (one native yaw flight). Every benchmark-regime nat
 
 See `loop/NOTES.md` for the chronological log and `results/eval/` for full replays.
 
-## Current verdict
+## Current verdict (2026-11-18 evening, GPU box)
 
-Pending the D0/D1/D2 comparison (running).
+- **Seed noise dominates single-run comparisons.** Identical D0-ssm runs differ by 0.29 m on dev
+  (1.152 / 1.439 / 1.420) and 0.10 m on the 30 s holdout. The scene-paired bootstrap covers flight
+  sampling only, so decisions use three-seed means. The morning's "D0 beats ssm-recipe and the
+  deployed EMA" was one lucky seed.
+- **Expanded proxy tiers (D1/D2): not adopted.** With three seeds, D2 ties D0 on ordinary native
+  flights (1.201 vs 1.210) and on the 30 s holdout (1.347 vs 1.359), but loses the one native
+  backward/lateral flight (backward sign 0.00 in all seeds). Backward motion learned from proxy
+  renders does not transfer to native rendering.
+- **Architecture is not the bottleneck at this data size.** 2/4-layer SSM, residual GRU and the
+  GRU→SSM hybrid all land at 1.31–1.34 on the 30 s holdout, inside the control's seed range.
+  Residual GRU is much better than the plain stacked GRU. 12 s context at matched scored frames
+  hurts (fewer updates). Zeroing direct IMU features costs about 5%.
+- **Training longer helps.** The same seed at 3× updates reaches 1.06 dev (vs 1.15 at 12 epochs);
+  B-series seeds are running.
+- **Native data is the open lever:** the native campaign (`native_campaign.py`; 600 train / 60 dev /
+  88 reserved-test simulated flights, 25% independent yaw) feeds the declared N1-ssm-x3 vs
+  B-D0-ssm-x3 comparison.
+- Rotation floor: true velocity through our attitude scores 0.41 m (dev) and 0.35 m (holdout, 30 s);
+  current models are at 1.1–1.4, so velocity remains the main error source.
+- Nothing is ready for distillation or deployment yet; no teacher has a three-seed full-replay
+  gain over the submitted EMA (dev 1.291, ordinary 1.055).
