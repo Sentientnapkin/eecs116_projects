@@ -8,6 +8,7 @@ import numpy as np
 import torch
 
 from odometry_data import CATEGORIES, WindowPlan, motion_labels, validate_roster
+from odometry_eval import batched_velocities
 from odometry_ledger import checks, split_for
 from odometry_models import OdometryNet
 from odometry_train import loss_fn
@@ -118,6 +119,20 @@ class Models(unittest.TestCase):
         images = torch.randint(0, 255, (1, steps, 5, 24, 32), generator=g, dtype=torch.uint8)
         imu = torch.randn(1, steps, 51, generator=g); imu[..., 13] = .05
         return images, imu
+
+    def test_batched_replay_keeps_independent_states_and_lengths(self):
+        rows = []
+        for length in (5, 9):
+            images, imu = self.inputs(length, seed=length)
+            rows.append({"images": images[0].numpy(), "imu": imu[0].numpy(),
+                         "R": np.broadcast_to(np.eye(3), (length, 3, 3)), "times": np.arange(length) * .05})
+        for head in ("ssm", "gru", "ema", "gru_res", "gru_ssm"):
+            with self.subTest(head=head):
+                net = OdometryNet({**self.cfg, "head": head}).eval()
+                batched = batched_velocities(net, rows, "cpu", chunk=4)
+                for row, actual in zip(rows, batched):
+                    solo = batched_velocities(net, [row], "cpu", chunk=4)[0]
+                    np.testing.assert_allclose(actual, solo, atol=1e-5, rtol=1e-5)
 
     def test_causal_and_streaming(self):
         for head in ("gru", "ssm", "gru_res", "gru_ssm"):

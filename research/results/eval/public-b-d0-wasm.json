@@ -1,0 +1,100 @@
+{
+  "dataset": "conta-shards/viobench-public",
+  "dataset_revision": "eecdfdf2502fa50c30bdde17a809d31cc2a9bb6b",
+  "scene": "ProcTHOR-Train-1",
+  "wasm_sha256": "844f358bc733508f440a36ab30632d997b18ff513b56866c02bd832402dcd56c",
+  "mean_unaligned_ate_m": 1.9956050033086967,
+  "peak_fuel_per_frame": 1074756366,
+  "rows": [
+    {
+      "episode": "sim-ProcTHOR-Train-1-0000",
+      "frames": 1200,
+      "duration_s": 59.949999999999996,
+      "completed": true,
+      "filled_frames": 0,
+      "unaligned_ate_m": 1.4844481373039966,
+      "peak_fuel_per_frame": 1074753880
+    },
+    {
+      "episode": "sim-ProcTHOR-Train-1-0001",
+      "frames": 1200,
+      "duration_s": 59.949999999999996,
+      "completed": true,
+      "filled_frames": 0,
+      "unaligned_ate_m": 2.029898233987329,
+      "peak_fuel_per_frame": 1074756366
+    },
+    {
+      "episode": "sim-ProcTHOR-Train-1-0002",
+      "frames": 1200,
+      "duration_s": 59.949999999999996,
+      "completed": true,
+      "filled_frames": 0,
+      "unaligned_ate_m": 1.473452612829555,
+      "peak_fuel_per_frame": 1074753934
+    },
+    {
+      "episode": "sim-ProcTHOR-Train-1-0003",
+      "frames": 1200,
+      "duration_s": 59.949999999999996,
+      "completed": true,
+      "filled_frames": 0,
+      "unaligned_ate_m": 2.242975481140789,
+      "peak_fuel_per_frame": 1074755808
+    },
+    {
+      "episode": "sim-ProcTHOR-Train-1-0004",
+      "frames": 1200,
+      "duration_s": 59.949999999999996,
+      "completed": true,
+      "filled_frames": 0,
+      "unaligned_ate_m": 1.8570570359253624,
+      "peak_fuel_per_frame": 1074755476
+    },
+    {
+      "episode": "sim-ProcTHOR-Train-1-0005",
+      "frames": 1200,
+      "duration_s": 59.949999999999996,
+      "completed": true,
+      "filled_frames": 0,
+      "unaligned_ate_m": 2.4813336319577948,
+      "peak_fuel_per_frame": 1074755425
+    },
+    {
+      "episode": "sim-ProcTHOR-Train-1-0006",
+      "frames": 1200,
+      "duration_s": 59.949999999999996,
+      "completed": true,
+      "filled_frames": 0,
+      "unaligned_ate_m": 2.9371754804244468,
+      "peak_fuel_per_frame": 1074752363
+    },
+    {
+      "episode": "sim-ProcTHOR-Train-1-0007",
+      "frames": 1200,
+      "duration_s": 59.949999999999996,
+      "completed": true,
+      "filled_frames": 0,
+      "unaligned_ate_m": 1.4052999392321097,
+      "peak_fuel_per_frame": 1074754614
+    },
+    {
+      "episode": "sim-ProcTHOR-Train-1-0008",
+      "frames": 1200,
+      "duration_s": 59.949999999999996,
+      "completed": true,
+      "filled_frames": 0,
+      "unaligned_ate_m": 1.41778369704095,
+      "peak_fuel_per_frame": 1074754187
+    },
+    {
+      "episode": "sim-ProcTHOR-Train-1-0009",
+      "frames": 1200,
+      "duration_s": 59.949999999999996,
+      "completed": true,
+      "filled_frames": 0,
+      "unaligned_ate_m": 2.6266257832446342,
+      "peak_fuel_per_frame": 1074754880
+    }
+  ]
+}

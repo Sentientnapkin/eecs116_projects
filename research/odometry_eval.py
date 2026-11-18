@@ -62,19 +62,46 @@ def integrate(v, row):
     return (p+row["R"]@arm-arm)@rot
 
 
-@torch.no_grad()
-def model_velocities(run, weights, row, device, chunk=32):
+def replay_model(run, weights, device):
     cfg = json.loads((run/"config.json").read_text())
     net = OdometryNet(cfg["model"]).to(device).eval()
     net.load_state_dict(weights)
+    return net
+
+
+@torch.inference_mode()
+def batched_velocities(net, rows, device, chunk=32):
+    """Replay independent flights, truncating padded outputs after their real endpoints."""
+    lengths = [len(row["times"]) for row in rows]
     out, state = [], None
-    for b in range(0, len(row["v"]), chunk):
-        im = torch.as_tensor(row["images"][b:b+chunk], device=device)[None]
-        u = torch.as_tensor(row["imu"][b:b+chunk], device=device)[None]
-        rot = torch.as_tensor(row["R"][b:b+chunk], device=device, dtype=torch.float32)[None]
+    longest = max(lengths)
+    for b in range(0, longest, chunk):
+        steps = np.arange(b, min(b+chunk, longest))
+        indices = [np.minimum(steps, length-1) for length in lengths]
+        im = torch.as_tensor(np.stack([row["images"][idx] for row, idx in zip(rows, indices)]), device=device)
+        u = torch.as_tensor(np.stack([row["imu"][idx] for row, idx in zip(rows, indices)]), device=device)
+        rot = torch.as_tensor(np.stack([row["R"][idx] for row, idx in zip(rows, indices)]),
+                              device=device, dtype=torch.float32)
         pred, state = net(im, u, state, rot)
-        out.append(pred[0].cpu().numpy())
-    return np.concatenate(out).astype(np.float64)
+        out.append(pred.cpu().numpy())
+    velocities = np.concatenate(out, axis=1)
+    return [value[:length].astype(np.float64) for value, length in zip(velocities, lengths)]
+
+
+def model_velocities(run, weights, row, device, chunk=32):
+    net = replay_model(run, weights, device)
+    return batched_velocities(net, [row], device, chunk)[0]
+
+
+def replay_velocities(net, records, rows_cache, device, batch_size):
+    ordered = sorted({record["file"] for record in records},
+                     key=lambda key: (len(rows_cache[key]["times"]), key))
+    velocities = {}
+    for begin in range(0, len(ordered), batch_size):
+        keys = ordered[begin:begin+batch_size]
+        predictions = batched_velocities(net, [rows_cache[key] for key in keys], device)
+        velocities.update(zip(keys, predictions))
+    return velocities
 
 
 def load_weights(run, which):
@@ -156,11 +183,15 @@ def main():
     parser.add_argument("--control")
     parser.add_argument("--set", default="dev", choices=("dev", "proxy-val", "campaign-dev"))
     parser.add_argument("--ledger", default="data/ledger/ledger.json")
+    parser.add_argument("--cache-dir", default="data/hub-cache", help="Shard cache for this evaluator")
     parser.add_argument("--output", required=True)
     parser.add_argument("--max-seconds", type=float, help="Score only each replay's first N seconds (all models are causal)")
+    parser.add_argument("--batch-replays", type=int, help="Independent flights per forward pass (default 8 on CUDA, 1 otherwise)")
     parser.add_argument("--plots", action="store_true", help="Write learning curves and error-over-time figures")
     args = parser.parse_args()
-    store = open_store("hf:teacher-full", "data/hub-cache", 20)
+    if args.batch_replays is not None and args.batch_replays < 1:
+        parser.error("--batch-replays must be positive")
+    store = open_store("hf:teacher-full", args.cache_dir, 20)
     if args.set == "dev":
         records = json.loads(store.manifest_path().read_text())["datasets"]["development"]
     elif args.set == "proxy-val":
@@ -170,6 +201,7 @@ def main():
         records = json.loads(Path("data/native-campaign/dev-records.json").read_text())["records"]
     ledger = {r["sha256"]: r for r in json.loads(Path(args.ledger).read_text())["rows"]}
     device = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
+    batch_size = args.batch_replays or (8 if device == "cuda" else 1)
     results, curves = {}, {}  # curves: model -> list of (times, position error) per static-start replay
     rows_cache = {}
     for record in records:
@@ -198,11 +230,14 @@ def main():
         results["true-velocity"].append({**describe(record, row), **metrics(integrate(row["v"], row), row["cam_gt"], row["times"])})
     for run in map(Path, args.runs):
         name = run.name
-        weights = load_weights(run, args.checkpoint)
+        net = replay_model(run, load_weights(run, args.checkpoint), device)
+        if batch_size > 1:
+            net.visual.frame_chunk = max(net.visual.frame_chunk, 32)
+        velocities = replay_velocities(net, records, rows_cache, device, batch_size)
         results[name] = []
         for record in records:
             row = rows_cache[record["file"]]
-            v = model_velocities(run, weights, row, device)
+            v = velocities[record["file"]]
             p = integrate(v, row)
             results[name].append({**describe(record, row), **metrics(p, row["cam_gt"], row["times"], v, row["v"])})
             if record["crop_s"] == 0:
