@@ -196,3 +196,7 @@ the campaign staging folder; coordinate rather than duplicate (especially the C+
 - **Native simulator aborts** kill a whole worker; rerun leftovers with `--ids` one process per flight.
 - The renderer writes `optix7cache.db` (198 MB) into the working directory; it is git-ignored (it was once committed by mistake and removed from history).
 - Single-seed results misled twice (seed 217 is lucky on D0). Always 3 seeds.
+
+## 10. Stopped (2026-11-18 ~23:45 UTC)
+
+At Sebastian's request all agents and training processes were stopped (N1/B-D2n/N2 runs, the hyperparameter driver and its 8 trials). Each run keeps its last complete checkpoint; `python launch.py <name> [--seed N] --gpu G --tag gpu` resumes it automatically (same process count). The visual-motion session and the GPU-0 service were not touched.
