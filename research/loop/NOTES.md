@@ -117,3 +117,9 @@ Mean of nominal and 5 s moving-start unaligned ATE on the fixed 7-flight develop
 - N2-ssm-x3 (expanded tiers + campaign, balanced sampler, 3× budget, three seeds) declared and started 21:55 on `n2-campaign-tiers` (1,770 train records).
 - `git push` from the GPU box fails (no GitHub credentials); the branch is committed locally only.
 - **Renamed (Sebastian's request):** this is learned odometry, not teacher–student distillation. Branch `research/learned-odometry` (was `claude/teacher-model-training-60911a`); `teacher_*.py` → `odometry_*.py`, `test_teacher.py` → `test_odometry.py`, `TEACHERS.md` → `ODOMETRY.md`, `configs/teachers.json` → `configs/odometry.json`, class `Teacher` → `OdometryNet`, `TEACHER_GUEST_DIR` → `GUEST_DIR`. The unused `--teacher` distillation option is removed (its identity field and `distillation_weight` stay as inert legacy keys so existing checkpoints resume). Hub repos, manifests and run names keep their names; earlier entries in these notes use the old names.
+
+### 2026-11-18 — Hyperparameter sweep restart
+
+- Resumed the eight `hp1` LR-screen runs from their complete epoch-1/2 checkpoints. The scheduler uses four concurrent slots on H100 GPU 4. All eight retain their original run directories and per-run caches.
+- Declared the 12-epoch paired screen and 36-epoch three-seed promotion rule in `configs/experiments.json`. Replaced the inactive 6 s horizons in two 64-frame probes before launching them. The 128-frame probe retains 6 s.
+- Queued the remaining screen, promotion, and full dev and 30 s proxy-validation replays. See `results/loop/hp-scheduler-rung0.log` and `results/loop/hp-sweep-resume.log` in this worktree for status.
