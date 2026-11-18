@@ -144,5 +144,24 @@ class Models(unittest.TestCase):
                 torch.testing.assert_close(torch.cat((a, b), 1), full, atol=1e-5, rtol=1e-4)  # chunked == whole
 
 
+    @unittest.skipUnless(torch.cuda.is_available(), "cuDNN flat GRU buffers exist only on CUDA")
+    def test_checkpoint_keeps_every_tensor(self):
+        import tempfile
+        from accelerate import Accelerator
+        accelerator = Accelerator()
+        for head in ("gru", "gru_res", "gru_ssm", "ssm"):
+            net = accelerator.prepare(Teacher(dict(self.cfg, head=head)))
+            want = {k: v.detach().cpu().clone() for k, v in net.state_dict().items()}
+            with tempfile.TemporaryDirectory() as tmp:
+                accelerator.save_state(tmp, safe_serialization=False)  # as teacher_train.py does
+                with torch.no_grad():
+                    for p in net.parameters(): p.zero_()
+                accelerator.load_state(tmp)
+            got = net.state_dict()
+            self.assertEqual(set(got), set(want), head)
+            for k in want: torch.testing.assert_close(got[k].cpu(), want[k], msg=f"{head} {k}")
+            accelerator._models.clear()
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -232,13 +232,7 @@ def main():
         averaged = AveragedModel(accelerator.unwrap_model(net), use_buffers=True,
                                  multi_avg_fn=get_ema_multi_avg_fn(options["weight_ema"]))
         accelerator.register_for_checkpointing(averaged)
-    if args.resume:
-        # cuDNN keeps GRU weights as views of one flat buffer, which safetensors' load_model
-        # rejects as shared storage; copying through load_state_dict works for every head.
-        import accelerate.checkpointing as checkpointing
-        checkpointing.load_model = lambda model, filename, device="cpu", strict=True: \
-            model.load_state_dict(load_file(str(filename), device=device), strict=strict)
-        accelerator.load_state(str(args.resume))
+    if args.resume: accelerator.load_state(str(args.resume))
     teacher = None
     if args.teacher:
         teacher_cfg = json.loads((args.teacher/"config.json").read_text())
@@ -303,7 +297,9 @@ def main():
                 write_json(out/"metrics.json", progress.history)
                 print(json.dumps({k:v for k,v in item.items() if k not in ("rows", "exposure")}), flush=True)
             checkpoint = out/"checkpoints"/f"epoch-{epoch+1:04d}"
-            accelerator.save_state(str(checkpoint))
+            # Pickled model state: on CUDA, cuDNN keeps GRU weights as views of one flat buffer and
+            # safetensors deduplication silently drops most of them from the checkpoint.
+            accelerator.save_state(str(checkpoint), safe_serialization=False)
             accelerator.wait_for_everyone()
             if accelerator.is_main_process:
                 write_json(checkpoint/"complete.json", {"epoch": epoch+1})

@@ -1,0 +1,49 @@
+/data/backups/rganapa/Sebastian/venv-teacher/lib/python3.12/site-packages/torch/nn/modules/rnn.py:1441: UserWarning: RNN module weights are not part of single contiguous chunk of memory. This means they need to be compacted at every call, possibly greatly increasing memory usage. To compact weights again call flatten_parameters(). (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/cudnn/RNN.cpp:1482.)
+  result = _VF.gru(
+{"epoch": 1, "loss": 0.15696978569030762, "nominal_ate": 1.4803619893066033, "moving_ate": 1.764583433759629, "selection_score": 1.6224727115331161, "sim3_ate": 0.4679330420255411, "lr": 0.0002986727473101771, "downloads": 136, "evictions": 0, "cached_bytes": 1271353993, "budget_bytes": 21474836480, "optimizer_updates": 122}
+[RANK 0] Removed shared tensor {'temporal.0.gru.weight_hh_l0', 'temporal.0.gru.bias_hh_l0', 'temporal.0.gru.bias_ih_l0'} while saving. This should be OK, but check by verifying that you don't receive any warning while reloading
+{"epoch": 2, "loss": 0.12832970917224884, "nominal_ate": 1.5002607961676304, "moving_ate": 1.7580044482081176, "selection_score": 1.629132622187874, "sim3_ate": 0.5231112560027821, "lr": 0.00028820261046452706, "downloads": 136, "evictions": 0, "cached_bytes": 1271353993, "budget_bytes": 21474836480, "optimizer_updates": 244}
+[RANK 0] Removed shared tensor {'temporal.0.gru.weight_hh_l0', 'temporal.0.gru.bias_hh_l0', 'temporal.0.gru.bias_ih_l0'} while saving. This should be OK, but check by verifying that you don't receive any warning while reloading
+{"epoch": 3, "loss": 0.12616585195064545, "nominal_ate": 1.5023206590994127, "moving_ate": 1.7132404969383894, "selection_score": 1.6077805780189012, "sim3_ate": 0.5257407647036548, "lr": 0.00026803885892537983, "downloads": 136, "evictions": 0, "cached_bytes": 1271353993, "budget_bytes": 21474836480, "optimizer_updates": 366}
+[RANK 0] Removed shared tensor {'temporal.0.gru.weight_hh_l0', 'temporal.0.gru.bias_hh_l0', 'temporal.0.gru.bias_ih_l0'} while saving. This should be OK, but check by verifying that you don't receive any warning while reloading
+{"epoch": 4, "loss": 0.11200564354658127, "nominal_ate": 1.47104545135198, "moving_ate": 1.6362596493145, "selection_score": 1.55365255033324, "sim3_ate": 0.5220197687752903, "lr": 0.00023967694590136857, "downloads": 136, "evictions": 0, "cached_bytes": 1271353993, "budget_bytes": 21474836480, "optimizer_updates": 488}
+[RANK 0] Removed shared tensor {'temporal.0.gru.weight_hh_l0', 'temporal.0.gru.bias_hh_l0', 'temporal.0.gru.bias_ih_l0'} while saving. This should be OK, but check by verifying that you don't receive any warning while reloading
+{"epoch": 5, "loss": 0.10180239379405975, "nominal_ate": 1.4705134428542408, "moving_ate": 1.6034358618772466, "selection_score": 1.5369746523657437, "sim3_ate": 0.5407635632919218, "lr": 0.00020522034473436547, "downloads": 136, "evictions": 0, "cached_bytes": 1271353993, "budget_bytes": 21474836480, "optimizer_updates": 610}
+[RANK 0] Removed shared tensor {'temporal.0.gru.weight_hh_l0', 'temporal.0.gru.bias_hh_l0', 'temporal.0.gru.bias_ih_l0'} while saving. This should be OK, but check by verifying that you don't receive any warning while reloading
+HTTP Error 429 thrown while requesting POST https://huggingface.co/api/models/SentientNapkin/viobench-teacher-lab/commit/main
+Rate limited. Waiting 3586.0s before retry [Retry 1/5].
+Traceback (most recent call last):
+  File "/data/backups/rganapa/Sebastian/eecs116_projects/research/teacher_train.py", line 324, in <module>
+    if __name__ == "__main__": main()
+                               ^^^^^^
+  File "/data/backups/rganapa/Sebastian/eecs116_projects/research/teacher_train.py", line 235, in main
+    if args.resume: accelerator.load_state(str(args.resume))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/backups/rganapa/Sebastian/venv-teacher/lib/python3.12/site-packages/accelerate/accelerator.py", line 3804, in load_state
+    override_attributes = load_accelerator_state(
+                          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/backups/rganapa/Sebastian/venv-teacher/lib/python3.12/site-packages/accelerate/checkpointing.py", line 233, in load_accelerator_state
+    load_model(model, input_model_file, device=str(map_location), **load_model_func_kwargs)
+  File "/data/backups/rganapa/Sebastian/venv-teacher/lib/python3.12/site-packages/safetensors/torch.py", line 230, in load_model
+    to_removes = _remove_duplicate_names(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/backups/rganapa/Sebastian/venv-teacher/lib/python3.12/site-packages/safetensors/torch.py", line 117, in _remove_duplicate_names
+    raise RuntimeError(
+RuntimeError: Error while trying to find names to remove to save state dict, but found no suitable name to keep for saving amongst: {'temporal.0.gru.weight_ih_l0'}. None is covering the entire storage.Refusing to save/load the model since you could be storing much more memory than needed. Please refer to https://huggingface.co/docs/safetensors/torch_shared_tensors for more information. Or open an issue.
+Traceback (most recent call last):
+  File "/data/backups/rganapa/Sebastian/eecs116_projects/research/teacher_train.py", line 330, in <module>
+    if __name__ == "__main__": main()
+                               ^^^^^^
+  File "/data/backups/rganapa/Sebastian/eecs116_projects/research/teacher_train.py", line 241, in main
+    accelerator.load_state(str(args.resume))
+  File "/data/backups/rganapa/Sebastian/venv-teacher/lib/python3.12/site-packages/accelerate/accelerator.py", line 3804, in load_state
+    override_attributes = load_accelerator_state(
+                          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/backups/rganapa/Sebastian/venv-teacher/lib/python3.12/site-packages/accelerate/checkpointing.py", line 233, in load_accelerator_state
+    load_model(model, input_model_file, device=str(map_location), **load_model_func_kwargs)
+  File "/data/backups/rganapa/Sebastian/eecs116_projects/research/teacher_train.py", line 240, in <lambda>
+    model.load_state_dict(load_file(str(filename), device=device), strict=strict)
+  File "/data/backups/rganapa/Sebastian/venv-teacher/lib/python3.12/site-packages/torch/nn/modules/module.py", line 2647, in load_state_dict
+    raise RuntimeError(
+RuntimeError: Error(s) in loading state_dict for Teacher:
+	Missing key(s) in state_dict: "temporal.0.gru.weight_hh_l0", "temporal.0.gru.bias_ih_l0", "temporal.0.gru.bias_hh_l0". 

@@ -90,9 +90,10 @@ def teacher_velocities(run, weights, row, device, chunk=32):
 def load_weights(run, which):
     if which == "best":
         return load_file(str(run/"best.safetensors"))
-    last = sorted(run.glob("checkpoints/epoch-*/model.safetensors"))[-1]
-    state = load_file(str(last))
-    return state
+    last = sorted(run.glob("checkpoints/epoch-*/complete.json"))[-1].parent
+    if (last/"pytorch_model.bin").exists():
+        return torch.load(last/"pytorch_model.bin", map_location="cpu", weights_only=True)
+    return load_file(str(last/"model.safetensors"))  # older checkpoints (incomplete for GRU heads on CUDA)
 
 
 def deployed_trajectory(kind, raw_path, crop):
