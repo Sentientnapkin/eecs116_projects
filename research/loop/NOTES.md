@@ -127,3 +127,9 @@ Mean of nominal and 5 s moving-start unaligned ATE on the fixed 7-flight develop
 - The matched matrix-scan pilot took **12.935 s/epoch (7.96×)**. The matched prefix-scan pilot took **7.04 s/epoch (14.63×)** and held the same 244 windows and 122 optimizer updates per epoch. Prefix startup was 7.87 s, and peak PyTorch GPU allocation was 2.13 GiB. Steady-state figures are medians of epochs 2–3 on one H100. These are timing pilots. Their one-seed checkpoint scores do not decide accuracy.
 - Dev and 30 s proxy-validation replays are queued after all three 36-epoch checkpoints, using `odometry_eval.py --cache-dir` to isolate the evaluation cache on this shared machine.
 - Compiled correlation reached **4.83 s/epoch (21.33×)** with the same 122 updates and 244 windows. Its cold epoch took 75.52 s, including compilation in training and replay. The cache-reusing 36-epoch run's first epoch took 8.26 s. The uncompiled batch-4 pilot took 4.91 s/epoch with 61 updates and 244 windows, so the predeclared timing rule advanced `B-speed-compiled-x3`.
+
+### Strong scaling
+
+- `P-speed-ddp` holds the batch at four globally and uses the same 244 windows and 61 optimizer updates at every H100 count. The reported distributed phase times use the slowest rank, with per-rank timing and peak allocation recorded in metrics.
+- The 1-H100 GPU 7 reference finished its three epochs. Trainer startup was 6.08 s, first epoch 5.06 s, and steady-state epoch 4.20 s (3.78 s training and 0.42 s replay). The loader accounted for 0.26 s of the training phase. GPU 5 and GPU 7 share the same NUMA node and a direct NVLink path.
+- The 2-H100 test is queued behind GPU 5's three-seed validation and replay jobs. All 14 regressions passed on GPU 7.

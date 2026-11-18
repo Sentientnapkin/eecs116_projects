@@ -267,7 +267,11 @@ def main():
     if accelerator.is_main_process:
         run["provenance"] = provenance(args, out)
         write_json(out/"manifest.json", run); write_json(out/"config.json", cfg)
-    if options.get("report_throughput") and accelerator.is_main_process:
+    report_throughput = options.get("report_throughput", False)
+    report_ranks = report_throughput and accelerator.num_processes > 1
+    if report_ranks:
+        accelerator.wait_for_everyone()
+    if report_throughput and accelerator.is_main_process:
         print(json.dumps({"startup_seconds": round(time.perf_counter()-startup_started, 2)}), flush=True)
     sync = None  # background Hub sync (main process only)
     try:
@@ -281,9 +285,11 @@ def main():
             defer_check = options.get("deferred_loss_check", False)
             if defer_check:
                 total = torch.zeros((), device=accelerator.device, dtype=torch.float64)
-            measure_gpu = options.get("report_throughput") and accelerator.device.type == "cuda"
+            measure_gpu = report_throughput and accelerator.device.type == "cuda"
             if measure_gpu:
                 torch.cuda.reset_peak_memory_stats(accelerator.device)
+            if report_ranks:
+                accelerator.wait_for_everyone()
             started = waited = time.perf_counter()
             for row in loader:
                 data_s += time.perf_counter()-waited
@@ -313,6 +319,12 @@ def main():
             started = time.perf_counter()
             rows = evaluate(scored, data, records, accelerator.device, flights=options.get("eval_flights", 1))
             eval_s = time.perf_counter()-started
+            peak_gpu_bytes = torch.cuda.max_memory_allocated(accelerator.device) if measure_gpu else 0
+            if report_ranks:
+                per_rank = accelerator.gather(torch.tensor(
+                    [[train_s, data_s, eval_s, peak_gpu_bytes]], device=accelerator.device, dtype=torch.float64
+                )).cpu().tolist()
+                train_s, data_s, eval_s, peak_gpu_bytes = map(max, zip(*per_rank))
             from accelerate.utils import gather_object
             rows = gather_object(rows)
             nominal = np.mean([r["ate"] for r in rows if r["crop_s"] == 0])
@@ -326,7 +338,13 @@ def main():
                     "seconds": {"train": round(train_s, 2), "data_wait": round(data_s, 2), "eval": round(eval_s, 2)},
                     "exposure": getattr(dataset, "exposure", None), "rows": rows}
             if measure_gpu:
-                item["peak_gpu_bytes"] = torch.cuda.max_memory_allocated(accelerator.device)
+                item["peak_gpu_bytes"] = int(peak_gpu_bytes)
+            if report_ranks:
+                item["throughput_per_rank"] = [
+                    {"train": round(train, 2), "data_wait": round(wait, 2), "eval": round(dev, 2),
+                     "peak_gpu_bytes": int(peak)}
+                    for train, wait, dev, peak in per_rank
+                ]
             progress.history.append(item); progress.epoch = epoch+1
             if score < progress.best:
                 progress.best = score
