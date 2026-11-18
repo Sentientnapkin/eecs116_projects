@@ -147,3 +147,7 @@ The compiled recipe and B-D0 control each finished 36 epochs at 244 windows and 
 Both predeclared dev tolerances passed and the independent proxy check also improved. Compiled dev scores for seeds 217/218/219 were 1.0900/1.0609/1.1207 m. Ordinary-motion scores were 0.8997/0.8531/0.9655 m. Proxy 30 s scores were 1.2692/1.2264/1.2805 m. Backward/lateral dev was 2.1973 m versus 2.1359 m for the control (+2.88%).
 
 The initial 2-GPU launch failed before training with CUDA error 802 during NCCL NVLink SHARP multicast initialization. The retry and the queued 4-GPU run disable NVLS through `NCCL_NVLS_ENABLE=0` for the benchmark processes.
+
+## 2026-11-18 attitude correction
+- Declared A-D0-ssm-x3 versus the three B-D0-ssm-x3 seeds before attitude results. A causal, zero-initialized head estimates residual body-axis gyro bias, bounded to ±0.12 rad/s per axis. It corrects the attitude used for vehicle velocity and camera lever-arm integration. The existing gyro-warped inputs and body velocity targets are preserved. The head learns through the camera displacement loss.
+- GPU regression suite passed (14 tests), including cancellation of synthetic yaw drift, chunk-boundary parity, and finite nonzero gradients from the displacement loss. Seeds 217/218/219 launched on GPU 6 at the 36-epoch budget. Native-campaign dev oracle analysis started on CPU.

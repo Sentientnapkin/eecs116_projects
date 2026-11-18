@@ -9,7 +9,7 @@ import torch
 
 from odometry_data import CATEGORIES, WindowPlan, motion_labels, validate_roster
 from odometry_ledger import checks, split_for
-from odometry_models import OdometryNet
+from odometry_models import OdometryNet, correct_gyro_attitude
 from odometry_train import loss_fn, replay
 
 
@@ -172,18 +172,68 @@ class Models(unittest.TestCase):
 
     def test_batched_replay_matches_single_flights(self):
         torch.manual_seed(0)
-        net = OdometryNet(dict(self.cfg, head="ssm", ssm_scan="prefix", ssm_chunk=4,
-                               channels_last=True)).eval()
+        cfg = dict(self.cfg, head="ssm", ssm_scan="prefix", ssm_chunk=4, channels_last=True)
         rows = []
         for steps in (3, 11, 15):
             images, imu = self.inputs(steps, seed=steps)
             rows.append({"images": images[0].numpy(), "imu": imu[0].numpy(),
                          "R": np.broadcast_to(np.eye(3), (steps, 3, 3)).copy(),
                          "v": np.zeros((steps, 3))})
-        batched = replay(net, rows, "cpu", chunk=6)
-        for row, pred in zip(rows, batched):
-            single, = replay(net, [row], "cpu", chunk=6)
-            np.testing.assert_allclose(pred, single, atol=1e-6, rtol=1e-5)
+        for correction in (False, True):
+            net = OdometryNet(dict(cfg, gyro_bias_correction=correction)).eval()
+            if correction:
+                with torch.no_grad():
+                    net.gyro_bias[-1].bias.copy_(torch.tensor([.3, -.1, .2]))
+            batched = replay(net, rows, "cpu", chunk=6, return_attitude=True)
+            for row, (pred, rotations) in zip(rows, batched):
+                (single, single_rotations), = replay(net, [row], "cpu", chunk=6, return_attitude=True)
+                np.testing.assert_allclose(pred, single, atol=1e-6, rtol=1e-5)
+                np.testing.assert_allclose(rotations, single_rotations, atol=1e-6, rtol=1e-5)
+                self.assertEqual(np.array_equal(rotations, row["R"]), not correction)
+
+    def test_gyro_bias_cancels_known_drift(self):
+        dt = torch.full((1, 60), .05)
+        angle = torch.arange(dt.shape[1]) * .05 * .1
+        sin, cos = angle.sin(), angle.cos()
+        zero, one = torch.zeros_like(sin), torch.ones_like(sin)
+        raw = torch.stack((cos, -sin, zero, sin, cos, zero, zero, zero, one), dim=1).reshape(1, -1, 3, 3)
+        bias = torch.tensor([0., 0., .1]).expand(1, dt.shape[1], 3)
+        corrected, _ = correct_gyro_attitude(raw, bias, dt)
+        torch.testing.assert_close(corrected, torch.eye(3).expand_as(raw), atol=1e-5, rtol=0.)
+        # Time-varying body increments do not commute, so this also checks scan order.
+        from orientation import exp_so3
+        bias = torch.randn(bias.shape, generator=torch.Generator().manual_seed(5)) * .1
+        corrected, _ = correct_gyro_attitude(raw, bias, dt)
+        previous, expected = np.eye(3), []
+        for i, rotation in enumerate(raw[0].numpy()):
+            if i:
+                old = raw[0, i - 1].numpy()
+                previous = previous @ exp_so3(-old @ bias[0, i].numpy() * float(dt[0, i]))
+            expected.append(previous @ rotation)
+        np.testing.assert_allclose(corrected[0].numpy(), expected, atol=5e-6, rtol=0.)
+
+    def test_gyro_bias_head_is_streaming_and_learns_from_displacement(self):
+        net = OdometryNet(dict(self.cfg, head="ssm", ssm_scan="prefix", ssm_chunk=8, gyro_bias_correction=True))
+        images, imu = self.inputs()
+        raw = torch.eye(3).expand(1, images.shape[1], 3, 3)
+        with torch.autocast(device_type="cpu", dtype=torch.bfloat16):
+            pred, _, corrected = net(images, imu, R=raw, return_attitude=True)
+        torch.testing.assert_close(corrected, raw)
+        v = torch.tensor([1., 0., 0.]).expand_as(pred)
+        times = torch.arange(images.shape[1])[None] * .05
+        # Lateral acceleration in the camera truth gives the correction a training signal.
+        cam_gt = torch.stack((times, times.square(), torch.zeros_like(times)), dim=-1)
+        row = {"v": v, "R": raw, "times": times, "T_bc": torch.eye(4)[None], "cam_gt": cam_gt}
+        loss_fn(v, row, 2, [.1], corrected).backward()
+        gradient = net.gyro_bias[-1].bias.grad
+        self.assertTrue(torch.isfinite(gradient).all() and gradient.norm() > 0)
+        with torch.no_grad():
+            net.gyro_bias[-1].bias.add_(torch.tensor([.3, -.1, .2]))
+            _, _, full = net(images, imu, R=raw, return_attitude=True)
+            _, state, first = net(images[:, :4], imu[:, :4], R=raw[:, :4], return_attitude=True)
+            _, _, last = net(images[:, 4:], imu[:, 4:], state, raw[:, 4:], return_attitude=True)
+        torch.testing.assert_close(torch.cat((first, last), 1), full)
+
 
     @unittest.skipUnless(torch.cuda.is_available(), "cuDNN flat GRU buffers exist only on CUDA")
     def test_checkpoint_keeps_every_tensor(self):
