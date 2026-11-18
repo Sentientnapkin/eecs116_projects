@@ -147,3 +147,9 @@ The compiled recipe and B-D0 control each finished 36 epochs at 244 windows and 
 Both predeclared dev tolerances passed and the independent proxy check also improved. Compiled dev scores for seeds 217/218/219 were 1.0900/1.0609/1.1207 m. Ordinary-motion scores were 0.8997/0.8531/0.9655 m. Proxy 30 s scores were 1.2692/1.2264/1.2805 m. Backward/lateral dev was 2.1973 m versus 2.1359 m for the control (+2.88%).
 
 The initial 2-GPU launch failed before training with CUDA error 802 during NCCL NVLink SHARP multicast initialization. The retry and the queued 4-GPU run disable NVLS through `NCCL_NVLS_ENABLE=0` for the benchmark processes.
+
+The two-H100 retry completed using NCCL point-to-point communication. Median epoch time fell from 4.20 to 2.48 s (1.69×, 84.7% scaling efficiency); training fell from 3.78 to 2.27 s and replay from 0.42 to 0.21 s. Warm input wait fell from 0.26 to 0.17 s. Trainer startup rose from 6.08 to 9.91 s, while first-epoch time fell from 5.06 to 3.28 s. The two-GPU run uses 4.96 GPU-seconds per warm epoch versus 4.20 on one GPU. Both runs scored the same 14 dev replays and preserved all 183 planned updates over the three epochs, with one-seed timing-pilot scores of 1.459265 and 1.458970 m.
+
+A separate eight-step GPU-resident profile of the eager batch-four SSM identified kernel dispatch and tensor copies alongside convolution backward. CUDA launches consumed 19.5% of attributed CPU self time across 26,848 calls. Copies and convolution backward accounted for 20.5% and 13.5% of attributed CUDA self time. Multiple ranks repeat setup, data preparation and optimizer operations, then synchronize on each step. The timing does not attribute the scaling gap to an individual distributed operation.
+
+For every seed in the full compiled validation, the control and candidate had matching data-manifest digests, exposure accounting at every epoch, and all 4,392 planned optimizer updates.
