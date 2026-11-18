@@ -139,6 +139,11 @@ def visual_rotation(first, last, K, camera_rotation):
     inverse = np.linalg.inv(K)
     old = (inverse @ np.c_[a, np.ones(len(a))].T).T
     new = (inverse @ np.c_[b, np.ones(len(b))].T).T
+    return fit_visual_rotation(old, new, camera_rotation)
+
+
+def fit_visual_rotation(old, new, camera_rotation):
+    """Fit a small rotation to corresponding normalized rays."""
     predicted = old @ camera_rotation
     z = predicted[:, 2]
     if np.any(z < .1):
@@ -159,7 +164,7 @@ def visual_rotation(first, last, K, camera_rotation):
         weight = np.sqrt(np.minimum(1, .012 / np.maximum(error, 1e-8)))
     err = float(np.median(error))
     spread = np.linalg.svd(A, compute_uv=False)
-    return -delta, err, len(a), float(spread[-1]/spread[0]), np.median(residual, axis=0)
+    return -delta, err, len(old), float(spread[-1]/spread[0]), np.median(residual, axis=0)
 
 
 def rotation_proposal(first, last, K, R_bc, relative, bias, duration, method, coefficients):

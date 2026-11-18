@@ -1,0 +1,701 @@
+{
+  "set": "dev",
+  "checkpoint_sha256": {
+    "B-D0-ssm-x3-gpu": "2a5b478de73dfe67904afb882f6a377cb086db39bab4307dacd652f556c90689",
+    "B-D0-ssm-x3-s218-gpu": "19889a142924bcd79dc40c4176d98fe671d010555dc46194d85fb8fd3042a8e4",
+    "B-D0-ssm-x3-s219-gpu": "ab03c4fafc88133d9ff513c85892ad37b04063f61af5e9b24c801d9d92c8d275"
+  },
+  "dev_gate_passed": false,
+  "summary": {
+    "all": {
+      "control": 1.0949623932885324,
+      "visual": 1.0863337316639945
+    },
+    "moving": {
+      "control": 1.1443178456534389,
+      "visual": 1.1364235043642958
+    },
+    "static": {
+      "control": 1.0456069409236264,
+      "visual": 1.0362439589636931
+    },
+    "backward/lateral": {
+      "control": 2.1358722006575492,
+      "visual": 2.1358644468849484
+    },
+    "ordinary": {
+      "control": 0.9214774253936964,
+      "visual": 0.9114119457938352
+    },
+    "by_run": {
+      "B-D0-ssm-x3-gpu": {
+        "all": {
+          "control": 1.0535328766493461,
+          "visual": 1.045678655264638
+        },
+        "moving": {
+          "control": 1.0912825694043256,
+          "visual": 1.0833545233165744
+        },
+        "static": {
+          "control": 1.0157831838943672,
+          "visual": 1.0080027872127015
+        },
+        "backward/lateral": {
+          "control": 1.9909134276894713,
+          "visual": 1.99090432324533
+        },
+        "ordinary": {
+          "control": 0.8973027848093253,
+          "visual": 0.8881410439345228
+        }
+      },
+      "B-D0-ssm-x3-s218-gpu": {
+        "all": {
+          "control": 1.120186305804111,
+          "visual": 1.11355432429124
+        },
+        "moving": {
+          "control": 1.1874626890216236,
+          "visual": 1.1809872985453744
+        },
+        "static": {
+          "control": 1.0529099225865992,
+          "visual": 1.0461213500371052
+        },
+        "backward/lateral": {
+          "control": 2.360781142884539,
+          "visual": 2.3607766790117948
+        },
+        "ordinary": {
+          "control": 0.9134204996240398,
+          "visual": 0.9056839318378141
+        }
+      },
+      "B-D0-ssm-x3-s219-gpu": {
+        "all": {
+          "control": 1.11116799741214,
+          "visual": 1.0997682154361055
+        },
+        "moving": {
+          "control": 1.154208278534367,
+          "visual": 1.144928691230938
+        },
+        "static": {
+          "control": 1.068127716289913,
+          "visual": 1.0546077396412723
+        },
+        "backward/lateral": {
+          "control": 2.0559220313986373,
+          "visual": 2.05591233839772
+        },
+        "ordinary": {
+          "control": 0.9537089917477238,
+          "visual": 0.9404108616091696
+        }
+      }
+    }
+  },
+  "rows": [
+    {
+      "file": "e2ccb38993f2ea00090d557e245ae83a4e324bae062f5d9e343b3aeea33b0ecf.npz",
+      "scene": "ProcTHOR-Train-166",
+      "run": "B-D0-ssm-x3-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "static",
+      "control": 0.6940040025161627,
+      "visual": 0.6946646740650371,
+      "updates": {
+        "rejected": 45,
+        "low_parallax": 9,
+        "essential": 5
+      }
+    },
+    {
+      "file": "e2ccb38993f2ea00090d557e245ae83a4e324bae062f5d9e343b3aeea33b0ecf.npz",
+      "scene": "ProcTHOR-Train-166",
+      "run": "B-D0-ssm-x3-s218-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "static",
+      "control": 0.760748028524902,
+      "visual": 0.7584484951884098,
+      "updates": {
+        "rejected": 45,
+        "low_parallax": 9,
+        "essential": 5
+      }
+    },
+    {
+      "file": "e2ccb38993f2ea00090d557e245ae83a4e324bae062f5d9e343b3aeea33b0ecf.npz",
+      "scene": "ProcTHOR-Train-166",
+      "run": "B-D0-ssm-x3-s219-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "static",
+      "control": 0.7977655798281017,
+      "visual": 0.7978247443785863,
+      "updates": {
+        "rejected": 45,
+        "low_parallax": 9,
+        "essential": 5
+      }
+    },
+    {
+      "file": "e2cff8b992c931399d9b2d95e14b2ea33222356a9525eeb977e7b3f1cceb1bd9.npz",
+      "scene": "ProcTHOR-Train-166",
+      "run": "B-D0-ssm-x3-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "moving",
+      "control": 0.8502183528107354,
+      "visual": 0.8457912376783955,
+      "updates": {
+        "essential": 5,
+        "rejected": 42,
+        "low_parallax": 2
+      }
+    },
+    {
+      "file": "e2cff8b992c931399d9b2d95e14b2ea33222356a9525eeb977e7b3f1cceb1bd9.npz",
+      "scene": "ProcTHOR-Train-166",
+      "run": "B-D0-ssm-x3-s218-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "moving",
+      "control": 0.8708484671713269,
+      "visual": 0.8601607830502701,
+      "updates": {
+        "essential": 5,
+        "rejected": 42,
+        "low_parallax": 2
+      }
+    },
+    {
+      "file": "e2cff8b992c931399d9b2d95e14b2ea33222356a9525eeb977e7b3f1cceb1bd9.npz",
+      "scene": "ProcTHOR-Train-166",
+      "run": "B-D0-ssm-x3-s219-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "moving",
+      "control": 0.7046454397908567,
+      "visual": 0.7042790405507249,
+      "updates": {
+        "essential": 5,
+        "rejected": 42,
+        "low_parallax": 2
+      }
+    },
+    {
+      "file": "9507af94ee14966c26546480d441e2d74090997d5f255c9d2b9cf80eb9c92857.npz",
+      "scene": "ProcTHOR-Train-167",
+      "run": "B-D0-ssm-x3-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "static",
+      "control": 0.9934593134523477,
+      "visual": 0.9934593134522844,
+      "updates": {
+        "rejected": 59
+      }
+    },
+    {
+      "file": "9507af94ee14966c26546480d441e2d74090997d5f255c9d2b9cf80eb9c92857.npz",
+      "scene": "ProcTHOR-Train-167",
+      "run": "B-D0-ssm-x3-s218-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "static",
+      "control": 1.313286272421717,
+      "visual": 1.3132862724209258,
+      "updates": {
+        "rejected": 59
+      }
+    },
+    {
+      "file": "9507af94ee14966c26546480d441e2d74090997d5f255c9d2b9cf80eb9c92857.npz",
+      "scene": "ProcTHOR-Train-167",
+      "run": "B-D0-ssm-x3-s219-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "static",
+      "control": 1.0454835940841203,
+      "visual": 1.0454835940839007,
+      "updates": {
+        "rejected": 59
+      }
+    },
+    {
+      "file": "57baaf75c44d91a8572b77944c7c83a61d19a14f2295cc0bb877e792524a3f30.npz",
+      "scene": "ProcTHOR-Train-167",
+      "run": "B-D0-ssm-x3-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "moving",
+      "control": 1.2233950024876685,
+      "visual": 1.2233950024874747,
+      "updates": {
+        "rejected": 49
+      }
+    },
+    {
+      "file": "57baaf75c44d91a8572b77944c7c83a61d19a14f2295cc0bb877e792524a3f30.npz",
+      "scene": "ProcTHOR-Train-167",
+      "run": "B-D0-ssm-x3-s218-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "moving",
+      "control": 1.544723129141932,
+      "visual": 1.5447231291419308,
+      "updates": {
+        "rejected": 49
+      }
+    },
+    {
+      "file": "57baaf75c44d91a8572b77944c7c83a61d19a14f2295cc0bb877e792524a3f30.npz",
+      "scene": "ProcTHOR-Train-167",
+      "run": "B-D0-ssm-x3-s219-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "moving",
+      "control": 1.4235591629560325,
+      "visual": 1.423559162955848,
+      "updates": {
+        "rejected": 49
+      }
+    },
+    {
+      "file": "6e7ef90141dd630837392cf2619221707fea720dc971f5968f2f5b68d24055c2.npz",
+      "scene": "ProcTHOR-Train-168",
+      "run": "B-D0-ssm-x3-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "static",
+      "control": 1.515826986050537,
+      "visual": 1.5093029818245312,
+      "updates": {
+        "rejected": 56,
+        "essential": 3
+      }
+    },
+    {
+      "file": "6e7ef90141dd630837392cf2619221707fea720dc971f5968f2f5b68d24055c2.npz",
+      "scene": "ProcTHOR-Train-168",
+      "run": "B-D0-ssm-x3-s218-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "static",
+      "control": 1.094432667524966,
+      "visual": 1.0805450849395564,
+      "updates": {
+        "rejected": 56,
+        "essential": 3
+      }
+    },
+    {
+      "file": "6e7ef90141dd630837392cf2619221707fea720dc971f5968f2f5b68d24055c2.npz",
+      "scene": "ProcTHOR-Train-168",
+      "run": "B-D0-ssm-x3-s219-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "static",
+      "control": 1.4191053090588943,
+      "visual": 1.4108513286464066,
+      "updates": {
+        "rejected": 56,
+        "essential": 3
+      }
+    },
+    {
+      "file": "97c64a664a521df2a22747a4e889a7731fc403b637b4ad09cb4bf7fa04efb8b1.npz",
+      "scene": "ProcTHOR-Train-168",
+      "run": "B-D0-ssm-x3-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "moving",
+      "control": 1.4928546327472647,
+      "visual": 1.4845958075943992,
+      "updates": {
+        "rejected": 46,
+        "essential": 3
+      }
+    },
+    {
+      "file": "97c64a664a521df2a22747a4e889a7731fc403b637b4ad09cb4bf7fa04efb8b1.npz",
+      "scene": "ProcTHOR-Train-168",
+      "run": "B-D0-ssm-x3-s218-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "moving",
+      "control": 1.1667909623481587,
+      "visual": 1.1516682910407139,
+      "updates": {
+        "rejected": 46,
+        "essential": 3
+      }
+    },
+    {
+      "file": "97c64a664a521df2a22747a4e889a7731fc403b637b4ad09cb4bf7fa04efb8b1.npz",
+      "scene": "ProcTHOR-Train-168",
+      "run": "B-D0-ssm-x3-s219-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "moving",
+      "control": 1.513201863897358,
+      "visual": 1.5049529658239407,
+      "updates": {
+        "rejected": 46,
+        "essential": 3
+      }
+    },
+    {
+      "file": "454a2445e1c6d96e94697cdc0866311439bfff97d3ecf863c214e24a75379cfd.npz",
+      "scene": "ProcTHOR-Train-169",
+      "run": "B-D0-ssm-x3-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "static",
+      "control": 0.8042363598190779,
+      "visual": 0.7857404776229859,
+      "updates": {
+        "rejected": 48,
+        "low_parallax": 1,
+        "essential": 10
+      }
+    },
+    {
+      "file": "454a2445e1c6d96e94697cdc0866311439bfff97d3ecf863c214e24a75379cfd.npz",
+      "scene": "ProcTHOR-Train-169",
+      "run": "B-D0-ssm-x3-s218-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "static",
+      "control": 0.845758344319072,
+      "visual": 0.8276691329787947,
+      "updates": {
+        "rejected": 48,
+        "low_parallax": 1,
+        "essential": 10
+      }
+    },
+    {
+      "file": "454a2445e1c6d96e94697cdc0866311439bfff97d3ecf863c214e24a75379cfd.npz",
+      "scene": "ProcTHOR-Train-169",
+      "run": "B-D0-ssm-x3-s219-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "static",
+      "control": 0.759840307254363,
+      "visual": 0.7418270291317249,
+      "updates": {
+        "rejected": 48,
+        "low_parallax": 1,
+        "essential": 10
+      }
+    },
+    {
+      "file": "9f3b40aa9d68df4c40e46083927646e04dbe9eae160b962e5b073ed69ffd6978.npz",
+      "scene": "ProcTHOR-Train-169",
+      "run": "B-D0-ssm-x3-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "moving",
+      "control": 0.7222458963828848,
+      "visual": 0.711383145072647,
+      "updates": {
+        "rejected": 39,
+        "essential": 10
+      }
+    },
+    {
+      "file": "9f3b40aa9d68df4c40e46083927646e04dbe9eae160b962e5b073ed69ffd6978.npz",
+      "scene": "ProcTHOR-Train-169",
+      "run": "B-D0-ssm-x3-s218-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "moving",
+      "control": 0.8528842276795237,
+      "visual": 0.8409629804408768,
+      "updates": {
+        "rejected": 39,
+        "essential": 10
+      }
+    },
+    {
+      "file": "9f3b40aa9d68df4c40e46083927646e04dbe9eae160b962e5b073ed69ffd6978.npz",
+      "scene": "ProcTHOR-Train-169",
+      "run": "B-D0-ssm-x3-s219-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "moving",
+      "control": 0.7643385687531218,
+      "visual": 0.7569577019251759,
+      "updates": {
+        "rejected": 39,
+        "essential": 10
+      }
+    },
+    {
+      "file": "40559b98ee65b9e8ae12370285104c6de5c68507f81af8e5c630432f60c4ae2a.npz",
+      "scene": "ProcTHOR-Train-170",
+      "run": "B-D0-ssm-x3-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "static",
+      "control": 0.6998718628507528,
+      "visual": 0.690998098807903,
+      "updates": {
+        "low_parallax": 2,
+        "rejected": 54,
+        "essential": 3
+      }
+    },
+    {
+      "file": "40559b98ee65b9e8ae12370285104c6de5c68507f81af8e5c630432f60c4ae2a.npz",
+      "scene": "ProcTHOR-Train-170",
+      "run": "B-D0-ssm-x3-s218-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "static",
+      "control": 0.7107448697311659,
+      "visual": 0.7002772617565071,
+      "updates": {
+        "low_parallax": 2,
+        "rejected": 54,
+        "essential": 3
+      }
+    },
+    {
+      "file": "40559b98ee65b9e8ae12370285104c6de5c68507f81af8e5c630432f60c4ae2a.npz",
+      "scene": "ProcTHOR-Train-170",
+      "run": "B-D0-ssm-x3-s219-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "static",
+      "control": 0.9547834512838134,
+      "visual": 0.9462359836637176,
+      "updates": {
+        "low_parallax": 2,
+        "rejected": 54,
+        "essential": 3
+      }
+    },
+    {
+      "file": "ec3c7f69ed5613d62a5c5f2ffa67dd827c4019da72a246cf15dadd043d1fa7a1.npz",
+      "scene": "ProcTHOR-Train-170",
+      "run": "B-D0-ssm-x3-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "moving",
+      "control": 0.9686350942300725,
+      "visual": 0.9684517308003345,
+      "updates": {
+        "rejected": 46,
+        "essential": 3
+      }
+    },
+    {
+      "file": "ec3c7f69ed5613d62a5c5f2ffa67dd827c4019da72a246cf15dadd043d1fa7a1.npz",
+      "scene": "ProcTHOR-Train-170",
+      "run": "B-D0-ssm-x3-s218-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "moving",
+      "control": 0.7957023198473259,
+      "visual": 0.7952748406829065,
+      "updates": {
+        "rejected": 46,
+        "essential": 3
+      }
+    },
+    {
+      "file": "ec3c7f69ed5613d62a5c5f2ffa67dd827c4019da72a246cf15dadd043d1fa7a1.npz",
+      "scene": "ProcTHOR-Train-170",
+      "run": "B-D0-ssm-x3-s219-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "moving",
+      "control": 1.0156813202972994,
+      "visual": 1.0159246158065542,
+      "updates": {
+        "rejected": 46,
+        "essential": 3
+      }
+    },
+    {
+      "file": "83819dee62d86f98aea5c44aaa81dbfb9799db358e60e783e973c8f23adf3e12.npz",
+      "scene": "ProcTHOR-Train-171",
+      "run": "B-D0-ssm-x3-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "static",
+      "control": 0.5220192209345872,
+      "visual": 0.5007970316397237,
+      "updates": {
+        "rejected": 46,
+        "essential": 11,
+        "low_parallax": 2
+      }
+    },
+    {
+      "file": "83819dee62d86f98aea5c44aaa81dbfb9799db358e60e783e973c8f23adf3e12.npz",
+      "scene": "ProcTHOR-Train-171",
+      "run": "B-D0-ssm-x3-s218-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "static",
+      "control": 0.40600994758746706,
+      "visual": 0.40323803105569533,
+      "updates": {
+        "rejected": 46,
+        "essential": 11,
+        "low_parallax": 2
+      }
+    },
+    {
+      "file": "83819dee62d86f98aea5c44aaa81dbfb9799db358e60e783e973c8f23adf3e12.npz",
+      "scene": "ProcTHOR-Train-171",
+      "run": "B-D0-ssm-x3-s219-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "static",
+      "control": 0.5066718678603988,
+      "visual": 0.4467947319648143,
+      "updates": {
+        "rejected": 46,
+        "essential": 11,
+        "low_parallax": 2
+      }
+    },
+    {
+      "file": "6cc5ea39769bd7b81259d2e2362cd61370f014e64cea687ee647918da6af0878.npz",
+      "scene": "ProcTHOR-Train-171",
+      "run": "B-D0-ssm-x3-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "moving",
+      "control": 0.28086669342981535,
+      "visual": 0.24911302616855607,
+      "updates": {
+        "rejected": 36,
+        "essential": 10,
+        "low_parallax": 3
+      }
+    },
+    {
+      "file": "6cc5ea39769bd7b81259d2e2362cd61370f014e64cea687ee647918da6af0878.npz",
+      "scene": "ProcTHOR-Train-171",
+      "run": "B-D0-ssm-x3-s218-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "moving",
+      "control": 0.5991167591909223,
+      "visual": 0.591952879357181,
+      "updates": {
+        "rejected": 36,
+        "essential": 10,
+        "low_parallax": 3
+      }
+    },
+    {
+      "file": "6cc5ea39769bd7b81259d2e2362cd61370f014e64cea687ee647918da6af0878.npz",
+      "scene": "ProcTHOR-Train-171",
+      "run": "B-D0-ssm-x3-s219-gpu",
+      "catalog": null,
+      "motion": "ordinary",
+      "start": "moving",
+      "control": 0.5394314359083263,
+      "visual": 0.4902394403786405,
+      "updates": {
+        "rejected": 36,
+        "essential": 10,
+        "low_parallax": 3
+      }
+    },
+    {
+      "file": "f10aeb575191eb082e7fd4948f3f07c58c6a80f1a0a9b90bf0b80bf2822b9947.npz",
+      "scene": "ProcTHOR-Train-166",
+      "run": "B-D0-ssm-x3-gpu",
+      "catalog": null,
+      "motion": "backward/lateral",
+      "start": "static",
+      "control": 1.881064541637105,
+      "visual": 1.8810569330764455,
+      "updates": {
+        "rejected": 37,
+        "essential": 2
+      }
+    },
+    {
+      "file": "f10aeb575191eb082e7fd4948f3f07c58c6a80f1a0a9b90bf0b80bf2822b9947.npz",
+      "scene": "ProcTHOR-Train-166",
+      "run": "B-D0-ssm-x3-s218-gpu",
+      "catalog": null,
+      "motion": "backward/lateral",
+      "start": "static",
+      "control": 2.239389327996904,
+      "visual": 2.239385171919848,
+      "updates": {
+        "rejected": 37,
+        "essential": 2
+      }
+    },
+    {
+      "file": "f10aeb575191eb082e7fd4948f3f07c58c6a80f1a0a9b90bf0b80bf2822b9947.npz",
+      "scene": "ProcTHOR-Train-166",
+      "run": "B-D0-ssm-x3-s219-gpu",
+      "catalog": null,
+      "motion": "backward/lateral",
+      "start": "static",
+      "control": 1.9932439046596995,
+      "visual": 1.993236765619757,
+      "updates": {
+        "rejected": 37,
+        "essential": 2
+      }
+    },
+    {
+      "file": "e999e8a4f858d6ac0663fed949e162b16bf42ec3d48575413170c3e202123577.npz",
+      "scene": "ProcTHOR-Train-166",
+      "run": "B-D0-ssm-x3-gpu",
+      "catalog": null,
+      "motion": "backward/lateral",
+      "start": "moving",
+      "control": 2.1007623137418374,
+      "visual": 2.1007517134142146,
+      "updates": {
+        "rejected": 27,
+        "essential": 2
+      }
+    },
+    {
+      "file": "e999e8a4f858d6ac0663fed949e162b16bf42ec3d48575413170c3e202123577.npz",
+      "scene": "ProcTHOR-Train-166",
+      "run": "B-D0-ssm-x3-s218-gpu",
+      "catalog": null,
+      "motion": "backward/lateral",
+      "start": "moving",
+      "control": 2.4821729577721743,
+      "visual": 2.4821681861037415,
+      "updates": {
+        "rejected": 27,
+        "essential": 2
+      }
+    },
+    {
+      "file": "e999e8a4f858d6ac0663fed949e162b16bf42ec3d48575413170c3e202123577.npz",
+      "scene": "ProcTHOR-Train-166",
+      "run": "B-D0-ssm-x3-s219-gpu",
+      "catalog": null,
+      "motion": "backward/lateral",
+      "start": "moving",
+      "control": 2.118600158137575,
+      "visual": 2.118587911175683,
+      "updates": {
+        "rejected": 27,
+        "essential": 2
+      }
+    }
+  ]
+}
