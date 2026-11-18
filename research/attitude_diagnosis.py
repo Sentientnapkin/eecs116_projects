@@ -4,8 +4,8 @@
 
 Our attitude `R` (shard field) is gyro integration from the first frame, so it lives in the
 first body frame. Its error E = R R_true_rel^T (R_true_rel = R_true[0]^T R_true[k]) is split by a
-swing-twist decomposition about the first-frame gravity axis into tilt (gravity direction,
-roll/pitch: observable from the accelerometer) and yaw (heading: not observable from gravity).
+swing-twist decomposition about the first-frame gravity axis into tilt and yaw. Gravity can
+constrain tilt when the vehicle's specific force is known.
 True body velocity and each model's velocities are integrated through: our R, truth, our R with
 only the yaw error kept ("tilt fixed") and with only the tilt error kept ("yaw fixed").
 Mean unaligned ATE only.
@@ -16,19 +16,14 @@ from pathlib import Path
 
 import numpy as np
 import torch
+from viobench.tools.datasets.storage import read_episode
+from viobench.tools.geometry import interpolate_poses, matrix_to_quaternion, poses_to_matrices
 
-from common import Flight
-from odometry_data import load_row
+from odometry_data import load_fields, load_row
 from odometry_eval import integrate, model_velocities, load_weights
+from orientation import Orientation
 
 RAW = Path("/data/backups/rganapa/Sebastian/gen/raw")
-
-
-def quaternion(R):
-    """(w, x, y, z) of rotation matrices (N, 3, 3), w >= 0."""
-    w = np.sqrt(np.clip(1+np.trace(R, axis1=1, axis2=2), 1e-12, None))/2
-    v = np.stack((R[:, 2, 1]-R[:, 1, 2], R[:, 0, 2]-R[:, 2, 0], R[:, 1, 0]-R[:, 0, 1]), 1)/(4*w[:, None])
-    return w, v
 
 
 def axis_angle(axis, angle):
@@ -43,7 +38,8 @@ def axis_angle(axis, angle):
 def decompose(R_est, R_true_rel, gravity):
     """Total, tilt and yaw error angles (rad) and the yaw-only / tilt-only attitudes."""
     E = R_est @ np.transpose(R_true_rel, (0, 2, 1))
-    w, v = quaternion(E)
+    q = matrix_to_quaternion(E)
+    w, v = q[:, 3], q[:, :3]
     total = 2*np.arctan2(np.linalg.norm(v, axis=1), w)
     yaw = 2*np.arctan2(v @ gravity, w)
     yaw = (yaw+np.pi) % (2*np.pi)-np.pi
@@ -62,6 +58,8 @@ def main():
     parser.add_argument("--runs", nargs="*", default=[])
     parser.add_argument("--output", required=True)
     parser.add_argument("--max-seconds", type=float)
+    parser.add_argument("--probe-uncalibrated", action="store_true",
+                        help="Measure a raw-gyro attitude oracle with rolling calibration disabled")
     args = parser.parse_args()
     campaign = Path("data/native-campaign")
     records = json.loads((campaign/"dev-records.json").read_text())["records"]
@@ -69,18 +67,35 @@ def main():
     runs = [(Path(r), load_weights(Path(r), "best")) for r in args.runs]
     rows, curves = [], {}
     for record in records:
-        row = load_row(campaign/"shards", record)
-        flight = Flight(RAW/record["split"]/record["parent_file"], crop=record["crop_s"])
-        if len(flight.ft) != len(row["times"]) or not np.allclose(flight.cam_gt, row["cam_gt"], atol=1e-4):
+        row = (load_row(campaign/"shards", record) if runs else
+               load_fields(campaign/"shards", record, ("R", "v", "times", "cam_gt", "T_bc")))
+        ep = read_episode(RAW/record["split"]/record["parent_file"], frames="none")
+        start = np.searchsorted(ep.frame_times, ep.frame_times[0] + record["crop_s"] - 1e-8)
+        times = ep.frame_times[start:]
+        gt = ep.ground_truth
+        body = poses_to_matrices(interpolate_poses(gt[:, 0], gt[:, 1:8], times))
+        camera = body @ ep.T_body_camera
+        p = camera[:, :3, 3]
+        cam_gt = (p - p[0]) @ camera[0, :3, :3]
+        if (len(times) != len(row["times"]) or
+                not np.allclose(times - times[0], row["times"], atol=1e-6) or
+                not np.allclose(cam_gt, row["cam_gt"], atol=1e-4)):
             raise ValueError(f"Raw truth differs from shard: {record['file']}")
+        rotation = body[:, :3, :3]
         if args.max_seconds:
             keep = int(np.sum(row["times"]-row["times"][0] <= args.max_seconds+1e-6))
             row = {k: (v[:keep] if k != "T_bc" else v) for k, v in row.items()}
-            flight.R = flight.R[:keep]
-        rel = np.transpose(flight.R[0])[None] @ flight.R
-        gravity = flight.R[0].T @ np.array([0., 0., 1.])
+            rotation = rotation[:keep]
+        rel = rotation[0].T @ rotation
+        gravity = rotation[0].T @ np.array([0., 0., 1.])
         total, tilt, yaw, yaw_only, tilt_only = decompose(row["R"].astype(np.float64), rel, gravity)
         attitudes = {"ours": row["R"].astype(np.float64), "truth": rel, "tilt_fixed": yaw_only, "yaw_fixed": tilt_only}
+        if args.probe_uncalibrated:
+            gyro = Orientation({"policy": "none", "startup_seconds": 1.})
+            indices = range(start, start + len(rotation))
+            packets = (ep.imu_window(k) if k > start else ep.imu[:0] for k in indices)
+            attitudes["uncalibrated"] = np.stack([gyro.step(t, packet, 0.)
+                                                  for t, packet in zip(times, packets)])
         out = {"file": record["file"], "flight": record["flight_id"], "crop_s": record["crop_s"],
                "seconds": float(row["times"][-1]-row["times"][0]),
                "final_deg": {"total": float(np.degrees(total[-1])), "tilt": float(np.degrees(tilt[-1])),
