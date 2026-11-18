@@ -117,3 +117,21 @@ Mean of nominal and 5 s moving-start unaligned ATE on the fixed 7-flight develop
 - N2-ssm-x3 (expanded tiers + campaign, balanced sampler, 3× budget, three seeds) declared and started 21:55 on `n2-campaign-tiers` (1,770 train records).
 - `git push` from the GPU box fails (no GitHub credentials); the branch is committed locally only.
 - **Renamed (Sebastian's request):** this is learned odometry, not teacher–student distillation. Branch `research/learned-odometry` (was `claude/teacher-model-training-60911a`); `teacher_*.py` → `odometry_*.py`, `test_teacher.py` → `test_odometry.py`, `TEACHERS.md` → `ODOMETRY.md`, `configs/teachers.json` → `configs/odometry.json`, class `Teacher` → `OdometryNet`, `TEACHER_GUEST_DIR` → `GUEST_DIR`. The unused `--teacher` distillation option is removed (its identity field and `distillation_weight` stay as inert legacy keys so existing checkpoints resume). Hub repos, manifests and run names keep their names; earlier entries in these notes use the old names.
+
+## 2026-11-18 — Causal iterative refinement
+
+- Screened one and three shared inertial updates (K=1 and K=3) on frozen B-D0-ssm-x3 heads, paired on seeds 217/218/219. Fitted on teacher-full train only and selected among eight epochs on dev. Refiner initialization, sampled windows and optimizer were matched across both arms. K=0 replays reproduced archived B-D0 results to their 4-decimal reporting precision. The proxy manifest supplies 69 nominal replays, matching the archived evaluator.
+- Mean unaligned ATE (m), averaged over the three seeds
+
+  | Replay | K=0 | K=1 | K=3 |
+  | --- | ---: | ---: | ---: |
+  | Dev | 1.0950 | 1.0816 | 1.0783 |
+  | Dev ordinary | 0.9215 | 0.9056 | 0.9006 |
+  | Proxy-val 30 s | 1.2765 | 1.2711 | 1.2694 |
+  | Campaign-dev 30 s | 1.3534 | 1.3511 | 1.3512 |
+  | Campaign-dev 30 s, ProcTHOR | 1.4914 | 1.4911 | 1.4924 |
+  | Campaign-dev 30 s, HSSD | 1.2153 | 1.2109 | 1.2100 |
+
+- K=3 improved dev by 1.52%, below the predeclared 10% threshold, and ordinary dev by 2.26%. The extra iterations gained 0.0032 m over K=1 on dev, and the campaign-dev means were within 0.0002 m of each other. Keep refinement opt-in. Reserved and confirmation test splits stayed unscored. Per-seed results are in `results/eval/refinement/summary.json`.
+- The inertial C99 kernel matched PyTorch within 2.98e-8 m/s on a 600-frame seed-217 dev replay for both iteration counts, on the host and after compilation to WASI. Peak Wasmtime fuel for the isolated refinement step was 229,423 for K=1 and 561,403 for K=3. The refiner has 14,947 parameters in both arms. The normal CUDA checkpoint replay matched the cached-head replay on the checked flight within 5e-8 m ATE. The complete CPU head differed by about 2e-5 m ATE on that flight for all three arms, including the control.
+- All 17 tests passed, and a one-epoch CUDA smoke with both the inertial and correlation residuals completed. Disabled inference was bit-identical to the base branch for all five heads on the CPU fixture. Correlation coverage is limited to lookup, causality and training smoke checks. The pilot setup needed a pre-fit restart to cast float64 shard rotations for the training loss. The parity harness needed the generated-header include path and explicit library unload for NFS cleanup.
