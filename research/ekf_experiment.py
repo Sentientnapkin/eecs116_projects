@@ -148,9 +148,10 @@ def main():
     parser.add_argument("--runs", nargs=3, type=Path, required=True, help="Runs in declared seed order")
     parser.add_argument("--data", type=Path, default=ROOT/"data")
     parser.add_argument("--output", type=Path, required=True)
-    parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument("--workers", type=int, help="Replay process count (one CPU thread per worker)")
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
+    workers = args.workers if args.workers is not None else (4 if args.stage == "tune" else 12)
     frozen = args.output/"frozen.json"
     fingerprints = {}
     for seed, run in zip(PLAN["seeds"], args.runs, strict=True):
@@ -160,14 +161,14 @@ def main():
     if args.stage == "tune":
         if frozen.exists():
             raise FileExistsError(frozen)
-        replays = list(replay_all(args.workers, args.runs, tune_tasks(args.data)))
+        replays = list(replay_all(workers, args.runs, tune_tasks(args.data)))
         write_json(frozen, {"checkpoints": fingerprints, "plan": PLAN, **tune(replays)})
     else:
         selection = json.loads(frozen.read_text())
         if selection["checkpoints"] != fingerprints or selection["plan"] != PLAN:
             raise ValueError("Checkpoint or experiment declaration differs from frozen tuning")
         params = selection["selected"]["params"]
-        rows = evaluate(replay_all(args.workers, args.runs, evaluation_tasks(args.data, args.stage)), params)
+        rows = evaluate(replay_all(workers, args.runs, evaluation_tasks(args.data, args.stage)), params)
         summary = summarize(rows)
         write_json(args.output/f"{args.stage}.json", {"summary": summary, "rows": rows})
         print(json.dumps(summary, indent=2), flush=True)

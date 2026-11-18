@@ -21,6 +21,7 @@ plus the course benchmark packages). Generated data and results live in ignored 
 | `odometry_models.py` | CNN + local correlation encoder, GRU / selective SSM / EMA heads, optional attitude input, blind ablation. |
 | `odometry_train.py` | Training with Accelerate checkpoints, weight EMA, cosine schedule, provenance snapshot, per-epoch Hub sync. |
 | `odometry_eval.py` | Full-trajectory replays: trained runs, deployed guest models, zero output; per-flight, regime and scene-paired results. |
+| `ekf_experiment.py` | CPU-only, three-seed fixed-covariance comparison. Selects settings on native training crops and freezes them before replaying development suites. |
 | `launch.py` + `configs/experiments.json` | Named experiment definitions, decision gates, budgets; `launch.py <names>` starts them. |
 | `native_campaign.py` + `configs/native_campaign.json` | Split-safe native flight campaign: roster, simulator workers (raw 640×480 archives, failure-only gates, truth-integration check), shard preparation and publishing. Reserved test split is never prepared. |
 | `test_odometry.py` | Regressions: leakage, sampling determinism/exposure, loss horizons, causality, chunked streaming. |
@@ -60,6 +61,23 @@ python odometry_eval.py ... --set campaign-dev                    # ProcTHOR and
 
 `--set proxy-val` reads `data/expand/proxy-proxy_validation-0.json`; it is on the data repo as
 `manifests/proxy-validation-records.json` (copy it to that path).
+
+For the fixed-covariance B-D0 comparison, provide the three best-checkpoint run directories
+in seed order (217, 218, 219). The driver reads prepared local shards and writes the frozen
+settings and per-replay scores to the output directory.
+
+```bash
+runroot=/path/to/research/results/loop
+runs=("$runroot/B-D0-ssm-x3-gpu" "$runroot/B-D0-ssm-x3-s218-gpu" "$runroot/B-D0-ssm-x3-s219-gpu")
+for stage in tune dev proxy-val campaign-dev; do
+    CUDA_VISIBLE_DEVICES="" OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 \
+        python ekf_experiment.py "$stage" --runs "${runs[@]}" --output results/loop/ekf-fixed
+done
+```
+
+For an individual exploratory replay, `odometry_eval.py --ekf --ekf-params '<JSON object>'`
+adds a fused result alongside direct integration. The filter uses the current accelerometer
+packet and model velocity, with an optional body-frame accelerometer bias state.
 
 To restore a run elsewhere: `odometry_hub.py pull --run <name>` brings its checkpoints,
 `config.json`, and `source/` (a copy of the exact research sources and configs). Its

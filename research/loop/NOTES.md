@@ -117,3 +117,21 @@ Mean of nominal and 5 s moving-start unaligned ATE on the fixed 7-flight develop
 - N2-ssm-x3 (expanded tiers + campaign, balanced sampler, 3× budget, three seeds) declared and started 21:55 on `n2-campaign-tiers` (1,770 train records).
 - `git push` from the GPU box fails (no GitHub credentials); the branch is committed locally only.
 - **Renamed (Sebastian's request):** this is learned odometry, not teacher–student distillation. Branch `research/learned-odometry` (was `claude/teacher-model-training-60911a`); `teacher_*.py` → `odometry_*.py`, `test_teacher.py` → `test_odometry.py`, `TEACHERS.md` → `ODOMETRY.md`, `configs/teachers.json` → `configs/odometry.json`, class `Teacher` → `OdometryNet`, `TEACHER_GUEST_DIR` → `GUEST_DIR`. The unused `--teacher` distillation option is removed (its identity field and `distillation_weight` stay as inert legacy keys so existing checkpoints resume). Hub repos, manifests and run names keep their names; earlier entries in these notes use the old names.
+
+## EKF fusion (2026-11-18)
+
+- **Fixed-covariance B-D0 screen failed the development gate.** Used the frozen best checkpoints for seeds 217/218/219. CPU-only tuning compared 16 settings on 32 crops from 16 native campaign training parents, balanced across catalog and motion regime. The nine-state filter estimates position, velocity and gravity using gyro attitude. Training selected acceleration sigma 0.20 m/s², zero gravity walk and velocity sigmas [0.200, 0.142, 0.121] m/s. Train mean unaligned ATE was 1.8391 m direct and 1.8033 m fused.
+- Three-seed mean unaligned ATE for the frozen setting:
+
+  | Evaluation | Direct (m) | EKF (m) | Change |
+  | --- | ---: | ---: | ---: |
+  | Development | 1.0950 | 1.1294 | +3.15% |
+  | Development ordinary | 0.9215 | 1.0006 | +8.59% |
+  | Development yaw flight (two crops) | 2.1359 | 1.9020 | −10.95% |
+  | Proxy validation, 30 s (69 replays) | 1.2765 | 1.2534 | −1.81% |
+  | Campaign development, 30 s (120 replays) | 1.3534 | 1.3758 | +1.66% |
+  | Campaign ProcTHOR, 30 s | 1.4914 | 1.4967 | +0.35% |
+  | Campaign HSSD, 30 s | 1.2153 | 1.2550 | +3.27% |
+
+- Dev ATE regressed in all three seeds. The improvement on the single dev yaw parent did not repeat on the campaign backward/lateral subset (3.4732 → 3.5102 m). Both dev gates failed, so uncertainty training and GPU allocation were deferred. Reserved test and confirmation stayed unopened.
+- The CPU direct controls match the stored B-series results within 0.00023 m on every evaluated replay and seed. The proxy run used the same 69 replay files as that reference. The [summary](../results/eval/ekf-fixed/summary.json) records the full grid, frozen checkpoint fingerprints, per-seed summaries and scene-paired differences. Per-replay results are in the ignored `results/loop/ekf-fixed-v1/` directory. CPU regression suite had 15 passes and one CUDA-only skip, including the new causal prefix check.
