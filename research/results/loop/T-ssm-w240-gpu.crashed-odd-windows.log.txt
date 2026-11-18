@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/data/backups/rganapa/Sebastian/eecs116_projects/research/teacher_train.py", line 324, in <module>
+    if __name__ == "__main__": main()
+                               ^^^^^^
+  File "/data/backups/rganapa/Sebastian/eecs116_projects/research/teacher_train.py", line 257, in main
+    for row in loader:
+               ^^^^^^
+  File "/data/backups/rganapa/Sebastian/venv-teacher/lib/python3.12/site-packages/accelerate/data_loader.py", line 587, in __iter__
+    next_batch = next(dataloader_iter)
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/data/backups/rganapa/Sebastian/venv-teacher/lib/python3.12/site-packages/torch/utils/data/dataloader.py", line 725, in __next__
+    data = self._next_data()
+           ^^^^^^^^^^^^^^^^^
+  File "/data/backups/rganapa/Sebastian/venv-teacher/lib/python3.12/site-packages/torch/utils/data/dataloader.py", line 785, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/backups/rganapa/Sebastian/venv-teacher/lib/python3.12/site-packages/torch/utils/data/_utils/fetch.py", line 54, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+            ~~~~~~~~~~~~^^^^^
+  File "/data/backups/rganapa/Sebastian/eecs116_projects/research/teacher_data.py", line 315, in __getitem__
+    i, begin, _ = self.items[index]
+                  ~~~~~~~~~~^^^^^^^
+IndexError: list index out of range

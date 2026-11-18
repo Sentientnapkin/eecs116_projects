@@ -186,6 +186,8 @@ class WindowPlan:
         self.records, self.size, self.burn, self.seed = records, size, burn, seed
         self.mode = options.get("mode", "original")
         self.windows = int(options["windows_per_epoch"])
+        if self.mode == "original" and self.windows % 2:
+            raise ValueError("The original sampler draws windows in startup/uniform pairs: windows_per_epoch must be even")
         self.mixture = options.get("mixture", {"startup": .5, "uniform": .5})
         self.cap = options.get("per_parent_cap")
         need = max(3, int(np.ceil(options.get("min_fraction", .1)*(size-burn))))

@@ -232,7 +232,13 @@ def main():
         averaged = AveragedModel(accelerator.unwrap_model(net), use_buffers=True,
                                  multi_avg_fn=get_ema_multi_avg_fn(options["weight_ema"]))
         accelerator.register_for_checkpointing(averaged)
-    if args.resume: accelerator.load_state(str(args.resume))
+    if args.resume:
+        # cuDNN keeps GRU weights as views of one flat buffer, which safetensors' load_model
+        # rejects as shared storage; copying through load_state_dict works for every head.
+        import accelerate.checkpointing as checkpointing
+        checkpointing.load_model = lambda model, filename, device="cpu", strict=True: \
+            model.load_state_dict(load_file(str(filename), device=device), strict=strict)
+        accelerator.load_state(str(args.resume))
     teacher = None
     if args.teacher:
         teacher_cfg = json.loads((args.teacher/"config.json").read_text())

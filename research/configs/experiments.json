@@ -166,8 +166,8 @@
     "T-ssm-w240": {
       "data": "hf:teacher-full",
       "use": ["recipe", "original_sampler"],
-      "args": ["--head", "ssm", "--set", "training.window_frames=240", "--set", "training.sampler={\"mode\":\"original\",\"windows_per_epoch\":65}"],
-      "note": "12 s scored context (240 frames + 32 burn-in), 65 windows/epoch so scored frames match the budget (65x240=15,600 vs 244x64=15,616 per epoch). Optimizer updates are fewer; that is the cost of longer context at equal data exposure."
+      "args": ["--head", "ssm", "--set", "training.window_frames=240", "--set", "training.sampler={\"mode\":\"original\",\"windows_per_epoch\":66}"],
+      "note": "12 s scored context (240 frames + 32 burn-in), 66 windows/epoch so scored frames match the budget within 1.4% (66x240=15,840 vs 244x64=15,616 per epoch; the original sampler needs an even count, so the first launch with 65 crashed). Optimizer updates are fewer; that is the cost of longer context at equal data exposure."
     },
     "B-D0-ssm-x3": {
       "data": "hf:teacher-full",
