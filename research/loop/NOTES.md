@@ -133,3 +133,9 @@ Mean of nominal and 5 s moving-start unaligned ATE on the fixed 7-flight develop
 - `P-speed-ddp` holds the batch at four globally and uses the same 244 windows and 61 optimizer updates at every H100 count. The reported distributed phase times use the slowest rank, with per-rank timing and peak allocation recorded in metrics.
 - The 1-H100 GPU 7 reference finished its three epochs. Trainer startup was 6.08 s, first epoch 5.06 s, and steady-state epoch 4.20 s (3.78 s training and 0.42 s replay). The loader accounted for 0.26 s of the training phase. GPU 5 and GPU 7 share the same NUMA node and a direct NVLink path.
 - The 2-H100 test is queued behind GPU 5's three-seed validation and replay jobs. All 14 regressions passed on GPU 7.
+
+### 2026-11-18 — Fast hyperparameter sweep transfer
+
+- The three-seed compiled recipe cleared the throughput gate in full replays. Mean unaligned ATE was 1.0905 m vs 1.0950 m on dev, 0.9061 m vs 0.9215 m on ordinary dev flights, and 1.2587 m vs 1.2765 m on 30 s proxy validation. GPU 5 measured 4.83 s per warm epoch for the compiled recipe.
+- The eight original `hp1` jobs finish on GPU 4. A separate worktree, tag `hpfast`, and paired fast base isolate all screening, promotion, and evaluation. Each fast run has its own read-only local shard view and local compiler caches. The optimizer applies weight decay and gradient-clip trial overrides while preserving the fast baseline defaults.
+- GPU 4 will check the base and longest-window probe for one epoch before starting the full fast sweep. If either smoke test fails, the original slow sweep takes over. Final 36-epoch replays compare qualifiers to both three-seed controls, compiled and original B-D0.

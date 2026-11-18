@@ -248,7 +248,7 @@ def main():
     else:
         loader = DataLoader(dataset, batch_size=options["batch_size"], shuffle=True, num_workers=0)
     net = OdometryNet(cfg["model"])
-    opt = torch.optim.AdamW(net.parameters(), lr=options["learning_rate"], weight_decay=.01,
+    opt = torch.optim.AdamW(net.parameters(), lr=options["learning_rate"], weight_decay=options.get("weight_decay", .01),
                             fused=True if options.get("fused_adamw") else None)
     steps = -(-len(loader)//options.get("accumulation", 1))
     lr_schedule = torch.optim.lr_scheduler.LambdaLR(opt, schedule(options, steps))
@@ -299,7 +299,8 @@ def main():
                     if not defer_check and not torch.isfinite(loss):
                         raise ValueError("Nonfinite training loss")
                     accelerator.backward(loss)
-                    if accelerator.sync_gradients: accelerator.clip_grad_norm_(net.parameters(), 1.)
+                    if accelerator.sync_gradients:
+                        accelerator.clip_grad_norm_(net.parameters(), options.get("grad_clip", 1.))
                     opt.step(); opt.zero_grad()
                     if accelerator.sync_gradients:
                         lr_schedule.step()
