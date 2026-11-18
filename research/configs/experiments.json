@@ -1,6 +1,14 @@
 {
   "_doc": "Experiment definitions. Each entry resolves to odometry_train.py arguments: --config configs/odometry.json, --data <data>, then 'args'. Shared blocks are referenced by name in 'use'. Decision gates are declared before results exist.",
   "deployment": {
+    "B-D0-cpp-fp32-convolution-pilot": {
+      "control": "Verified B-D0-cpp-fp32 WASM artifacts with the original 4x16 SIMD128 tile, seeds 217/218/219.",
+      "variants": ["8x32 SIMD128 tile", "8x32 SIMD128 tile with two sequential K iterations per loop"],
+      "scope": "Keep the same FP32 weights, accumulation order, preprocessing, compiler optimization and disabled floating-point contraction. Keep the default and scalar paths. No training or shape change.",
+      "screen": "Seed 217, VIOBench check with 32 deterministic synthetic frames per variant. Require complete finite output and the existing synthetic guest parity regression. Choose the lowest synthetic peak fuel, breaking ties toward the variant without K unrolling. Advance one variant only.",
+      "raw": "Meter the selected candidate and original control side by side on the same four campaign-dev replays and three checkpoints declared for B-D0-cpp-fp32. Verify control artifact hashes, exact original control fuel peaks, and zero failed or filled frames.",
+      "gates": "Require at least 8% lower global peak fuel and lower peak on each matched replay. Require maximum absolute state-element delta <= 0.000002, maximum trajectory separation <= 0.000002 m, and absolute per-replay unaligned ATE delta <= 0.000002 m versus control. Also apply existing raw Python/C++/WASM gates. Record bitwise equality, separate init fuel, and artifact sizes."
+    },
     "B-D0-cpp-fp32": {
       "checkpoints": "B-D0-ssm-x3 best EMA, seeds 217/218/219",
       "prepared": "All 14 teacher-full development shards, continuous state from frame zero, compare C++ to CPU PyTorch on identical prepared inputs.",
