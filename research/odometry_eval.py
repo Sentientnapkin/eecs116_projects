@@ -67,6 +67,12 @@ def model_velocities(run, weights, row, device, chunk=32, *, return_attitude=Fal
     cfg = json.loads((run/"config.json").read_text())
     net = OdometryNet(cfg["model"]).to(device).eval()
     net.load_state_dict(weights)
+    return replay_model(net, row, device, chunk, return_attitude=return_attitude)
+
+
+@torch.no_grad()
+def replay_model(net, row, device, chunk=32, *, return_attitude=False):
+    """Replay a loaded network, carrying state and optionally returning its attitude."""
     out, corrected, state = [], [], None
     for b in range(0, len(row["v"]), chunk):
         im = torch.as_tensor(row["images"][b:b+chunk], device=device)[None]
