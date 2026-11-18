@@ -6,7 +6,7 @@
 | --- | --- | --- |
 | `research_loop.py` | Trains queued specs two at a time on MPS, writes `leaderboard.md`, mirrors this folder to `SentientNapkin/viobench-teacher-lab/loop`, replicates the best spec when idle. Stops starting runs at 08:30. | `loop/runner.log`, `results/loop/<name>.log` |
 | `teacher_gen.py` | Simulates 60 s flights in about 270 unused scenes (ProcTHOR-Train 0–9, 46–161, 180–199, plus HSSD-Train at about 1 in 4; 15% independent-yaw), 3 passes with new seeds. | `data/gen-spool/gen.log` |
-| `teacher_pool.py` | Gates each flight (≥2 m travel, no stall, ≥25% moving, not dark or textureless), prepares 0 s and 5 s crops with the base pipeline, and uploads content-addressed shards plus `manifests/gen-pool-v1.json` to `SentientNapkin/viobench-teacher-data`. | `data/gen-spool/pool.log` |
+| `teacher_pool.py` | Gates each flight (≥2 m travel, no stall, finite truth; until 2026-11-18 also ≥25% moving, not dark or textureless), prepares 0 s and 5 s crops with the base pipeline, and uploads content-addressed shards plus `manifests/gen-pool-v1.json` to `SentientNapkin/viobench-teacher-data`. | `data/gen-spool/pool.log` |
 | `data_scheduler.py` | At 100/200/280 generated shards, freezes `teacher-v2/v3/v4` snapshots (base + pool, same development set) and queues the best spec on each ahead of other work. | `loop/data_scheduler.log` |
 
 Add work with `python3 loop/enqueue.py '<spec json>'`.

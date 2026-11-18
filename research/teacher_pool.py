@@ -3,8 +3,8 @@
 For each simulated flight in the spool:
   1. Quality gates, so the pool stays learnable and representative (lessons from other
      teams' generated data): at least 2 m of camera travel (no zero-velocity flights),
-     no stall (the autopilot can park forever near the start), moving for at least a
-     quarter of the flight, and images that are neither black nor textureless.
+     no stall (the autopilot can park forever near the start), finite truth. Hover, dark
+     and low-texture stretches are legitimate conditions and are only audited (2026-11-18).
   2. Prepare crops at 0 s and 5 s with the same causal sensor pipeline and settings as
      the base teacher dataset, written content-addressed (<sha256>.npz).
   3. Every --batch shards, upload them plus the growing pool manifest
@@ -45,8 +45,10 @@ def gate(f):
              "speed_p50_p90": [round(float(np.percentile(speed, q)), 3) for q in (50, 90)],
              "backward_fraction": round(float(np.mean(f.v_body[:, 0] < -.2)), 3),
              "lateral_fraction": round(float(np.mean(np.abs(f.v_body[:, 1]) > .2)), 3)}
-    reasons = [r for r, bad in (("travel<2m", travel < 2), ("stalled", stalled), ("moving<25%", moving < .25),
-                                ("dark", dark > .2), ("textureless", flat > .2)) if bad]
+    # Reject only simulator failures (corrupt truth, no motion, stall). Hover, darkness and low
+    # texture are legitimate conditions: they stay in the audit for sampling/reporting, not gating.
+    finite = all(np.isfinite(np.asarray(a, np.float64)).all() for a in (f.v_body, f.cam_gt, f.imu))
+    reasons = [r for r, bad in (("nonfinite", not finite), ("travel<2m", travel < 2), ("stalled", stalled)) if bad]
     return reasons, audit
 
 

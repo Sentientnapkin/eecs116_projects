@@ -44,7 +44,9 @@ def main():
         run, data, extra = resolve(name, args.seed, args.tag)
         out = runs/run
         cmd = [*python, "teacher_train.py", "--config", str(ROOT/"configs/teachers.json"),
-               "--data", data, "--output", str(out), "--hub-repo", LAB_REPO, *extra]
+               "--data", data, "--output", str(out), "--hub-repo", LAB_REPO,
+               # One cache per run: concurrent runs must never evict or rewrite each other's shards.
+               "--cache-dir", str(ROOT/"data"/"hub-cache"/run), *extra]
         done = sorted(out.glob("checkpoints/epoch-*/complete.json"))
         if done:
             cmd += ["--resume", str(done[-1].parent)]

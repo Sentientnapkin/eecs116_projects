@@ -133,6 +133,28 @@ def scene_paired(results, name, control, key="ate"):
             "per_scene": {s: round(float(x), 4) for s, x in zip(scenes, d)}}
 
 
+def plot(args, curves, out):
+    """Learning curves (development selection score and Sim(3) per epoch) and mean position error over time."""
+    import matplotlib; matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    fig, axes = plt.subplots(1, 2, figsize=(11, 4))
+    for run in map(Path, args.runs):
+        history = json.loads((run/"metrics.json").read_text())
+        epochs = [h["epoch"] for h in history]
+        line, = axes[0].plot(epochs, [h["selection_score"] for h in history], marker="o", label=run.name)
+        axes[1].plot(epochs, [h["sim3_ate"] for h in history], marker="o", color=line.get_color(), label=run.name)
+    for ax, title in zip(axes, ("selection score (unaligned, m)", "Sim(3) ATE (m)")):
+        ax.set_xlabel("epoch"); ax.set_title(title); ax.grid(alpha=.3)
+    axes[0].legend(fontsize=7); fig.tight_layout(); fig.savefig(out/"learning-curves.png", dpi=120); plt.close(fig)
+    fig, ax = plt.subplots(figsize=(7, 4))
+    for name, series in curves.items():
+        grid = np.arange(0, min(t[-1] for t, _ in series), .5)
+        ax.plot(grid, np.mean([np.interp(grid, t, e) for t, e in series], 0), label=name)
+    ax.set_xlabel("time since start (s)"); ax.set_ylabel("mean position error (m)")
+    ax.set_title(f"{args.set}: static-start replays, {args.checkpoint} checkpoint"); ax.grid(alpha=.3); ax.legend(fontsize=7)
+    fig.tight_layout(); fig.savefig(out/f"{args.set}-{args.checkpoint}-error-over-time.png", dpi=120); plt.close(fig)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--runs", nargs="*", default=[])
@@ -142,6 +164,7 @@ def main():
     parser.add_argument("--set", default="dev", choices=("dev", "proxy-val"))
     parser.add_argument("--ledger", default="data/ledger/ledger.json")
     parser.add_argument("--output", required=True)
+    parser.add_argument("--plots", action="store_true", help="Write learning curves and error-over-time figures")
     args = parser.parse_args()
     store = open_store("hf:teacher-full", "data/hub-cache", 20)
     if args.set == "dev":
@@ -150,8 +173,8 @@ def main():
         records = json.loads(Path("data/expand/proxy-proxy_validation-0.json").read_text())["records"]
         records = [r for r in records if r["crop_s"] == 0]
     ledger = {r["sha256"]: r for r in json.loads(Path(args.ledger).read_text())["rows"]}
-    device = "mps" if torch.backends.mps.is_available() else "cpu"
-    results = {}
+    device = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
+    results, curves = {}, {}  # curves: model -> list of (times, position error) per static-start replay
     rows_cache = {}
     for record in records:
         rows_cache[record["file"]] = load_row(store, record)
@@ -167,6 +190,12 @@ def main():
     for record in records:
         row = rows_cache[record["file"]]
         results["zero"].append({**describe(record, row), **metrics(np.zeros_like(row["cam_gt"]), row["cam_gt"], row["times"])})
+    # Rotation floor: true body velocity through our estimated attitude and the same integrator.
+    # Bounds what a perfect velocity head could reach with the current attitude path.
+    results["true-velocity"] = []
+    for record in records:
+        row = rows_cache[record["file"]]
+        results["true-velocity"].append({**describe(record, row), **metrics(integrate(row["v"], row), row["cam_gt"], row["times"])})
     for run in map(Path, args.runs):
         name = run.name
         weights = load_weights(run, args.checkpoint)
@@ -174,7 +203,10 @@ def main():
         for record in records:
             row = rows_cache[record["file"]]
             v = teacher_velocities(run, weights, row, device)
-            results[name].append({**describe(record, row), **metrics(integrate(v, row), row["cam_gt"], row["times"], v, row["v"])})
+            p = integrate(v, row)
+            results[name].append({**describe(record, row), **metrics(p, row["cam_gt"], row["times"], v, row["v"])})
+            if record["crop_s"] == 0:
+                curves.setdefault(name, []).append((row["times"]-row["times"][0], np.linalg.norm(p-row["cam_gt"], axis=1)))
     for kind in args.deployed:
         name = f"deployed-{kind}"
         results[name] = []
@@ -205,6 +237,8 @@ def main():
         if args.control and name != args.control and args.control in results:
             summary[name]["vs_control"] = scene_paired(results, name, args.control)
     out = Path(args.output); out.mkdir(parents=True, exist_ok=True)
+    if args.plots:
+        plot(args, curves, out)
     (out/f"{args.set}-{args.checkpoint}.json").write_text(json.dumps({"summary": summary, "rows": results}, indent=1))
     width = max(len(n) for n in summary)
     print(f"{'model':{width}}  mean   worst  ordin  bk/lat  static moving sim3   spdRMSE dirdeg bksign")
