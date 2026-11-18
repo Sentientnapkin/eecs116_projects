@@ -45,6 +45,7 @@
     "ordinary_motion_guardrail": "No more than 5% regression on ordinary-motion (benchmark-regime, non-yaw) development flights.",
     "advance": "Runs passing both gates advance to three paired seeds (217, 218, 219).",
     "domain_followup": "If D1/D2 fail the native-development gate but improve on the proxy-validation holdout, run D1n/D2n to separate motion coverage from reduced native exposure (21.3% in D0 vs 4.4% in D1/D2).",
+    "architecture_block": "T-series runs use D0 data and recipe; each is compared scene-paired to D0-ssm (seed 217) with the same screen (>=10% lower dev mean unaligned ATE), the ordinary-motion guardrail, and the 30 s proxy-validation criterion as a second, independent check. If the D-series selects expanded data, the T-series is rerun on it instead.",
     "proxy_validation_criterion": "Declared 2026-11-18 ~15:30, before any D1/D2 result: the proxy-validation holdout is scored on each replay's first 30 s (benchmark flight length; teacher_eval.py --set proxy-val --max-seconds 30), scene-paired against the control. The full 90 s score is a long-horizon diagnostic only: there even true velocity through our attitude scores 1.04 m, so it mostly measures attitude drift."
   },
   "datasets": {
@@ -131,6 +132,54 @@
         "ssm"
       ],
       "note": "Follow-up: balanced motion mixture plus native share pinned to 21.3%."
+    },
+    "T-ssm4": {
+      "data": "hf:teacher-full",
+      "use": ["recipe", "original_sampler"],
+      "args": ["--head", "ssm", "--set", "model.layers=4"],
+      "note": "Architecture block (declared 2026-11-18 before D1/D2 results; control D0-ssm, same data/recipe/budget): 4-layer SSM, 1.432M params."
+    },
+    "T-ssm2e148": {
+      "data": "hf:teacher-full",
+      "use": ["recipe", "original_sampler"],
+      "args": ["--head", "ssm", "--set", "model.embedding=148"],
+      "note": "Parameter-matched 2-layer control for T-ssm4 (1.441M)."
+    },
+    "T-grures2": {
+      "data": "hf:teacher-full",
+      "use": ["recipe", "original_sampler"],
+      "args": ["--set", "model.head=\"gru_res\""],
+      "note": "Pre-norm residual GRU stack, 2 layers, 1.340M."
+    },
+    "T-grures4": {
+      "data": "hf:teacher-full",
+      "use": ["recipe", "original_sampler"],
+      "args": ["--set", "model.head=\"gru_res\"", "--set", "model.layers=4"],
+      "note": "Residual GRU, 4 layers, 1.538M."
+    },
+    "T-grussm": {
+      "data": "hf:teacher-full",
+      "use": ["recipe", "original_sampler"],
+      "args": ["--set", "model.head=\"gru_ssm\""],
+      "note": "Hybrid: 1 residual GRU then 1 SSM block, 1.313M."
+    },
+    "T-ssm-w240": {
+      "data": "hf:teacher-full",
+      "use": ["recipe", "original_sampler"],
+      "args": ["--head", "ssm", "--set", "training.window_frames=240", "--set", "training.sampler={\"mode\":\"original\",\"windows_per_epoch\":65}"],
+      "note": "12 s scored context (240 frames + 32 burn-in), 65 windows/epoch so scored frames match the budget (65x240=15,600 vs 244x64=15,616 per epoch). Optimizer updates are fewer; that is the cost of longer context at equal data exposure."
+    },
+    "B-D0-ssm-x3": {
+      "data": "hf:teacher-full",
+      "use": ["recipe", "original_sampler"],
+      "args": ["--head", "ssm", "--epochs", "36"],
+      "note": "Budget follow-up (declared 2026-11-18 ~19:00 after D results, before running): D0 at 3x optimizer updates (4,392). D0 was still improving steeply at epoch 12 and D1/D2 saw each parent ~5x less often, so equal-budget results may reflect undertraining of the larger dataset."
+    },
+    "B-D2-ssm-x3": {
+      "data": "hf:d1-expanded-tiers",
+      "use": ["recipe", "balanced_sampler"],
+      "args": ["--head", "ssm", "--epochs", "36"],
+      "note": "Budget follow-up: D2 at 3x updates. Gate: same screen and guardrail against B-D0-ssm-x3 (equal budget), plus the 30 s proxy-validation criterion."
     }
   }
 }

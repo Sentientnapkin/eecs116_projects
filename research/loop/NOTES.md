@@ -71,3 +71,19 @@ Mean of nominal and 5 s moving-start unaligned ATE on the fixed 7-flight develop
 - **Proxy-validation reference (crop 0, 68 replays, 12 scenes, unaligned ATE):** zero 2.129; true velocity with our attitude 1.042 (Sim(3) 0.512); ssm-recipe 2.345; gru-recipe 2.170; v3-data SSM 2.239 (contaminated: its pool used these scenes). **No reference teacher beats zero output on the 90 s holdout.** They are much better early (0–10 s: 0.69 vs zero 1.13) and on Sim(3) (1.10–1.12 vs 1.54), but under-estimate speed (bias −0.16 to −0.18 m/s) and drift: final error 2.7–3.1 m vs zero 1.98. Agile flights are worst (2.5–2.7 vs zero 1.97). On this set the GRU beats the SSM (scene-paired −0.173 m, 90% [−0.25, −0.10]), the reverse of the native dev ranking. The 6-scene dev set alone would have missed both.
 - **D0 finished (12 epochs, best at epoch 12 for both).** Dev: D0-ssm-gpu **1.152** (ordinary 1.020, backward/lateral 1.943, Sim(3) 0.455, backward sign 0.84); D0-gru-gpu 1.415. D0-ssm-gpu vs ssm-recipe (same data and recipe apart from the sampler path and patience): −0.132 m, 90% [−0.18, −0.09]. **First teacher to beat the deployed EMA on dev (1.291 overall, 1.055 ordinary).** The gap to ssm-recipe may be seed or sampler noise, so seeds 218/219 of D0-ssm started on GPUs 1 and 4.
 - **Proxy-validation criterion declared before any D1/D2 result:** score the first 30 s of each replay (benchmark length; new `--max-seconds`). The 90 s score is a diagnostic only, because even true velocity through our attitude scores 1.04 m over 90 s. At 30 s: zero 2.041, true velocity 0.348, ssm-recipe 1.375, gru-recipe 1.359, D0-ssm-gpu **1.303**, D0-gru-gpu 1.353. Over 90 s: D0-ssm-gpu 2.188 and D0-gru-gpu 2.136, both still no better than zero (2.129).
+- **D-series decision (single seed 217, best-EMA checkpoints, control D0-ssm-gpu, scene-paired 90% intervals):**
+
+  | Run | Dev mean | Dev ordinary | Dev bk/lat | Dev Sim(3) | vs D0 (dev) | Proxy-val 30 s | vs D0 (30 s) | Proxy-val 90 s |
+  | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+  | D0-ssm | **1.152** | **1.020** | **1.943** | 0.455 | – | **1.303** | – | 2.188 |
+  | D1-ssm | 1.611 | 1.312 | 3.406 | 0.495 | +35% [+0.14, +0.62] | 1.357 | +4.5% [−0.00, +0.12] | 2.190 |
+  | D2-ssm | 1.458 | 1.108 | 3.557 | **0.444** | +18% [−0.08, +0.50] | 1.348 | +3.1% [−0.02, +0.11] | 2.193 |
+  | D1n-ssm (exploratory) | 1.556 | 1.214 | 3.606 | 0.465 | +27% [+0.03, +0.58] | 1.383 | +5.7% [−0.05, +0.20] | 2.579 |
+  | D2n-ssm (exploratory) | 1.520 | 1.196 | 3.462 | 0.497 | +26% [+0.01, +0.56] | 1.321 | +1.3% [−0.04, +0.08] | **2.025** |
+  | D0-gru | 1.415 | 1.250 | 2.400 | 0.540 | – (GRU control) | 1.353 | – | 2.136 |
+  | D2-gru | 1.450 | 1.198 | 2.962 | 0.563 | +1.8% vs D0-gru [−0.14, +0.12] | 1.455 | worse | – |
+
+  - D1 and D2 fail the screen and the ordinary-motion guardrail. They do not improve the declared 30 s holdout either, so **the domain follow-up condition is not met**. D1n/D2n (run early on idle GPUs) are exploratory and change no decision; they are also worse on dev.
+  - Backward motion: D2 learns backward sign on proxy flights (0.82 on proxy-val vs D0 0.13) but **not on the native yaw dev flight (0.00 vs D0 0.84)**. Backward competence from proxy data does not transfer to the native domain; D0 gets it from the one native yaw training parent at its 21% native share.
+  - **Caveat that keeps the question open:** at the fixed 1,464 updates, D0 revisits each of its 61 parents about 5× more often than D1/D2 revisit theirs, and D0 was still falling steeply at epoch 12 (1.40 → 1.15 over epochs 8–12) while D2 had the best Sim(3). Declared before running: B-D0-ssm-x3 vs B-D2-ssm-x3 (36 epochs each), same gates.
+  - Expanded proxy data is not adopted. The T-series (architecture) runs on D0 data.
