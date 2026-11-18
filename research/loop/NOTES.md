@@ -153,3 +153,13 @@ The two-H100 retry completed using NCCL point-to-point communication. Median epo
 A separate eight-step GPU-resident profile of the eager batch-four SSM identified kernel dispatch and tensor copies alongside convolution backward. CUDA launches consumed 19.5% of attributed CPU self time across 26,848 calls. Copies and convolution backward accounted for 20.5% and 13.5% of attributed CUDA self time. Multiple ranks repeat setup, data preparation and optimizer operations, then synchronize on each step. The timing does not attribute the scaling gap to an individual distributed operation.
 
 For every seed in the full compiled validation, the control and candidate had matching data-manifest digests, exposure accounting at every epoch, and all 4,392 planned optimizer updates.
+
+The four-H100 retry setup completed on GPUs 2, 3, 5 and 7 after the campaign jobs finished. All three hardware counts used the same window exposure, 183 optimizer steps and 14 development replays per epoch. Timing pilots used seed 217 only.
+
+| H100s | Startup (s) | First epoch (s) | Warm train (s) | Warm replay (s) | Warm epoch (s) | Speedup | GPU-s per warm epoch |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 1 | 6.08 | 5.06 | 3.78 | 0.42 | 4.20 | 1.00× | 4.20 |
+| 2 | 9.91 | 3.28 | 2.27 | 0.21 | 2.48 | 1.69× | 4.96 |
+| 4 | 12.53 | 2.64 | 1.585 | 0.15 | 1.735 | 2.42× | 6.94 |
+
+Four ranks reached 60.5% scaling efficiency and consumed 65.2% more GPU-seconds per warm epoch than one rank. Four ranks use 1.10 GiB of peak PyTorch allocation per H100 versus 4.21 GiB on one H100. Warm loader wait was 0.11 s at four ranks, with 1.585 s of total warm training. Best selection scores were 1.459265, 1.458970 and 1.459903 m at 1, 2 and 4 ranks. Full accuracy conclusions use the 36-epoch three-seed comparison above. Both distributed runs used NCCL P2P with NVLS disabled.
