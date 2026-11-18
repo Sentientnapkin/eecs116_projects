@@ -1,0 +1,275 @@
+"""Native flight campaign: a fixed, split-safe roster of simulated flights, kept raw.
+
+    python native_campaign.py roster                         # write configs/native_campaign.json (deterministic)
+    python native_campaign.py generate --worker 0 --workers 8 [--split train] [--limit N]   (simulator env)
+    python native_campaign.py upload [--raw]                 # roster + audits (+ raw archives) -> private Hub repo
+    python native_campaign.py prepare --split train          # raw -> training shards + immutable manifest
+
+Splits never share a scene with each other or with earlier splits:
+  train  ProcTHOR-Train 0-9, 46-149, 180-199 and HSSD Train125 (training-only scenes; earlier
+         generated pools used some of them, which is train-on-train and harmless).
+  dev    new flights in the existing development scenes ProcTHOR 166-171 (continuity with the
+         7-parent roster) plus 15 HSSD Val43 houses no earlier work has used (reported separately:
+         the benchmark is ProcTHOR-like, HSSD dev measures transfer to unseen house styles).
+  test   reserved: new flights in the final-test scenes ProcTHOR 162-165/172-175 plus the other
+         28 HSSD Val43 houses. Generated and archived, never prepared or scored until a final
+         candidate is frozen.
+  ProcTHOR 150-161 (proxy validation, contaminated by gen-pool-v1) and 176-179 (confirmation,
+  quarantined) are not used.
+
+Each flight varies length (30/60/90 s), autopilot (benchmark, or independent yaw for backward and
+lateral motion), hover before the route (0.2/1/3 s) and route density (turn rate). Raw archives
+keep 640x480 frames and 200 Hz IMU so later visual encoders can use them. Only simulator failures
+are rejected (exceptions, non-finite truth, archive consistency, truth that does not integrate);
+hover, stalls, darkness and low texture are flagged in the audit, never dropped.
+"""
+import argparse
+import json
+import random
+import shutil
+import time
+import traceback
+from dataclasses import asdict
+from pathlib import Path
+
+import numpy as np
+
+ROOT = Path(__file__).resolve().parent
+ROSTER = ROOT/"configs"/"native_campaign.json"
+RAW = Path("/data/backups/rganapa/Sebastian/gen/raw")
+RAW_REPO = "SentientNapkin/viobench-native-campaign"
+CAMPAIGN_SEED = 20261118
+
+TRAIN_PROCTHOR = [*range(0, 10), *range(46, 150), *range(180, 200)]
+DEV_PROCTHOR = list(range(166, 172))
+TEST_PROCTHOR = [*range(162, 166), *range(172, 176)]
+EXCLUDED_PROCTHOR = set(range(150, 162)) | set(range(176, 180)) | set(range(10, 46))
+
+
+def flight_variation(rng, split):
+    """Per-flight simulator settings. Dev/test use the same distribution as train."""
+    return {"seconds": rng.choices([30, 60, 90], [.5, .35, .15])[0],
+            "regime": "independent-yaw" if rng.random() < .25 else "benchmark",
+            "hold_seconds": rng.choices([.2, 1., 3.], [.25, .5, .25])[0],
+            "waypoints_per_second": rng.choice([.5, .8, 1.2])}
+
+
+def build_roster(hssd_train, hssd_val, train_flights=600):
+    rng = random.Random(CAMPAIGN_SEED)
+    val = sorted(hssd_val); rng.shuffle(val)
+    dev_hssd, test_hssd = val[:15], val[15:]
+    train_scenes = [("procthor", f"ProcTHOR-Train-{i}") for i in TRAIN_PROCTHOR] + \
+                   [("hssd-train", s) for s in sorted(hssd_train)]
+    flights = []
+
+    def add(split, catalog, scene):
+        index = sum(f["scene"] == scene for f in flights)
+        flights.append({"id": f"{split}-{scene}-{index:02d}", "split": split, "catalog": catalog, "scene": scene,
+                        "seed": 700000 + len(flights), **flight_variation(rng, split)})
+    # Train: two thirds ProcTHOR (benchmark-like), one third HSSD; each list cycles through
+    # reshuffled passes so every scene is used before any repeats.
+    def cycle(scenes, n):
+        out = []
+        while len(out) < n: out += rng.sample(scenes, len(scenes))
+        return out[:n]
+    n_procthor = round(train_flights*2/3)
+    for catalog, scene in cycle([s for s in train_scenes if s[0] == "procthor"], n_procthor) + \
+            cycle([s for s in train_scenes if s[0] != "procthor"], train_flights-n_procthor):
+        add("train", catalog, scene)
+    for i in DEV_PROCTHOR:
+        for _ in range(5): add("dev", "procthor", f"ProcTHOR-Train-{i}")
+    for scene in dev_hssd:
+        for _ in range(2): add("dev", "hssd-val", scene)
+    for i in TEST_PROCTHOR:
+        for _ in range(4): add("test", "procthor", f"ProcTHOR-Train-{i}")
+    for scene in test_hssd:
+        for _ in range(2): add("test", "hssd-val", scene)
+    check_splits(flights)
+    return {"seed": CAMPAIGN_SEED, "flights": flights,
+            "policy": __doc__.split("Splits never")[1].split("Each flight")[0].strip()}
+
+
+def check_splits(flights):
+    scenes = {}
+    for f in flights:
+        scenes.setdefault(f["scene"], set()).add(f["split"])
+    shared = {s: v for s, v in scenes.items() if len(v) > 1}
+    if shared:
+        raise ValueError(f"scenes in more than one split: {list(shared)[:5]}")
+    for f in flights:
+        if f["catalog"] == "procthor":
+            n = int(f["scene"].rsplit("-", 1)[1])
+            allowed = {"train": TRAIN_PROCTHOR, "dev": DEV_PROCTHOR, "test": TEST_PROCTHOR}[f["split"]]
+            if n not in allowed or n in EXCLUDED_PROCTHOR:
+                raise ValueError(f"{f['id']}: ProcTHOR scene {n} not allowed in {f['split']}")
+        if f["catalog"] == "hssd-val" and f["split"] == "train":
+            raise ValueError("HSSD Val43 houses are evaluation-only")
+
+
+def truth_integration_error(flight):
+    """RMS (m) between ground-truth positions and trapezoid-integrated ground-truth world velocity.
+    Millimetres when frames and twists agree; metres if a velocity is in the wrong frame."""
+    dt = np.diff(flight.ft)[:, None]
+    p = np.zeros_like(flight.v)
+    p[1:] = np.cumsum(.5*(flight.v[1:]+flight.v[:-1])*dt, axis=0)
+    return float(np.sqrt(np.mean(np.sum((p-(flight.p-flight.p[0]))**2, axis=1))))
+
+
+def audit(flight):
+    v, t = flight.v_body, flight.ft
+    speed = np.linalg.norm(v, axis=1)
+    travel = float(np.sum(np.linalg.norm(np.diff(flight.cam_gt, axis=0), axis=1)))
+    tail = flight.cam_gt[int(.6*len(flight.cam_gt)):]
+    sample = np.asarray(flight.frames[::20], dtype=np.float32)
+    gray = sample.mean(-1) if sample.ndim == 4 else sample
+    out = {"frames": int(len(t)), "seconds": round(float(t[-1]), 2), "travel_m": round(travel, 2),
+           "zero_motion_ate_m": round(float(np.sqrt(np.mean(np.sum(flight.cam_gt**2, axis=1)))), 3),
+           "speed_p10_p50_p90": [round(float(np.percentile(speed, q)), 3) for q in (10, 50, 90)],
+           "hover_fraction": round(float(np.mean(speed < .05)), 3),
+           "backward_fraction": round(float(np.mean(v[:, 0] < -.2)), 3),
+           "lateral_fraction": round(float(np.mean(np.abs(v[:, 1]) > .2)), 3),
+           "vertical_fraction": round(float(np.mean(np.abs(v[:, 2]) > .2)), 3),
+           "turning_fraction": round(float(np.mean(np.linalg.norm(flight.w, axis=1) > .5)), 3),
+           "dark_fraction": round(float(np.mean(gray.mean((1, 2)) < 15)), 3),
+           "flat_fraction": round(float(np.mean(gray.std((1, 2)) < 6)), 3),
+           "stalled": bool(np.max(np.linalg.norm(tail-tail[0], axis=1)) < .5),
+           "truth_integration_rms_m": round(truth_integration_error(flight), 5)}
+    out["flags"] = [name for name, bad in (("travel<2m", travel < 2), ("stalled", out["stalled"]),
+                    ("hover>50%", out["hover_fraction"] > .5), ("dark", out["dark_fraction"] > .2),
+                    ("textureless", out["flat_fraction"] > .2)) if bad]
+    return out
+
+
+def generate(args):
+    from viobench.tools.datasets.generate.simulation import SimConfig, scene_references, simulate, hssd_scenes
+    from viobench.tools.datasets.storage import write_episode
+    from robust_sim import IndependentYaw
+    from common import Flight
+    from pairs import digest
+    roster = json.loads(ROSTER.read_text())["flights"]
+    mine = [f for i, f in enumerate(roster) if i % args.workers == args.worker
+            and (not args.split or f["split"] in args.split)][:args.limit]
+    log_path = RAW/"generated.jsonl"
+    hssd_val = None
+    for f in mine:
+        target = RAW/f["split"]/f"{f['id']}.zip"
+        if target.exists():
+            continue
+        if shutil.disk_usage(RAW).free < args.min_free_gb*2**30:
+            print("disk below threshold; stopping", flush=True); return
+        started, status, record = time.time(), "ok", None
+        try:
+            klass = IndependentYaw if f["regime"] == "independent-yaw" else SimConfig
+            sim = klass(instances=1, duration_seconds=f["seconds"], hold_seconds=f["hold_seconds"],
+                        waypoints=max(8, round(f["seconds"]*f["waypoints_per_second"])))
+            if f["catalog"] == "hssd-val":
+                hssd_val = hssd_val or hssd_scenes("val")
+                refs = {f["scene"]: hssd_val[f["scene"]]}
+            else:
+                refs = scene_references([f["scene"]])
+            episode, = simulate(sim, refs, 1, seed=f["seed"], name="native-campaign", log=lambda m: None)
+            episode.check_consistency()
+            partial = RAW/"partial"; partial.mkdir(parents=True, exist_ok=True)
+            write_episode(episode, partial/target.name)
+            flight = Flight(partial/target.name)
+            report = audit(flight)
+            finite = all(np.isfinite(a).all() for a in (flight.v_body, flight.cam_gt, flight.imu))
+            if not finite: raise ValueError("non-finite truth or IMU")
+            if report["truth_integration_rms_m"] > .05: raise ValueError(f"truth does not integrate: {report['truth_integration_rms_m']} m")
+            target.parent.mkdir(parents=True, exist_ok=True)
+            record = {**f, "file": target.name, "sha256": digest(partial/target.name), "audit": report,
+                      "simulator": asdict(sim), "simulator_class": klass.__name__,
+                      "bytes": (partial/target.name).stat().st_size}
+            (RAW/f["split"]/f"{f['id']}.json").write_text(json.dumps(record, indent=1))
+            (partial/target.name).rename(target)
+        except Exception as error:
+            status = f"failed: {error!r}"[:300]
+            traceback.print_exc()
+        with log_path.open("a") as fh:
+            fh.write(json.dumps({"id": f["id"], "status": status, "seconds": round(time.time()-started, 1),
+                                 "worker": args.worker}) + "\n")
+        print(time.strftime("%H:%M"), f["id"], status, round(time.time()-started), "s",
+              (record or {}).get("audit", {}).get("flags"), flush=True)
+
+
+def upload(args):
+    """Roster and per-flight audits to the private campaign repo; with --raw also the archives
+    (about 130 MB per flight; reserved test archives included, archived but not used). Raw data
+    is generated on the GPU box itself, so the training path never needs the Hub copy."""
+    from huggingface_hub import HfApi
+    api = HfApi()
+    api.create_repo(RAW_REPO, repo_type="dataset", private=True, exist_ok=True)
+    if not api.repo_info(RAW_REPO, repo_type="dataset").private:
+        raise RuntimeError(f"{RAW_REPO} is public")
+    have = set(api.list_repo_files(RAW_REPO, repo_type="dataset"))
+    shutil.copy(ROSTER, RAW/"roster.json")
+    suffixes = (".zip", ".json") if args.raw else (".json",)
+    files = [p for p in sorted(RAW.glob("*/*")) if p.suffix in suffixes and p.parent.name != "partial"
+             and f"{p.parent.name}/{p.name}" not in have]
+    for b in range(0, len(files), args.batch):
+        batch = files[b:b+args.batch]
+        patterns = [f"{p.parent.name}/{p.name}" for p in batch]
+        api.upload_folder(repo_id=RAW_REPO, repo_type="dataset", folder_path=str(RAW), allow_patterns=patterns,
+                          commit_message=f"native campaign: +{len(batch)} files")
+        print(time.strftime("%H:%M"), f"uploaded {b+len(batch)}/{len(files)}", flush=True)
+    api.upload_file(path_or_fileobj=str(RAW/"roster.json"), path_in_repo="roster.json", repo_id=RAW_REPO,
+                    repo_type="dataset", commit_message="native campaign roster")
+
+
+def prepare(args):
+    """Training shards (same preprocessing as every earlier shard) for the train or dev split,
+    pushed to the teacher data repo, plus an immutable manifest of the prepared records."""
+    from teacher_pool import prepare as prepare_flight
+    from teacher_store import push_shards, push_manifest, DATA_REPO
+    if "test" in args.split:
+        raise ValueError("the reserved test split is never prepared before a final candidate is frozen")
+    teachers = json.loads((ROOT/"configs/teachers.json").read_text())
+    sensor = json.loads((ROOT/"configs/sensor.json").read_text())
+    sensor.update(width=teachers["model"]["width"], height=teachers["model"]["height"],
+                  portable_pixels="remap", ordered_packet=True)
+    out = Path(args.staging); out.mkdir(parents=True, exist_ok=True)
+    state_path = out/"records.json"
+    state = json.loads(state_path.read_text()) if state_path.exists() else {"records": [], "done": []}
+    for meta_path in sorted(p for s in args.split for p in (RAW/s).glob("*.json")):
+        meta = json.loads(meta_path.read_text())
+        if meta["id"] in state["done"]: continue
+        records, _ = prepare_flight(RAW/meta["split"]/meta["file"],
+                                    {"scene": meta["scene"], "domain": "native-campaign", "tier": meta["regime"],
+                                     "regime": meta["regime"]},
+                                    sensor, teachers["data"]["crops_s"], teachers["seed"], out, gate_flights=False)
+        for r in records:
+            r.update(parent_file=meta["file"], parent_sha256=meta["sha256"], split=meta["split"],
+                     flight_id=meta["id"], seconds=meta["seconds"], flags=meta["audit"]["flags"])
+        state["records"] += records; state["done"].append(meta["id"])
+        state_path.write_text(json.dumps(state, indent=1))
+        print(time.strftime("%H:%M"), meta["id"], len(records), "shards", flush=True)
+    names = {r["file"] for r in state["records"]}
+    push_shards(out, names, DATA_REPO, f"native campaign {'+'.join(args.split)}: {len(names)} shards")
+    print("prepared", len(state["records"]), "records; compose a manifest with teacher_store.py compose")
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("action", choices=("roster", "generate", "upload", "prepare"))
+    parser.add_argument("--worker", type=int, default=0)
+    parser.add_argument("--workers", type=int, default=1)
+    parser.add_argument("--split", nargs="*")
+    parser.add_argument("--limit", type=int)
+    parser.add_argument("--min-free-gb", type=float, default=200)
+    parser.add_argument("--batch", type=int, default=40)
+    parser.add_argument("--raw", action="store_true", help="upload: include the raw archives")
+    parser.add_argument("--staging", default=str(ROOT/"data"/"native-campaign"))
+    args = parser.parse_args()
+    if args.action == "roster":
+        from viobench.tools.datasets.generate.simulation import hssd_scenes
+        roster = build_roster(list(hssd_scenes("train")), list(hssd_scenes("val")))
+        ROSTER.write_text(json.dumps(roster, indent=1) + "\n")
+        from collections import Counter
+        print(Counter(f["split"] for f in roster["flights"]), "flights;",
+              Counter((f["split"], f["catalog"]) for f in roster["flights"]))
+    else:
+        {"generate": generate, "upload": upload, "prepare": prepare}[args.action](args)
+
+
+if __name__ == "__main__":
+    main()

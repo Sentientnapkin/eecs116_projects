@@ -44,8 +44,9 @@ class IndependentYaw(SimConfig):
             raise ValueError("unexpected upstream simulator spec")
         spec = base.read_text().replace(original, text+"\n"+original)
         output = base.parent/f"independent-yaw-{sha256(spec.encode()).hexdigest()[:12]}.h"
-        if not output.exists():
-            output.write_text(spec)
+        if not output.exists():  # atomic: parallel generators may write the same header
+            partial = output.with_name(f"{output.name}.{uuid4().hex}.partial")
+            partial.write_text(spec); partial.replace(output)
         return output
 
 

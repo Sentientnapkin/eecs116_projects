@@ -163,5 +163,30 @@ class Models(unittest.TestCase):
             accelerator._models.clear()
 
 
+
+class NativeCampaign(unittest.TestCase):
+    def test_roster_splits_are_disjoint(self):
+        import json
+        from native_campaign import ROSTER, check_splits
+        flights = json.loads(ROSTER.read_text())["flights"]
+        check_splits(flights)  # raises on any scene shared by splits or a ProcTHOR scene outside its split
+        excluded = {f"ProcTHOR-Train-{i}" for i in [*range(10, 46), *range(150, 162), *range(176, 180)]}
+        self.assertFalse(excluded & {f["scene"] for f in flights})
+        with self.assertRaises(ValueError):
+            check_splits(flights + [dict(flights[0], split="dev")])
+
+    def test_truth_integration_detects_wrong_frame(self):
+        from types import SimpleNamespace
+        from native_campaign import truth_integration_error
+        t = np.arange(400)*.05
+        yaw = .4*t
+        R = np.stack([np.array([[np.cos(a), -np.sin(a), 0], [np.sin(a), np.cos(a), 0], [0, 0, 1]]) for a in yaw])
+        v_body = np.tile([.5, .1, 0.], (len(t), 1))
+        v = np.einsum("nij,nj->ni", R, v_body)
+        p = np.zeros_like(v); p[1:] = np.cumsum(.5*(v[1:]+v[:-1])*.05, axis=0)
+        self.assertLess(truth_integration_error(SimpleNamespace(ft=t, v=v, p=p)), 1e-9)
+        self.assertGreater(truth_integration_error(SimpleNamespace(ft=t, v=v_body, p=p)), .5)
+
+
 if __name__ == "__main__":
     unittest.main()
