@@ -1,0 +1,166 @@
+{
+  "wasm_sha256": "844f358bc733508f440a36ab30632d997b18ff513b56866c02bd832402dcd56c",
+  "split": "campaign-dev",
+  "rows": [
+    {
+      "flight": "dev-103997586_171030666-00",
+      "crop_s": 0,
+      "frames": 1200,
+      "pytorch_ate": 1.204846231120995,
+      "cpp_ate": 1.2048462632486192,
+      "wasm_ate": 1.204846210164366,
+      "max_pixel_delta_by_plane": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "changed_pixels_by_plane": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "imu_delta_max": 0.0,
+      "attitude_delta_max": 9.325873406851315e-15,
+      "state_delta_max": 1.7881393432617188e-07,
+      "python_cpp_position_delta_max_m": 2.806831436246208e-07,
+      "cpp_wasm_position_delta_max_m": 1.3264731288581997e-07,
+      "init_fuel": 100796,
+      "peak_step_fuel": 1074755269,
+      "peak_frame": 662,
+      "wasm_linear_memory_bytes": 67108864,
+      "failed_frames": 0,
+      "filled_frames": 0,
+      "passed": true,
+      "prefix_600_ate": {
+        "wasm": 0.8561309177712965,
+        "pytorch": 0.8561308873671588,
+        "cpp": 0.8561309690106502
+      },
+      "runtime_seconds": 158.89650612697005
+    },
+    {
+      "flight": "dev-104348361_171513414-01",
+      "crop_s": 0,
+      "frames": 1200,
+      "pytorch_ate": 1.686551890499035,
+      "cpp_ate": 1.6865518797389665,
+      "wasm_ate": 1.6865518804775748,
+      "max_pixel_delta_by_plane": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "changed_pixels_by_plane": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "imu_delta_max": 0.0,
+      "attitude_delta_max": 4.9960036108132044e-15,
+      "state_delta_max": 1.1920928955078125e-07,
+      "python_cpp_position_delta_max_m": 3.70822359912032e-07,
+      "cpp_wasm_position_delta_max_m": 8.574777556883837e-08,
+      "init_fuel": 100796,
+      "peak_step_fuel": 1074755634,
+      "peak_frame": 1142,
+      "wasm_linear_memory_bytes": 67108864,
+      "failed_frames": 0,
+      "filled_frames": 0,
+      "passed": true,
+      "prefix_600_ate": {
+        "wasm": 1.497186394547392,
+        "pytorch": 1.4971863863980372,
+        "cpp": 1.497186384465475
+      },
+      "runtime_seconds": 159.67035602778196
+    },
+    {
+      "flight": "dev-ProcTHOR-Train-166-00",
+      "crop_s": 0,
+      "frames": 1200,
+      "pytorch_ate": 1.288954867146113,
+      "cpp_ate": 1.2889546679684638,
+      "wasm_ate": 1.2889546777755432,
+      "max_pixel_delta_by_plane": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "changed_pixels_by_plane": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "imu_delta_max": 0.0,
+      "attitude_delta_max": 8.326672684688674e-15,
+      "state_delta_max": 1.1920928955078125e-07,
+      "python_cpp_position_delta_max_m": 1.11691561707983e-06,
+      "cpp_wasm_position_delta_max_m": 1.2407009266031937e-07,
+      "init_fuel": 101187,
+      "peak_step_fuel": 1074754095,
+      "peak_frame": 1052,
+      "wasm_linear_memory_bytes": 67108864,
+      "failed_frames": 0,
+      "filled_frames": 0,
+      "passed": true,
+      "prefix_600_ate": {
+        "wasm": 0.9255502910426674,
+        "pytorch": 0.9255505313867552,
+        "cpp": 0.9255502447146023
+      },
+      "runtime_seconds": 154.25682074204087
+    },
+    {
+      "flight": "dev-ProcTHOR-Train-167-01",
+      "crop_s": 0,
+      "frames": 1200,
+      "pytorch_ate": 7.508644881895688,
+      "cpp_ate": 7.508644674673736,
+      "wasm_ate": 7.508644684539431,
+      "max_pixel_delta_by_plane": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "changed_pixels_by_plane": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "imu_delta_max": 0.0,
+      "attitude_delta_max": 5.329070518200751e-15,
+      "state_delta_max": 1.4901161193847656e-07,
+      "python_cpp_position_delta_max_m": 7.424353144552942e-07,
+      "cpp_wasm_position_delta_max_m": 1.090362114385496e-07,
+      "init_fuel": 100800,
+      "peak_step_fuel": 1074750744,
+      "peak_frame": 56,
+      "wasm_linear_memory_bytes": 67108864,
+      "failed_frames": 0,
+      "filled_frames": 0,
+      "passed": true,
+      "prefix_600_ate": {
+        "wasm": 5.0370381081353015,
+        "pytorch": 5.037038147022625,
+        "cpp": 5.037038117322601
+      },
+      "runtime_seconds": 157.48765060305595
+    }
+  ]
+}
