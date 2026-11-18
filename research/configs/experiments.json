@@ -194,6 +194,12 @@
       "args": ["--head", "ssm", "--epochs", "36"],
       "note": "Domain follow-up triggered by the predeclared rule (2026-11-18 ~21:40): B-D2-ssm-x3 failed the native dev gate (3-seed mean 1.250 vs 1.095) but improved the 30 s proxy-validation holdout (1.128 vs 1.276, non-overlapping seed ranges). D2's balanced mixture with native share pinned to D0's 21.3%, 3x budget, seeds 217/218/219."
     },
+    "N2-ssm-x3": {
+      "data": "hf:n2-campaign-tiers",
+      "use": ["recipe", "balanced_sampler"],
+      "args": ["--head", "ssm", "--epochs", "36", "--cache-gb", "60"],
+      "note": "Declared 2026-11-18 ~22:00 before composing its data: expanded proxy tiers (d1-expanded-tiers-labeled) plus the 592 campaign train parents, D2's balanced motion mixture, 3x budget, seeds 217/218/219. Compared with N1-ssm-x3 and B-D0-ssm-x3 under the native-campaign block's gates."
+    },
     "N1-ssm-x3": {
       "data": "hf:n1-campaign",
       "use": ["recipe", "original_sampler"],
