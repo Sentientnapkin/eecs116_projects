@@ -99,10 +99,29 @@ def raw_roster(manifest):
         yield from crops
 
 
+def load_control(args):
+    if args.control_wasm is None:
+        return {}
+    report = json.loads(args.control_report.read_text())
+    checkpoint = args.run / "best.safetensors"
+    checkpoint_sha = digest(checkpoint)
+    if "raw" in report:
+        matches = [r for r in report["raw"] if r["checkpoint_sha256"] == checkpoint_sha]
+        if len(matches) != 1:
+            raise ValueError("Expected one control report for this checkpoint")
+        report = matches[0]
+    if digest(args.control_wasm) != report["wasm_sha256"] or checkpoint_sha != report["checkpoint_sha256"]:
+        raise ValueError("Control artifact or checkpoint differs from the verified replay")
+    return {(r["flight"], r["crop_s"]): r for r in report["rows"]}
+
+
 def raw(args, host, sensor, weights):
     engine = Engine()
     rows = []
-    records = raw_roster(json.loads(args.campaign_manifest.read_text()))
+    records = list(raw_roster(json.loads(args.campaign_manifest.read_text())))
+    control_rows = load_control(args)
+    if args.control_wasm and set(control_rows) != {(r["flight_id"], r["crop_s"]) for r in records}:
+        raise ValueError("Control roster differs from the candidate roster")
     for r in records:
         name, crop = r["flight_id"], r["crop_s"]
         archive = args.raw_dev / (name + ".zip")
@@ -115,6 +134,10 @@ def raw(args, host, sensor, weights):
         python = Inputs(sensor, camera, (240, 320), flight.T_bc[:3, :3])
         wasm = Sandbox(args.build / "odometry.wasm", engine, log_dir=args.build / f"{name}-{crop}")
         wasm.init(camera)
+        if args.control_wasm:
+            control = Sandbox(args.control_wasm, engine, log_dir=args.build / f"{name}-{crop}-control")
+            control.init(camera)
+            control_out, control_fuel = np.empty((flight.F, 13)), []
         host.init(camera)
         shape = (5, sensor["height"], sensor["width"])
         images = np.empty(shape, dtype=np.uint8)
@@ -138,6 +161,10 @@ def raw(args, host, sensor, weights):
             result = wasm.step(absolute_t, img, delivered)
             wasm_out[i] = np.r_[result.pose, result.twist]
             fuel.append(result.fuel)
+            if args.control_wasm:
+                baseline = control.step(absolute_t, img, delivered)
+                control_out[i] = np.r_[baseline.pose, baseline.twist]
+                control_fuel.append(baseline.fuel)
             im, u, R, _ = python.step(t, img, packet, "triple_derot")
             image_max = np.maximum(image_max, np.abs(im.astype(np.int16) - images).max(axis=(1, 2)))
             changed_pixels += np.count_nonzero(im != images, axis=(1, 2))
@@ -150,18 +177,35 @@ def raw(args, host, sensor, weights):
                    v=flight.v_body, times=flight.ft, cam_gt=flight.cam_gt, T_bc=flight.T_bc)
         py_p = integrate(model_velocities(args.run, weights, row, "cpu"), row)
         state_delta = max_abs(cpp_out, wasm_out)
-        write_row(rows, dict(flight=name, crop_s=crop, frames=flight.F, pytorch_ate=ate(py_p, row),
-                             cpp_ate=ate(cpp_out[:, :3], row), wasm_ate=ate(wasm_out[:, :3], row),
-                             max_pixel_delta_by_plane=image_max.tolist(),
-                             changed_pixels_by_plane=changed_pixels.tolist(), imu_delta_max=imu_delta,
-                             attitude_delta_max=rotation_delta, state_delta_max=state_delta,
-                             python_cpp_position_delta_max_m=position_delta(py_p, cpp_out[:, :3]),
-                             cpp_wasm_position_delta_max_m=position_delta(cpp_out[:, :3], wasm_out[:, :3]),
-                             init_fuel=wasm.init_fuel, peak_step_fuel=max(fuel), peak_frame=int(np.argmax(fuel)),
-                             wasm_linear_memory_bytes=wasm.memory.data_len(wasm.store),
-                             failed_frames=0, filled_frames=0,
-                             passed=imu_delta <= .00002 and rotation_delta <= 1e-8 and max(image_max) <= 1
-                             and state_delta <= .002))
+        wasm_ate = ate(wasm_out[:, :3], row)
+        result = dict(
+            flight=name, crop_s=crop, frames=flight.F, pytorch_ate=ate(py_p, row),
+            cpp_ate=ate(cpp_out[:, :3], row), wasm_ate=wasm_ate,
+            max_pixel_delta_by_plane=image_max.tolist(), changed_pixels_by_plane=changed_pixels.tolist(),
+            imu_delta_max=imu_delta, attitude_delta_max=rotation_delta, state_delta_max=state_delta,
+            python_cpp_position_delta_max_m=position_delta(py_p, cpp_out[:, :3]),
+            cpp_wasm_position_delta_max_m=position_delta(cpp_out[:, :3], wasm_out[:, :3]),
+            init_fuel=wasm.init_fuel, peak_step_fuel=max(fuel), peak_frame=int(np.argmax(fuel)),
+            wasm_linear_memory_bytes=wasm.memory.data_len(wasm.store), failed_frames=0, filled_frames=0,
+            passed=imu_delta <= .00002 and rotation_delta <= 1e-8 and max(image_max) <= 1 and state_delta <= .002,
+        )
+        if args.control_wasm:
+            archived = control_rows[(name, crop)]
+            control_peak = max(control_fuel)
+            control_ate = ate(control_out[:, :3], row)
+            if (archived["frames"] != flight.F or archived["peak_step_fuel"] != control_peak
+                    or abs(archived["wasm_ate"] - control_ate) > 2e-6):
+                raise ValueError(f"Control replay differs from the verified result on {name}/{crop}")
+            direct_state = max_abs(wasm_out, control_out)
+            direct_pos = position_delta(wasm_out[:, :3], control_out[:, :3])
+            ate_delta = abs(wasm_ate - control_ate)
+            result.update(
+                control_init_fuel=control.init_fuel, control_peak_step_fuel=control_peak, control_wasm_ate=control_ate,
+                control_state_delta_max=direct_state, control_position_delta_max_m=direct_pos, control_ate_delta_m=ate_delta,
+                control_states_bitwise_equal=bool(np.array_equal(wasm_out.view(np.uint64), control_out.view(np.uint64))),
+                passed=result["passed"] and max(fuel) < control_peak and max(direct_state, direct_pos, ate_delta) <= 2e-6,
+            )
+        write_row(rows, result)
     return rows
 
 
@@ -171,10 +215,14 @@ def main():
         parser.add_argument(name, type=Path)
     parser.add_argument("--campaign-manifest", type=Path)
     parser.add_argument("--raw-dev", type=Path)
+    parser.add_argument("--control-wasm", type=Path, help="Verified FP32 control for matched raw metering")
+    parser.add_argument("--control-report", type=Path, help="Versioned FP32 result or per-seed raw.json for the control")
     parser.add_argument("--mode", choices=("prepared", "raw"), required=True)
     args = parser.parse_args()
     if args.mode == "raw" and not (args.campaign_manifest and args.raw_dev):
         parser.error("raw replay needs --campaign-manifest and --raw-dev")
+    if bool(args.control_wasm) != bool(args.control_report) or (args.control_wasm and args.mode != "raw"):
+        parser.error("--control-wasm and --control-report must be supplied together in raw mode")
     if args.output.exists():
         parser.error("output already exists")
     torch.set_num_threads(int(os.environ.get("ODO_CPU_THREADS", "3")))
@@ -191,6 +239,8 @@ def main():
     if args.mode == "raw":
         wasm = args.build / "odometry.wasm"
         report.update(wasm_sha256=digest(wasm), wasm_bytes=wasm.stat().st_size)
+    if args.control_wasm:
+        report.update(control_wasm_sha256=digest(args.control_wasm), control_wasm_bytes=args.control_wasm.stat().st_size)
     args.output.write_text(json.dumps(report, indent=2, allow_nan=False) + "\n")
     print(json.dumps(stats), flush=True)
     return 0 if passed else 1

@@ -50,3 +50,18 @@ ATE is unaligned trajectory RMSE in metres, averaged equally across replays.
 - **Regression checks.** The VIOBench ABI check, synthetic RGB/lever-arm/reset regression, 16 causal tests and 11 CPU odometry tests passed. The CUDA-only checkpoint test was skipped.
 
 [Versioned per-replay results, hashes and runtime versions](../results/eval/native-deploy/b-d0-cpp-fp32.json)
+
+## Convolution SIMD pilot
+
+`--wasm-kernel simd-8x32` uses an 8×32 SIMD128 tile to reuse each weight splat and activation load across more outputs. `--wasm-kernel simd-8x32-k2` additionally unrolls two sequential K iterations. The kernels preserve each lane's FP32 accumulation order with contraction disabled. Shapes outside the wider tile use the existing path. With no option the exporter uses the original 4×16 tile. `--wasm-kernel scalar` builds the scalar path without SIMD128.
+
+To reproduce the bounded comparison, build both candidates and the default control for seed 217, run `python -B -m viobench check "$BUILD/odometry.wasm" --frames 32` on each, and run the synthetic regression above for each build. For the selected variant, replay each seed with these additional options. `CONTROL` is the original 4×16 artifact for that seed.
+
+```bash
+python -B native_odometry/replay.py "$RUN" "$MANIFEST" "$BUILD" "$BUILD/matched-raw.json" --mode raw \
+  --campaign-manifest data/native-campaign/dev-records.json --raw-dev "$RAW_DEV" \
+  --control-wasm "$CONTROL/odometry.wasm" \
+  --control-report results/eval/native-deploy/b-d0-cpp-fp32.json
+```
+
+The matched replay verifies the checkpoint and control WASM hashes. It meters both guests on each of the same delivered observations and checks the control peaks against the verified report. Each frame's full pose and twist are compared.

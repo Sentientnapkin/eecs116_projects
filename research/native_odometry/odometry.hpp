@@ -66,9 +66,54 @@ inline long bind(Weights &w, const float *p) {
 // ---------------------------------------------------------------- numeric kernels
 inline float silu(float x) { return x / (1.0f + std::exp(-x)); }
 
+#if defined(__wasm_simd128__) && defined(ODO_WASM_TILE8X32)
+// The wider tile shares each weight splat across eight vectors and each
+// activation load across eight output channels. Each lane keeps the original
+// K accumulation order. The inner I/J loops are fully unrolled into locals.
+inline void gemm_8x32(const float *A, const float *B, float *C, int M, int K, int N) {
+    constexpr int rows = 8, vectors = 8, lanes = 4;
+    for (int m = 0; m < M; m += rows) {
+        const float *weights[rows];
+#pragma clang loop unroll(full)
+        for (int i = 0; i < rows; ++i) weights[i] = A + (m + i) * K;
+        for (int n = 0; n < N; n += vectors * lanes) {
+            v128_t accum[rows][vectors] = {};
+            const float *b = B + n;
+#if defined(ODO_WASM_UNROLL_K2)
+#pragma clang loop unroll_count(2)
+#endif
+            for (int k = 0; k < K; ++k, b += N) {
+                v128_t input[vectors];
+#pragma clang loop unroll(full)
+                for (int j = 0; j < vectors; ++j) input[j] = wasm_v128_load(b + lanes * j);
+#pragma clang loop unroll(full)
+                for (int i = 0; i < rows; ++i) {
+                    const v128_t w = wasm_v128_load32_splat(weights[i] + k);
+#pragma clang loop unroll(full)
+                    for (int j = 0; j < vectors; ++j)
+                        accum[i][j] = wasm_f32x4_add(accum[i][j], wasm_f32x4_mul(w, input[j]));
+                }
+            }
+#pragma clang loop unroll(full)
+            for (int i = 0; i < rows; ++i) {
+#pragma clang loop unroll(full)
+                for (int j = 0; j < vectors; ++j)
+                    wasm_v128_store(C + (m + i) * N + n + lanes * j, accum[i][j]);
+            }
+        }
+    }
+}
+#endif
+
 // C[m][n] = sum_k A[m][k] B[k][n]  (A: M x K row-major, B: K x N row-major)
 inline void gemm(const float *A, const float *B, float *C, int M, int K, int N) {
 #if defined(__wasm_simd128__)
+#if defined(ODO_WASM_TILE8X32)
+    if (M % 8 == 0 && N % 32 == 0) {
+        gemm_8x32(A, B, C, M, K, N);
+        return;
+    }
+#endif
     if (M % 4 == 0 && N % 16 == 0) {
         for (int m = 0; m < M; m += 4) {
             const float *a0 = A + m * K, *a1 = a0 + K, *a2 = a1 + K, *a3 = a2 + K;

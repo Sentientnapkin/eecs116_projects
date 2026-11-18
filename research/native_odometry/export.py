@@ -11,9 +11,15 @@ from safetensors.numpy import load_file
 import viobench
 
 SOURCE = Path(__file__).resolve().parent
+WASM_KERNEL_FLAGS = {
+    "simd-4x16": ("-msimd128",),
+    "simd-8x32": ("-msimd128", "-DODO_WASM_TILE8X32"),
+    "simd-8x32-k2": ("-msimd128", "-DODO_WASM_TILE8X32", "-DODO_WASM_UNROLL_K2"),
+    "scalar": ("-mno-simd128",),
+}
 
 
-def export(run, manifest, output, wasi_sdk):
+def export(run, manifest, output, wasi_sdk, wasm_kernel="simd-4x16"):
     model = json.loads((run / "config.json").read_text())["model"]
     sensor = json.loads(manifest.read_text())["sensor_config"]
     width, height = (model[key] for key in ("width", "height"))
@@ -105,7 +111,7 @@ def export(run, manifest, output, wasi_sdk):
         assembly = output / "weights.S"
         assembly.write_text('.section .rodata.odo_weights,"",@\n.globl odo_weights\n.p2align 4\n'
                             'odo_weights:\n.incbin "weights.f32"\n.size odo_weights, .-odo_weights\n')
-        subprocess.run([wasi_sdk.resolve() / "bin/clang++", *flags, "-msimd128", "-mexec-model=reactor",
+        subprocess.run([wasi_sdk.resolve() / "bin/clang++", *flags, *WASM_KERNEL_FLAGS[wasm_kernel], "-mexec-model=reactor",
                         "-Wl,--initial-memory=67108864", "-Wl,--strip-debug", "weights.S",
                         "-o", "odometry.wasm"], cwd=output, check=True)
     return counts
@@ -116,8 +122,11 @@ def main():
     for name in ("run", "manifest", "output"):
         parser.add_argument(name, type=Path)
     parser.add_argument("--wasi-sdk", type=Path, help="Path to a VIOBench wasi-sdk installation")
+    parser.add_argument("--wasm-kernel", choices=WASM_KERNEL_FLAGS, default="simd-4x16")
     args = parser.parse_args()
-    print(json.dumps(export(args.run, args.manifest, args.output.resolve(), args.wasi_sdk)))
+    if not args.wasi_sdk and args.wasm_kernel != "simd-4x16":
+        parser.error("--wasm-kernel needs --wasi-sdk")
+    print(json.dumps(export(args.run, args.manifest, args.output, args.wasi_sdk, args.wasm_kernel)))
 
 
 if __name__ == "__main__":
