@@ -24,8 +24,11 @@ from teacher_store import open_store
 from teacher_train import sim3_ate
 
 ROOT = Path(__file__).resolve().parent
-GUEST = Path("/Users/School/Desktop/Fa26 Berkeley/EECS 116/eecs116_projects/.claude/worktrees/"
-             "metric-speed-sources-9eeecc/research/results/20261118T024046Z-robust-guest-7e90eb87")
+# Submitted guest models (only needed for --deployed). Override with TEACHER_GUEST_DIR elsewhere.
+import os
+GUEST = Path(os.environ.get("TEACHER_GUEST_DIR",
+             "/Users/School/Desktop/Fa26 Berkeley/EECS 116/eecs116_projects/.claude/worktrees/"
+             "metric-speed-sources-9eeecc/research/results/20261118T024046Z-robust-guest-7e90eb87"))
 
 
 def umeyama_scale(estimate, truth):
