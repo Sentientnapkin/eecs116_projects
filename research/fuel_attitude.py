@@ -19,6 +19,13 @@ levels, essential RANSAC max iterations, update delay in frames):
   staged6      -DODO_KF_GRID_STAGED with 2 track slices: identical measurement, update 6 frames later
                (staged4/staged6 added 2026-11-19 after the split wasm's stage profile, before running them; same gate
                as split: within +0.010 m of kf_grid on public and campaign dev)
+  staged6r     staged6 plus replay (6th parameter): the delayed update uses the covariance saved at the window's
+               last frame b, then re-integrates the gyro rows of frames b+1..k from the attitude at b with the new
+               bias and re-adds the covariance walk, so the filter state after frame k equals kf_grid's (only the
+               attitudes reported at b+1..k-1 keep the old bias). Dropped if the static window reset the bias in
+               between (kf_grid's reset overrides it too). Added 2026-11-19 after staged6 failed the public gate.
+  staged8r     staged6r with 3 track slices (update 8 frames later)
+  staged6r_r30 / staged6r_r15   staged6r with at most 30 / 15 essential RANSAC iterations (numerics change)
 Gate (predeclared): a numerics-changing arm is acceptable for porting if its 6-model mean full ATE is within +0.010 m of
 `split` on public AND on campaign dev (120 replays). `split` itself is acceptable within +0.010 m of `kf_grid`.
 Which arms are actually ported depends on the measured per-stage fuel of the split wasm (largest stage first).
@@ -38,7 +45,9 @@ from orientation import fit_visual_rotation
 ARMS = {"kf_grid": (10, 21, 3, 500, 0), "split": (10, 21, 3, 500, 2), "split_l2": (10, 21, 2, 500, 2),
         "split_w15": (10, 15, 3, 500, 2), "split_c6": (6, 21, 3, 500, 2), "split_r100": (10, 21, 3, 100, 2),
         "split_lite": (6, 15, 2, 100, 2),
-        "staged4": (10, 21, 3, 500, 4), "staged6": (10, 21, 3, 500, 6)}
+        "staged4": (10, 21, 3, 500, 4), "staged6": (10, 21, 3, 500, 6),
+        "staged6r": (10, 21, 3, 500, 6, True), "staged8r": (10, 21, 3, 500, 8, True),
+        "staged6r_r30": (10, 21, 3, 30, 6, True), "staged6r_r15": (10, 21, 3, 15, 6, True)}
 
 
 def grid_rotation(first, last, K, relative, corners, win, levels, iters):
@@ -83,7 +92,9 @@ def grid_rotation(first, last, K, relative, corners, win, levels, iters):
 
 def attitudes(flight, params):
     """attitude_bias.attitudes(arm="kf_grid") with cost parameters and an update delay (frames)."""
-    corners, win, levels, iters, delay = params
+    corners, win, levels, iters, delay = params[:5]
+    replay = len(params) > 5 and params[5]
+    resets = 0
     cv2.setRNGSeed(217)
     t, windows = flight.ft, flight.win
     K = np.array([[flight.K["fx"], 0, flight.K["cx"]], [0, flight.K["fy"], flight.K["cy"]], [0, 0, 1.]])
@@ -104,6 +115,7 @@ def attitudes(flight, params):
                 if np.linalg.norm(rates.mean(0)) < 0.1 and np.std(rates, 0).max() < 0.12 and \
                         abs(accel.mean() - 9.81) < 0.3 and np.std(accel) < 0.5:
                     bias, P = rates.mean(0), np.full(3, GYRO_WHITE**2 / len(rates) + 1e-8)
+                    resets += 1
                     R, previous = np.eye(3), t[0]
                     for j in range(1, k):
                         R, previous = integrate_packet(R, previous, t[j], windows[j], bias)
@@ -115,12 +127,16 @@ def attitudes(flight, params):
             dt = t[k] - t[anchor]
             relative = R_bc.T @ (out[anchor].T @ R) @ R_bc
             delta, sigma = grid_rotation(images[anchor], images[k], K, relative, corners, win, levels, iters)
-            pending = (k + delay, delta, sigma, dt)
+            pending = (k + delay, delta, sigma, dt, P.copy(), k, resets)
             images[anchor] = None
             anchor = k
         if pending is not None and pending[0] == k:
-            _, delta, sigma, dt = pending
+            _, delta, sigma, dt, P_b, b, resets_b = pending
             pending = None
+            if replay and resets != resets_b:
+                delta = None  # the static-window reset overrode this update in kf_grid as well
+            elif replay:
+                P_now, P = P, P_b
             if delta is not None and np.linalg.norm(delta) <= 0.05:
                 residual = R_bc @ delta
                 sigma = sigma / dt
@@ -128,8 +144,15 @@ def attitudes(flight, params):
                 bias = bias + gain * (-(residual / dt))
                 P = (1 - gain) * P
                 count["accepted"] += 1
+                if replay:
+                    R, previous = out[b], t[b]
+                    for j in range(b + 1, k + 1):
+                        R, previous = integrate_packet(R, previous, t[j], windows[j], bias)
+                        P = P + GYRO_WALK**2 * (t[j] - t[j - 1])
             else:
                 count["rejected"] += 1
+                if replay and resets == resets_b:
+                    P = P_now
         out.append(R.copy())
     return np.stack(out), count
 
