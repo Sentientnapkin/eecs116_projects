@@ -1,0 +1,177 @@
+{
+  "rows": [
+    {
+      "arm": "N2-",
+      "set": "dev-best.json",
+      "source": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/eval/n-series/dev-best.json",
+      "source_sha256": "c87793cde2893d2bd323d18443b1e36735f61e14c363419ec6230e25bee0d2a8",
+      "seeds": 3,
+      "equal_flight_mean_ate": 0.9333666666666667,
+      "ordinary_ate": 1.0065333333333333,
+      "static_start_ate": 0.8713666666666666,
+      "moving_start_ate": 0.9953666666666667
+    },
+    {
+      "arm": "B-D0-",
+      "set": "dev-best.json",
+      "source": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/eval/n-series/dev-best.json",
+      "source_sha256": "c87793cde2893d2bd323d18443b1e36735f61e14c363419ec6230e25bee0d2a8",
+      "seeds": 3,
+      "equal_flight_mean_ate": 1.0949666666666666,
+      "ordinary_ate": 0.9214666666666667,
+      "static_start_ate": 1.0456,
+      "moving_start_ate": 1.1443333333333332
+    },
+    {
+      "arm": "N2-",
+      "set": "proxy-val-best-30s.json",
+      "source": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/eval/n-series/proxy-val-best-30s.json",
+      "source_sha256": "54310a95d353cc0d2c41643509ae162853028cdee9eb3021fa0f09a34819279d",
+      "seeds": 3,
+      "equal_flight_mean_ate": 1.1098333333333332,
+      "ordinary_ate": 1.0600333333333334,
+      "static_start_ate": 1.1098333333333332
+    },
+    {
+      "arm": "B-D0-",
+      "set": "proxy-val-best-30s.json",
+      "source": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/eval/n-series/proxy-val-best-30s.json",
+      "source_sha256": "54310a95d353cc0d2c41643509ae162853028cdee9eb3021fa0f09a34819279d",
+      "seeds": 3,
+      "equal_flight_mean_ate": 1.2764666666666666,
+      "ordinary_ate": 1.1746,
+      "static_start_ate": 1.2764666666666666
+    },
+    {
+      "arm": "N2-",
+      "set": "campaign-dev-best-30s.json",
+      "source": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/eval/n-series/campaign-dev-best-30s.json",
+      "source_sha256": "f7e109c34430b2745b64345db621478ae109fc0a2435976e022f23fcb1617072",
+      "seeds": 3,
+      "equal_flight_mean_ate": 1.0071333333333334,
+      "ordinary_ate": 0.9379333333333333,
+      "static_start_ate": 0.9152333333333333,
+      "moving_start_ate": 1.0990666666666666
+    },
+    {
+      "arm": "B-D0-",
+      "set": "campaign-dev-best-30s.json",
+      "source": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/eval/n-series/campaign-dev-best-30s.json",
+      "source_sha256": "f7e109c34430b2745b64345db621478ae109fc0a2435976e022f23fcb1617072",
+      "seeds": 3,
+      "equal_flight_mean_ate": 1.3533666666666666,
+      "ordinary_ate": 1.1606,
+      "static_start_ate": 1.2419333333333333,
+      "moving_start_ate": 1.4647999999999999
+    },
+    {
+      "arm": "N2-",
+      "set": "campaign-dev-best.json",
+      "source": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/eval/n-series/campaign-dev-best.json",
+      "source_sha256": "8bc965745724373103546e62eec7a75f3697b3329acd490e694a3de74929cbc1",
+      "seeds": 3,
+      "equal_flight_mean_ate": 1.3906,
+      "ordinary_ate": 1.3242666666666667,
+      "static_start_ate": 1.3362333333333334,
+      "moving_start_ate": 1.445
+    },
+    {
+      "arm": "B-D0-",
+      "set": "campaign-dev-best.json",
+      "source": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/eval/n-series/campaign-dev-best.json",
+      "source_sha256": "8bc965745724373103546e62eec7a75f3697b3329acd490e694a3de74929cbc1",
+      "seeds": 3,
+      "equal_flight_mean_ate": 1.8706,
+      "ordinary_ate": 1.6403999999999999,
+      "static_start_ate": 1.8237333333333334,
+      "moving_start_ate": 1.9174666666666667
+    },
+    {
+      "arm": "A-D0-",
+      "set": "dev-best.json",
+      "source": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/agent-a306704d9640bbfb3/research/results/eval/attitude/dev-best.json",
+      "source_sha256": "2349ef199ed6a89f45b97dd9024937c39935e6ab542fa51b16f3775ea9b021ce",
+      "seeds": 3,
+      "equal_flight_mean_ate": 1.1440333333333332,
+      "ordinary_ate": 0.9811333333333333,
+      "static_start_ate": 1.097,
+      "moving_start_ate": 1.1910666666666667
+    },
+    {
+      "arm": "B-D0-",
+      "set": "dev-best.json",
+      "source": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/agent-a306704d9640bbfb3/research/results/eval/attitude/dev-best.json",
+      "source_sha256": "2349ef199ed6a89f45b97dd9024937c39935e6ab542fa51b16f3775ea9b021ce",
+      "seeds": 3,
+      "equal_flight_mean_ate": 1.0949666666666666,
+      "ordinary_ate": 0.9214666666666667,
+      "static_start_ate": 1.0456,
+      "moving_start_ate": 1.1443333333333332
+    },
+    {
+      "arm": "A-D0-",
+      "set": "proxy-val-best-30s.json",
+      "source": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/agent-a306704d9640bbfb3/research/results/eval/attitude/proxy-val-best-30s.json",
+      "source_sha256": "ed302d9cb10396e2287842f003e4b61602dbfa7a8d2a4b0dd23f9788eb8b37b9",
+      "seeds": 3,
+      "equal_flight_mean_ate": 1.3248666666666666,
+      "ordinary_ate": 1.2299333333333333,
+      "static_start_ate": 1.3248666666666666
+    },
+    {
+      "arm": "B-D0-",
+      "set": "proxy-val-best-30s.json",
+      "source": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/agent-a306704d9640bbfb3/research/results/eval/attitude/proxy-val-best-30s.json",
+      "source_sha256": "ed302d9cb10396e2287842f003e4b61602dbfa7a8d2a4b0dd23f9788eb8b37b9",
+      "seeds": 3,
+      "equal_flight_mean_ate": 1.2765,
+      "ordinary_ate": 1.1746,
+      "static_start_ate": 1.2765
+    },
+    {
+      "arm": "A-D0-",
+      "set": "campaign-dev-best-30s.json",
+      "source": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/agent-a306704d9640bbfb3/research/results/eval/attitude/campaign-dev-best-30s.json",
+      "source_sha256": "31152d2f73df841396a98ec7199c4e0b418b0d4131ed019e54d22d4161cde99d",
+      "seeds": 3,
+      "equal_flight_mean_ate": 1.3861666666666668,
+      "ordinary_ate": 1.2058,
+      "static_start_ate": 1.2885666666666666,
+      "moving_start_ate": 1.4837666666666667
+    },
+    {
+      "arm": "B-D0-",
+      "set": "campaign-dev-best-30s.json",
+      "source": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/agent-a306704d9640bbfb3/research/results/eval/attitude/campaign-dev-best-30s.json",
+      "source_sha256": "31152d2f73df841396a98ec7199c4e0b418b0d4131ed019e54d22d4161cde99d",
+      "seeds": 3,
+      "equal_flight_mean_ate": 1.3533666666666666,
+      "ordinary_ate": 1.1606333333333334,
+      "static_start_ate": 1.2419333333333333,
+      "moving_start_ate": 1.4647999999999999
+    },
+    {
+      "arm": "A-D0-",
+      "set": "campaign-dev-best.json",
+      "source": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/agent-a306704d9640bbfb3/research/results/eval/attitude/campaign-dev-best.json",
+      "source_sha256": "cdf418b79943e9652aecb4fdc7572cfe75a233068d38956162a6d9478fcf1409",
+      "seeds": 3,
+      "equal_flight_mean_ate": 1.8203666666666667,
+      "ordinary_ate": 1.6098333333333332,
+      "static_start_ate": 1.8049,
+      "moving_start_ate": 1.8358
+    },
+    {
+      "arm": "B-D0-",
+      "set": "campaign-dev-best.json",
+      "source": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/agent-a306704d9640bbfb3/research/results/eval/attitude/campaign-dev-best.json",
+      "source_sha256": "cdf418b79943e9652aecb4fdc7572cfe75a233068d38956162a6d9478fcf1409",
+      "seeds": 3,
+      "equal_flight_mean_ate": 1.8706,
+      "ordinary_ate": 1.6403999999999999,
+      "static_start_ate": 1.8237333333333334,
+      "moving_start_ate": 1.9174666666666667
+    }
+  ],
+  "decision": "N2 strongest completed measured accuracy, does not qualify original ordinary-dev guardrail; learned attitude fails dev, ordinary and proxy gates; early-native and HP promoted finalists incomplete at audit."
+}
