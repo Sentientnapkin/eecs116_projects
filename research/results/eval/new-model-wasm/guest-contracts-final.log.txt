@@ -1,0 +1,50 @@
+/data/backups/rganapa/Sebastian/venv-teacher/lib/python3.12/site-packages/wasmtime/_slab.py:46: ResourceWarning: unclosed file <_io.FileIO name='results/loop/new-model-wasm/guest-contracts-final/(0.22, -0.1, 0.05)/stdout.txt' mode='wb' closefd=True>
+  self.handles.pop(idx, None)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/data/backups/rganapa/Sebastian/venv-teacher/lib/python3.12/site-packages/wasmtime/_slab.py:46: ResourceWarning: unclosed file <_io.FileIO name='results/loop/new-model-wasm/guest-contracts-final/(0.22, -0.1, 0.05)/stderr.txt' mode='wb' closefd=True>
+  self.handles.pop(idx, None)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./data/backups/rganapa/Sebastian/venv-teacher/lib/python3.12/site-packages/wasmtime/_slab.py:46: ResourceWarning: unclosed file <_io.FileIO name='results/loop/new-model-wasm/guest-contracts-final/(0.012, -0.008, 0.004)/stdout.txt' mode='wb' closefd=True>
+  self.handles.pop(idx, None)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/data/backups/rganapa/Sebastian/venv-teacher/lib/python3.12/site-packages/wasmtime/_slab.py:46: ResourceWarning: unclosed file <_io.FileIO name='results/loop/new-model-wasm/guest-contracts-final/(0.012, -0.008, 0.004)/stderr.txt' mode='wb' closefd=True>
+  self.handles.pop(idx, None)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.F
+======================================================================
+FAIL: test_visual_rotation_updates (__main__.RawInputContracts.test_visual_rotation_updates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/data/backups/rganapa/Sebastian/eecs116_projects/.codex-worktrees/new-model-wasm/research/test_new_model_guest.py", line 70, in test_visual_rotation_updates
+    def test_visual_rotation_updates(self): self.run_case((0., .30, 0.), textured=True)
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/backups/rganapa/Sebastian/eecs116_projects/.codex-worktrees/new-model-wasm/research/test_new_model_guest.py", line 48, in run_case
+    np.testing.assert_allclose(outputs[-1], out, atol=2e-5, rtol=0)
+  File "/data/backups/rganapa/Sebastian/venv-teacher/lib/python3.12/site-packages/numpy/testing/_private/utils.py", line 1780, in assert_allclose
+    assert_array_compare(compare, actual, desired, err_msg=str(err_msg),
+  File "/data/backups/rganapa/Sebastian/venv-teacher/lib/python3.12/site-packages/numpy/testing/_private/utils.py", line 988, in assert_array_compare
+    raise AssertionError(msg)
+AssertionError: 
+Not equal to tolerance rtol=0, atol=2e-05
+
+Mismatched elements: 4 / 13 (30.8%)
+Mismatch at indices:
+ [7]: 0.026415807649025083 (ACTUAL), 0.026380340941754895 (DESIRED)
+ [9]: 0.009391473052912488 (ACTUAL), 0.009434197930966132 (DESIRED)
+ [10]: -0.29878779720640153 (ACTUAL), -0.2987433635411352 (DESIRED)
+ [12]: 0.0007315317371761239 (ACTUAL), 0.0007564185862092229 (DESIRED)
+Max absolute difference among violations: 4.44336653e-05
+Max relative difference among violations: 0.0329009
+ ACTUAL: array([ 1.233120e-01,  6.781584e-02, -9.808454e-02, -7.492971e-02,
+        0.000000e+00,  0.000000e+00,  9.971888e-01,  2.641581e-02,
+        1.367456e-01,  9.391473e-03, -2.987878e-01, -3.048521e-04,
+        7.315317e-04])
+ DESIRED: array([ 1.233112e-01,  6.781597e-02, -9.808343e-02, -7.492971e-02,
+        0.000000e+00,  0.000000e+00,  9.971888e-01,  2.638034e-02,
+        1.367347e-01,  9.434198e-03, -2.987434e-01, -3.243227e-04,
+        7.564186e-04])
+
+----------------------------------------------------------------------
+Ran 3 tests in 7.062s
+
+FAILED (failures=1)

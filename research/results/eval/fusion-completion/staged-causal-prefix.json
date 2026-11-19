@@ -1,0 +1,13 @@
+{
+  "frames": 600,
+  "wasm_sha256": "238f6901e793b8ad88bfee3fa1c322d920302ec1a474904edae0df16ec9b0c51",
+  "source_archive_sha256": "6556c79ab1c493623b09ddee50822277795fd1a3d2bc81cc50515f95825ca56d",
+  "short_archive_sha256": "13792eb9d2373f9c007e732bd2885f0b01244526740feabc9f23545686c8a4ac",
+  "first_timestamp_s": 0.045,
+  "same_timestamps_and_packets": true,
+  "emitted_pose_prefix_exact": true,
+  "emitted_twist_prefix_exact": true,
+  "first_camera_pose_exact": true,
+  "max_pose_component_delta": 0.0,
+  "rule": "No reset at30s; two independently initialized actual guest replays of identical received prefix."
+}

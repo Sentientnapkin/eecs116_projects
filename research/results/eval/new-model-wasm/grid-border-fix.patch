@@ -1,0 +1,15 @@
+--- initial/input_grid_attitude.hpp
++++ corrected/input_grid_attitude.hpp
+@@ -139,7 +139,11 @@
+             for (int gx = 0; gx < 4; ++gx) {
+                 std::vector<cv::Point2f> found;
+                 const cv::Rect cell(gx * w / 4, gy * h / 4, (gx + 1) * w / 4 - gx * w / 4, (gy + 1) * h / 4 - gy * h / 4);
+-                cv::goodFeaturesToTrack(anchor(cell), found, 10, 0.003, 5);
++                // A NumPy image slice becomes an independent Mat in Python.
++                // A C++ ROI retains its parent and may read neighboring cells
++                // while filtering borders. Clone to preserve Python's borders.
++                const cv::Mat isolated = anchor(cell).clone();
++                cv::goodFeaturesToTrack(isolated, found, 10, 0.003, 5);
+                 for (const auto &p : found) points.emplace_back(p.x + cell.x, p.y + cell.y);
+             }
+         if (points.size() < 16) { why = "few corners"; return false; }

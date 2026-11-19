@@ -1,0 +1,242 @@
+{
+  "python_wasm": [
+    {
+      "episode": "sim-ProcTHOR-Train-1-0000",
+      "python_opencv": "4.12.0",
+      "arms": {
+        "kf_grid": {
+          "max_angle_deg": 12.97482758528703,
+          "final_angle_deg": 12.332806700964944,
+          "accepted_wasm": 109,
+          "rejected_wasm": 10,
+          "accepted_python": 112,
+          "rejected_python": 7
+        },
+        "knownrot_a_replace": {
+          "max_angle_deg": 12.97482758528703,
+          "final_angle_deg": 12.332806700964944,
+          "accepted_wasm": 109,
+          "rejected_wasm": 10,
+          "accepted_python": 112,
+          "rejected_python": 7
+        }
+      }
+    },
+    {
+      "episode": "sim-ProcTHOR-Train-1-0001",
+      "python_opencv": "4.12.0",
+      "arms": {
+        "kf_grid": {
+          "max_angle_deg": 15.757052030466367,
+          "final_angle_deg": 15.757052030466367,
+          "accepted_wasm": 102,
+          "rejected_wasm": 17,
+          "accepted_python": 105,
+          "rejected_python": 14
+        },
+        "knownrot_a_replace": {
+          "max_angle_deg": 15.757052030466367,
+          "final_angle_deg": 15.757052030466367,
+          "accepted_wasm": 102,
+          "rejected_wasm": 17,
+          "accepted_python": 105,
+          "rejected_python": 14
+        }
+      }
+    },
+    {
+      "episode": "sim-ProcTHOR-Train-1-0002",
+      "python_opencv": "4.12.0",
+      "arms": {
+        "kf_grid": {
+          "max_angle_deg": 8.720486182923283,
+          "final_angle_deg": 8.720486182923283,
+          "accepted_wasm": 95,
+          "rejected_wasm": 24,
+          "accepted_python": 91,
+          "rejected_python": 28
+        },
+        "knownrot_a_replace": {
+          "max_angle_deg": 8.720486182923283,
+          "final_angle_deg": 8.720486182923283,
+          "accepted_wasm": 95,
+          "rejected_wasm": 24,
+          "accepted_python": 91,
+          "rejected_python": 28
+        }
+      }
+    },
+    {
+      "episode": "sim-ProcTHOR-Train-1-0003",
+      "python_opencv": "4.12.0",
+      "arms": {
+        "kf_grid": {
+          "max_angle_deg": 12.101473182205128,
+          "final_angle_deg": 12.101473182205128,
+          "accepted_wasm": 94,
+          "rejected_wasm": 25,
+          "accepted_python": 100,
+          "rejected_python": 19
+        },
+        "knownrot_a_replace": {
+          "max_angle_deg": 12.101473182205128,
+          "final_angle_deg": 12.101473182205128,
+          "accepted_wasm": 94,
+          "rejected_wasm": 25,
+          "accepted_python": 100,
+          "rejected_python": 19
+        }
+      }
+    },
+    {
+      "episode": "sim-ProcTHOR-Train-1-0004",
+      "python_opencv": "4.12.0",
+      "arms": {
+        "kf_grid": {
+          "max_angle_deg": 12.980781606471357,
+          "final_angle_deg": 9.228944832479428,
+          "accepted_wasm": 91,
+          "rejected_wasm": 28,
+          "accepted_python": 84,
+          "rejected_python": 35
+        },
+        "knownrot_a_replace": {
+          "max_angle_deg": 12.980781606471357,
+          "final_angle_deg": 9.228944832479428,
+          "accepted_wasm": 91,
+          "rejected_wasm": 28,
+          "accepted_python": 84,
+          "rejected_python": 35
+        }
+      }
+    },
+    {
+      "episode": "sim-ProcTHOR-Train-1-0005",
+      "python_opencv": "4.12.0",
+      "arms": {
+        "kf_grid": {
+          "max_angle_deg": 23.687644069402328,
+          "final_angle_deg": 23.687644069402328,
+          "accepted_wasm": 89,
+          "rejected_wasm": 30,
+          "accepted_python": 85,
+          "rejected_python": 34
+        },
+        "knownrot_a_replace": {
+          "max_angle_deg": 23.687644069402328,
+          "final_angle_deg": 23.687644069402328,
+          "accepted_wasm": 89,
+          "rejected_wasm": 30,
+          "accepted_python": 85,
+          "rejected_python": 34
+        }
+      }
+    },
+    {
+      "episode": "sim-ProcTHOR-Train-1-0006",
+      "python_opencv": "4.12.0",
+      "arms": {
+        "kf_grid": {
+          "max_angle_deg": 23.211280463947034,
+          "final_angle_deg": 21.09298744222804,
+          "accepted_wasm": 107,
+          "rejected_wasm": 12,
+          "accepted_python": 103,
+          "rejected_python": 16
+        },
+        "knownrot_a_replace": {
+          "max_angle_deg": 23.211280463947034,
+          "final_angle_deg": 21.09298744222804,
+          "accepted_wasm": 107,
+          "rejected_wasm": 12,
+          "accepted_python": 103,
+          "rejected_python": 16
+        }
+      }
+    },
+    {
+      "episode": "sim-ProcTHOR-Train-1-0007",
+      "python_opencv": "4.12.0",
+      "arms": {
+        "kf_grid": {
+          "max_angle_deg": 27.033240877228486,
+          "final_angle_deg": 27.033240877228486,
+          "accepted_wasm": 83,
+          "rejected_wasm": 36,
+          "accepted_python": 96,
+          "rejected_python": 23
+        },
+        "knownrot_a_replace": {
+          "max_angle_deg": 27.033240877228486,
+          "final_angle_deg": 27.033240877228486,
+          "accepted_wasm": 83,
+          "rejected_wasm": 36,
+          "accepted_python": 96,
+          "rejected_python": 23
+        }
+      }
+    },
+    {
+      "episode": "sim-ProcTHOR-Train-1-0008",
+      "python_opencv": "4.12.0",
+      "arms": {
+        "kf_grid": {
+          "max_angle_deg": 24.982981619713712,
+          "final_angle_deg": 24.982981619713712,
+          "accepted_wasm": 95,
+          "rejected_wasm": 24,
+          "accepted_python": 96,
+          "rejected_python": 23
+        },
+        "knownrot_a_replace": {
+          "max_angle_deg": 24.982981619713712,
+          "final_angle_deg": 24.982981619713712,
+          "accepted_wasm": 95,
+          "rejected_wasm": 24,
+          "accepted_python": 96,
+          "rejected_python": 23
+        }
+      }
+    },
+    {
+      "episode": "sim-ProcTHOR-Train-1-0009",
+      "python_opencv": "4.12.0",
+      "arms": {
+        "kf_grid": {
+          "max_angle_deg": 15.096655189917033,
+          "final_angle_deg": 14.623938281282285,
+          "accepted_wasm": 88,
+          "rejected_wasm": 31,
+          "accepted_python": 92,
+          "rejected_python": 27
+        },
+        "knownrot_a_replace": {
+          "max_angle_deg": 15.096655189917033,
+          "final_angle_deg": 14.623938281282285,
+          "accepted_wasm": 88,
+          "rejected_wasm": 31,
+          "accepted_python": 92,
+          "rejected_python": 27
+        }
+      }
+    }
+  ],
+  "native_wasm": {
+    "episode": "sim-ProcTHOR-Train-1-0000",
+    "native_opencv": "4.13.0",
+    "wasm_opencv": "4.12.0",
+    "max_position_delta_m": 0.05111766388277042,
+    "final_position_delta_m": 0.04947266630223215
+  },
+  "note": "Numerical acceptance parity is measured, never inferred from aggregate ATE.",
+  "native_wasm_same_version": {
+    "episode": "sim-ProcTHOR-Train-1-0000",
+    "native_opencv": "4.12.0",
+    "wasm_opencv": "4.12.0",
+    "reset_causal_prefix_exact": true,
+    "first_camera_pose_exact": true,
+    "max_position_delta_m": 0.051117663882662964,
+    "final_position_delta_m": 0.04947266630207468,
+    "build": "native shared OpenCV4.12.0 from same source as Wasm; distinct native CPU backend"
+  }
+}

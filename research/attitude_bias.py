@@ -80,10 +80,15 @@ def grid_rotation(first, last, K, relative):
         if fit is None or fit[1] > 0.012:
             return None, "rotation fit"
         return fit[0], 0.002
-    E, mask = cv2.findEssentialMat(old, new, K, method=cv2.RANSAC, prob=0.999, threshold=1.0, maxIters=500)
-    if E is None or E.shape != (3, 3):
-        return None, "essential"
-    count, old_to_new, _, cheiral = cv2.recoverPose(E, old, new, K, mask=mask)
+    try:
+        E, mask = cv2.findEssentialMat(old, new, K, method=cv2.RANSAC, prob=0.999, threshold=1.0, maxIters=500)
+        if E is None or E.shape != (3, 3):
+            return None, "essential"
+        count, old_to_new, _, cheiral = cv2.recoverPose(E, old, new, K, mask=mask)
+    except cv2.error:
+        # Degenerate polynomial/pose solve supplies no usable visual measurement.
+        # Continue causal IMU propagation; never replace it with truth or a fit.
+        return None, "essential-degenerate"
     if count < max(12, 0.5 * len(old)):
         return None, "cheirality"
     return cv2.Rodrigues(relative.T @ old_to_new.T)[0].ravel(), 0.004

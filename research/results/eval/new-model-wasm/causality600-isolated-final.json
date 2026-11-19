@@ -1,0 +1,9 @@
+{
+  "wasm_sha256": "8b05b203adc1f045b67df12399ee6b9e0caf28015b7d31678f5378968e2d60cf",
+  "frames": 600,
+  "emitted_pose_and_twist_prefix_exact": true,
+  "max_component_delta": 0.0,
+  "first_camera_pose_exact": true,
+  "first_camera_timestamp": 0.045,
+  "future_measurements_supplied": false
+}

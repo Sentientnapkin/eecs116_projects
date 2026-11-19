@@ -647,11 +647,17 @@ struct Inputs {
 #ifdef ODO_KF_GRID
 #include "kf_grid.hpp"
 #endif
+#ifdef ODO_INPUT_KF_GRID
+#include "new_model_inputs.hpp"
+#endif
 namespace odo {
 
 // ---------------------------------------------------------------- estimator (streaming.Estimator)
 struct Estimator {
     Inputs in;
+#ifdef ODO_INPUT_KF_GRID
+    NewModelInputs input_policy;
+#endif
     Net net;
     M3 R_bc;
     double offset[3], position[3] = {0, 0, 0}, last_v[3] = {0, 0, 0}, last_t = 0, time_origin = 0;
@@ -662,6 +668,10 @@ struct Estimator {
 #ifdef ODO_KF_GRID
     GridAttitude att;
     double relative_packet[7 * 256];
+#ifdef ODO_VEL_FUSION
+    double cam_anchor[3] = {0, 0, 0};
+    int fused = 0;
+#endif
 #endif
 
     // T_cam_imu: 4x4 row-major
@@ -672,6 +682,9 @@ struct Estimator {
         mv(R_bc, tvec, offset);
         for (double &o : offset) o = -o;
         in.init(width, height, fx, fy, cx, cy, R_bc);
+#ifdef ODO_INPUT_KF_GRID
+        input_policy.init(fx, fy, cx, cy, R_bc);
+#endif
 #ifdef ODO_KF_GRID
         att.init(fx, fy, cx, cy, R_bc);
 #endif
@@ -687,6 +700,9 @@ struct Estimator {
         }
         t -= time_origin;
         R = in.step(t, rgb, packet, n, images, imu, time_origin);
+#ifdef ODO_INPUT_KF_GRID
+        R = input_policy.step(t, rgb, in.sw, in.sh, packet, n, time_origin, R, images, imu, !have_v);
+#endif
         net.step(images, imu, vb);
 #ifdef ODO_KF_GRID
         // Integrate (and report) with the visual-bias attitude; the network's inputs above are unchanged.
@@ -701,6 +717,27 @@ struct Estimator {
         double v[3];
         mv(R, v64, v);
         if (have_v) for (int i = 0; i < 3; ++i) position[i] += .5 * (t - last_t) * (v[i] + last_v[i]);
+#ifdef ODO_VEL_FUSION
+        // vel_fusion.py a_replace (knownrot): at each 0.5 s window end, the window's camera displacement keeps the
+        // network's length and takes the visual direction; applied as a causal jump at the window's last frame.
+        {
+            double ro0[3], cam[3];
+            mv(R, offset, ro0);
+            for (int i = 0; i < 3; ++i) cam[i] = position[i] + ro0[i];
+            if (!have_v) std::memcpy(cam_anchor, cam, sizeof cam);
+            if (att.window_done) {
+                att.window_done = false;
+                double d[3], m = 0;
+                for (int i = 0; i < 3; ++i) { d[i] = cam[i] - cam_anchor[i]; m += d[i] * d[i]; }
+                m = std::sqrt(m);
+                if (att.dir_valid && m >= 0.05) {
+                    for (int i = 0; i < 3; ++i) { const double jump = m * att.dir_world[i] - d[i]; position[i] += jump; cam[i] += jump; }
+                    ++fused;
+                }
+                std::memcpy(cam_anchor, cam, sizeof cam);
+            }
+        }
+#endif
         last_t = t; have_v = true;
         std::memcpy(last_v, v, sizeof v);
         double ro[3], p[3];
@@ -718,7 +755,9 @@ struct Estimator {
         else { double s = std::sqrt(1.0 + q(2, 2) - q(0, 0) - q(1, 1)) * 2; qw = (q(1, 0) - q(0, 1)) / s; qx = (q(0, 2) + q(2, 0)) / s; qy = (q(1, 2) + q(2, 1)) / s; qz = .25 * s; }
         out[3] = qx; out[4] = qy; out[5] = qz; out[6] = qw;
         double ang[3] = {0, 0, 0};
-#ifdef ODO_KF_GRID
+#ifdef ODO_INPUT_KF_GRID
+        const double *tb = input_policy.att.bias;
+#elif defined(ODO_KF_GRID)
         const double *tb = att.bias;
 #else
         const double tb[3] = {in.orient.bias[0] + in.orient.learned[0], in.orient.bias[1] + in.orient.learned[1], in.orient.bias[2] + in.orient.learned[2]};
