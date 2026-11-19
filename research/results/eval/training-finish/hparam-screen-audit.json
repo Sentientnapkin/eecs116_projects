@@ -1,0 +1,258 @@
+{
+ "metric": "training-time best-EMA dev selection score; not independent final full-replay ATE",
+ "configurations": 21,
+ "rows": {
+  "lr1e-4": {
+   "218": {
+    "selection_score": 1.4873896334674475,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-lr1e-4-e12-s218-hpfast"
+   },
+   "217": {
+    "selection_score": 1.4932125595743861,
+    "epoch": 2,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-lr1e-4-e12-s217-hpfast"
+   }
+  },
+  "lr1e-3": {
+   "218": {
+    "selection_score": 1.2580577725866688,
+    "epoch": 10,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-lr1e-3-e12-s218-hpfast"
+   },
+   "217": {
+    "selection_score": 1.1645940510512607,
+    "epoch": 11,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-lr1e-3-e12-s217-hpfast"
+   }
+  },
+  "burn48": {
+   "218": {
+    "selection_score": 1.5207253422358622,
+    "epoch": 4,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-burn48-e12-s218-hpfast"
+   },
+   "217": {
+    "selection_score": 1.3594031141356395,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-burn48-e12-s217-hpfast"
+   }
+  },
+  "warm0": {
+   "218": {
+    "selection_score": 1.3842500044503576,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-warm0-e12-s218-hpfast"
+   },
+   "217": {
+    "selection_score": 1.302947425247575,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-warm0-e12-s217-hpfast"
+   }
+  },
+  "lr6e-4": {
+   "218": {
+    "selection_score": 1.25680172178767,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-lr6e-4-e12-s218-hpfast"
+   },
+   "217": {
+    "selection_score": 1.1803676078041543,
+    "epoch": 11,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-lr6e-4-e12-s217-hpfast"
+   }
+  },
+  "wd0": {
+   "218": {
+    "selection_score": 1.4270350288334495,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-wd0-e12-s218-hpfast"
+   },
+   "217": {
+    "selection_score": 1.2047134807992796,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-wd0-e12-s217-hpfast"
+   }
+  },
+  "clip5": {
+   "218": {
+    "selection_score": 1.5459646273622525,
+    "epoch": 4,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-clip5-e12-s218-hpfast"
+   },
+   "217": {
+    "selection_score": 1.2533502433626844,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-clip5-e12-s217-hpfast"
+   }
+  },
+  "w96": {
+   "218": {
+    "selection_score": 1.48768688748094,
+    "epoch": 4,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-w96-e12-s218-hpfast"
+   },
+   "217": {
+    "selection_score": 1.404854679761105,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-w96-e12-s217-hpfast"
+   }
+  },
+  "ema999": {
+   "218": {
+    "selection_score": 1.6304346038744084,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-ema999-e12-s218-hpfast"
+   },
+   "217": {
+    "selection_score": 1.4817952902216645,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-ema999-e12-s217-hpfast"
+   }
+  },
+  "cnn-narrow": {
+   "218": {
+    "selection_score": 1.237023614264165,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-cnn-narrow-e12-s218-hpfast"
+   },
+   "217": {
+    "selection_score": 1.3531586119446712,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-cnn-narrow-e12-s217-hpfast"
+   }
+  },
+  "w128-h4": {
+   "218": {
+    "selection_score": 1.4367827136656968,
+    "epoch": 4,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-w128-h4-e12-s218-hpfast"
+   },
+   "217": {
+    "selection_score": 1.4779360780331312,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-w128-h4-e12-s217-hpfast"
+   }
+  },
+  "wd1e-1": {
+   "218": {
+    "selection_score": 1.4306125196372648,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-wd1e-1-e12-s218-hpfast"
+   },
+   "217": {
+    "selection_score": 1.2026676236662215,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-wd1e-1-e12-s217-hpfast"
+   }
+  },
+  "h-long": {
+   "218": {
+    "selection_score": 1.4585133623534916,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-h-long-e12-s218-hpfast"
+   },
+   "217": {
+    "selection_score": 1.2776788658078075,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-h-long-e12-s217-hpfast"
+   }
+  },
+  "cnn-wide": {
+   "218": {
+    "selection_score": 1.317608691463143,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-cnn-wide-e12-s218-hpfast"
+   },
+   "217": {
+    "selection_score": 1.1801644952780974,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-cnn-wide-e12-s217-hpfast"
+   }
+  },
+  "warm2": {
+   "217": {
+    "selection_score": 1.3189213481177549,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-warm2-e12-s217-hpfast"
+   },
+   "218": {
+    "selection_score": 1.425427024679872,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-warm2-e12-s218-hpfast"
+   }
+  },
+  "h4": {
+   "217": {
+    "selection_score": 1.250862768372939,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-h4-e12-s217-hpfast"
+   },
+   "218": {
+    "selection_score": 1.460169075167148,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-h4-e12-s218-hpfast"
+   }
+  },
+  "base": {
+   "217": {
+    "selection_score": 1.1955449006730898,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-base-e12-s217-hpfast"
+   },
+   "218": {
+    "selection_score": 1.4275967753126722,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-base-e12-s218-hpfast"
+   }
+  },
+  "clip03": {
+   "218": {
+    "selection_score": 1.4453912546388565,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-clip03-e12-s218-hpfast"
+   },
+   "217": {
+    "selection_score": 1.2525909942851783,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-clip03-e12-s217-hpfast"
+   }
+  },
+  "ema99": {
+   "217": {
+    "selection_score": 1.1663705080416604,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-ema99-e12-s217-hpfast"
+   },
+   "218": {
+    "selection_score": 1.3935067697814403,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-ema99-e12-s218-hpfast"
+   }
+  },
+  "w128": {
+   "218": {
+    "selection_score": 1.4415631954393242,
+    "epoch": 4,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-w128-e12-s218-hpfast"
+   },
+   "217": {
+    "selection_score": 1.476690391776264,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-w128-e12-s217-hpfast"
+   }
+  },
+  "burn16": {
+   "218": {
+    "selection_score": 1.2767711309899012,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-burn16-e12-s218-hpfast"
+   },
+   "217": {
+    "selection_score": 1.1460739622820115,
+    "epoch": 12,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/loop/HP-burn16-e12-s217-hpfast"
+   }
+  }
+ }
+}

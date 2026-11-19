@@ -1,0 +1,14 @@
+{
+  "static08": {
+    "matching_ordered_records": 1784,
+    "train": 1770,
+    "development": 14,
+    "same_sampler_order_and_truth_records": true
+  },
+  "kf_grid_native": {
+    "matching_ordered_records": 1784,
+    "train": 1770,
+    "development": 14,
+    "same_sampler_order_and_truth_records": true
+  }
+}

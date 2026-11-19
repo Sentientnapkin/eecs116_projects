@@ -1,0 +1,758 @@
+[
+ {
+  "policy": "rolling",
+  "seed": 217,
+  "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/retrain-attitude/research/results/loop/RA-N2-control-x3",
+  "best_weights_sha256": "beff308f2c9b1bd825d46df74f43edd08671903a82beb277e526eabab5d36f68",
+  "run_manifest_sha256": "aedf43f23823cbdce09e8d9d64bfab008ecaeab33302c5e76d69db8bb048ffc5",
+  "config_sha256": "aaec1556327ab94d44966205d3f01751b8299ac3fde20456cc23faefb06ccfd5",
+  "training_identity": {
+   "data_manifest_sha256": "a23bde11e6d4364ef2a3a3eb179f81a1f6cc88c63d9ef08d2fb8a41ec8b2799a",
+   "model": {
+    "head": "ssm",
+    "width": 128,
+    "height": 96,
+    "channels": [
+     24,
+     48,
+     96,
+     128
+    ],
+    "embedding": 128,
+    "hidden": 256,
+    "layers": 2,
+    "states": 16,
+    "correlation": true,
+    "correlation_radius": 2,
+    "frame_chunk": 48,
+    "ssm_scan": "prefix",
+    "ssm_chunk": 96,
+    "channels_last": true,
+    "compile_correlation": true
+   },
+   "seed": 217,
+   "training": {
+    "batch_size": 2,
+    "accumulation": 1,
+    "window_frames": 64,
+    "burn_in": 32,
+    "windows_per_parent": 2,
+    "learning_rate": 0.0003,
+    "horizons": [
+     0.25,
+     1,
+     3
+    ],
+    "cpu_threads": 4,
+    "distillation_weight": 0.2,
+    "weight_ema": 0.995,
+    "schedule": "cosine",
+    "warmup_epochs": 0.5,
+    "patience": 0,
+    "sampler": {
+     "mode": "balanced",
+     "windows_per_epoch": 244,
+     "per_parent_cap": 4,
+     "mixture": {
+      "startup": 0.15,
+      "uniform": 0.35,
+      "backward": 0.15,
+      "lateral": 0.15,
+      "braking": 0.05,
+      "turning": 0.05,
+      "vertical": 0.05,
+      "hover": 0.05
+     }
+    },
+    "preload": true,
+    "eval_flights": 7,
+    "tf32": true,
+    "mixed_precision": "bf16",
+    "report_throughput": true,
+    "fused_adamw": true,
+    "deferred_loss_check": true
+   },
+   "world_size": 1,
+   "teacher_sha256": null
+  },
+  "sources": {
+   "odometry_train.py": "ad80b67143a601b14ed7b3cb6ae52e091e68ea396a25d39c4462df8aa6d639cc",
+   "odometry_models.py": "5b175e6f113f033ef596c33fed249bc8cf7e56c094213132dad76273280608fa",
+   "odometry_data.py": "2a86cbd5d7b1a56fd43002330b7c2b0b173a10695c4ce2c1964b72042f8a3d01"
+  },
+  "epochs": 36,
+  "optimizer_updates": 4392
+ },
+ {
+  "policy": "rolling",
+  "seed": 218,
+  "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.codex-worktrees/training-finish/research/results/loop/RA-N2-control-x3-s218-codexfinish",
+  "best_weights_sha256": "f7774daba722bd1331c72ec53b2af18266c5c7c4ae01cf5a39706082c2a91290",
+  "run_manifest_sha256": "704456869d692921ac0425aec7e89451db285fa287196ee82b9cc32f0a2b09f7",
+  "config_sha256": "97a4e62efca708b40e1d591d2bff57b748ac2c8827c24aaa9df081c2aec4962a",
+  "training_identity": {
+   "data_manifest_sha256": "a23bde11e6d4364ef2a3a3eb179f81a1f6cc88c63d9ef08d2fb8a41ec8b2799a",
+   "model": {
+    "head": "ssm",
+    "width": 128,
+    "height": 96,
+    "channels": [
+     24,
+     48,
+     96,
+     128
+    ],
+    "embedding": 128,
+    "hidden": 256,
+    "layers": 2,
+    "states": 16,
+    "correlation": true,
+    "correlation_radius": 2,
+    "frame_chunk": 48,
+    "ssm_scan": "prefix",
+    "ssm_chunk": 96,
+    "channels_last": true,
+    "compile_correlation": true
+   },
+   "seed": 218,
+   "training": {
+    "batch_size": 2,
+    "accumulation": 1,
+    "window_frames": 64,
+    "burn_in": 32,
+    "windows_per_parent": 2,
+    "learning_rate": 0.0003,
+    "horizons": [
+     0.25,
+     1,
+     3
+    ],
+    "cpu_threads": 4,
+    "distillation_weight": 0.2,
+    "weight_ema": 0.995,
+    "schedule": "cosine",
+    "warmup_epochs": 0.5,
+    "patience": 0,
+    "sampler": {
+     "mode": "balanced",
+     "windows_per_epoch": 244,
+     "per_parent_cap": 4,
+     "mixture": {
+      "startup": 0.15,
+      "uniform": 0.35,
+      "backward": 0.15,
+      "lateral": 0.15,
+      "braking": 0.05,
+      "turning": 0.05,
+      "vertical": 0.05,
+      "hover": 0.05
+     }
+    },
+    "preload": true,
+    "eval_flights": 7,
+    "tf32": true,
+    "mixed_precision": "bf16",
+    "report_throughput": true,
+    "fused_adamw": true,
+    "deferred_loss_check": true
+   },
+   "world_size": 1,
+   "teacher_sha256": null
+  },
+  "sources": {
+   "odometry_train.py": "ad80b67143a601b14ed7b3cb6ae52e091e68ea396a25d39c4462df8aa6d639cc",
+   "odometry_models.py": "5b175e6f113f033ef596c33fed249bc8cf7e56c094213132dad76273280608fa",
+   "odometry_data.py": "2a86cbd5d7b1a56fd43002330b7c2b0b173a10695c4ce2c1964b72042f8a3d01"
+  },
+  "epochs": 36,
+  "optimizer_updates": 4392
+ },
+ {
+  "policy": "rolling",
+  "seed": 219,
+  "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.codex-worktrees/training-finish/research/results/loop/RA-N2-control-x3-s219-codexfinish",
+  "best_weights_sha256": "24a2459f698eafb3784ca8cbba9fe990b8f1cc92f61c6127298b2882cc3d79a4",
+  "run_manifest_sha256": "c080c183b7e6b0645d3406dd237a0481ab1d7c2ef996108fb446fdc7fa195013",
+  "config_sha256": "d1d9750a238a7a1c353923fc5a2d3399718df3f32c598e70bf2b06c20999b2e5",
+  "training_identity": {
+   "data_manifest_sha256": "a23bde11e6d4364ef2a3a3eb179f81a1f6cc88c63d9ef08d2fb8a41ec8b2799a",
+   "model": {
+    "head": "ssm",
+    "width": 128,
+    "height": 96,
+    "channels": [
+     24,
+     48,
+     96,
+     128
+    ],
+    "embedding": 128,
+    "hidden": 256,
+    "layers": 2,
+    "states": 16,
+    "correlation": true,
+    "correlation_radius": 2,
+    "frame_chunk": 48,
+    "ssm_scan": "prefix",
+    "ssm_chunk": 96,
+    "channels_last": true,
+    "compile_correlation": true
+   },
+   "seed": 219,
+   "training": {
+    "batch_size": 2,
+    "accumulation": 1,
+    "window_frames": 64,
+    "burn_in": 32,
+    "windows_per_parent": 2,
+    "learning_rate": 0.0003,
+    "horizons": [
+     0.25,
+     1,
+     3
+    ],
+    "cpu_threads": 4,
+    "distillation_weight": 0.2,
+    "weight_ema": 0.995,
+    "schedule": "cosine",
+    "warmup_epochs": 0.5,
+    "patience": 0,
+    "sampler": {
+     "mode": "balanced",
+     "windows_per_epoch": 244,
+     "per_parent_cap": 4,
+     "mixture": {
+      "startup": 0.15,
+      "uniform": 0.35,
+      "backward": 0.15,
+      "lateral": 0.15,
+      "braking": 0.05,
+      "turning": 0.05,
+      "vertical": 0.05,
+      "hover": 0.05
+     }
+    },
+    "preload": true,
+    "eval_flights": 7,
+    "tf32": true,
+    "mixed_precision": "bf16",
+    "report_throughput": true,
+    "fused_adamw": true,
+    "deferred_loss_check": true
+   },
+   "world_size": 1,
+   "teacher_sha256": null
+  },
+  "sources": {
+   "odometry_train.py": "ad80b67143a601b14ed7b3cb6ae52e091e68ea396a25d39c4462df8aa6d639cc",
+   "odometry_models.py": "5b175e6f113f033ef596c33fed249bc8cf7e56c094213132dad76273280608fa",
+   "odometry_data.py": "2a86cbd5d7b1a56fd43002330b7c2b0b173a10695c4ce2c1964b72042f8a3d01"
+  },
+  "epochs": 36,
+  "optimizer_updates": 4392
+ },
+ {
+  "policy": "static08",
+  "seed": 217,
+  "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.codex-worktrees/training-finish/research/results/loop/RA-N2-static08-x3-codexfinish",
+  "best_weights_sha256": "d60b94aaaeb1b77f70007722cdc9eb93651ca03562667c0586d43f183a0a0ae5",
+  "run_manifest_sha256": "42b85aafb1ad59de38bbc16dc8c248dda369bd4d776eed961fc9cd3c59b3d814",
+  "config_sha256": "aaec1556327ab94d44966205d3f01751b8299ac3fde20456cc23faefb06ccfd5",
+  "training_identity": {
+   "data_manifest_sha256": "6b339a71bdeb3401762f6078520f9926b2daaaabd660ca2eead05a3c420d0da3",
+   "model": {
+    "head": "ssm",
+    "width": 128,
+    "height": 96,
+    "channels": [
+     24,
+     48,
+     96,
+     128
+    ],
+    "embedding": 128,
+    "hidden": 256,
+    "layers": 2,
+    "states": 16,
+    "correlation": true,
+    "correlation_radius": 2,
+    "frame_chunk": 48,
+    "ssm_scan": "prefix",
+    "ssm_chunk": 96,
+    "channels_last": true,
+    "compile_correlation": true
+   },
+   "seed": 217,
+   "training": {
+    "batch_size": 2,
+    "accumulation": 1,
+    "window_frames": 64,
+    "burn_in": 32,
+    "windows_per_parent": 2,
+    "learning_rate": 0.0003,
+    "horizons": [
+     0.25,
+     1,
+     3
+    ],
+    "cpu_threads": 4,
+    "distillation_weight": 0.2,
+    "weight_ema": 0.995,
+    "schedule": "cosine",
+    "warmup_epochs": 0.5,
+    "patience": 0,
+    "sampler": {
+     "mode": "balanced",
+     "windows_per_epoch": 244,
+     "per_parent_cap": 4,
+     "mixture": {
+      "startup": 0.15,
+      "uniform": 0.35,
+      "backward": 0.15,
+      "lateral": 0.15,
+      "braking": 0.05,
+      "turning": 0.05,
+      "vertical": 0.05,
+      "hover": 0.05
+     }
+    },
+    "preload": true,
+    "eval_flights": 7,
+    "tf32": true,
+    "mixed_precision": "bf16",
+    "report_throughput": true,
+    "fused_adamw": true,
+    "deferred_loss_check": true
+   },
+   "world_size": 1,
+   "teacher_sha256": null
+  },
+  "sources": {
+   "odometry_train.py": "ad80b67143a601b14ed7b3cb6ae52e091e68ea396a25d39c4462df8aa6d639cc",
+   "odometry_models.py": "5b175e6f113f033ef596c33fed249bc8cf7e56c094213132dad76273280608fa",
+   "odometry_data.py": "2a86cbd5d7b1a56fd43002330b7c2b0b173a10695c4ce2c1964b72042f8a3d01"
+  },
+  "epochs": 36,
+  "optimizer_updates": 4392
+ },
+ {
+  "policy": "static08",
+  "seed": 218,
+  "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.codex-worktrees/training-finish/research/results/loop/RA-N2-static08-x3-s218-codexfinish",
+  "best_weights_sha256": "067bd74861e63141a361891ee3658af507e54ecd4d395d65b33dbd2dbb796950",
+  "run_manifest_sha256": "a3f8db2ca0c57643fa8b0d4e774567954a1021ba54cb611581e96fba00897313",
+  "config_sha256": "97a4e62efca708b40e1d591d2bff57b748ac2c8827c24aaa9df081c2aec4962a",
+  "training_identity": {
+   "data_manifest_sha256": "6b339a71bdeb3401762f6078520f9926b2daaaabd660ca2eead05a3c420d0da3",
+   "model": {
+    "head": "ssm",
+    "width": 128,
+    "height": 96,
+    "channels": [
+     24,
+     48,
+     96,
+     128
+    ],
+    "embedding": 128,
+    "hidden": 256,
+    "layers": 2,
+    "states": 16,
+    "correlation": true,
+    "correlation_radius": 2,
+    "frame_chunk": 48,
+    "ssm_scan": "prefix",
+    "ssm_chunk": 96,
+    "channels_last": true,
+    "compile_correlation": true
+   },
+   "seed": 218,
+   "training": {
+    "batch_size": 2,
+    "accumulation": 1,
+    "window_frames": 64,
+    "burn_in": 32,
+    "windows_per_parent": 2,
+    "learning_rate": 0.0003,
+    "horizons": [
+     0.25,
+     1,
+     3
+    ],
+    "cpu_threads": 4,
+    "distillation_weight": 0.2,
+    "weight_ema": 0.995,
+    "schedule": "cosine",
+    "warmup_epochs": 0.5,
+    "patience": 0,
+    "sampler": {
+     "mode": "balanced",
+     "windows_per_epoch": 244,
+     "per_parent_cap": 4,
+     "mixture": {
+      "startup": 0.15,
+      "uniform": 0.35,
+      "backward": 0.15,
+      "lateral": 0.15,
+      "braking": 0.05,
+      "turning": 0.05,
+      "vertical": 0.05,
+      "hover": 0.05
+     }
+    },
+    "preload": true,
+    "eval_flights": 7,
+    "tf32": true,
+    "mixed_precision": "bf16",
+    "report_throughput": true,
+    "fused_adamw": true,
+    "deferred_loss_check": true
+   },
+   "world_size": 1,
+   "teacher_sha256": null
+  },
+  "sources": {
+   "odometry_train.py": "ad80b67143a601b14ed7b3cb6ae52e091e68ea396a25d39c4462df8aa6d639cc",
+   "odometry_models.py": "5b175e6f113f033ef596c33fed249bc8cf7e56c094213132dad76273280608fa",
+   "odometry_data.py": "2a86cbd5d7b1a56fd43002330b7c2b0b173a10695c4ce2c1964b72042f8a3d01"
+  },
+  "epochs": 36,
+  "optimizer_updates": 4392
+ },
+ {
+  "policy": "static08",
+  "seed": 219,
+  "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.codex-worktrees/training-finish/research/results/loop/RA-N2-static08-x3-s219-codexfinish",
+  "best_weights_sha256": "e3b43dd2ef2b8e70ebc56fd27c4de746a99a5a36952e50e58d21343c288e8d23",
+  "run_manifest_sha256": "1cf67070153ee5f97146e4b457e3e028c1ba142d93d7305dcf914d7c385a31ae",
+  "config_sha256": "d1d9750a238a7a1c353923fc5a2d3399718df3f32c598e70bf2b06c20999b2e5",
+  "training_identity": {
+   "data_manifest_sha256": "6b339a71bdeb3401762f6078520f9926b2daaaabd660ca2eead05a3c420d0da3",
+   "model": {
+    "head": "ssm",
+    "width": 128,
+    "height": 96,
+    "channels": [
+     24,
+     48,
+     96,
+     128
+    ],
+    "embedding": 128,
+    "hidden": 256,
+    "layers": 2,
+    "states": 16,
+    "correlation": true,
+    "correlation_radius": 2,
+    "frame_chunk": 48,
+    "ssm_scan": "prefix",
+    "ssm_chunk": 96,
+    "channels_last": true,
+    "compile_correlation": true
+   },
+   "seed": 219,
+   "training": {
+    "batch_size": 2,
+    "accumulation": 1,
+    "window_frames": 64,
+    "burn_in": 32,
+    "windows_per_parent": 2,
+    "learning_rate": 0.0003,
+    "horizons": [
+     0.25,
+     1,
+     3
+    ],
+    "cpu_threads": 4,
+    "distillation_weight": 0.2,
+    "weight_ema": 0.995,
+    "schedule": "cosine",
+    "warmup_epochs": 0.5,
+    "patience": 0,
+    "sampler": {
+     "mode": "balanced",
+     "windows_per_epoch": 244,
+     "per_parent_cap": 4,
+     "mixture": {
+      "startup": 0.15,
+      "uniform": 0.35,
+      "backward": 0.15,
+      "lateral": 0.15,
+      "braking": 0.05,
+      "turning": 0.05,
+      "vertical": 0.05,
+      "hover": 0.05
+     }
+    },
+    "preload": true,
+    "eval_flights": 7,
+    "tf32": true,
+    "mixed_precision": "bf16",
+    "report_throughput": true,
+    "fused_adamw": true,
+    "deferred_loss_check": true
+   },
+   "world_size": 1,
+   "teacher_sha256": null
+  },
+  "sources": {
+   "odometry_train.py": "ad80b67143a601b14ed7b3cb6ae52e091e68ea396a25d39c4462df8aa6d639cc",
+   "odometry_models.py": "5b175e6f113f033ef596c33fed249bc8cf7e56c094213132dad76273280608fa",
+   "odometry_data.py": "2a86cbd5d7b1a56fd43002330b7c2b0b173a10695c4ce2c1964b72042f8a3d01"
+  },
+  "epochs": 36,
+  "optimizer_updates": 4392
+ },
+ {
+  "policy": "kf_grid_native_runtime_repaired",
+  "seed": 217,
+  "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.codex-worktrees/training-finish/research/results/loop/RA-N2-kfgrid-x3-codexfinish",
+  "best_weights_sha256": "113606c7b21f4f1b3b726f20036c3f7208d56f5bab5e129cf67fb520702f9bbc",
+  "run_manifest_sha256": "80850695aa7cd2916a258b7dba05f0cc373f3a1f052873cbf7440d499f911441",
+  "config_sha256": "aaec1556327ab94d44966205d3f01751b8299ac3fde20456cc23faefb06ccfd5",
+  "training_identity": {
+   "data_manifest_sha256": "9fa9e458a4e2799c1723b9789670ea7e12edca4d29cbf8fd578339573b1545d7",
+   "model": {
+    "head": "ssm",
+    "width": 128,
+    "height": 96,
+    "channels": [
+     24,
+     48,
+     96,
+     128
+    ],
+    "embedding": 128,
+    "hidden": 256,
+    "layers": 2,
+    "states": 16,
+    "correlation": true,
+    "correlation_radius": 2,
+    "frame_chunk": 48,
+    "ssm_scan": "prefix",
+    "ssm_chunk": 96,
+    "channels_last": true,
+    "compile_correlation": true
+   },
+   "seed": 217,
+   "training": {
+    "batch_size": 2,
+    "accumulation": 1,
+    "window_frames": 64,
+    "burn_in": 32,
+    "windows_per_parent": 2,
+    "learning_rate": 0.0003,
+    "horizons": [
+     0.25,
+     1,
+     3
+    ],
+    "cpu_threads": 4,
+    "distillation_weight": 0.2,
+    "weight_ema": 0.995,
+    "schedule": "cosine",
+    "warmup_epochs": 0.5,
+    "patience": 0,
+    "sampler": {
+     "mode": "balanced",
+     "windows_per_epoch": 244,
+     "per_parent_cap": 4,
+     "mixture": {
+      "startup": 0.15,
+      "uniform": 0.35,
+      "backward": 0.15,
+      "lateral": 0.15,
+      "braking": 0.05,
+      "turning": 0.05,
+      "vertical": 0.05,
+      "hover": 0.05
+     }
+    },
+    "preload": true,
+    "eval_flights": 7,
+    "tf32": true,
+    "mixed_precision": "bf16",
+    "report_throughput": true,
+    "fused_adamw": true,
+    "deferred_loss_check": true
+   },
+   "world_size": 1,
+   "teacher_sha256": null
+  },
+  "sources": {
+   "odometry_train.py": "ad80b67143a601b14ed7b3cb6ae52e091e68ea396a25d39c4462df8aa6d639cc",
+   "odometry_models.py": "5b175e6f113f033ef596c33fed249bc8cf7e56c094213132dad76273280608fa",
+   "odometry_data.py": "2a86cbd5d7b1a56fd43002330b7c2b0b173a10695c4ce2c1964b72042f8a3d01"
+  },
+  "epochs": 36,
+  "optimizer_updates": 4392
+ },
+ {
+  "policy": "kf_grid_native_runtime_repaired",
+  "seed": 218,
+  "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.codex-worktrees/training-finish/research/results/loop/RA-N2-kfgrid-x3-s218-codexfinish",
+  "best_weights_sha256": "bb3ef9f3223dafb1f7d5d38f4568e5260275884f998eb95210645523433972a4",
+  "run_manifest_sha256": "d0eb861a01c6b237a206a5213cf7baa112312ef3ef92aaa1efc448e270a634c7",
+  "config_sha256": "97a4e62efca708b40e1d591d2bff57b748ac2c8827c24aaa9df081c2aec4962a",
+  "training_identity": {
+   "data_manifest_sha256": "9fa9e458a4e2799c1723b9789670ea7e12edca4d29cbf8fd578339573b1545d7",
+   "model": {
+    "head": "ssm",
+    "width": 128,
+    "height": 96,
+    "channels": [
+     24,
+     48,
+     96,
+     128
+    ],
+    "embedding": 128,
+    "hidden": 256,
+    "layers": 2,
+    "states": 16,
+    "correlation": true,
+    "correlation_radius": 2,
+    "frame_chunk": 48,
+    "ssm_scan": "prefix",
+    "ssm_chunk": 96,
+    "channels_last": true,
+    "compile_correlation": true
+   },
+   "seed": 218,
+   "training": {
+    "batch_size": 2,
+    "accumulation": 1,
+    "window_frames": 64,
+    "burn_in": 32,
+    "windows_per_parent": 2,
+    "learning_rate": 0.0003,
+    "horizons": [
+     0.25,
+     1,
+     3
+    ],
+    "cpu_threads": 4,
+    "distillation_weight": 0.2,
+    "weight_ema": 0.995,
+    "schedule": "cosine",
+    "warmup_epochs": 0.5,
+    "patience": 0,
+    "sampler": {
+     "mode": "balanced",
+     "windows_per_epoch": 244,
+     "per_parent_cap": 4,
+     "mixture": {
+      "startup": 0.15,
+      "uniform": 0.35,
+      "backward": 0.15,
+      "lateral": 0.15,
+      "braking": 0.05,
+      "turning": 0.05,
+      "vertical": 0.05,
+      "hover": 0.05
+     }
+    },
+    "preload": true,
+    "eval_flights": 7,
+    "tf32": true,
+    "mixed_precision": "bf16",
+    "report_throughput": true,
+    "fused_adamw": true,
+    "deferred_loss_check": true
+   },
+   "world_size": 1,
+   "teacher_sha256": null
+  },
+  "sources": {
+   "odometry_train.py": "ad80b67143a601b14ed7b3cb6ae52e091e68ea396a25d39c4462df8aa6d639cc",
+   "odometry_models.py": "5b175e6f113f033ef596c33fed249bc8cf7e56c094213132dad76273280608fa",
+   "odometry_data.py": "2a86cbd5d7b1a56fd43002330b7c2b0b173a10695c4ce2c1964b72042f8a3d01"
+  },
+  "epochs": 36,
+  "optimizer_updates": 4392
+ },
+ {
+  "policy": "kf_grid_native_runtime_repaired",
+  "seed": 219,
+  "run": "/data/backups/rganapa/Sebastian/eecs116_projects/.codex-worktrees/training-finish/research/results/loop/RA-N2-kfgrid-x3-s219-codexfinish",
+  "best_weights_sha256": "8e80f558774addd97e7dae1dca842802b8a5fcfe9d6fe06c7c34e171f90d1c31",
+  "run_manifest_sha256": "01f58a1acaa84a9a167c0949f0fe2b7af3306afcd5a57433bc8e455a39d309fe",
+  "config_sha256": "d1d9750a238a7a1c353923fc5a2d3399718df3f32c598e70bf2b06c20999b2e5",
+  "training_identity": {
+   "data_manifest_sha256": "9fa9e458a4e2799c1723b9789670ea7e12edca4d29cbf8fd578339573b1545d7",
+   "model": {
+    "head": "ssm",
+    "width": 128,
+    "height": 96,
+    "channels": [
+     24,
+     48,
+     96,
+     128
+    ],
+    "embedding": 128,
+    "hidden": 256,
+    "layers": 2,
+    "states": 16,
+    "correlation": true,
+    "correlation_radius": 2,
+    "frame_chunk": 48,
+    "ssm_scan": "prefix",
+    "ssm_chunk": 96,
+    "channels_last": true,
+    "compile_correlation": true
+   },
+   "seed": 219,
+   "training": {
+    "batch_size": 2,
+    "accumulation": 1,
+    "window_frames": 64,
+    "burn_in": 32,
+    "windows_per_parent": 2,
+    "learning_rate": 0.0003,
+    "horizons": [
+     0.25,
+     1,
+     3
+    ],
+    "cpu_threads": 4,
+    "distillation_weight": 0.2,
+    "weight_ema": 0.995,
+    "schedule": "cosine",
+    "warmup_epochs": 0.5,
+    "patience": 0,
+    "sampler": {
+     "mode": "balanced",
+     "windows_per_epoch": 244,
+     "per_parent_cap": 4,
+     "mixture": {
+      "startup": 0.15,
+      "uniform": 0.35,
+      "backward": 0.15,
+      "lateral": 0.15,
+      "braking": 0.05,
+      "turning": 0.05,
+      "vertical": 0.05,
+      "hover": 0.05
+     }
+    },
+    "preload": true,
+    "eval_flights": 7,
+    "tf32": true,
+    "mixed_precision": "bf16",
+    "report_throughput": true,
+    "fused_adamw": true,
+    "deferred_loss_check": true
+   },
+   "world_size": 1,
+   "teacher_sha256": null
+  },
+  "sources": {
+   "odometry_train.py": "ad80b67143a601b14ed7b3cb6ae52e091e68ea396a25d39c4462df8aa6d639cc",
+   "odometry_models.py": "5b175e6f113f033ef596c33fed249bc8cf7e56c094213132dad76273280608fa",
+   "odometry_data.py": "2a86cbd5d7b1a56fd43002330b7c2b0b173a10695c4ce2c1964b72042f8a3d01"
+  },
+  "epochs": 36,
+  "optimizer_updates": 4392
+ }
+]

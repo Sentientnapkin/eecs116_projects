@@ -1,6 +1,56 @@
 {
   "_doc": "Experiment definitions. Each entry resolves to odometry_train.py arguments: --config configs/odometry.json, --data <data>, then 'args'. Shared blocks are referenced by name in 'use'. Decision gates are declared before results exist.",
   "blocks": {
+    "retrain_attitude_recipe": [
+      "--head",
+      "ssm",
+      "--epochs",
+      "36",
+      "--set",
+      "model.compile_correlation=true"
+    ],
+    "throughput_common": [
+      "--head",
+      "ssm",
+      "--set",
+      "training.preload=true",
+      "--set",
+      "training.eval_flights=7",
+      "--set",
+      "training.tf32=true",
+      "--set",
+      "training.mixed_precision=\"bf16\""
+    ],
+    "throughput_prefix": [
+      "--set",
+      "training.report_throughput=true",
+      "--set",
+      "model.ssm_scan=\"prefix\"",
+      "--set",
+      "model.ssm_chunk=96",
+      "--set",
+      "model.frame_chunk=48",
+      "--set",
+      "model.channels_last=true",
+      "--set",
+      "training.fused_adamw=true",
+      "--set",
+      "training.deferred_loss_check=true",
+      "--set",
+      "training.batch_size=2",
+      "--set",
+      "training.accumulation=1"
+    ],
+    "throughput_batch4": [
+      "--set",
+      "model.frame_chunk=96",
+      "--set",
+      "training.batch_size=4",
+      "--set",
+      "training.learning_rate=0.0004242640687",
+      "--set",
+      "training.weight_ema=0.990025"
+    ],
     "recipe": [
       "--cache-gb",
       "20",
@@ -48,6 +98,8 @@
     "architecture_block": "T-series runs use D0 data and recipe; each is compared scene-paired to D0-ssm (seed 217) with the same screen (>=10% lower dev mean unaligned ATE), the ordinary-motion guardrail, and the 30 s proxy-validation criterion as a second, independent check. If the D-series selects expanded data, the T-series is rerun on it instead.",
     "native_campaign_block": "N1-ssm-x3 vs B-D0-ssm-x3, three seeds each, decided on three-seed means: screen >=10% lower development mean unaligned ATE and the ordinary-motion guardrail; independent checks are the 30 s proxy-validation criterion and campaign-dev (new flights in ProcTHOR 166-171 and in 15 never-used HSSD Val43 houses, reported separately). The reserved campaign test split (ProcTHOR 162-165/172-175, 28 HSSD Val43 houses) stays unscored.",
     "visual_attitude_block": "Freeze the B-D0 best checkpoints for seeds 217/218/219 and replay their exact same body-frame velocities through baseline and causal visual-corrected attitude. Use 0.5 s non-overlapping image pairs; require spatially spread forward/backward LK tracks, gate the direct rotation fit to low residual flow, and use a translation-aware essential-matrix fit only with adequate cheirality, support, and estimated parallax. Apply 0.35 gain and reject corrections over 0.12 rad. Primary dev gate: >=10% lower three-seed mean unaligned ATE and <=5% regression on ordinary flights and each start group. Report nominal/static and 5 s moving starts separately; check campaign-dev 30 s by catalog and start. Only passing candidates advance to hybrid on the learned-attitude rotations, holding that candidate's velocities fixed between hybrid arms, and to C/C++ WebAssembly peak fuel measurement. No reserved-test replay.",
+    "retrain_attitude_block": "Declared 2026-11-19 before any training or evaluation of these arms (branch odometry/retrain-attitude). Question: does the velocity network improve when its INPUTS (gyro-derotated image history, bias-corrected gyro and sub-packet features, bias/activated features, and the row attitude it integrates through) use a better causal attitude, rather than only integrating frozen velocities through it (attitude_bias.py)? Data: N2 (n2-campaign-tiers, 1,770 train + 14 dev records), because the compiled recipe trains a fixed 244 windows/epoch so N2 costs the same GPU time as D0 and N2 is the strongest model family; input shards are re-derived from the existing rolling shards by input_attitude.py (no raw for proxy parents on this machine; identity check reproduces rolling shards; derived static08 attitude matches attitude_bias static08 on raw campaign dev: 15.31 vs 15.31 deg mean error). Arms, all with the same compiled recipe (B-speed-compiled-x3 options + N2's balanced sampler, 36 epochs, 244 windows/epoch), seeds 217/218/219: RA-N2-control-x3 (original rolling shards), RA-N2-static08-x3 (static08 input attitude), RA-N2-kfgrid-x3 (kf_grid_native: ungated kf_grid at native resolution where raw exists = all 1,184 campaign train records, campaign dev, public; kf_grid at 128x96 for proxy/native parents, D0 dev and proxy-val, which validation showed is weaker: 12.0 vs 6.1 deg public). Each arm's own derived eval shards are used for dev, proxy-val (first 30 s) and campaign-dev (30 s and full); public (10 flights) via --set records. Primary question metric: three-seed mean unaligned ATE on campaign-dev full with every model integrated through the SAME native ungated kf_grid attitude (attitude_bias.py arm kf_grid), arm vs control; an input change 'helps' if >=5% lower with ordinary-motion and both start groups not >5% worse; public with kf_grid integration is a secondary diagnostic. Also reported: each model integrated through its own row attitude (deployable as-is), dev, proxy-val 30 s, campaign 30 s, per seed, ProcTHOR/HSSD, static/moving, ordinary/backward-lateral, velocity metrics. Null results are reported as such.",
+    "throughput_block": "D0 timing pilots (seed 217) use the existing 244 windows and same model, comparing median steady-state epoch (train + development replay), timings per component, and peak GPU memory. Timing-pilot accuracy is diagnostic. The fastest successful steady-state pilot among prefix, compiled, and batch4 advances to its matching B-speed trial. The full 36-epoch candidate is compared at equal scored frame exposure against B-D0-ssm-x3, over seeds 217/218/219, with a development ATE tolerance of +5%, ordinary-motion guardrail, and proxy-val 30 s as independent check. Target is 10x per epoch-equivalent. Report GPU count and separate initialization/compile time.",
     "proxy_validation_criterion": "Declared 2026-11-18 ~15:30, before any D1/D2 result: the proxy-validation holdout is scored on each replay's first 30 s (benchmark flight length; odometry_eval.py --set proxy-val --max-seconds 30), scene-paired against the control. The full 90 s score is a long-horizon diagnostic only: there even true velocity through our attitude scores 1.04 m, so it mostly measures attitude drift."
   },
   "datasets": {
@@ -56,6 +108,180 @@
     "d1-expanded-tiers-labeled": "Same shards and splits as d1-expanded-tiers, with domain/tier labels from the audited ledger (needed for domain_share)."
   },
   "experiments": {
+    "RA-N2-control-x3": {
+      "data": "/data/backups/rganapa/Sebastian/retrain-attitude-data/rolling/n2",
+      "use": [
+        "recipe",
+        "balanced_sampler",
+        "throughput_common",
+        "throughput_prefix",
+        "retrain_attitude_recipe"
+      ],
+      "args": [],
+      "note": "Matched control: compiled recipe on the original N2 rolling-policy shards (hard links). Seeds 217/218/219; retrain_attitude_block."
+    },
+    "RA-N2-static08-x3": {
+      "data": "/data/backups/rganapa/Sebastian/retrain-attitude-data/static08/n2",
+      "use": [
+        "recipe",
+        "balanced_sampler",
+        "throughput_common",
+        "throughput_prefix",
+        "retrain_attitude_recipe"
+      ],
+      "args": [],
+      "note": "N2 shards re-derived with static08 input attitude (input_attitude.py). Seeds 217/218/219; retrain_attitude_block."
+    },
+    "RA-N2-kfgrid-x3": {
+      "data": "/data/backups/rganapa/Sebastian/eecs116_projects/.codex-worktrees/training-finish/research/results/loop/training-finish/kf_grid_native/n2",
+      "use": [
+        "recipe",
+        "balanced_sampler",
+        "throughput_common",
+        "throughput_prefix",
+        "retrain_attitude_recipe"
+      ],
+      "args": [],
+      "note": "N2 shards re-derived with kf_grid_native input attitude (input_attitude.py). Seeds 217/218/219; retrain_attitude_block."
+    },
+    "P-speed-control": {
+      "data": "hf:teacher-full",
+      "use": [
+        "recipe",
+        "original_sampler"
+      ],
+      "args": [
+        "--head",
+        "ssm",
+        "--epochs",
+        "3"
+      ],
+      "note": "GPU timing control, original B-D0 recipe, seed 217."
+    },
+    "P-speed-parallel": {
+      "data": "hf:teacher-full",
+      "use": [
+        "recipe",
+        "original_sampler",
+        "throughput_common"
+      ],
+      "args": [
+        "--epochs",
+        "3",
+        "--set",
+        "model.ssm_scan=\"parallel\"",
+        "--set",
+        "model.frame_chunk=32"
+      ],
+      "note": "Matched effective batch timing pilot for chunked parallel SSM, batched replay, preloading, TF32 and BF16; seed 217."
+    },
+    "P-speed-prefix": {
+      "data": "hf:teacher-full",
+      "use": [
+        "recipe",
+        "original_sampler",
+        "throughput_common",
+        "throughput_prefix"
+      ],
+      "args": [
+        "--epochs",
+        "3"
+      ],
+      "note": "Same number of windows per optimizer update as control. Fused optimizer, reduced host synchronization, channels-last CNN, prefix scan and batched replay."
+    },
+    "P-speed-compiled": {
+      "data": "hf:teacher-full",
+      "use": [
+        "recipe",
+        "original_sampler",
+        "throughput_common",
+        "throughput_prefix"
+      ],
+      "args": [
+        "--epochs",
+        "3",
+        "--set",
+        "model.compile_correlation=true"
+      ],
+      "note": "Same as P-speed-prefix, plus torch.compile on the local correlation operator. Include cold compile time separately."
+    },
+    "B-speed-prefix-x3": {
+      "data": "hf:teacher-full",
+      "use": [
+        "recipe",
+        "original_sampler",
+        "throughput_common",
+        "throughput_prefix"
+      ],
+      "args": [
+        "--epochs",
+        "36"
+      ],
+      "note": "36 epochs and 244 windows per epoch. Candidate for the throughput block; seeds 217/218/219."
+    },
+    "B-speed-compiled-x3": {
+      "data": "hf:teacher-full",
+      "use": [
+        "recipe",
+        "original_sampler",
+        "throughput_common",
+        "throughput_prefix"
+      ],
+      "args": [
+        "--epochs",
+        "36",
+        "--set",
+        "model.compile_correlation=true"
+      ],
+      "note": "36 epochs and 244 windows per epoch. Candidate for the throughput block; seeds 217/218/219."
+    },
+    "P-speed-batch4": {
+      "data": "hf:teacher-full",
+      "use": [
+        "recipe",
+        "original_sampler",
+        "throughput_common",
+        "throughput_prefix",
+        "throughput_batch4"
+      ],
+      "args": [
+        "--epochs",
+        "3"
+      ],
+      "note": "Larger-batch saturation probe. Equal exposure, batch 4 versus batch 2. LR multiplied by sqrt(2), EMA per-step decay squared to preserve smoothing in seen windows."
+    },
+    "B-speed-batch4-x3": {
+      "data": "hf:teacher-full",
+      "use": [
+        "recipe",
+        "original_sampler",
+        "throughput_common",
+        "throughput_prefix",
+        "throughput_batch4"
+      ],
+      "args": [
+        "--epochs",
+        "36"
+      ],
+      "note": "36 epochs at the batch-4 pilot recipe. Equal scored exposure with fewer updates; seeds 217/218/219."
+    },
+    "P-speed-ddp": {
+      "data": "hf:teacher-full",
+      "use": [
+        "recipe",
+        "original_sampler",
+        "throughput_common",
+        "throughput_prefix",
+        "throughput_batch4"
+      ],
+      "args": [
+        "--epochs",
+        "3",
+        "--set",
+        "training.split_batches=true"
+      ],
+      "note": "Strong-scaling pilot for 1/2/4 H100s. Split each global batch of four across ranks, keeping seed, frames, 61 updates per epoch and LR fixed. Compare steady-state train time, development replay time and GPU-hours separately."
+    },
     "D0-ssm": {
       "data": "hf:teacher-full",
       "use": [
@@ -137,74 +363,172 @@
     },
     "T-ssm4": {
       "data": "hf:teacher-full",
-      "use": ["recipe", "original_sampler"],
-      "args": ["--head", "ssm", "--set", "model.layers=4"],
+      "use": [
+        "recipe",
+        "original_sampler"
+      ],
+      "args": [
+        "--head",
+        "ssm",
+        "--set",
+        "model.layers=4"
+      ],
       "note": "Architecture block (declared 2026-11-18 before D1/D2 results; control D0-ssm, same data/recipe/budget): 4-layer SSM, 1.432M params."
     },
     "T-ssm2e148": {
       "data": "hf:teacher-full",
-      "use": ["recipe", "original_sampler"],
-      "args": ["--head", "ssm", "--set", "model.embedding=148"],
+      "use": [
+        "recipe",
+        "original_sampler"
+      ],
+      "args": [
+        "--head",
+        "ssm",
+        "--set",
+        "model.embedding=148"
+      ],
       "note": "Parameter-matched 2-layer control for T-ssm4 (1.441M)."
     },
     "T-grures2": {
       "data": "hf:teacher-full",
-      "use": ["recipe", "original_sampler"],
-      "args": ["--set", "model.head=\"gru_res\""],
+      "use": [
+        "recipe",
+        "original_sampler"
+      ],
+      "args": [
+        "--set",
+        "model.head=\"gru_res\""
+      ],
       "note": "Pre-norm residual GRU stack, 2 layers, 1.340M."
     },
     "T-grures4": {
       "data": "hf:teacher-full",
-      "use": ["recipe", "original_sampler"],
-      "args": ["--set", "model.head=\"gru_res\"", "--set", "model.layers=4"],
+      "use": [
+        "recipe",
+        "original_sampler"
+      ],
+      "args": [
+        "--set",
+        "model.head=\"gru_res\"",
+        "--set",
+        "model.layers=4"
+      ],
       "note": "Residual GRU, 4 layers, 1.538M."
     },
     "T-grussm": {
       "data": "hf:teacher-full",
-      "use": ["recipe", "original_sampler"],
-      "args": ["--set", "model.head=\"gru_ssm\""],
+      "use": [
+        "recipe",
+        "original_sampler"
+      ],
+      "args": [
+        "--set",
+        "model.head=\"gru_ssm\""
+      ],
       "note": "Hybrid: 1 residual GRU then 1 SSM block, 1.313M."
     },
     "T-ssm-w240": {
       "data": "hf:teacher-full",
-      "use": ["recipe", "original_sampler"],
-      "args": ["--head", "ssm", "--set", "training.window_frames=240", "--set", "training.sampler={\"mode\":\"original\",\"windows_per_epoch\":66}"],
+      "use": [
+        "recipe",
+        "original_sampler"
+      ],
+      "args": [
+        "--head",
+        "ssm",
+        "--set",
+        "training.window_frames=240",
+        "--set",
+        "training.sampler={\"mode\":\"original\",\"windows_per_epoch\":66}"
+      ],
       "note": "12 s scored context (240 frames + 32 burn-in), 66 windows/epoch so scored frames match the budget within 1.4% (66x240=15,840 vs 244x64=15,616 per epoch; the original sampler needs an even count, so the first launch with 65 crashed). Optimizer updates are fewer; that is the cost of longer context at equal data exposure."
     },
     "B-D0-ssm-x3": {
       "data": "hf:teacher-full",
-      "use": ["recipe", "original_sampler"],
-      "args": ["--head", "ssm", "--epochs", "36"],
+      "use": [
+        "recipe",
+        "original_sampler"
+      ],
+      "args": [
+        "--head",
+        "ssm",
+        "--epochs",
+        "36"
+      ],
       "note": "Budget follow-up (declared 2026-11-18 ~19:00 after D results, before running): D0 at 3x optimizer updates (4,392). D0 was still improving steeply at epoch 12 and D1/D2 saw each parent ~5x less often, so equal-budget results may reflect undertraining of the larger dataset."
     },
     "B-D2-ssm-x3": {
       "data": "hf:d1-expanded-tiers",
-      "use": ["recipe", "balanced_sampler"],
-      "args": ["--head", "ssm", "--epochs", "36"],
+      "use": [
+        "recipe",
+        "balanced_sampler"
+      ],
+      "args": [
+        "--head",
+        "ssm",
+        "--epochs",
+        "36"
+      ],
       "note": "Budget follow-up: D2 at 3x updates. Gate: same screen and guardrail against B-D0-ssm-x3 (equal budget), plus the 30 s proxy-validation criterion."
     },
     "P-imu-blind": {
       "data": "hf:teacher-full",
-      "use": ["recipe", "original_sampler"],
-      "args": ["--head", "ssm", "--set", "model.imu_blind=true"],
+      "use": [
+        "recipe",
+        "original_sampler"
+      ],
+      "args": [
+        "--head",
+        "ssm",
+        "--set",
+        "model.imu_blind=true"
+      ],
       "note": "Probe (plan step 6): D0-ssm with direct IMU features zeroed (frame interval kept). Measures what the network takes from the IMU beyond derotation; compare with D0-ssm and gru-blind (images blanked)."
     },
     "B-D2n-ssm-x3": {
       "data": "hf:d1-expanded-tiers-labeled",
-      "use": ["recipe", "balanced_native213"],
-      "args": ["--head", "ssm", "--epochs", "36"],
+      "use": [
+        "recipe",
+        "balanced_native213"
+      ],
+      "args": [
+        "--head",
+        "ssm",
+        "--epochs",
+        "36"
+      ],
       "note": "Domain follow-up triggered by the predeclared rule (2026-11-18 ~21:40): B-D2-ssm-x3 failed the native dev gate (3-seed mean 1.250 vs 1.095) but improved the 30 s proxy-validation holdout (1.128 vs 1.276, non-overlapping seed ranges). D2's balanced mixture with native share pinned to D0's 21.3%, 3x budget, seeds 217/218/219."
     },
     "N2-ssm-x3": {
       "data": "hf:n2-campaign-tiers",
-      "use": ["recipe", "balanced_sampler"],
-      "args": ["--head", "ssm", "--epochs", "36", "--cache-gb", "60"],
+      "use": [
+        "recipe",
+        "balanced_sampler"
+      ],
+      "args": [
+        "--head",
+        "ssm",
+        "--epochs",
+        "36",
+        "--cache-gb",
+        "60"
+      ],
       "note": "Declared 2026-11-18 ~22:00 before composing its data: expanded proxy tiers (d1-expanded-tiers-labeled) plus the 592 campaign train parents, D2's balanced motion mixture, 3x budget, seeds 217/218/219. Compared with N1-ssm-x3 and B-D0-ssm-x3 under the native-campaign block's gates."
     },
     "N1-ssm-x3": {
       "data": "hf:n1-campaign",
-      "use": ["recipe", "original_sampler"],
-      "args": ["--head", "ssm", "--epochs", "36", "--cache-gb", "60"],
+      "use": [
+        "recipe",
+        "original_sampler"
+      ],
+      "args": [
+        "--head",
+        "ssm",
+        "--epochs",
+        "36",
+        "--cache-gb",
+        "60"
+      ],
       "note": "Native campaign (declared 2026-11-18 ~20:30, before the data were composed): teacher-full-labeled plus the campaign's train flights (ProcTHOR 0-9/46-149/180-199 + HSSD Train125, 30-90 s, 25% independent yaw). Control B-D0-ssm-x3 at the same 4,392 updates. Seeds 217/218/219 for both arms."
     }
   }

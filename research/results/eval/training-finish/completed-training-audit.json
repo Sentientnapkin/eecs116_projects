@@ -1,0 +1,344 @@
+[
+  {
+    "file": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/eval/hparam-fast/dev-best.json",
+    "sha256": "f678479fccbfee16c6a813a1eeb7c27128f6afa5e28869a5ecf3c24e759c7f4f",
+    "groups": {
+      "B-D0": {
+        "runs": [
+          "B-D0-ssm-x3-gpu",
+          "B-D0-ssm-x3-s218-gpu",
+          "B-D0-ssm-x3-s219-gpu"
+        ],
+        "mean": {
+          "equal_flight_mean_ate": 1.0949666666666666,
+          "worst_flight_ate": 2.2338666666666667,
+          "ordinary_ate": 0.9214666666666667,
+          "backward_lateral_ate": 2.1358666666666664,
+          "static_start_ate": 1.0456,
+          "moving_start_ate": 1.1443333333333332,
+          "speed_rmse": 0.15203333333333333,
+          "direction_error_deg": 19.0337,
+          "backward_sign_accuracy": 0.49683333333333335,
+          "backward_velocity_rmse": 0.43043333333333333
+        }
+      },
+      "B-speed": {
+        "runs": [
+          "B-speed-compiled-x3",
+          "B-speed-compiled-x3-s218",
+          "B-speed-compiled-x3-s219"
+        ],
+        "mean": {
+          "equal_flight_mean_ate": 1.0905333333333334,
+          "worst_flight_ate": 2.273,
+          "ordinary_ate": 0.9061,
+          "backward_lateral_ate": 2.1973,
+          "static_start_ate": 1.0294,
+          "moving_start_ate": 1.1516666666666666,
+          "speed_rmse": 0.15163333333333331,
+          "direction_error_deg": 20.0736,
+          "backward_sign_accuracy": 0.37106666666666666,
+          "backward_velocity_rmse": 0.4369
+        }
+      },
+      "HP-burn16": {
+        "runs": [
+          "HP-burn16-e36-s217-hpfast",
+          "HP-burn16-e36-s218-hpfast",
+          "HP-burn16-e36-s219-hpfast"
+        ],
+        "mean": {
+          "equal_flight_mean_ate": 1.0767,
+          "worst_flight_ate": 2.2131666666666665,
+          "ordinary_ate": 0.9086000000000001,
+          "backward_lateral_ate": 2.0854,
+          "static_start_ate": 1.0295666666666667,
+          "moving_start_ate": 1.1238666666666666,
+          "speed_rmse": 0.1553,
+          "direction_error_deg": 20.9738,
+          "backward_sign_accuracy": 0.39780000000000004,
+          "backward_velocity_rmse": 0.4297666666666667
+        }
+      },
+      "HP-lr1e-3": {
+        "runs": [
+          "HP-lr1e-3-e36-s217-hpfast",
+          "HP-lr1e-3-e36-s218-hpfast",
+          "HP-lr1e-3-e36-s219-hpfast"
+        ],
+        "mean": {
+          "equal_flight_mean_ate": 1.1847,
+          "worst_flight_ate": 2.2481,
+          "ordinary_ate": 1.0260333333333334,
+          "backward_lateral_ate": 2.136633333333333,
+          "static_start_ate": 1.113,
+          "moving_start_ate": 1.2563333333333333,
+          "speed_rmse": 0.1734,
+          "direction_error_deg": 30.4049,
+          "backward_sign_accuracy": 0.44813333333333333,
+          "backward_velocity_rmse": 0.4283666666666667
+        }
+      }
+    }
+  },
+  {
+    "file": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast/research/results/eval/hparam-fast/proxy-val-best-30s.json",
+    "sha256": "ae5bec5bce2f2fff1946b81a4fe474185113187513ab8891155496af2b68d463",
+    "groups": {
+      "B-D0": {
+        "runs": [
+          "B-D0-ssm-x3-gpu",
+          "B-D0-ssm-x3-s218-gpu",
+          "B-D0-ssm-x3-s219-gpu"
+        ],
+        "mean": {
+          "equal_flight_mean_ate": 1.2764666666666666,
+          "worst_flight_ate": 3.5752333333333333,
+          "ordinary_ate": 1.1746,
+          "backward_lateral_ate": 1.4013666666666666,
+          "static_start_ate": 1.2764666666666666,
+          "speed_rmse": 0.25026666666666664,
+          "direction_error_deg": 20.1834,
+          "backward_sign_accuracy": 0.26743333333333336,
+          "backward_velocity_rmse": 0.5895333333333334
+        }
+      },
+      "B-speed": {
+        "runs": [
+          "B-speed-compiled-x3",
+          "B-speed-compiled-x3-s218",
+          "B-speed-compiled-x3-s219"
+        ],
+        "mean": {
+          "equal_flight_mean_ate": 1.2587,
+          "worst_flight_ate": 3.6045333333333334,
+          "ordinary_ate": 1.1565,
+          "backward_lateral_ate": 1.3839333333333332,
+          "static_start_ate": 1.2587,
+          "speed_rmse": 0.2503666666666667,
+          "direction_error_deg": 19.564133333333334,
+          "backward_sign_accuracy": 0.21603333333333333,
+          "backward_velocity_rmse": 0.5957
+        }
+      },
+      "HP-burn16": {
+        "runs": [
+          "HP-burn16-e36-s217-hpfast",
+          "HP-burn16-e36-s218-hpfast",
+          "HP-burn16-e36-s219-hpfast"
+        ],
+        "mean": {
+          "equal_flight_mean_ate": 1.2528,
+          "worst_flight_ate": 3.511066666666667,
+          "ordinary_ate": 1.1560333333333332,
+          "backward_lateral_ate": 1.3714,
+          "static_start_ate": 1.2528,
+          "speed_rmse": 0.251,
+          "direction_error_deg": 19.5536,
+          "backward_sign_accuracy": 0.26116666666666666,
+          "backward_velocity_rmse": 0.5996666666666667
+        }
+      },
+      "HP-lr1e-3": {
+        "runs": [
+          "HP-lr1e-3-e36-s217-hpfast",
+          "HP-lr1e-3-e36-s218-hpfast",
+          "HP-lr1e-3-e36-s219-hpfast"
+        ],
+        "mean": {
+          "equal_flight_mean_ate": 1.3216,
+          "worst_flight_ate": 3.7908333333333335,
+          "ordinary_ate": 1.2208666666666665,
+          "backward_lateral_ate": 1.4450333333333334,
+          "static_start_ate": 1.3216,
+          "speed_rmse": 0.26936666666666664,
+          "direction_error_deg": 23.984266666666667,
+          "backward_sign_accuracy": 0.029733333333333334,
+          "backward_velocity_rmse": 0.6134
+        }
+      }
+    }
+  },
+  {
+    "file": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-data-coverage/research/results/eval/data-coverage/training/campaign-dev-best-30s.json",
+    "sha256": "168354a26613baf98362e2603e4aa2dae34f01fc50286011daee71a7ff4ed766",
+    "groups": {
+      "N2-ssm": {
+        "runs": [
+          "N2-ssm-x3-gpu",
+          "N2-ssm-x3-s218-gpu",
+          "N2-ssm-x3-s219-gpu"
+        ],
+        "mean": {
+          "equal_flight_mean_ate": 1.0071333333333334,
+          "worst_flight_ate": 3.4209666666666667,
+          "ordinary_ate": 0.9379333333333333,
+          "backward_lateral_ate": 1.7682333333333333,
+          "static_start_ate": 0.9152333333333333,
+          "moving_start_ate": 1.0990666666666666,
+          "speed_rmse": 0.12196666666666667,
+          "direction_error_deg": 13.237433333333334,
+          "backward_sign_accuracy": 0.8659333333333333,
+          "backward_velocity_rmse": 0.25073333333333336,
+          "hssd-val_ate": 0.8881333333333333,
+          "procthor_ate": 1.1261666666666665
+        }
+      },
+      "N2-early": {
+        "runs": [
+          "N2-early-native-x3-local",
+          "N2-early-native-x3-s218-local",
+          "N2-early-native-x3-s219-local"
+        ],
+        "mean": {
+          "equal_flight_mean_ate": 1.1388,
+          "worst_flight_ate": 4.022266666666667,
+          "ordinary_ate": 1.0445333333333333,
+          "backward_lateral_ate": 2.1758333333333333,
+          "static_start_ate": 1.0184333333333333,
+          "moving_start_ate": 1.2591333333333334,
+          "speed_rmse": 0.13343333333333332,
+          "direction_error_deg": 15.462466666666668,
+          "backward_sign_accuracy": 0.8234333333333334,
+          "backward_velocity_rmse": 0.28873333333333334,
+          "hssd-val_ate": 1.0483666666666667,
+          "procthor_ate": 1.2292333333333334
+        }
+      }
+    }
+  },
+  {
+    "file": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-data-coverage/research/results/eval/data-coverage/training/campaign-dev-best.json",
+    "sha256": "84594cbdfe195ff84720bbd7242fe12d103b24a663ad9ce25301616850aecb49",
+    "groups": {
+      "N2-ssm": {
+        "runs": [
+          "N2-ssm-x3-gpu",
+          "N2-ssm-x3-s218-gpu",
+          "N2-ssm-x3-s219-gpu"
+        ],
+        "mean": {
+          "equal_flight_mean_ate": 1.3906,
+          "worst_flight_ate": 6.181566666666667,
+          "ordinary_ate": 1.3242666666666667,
+          "backward_lateral_ate": 2.1204666666666667,
+          "static_start_ate": 1.3362333333333334,
+          "moving_start_ate": 1.445,
+          "speed_rmse": 0.12076666666666666,
+          "direction_error_deg": 13.313866666666668,
+          "backward_sign_accuracy": 0.8765000000000001,
+          "backward_velocity_rmse": 0.23663333333333333,
+          "hssd-val_ate": 1.3042333333333334,
+          "procthor_ate": 1.477
+        }
+      },
+      "N2-early": {
+        "runs": [
+          "N2-early-native-x3-local",
+          "N2-early-native-x3-s218-local",
+          "N2-early-native-x3-s219-local"
+        ],
+        "mean": {
+          "equal_flight_mean_ate": 1.5163333333333333,
+          "worst_flight_ate": 6.241933333333333,
+          "ordinary_ate": 1.4294666666666667,
+          "backward_lateral_ate": 2.4717333333333333,
+          "static_start_ate": 1.4378666666666666,
+          "moving_start_ate": 1.5948,
+          "speed_rmse": 0.1326,
+          "direction_error_deg": 15.669333333333332,
+          "backward_sign_accuracy": 0.7955666666666666,
+          "backward_velocity_rmse": 0.2729,
+          "hssd-val_ate": 1.4433333333333334,
+          "procthor_ate": 1.5893
+        }
+      }
+    }
+  },
+  {
+    "file": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-data-coverage/research/results/eval/data-coverage/training/dev-best.json",
+    "sha256": "80b8e9438e20c0a1e7616d0bedf50ce895a94caca874301777d05a328382ebab",
+    "groups": {
+      "N2-ssm": {
+        "runs": [
+          "N2-ssm-x3-gpu",
+          "N2-ssm-x3-s218-gpu",
+          "N2-ssm-x3-s219-gpu"
+        ],
+        "mean": {
+          "equal_flight_mean_ate": 0.9333666666666667,
+          "worst_flight_ate": 2.019633333333333,
+          "ordinary_ate": 1.0065333333333333,
+          "backward_lateral_ate": 0.4945,
+          "static_start_ate": 0.8713666666666666,
+          "moving_start_ate": 0.9953666666666667,
+          "speed_rmse": 0.11793333333333333,
+          "direction_error_deg": 11.986366666666667,
+          "backward_sign_accuracy": 1.0,
+          "backward_velocity_rmse": 0.18426666666666666
+        }
+      },
+      "N2-early": {
+        "runs": [
+          "N2-early-native-x3-local",
+          "N2-early-native-x3-s218-local",
+          "N2-early-native-x3-s219-local"
+        ],
+        "mean": {
+          "equal_flight_mean_ate": 1.0284,
+          "worst_flight_ate": 1.8687,
+          "ordinary_ate": 1.0409,
+          "backward_lateral_ate": 0.9531333333333333,
+          "static_start_ate": 0.9679333333333333,
+          "moving_start_ate": 1.0888333333333333,
+          "speed_rmse": 0.13003333333333333,
+          "direction_error_deg": 17.253533333333333,
+          "backward_sign_accuracy": 0.9937,
+          "backward_velocity_rmse": 0.23703333333333332
+        }
+      }
+    }
+  },
+  {
+    "file": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-data-coverage/research/results/eval/data-coverage/training/proxy-val-best-30s.json",
+    "sha256": "3d3aab37173f7dccedf88b8313ddcdfdaae690de5f31c11d3e8bc48968f46c47",
+    "groups": {
+      "N2-ssm": {
+        "runs": [
+          "N2-ssm-x3-gpu",
+          "N2-ssm-x3-s218-gpu",
+          "N2-ssm-x3-s219-gpu"
+        ],
+        "mean": {
+          "equal_flight_mean_ate": 1.1098333333333332,
+          "worst_flight_ate": 3.2490666666666668,
+          "ordinary_ate": 1.0600333333333334,
+          "backward_lateral_ate": 1.1709333333333334,
+          "static_start_ate": 1.1098333333333332,
+          "speed_rmse": 0.20996666666666666,
+          "direction_error_deg": 16.933,
+          "backward_sign_accuracy": 0.9035333333333333,
+          "backward_velocity_rmse": 0.4062
+        }
+      },
+      "N2-early": {
+        "runs": [
+          "N2-early-native-x3-local",
+          "N2-early-native-x3-s218-local",
+          "N2-early-native-x3-s219-local"
+        ],
+        "mean": {
+          "equal_flight_mean_ate": 1.2070333333333332,
+          "worst_flight_ate": 3.3798,
+          "ordinary_ate": 1.1248333333333334,
+          "backward_lateral_ate": 1.3077333333333334,
+          "static_start_ate": 1.2070333333333332,
+          "speed_rmse": 0.22436666666666666,
+          "direction_error_deg": 20.473966666666666,
+          "backward_sign_accuracy": 0.6692666666666667,
+          "backward_velocity_rmse": 0.4665333333333333
+        }
+      }
+    }
+  }
+]

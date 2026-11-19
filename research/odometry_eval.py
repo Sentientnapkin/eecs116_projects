@@ -181,7 +181,9 @@ def main():
     parser.add_argument("--checkpoint", choices=("best", "last"), default="best")
     parser.add_argument("--deployed", nargs="*", default=[])
     parser.add_argument("--control")
-    parser.add_argument("--set", default="dev", choices=("dev", "proxy-val", "campaign-dev"))
+    parser.add_argument("--set", default="dev", choices=("dev", "proxy-val", "campaign-dev", "records"))
+    parser.add_argument("--records", help="--set records: JSON with a 'records' list of locally prepared shards")
+    parser.add_argument("--shards", help="--set records: directory holding those shards")
     parser.add_argument("--ledger", default="data/ledger/ledger.json")
     parser.add_argument("--cache-dir", default="data/hub-cache", help="Shard cache for this evaluator")
     parser.add_argument("--output", required=True)
@@ -197,6 +199,8 @@ def main():
     elif args.set == "proxy-val":
         records = json.loads(Path("data/expand/proxy-proxy_validation-0.json").read_text())["records"]
         records = [r for r in records if r["crop_s"] == 0]
+    elif args.set == "records":  # e.g. the public VIOBench flights prepared locally (prepare_public.py)
+        records = json.loads(Path(args.records).read_text())["records"]
     else:  # native campaign dev flights (native_campaign.py publish --split dev); both crops, like dev
         records = json.loads(Path("data/native-campaign/dev-records.json").read_text())["records"]
     ledger = {r["sha256"]: r for r in json.loads(Path(args.ledger).read_text())["rows"]}
@@ -205,7 +209,7 @@ def main():
     results, curves = {}, {}  # curves: model -> list of (times, position error) per static-start replay
     rows_cache = {}
     for record in records:
-        row = load_row(store, record)
+        row = load_row(Path(args.shards) if args.set == "records" else store, record)
         if args.max_seconds:
             keep = int(np.sum(row["times"]-row["times"][0] <= args.max_seconds+1e-6))
             row = {k: (v[:keep] if k != "T_bc" else v) for k, v in row.items()}

@@ -140,3 +140,58 @@ Mean of nominal and 5 s moving-start unaligned ATE on the fixed 7-flight develop
 - The exact submitted seed-217 Wasm scored 1.996 m unaligned ATE on all ten 60-second public VIOBench episodes, with zero filled frames and 1.075 billion peak fuel per frame. The public episodes all use the same ProcTHOR scene.
 - Final N-series replays finished. Three-seed N2 unaligned ATE was 0.933 m on original dev, 1.110 m on proxy validation at 30 s, and 1.007 / 1.391 m on campaign dev at 30 s / full duration (ProcTHOR 1.126 / 1.477 m, HSSD 0.888 / 1.304 m). N2 cleared the overall dev screen and exceeded the ordinary-flight guardrail (1.007 m vs 0.921 m). Three matched resampling seeds are running on GPUs 1–3.
 - Extending compiled D0 from 36 to 72 epochs improved three-seed dev ATE from 1.091 to 1.030 m and 30 s proxy ATE from 1.259 to 1.219 m. Campaign dev improved from 1.332 to 1.279 m at 30 s and from 1.832 to 1.794 m at full duration. The 5.5% original-dev improvement missed the 10% promotion gate for 144 epochs. See the report on `odometry/long-budget`.
+## Training throughput, 2026-11-18
+
+- Predeclared matched D0 timing pilots, a global-batch-matched H100 strong-scaling pilot, and three-seed 36-epoch validation in `configs/experiments.json`. Timing uses steady-state train plus development replay and records startup separately.
+- The unoptimized GPU-5 control took **103.02 s per epoch** (median of epochs 2–3). Training waited **44.13 s per epoch** on the host for input batches. Matched pilots use the same D0 manifest and private local read-only data views.
+- The branch preserves the original model/trainer defaults. Opt-in paths add chunked matrix and affine-prefix scans, preloaded rows, batched causal development replay, channels-last convolutions, BF16/TF32, fused AdamW, deferred loss checks, and a compiled-correlation probe. CPU regressions cover the scan's output/state/gradient parity and uneven-length batched replay. CUDA GRU checkpoint regression passed before the new replay test.
+- GPU 5 is running the timing pilots. A detached supervisor in `results/loop/throughput-local/supervisor.py` runs the fastest eligible pilot's 36-epoch recipe at seeds 217/218/219. Full replay evaluation and multi-GPU scaling remain pending.
+- The matched matrix-scan pilot took **12.935 s/epoch (7.96×)**. The matched prefix-scan pilot took **7.04 s/epoch (14.63×)** and held the same 244 windows and 122 optimizer updates per epoch. Prefix startup was 7.87 s, and peak PyTorch GPU allocation was 2.13 GiB. Steady-state figures are medians of epochs 2–3 on one H100. These are timing pilots. Their one-seed checkpoint scores do not decide accuracy.
+- Dev and 30 s proxy-validation replays are queued after all three 36-epoch checkpoints, using `odometry_eval.py --cache-dir` to isolate the evaluation cache on this shared machine.
+- Compiled correlation reached **4.83 s/epoch (21.33×)** with the same 122 updates and 244 windows. Its cold epoch took 75.52 s, including compilation in training and replay. The cache-reusing 36-epoch run's first epoch took 8.26 s. The uncompiled batch-4 pilot took 4.91 s/epoch with 61 updates and 244 windows, so the predeclared timing rule advanced `B-speed-compiled-x3`.
+
+### Strong scaling
+
+- `P-speed-ddp` holds the batch at four globally and uses the same 244 windows and 61 optimizer updates at every H100 count. The reported distributed phase times use the slowest rank, with per-rank timing and peak allocation recorded in metrics.
+- The 1-H100 GPU 7 reference finished its three epochs. Trainer startup was 6.08 s, first epoch 5.06 s, and steady-state epoch 4.20 s (3.78 s training and 0.42 s replay). The loader accounted for 0.26 s of the training phase. GPU 5 and GPU 7 share the same NUMA node and a direct NVLink path.
+- The 2-H100 test is queued behind GPU 5's three-seed validation and replay jobs. All 14 regressions passed on GPU 7.
+
+### Three-seed throughput validation
+
+The compiled recipe and B-D0 control each finished 36 epochs at 244 windows and 122 optimizer updates per epoch. Full replays on the best checkpoint use mean unaligned ATE in metres.
+
+| Replay | B-D0 mean | Compiled mean | Relative change |
+| --- | ---: | ---: | ---: |
+| Dev | 1.09497 | 1.09053 | −0.40% |
+| Dev ordinary motion | 0.92147 | 0.90610 | −1.67% |
+| Proxy validation, first 30 s | 1.27647 | 1.25870 | −1.39% |
+
+Both predeclared dev tolerances passed and the independent proxy check also improved. Compiled dev scores for seeds 217/218/219 were 1.0900/1.0609/1.1207 m. Ordinary-motion scores were 0.8997/0.8531/0.9655 m. Proxy 30 s scores were 1.2692/1.2264/1.2805 m. Backward/lateral dev was 2.1973 m versus 2.1359 m for the control (+2.88%).
+
+The initial 2-GPU launch failed before training with CUDA error 802 during NCCL NVLink SHARP multicast initialization. The retry and the queued 4-GPU run disable NVLS through `NCCL_NVLS_ENABLE=0` for the benchmark processes.
+
+The two-H100 retry completed using NCCL point-to-point communication. Median epoch time fell from 4.20 to 2.48 s (1.69×, 84.7% scaling efficiency); training fell from 3.78 to 2.27 s and replay from 0.42 to 0.21 s. Warm input wait fell from 0.26 to 0.17 s. Trainer startup rose from 6.08 to 9.91 s, while first-epoch time fell from 5.06 to 3.28 s. The two-GPU run uses 4.96 GPU-seconds per warm epoch versus 4.20 on one GPU. Both runs scored the same 14 dev replays and preserved all 183 planned updates over the three epochs, with one-seed timing-pilot scores of 1.459265 and 1.458970 m.
+
+A separate eight-step GPU-resident profile of the eager batch-four SSM identified kernel dispatch and tensor copies alongside convolution backward. CUDA launches consumed 19.5% of attributed CPU self time across 26,848 calls. Copies and convolution backward accounted for 20.5% and 13.5% of attributed CUDA self time. Multiple ranks repeat setup, data preparation and optimizer operations, then synchronize on each step. The timing does not attribute the scaling gap to an individual distributed operation.
+
+For every seed in the full compiled validation, the control and candidate had matching data-manifest digests, exposure accounting at every epoch, and all 4,392 planned optimizer updates.
+
+The four-H100 retry setup completed on GPUs 2, 3, 5 and 7 after the campaign jobs finished. All three hardware counts used the same window exposure, 183 optimizer steps and 14 development replays per epoch. Timing pilots used seed 217 only.
+
+| H100s | Startup (s) | First epoch (s) | Warm train (s) | Warm replay (s) | Warm epoch (s) | Speedup | GPU-s per warm epoch |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 1 | 6.08 | 5.06 | 3.78 | 0.42 | 4.20 | 1.00× | 4.20 |
+| 2 | 9.91 | 3.28 | 2.27 | 0.21 | 2.48 | 1.69× | 4.96 |
+| 4 | 12.53 | 2.64 | 1.585 | 0.15 | 1.735 | 2.42× | 6.94 |
+
+Four ranks reached 60.5% scaling efficiency and consumed 65.2% more GPU-seconds per warm epoch than one rank. Four ranks use 1.10 GiB of peak PyTorch allocation per H100 versus 4.21 GiB on one H100. Warm loader wait was 0.11 s at four ranks, with 1.585 s of total warm training. Best selection scores were 1.459265, 1.458970 and 1.459903 m at 1, 2 and 4 ranks. Full accuracy conclusions use the 36-epoch three-seed comparison above. Both distributed runs used NCCL P2P with NVLS disabled.
+
+## 2026-11-19 — Finish Claude training queues and input-attitude comparison
+
+All prior bounded queues are accounted for: fast HP50/50, original slow HP8/8, early-native3/3, throughput11/11, 72-epoch3/3, and original learned-attitude3/3 completed. Early resampling fails (dev0.9334→1.0284; campaignfull1.3906→1.5163). HPburn16 improves dev only1.3% versus its compiled control; HPlr0.001 regresses. No fresh sweep was started.
+
+Finished the eight missing predeclared RA input-attitude trainings, reusing the original rolling seed217 after exact trainer/model/data-source and manifest identity checks. All9 runs completed36 epochs/4,392updates. The native-kfgrid data derivation's original OpenCV polynomial-solver crash is preserved; a separately named runtime-repaired path rejects degenerate essential/pose solves as unavailable visual measurements. No thresholds or budgets changed.
+
+Three-seed common-attitude campaignfull: rolling1.1077, static08-input0.9919 (−10.46%), runtime-repaired kfgrid-input0.9724 (−12.22%). Both pass the original experimental gate and improve each seed, ordinary motion and both crop groups. Own-attitude dev/ordinary: rolling0.9157/0.9874, static08 0.7963/0.8163, kfgrid0.9217/0.9377. Own campaign30/full: rolling0.9911/1.3751, static08 0.8786/1.1548, kfgrid0.8131/0.9724. Own public60:1.7423/1.2832/1.0389, respectively. Proxy30 regresses versus matched rolling (1.0995→1.1750/1.1343), retained as negative evidence. Campaign60 subset has30 records/23parents/14scenes; it is not the120-record variable-duration population.
+
+These are reconstructed prepared-input diagnostics; original-dev/proxy raw archives are unavailable, and the complete changed-input C++/Wasm path does not exist. Existing kf_grid deployment changes integration only, retaining rolling network inputs. No new deployment qualified; peak guest fuel, ABI initialization/completion/filling and raw parity remain unmeasured for these input policies. Existing15 odometry tests passed including CUDA checkpoint; three degenerate-geometry/causal-prefix regressions, actual rolling input identity/derived prefix checks, and the all-policy roster contract passed. All736,407 offline frames per policy are finite. Reports, per-flight/seed/parent/scene breakdowns, gate decisions and artifact hashes: `TRAINING_COMPLETION.md` and `results/eval/training-finish/`. No reserved split, push or submission. GPUs0/1 and unrelated processes untouched.
