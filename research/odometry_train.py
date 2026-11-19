@@ -58,6 +58,13 @@ def loss_fn(pred, row, burn, horizons, nll_weight=0.):
     return loss
 
 
+def refined_loss(every, row, burn, horizons, gamma=.8):
+    """RAFT-style sequence loss over the initial and K refined estimates (K+1,B,T,3): weights
+    gamma^(K-k) increase towards the final estimate, which keeps weight 1 as without refinement."""
+    count = len(every)
+    return sum(gamma**(count-1-k)*loss_fn(pred, row, burn, horizons) for k, pred in enumerate(every))
+
+
 def provenance(args, out):
     """Everything needed to restore this run elsewhere: a copy of the research sources and
     configs (they may be uncommitted), git state, the data repo commit, and the environment."""
@@ -285,6 +292,7 @@ def main():
         accelerator.wait_for_everyone()
     if report_throughput and accelerator.is_main_process:
         print(json.dumps({"startup_seconds": round(time.perf_counter()-startup_started, 2)}), flush=True)
+    refine = cfg["model"].get("refine_iters", 0) > 0
     sync = None  # background Hub sync (main process only)
     try:
         for epoch in range(progress.epoch, options["epochs"]):
@@ -306,8 +314,13 @@ def main():
             for row in loader:
                 data_s += time.perf_counter()-waited
                 with accelerator.accumulate(net):
-                    pred, _ = net(row["images"], row["imu"], R=row["R"])
-                    loss = loss_fn(pred, row, options["burn_in"], options["horizons"], options.get("nll_weight", 0.))
+                    if refine:
+                        every, _ = net(row["images"], row["imu"], R=row["R"], iterations=True)
+                        loss = refined_loss(every, row, options["burn_in"], options["horizons"],
+                                            cfg["model"].get("refine_gamma", .8))
+                    else:
+                        pred, _ = net(row["images"], row["imu"], R=row["R"])
+                        loss = loss_fn(pred, row, options["burn_in"], options["horizons"], options.get("nll_weight", 0.))
                     if not defer_check and not torch.isfinite(loss):
                         raise ValueError("Nonfinite training loss")
                     accelerator.backward(loss)
