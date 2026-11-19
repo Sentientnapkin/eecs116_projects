@@ -643,6 +643,12 @@ struct Inputs {
     }
 };
 
+}  // namespace odo
+#ifdef ODO_KF_GRID
+#include "kf_grid.hpp"
+#endif
+namespace odo {
+
 // ---------------------------------------------------------------- estimator (streaming.Estimator)
 struct Estimator {
     Inputs in;
@@ -653,6 +659,10 @@ struct Estimator {
     uint8_t images[5 * H * W];
     float imu[IMU], vb[3];
     M3 R;
+#ifdef ODO_KF_GRID
+    GridAttitude att;
+    double relative_packet[7 * 256];
+#endif
 
     // T_cam_imu: 4x4 row-major
     void init(const Weights *w, int width, int height, double fx, double fy, double cx, double cy, const double *T) {
@@ -662,6 +672,9 @@ struct Estimator {
         mv(R_bc, tvec, offset);
         for (double &o : offset) o = -o;
         in.init(width, height, fx, fy, cx, cy, R_bc);
+#ifdef ODO_KF_GRID
+        att.init(fx, fy, cx, cy, R_bc);
+#endif
         net.w = w;
         net.reset();
     }
@@ -675,6 +688,15 @@ struct Estimator {
         t -= time_origin;
         R = in.step(t, rgb, packet, n, images, imu, time_origin);
         net.step(images, imu, vb);
+#ifdef ODO_KF_GRID
+        // Integrate (and report) with the visual-bias attitude; the network's inputs above are unchanged.
+        const int rows = std::min(n, 256);
+        for (int i = 0; i < rows; ++i) {
+            std::memcpy(relative_packet + 7 * i, packet + 7 * i, 7 * sizeof(double));
+            relative_packet[7 * i] -= time_origin;
+        }
+        R = att.step(t, rgb, in.sw, in.sh, relative_packet, rows, !have_v);
+#endif
         const double v64[3] = {vb[0], vb[1], vb[2]};
         double v[3];
         mv(R, v64, v);
@@ -696,7 +718,11 @@ struct Estimator {
         else { double s = std::sqrt(1.0 + q(2, 2) - q(0, 0) - q(1, 1)) * 2; qw = (q(1, 0) - q(0, 1)) / s; qx = (q(0, 2) + q(2, 0)) / s; qy = (q(1, 2) + q(2, 1)) / s; qz = .25 * s; }
         out[3] = qx; out[4] = qy; out[5] = qz; out[6] = qw;
         double ang[3] = {0, 0, 0};
+#ifdef ODO_KF_GRID
+        const double *tb = att.bias;
+#else
         const double tb[3] = {in.orient.bias[0] + in.orient.learned[0], in.orient.bias[1] + in.orient.learned[1], in.orient.bias[2] + in.orient.learned[2]};
+#endif
         if (n) for (int c = 0; c < 3; ++c) ang[c] = packet[(n - 1) * 7 + 4 + c] - tb[c];
         const double lin[3] = {v64[0] + ang[1] * offset[2] - ang[2] * offset[1], v64[1] + ang[2] * offset[0] - ang[0] * offset[2], v64[2] + ang[0] * offset[1] - ang[1] * offset[0]};
         mv(Rcb, lin, out + 7);

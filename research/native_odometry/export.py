@@ -19,7 +19,19 @@ WASM_KERNEL_FLAGS = {
 }
 
 
-def export(run, manifest, output, wasi_sdk, wasm_kernel="simd-4x16"):
+def opencv_flags(opencv_build):
+    """Compile/link flags for the wasm OpenCV built by the pinned VIOBench runtime recipe (build/runtime/opencv-build)."""
+    build = Path(opencv_build).resolve()
+    source = Path(next(l.split("=", 1)[1] for l in (build / "CMakeCache.txt").read_text().splitlines()
+                       if l.startswith("OpenCV_SOURCE_DIR:")))
+    includes = [f"-I{build}"] + [f"-I{source}/modules/{m}/include" for m in ("core", "imgproc", "video", "calib3d", "features2d", "flann", "dnn")]
+    libraries = [build / f"lib/libopencv_{m}.a" for m in ("video", "calib3d", "features2d", "flann", "imgproc", "core")]
+    return (["-DODO_KF_GRID", "-fwasm-exceptions", "-mllvm", "-wasm-use-legacy-eh=false", *includes],
+            [*map(str, libraries), str(build / "3rdparty/lib/libzlib.a"), "-lunwind", "-lpthread",
+             "-Wl,-z,stack-size=8388608", "-Wl,--stack-first"])
+
+
+def export(run, manifest, output, wasi_sdk, wasm_kernel="simd-4x16", kf_grid_opencv=None):
     model = json.loads((run / "config.json").read_text())["model"]
     sensor = json.loads(manifest.read_text())["sensor_config"]
     width, height = (model[key] for key in ("width", "height"))
@@ -111,9 +123,11 @@ def export(run, manifest, output, wasi_sdk, wasm_kernel="simd-4x16"):
         assembly = output / "weights.S"
         assembly.write_text('.section .rodata.odo_weights,"",@\n.globl odo_weights\n.p2align 4\n'
                             'odo_weights:\n.incbin "weights.f32"\n.size odo_weights, .-odo_weights\n')
-        subprocess.run([wasi_sdk.resolve() / "bin/clang++", *flags, *WASM_KERNEL_FLAGS[wasm_kernel], "-mexec-model=reactor",
-                        "-Wl,--initial-memory=67108864", "-Wl,--strip-debug", "weights.S",
-                        "-o", "odometry.wasm"], cwd=output, check=True)
+        compile_extra, link_extra = opencv_flags(kf_grid_opencv) if kf_grid_opencv else ([], [])
+        compile_extra += shlex.split(os.environ.get("ODO_WASM_EXTRA_FLAGS", ""))  # e.g. -DODO_KF_GRID_TRACE
+        subprocess.run([wasi_sdk.resolve() / "bin/clang++", *flags, *compile_extra, *WASM_KERNEL_FLAGS[wasm_kernel],
+                        "-mexec-model=reactor", "-Wl,--initial-memory=67108864", "-Wl,--strip-debug", "weights.S",
+                        *link_extra, "-o", "odometry.wasm"], cwd=output, check=True)
     return counts
 
 
@@ -123,10 +137,12 @@ def main():
         parser.add_argument(name, type=Path)
     parser.add_argument("--wasi-sdk", type=Path, help="Path to a VIOBench wasi-sdk installation")
     parser.add_argument("--wasm-kernel", choices=WASM_KERNEL_FLAGS, default="simd-4x16")
+    parser.add_argument("--kf-grid-opencv", type=Path,
+                        help="Build the visual gyro-bias attitude (ODO_KF_GRID) against this wasm OpenCV build directory")
     args = parser.parse_args()
     if not args.wasi_sdk and args.wasm_kernel != "simd-4x16":
         parser.error("--wasm-kernel needs --wasi-sdk")
-    print(json.dumps(export(args.run, args.manifest, args.output, args.wasi_sdk, args.wasm_kernel)))
+    print(json.dumps(export(args.run, args.manifest, args.output, args.wasi_sdk, args.wasm_kernel, args.kf_grid_opencv)))
 
 
 if __name__ == "__main__":
