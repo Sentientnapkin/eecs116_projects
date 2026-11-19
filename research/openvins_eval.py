@@ -3,6 +3,7 @@ import argparse
 from concurrent.futures import ProcessPoolExecutor
 import json
 from pathlib import Path
+import re
 import struct
 import subprocess
 from tempfile import TemporaryDirectory
@@ -15,6 +16,16 @@ from common import Flight, ate
 from odometry_data import motion_labels
 from odometry_store import digest
 from robust_replay import cropped
+
+ARMS = ("zupt-off", "zupt-on", "zupt-inertial-only", "zupt-initialization-only")
+LOG_MESSAGES = {
+    "static_no_jerk": "no accel jerk detected",
+    "static_low_excitation": "[init-s]: no IMU excitation",
+    "init_track_shortage": "[init]: not enough feats to compute disp",
+    "dynamic_track_shortage": "[init-d]: only ",
+    "dynamic_low_rotation": "[init-d]: gyroscope only ",
+    "visual_override": "[ZUPT]: passed disparity",
+}
 
 
 def write_observations(path, flight, imu):
@@ -57,7 +68,7 @@ def camera_trajectory(positions, rotations, valid, gyro, extrinsic):
 
 
 def replay_parent(job):
-    raw, records, shard_root, runner, work_root = job
+    raw, records, shard_root, runner, work_root, modes, diagnose = job
     if digest(raw) != records[0]["parent_sha256"]:
         raise ValueError(f"Raw archive checksum mismatch: {raw}")
     cv2.setNumThreads(1)
@@ -83,9 +94,10 @@ def replay_parent(job):
             ordinary = labels["backward"].mean() <= .05 and labels["lateral"].mean() <= .1
             gyro = segment.gyro_attitude()
             write_observations(obs, segment, imu)
-            for zupt in (0, 1):
+            for mode in modes:
                 states.unlink(missing_ok=True)
-                result = subprocess.run([runner, obs, states, str(zupt)], capture_output=True, text=True)
+                extra = ["--diagnose"] if diagnose else []
+                result = subprocess.run([runner, obs, states, str(mode), *extra], capture_output=True, text=True)
                 complete = np.loadtxt(states, delimiter=",", ndmin=2) if states.is_file() and states.stat().st_size else np.empty((0, 15))
                 n = len(complete)
                 if complete.shape != (n, 15) or n > len(segment.ft) or not np.allclose(complete[:, 0], segment.ft[:n]):
@@ -99,15 +111,25 @@ def replay_parent(job):
                 valid = data[:, 1].astype(bool)
                 if not np.isfinite(data[valid]).all():
                     raise ValueError(f"OpenVINS emitted nonfinite pose: {raw} {crop} {zupt}")
-                if zupt == 0 and data[:, 2].any():
-                    raise ValueError("OpenVINS reported a stationary update with ZUPT disabled")
+                accepted = data[:, 2].astype(bool)
+                if mode in (0, 3) and accepted.any():
+                    raise ValueError(f"Unexpected stationary update under {ARMS[mode]}")
                 p = camera_trajectory(data[:, 3:6], data[:, 6:].reshape(-1, 3, 3), valid, gyro, segment.T_bc)
-                rows.append({"zupt": bool(zupt), "scene": record["scene"], "parent": raw.name,
+                moving = np.linalg.norm(segment.v, axis=1) > .2
+                logs = {name: result.stdout.count(msg) for name, msg in LOG_MESSAGES.items()} if diagnose else {}
+                if mode == 3:
+                    features = [int(n) for n in re.findall(r"for MSCKF update \((\d+) feats\)", result.stdout)]
+                    logs.update(msckf_frames=len(features), msckf_frames_with_features=sum(n > 0 for n in features),
+                                msckf_features=sum(features))
+                rows.append({"arm": ARMS[mode], "zupt": bool(mode), "scene": record["scene"], "parent": raw.name,
                              "crop_s": crop, "start": "static" if crop == 0 else "moving",
                              "catalog": record["catalog"], "ordinary": bool(ordinary), "ate": ate(p, segment.cam_gt),
                              "zero_ate": ate(np.zeros_like(p), segment.cam_gt),
                              "first_estimate_s": float(segment.ft[np.argmax(valid)]) if valid.any() else None,
                              "coverage": float(valid.mean()), "zupt_updates": int(data[:, 2].sum()),
+                             "valid_frames": int(valid.sum()), "moving_valid_frames": int((valid & moving).sum()),
+                             "zupt_while_moving": int((accepted & moving).sum()),
+                             "logs": logs,
                              "runner_error": result.stderr.strip()[-1000:] if result.returncode else None,
                              "emitted_frames": n,
                              "initial_truth_speed_m_s": float(np.linalg.norm(segment.v[0]))})
@@ -119,9 +141,11 @@ def summarize(rows):
         return float(np.mean([row[key] for row in items])) if items else None
 
     arms = {}
-    for flag in (False, True):
-        arm = [row for row in rows if row["zupt"] == flag]
-        arms["zupt-on" if flag else "zupt-off"] = {
+    for mode in ARMS:
+        arm = [row for row in rows if row["arm"] == mode]
+        if not arm:
+            continue
+        arms[mode] = {
             "equal_flight_mean_ate": mean(arm),
             "ordinary_ate": mean([row for row in arm if row["ordinary"]]),
             "static_start_ate": mean([row for row in arm if row["start"] == "static"]),
@@ -132,6 +156,8 @@ def summarize(rows):
             "runner_error_replays": sum(row["runner_error"] is not None for row in arm),
             "mean_coverage": mean(arm, "coverage"),
             "zupt_updates": sum(row["zupt_updates"] for row in arm),
+            "zupt_while_moving": sum(row["zupt_while_moving"] for row in arm),
+            "moving_valid_frames": sum(row["moving_valid_frames"] for row in arm),
         }
     return arms
 
@@ -145,6 +171,9 @@ def main():
     parser.add_argument("--work-dir", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--workers", type=int, default=8)
+    diagnostics = parser.add_mutually_exclusive_group()
+    diagnostics.add_argument("--diagnose", action="store_true", help="Record upstream decisions and add inertial-only ZUPT arm")
+    diagnostics.add_argument("--initialization-only", action="store_true", help="Diagnose the still-start initializer without post-init ZUPT")
     args = parser.parse_args()
     manifest = json.loads(args.records.read_text())
     by_parent = {}
@@ -156,7 +185,9 @@ def main():
         raise ValueError("Expected exactly 60 development parents with both crops")
     args.work_dir.mkdir(parents=True, exist_ok=True)
     shard_root = args.records.parent / "shards"
-    jobs = [(args.raw_dev / name, recs, shard_root, args.runner.resolve(), args.work_dir)
+    modes = (3,) if args.initialization_only else range(3 if args.diagnose else 2)
+    native_logs = args.diagnose or args.initialization_only
+    jobs = [(args.raw_dev / name, recs, shard_root, args.runner.resolve(), args.work_dir, modes, native_logs)
             for name, recs in sorted(by_parent.items())]
     rows = []
     with ProcessPoolExecutor(args.workers) as pool:
@@ -170,7 +201,8 @@ def main():
     control = {key: float(np.mean([row[key] for row in baseline])) for key in keys}
     arms = summarize(rows)
     for arm in arms.values():
-        arm["advance_to_wasm"] = (arm["equal_flight_mean_ate"] <= .90 * control["equal_flight_mean_ate"]
+        arm["advance_to_wasm"] = (not (args.diagnose or args.initialization_only)
+                                  and arm["equal_flight_mean_ate"] <= .90 * control["equal_flight_mean_ate"]
                                   and arm["ordinary_ate"] <= 1.05 * control["ordinary_ate"])
     summary = {"B-D0-ssm-x3": control, **arms}
     args.output.parent.mkdir(parents=True, exist_ok=True)

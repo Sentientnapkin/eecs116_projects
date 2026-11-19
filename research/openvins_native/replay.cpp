@@ -33,9 +33,16 @@ template <typename T> T read(std::istream &input) {
   return value;
 }
 
-ov_msckf::VioManagerOptions options(std::istream &input, int w, int h, bool zupt) {
+ov_msckf::VioManagerOptions options(std::istream &input, int w, int h, const std::string &mode) {
   ov_msckf::VioManagerOptions result;
-  result.try_zupt = zupt;
+  result.try_zupt = mode != "0";
+  if (mode == "2" || mode == "3") {
+    result.zupt_max_disparity = 0.0;
+  }
+  if (mode == "3") {
+    // Retain the non-jerk initializer path while rejecting each post-init ZUPT.
+    result.zupt_options.chi2_multipler = 0.0;
+  }
   result.use_stereo = false;
   result.use_aruco = false;
   result.use_multi_threading_pubs = false;
@@ -125,8 +132,10 @@ private:
 
 int main(int argc, char **argv) {
   try {
-    if (argc != 4 || (std::string(argv[3]) != "0" && std::string(argv[3]) != "1")) {
-      throw std::invalid_argument("Usage: openvins_replay INPUT OUTPUT ZUPT_0_OR_1");
+    const std::string mode = argc >= 4 ? argv[3] : "";
+    const bool diagnostics = argc == 5 && std::string(argv[4]) == "--diagnose";
+    if ((argc != 4 && !diagnostics) || (mode != "0" && mode != "1" && mode != "2" && mode != "3")) {
+      throw std::invalid_argument("Usage: openvins_replay INPUT OUTPUT ZUPT_MODE [--diagnose]");
     }
     std::ifstream input(argv[1], std::ios::binary);
     std::ofstream output(argv[2]);
@@ -139,8 +148,10 @@ int main(int argc, char **argv) {
     if (w == 0 || h == 0 || frames == 0) {
       throw std::runtime_error("Empty replay input");
     }
-    auto config = options(input, w, h, std::string(argv[3]) == "1");
-    ov_core::Printer::setPrintLevel(ov_core::Printer::WARNING);
+    auto config = options(input, w, h, mode);
+    const auto log_level = diagnostics ? (mode == "3" ? ov_core::Printer::DEBUG : ov_core::Printer::INFO)
+                                       : ov_core::Printer::WARNING;
+    ov_core::Printer::setPrintLevel(log_level);
     Estimator estimator(config);
     const auto state = estimator.get_state();
     ImuStream imu;
