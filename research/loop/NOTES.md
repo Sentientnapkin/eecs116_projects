@@ -177,3 +177,7 @@ the origin (harness rule); zero filled frames everywhere. The pinned evaluator r
   restores parity (public 1.369 vs Python 1.385) but costs accuracy, so the ungated build is the candidate.
 - Mean ATE decisions only; the public set shares one scene that is in N2's (and campaign) training, so campaign dev is
   the stronger evidence. Proxy-validation raw archives are unavailable here, so the attitude path was not checked there.
+
+## 2026-11-19 — Codex completion audit of provided baseline
+
+Recovered completed actual pinned OpenVINS Wasm results from odometry/provided-openvins023198d, verified source9b1b079clean, artifactc6cd96bc, saved7passed checks, and reran five-step ABIcheck successfully. Recomputed saved trajectory means and SHA-verified all60campaign-dev parents; no new inference or reserved-test access. Public1.108m; campaign capped30/full6.714/32.642m; eligible60n30=84.191m; peak4.350Bfuel. All120campaign resets completed102000frames with zero filling,114initialized. Full per-flight/start/motion/catalog/scene/parent audit and diagnostic evidence are in BASELINE_FINISH_REPORT.md and results/eval/baseline-finish-audit.json. Single-seedN2+kfgrid promising but remains unqualified; original-dev/proxy raw unavailable. VINS-Mono side build had7passed/1failed checks and no matched roster replay; recorded as gated. All historical gates preserved.
