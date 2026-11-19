@@ -23,6 +23,14 @@ struct GridAttitude {
     cv::Mat anchor, current, rgb_view;
     bool decided = false, have_anchor = false;
     int still_frames = 0, accepted = 0, rejected = 0;
+#ifdef ODO_VEL_FUSION
+    // research/vel_fusion.py (--direction knownrot, arm a_replace): per-window camera translation direction
+    bool window_done = false, dir_valid = false;
+    double dir_world[3] = {0, 0, 0};   // unit camera-centre displacement direction, kf_grid world frame
+    cv::Vec3d dir_cam;
+    int dir_inliers = 0;
+    double dir_flow = 0;
+#endif
     double still_t[STILL_FRAMES];
     int still_n[STILL_FRAMES];
     double still_rows[STILL_FRAMES][STILL_ROWS][7];
@@ -113,6 +121,44 @@ struct GridAttitude {
         return true;
     }
 
+#ifdef ODO_VEL_FUSION
+    // vel_fusion.known_rotation_direction: camera-k centre direction in camera-a axes with the rotation fixed to
+    // `relative` (camera-k vectors -> camera-a): null vector of rows (relative x_new) x x_old (normalised) over the
+    // RANSAC & cheirality inliers; sign by majority two-view depth cheirality.
+    bool known_rotation_direction(const std::vector<cv::Point2f> &old_px, const std::vector<cv::Point2f> &new_px,
+                                  const cv::Mat &ransac, const cv::Mat &cheiral, const cv::Matx33d &relative, cv::Vec3d &c) const {
+        cv::Matx33d M = cv::Matx33d::zeros();
+        std::vector<cv::Vec3d> xo, xn;
+        for (size_t i = 0; i < old_px.size(); ++i) {
+            if (!ransac.at<uchar>((int)i) || (!cheiral.empty() && !cheiral.at<uchar>((int)i))) continue;
+            const cv::Vec3d o = Kinv * cv::Vec3d(old_px[i].x, old_px[i].y, 1);
+            const cv::Vec3d n = relative * (Kinv * cv::Vec3d(new_px[i].x, new_px[i].y, 1));
+            cv::Vec3d r = n.cross(o);
+            const double norm = cv::norm(r);
+            r *= 1.0 / std::max(norm, 1e-12);
+            M += r * r.t();
+            xo.push_back(o); xn.push_back(n);
+        }
+        if (xo.size() < 8) return false;
+        cv::Matx31d values;
+        cv::Matx33d vectors;
+        cv::eigen(M, values, vectors);                      // descending; smallest = last row
+        c = cv::Vec3d(vectors(2, 0), vectors(2, 1), vectors(2, 2));
+        int vote = 0;
+        for (size_t i = 0; i < xo.size(); ++i) {
+            // least squares [xo, -xn] [l1 l2]^T = c
+            const cv::Vec3d &a = xo[i], &b = xn[i];
+            const double aa = a.dot(a), ab = -a.dot(b), bb = b.dot(b), ac = a.dot(c), bc = -b.dot(c);
+            const double det = aa * bb - ab * ab;
+            if (std::fabs(det) < 1e-15) continue;
+            const double l1 = (bb * ac - ab * bc) / det, l2 = (aa * bc - ab * ac) / det;
+            vote += (l1 > 0 && l2 > 0) ? 1 : ((l1 < 0 && l2 < 0) ? -1 : 0);
+        }
+        if (vote < 0) c = -c;
+        return true;
+    }
+#endif
+
     // attitude_bias.grid_rotation: camera right-multiplicative correction and sigma (rad), or false.
     const char *why = "";
     bool measure(const cv::Matx33d &relative, cv::Vec3d &delta, double &sigma) {
@@ -154,6 +200,9 @@ struct GridAttitude {
         std::sort(f.begin(), f.end());
         const size_t m = f.size();
         const double median = m % 2 ? f[m / 2] : .5 * (f[m / 2 - 1] + f[m / 2]);
+#ifdef ODO_VEL_FUSION
+        dir_flow = median;
+#endif
         if (median <= 1.0) {
             double err;
             if (!fit_rotation(old_px, new_px, Kinv, relative, delta, err) || err > 0.012) { why = "rotation fit"; return false; }
@@ -166,6 +215,11 @@ struct GridAttitude {
         cv::Mat cheiral;  // no input mask: like the reference, every tracked point enters the cheirality count
         const int inliers = cv::recoverPose(E, old_px, new_px, cv::Mat(K), Rm, tm, cheiral);
         if (inliers < std::max(12.0, 0.5 * (double)old_px.size())) { why = "cheirality"; return false; }
+#ifdef ODO_VEL_FUSION
+        // Python passes the RANSAC mask into recoverPose, which leaves it = RANSAC inliers passing cheirality.
+        dir_inliers = inliers;
+        dir_valid = known_rotation_direction(old_px, new_px, mask, cheiral, relative, dir_cam);
+#endif
         const cv::Matx33d old_to_new(Rm);
         cv::Vec3d rv;
         cv::Rodrigues(cv::Mat(relative.t() * old_to_new.t()), rv);
@@ -205,7 +259,21 @@ struct GridAttitude {
             const cv::Matx33d relative(rel.a[0], rel.a[1], rel.a[2], rel.a[3], rel.a[4], rel.a[5], rel.a[6], rel.a[7], rel.a[8]);
             cv::Vec3d delta;
             double sigma;
+#ifdef ODO_VEL_FUSION
+            dir_valid = false; dir_inliers = 0; dir_flow = 0;
+#endif
             bool ok = measure(relative, delta, sigma) && cv::norm(delta) <= 0.05;
+#ifdef ODO_VEL_FUSION
+            window_done = true;
+            dir_valid = dir_valid && dir_inliers >= 30 && dir_flow >= 2.0;
+            if (dir_valid) {
+                const M3 Rw = mul(R_anchor, R_bc);            // world_from_camera at the window anchor
+                const double dc[3] = {dir_cam[0], dir_cam[1], dir_cam[2]};
+                mv(Rw, dc, dir_world);
+                const double n = std::sqrt(dir_world[0] * dir_world[0] + dir_world[1] * dir_world[1] + dir_world[2] * dir_world[2]);
+                for (double &x : dir_world) x /= n;
+            }
+#endif
             double residual[3];
             if (ok) {
                 const double dv[3] = {delta[0], delta[1], delta[2]};

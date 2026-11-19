@@ -662,6 +662,10 @@ struct Estimator {
 #ifdef ODO_KF_GRID
     GridAttitude att;
     double relative_packet[7 * 256];
+#ifdef ODO_VEL_FUSION
+    double cam_anchor[3] = {0, 0, 0};
+    int fused = 0;
+#endif
 #endif
 
     // T_cam_imu: 4x4 row-major
@@ -701,6 +705,27 @@ struct Estimator {
         double v[3];
         mv(R, v64, v);
         if (have_v) for (int i = 0; i < 3; ++i) position[i] += .5 * (t - last_t) * (v[i] + last_v[i]);
+#ifdef ODO_VEL_FUSION
+        // vel_fusion.py a_replace (knownrot): at each 0.5 s window end, the window's camera displacement keeps the
+        // network's length and takes the visual direction; applied as a causal jump at the window's last frame.
+        {
+            double ro0[3], cam[3];
+            mv(R, offset, ro0);
+            for (int i = 0; i < 3; ++i) cam[i] = position[i] + ro0[i];
+            if (!have_v) std::memcpy(cam_anchor, cam, sizeof cam);
+            if (att.window_done) {
+                att.window_done = false;
+                double d[3], m = 0;
+                for (int i = 0; i < 3; ++i) { d[i] = cam[i] - cam_anchor[i]; m += d[i] * d[i]; }
+                m = std::sqrt(m);
+                if (att.dir_valid && m >= 0.05) {
+                    for (int i = 0; i < 3; ++i) { const double jump = m * att.dir_world[i] - d[i]; position[i] += jump; cam[i] += jump; }
+                    ++fused;
+                }
+                std::memcpy(cam_anchor, cam, sizeof cam);
+            }
+        }
+#endif
         last_t = t; have_v = true;
         std::memcpy(last_v, v, sizeof v);
         double ro[3], p[3];
