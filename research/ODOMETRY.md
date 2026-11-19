@@ -116,7 +116,13 @@ from training logs, evaluation and plots on 2026-11-18); earlier notes that quot
   ATE falls from 2.136 m to 1.690 m. B-D2n reaches 1.341 m dev and 1.019 m on ordinary flights.
   On campaign dev at 30 s, N1 improves mean ATE from 1.353 m to 1.219 m, with gains on both
   ProcTHOR and HSSD. On proxy validation at 30 s, N1 scores 1.302 m and B-D2n scores 1.186 m,
-  versus 1.276 m for B-D0. The N2 and full-duration campaign comparisons are pending.
+  versus 1.276 m for B-D0. Full-duration campaign ATE is 1.633 m for N1, 2.030 m for B-D2n,
+  and 1.871 m for B-D0.
+- **N2 improves broad native coverage and misses the ordinary-flight guardrail.** It reaches
+  0.933 m on original dev and 1.110 m on 30 s proxy validation. Ordinary original-dev ATE rises
+  from 0.921 m to 1.007 m (+9.2%). Campaign-dev ATE at 30 s is 1.007 m (ProcTHOR 1.126 m,
+  HSSD 0.888 m), and full-duration ATE is 1.391 m (ProcTHOR 1.477 m, HSSD 1.304 m).
+  The matched early-window resampling follow-up is running.
 - With true velocity, the measured attitude path scores 0.41 m on dev, 0.35 m on the 30 s proxy
   holdout, and 0.967 m on full campaign dev. Ideal yaw correction lowers the latter to 0.209 m.
   Three learned yaw-correction runs are training.
