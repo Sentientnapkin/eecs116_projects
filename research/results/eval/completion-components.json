@@ -1,0 +1,37 @@
+{
+  "date_utc": "2026-11-19",
+  "git_main_after_pull": "8f3f644ec591b747a396f53565d18fbf3e6e81ce",
+  "main_changed": false,
+  "submitted_or_pushed": false,
+  "reserved_splits_scored": false,
+  "new_deployment_qualified": false,
+  "continuation_jobs_remaining": 0,
+  "components": [
+    {
+      "branch": "codex/baseline-finish",
+      "commit": "9750cb5",
+      "worktree": "/data/backups/rganapa/Sebastian/eecs116_projects/.codex-worktrees/baseline-finish",
+      "reports": ["research/BASELINE_FINISH_REPORT.md", "research/KF_GRID_PARITY_REVIEW.md"],
+      "report_commits_integrated": true
+    },
+    {
+      "branch": "codex/fusion-finish",
+      "commit": "121c385",
+      "worktree": "/data/backups/rganapa/Sebastian/eecs116_projects/.codex-worktrees/fusion-finish",
+      "reports": ["research/FUSION_COMPLETION.md"],
+      "source_and_results_remain_on_component_branch": true
+    },
+    {
+      "branch": "codex/training-finish",
+      "commit": "1907593692d82210fc7ebf8f151017d29b5839a0",
+      "worktree": "/data/backups/rganapa/Sebastian/eecs116_projects/.codex-worktrees/training-finish",
+      "reports": ["research/TRAINING_COMPLETION.md"],
+      "source_and_results_remain_on_component_branch": true
+    }
+  ],
+  "artifacts": {
+    "provided_openvins": {"sha256": "c6cd96bcbadef6c098fc285a293bc8f3045032245d232b10be84d6423789da8e", "source_commit": "9b1b07906aff5a3e6f00155e7aecf967d90aa960", "local_hash_verified": true},
+    "staged6r": {"sha256": "238f6901e793b8ad88bfee3fa1c322d920302ec1a474904edae0df16ec9b0c51", "local_hash_verified": true, "qualified_submission": false},
+    "camera_direction_blended_speed": {"sha256": "17612d2a1dff9ef50c185dbeed08a8778f10dc19a8475c0dc55a3fdacef072f2", "submission_id": "67b8a4d97b9f161b", "local_hash_verified": false, "source_and_binary_location": null}
+  }
+}

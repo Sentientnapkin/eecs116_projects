@@ -1,5 +1,9 @@
 # Handoff: learned odometry for VIOBench (EECS 116 Project 3, Stage 2)
 
+**Current freeze instruction:** Canonical newest C++/Wasm input-model seed217 (SHA8b05b203) is frozen and packaged. Read the [new port report](/data/backups/rganapa/Sebastian/eecs116_projects/.codex-worktrees/new-model-wasm/research/NEWEST_MODEL_WASM.md). **Do not resume parity work without a new user request.** Its known limitations remain documented; this freeze does not authorize submission or push.
+
+**Historical handoff:** For the current continuation and corrected baseline/port evidence, read [CONTINUATION_20261119.md](CONTINUATION_20261119.md). Running-job statuses and pending comparisons below have been audited and superseded there. All existing worktrees and prior measurements are preserved.
+
 Written 2026-11-18 ~23:30 UTC on the GPU box (`wnckcaina01`) for continuing the work in Codex.
 Everything below is the state at that time; training runs keep going after this was written.
 
