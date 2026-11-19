@@ -15,6 +15,10 @@ levels, essential RANSAC max iterations, update delay in frames):
   split_c6     split with 6 corners per cell                                                      (6, 21, 3, 500, 2)
   split_r100   split with at most 100 RANSAC iterations                                           (10, 21, 3, 100, 2)
   split_lite   split with (6, 15, 2, 100)
+  staged4      the -DODO_KF_GRID_STAGED schedule with 1 track slice: identical measurement, update 4 frames later
+  staged6      -DODO_KF_GRID_STAGED with 2 track slices: identical measurement, update 6 frames later
+               (staged4/staged6 added 2026-11-19 after the split wasm's stage profile, before running them; same gate
+               as split: within +0.010 m of kf_grid on public and campaign dev)
 Gate (predeclared): a numerics-changing arm is acceptable for porting if its 6-model mean full ATE is within +0.010 m of
 `split` on public AND on campaign dev (120 replays). `split` itself is acceptable within +0.010 m of `kf_grid`.
 Which arms are actually ported depends on the measured per-stage fuel of the split wasm (largest stage first).
@@ -33,7 +37,8 @@ from orientation import fit_visual_rotation
 
 ARMS = {"kf_grid": (10, 21, 3, 500, 0), "split": (10, 21, 3, 500, 2), "split_l2": (10, 21, 2, 500, 2),
         "split_w15": (10, 15, 3, 500, 2), "split_c6": (6, 21, 3, 500, 2), "split_r100": (10, 21, 3, 100, 2),
-        "split_lite": (6, 15, 2, 100, 2)}
+        "split_lite": (6, 15, 2, 100, 2),
+        "staged4": (10, 21, 3, 500, 4), "staged6": (10, 21, 3, 500, 6)}
 
 
 def grid_rotation(first, last, K, relative, corners, win, levels, iters):
