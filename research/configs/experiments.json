@@ -1,6 +1,9 @@
 {
   "_doc": "Experiment definitions. Each entry resolves to odometry_train.py arguments: --config configs/odometry.json, --data <data>, then 'args'. Shared blocks are referenced by name in 'use'. Decision gates are declared before results exist.",
   "blocks": {
+    "throughput_common": ["--head", "ssm", "--set", "training.preload=true", "--set", "training.eval_flights=7", "--set", "training.tf32=true", "--set", "training.mixed_precision=\"bf16\""],
+    "throughput_prefix": ["--set", "training.report_throughput=true", "--set", "model.ssm_scan=\"prefix\"", "--set", "model.ssm_chunk=96", "--set", "model.frame_chunk=48", "--set", "model.channels_last=true", "--set", "training.fused_adamw=true", "--set", "training.deferred_loss_check=true", "--set", "training.batch_size=2", "--set", "training.accumulation=1"],
+    "throughput_batch4": ["--set", "model.frame_chunk=96", "--set", "training.batch_size=4", "--set", "training.learning_rate=0.0004242640687", "--set", "training.weight_ema=0.990025"],
     "recipe": [
       "--cache-gb",
       "20",
@@ -48,6 +51,7 @@
     "architecture_block": "T-series runs use D0 data and recipe; each is compared scene-paired to D0-ssm (seed 217) with the same screen (>=10% lower dev mean unaligned ATE), the ordinary-motion guardrail, and the 30 s proxy-validation criterion as a second, independent check. If the D-series selects expanded data, the T-series is rerun on it instead.",
     "native_campaign_block": "N1-ssm-x3 vs B-D0-ssm-x3, three seeds each, decided on three-seed means: screen >=10% lower development mean unaligned ATE and the ordinary-motion guardrail; independent checks are the 30 s proxy-validation criterion and campaign-dev (new flights in ProcTHOR 166-171 and in 15 never-used HSSD Val43 houses, reported separately). The reserved campaign test split (ProcTHOR 162-165/172-175, 28 HSSD Val43 houses) stays unscored.",
     "visual_attitude_block": "Freeze the B-D0 best checkpoints for seeds 217/218/219 and replay their exact same body-frame velocities through baseline and causal visual-corrected attitude. Use 0.5 s non-overlapping image pairs; require spatially spread forward/backward LK tracks, gate the direct rotation fit to low residual flow, and use a translation-aware essential-matrix fit only with adequate cheirality, support, and estimated parallax. Apply 0.35 gain and reject corrections over 0.12 rad. Primary dev gate: >=10% lower three-seed mean unaligned ATE and <=5% regression on ordinary flights and each start group. Report nominal/static and 5 s moving starts separately; check campaign-dev 30 s by catalog and start. Only passing candidates advance to hybrid on the learned-attitude rotations, holding that candidate's velocities fixed between hybrid arms, and to C/C++ WebAssembly peak fuel measurement. No reserved-test replay.",
+    "throughput_block": "D0 timing pilots (seed 217) use the existing 244 windows and same model, comparing median steady-state epoch (train + development replay), timings per component, and peak GPU memory. Timing-pilot accuracy is diagnostic. The fastest successful steady-state pilot among prefix, compiled, and batch4 advances to its matching B-speed trial. The full 36-epoch candidate is compared at equal scored frame exposure against B-D0-ssm-x3, over seeds 217/218/219, with a development ATE tolerance of +5%, ordinary-motion guardrail, and proxy-val 30 s as independent check. Target is 10x per epoch-equivalent. Report GPU count and separate initialization/compile time.",
     "proxy_validation_criterion": "Declared 2026-11-18 ~15:30, before any D1/D2 result: the proxy-validation holdout is scored on each replay's first 30 s (benchmark flight length; odometry_eval.py --set proxy-val --max-seconds 30), scene-paired against the control. The full 90 s score is a long-horizon diagnostic only: there even true velocity through our attitude scores 1.04 m, so it mostly measures attitude drift."
   },
   "datasets": {
@@ -56,6 +60,60 @@
     "d1-expanded-tiers-labeled": "Same shards and splits as d1-expanded-tiers, with domain/tier labels from the audited ledger (needed for domain_share)."
   },
   "experiments": {
+    "P-speed-control": {
+      "data": "hf:teacher-full",
+      "use": ["recipe", "original_sampler"],
+      "args": ["--head", "ssm", "--epochs", "3"],
+      "note": "GPU timing control, original B-D0 recipe, seed 217."
+    },
+    "P-speed-parallel": {
+      "data": "hf:teacher-full",
+      "use": ["recipe", "original_sampler", "throughput_common"],
+      "args": ["--epochs", "3", "--set", "model.ssm_scan=\"parallel\"", "--set", "model.frame_chunk=32"],
+      "note": "Matched effective batch timing pilot for chunked parallel SSM, batched replay, preloading, TF32 and BF16; seed 217."
+    },
+    "P-speed-prefix": {
+      "data": "hf:teacher-full",
+      "use": ["recipe", "original_sampler", "throughput_common", "throughput_prefix"],
+      "args": ["--epochs", "3"],
+      "note": "Same number of windows per optimizer update as control. Fused optimizer, reduced host synchronization, channels-last CNN, prefix scan and batched replay."
+    },
+    "P-speed-compiled": {
+      "data": "hf:teacher-full",
+      "use": ["recipe", "original_sampler", "throughput_common", "throughput_prefix"],
+      "args": ["--epochs", "3", "--set", "model.compile_correlation=true"],
+      "note": "Same as P-speed-prefix, plus torch.compile on the local correlation operator. Include cold compile time separately."
+    },
+    "B-speed-prefix-x3": {
+      "data": "hf:teacher-full",
+      "use": ["recipe", "original_sampler", "throughput_common", "throughput_prefix"],
+      "args": ["--epochs", "36"],
+      "note": "36 epochs and 244 windows per epoch. Candidate for the throughput block; seeds 217/218/219."
+    },
+    "B-speed-compiled-x3": {
+      "data": "hf:teacher-full",
+      "use": ["recipe", "original_sampler", "throughput_common", "throughput_prefix"],
+      "args": ["--epochs", "36", "--set", "model.compile_correlation=true"],
+      "note": "36 epochs and 244 windows per epoch. Candidate for the throughput block; seeds 217/218/219."
+    },
+    "P-speed-batch4": {
+      "data": "hf:teacher-full",
+      "use": ["recipe", "original_sampler", "throughput_common", "throughput_prefix", "throughput_batch4"],
+      "args": ["--epochs", "3"],
+      "note": "Larger-batch saturation probe. Equal exposure, batch 4 versus batch 2. LR multiplied by sqrt(2), EMA per-step decay squared to preserve smoothing in seen windows."
+    },
+    "B-speed-batch4-x3": {
+      "data": "hf:teacher-full",
+      "use": ["recipe", "original_sampler", "throughput_common", "throughput_prefix", "throughput_batch4"],
+      "args": ["--epochs", "36"],
+      "note": "36 epochs at the batch-4 pilot recipe. Equal scored exposure with fewer updates; seeds 217/218/219."
+    },
+    "P-speed-ddp": {
+      "data": "hf:teacher-full",
+      "use": ["recipe", "original_sampler", "throughput_common", "throughput_prefix", "throughput_batch4"],
+      "args": ["--epochs", "3", "--set", "training.split_batches=true"],
+      "note": "Strong-scaling pilot for 1/2/4 H100s. Split each global batch of four across ranks, keeping seed, frames, 61 updates per epoch and LR fixed. Compare steady-state train time, development replay time and GPU-hours separately."
+    },
     "D0-ssm": {
       "data": "hf:teacher-full",
       "use": [
