@@ -1,0 +1,996 @@
+{
+  "experiment": "B-D0-cpp-fp32",
+  "predeclaration_commit": "a4f13f9",
+  "implementation_commit": "d3642a8",
+  "prepared_manifest_sha256": "a48e89a07ce127ccf3fce7873f7f020e5f54cdf684b65fb21a3e911edcf40428",
+  "raw_campaign_dev_manifest_sha256": "d13fc867d5cc5cc95fb63ab55e19cdec1035be021f35971276274e3ffc209c87",
+  "runtime": {
+    "viobench": "0.0.1",
+    "wasmtime": "50.0.1",
+    "wasi_sdk": "34.0",
+    "wasi_clang": "23.1.0",
+    "gcc": "11.4.0",
+    "torch": "2.15.0+cu132 (CPU)",
+    "opencv": "5.1.0",
+    "numpy": "2.5.5"
+  },
+  "counts": {
+    "parameters": 1286355,
+    "cnn_macs": 354336768,
+    "correlation_macs": 1022976,
+    "dense_macs": 841280
+  },
+  "prepared_summary": {
+    "pytorch_ate": 1.0949670779493454,
+    "cpp_ate": 1.0949670851917925,
+    "frames": 21900,
+    "max_velocity_delta_mps": 6.258487701416016e-07,
+    "max_position_delta_m": 4.1813004338431886e-07
+  },
+  "raw_summary": {
+    "pytorch_ate": 0.6586899629539666,
+    "cpp_ate": 0.6586899869391305,
+    "wasm_ate": 0.6586899911722393,
+    "frames": 6600,
+    "max_pixel_delta": 0,
+    "max_imu_delta": 0.0,
+    "max_attitude_delta": 7.216449660063518e-15,
+    "max_state_delta": 1.7881393432617188e-07,
+    "max_python_cpp_position_delta_m": 3.847550870205321e-07,
+    "max_cpp_wasm_position_delta_m": 1.2164582041397122e-07,
+    "min_init_fuel": 100800,
+    "max_init_fuel": 101187,
+    "peak_step_fuel": 1074754835,
+    "failed_frames": 0,
+    "filled_frames": 0
+  },
+  "prepared": [
+    {
+      "seed": 217,
+      "checkpoint_sha256": "2a5b478de73dfe67904afb882f6a377cb086db39bab4307dacd652f556c90689",
+      "summary": {
+        "pytorch_ate": 1.0535247814139272,
+        "cpp_ate": 1.0535247923896123
+      },
+      "passed": true,
+      "rows": [
+        {
+          "scene": "ProcTHOR-Train-166",
+          "crop_s": 0,
+          "shard": "e2ccb38993f2ea00090d557e245ae83a4e324bae062f5d9e343b3aeea33b0ecf.npz",
+          "frames": 600,
+          "pytorch_ate": 0.6940251781660004,
+          "cpp_ate": 0.694025172990368,
+          "velocity_delta_max_mps": 3.5762786865234375e-07,
+          "position_delta_max_m": 2.569536688459881e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-166",
+          "crop_s": 5,
+          "shard": "e2cff8b992c931399d9b2d95e14b2ea33222356a9525eeb977e7b3f1cceb1bd9.npz",
+          "frames": 500,
+          "pytorch_ate": 0.8502256953513286,
+          "cpp_ate": 0.8502257116091744,
+          "velocity_delta_max_mps": 3.5762786865234375e-07,
+          "position_delta_max_m": 9.095580069676462e-08,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-167",
+          "crop_s": 0,
+          "shard": "9507af94ee14966c26546480d441e2d74090997d5f255c9d2b9cf80eb9c92857.npz",
+          "frames": 600,
+          "pytorch_ate": 0.9934031414880675,
+          "cpp_ate": 0.993403082960606,
+          "velocity_delta_max_mps": 3.5762786865234375e-07,
+          "position_delta_max_m": 2.766851552735327e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-167",
+          "crop_s": 5,
+          "shard": "57baaf75c44d91a8572b77944c7c83a61d19a14f2295cc0bb877e792524a3f30.npz",
+          "frames": 500,
+          "pytorch_ate": 1.223358853641398,
+          "cpp_ate": 1.2233588350967144,
+          "velocity_delta_max_mps": 4.172325134277344e-07,
+          "position_delta_max_m": 1.7032267430884652e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-168",
+          "crop_s": 0,
+          "shard": "6e7ef90141dd630837392cf2619221707fea720dc971f5968f2f5b68d24055c2.npz",
+          "frames": 600,
+          "pytorch_ate": 1.5158278195243404,
+          "cpp_ate": 1.5158276694913022,
+          "velocity_delta_max_mps": 3.2782554626464844e-07,
+          "position_delta_max_m": 3.7040833126650306e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-168",
+          "crop_s": 5,
+          "shard": "97c64a664a521df2a22747a4e889a7731fc403b637b4ad09cb4bf7fa04efb8b1.npz",
+          "frames": 500,
+          "pytorch_ate": 1.4928589770341931,
+          "cpp_ate": 1.492858957228263,
+          "velocity_delta_max_mps": 4.023313522338867e-07,
+          "position_delta_max_m": 1.8139771787156318e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-169",
+          "crop_s": 0,
+          "shard": "454a2445e1c6d96e94697cdc0866311439bfff97d3ecf863c214e24a75379cfd.npz",
+          "frames": 600,
+          "pytorch_ate": 0.8042229714610619,
+          "cpp_ate": 0.8042230857228622,
+          "velocity_delta_max_mps": 4.172325134277344e-07,
+          "position_delta_max_m": 2.6677439188942143e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-169",
+          "crop_s": 5,
+          "shard": "9f3b40aa9d68df4c40e46083927646e04dbe9eae160b962e5b073ed69ffd6978.npz",
+          "frames": 500,
+          "pytorch_ate": 0.7222411359502391,
+          "cpp_ate": 0.7222412237707962,
+          "velocity_delta_max_mps": 3.5762786865234375e-07,
+          "position_delta_max_m": 1.952031112967366e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-170",
+          "crop_s": 0,
+          "shard": "40559b98ee65b9e8ae12370285104c6de5c68507f81af8e5c630432f60c4ae2a.npz",
+          "frames": 600,
+          "pytorch_ate": 0.6998669217156476,
+          "cpp_ate": 0.699866928323056,
+          "velocity_delta_max_mps": 4.284083843231201e-07,
+          "position_delta_max_m": 1.08600930104823e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-170",
+          "crop_s": 5,
+          "shard": "ec3c7f69ed5613d62a5c5f2ffa67dd827c4019da72a246cf15dadd043d1fa7a1.npz",
+          "frames": 500,
+          "pytorch_ate": 0.9686114201252259,
+          "cpp_ate": 0.9686113861048533,
+          "velocity_delta_max_mps": 3.501772880554199e-07,
+          "position_delta_max_m": 1.705335239514445e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-171",
+          "crop_s": 0,
+          "shard": "83819dee62d86f98aea5c44aaa81dbfb9799db358e60e783e973c8f23adf3e12.npz",
+          "frames": 600,
+          "pytorch_ate": 0.5220563040830963,
+          "cpp_ate": 0.5220563723978736,
+          "velocity_delta_max_mps": 4.470348358154297e-07,
+          "position_delta_max_m": 4.1813004338431886e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-171",
+          "crop_s": 5,
+          "shard": "6cc5ea39769bd7b81259d2e2362cd61370f014e64cea687ee647918da6af0878.npz",
+          "frames": 500,
+          "pytorch_ate": 0.2808581732767449,
+          "cpp_ate": 0.28085828120289014,
+          "velocity_delta_max_mps": 2.980232238769531e-07,
+          "position_delta_max_m": 3.624759664985742e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-166",
+          "crop_s": 0,
+          "shard": "f10aeb575191eb082e7fd4948f3f07c58c6a80f1a0a9b90bf0b80bf2822b9947.npz",
+          "frames": 400,
+          "pytorch_ate": 1.881045522603329,
+          "cpp_ate": 1.8810455721450816,
+          "velocity_delta_max_mps": 2.60770320892334e-07,
+          "position_delta_max_m": 1.2513471755031862e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-166",
+          "crop_s": 5,
+          "shard": "e999e8a4f858d6ac0663fed949e162b16bf42ec3d48575413170c3e202123577.npz",
+          "frames": 300,
+          "pytorch_ate": 2.1007448253743086,
+          "cpp_ate": 2.100744814410728,
+          "velocity_delta_max_mps": 2.0116567611694336e-07,
+          "position_delta_max_m": 8.154596480236915e-08,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "seed": 218,
+      "checkpoint_sha256": "19889a142924bcd79dc40c4176d98fe671d010555dc46194d85fb8fd3042a8e4",
+      "summary": {
+        "pytorch_ate": 1.120216306641433,
+        "cpp_ate": 1.1202162959595259
+      },
+      "passed": true,
+      "rows": [
+        {
+          "scene": "ProcTHOR-Train-166",
+          "crop_s": 0,
+          "shard": "e2ccb38993f2ea00090d557e245ae83a4e324bae062f5d9e343b3aeea33b0ecf.npz",
+          "frames": 600,
+          "pytorch_ate": 0.7608151897005746,
+          "cpp_ate": 0.7608151278777555,
+          "velocity_delta_max_mps": 5.662441253662109e-07,
+          "position_delta_max_m": 2.724459856031349e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-166",
+          "crop_s": 5,
+          "shard": "e2cff8b992c931399d9b2d95e14b2ea33222356a9525eeb977e7b3f1cceb1bd9.npz",
+          "frames": 500,
+          "pytorch_ate": 0.870903567780755,
+          "cpp_ate": 0.8709035650058942,
+          "velocity_delta_max_mps": 5.066394805908203e-07,
+          "position_delta_max_m": 3.8612586820937243e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-167",
+          "crop_s": 0,
+          "shard": "9507af94ee14966c26546480d441e2d74090997d5f255c9d2b9cf80eb9c92857.npz",
+          "frames": 600,
+          "pytorch_ate": 1.3134160701003323,
+          "cpp_ate": 1.3134160422891417,
+          "velocity_delta_max_mps": 4.172325134277344e-07,
+          "position_delta_max_m": 1.3238219599885907e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-167",
+          "crop_s": 5,
+          "shard": "57baaf75c44d91a8572b77944c7c83a61d19a14f2295cc0bb877e792524a3f30.npz",
+          "frames": 500,
+          "pytorch_ate": 1.5448405160342598,
+          "cpp_ate": 1.5448404499508654,
+          "velocity_delta_max_mps": 4.76837158203125e-07,
+          "position_delta_max_m": 3.2378243622172993e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-168",
+          "crop_s": 0,
+          "shard": "6e7ef90141dd630837392cf2619221707fea720dc971f5968f2f5b68d24055c2.npz",
+          "frames": 600,
+          "pytorch_ate": 1.094406721713597,
+          "cpp_ate": 1.0944066111346624,
+          "velocity_delta_max_mps": 5.364418029785156e-07,
+          "position_delta_max_m": 2.273661978318475e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-168",
+          "crop_s": 5,
+          "shard": "97c64a664a521df2a22747a4e889a7731fc403b637b4ad09cb4bf7fa04efb8b1.npz",
+          "frames": 500,
+          "pytorch_ate": 1.1667793214428295,
+          "cpp_ate": 1.1667793097709236,
+          "velocity_delta_max_mps": 5.066394805908203e-07,
+          "position_delta_max_m": 1.1072006020023028e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-169",
+          "crop_s": 0,
+          "shard": "454a2445e1c6d96e94697cdc0866311439bfff97d3ecf863c214e24a75379cfd.npz",
+          "frames": 600,
+          "pytorch_ate": 0.8457832316753047,
+          "cpp_ate": 0.8457831900330901,
+          "velocity_delta_max_mps": 3.5762786865234375e-07,
+          "position_delta_max_m": 1.3348219567813854e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-169",
+          "crop_s": 5,
+          "shard": "9f3b40aa9d68df4c40e46083927646e04dbe9eae160b962e5b073ed69ffd6978.npz",
+          "frames": 500,
+          "pytorch_ate": 0.8529006841306618,
+          "cpp_ate": 0.8529006492374108,
+          "velocity_delta_max_mps": 3.8743019104003906e-07,
+          "position_delta_max_m": 1.6210178494193324e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-170",
+          "crop_s": 0,
+          "shard": "40559b98ee65b9e8ae12370285104c6de5c68507f81af8e5c630432f60c4ae2a.npz",
+          "frames": 600,
+          "pytorch_ate": 0.7107564424725663,
+          "cpp_ate": 0.7107564301842201,
+          "velocity_delta_max_mps": 4.76837158203125e-07,
+          "position_delta_max_m": 2.8330096422972466e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-170",
+          "crop_s": 5,
+          "shard": "ec3c7f69ed5613d62a5c5f2ffa67dd827c4019da72a246cf15dadd043d1fa7a1.npz",
+          "frames": 500,
+          "pytorch_ate": 0.7956915332936596,
+          "cpp_ate": 0.7956915382829399,
+          "velocity_delta_max_mps": 3.8743019104003906e-07,
+          "position_delta_max_m": 1.9277849287676435e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-171",
+          "crop_s": 0,
+          "shard": "83819dee62d86f98aea5c44aaa81dbfb9799db358e60e783e973c8f23adf3e12.npz",
+          "frames": 600,
+          "pytorch_ate": 0.4060269292243291,
+          "cpp_ate": 0.40602699952438426,
+          "velocity_delta_max_mps": 6.258487701416016e-07,
+          "position_delta_max_m": 3.7002016114022496e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-171",
+          "crop_s": 5,
+          "shard": "6cc5ea39769bd7b81259d2e2362cd61370f014e64cea687ee647918da6af0878.npz",
+          "frames": 500,
+          "pytorch_ate": 0.5991569560596817,
+          "cpp_ate": 0.5991571054033514,
+          "velocity_delta_max_mps": 4.172325134277344e-07,
+          "position_delta_max_m": 3.0376325003781224e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-166",
+          "crop_s": 0,
+          "shard": "f10aeb575191eb082e7fd4948f3f07c58c6a80f1a0a9b90bf0b80bf2822b9947.npz",
+          "frames": 400,
+          "pytorch_ate": 2.2393792451249737,
+          "cpp_ate": 2.2393791959151694,
+          "velocity_delta_max_mps": 3.2782554626464844e-07,
+          "position_delta_max_m": 2.0582162066630648e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-166",
+          "crop_s": 5,
+          "shard": "e999e8a4f858d6ac0663fed949e162b16bf42ec3d48575413170c3e202123577.npz",
+          "frames": 300,
+          "pytorch_ate": 2.482171884226537,
+          "cpp_ate": 2.4821719288235533,
+          "velocity_delta_max_mps": 2.2351741790771484e-07,
+          "position_delta_max_m": 1.7228324484035438e-07,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "seed": 219,
+      "checkpoint_sha256": "ab03c4fafc88133d9ff513c85892ad37b04063f61af5e9b24c801d9d92c8d275",
+      "summary": {
+        "pytorch_ate": 1.1111601457926763,
+        "cpp_ate": 1.1111601672262394
+      },
+      "passed": true,
+      "rows": [
+        {
+          "scene": "ProcTHOR-Train-166",
+          "crop_s": 0,
+          "shard": "e2ccb38993f2ea00090d557e245ae83a4e324bae062f5d9e343b3aeea33b0ecf.npz",
+          "frames": 600,
+          "pytorch_ate": 0.7977644843974787,
+          "cpp_ate": 0.7977644503577688,
+          "velocity_delta_max_mps": 5.662441253662109e-07,
+          "position_delta_max_m": 3.1985175061799936e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-166",
+          "crop_s": 5,
+          "shard": "e2cff8b992c931399d9b2d95e14b2ea33222356a9525eeb977e7b3f1cceb1bd9.npz",
+          "frames": 500,
+          "pytorch_ate": 0.7046620222864443,
+          "cpp_ate": 0.704661955277895,
+          "velocity_delta_max_mps": 4.172325134277344e-07,
+          "position_delta_max_m": 3.541042151001457e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-167",
+          "crop_s": 0,
+          "shard": "9507af94ee14966c26546480d441e2d74090997d5f255c9d2b9cf80eb9c92857.npz",
+          "frames": 600,
+          "pytorch_ate": 1.0455083518303807,
+          "cpp_ate": 1.0455082786955863,
+          "velocity_delta_max_mps": 3.129243850708008e-07,
+          "position_delta_max_m": 3.7977368705862236e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-167",
+          "crop_s": 5,
+          "shard": "57baaf75c44d91a8572b77944c7c83a61d19a14f2295cc0bb877e792524a3f30.npz",
+          "frames": 500,
+          "pytorch_ate": 1.4236034502107981,
+          "cpp_ate": 1.423603495474657,
+          "velocity_delta_max_mps": 3.2782554626464844e-07,
+          "position_delta_max_m": 1.3608943553226437e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-168",
+          "crop_s": 0,
+          "shard": "6e7ef90141dd630837392cf2619221707fea720dc971f5968f2f5b68d24055c2.npz",
+          "frames": 600,
+          "pytorch_ate": 1.4190865844234601,
+          "cpp_ate": 1.4190866171480352,
+          "velocity_delta_max_mps": 4.172325134277344e-07,
+          "position_delta_max_m": 1.7768598359471503e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-168",
+          "crop_s": 5,
+          "shard": "97c64a664a521df2a22747a4e889a7731fc403b637b4ad09cb4bf7fa04efb8b1.npz",
+          "frames": 500,
+          "pytorch_ate": 1.5131921414359413,
+          "cpp_ate": 1.5131921198149503,
+          "velocity_delta_max_mps": 3.8743019104003906e-07,
+          "position_delta_max_m": 1.1835328577798891e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-169",
+          "crop_s": 0,
+          "shard": "454a2445e1c6d96e94697cdc0866311439bfff97d3ecf863c214e24a75379cfd.npz",
+          "frames": 600,
+          "pytorch_ate": 0.7598133462103768,
+          "cpp_ate": 0.7598134419247168,
+          "velocity_delta_max_mps": 3.8743019104003906e-07,
+          "position_delta_max_m": 2.1094505651417418e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-169",
+          "crop_s": 5,
+          "shard": "9f3b40aa9d68df4c40e46083927646e04dbe9eae160b962e5b073ed69ffd6978.npz",
+          "frames": 500,
+          "pytorch_ate": 0.7643102160234979,
+          "cpp_ate": 0.7643102802727998,
+          "velocity_delta_max_mps": 4.76837158203125e-07,
+          "position_delta_max_m": 1.9850403306293214e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-170",
+          "crop_s": 0,
+          "shard": "40559b98ee65b9e8ae12370285104c6de5c68507f81af8e5c630432f60c4ae2a.npz",
+          "frames": 600,
+          "pytorch_ate": 0.9547705274775675,
+          "cpp_ate": 0.9547704527544688,
+          "velocity_delta_max_mps": 4.76837158203125e-07,
+          "position_delta_max_m": 2.7556904488935135e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-170",
+          "crop_s": 5,
+          "shard": "ec3c7f69ed5613d62a5c5f2ffa67dd827c4019da72a246cf15dadd043d1fa7a1.npz",
+          "frames": 500,
+          "pytorch_ate": 1.0156537058867432,
+          "cpp_ate": 1.0156537003187234,
+          "velocity_delta_max_mps": 4.6193599700927734e-07,
+          "position_delta_max_m": 3.182763655599925e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-171",
+          "crop_s": 0,
+          "shard": "83819dee62d86f98aea5c44aaa81dbfb9799db358e60e783e973c8f23adf3e12.npz",
+          "frames": 600,
+          "pytorch_ate": 0.5066444867429636,
+          "cpp_ate": 0.5066446169958574,
+          "velocity_delta_max_mps": 3.8743019104003906e-07,
+          "position_delta_max_m": 3.2717925981002974e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-171",
+          "crop_s": 5,
+          "shard": "6cc5ea39769bd7b81259d2e2362cd61370f014e64cea687ee647918da6af0878.npz",
+          "frames": 500,
+          "pytorch_ate": 0.539400355797724,
+          "cpp_ate": 0.5394005402808232,
+          "velocity_delta_max_mps": 5.066394805908203e-07,
+          "position_delta_max_m": 3.27757231365548e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-166",
+          "crop_s": 0,
+          "shard": "f10aeb575191eb082e7fd4948f3f07c58c6a80f1a0a9b90bf0b80bf2822b9947.npz",
+          "frames": 400,
+          "pytorch_ate": 1.993237209181085,
+          "cpp_ate": 1.993237245545277,
+          "velocity_delta_max_mps": 3.427267074584961e-07,
+          "position_delta_max_m": 2.8586556691790304e-07,
+          "passed": true
+        },
+        {
+          "scene": "ProcTHOR-Train-166",
+          "crop_s": 5,
+          "shard": "e999e8a4f858d6ac0663fed949e162b16bf42ec3d48575413170c3e202123577.npz",
+          "frames": 300,
+          "pytorch_ate": 2.118595159193009,
+          "cpp_ate": 2.1185951463057933,
+          "velocity_delta_max_mps": 2.980232238769531e-07,
+          "position_delta_max_m": 2.631801759753884e-07,
+          "passed": true
+        }
+      ]
+    }
+  ],
+  "raw": [
+    {
+      "seed": 217,
+      "checkpoint_sha256": "2a5b478de73dfe67904afb882f6a377cb086db39bab4307dacd652f556c90689",
+      "summary": {
+        "pytorch_ate": 0.44774800381808966,
+        "cpp_ate": 0.447748019259797,
+        "wasm_ate": 0.4477480306348923
+      },
+      "passed": true,
+      "rows": [
+        {
+          "flight": "dev-ProcTHOR-Train-166-01",
+          "crop_s": 0,
+          "frames": 600,
+          "pytorch_ate": 0.31045575838302975,
+          "cpp_ate": 0.310455801253772,
+          "wasm_ate": 0.3104558133219471,
+          "max_pixel_delta_by_plane": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "changed_pixels_by_plane": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "imu_delta_max": 0.0,
+          "attitude_delta_max": 6.994405055138486e-15,
+          "state_delta_max": 1.1920928955078125e-07,
+          "python_cpp_position_delta_max_m": 1.287338967773459e-07,
+          "cpp_wasm_position_delta_max_m": 5.63295131290519e-08,
+          "init_fuel": 101187,
+          "peak_step_fuel": 1074754719,
+          "peak_frame": 258,
+          "wasm_linear_memory_bytes": 67108864,
+          "failed_frames": 0,
+          "filled_frames": 0,
+          "passed": true
+        },
+        {
+          "flight": "dev-ProcTHOR-Train-166-01",
+          "crop_s": 5,
+          "frames": 500,
+          "pytorch_ate": 0.2886645451662667,
+          "cpp_ate": 0.2886645667087555,
+          "wasm_ate": 0.2886645869229535,
+          "max_pixel_delta_by_plane": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "changed_pixels_by_plane": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "imu_delta_max": 0.0,
+          "attitude_delta_max": 7.216449660063518e-15,
+          "state_delta_max": 1.1920928955078125e-07,
+          "python_cpp_position_delta_max_m": 1.1352584545212436e-07,
+          "cpp_wasm_position_delta_max_m": 7.421776001764362e-08,
+          "init_fuel": 101187,
+          "peak_step_fuel": 1074754679,
+          "peak_frame": 158,
+          "wasm_linear_memory_bytes": 67108864,
+          "failed_frames": 0,
+          "filled_frames": 0,
+          "passed": true
+        },
+        {
+          "flight": "dev-102816114-00",
+          "crop_s": 0,
+          "frames": 600,
+          "pytorch_ate": 0.5782204108594166,
+          "cpp_ate": 0.5782204354146847,
+          "wasm_ate": 0.5782204339001688,
+          "max_pixel_delta_by_plane": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "changed_pixels_by_plane": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "imu_delta_max": 0.0,
+          "attitude_delta_max": 3.0253577421035516e-15,
+          "state_delta_max": 1.4901161193847656e-07,
+          "python_cpp_position_delta_max_m": 1.4252591631353904e-07,
+          "cpp_wasm_position_delta_max_m": 8.028497477705887e-08,
+          "init_fuel": 100800,
+          "peak_step_fuel": 1074751701,
+          "peak_frame": 128,
+          "wasm_linear_memory_bytes": 67108864,
+          "failed_frames": 0,
+          "filled_frames": 0,
+          "passed": true
+        },
+        {
+          "flight": "dev-102816114-00",
+          "crop_s": 5,
+          "frames": 500,
+          "pytorch_ate": 0.6136513008636456,
+          "cpp_ate": 0.613651273661976,
+          "wasm_ate": 0.6136512883944998,
+          "max_pixel_delta_by_plane": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "changed_pixels_by_plane": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "imu_delta_max": 0.0,
+          "attitude_delta_max": 4.9960036108132044e-15,
+          "state_delta_max": 1.7881393432617188e-07,
+          "python_cpp_position_delta_max_m": 1.3591075155211379e-07,
+          "cpp_wasm_position_delta_max_m": 5.2230441909862136e-08,
+          "init_fuel": 100800,
+          "peak_step_fuel": 1074754114,
+          "peak_frame": 377,
+          "wasm_linear_memory_bytes": 67108864,
+          "failed_frames": 0,
+          "filled_frames": 0,
+          "passed": true
+        }
+      ],
+      "wasm_sha256": "844f358bc733508f440a36ab30632d997b18ff513b56866c02bd832402dcd56c",
+      "wasm_bytes": 5229373
+    },
+    {
+      "seed": 218,
+      "checkpoint_sha256": "19889a142924bcd79dc40c4176d98fe671d010555dc46194d85fb8fd3042a8e4",
+      "summary": {
+        "pytorch_ate": 0.6144070118867344,
+        "cpp_ate": 0.6144070028547612,
+        "wasm_ate": 0.6144070129225201
+      },
+      "passed": true,
+      "rows": [
+        {
+          "flight": "dev-ProcTHOR-Train-166-01",
+          "crop_s": 0,
+          "frames": 600,
+          "pytorch_ate": 0.6168865072153161,
+          "cpp_ate": 0.6168864636595016,
+          "wasm_ate": 0.6168864675617813,
+          "max_pixel_delta_by_plane": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "changed_pixels_by_plane": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "imu_delta_max": 0.0,
+          "attitude_delta_max": 6.994405055138486e-15,
+          "state_delta_max": 1.4901161193847656e-07,
+          "python_cpp_position_delta_max_m": 1.7666936284799792e-07,
+          "cpp_wasm_position_delta_max_m": 6.665939426702114e-08,
+          "init_fuel": 101187,
+          "peak_step_fuel": 1074754544,
+          "peak_frame": 258,
+          "wasm_linear_memory_bytes": 67108864,
+          "failed_frames": 0,
+          "filled_frames": 0,
+          "passed": true
+        },
+        {
+          "flight": "dev-ProcTHOR-Train-166-01",
+          "crop_s": 5,
+          "frames": 500,
+          "pytorch_ate": 0.43161101732646706,
+          "cpp_ate": 0.43161100774511996,
+          "wasm_ate": 0.43161101539699886,
+          "max_pixel_delta_by_plane": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "changed_pixels_by_plane": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "imu_delta_max": 0.0,
+          "attitude_delta_max": 7.216449660063518e-15,
+          "state_delta_max": 1.1920928955078125e-07,
+          "python_cpp_position_delta_max_m": 1.6776250448479578e-07,
+          "cpp_wasm_position_delta_max_m": 4.269008448788451e-08,
+          "init_fuel": 101187,
+          "peak_step_fuel": 1074754504,
+          "peak_frame": 158,
+          "wasm_linear_memory_bytes": 67108864,
+          "failed_frames": 0,
+          "filled_frames": 0,
+          "passed": true
+        },
+        {
+          "flight": "dev-102816114-00",
+          "crop_s": 0,
+          "frames": 600,
+          "pytorch_ate": 0.7286896208796911,
+          "cpp_ate": 0.7286896089531284,
+          "wasm_ate": 0.7286896376595462,
+          "max_pixel_delta_by_plane": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "changed_pixels_by_plane": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "imu_delta_max": 0.0,
+          "attitude_delta_max": 3.0253577421035516e-15,
+          "state_delta_max": 1.7881393432617188e-07,
+          "python_cpp_position_delta_max_m": 1.4780427742761637e-07,
+          "cpp_wasm_position_delta_max_m": 1.2164582041397122e-07,
+          "init_fuel": 100800,
+          "peak_step_fuel": 1074751536,
+          "peak_frame": 128,
+          "wasm_linear_memory_bytes": 67108864,
+          "failed_frames": 0,
+          "filled_frames": 0,
+          "passed": true
+        },
+        {
+          "flight": "dev-102816114-00",
+          "crop_s": 5,
+          "frames": 500,
+          "pytorch_ate": 0.6804409021254633,
+          "cpp_ate": 0.6804409310612953,
+          "wasm_ate": 0.680440931071754,
+          "max_pixel_delta_by_plane": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "changed_pixels_by_plane": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "imu_delta_max": 0.0,
+          "attitude_delta_max": 4.9960036108132044e-15,
+          "state_delta_max": 1.4901161193847656e-07,
+          "python_cpp_position_delta_max_m": 2.0904018217051358e-07,
+          "cpp_wasm_position_delta_max_m": 8.419233122579365e-08,
+          "init_fuel": 100800,
+          "peak_step_fuel": 1074753660,
+          "peak_frame": 377,
+          "wasm_linear_memory_bytes": 67108864,
+          "failed_frames": 0,
+          "filled_frames": 0,
+          "passed": true
+        }
+      ],
+      "wasm_sha256": "22ccf868eff90c8bb2e708c47e0597434606dba7b0c9fcd0bd77c768f430766c",
+      "wasm_bytes": 5229373
+    },
+    {
+      "seed": 219,
+      "checkpoint_sha256": "ab03c4fafc88133d9ff513c85892ad37b04063f61af5e9b24c801d9d92c8d275",
+      "summary": {
+        "pytorch_ate": 0.9139148731570759,
+        "cpp_ate": 0.9139149387028332,
+        "wasm_ate": 0.9139149299593052
+      },
+      "passed": true,
+      "rows": [
+        {
+          "flight": "dev-ProcTHOR-Train-166-01",
+          "crop_s": 0,
+          "frames": 600,
+          "pytorch_ate": 1.2723256505948446,
+          "cpp_ate": 1.2723256756172483,
+          "wasm_ate": 1.2723256589949832,
+          "max_pixel_delta_by_plane": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "changed_pixels_by_plane": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "imu_delta_max": 0.0,
+          "attitude_delta_max": 6.994405055138486e-15,
+          "state_delta_max": 1.1920928955078125e-07,
+          "python_cpp_position_delta_max_m": 2.3139668694713016e-07,
+          "cpp_wasm_position_delta_max_m": 4.50116254587289e-08,
+          "init_fuel": 101187,
+          "peak_step_fuel": 1074754803,
+          "peak_frame": 258,
+          "wasm_linear_memory_bytes": 67108864,
+          "failed_frames": 0,
+          "filled_frames": 0,
+          "passed": true
+        },
+        {
+          "flight": "dev-ProcTHOR-Train-166-01",
+          "crop_s": 5,
+          "frames": 500,
+          "pytorch_ate": 0.8420186774961885,
+          "cpp_ate": 0.8420187034505088,
+          "wasm_ate": 0.8420186983947378,
+          "max_pixel_delta_by_plane": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "changed_pixels_by_plane": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "imu_delta_max": 0.0,
+          "attitude_delta_max": 7.216449660063518e-15,
+          "state_delta_max": 1.1920928955078125e-07,
+          "python_cpp_position_delta_max_m": 1.7993775749126563e-07,
+          "cpp_wasm_position_delta_max_m": 5.073020337806257e-08,
+          "init_fuel": 101187,
+          "peak_step_fuel": 1074754835,
+          "peak_frame": 158,
+          "wasm_linear_memory_bytes": 67108864,
+          "failed_frames": 0,
+          "filled_frames": 0,
+          "passed": true
+        },
+        {
+          "flight": "dev-102816114-00",
+          "crop_s": 0,
+          "frames": 600,
+          "pytorch_ate": 0.6462228000805602,
+          "cpp_ate": 0.6462229028618794,
+          "wasm_ate": 0.6462229050741601,
+          "max_pixel_delta_by_plane": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "changed_pixels_by_plane": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "imu_delta_max": 0.0,
+          "attitude_delta_max": 3.0253577421035516e-15,
+          "state_delta_max": 1.4901161193847656e-07,
+          "python_cpp_position_delta_max_m": 3.847550870205321e-07,
+          "cpp_wasm_position_delta_max_m": 6.424082652734036e-08,
+          "init_fuel": 100800,
+          "peak_step_fuel": 1074751423,
+          "peak_frame": 128,
+          "wasm_linear_memory_bytes": 67108864,
+          "failed_frames": 0,
+          "filled_frames": 0,
+          "passed": true
+        },
+        {
+          "flight": "dev-102816114-00",
+          "crop_s": 5,
+          "frames": 500,
+          "pytorch_ate": 0.8950923644567104,
+          "cpp_ate": 0.8950924728816965,
+          "wasm_ate": 0.8950924573733403,
+          "max_pixel_delta_by_plane": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "changed_pixels_by_plane": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "imu_delta_max": 0.0,
+          "attitude_delta_max": 4.9960036108132044e-15,
+          "state_delta_max": 1.4901161193847656e-07,
+          "python_cpp_position_delta_max_m": 1.8728230686679467e-07,
+          "cpp_wasm_position_delta_max_m": 6.276568038217412e-08,
+          "init_fuel": 100800,
+          "peak_step_fuel": 1074753806,
+          "peak_frame": 377,
+          "wasm_linear_memory_bytes": 67108864,
+          "failed_frames": 0,
+          "filled_frames": 0,
+          "passed": true
+        }
+      ],
+      "wasm_sha256": "9976cb26bbec1f11075727e6e2e2d5236b90ca861af9e69c7f83b2e79f4b79df",
+      "wasm_bytes": 5229373
+    }
+  ]
+}
