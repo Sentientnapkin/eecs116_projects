@@ -190,3 +190,8 @@ Four ranks reached 60.5% scaling efficiency and consumed 65.2% more GPU-seconds 
 - Resumed the eight `hp1` LR-screen runs from their complete epoch-1/2 checkpoints. The scheduler uses four concurrent slots on H100 GPU 4. All eight retain their original run directories and per-run caches.
 - Declared the 12-epoch paired screen and 36-epoch three-seed promotion rule in `configs/experiments.json`. Replaced the inactive 6 s horizons in two 64-frame probes before launching them. The 128-frame probe retains 6 s.
 - Queued the remaining screen, promotion, and full dev and 30 s proxy-validation replays. See `results/loop/hp-scheduler-rung0.log` and `results/loop/hp-sweep-resume.log` in this worktree for status.
+### 2026-11-18 — Fast hyperparameter sweep transfer
+
+- The three-seed compiled recipe cleared the throughput gate in full replays. Mean unaligned ATE was 1.0905 m vs 1.0950 m on dev, 0.9061 m vs 0.9215 m on ordinary dev flights, and 1.2587 m vs 1.2765 m on 30 s proxy validation. GPU 5 measured 4.83 s per warm epoch for the compiled recipe.
+- The eight original `hp1` jobs finish on GPU 4. A separate worktree, tag `hpfast`, and paired fast base isolate all screening, promotion, and evaluation. Each fast run has its own read-only local shard view and local compiler caches. The optimizer applies weight decay and gradient-clip trial overrides while preserving the fast baseline defaults.
+- GPU 4 will check the base and longest-window probe for one epoch before starting the full fast sweep. If either smoke test fails, the original slow sweep takes over. Final 36-epoch replays compare qualifiers to both three-seed controls, compiled and original B-D0.

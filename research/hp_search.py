@@ -9,6 +9,7 @@ Every trial is D0-ssm (configs/experiments.json: recipe + original_sampler, --he
 plus the trial's --set overrides plus any global --extra overrides (e.g. a faster training path).
 Runs go to results/loop/HP-<trial>-e<epochs>-s<seed>-hp<k>, one shard cache each (as launch.py does).
 The scheduler keeps at most one run per listed slot and launches in the order given (priority order).
+Use --recipe B-speed-compiled-x3 with a distinct --tag for the paired fast screen.
 """
 import argparse
 import json
@@ -56,9 +57,11 @@ def run_name(trial, epochs, seed, tag):
     return f"HP-{trial}-e{epochs}-s{seed}-{tag}"
 
 
-def command(trial, epochs, seed, tag, extra, hub, overrides=None):
-    _, data, args = resolve("D0-ssm", seed)
+def command(trial, epochs, seed, tag, extra, hub, overrides=None, recipe="D0-ssm", local_source=None):
+    _, data, args = resolve(recipe, seed)
     run = run_name(trial, epochs, seed, tag)
+    if local_source is not None:
+        data = str(RUNS / "hp-local-data" / run)
     sets = (TRIALS[trial] if overrides is None else overrides) + list(extra)
     cmd = [sys.executable, "-B", "odometry_train.py", "--config", str(ROOT/"configs/odometry.json"),
            "--data", data, "--output", str(RUNS/run), "--cache-dir", str(ROOT/"data"/"hub-cache"/run),
@@ -75,6 +78,16 @@ def status(run):
     return json.loads(path.read_text()).get("status") if path.exists() else None
 
 
+def stage_local_data(source, run):
+    # Each run gets a read-only LocalStore view. Hard links keep validated shard bytes on the same filesystem.
+    dest = RUNS / "hp-local-data" / run
+    dest.mkdir(parents=True, exist_ok=True)
+    for path in (source / "manifest.json", *source.glob("*.npz")):
+        target = dest / path.name
+        if not target.exists():
+            os.link(path, target)
+
+
 def schedule(args):
     queue = [(t, s) for t in args.trials for s in args.seeds]
     queue = [(t, s) for t, s in queue if status(run_name(t, args.epochs, s, args.tag)) != "completed"]
@@ -88,8 +101,15 @@ def schedule(args):
                 slots[i] = (gpu, proc := None)
             if proc is None and queue:
                 trial, seed = queue.pop(0)
-                run, cmd = command(trial, args.epochs, seed, args.tag, args.extra or [], args.hub)
+                run, cmd = command(trial, args.epochs, seed, args.tag, args.extra or [], args.hub,
+                                   recipe=args.recipe, local_source=args.local_source)
+                if args.local_source is not None:
+                    stage_local_data(args.local_source, run)
                 env = dict(os.environ, CUDA_VISIBLE_DEVICES=str(gpu))
+                if args.compiler_root is not None:
+                    cache = args.compiler_root / run
+                    env.update(TORCHINDUCTOR_CACHE_DIR=str(cache / "inductor"),
+                               TRITON_CACHE_DIR=str(cache / "triton"))
                 log = open(RUNS/f"{run}.log", "a")
                 proc = subprocess.Popen(cmd, stdout=log, stderr=subprocess.STDOUT, cwd=ROOT, env=env,
                                         start_new_session=True)
@@ -125,7 +145,7 @@ def promote(args):
 
 def summary(args):
     rows = []
-    for path in sorted(RUNS.glob(f"HP-*-e{args.epochs}-s*")):
+    for path in sorted(RUNS.glob(f"HP-*-e{args.epochs}-s*-{args.tag}")):
         if not path.is_dir() or not (path/"metrics.json").exists(): continue
         trial, seed = path.name[3:].rsplit(f"-e{args.epochs}-s", 1)
         history = json.loads((path/"metrics.json").read_text())
@@ -148,6 +168,9 @@ def main():
     parser.add_argument("--epochs", type=int, default=12)
     parser.add_argument("--slots", default=DEFAULT_SLOTS, help="Comma-separated GPU ids, one entry per concurrent run")
     parser.add_argument("--tag", default="hp1")
+    parser.add_argument("--recipe", default="D0-ssm", help="Named base experiment for every trial")
+    parser.add_argument("--local-source", type=Path, help="Prepared shard directory for isolated read-only run views")
+    parser.add_argument("--compiler-root", type=Path, help="Root for isolated per-run Inductor and Triton caches")
     parser.add_argument("--extra", nargs="*", help="Overrides added to every trial (KEY=JSON)")
     parser.add_argument("--hub", action="store_true", help="Sync runs to the lab repo (off: it rate-limits commits)")
     args = parser.parse_args()
@@ -155,7 +178,9 @@ def main():
     if args.mode == "promote": return promote(args)
     if args.mode == "print":
         for t in args.trials:
-            for s in args.seeds: print(" ".join(command(t, args.epochs, s, args.tag, args.extra or [], args.hub)[1]))
+            for s in args.seeds:
+                _, cmd = command(t, args.epochs, s, args.tag, args.extra or [], args.hub, recipe=args.recipe, local_source=args.local_source)
+                print(" ".join(cmd))
         return
     return schedule(args)
 

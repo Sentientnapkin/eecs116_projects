@@ -125,6 +125,32 @@ class Optimizer(unittest.TestCase):
 
 
 class Hyperparameters(unittest.TestCase):
+    def test_fast_trial_inherits_recipe_then_applies_trial_overrides(self):
+        with TemporaryDirectory() as root, patch.object(hp_search, "RUNS", Path(root)):
+            _, cmd = hp_search.command("w128-h4", 12, 218, "hpfast", [], False, recipe="B-speed-compiled-x3")
+            options = dict(value.split("=", 1) for flag, value in zip(cmd, cmd[1:]) if flag == "--set")
+            self.assertEqual(options["training.batch_size"], "2")
+            self.assertEqual(options["training.accumulation"], "1")
+            self.assertEqual(options["model.compile_correlation"], "true")
+            self.assertEqual(options["training.window_frames"], "128")
+            self.assertEqual(json.loads(options["training.sampler"])["windows_per_epoch"], 122)
+            self.assertEqual(cmd[cmd.index("--seed")+1], "218")
+            self.assertEqual([value for flag, value in zip(cmd, cmd[1:]) if flag == "--epochs"][-1], "12")
+
+    def test_local_data_views_use_distinct_paths(self):
+        with TemporaryDirectory() as root, patch.object(hp_search, "RUNS", Path(root)):
+            source = Path(root) / "source"
+            source.mkdir()
+            (source / "manifest.json").write_text("manifest")
+            (source / "shard.npz").write_bytes(b"shard")
+            run, cmd = hp_search.command("base", 12, 217, "hpfast", [], False, local_source=source)
+            hp_search.stage_local_data(source, run)
+            hp_search.stage_local_data(source, run)
+            local = Path(cmd[cmd.index("--data")+1])
+            self.assertEqual(local.name, run)
+            self.assertEqual((local / "manifest.json").read_text(), "manifest")
+            self.assertTrue((local / "shard.npz").samefile(source / "shard.npz"))
+
     def test_promotion_requires_both_seeds_and_ranks_paired_means(self):
         scores = {"base": (1.3, 1.3), "lr1e-4": (1.0, 1.5), "lr6e-4": (1.2, 1.2), "lr1e-3": (1.0, 1.6)}
         args = argparse.Namespace(trials=list(scores), tag="test")
