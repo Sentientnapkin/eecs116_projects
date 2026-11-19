@@ -101,7 +101,8 @@ def integrate_packet(R, previous, t, packet, bias):
     return R @ exp_so3((last - bias) * (t - previous)), t
 
 
-def attitudes(flight, arm, true_bias=None):
+def attitudes(flight, arm, true_bias=None, trace=None):
+    """`trace`: optional list that receives the bias in effect after each frame (frame 0 included)."""
     """Causal attitude for every frame (world_from_body, identity at frame 0, like the prepared rows).
 
     Static window (OpenVINS-style, 0.8 s): frames are integrated with bias 0 until the first frame whose IMU packet
@@ -115,6 +116,8 @@ def attitudes(flight, arm, true_bias=None):
     decided = arm == "oracle_bias"
     R, previous = np.eye(3), t[0]
     out = [R.copy()]
+    if trace is not None:
+        trace.append(bias.copy())
     images = [gray(flight.frames[0])] if arm.startswith("kf") else None
     anchor, count = 0, {"accepted": 0, "rejected": 0}
     for k in range(1, len(t)):
@@ -164,6 +167,8 @@ def attitudes(flight, arm, true_bias=None):
                 images[anchor] = None
                 anchor = k
         out.append(R.copy())
+        if trace is not None:
+            trace.append(np.array(bias, dtype=float))
     return np.stack(out), count, bias
 
 
