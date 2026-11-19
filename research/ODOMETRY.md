@@ -84,7 +84,8 @@ the restricted roster has 75 (one native yaw flight). Every benchmark-regime nat
 
 ## Experiment record
 
-See `loop/NOTES.md` for the chronological log and `results/eval/` for full replays.
+See the [consolidated session report](SESSION_REPORT.md), `loop/NOTES.md` for the chronological
+log, and `results/eval/` for full replays.
 
 ## Current verdict (2026-11-18 evening, GPU box)
 
