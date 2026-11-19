@@ -1,0 +1,49 @@
+--- baseline/solution.cpp
++++ diagnostic/solution.cpp
+@@ -26,6 +26,7 @@
+ #include "core/VioManagerOptions.h"
+ #include "state/Propagator.h"
+ #include "state/State.h"
++#include "state/StateHelper.h"
+ #include "rotation_update.h"
+ #include "fixed_lag_vio.h"
+ #include "track/TrackBase.h"
+@@ -362,6 +363,15 @@
+         state.imu.shrink_to_fit();
+         std::printf("openvins: initialized at t=%.3f (frame %ld), state at t=%.3f, |v|=%.3f m/s\n", t, state.frames - 1,
+                     filter->_timestamp, initial->vel().norm());
++        {
++            Eigen::MatrixXd cov_v = ov_msckf::StateHelper::get_marginal_covariance(filter, {initial->v()});
++            const Pose now = camera_pose(state, initial->Rot().transpose(), initial->pos());
++            std::printf("DIAG init fe=%s t=%.3f gap=%.3f sv=%.4f v=%.3f,%.3f,%.3f ba=%.3f,%.3f,%.3f bg=%.4f,%.4f,%.4f back_disp=%.3f\n",
++                        state.vio->anchored_tracking ? "anchor" : "chain", t, t - state.t0, std::sqrt(cov_v.trace() / 3.0),
++                        initial->vel().x(), initial->vel().y(), initial->vel().z(), initial->bias_a().x(), initial->bias_a().y(),
++                        initial->bias_a().z(), initial->bias_g().x(), initial->bias_g().y(), initial->bias_g().z(),
++                        (now.p - state.camera0.p).norm());
++        }
+     }
+     // the IMU state at t: the filter's own once it has processed this frame, else propagated to it
+     Eigen::Matrix3d R_GtoI;
+@@ -488,6 +498,22 @@
+         Output combined;
+         if (!consensus.update(chain, anchor, conservative, combined))
+             throw std::runtime_error("consensus output rejected invalid candidates");
++        if (chain_state.vio->started() && chain_state.frames % 10 == 0) {
++            auto& a = chain_state.vio->smoother; auto& b = anchor_state.vio->smoother; auto* c = chain_state.vio->conservative.get();
++            const Eigen::Vector3d v0 = chain.rotation * chain.linear_velocity, v1 = anchor.rotation * anchor.linear_velocity,
++                                  v2 = conservative.rotation * conservative.linear_velocity;
++            std::printf("DIAG h t=%.3f p=%.2f,%.2f,%.2f|%.2f,%.2f,%.2f|%.2f,%.2f,%.2f v=%.3f,%.3f,%.3f|%.3f,%.3f,%.3f|%.3f,%.3f,%.3f "
++                        "out=%.2f,%.2f,%.2f tri=%zu,%zu,%zu vf=%zu,%zu,%zu opt=%d,%d,%d cost=%.1f,%.1f,%.1f ekfv=%.3f\n", t,
++                        chain.position.x(), chain.position.y(), chain.position.z(), anchor.position.x(), anchor.position.y(), anchor.position.z(),
++                        conservative.position.x(), conservative.position.y(), conservative.position.z(),
++                        v0.x(), v0.y(), v0.z(), v1.x(), v1.y(), v1.z(), v2.x(), v2.y(), v2.z(),
++                        combined.position.x(), combined.position.y(), combined.position.z(),
++                        a.last_triangulated, b.last_triangulated, c ? c->last_triangulated : 0,
++                        a.last_visual_factors, b.last_visual_factors, c ? c->last_visual_factors : 0,
++                        a.optimizations, b.optimizations, c ? c->optimizations : 0,
++                        a.last_final_cost, b.last_final_cost, c ? c->last_final_cost : 0.0,
++                        chain_state.vio->get_state()->_imu->vel().norm());
++        }
+         output_to_abi(combined, out);
+         return VIOBENCH_STATUS_OK;
+     } catch (const std::exception& error) {
