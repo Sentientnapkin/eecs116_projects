@@ -221,7 +221,10 @@ class OdometryNet(nn.Module):
             nout = d*2
         else:
             raise ValueError(f"Unknown head: {self.kind}")
-        self.output = nn.Sequential(nn.LayerNorm(nout), nn.Linear(nout, 128), nn.SiLU(), nn.Linear(128, 3))
+        # Optional uncertainty head: three more outputs, per-axis log-variance of the body velocity.
+        self.uncertainty = cfg.get("uncertainty", False)
+        self.output = nn.Sequential(nn.LayerNorm(nout), nn.Linear(nout, 128), nn.SiLU(),
+                                    nn.Linear(128, 6 if self.uncertainty else 3))
 
     def forward(self, images, imu, state=None, R=None):
         z = self.visual(images, imu, R)
@@ -242,4 +245,10 @@ class OdometryNet(nn.Module):
                 h = a*h+(1-a)*z[:, i]
                 ys.append(torch.cat((z[:, i], h), dim=-1))
             y, state = torch.stack(ys, dim=1), h
+        # With the uncertainty head the output is (..., 6): velocity, then log-variance (see split_output).
         return self.output(y), state
+
+
+def split_output(pred):
+    """Velocity and per-axis log-variance (None without the uncertainty head)."""
+    return (pred[..., :3], pred[..., 3:6].clamp(-12, 4)) if pred.shape[-1] == 6 else (pred, None)

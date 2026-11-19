@@ -195,3 +195,20 @@ Four ranks reached 60.5% scaling efficiency and consumed 65.2% more GPU-seconds 
 - The three-seed compiled recipe cleared the throughput gate in full replays. Mean unaligned ATE was 1.0905 m vs 1.0950 m on dev, 0.9061 m vs 0.9215 m on ordinary dev flights, and 1.2587 m vs 1.2765 m on 30 s proxy validation. GPU 5 measured 4.83 s per warm epoch for the compiled recipe.
 - The eight original `hp1` jobs finish on GPU 4. A separate worktree, tag `hpfast`, and paired fast base isolate all screening, promotion, and evaluation. Each fast run has its own read-only local shard view and local compiler caches. The optimizer applies weight decay and gradient-clip trial overrides while preserving the fast baseline defaults.
 - GPU 4 will check the base and longest-window probe for one epoch before starting the full fast sweep. If either smoke test fails, the original slow sweep takes over. Final 36-epoch replays compare qualifiers to both three-seed controls, compiled and original B-D0.
+## EKF fusion (2026-11-18)
+
+- **Fixed-covariance B-D0 screen failed the development gate.** Used the frozen best checkpoints for seeds 217/218/219. CPU-only tuning compared 16 settings on 32 crops from 16 native campaign training parents, balanced across catalog and motion regime. The nine-state filter estimates position, velocity and gravity using gyro attitude. Training selected acceleration sigma 0.20 m/s², zero gravity walk and velocity sigmas [0.200, 0.142, 0.121] m/s. Train mean unaligned ATE was 1.8391 m direct and 1.8033 m fused.
+- Three-seed mean unaligned ATE for the frozen setting:
+
+  | Evaluation | Direct (m) | EKF (m) | Change |
+  | --- | ---: | ---: | ---: |
+  | Development | 1.0950 | 1.1294 | +3.15% |
+  | Development ordinary | 0.9215 | 1.0006 | +8.59% |
+  | Development yaw flight (two crops) | 2.1359 | 1.9020 | −10.95% |
+  | Proxy validation, 30 s (69 replays) | 1.2765 | 1.2534 | −1.81% |
+  | Campaign development, 30 s (120 replays) | 1.3534 | 1.3758 | +1.66% |
+  | Campaign ProcTHOR, 30 s | 1.4914 | 1.4967 | +0.35% |
+  | Campaign HSSD, 30 s | 1.2153 | 1.2550 | +3.27% |
+
+- Dev ATE regressed in all three seeds. The improvement on the single dev yaw parent did not repeat on the campaign backward/lateral subset (3.4732 → 3.5102 m). Both dev gates failed, so uncertainty training and GPU allocation were deferred. Reserved test and confirmation stayed unopened.
+- The CPU direct controls match the stored B-series results within 0.00023 m on every evaluated replay and seed. The proxy run used the same 69 replay files as that reference. The [summary](../results/eval/ekf-fixed/summary.json) records the full grid, frozen checkpoint fingerprints, per-seed summaries and scene-paired differences. Per-replay results are in the ignored `results/loop/ekf-fixed-v1/` directory. CPU regression suite had 15 passes and one CUDA-only skip, including the new causal prefix check.
