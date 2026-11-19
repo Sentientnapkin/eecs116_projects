@@ -354,5 +354,26 @@
       "args": ["--head", "ssm", "--epochs", "36", "--set", "model.uncertainty=true", "--set", "training.nll_weight=0.02"],
       "note": "EKF fusion workstream: U-D0-ssm at the B-D0-ssm-x3 budget (4,392 updates), seeds 217/218/219; control B-D0-ssm-x3."
     }
+  },
+  "frozen_bias_ablation": {
+    "declared_utc": "2026-11-19T00:24:41.144962+00:00",
+    "source_pin": "9b1b07906aff5a3e6f00155e7aecf967d90aa960",
+    "arms": [
+      "control rolling calibration",
+      "none: integrate raw gyro, zero bias",
+      "first: freeze bias at first accepted rolling window"
+    ],
+    "matched_seeds": [
+      217,
+      218,
+      219
+    ],
+    "dataset": "campaign-dev only, 120 existing crop replays, no reserved tests",
+    "primary": "mean unaligned ATE at 30 seconds and full; report 60-second prefixes only where available",
+    "exploratory_screen": "at least 10% lower mean at 30s and full, ordinary/catalog/historical start groups no more than 5% regression; original dev and proxy gates unchanged and required before qualification",
+    "mechanism": "Remove later false-stationary gyro bias updates; differs from failed visual rotation fit and EKF. Earlier raw gyro oracle is motivation, frozen predicted velocity is new measured intervention. No new learned weights.",
+    "interaction": "Freeze original image derotation and IMU model inputs for isolation; complete system must later regenerate both with new orientation before deployment. No artifact qualifies based solely on frozen-velocity result.",
+    "fuel": "No whole guest implementation unless screen passes; no kernel extrapolation",
+    "parity": "raw reconstruction control must match prepared R <=1e-6; replay prefix must equal corresponding full prefix"
   }
 }
