@@ -64,6 +64,8 @@
     "advance": "Runs passing both gates advance to three paired seeds (217, 218, 219).",
     "domain_followup": "If D1/D2 fail the native-development gate but improve on the proxy-validation holdout, run D1n/D2n to separate motion coverage from reduced native exposure (21.3% in D0 vs 4.4% in D1/D2).",
     "architecture_block": "T-series runs use D0 data and recipe; each is compared scene-paired to D0-ssm (seed 217) with the same screen (>=10% lower dev mean unaligned ATE), the ordinary-motion guardrail, and the 30 s proxy-validation criterion as a second, independent check. If the D-series selects expanded data, the T-series is rerun on it instead.",
+    "attitude_block": "A-D0-ssm-x3 versus B-D0-ssm-x3 at 36 epochs with seeds 217/218/219. Require at least 10% lower mean development unaligned ATE and at most 5% ordinary-development regression. Check proxy validation at 30 s and campaign development at 30 s and full length, separately for ProcTHOR and HSSD. The campaign attitude oracle is a diagnostic and uses dev rotations only.",
+    "attitude_calibration_probe": "After the initial yaw/tilt oracle, compare the original rolling-calibration attitude with raw gyro integration without calibration, with the same true body velocities on campaign development only. Report 30 s and full unaligned ATE to determine whether the rolling bias estimate is a major source of residual drift. This diagnostic does not select a model.",
     "native_campaign_block": "N1-ssm-x3 vs B-D0-ssm-x3, three seeds each, decided on three-seed means: screen >=10% lower development mean unaligned ATE and the ordinary-motion guardrail; independent checks are the 30 s proxy-validation criterion and campaign-dev (new flights in ProcTHOR 166-171 and in 15 never-used HSSD Val43 houses, reported separately). The reserved campaign test split (ProcTHOR 162-165/172-175, 28 HSSD Val43 houses) stays unscored.",
     "visual_attitude_block": "Freeze the B-D0 best checkpoints for seeds 217/218/219 and replay their exact same body-frame velocities through baseline and causal visual-corrected attitude. Use 0.5 s non-overlapping image pairs; require spatially spread forward/backward LK tracks, gate the direct rotation fit to low residual flow, and use a translation-aware essential-matrix fit only with adequate cheirality, support, and estimated parallax. Apply 0.35 gain and reject corrections over 0.12 rad. Primary dev gate: >=10% lower three-seed mean unaligned ATE and <=5% regression on ordinary flights and each start group. Report nominal/static and 5 s moving starts separately; check campaign-dev 30 s by catalog and start. Only passing candidates advance to hybrid on the learned-attitude rotations, holding that candidate's velocities fixed between hybrid arms, and to C/C++ WebAssembly peak fuel measurement. No reserved-test replay.",
     "long_budget_block": "Compare 72 epochs against the validated 36-epoch B-speed-compiled-x3 control on seeds 217/218/219, holding D0 data, optimizer, batch, sampler, EMA and initial LR fixed, with the cosine schedule stretched to each budget. Use equal-flight mean unaligned dev ATE and the <=5% ordinary-motion guardrail. Promote to 144 epochs only if the three-seed dev mean falls at least 10% and 30 s proxy ATE does not regress. Report start splits and both campaign catalogs at 30 s and full duration. Reserved test unscored.",
@@ -71,6 +73,7 @@
     "throughput_block": "D0 timing pilots (seed 217) use the existing 244 windows and same model, comparing median steady-state epoch (train + development replay), timings per component, and peak GPU memory. Timing-pilot accuracy is diagnostic. The fastest successful steady-state pilot among prefix, compiled, and batch4 advances to its matching B-speed trial. The full 36-epoch candidate is compared at equal scored frame exposure against B-D0-ssm-x3, over seeds 217/218/219, with a development ATE tolerance of +5%, ordinary-motion guardrail, and proxy-val 30 s as independent check. Target is 10x per epoch-equivalent. Report GPU count and separate initialization/compile time.",
     "hyperparameter_block": "Use the hp_search.py D0-ssm trial roster. The base and three LR trials had partial checkpoints when this gate was written. Screen all trials at 12 epochs using paired seeds 217/218; rank by equal-seed mean of best development selection scores, and advance up to two non-base trials that beat the paired base. Run finalists from scratch for 36 epochs on seeds 217/218/219. Compare the three-seed full-replay means against B-D0-ssm-x3 using the 10% dev improvement screen, 5% ordinary-motion guardrail, and 30 s proxy-validation check.",
     "hyperparameter_fast_transfer": "Before scheduling any fast HP runs, require the predeclared B-speed-compiled-x3 full-replay tolerance on both dev and ordinary dev (+5% at most against B-D0 over three seeds), inspect proxy-val 30 s, and verify fast trial overrides and local compiler isolation. Finish all eight original hp1 jobs. If transfer passes and the remaining slow sweep has not started, restart the same 12-epoch roster in a separate HP tag with every trial including base using the B-speed-compiled-x3 recipe. Promote based only on that tag. At 36 epochs replay against both three-seed controls (B-speed-compiled-x3 and B-D0-ssm-x3); require the original hyperparameter gate against B-D0. If transfer fails or is unsafe, finish the existing hp1 plan.",
+    "attitude_fast_block": "A-speed-compiled-x3 versus B-speed-compiled-x3, paired at seeds 217/218/219 with the same 36 epochs, 244 windows per epoch, and compiled recipe. Require at least 10% lower mean development unaligned ATE, at most 5% regression on ordinary dev, and improvement on proxy-validation 30 s. Report static and moving crops separately, and campaign development at 30 s and full length for ProcTHOR and HSSD separately. Report training throughput and cold compile time separately. Reserved test remains unscored.",
     "proxy_validation_criterion": "Declared 2026-11-18 ~15:30, before any D1/D2 result: the proxy-validation holdout is scored on each replay's first 30 s (benchmark flight length; odometry_eval.py --set proxy-val --max-seconds 30), scene-paired against the control. The full 90 s score is a long-horizon diagnostic only: there even true velocity through our attitude scores 1.04 m, so it mostly measures attitude drift."
   },
   "postprocessing": {
@@ -148,6 +151,12 @@
       "use": ["recipe", "original_sampler", "throughput_common", "throughput_prefix"],
       "args": ["--epochs", "36", "--set", "model.compile_correlation=true"],
       "note": "36 epochs and 244 windows per epoch. Candidate for the throughput block; seeds 217/218/219."
+    },
+    "A-speed-compiled-x3": {
+      "data": "hf:teacher-full",
+      "use": ["recipe", "original_sampler", "throughput_common", "throughput_prefix"],
+      "args": ["--epochs", "36", "--set", "model.compile_correlation=true", "--set", "model.gyro_bias_correction=true"],
+      "note": "Causal gyro-bias correction transferred to the validated compiled throughput recipe. The matching B-speed-compiled-x3 control has identical settings with the correction head disabled."
     },
     "P-speed-batch4": {
       "data": "hf:teacher-full",
@@ -287,6 +296,12 @@
       "use": ["recipe", "original_sampler"],
       "args": ["--head", "ssm", "--epochs", "36"],
       "note": "Budget follow-up (declared 2026-11-18 ~19:00 after D results, before running): D0 at 3x optimizer updates (4,392). D0 was still improving steeply at epoch 12 and D1/D2 saw each parent ~5x less often, so equal-budget results may reflect undertraining of the larger dataset."
+    },
+    "A-D0-ssm-x3": {
+      "data": "hf:teacher-full",
+      "use": ["recipe", "original_sampler"],
+      "args": ["--head", "ssm", "--epochs", "36", "--set", "model.gyro_bias_correction=true"],
+      "note": "Predeclared before attitude results: causal SSM gyro-bias residual, initialized to zero and learned through the camera displacement loss. Only the attitude used to integrate velocity is corrected."
     },
     "B-D2-ssm-x3": {
       "data": "hf:d1-expanded-tiers",

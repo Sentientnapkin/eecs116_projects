@@ -176,10 +176,12 @@ def replay_model(run, weights, device):
 
 
 @torch.inference_mode()
-def batched_velocities(net, rows, device, chunk=32):
-    """Replay independent flights, truncating padded outputs after their real endpoints."""
+def batched_velocities(net, rows, device, chunk=32, return_attitude=False):
+    """Replay independent flights, truncating padded outputs after their real endpoints.
+    With return_attitude the (gyro-bias corrected, when the model has that head) attitude stream is
+    returned with each velocity sequence."""
     lengths = [len(row["times"]) for row in rows]
-    out, state = [], None
+    out, corrected, state = [], [], None
     longest = max(lengths)
     for b in range(0, longest, chunk):
         steps = np.arange(b, min(b+chunk, longest))
@@ -188,24 +190,32 @@ def batched_velocities(net, rows, device, chunk=32):
         u = torch.as_tensor(np.stack([row["imu"][idx] for row, idx in zip(rows, indices)]), device=device)
         rot = torch.as_tensor(np.stack([row["R"][idx] for row, idx in zip(rows, indices)]),
                               device=device, dtype=torch.float32)
-        pred, state = net(im, u, state, rot)
+        pred, state, attitude = net(im, u, state, rot, return_attitude=True)
         out.append(split_output(pred)[0].cpu().numpy())
+        if return_attitude and net.gyro_bias is not None:
+            corrected.append(attitude.cpu().numpy())
     velocities = np.concatenate(out, axis=1)
-    return [value[:length].astype(np.float64) for value, length in zip(velocities, lengths)]
+    velocities = [value[:length].astype(np.float64) for value, length in zip(velocities, lengths)]
+    if not return_attitude:
+        return velocities
+    if corrected:
+        attitudes = np.concatenate(corrected, axis=1).astype(np.float64)
+        return list(zip(velocities, (attitudes[i, :length] for i, length in enumerate(lengths))))
+    return list(zip(velocities, (row["R"] for row in rows)))
 
 
-def model_velocities(run, weights, row, device, chunk=32):
+def model_velocities(run, weights, row, device, chunk=32, return_attitude=False):
     net = replay_model(run, weights, device)
-    return batched_velocities(net, [row], device, chunk)[0]
+    return batched_velocities(net, [row], device, chunk, return_attitude)[0]
 
 
-def replay_velocities(net, records, rows_cache, device, batch_size):
+def replay_velocities(net, records, rows_cache, device, batch_size, return_attitude=False):
     ordered = sorted({record["file"] for record in records},
                      key=lambda key: (len(rows_cache[key]["times"]), key))
     velocities = {}
     for begin in range(0, len(ordered), batch_size):
         keys = ordered[begin:begin+batch_size]
-        predictions = batched_velocities(net, [rows_cache[key] for key in keys], device)
+        predictions = batched_velocities(net, [rows_cache[key] for key in keys], device, return_attitude=return_attitude)
         velocities.update(zip(keys, predictions))
     return velocities
 
@@ -362,13 +372,13 @@ def main():
         net = replay_model(run, load_weights(run, args.checkpoint), device)
         if batch_size > 1:
             net.visual.frame_chunk = max(net.visual.frame_chunk, 32)
-        velocities = replay_velocities(net, records, rows_cache, device, batch_size)
+        velocities = replay_velocities(net, records, rows_cache, device, batch_size, return_attitude=True)
         results[name] = []
         for record in records:
             row = rows_cache[record["file"]]
-            v = velocities[record["file"]]
+            v, rotations = velocities[record["file"]]
             log_variance = serial_velocities(net, row, device, with_variance=True)[1] if args.ekf else None
-            p = integrate(v, row)
+            p = integrate(v, {**row, "R": rotations})
             extra = {}
             if log_variance is not None:  # calibration: fraction of per-axis errors within 1 and 2 sigma
                 z = np.abs(v-row["v"])*np.exp(-.5*log_variance)

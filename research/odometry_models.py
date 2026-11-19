@@ -326,6 +326,46 @@ class Refiner(nn.Module):
         return torch.stack([torch.stack(e, 1) for e in estimates]), (previous, seen)
 
 
+def _rotation_product(left, right):
+    # The compiled training recipe enables TF32 matmul globally. Elementwise products
+    # keep the small matrix recurrence in FP32 without changing global precision.
+    return (left.unsqueeze(-1) * right.unsqueeze(-3)).sum(-2)
+
+
+def correct_gyro_attitude(rotations, bias, dt, state=None):
+    """Apply residual body gyro bias to the attitude stream, keeping its initial frame."""
+    # Keep SO(3) accumulation in FP32 even when the feature network is autocast.
+    with torch.autocast(device_type=rotations.device.type, enabled=False):
+        rotations = rotations.float()
+        if state is None:
+            correction = torch.eye(3, device=rotations.device).expand(rotations.shape[0], 3, 3)
+            previous = rotations[:, 0]
+            dt = torch.cat((torch.zeros_like(dt[:, :1]), dt[:, 1:]), dim=1)
+        else:
+            correction, previous = state
+        old = torch.cat((previous[:, None], rotations[:, :-1]), dim=1)
+        # R_old exp(-bias dt) R_old^T = exp(-R_old bias dt). Factoring
+        # out the raw attitude avoids reintegrating the original gyro stream.
+        delta = (old * (-bias.float() * dt[..., None]).unsqueeze(-2)).sum(-1)
+        angle = torch.linalg.vector_norm(delta, dim=-1)[..., None, None]
+        x, y, z = delta.unbind(-1)
+        zero = torch.zeros_like(x)
+        cross = torch.stack((zero, -z, y, z, zero, -x, -y, x, zero), dim=-1)
+        cross = cross.reshape(*delta.shape[:-1], 3, 3)
+        prefix = (torch.eye(3, device=rotations.device)
+                  + torch.sinc(angle / torch.pi) * cross
+                  + .5 * torch.sinc(angle / (2 * torch.pi)).square() * _rotation_product(cross, cross))
+        # Inclusive prefix products of the increments in temporal order.
+        stride = 1
+        while stride < prefix.shape[1]:
+            paired = _rotation_product(prefix[:, :-stride], prefix[:, stride:])
+            prefix = torch.cat((prefix[:, :stride], paired), dim=1)
+            stride *= 2
+        corrections = _rotation_product(correction[:, None], prefix)
+        corrected = _rotation_product(corrections, rotations)
+        return corrected, (corrections[:, -1], rotations[:, -1])
+
+
 class OdometryNet(nn.Module):
     def __init__(self, cfg):
         super().__init__()
@@ -362,18 +402,37 @@ class OdometryNet(nn.Module):
                 raise ValueError("model.uncertainty and model.refine_iters cannot be combined")
             volumes = (cfg.get("channels", [24, 48, 96, 128])[-1], self.visual.radius) if self.visual.keep_volumes else None
             self.refiner = Refiner(cfg, nout, volumes)
+        self.gyro_bias = None
+        if cfg.get("gyro_bias_correction", False):
+            if self.uncertainty or self.refiner is not None:
+                raise ValueError("model.gyro_bias_correction cannot be combined with uncertainty or refinement")
+            self.gyro_bias = nn.Sequential(nn.LayerNorm(nout), nn.Linear(nout, 3))
+            nn.init.zeros_(self.gyro_bias[-1].weight)
+            nn.init.zeros_(self.gyro_bias[-1].bias)
 
-    def forward(self, images, imu, state=None, R=None, iterations=False):
+    def forward(self, images, imu, state=None, R=None, iterations=False, *, return_attitude=False):
         """Body velocity per frame and the streaming state. With refinement, `iterations=True`
-        returns every estimate (K+1,B,T,3) for the per-iteration loss instead of the final one."""
+        returns every estimate (K+1,B,T,3) for the per-iteration loss instead of the final one.
+        `return_attitude=True` also returns the (gyro-bias corrected, when enabled) attitude stream."""
         if self.refiner is not None:
             head_state, refine_state = (None, None) if state is None else state
             y, head_state, volumes = self.head(images, imu, head_state, R)
             v0 = self.output(y)
             every, refine_state = self.refiner(v0, y, imu, R, refine_state, volumes)
-            return (every if iterations else every[-1]), (head_state, refine_state)
+            velocity = every if iterations else every[-1]
+            return (velocity, (head_state, refine_state), R) if return_attitude else (velocity, (head_state, refine_state))
+        gyro_state = None
+        if self.gyro_bias is not None and state is not None:
+            state, gyro_state = state
         y, state, _ = self.head(images, imu, state, R)
-        return self.output(y), state
+        if self.gyro_bias is not None:
+            if R is None:
+                raise ValueError("Gyro-bias correction requires the raw attitude stream")
+            bias = .12 * self.gyro_bias(y).float().tanh()
+            R, gyro_state = correct_gyro_attitude(R, bias, imu[..., 13].float(), gyro_state)
+            state = (state, gyro_state)
+        velocity = self.output(y)
+        return (velocity, state, R) if return_attitude else (velocity, state)
 
     def head(self, images, imu, state, R):
         z, volumes = self.visual(images, imu, R)

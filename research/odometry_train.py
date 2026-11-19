@@ -29,7 +29,7 @@ class Progress:
         self.__dict__.update(state)
 
 
-def loss_fn(pred, row, burn, horizons, nll_weight=0.):
+def loss_fn(pred, row, burn, horizons, nll_weight=0., rotations=None):
     pred, log_variance = split_output(pred)
     loss = F.smooth_l1_loss(pred[:, burn:], row["v"][:, burn:], beta=.1)
     if log_variance is not None and nll_weight:
@@ -38,12 +38,14 @@ def loss_fn(pred, row, burn, horizons, nll_weight=0.):
         error2 = (pred[:, burn:].detach()-row["v"][:, burn:])**2
         lv = log_variance[:, burn:]
         loss = loss+nll_weight*(.5*(lv+error2*torch.exp(-lv))).mean()
-    world = (row["R"] @ pred.unsqueeze(-1)).squeeze(-1)
+    if rotations is None:
+        rotations = row["R"]
+    world = (rotations @ pred.unsqueeze(-1)).squeeze(-1)
     times = row["times"]
     steps = .5*(world[:, 1:]+world[:, :-1])*torch.diff(times, dim=1).unsqueeze(-1)
     body = torch.cat((torch.zeros_like(world[:, :1]), steps.cumsum(1)), dim=1)
     offset = row["T_bc"][:, :3, 3]
-    rotated_offset = (row["R"] @ offset[:, None, :, None]).squeeze(-1)
+    rotated_offset = (rotations @ offset[:, None, :, None]).squeeze(-1)
     camera = (body+rotated_offset-rotated_offset[:, :1]) @ row["T_bc"][:, :3, :3]
     target = row["cam_gt"]-row["cam_gt"][:, :1]
     error = camera-target
@@ -122,12 +124,12 @@ def schedule(options, steps_per_epoch):
 
 
 @torch.no_grad()
-def replay(net, rows, device, chunk=32):
+def replay(net, rows, device, chunk=32, *, return_attitude=False):
     """Stream several flights through the causal network side by side. Shorter flights are
     padded at the end with their last frame; every layer is per frame or causal, so the
     padding only affects outputs after a flight ends, which are dropped."""
     n = max(len(row["v"]) for row in rows)
-    output, state = [], None
+    output, corrected, state = [], [], None
     for begin in range(0, n, chunk):
         def batch(key, dtype=None):
             parts = []
@@ -139,10 +141,21 @@ def replay(net, rows, device, chunk=32):
                     x = torch.cat((x, tail.expand(min(chunk, n-begin)-len(x), *tail.shape[1:])))
                 parts.append(x)
             return torch.stack(parts)
-        pred, state = net(batch("images"), batch("imu"), state, batch("R", torch.float32))
+        pred, state, attitude = net(batch("images"), batch("imu"), state, batch("R", torch.float32),
+                                    return_attitude=True)
         output.append(split_output(pred)[0].cpu().numpy())
+        if return_attitude and net.gyro_bias is not None:
+            corrected.append(attitude.cpu().numpy())
     output = np.concatenate(output, axis=1)
-    return [output[i, :len(row["v"])] for i, row in enumerate(rows)]
+    velocities = [output[i, :len(row["v"])] for i, row in enumerate(rows)]
+    if not return_attitude:
+        return velocities
+    if corrected:
+        attitudes = np.concatenate(corrected, axis=1).astype(np.float64)
+        rotations = [attitudes[i, :len(row["v"])] for i, row in enumerate(rows)]
+    else:
+        rotations = [row["R"] for row in rows]
+    return list(zip(velocities, rotations))
 
 
 def evaluate(net, root, records, device, chunk=32, flights=1):
@@ -152,20 +165,22 @@ def evaluate(net, root, records, device, chunk=32, flights=1):
     for first in range(0, len(records), flights):
         group = records[first:first+flights]
         rows = [load_row(root, record) for record in group]
-        for record, row, v in zip(group, rows, replay(net, rows, device, chunk)):
-            scores.append(score_row(record, row, v))
+        for record, row, (v, rotations) in zip(group, rows, replay(net, rows, device, chunk, return_attitude=True)):
+            scores.append(score_row(record, row, v, rotations))
     if not all(np.isfinite(r["ate"]) for r in scores):
         raise ValueError("Nonfinite development replay")
     return scores
 
 
-def score_row(record, row, v):
+def score_row(record, row, v, rotations=None):
     v = v.astype(np.float64)
-    world = (row["R"] @ v[..., None]).squeeze(-1)
+    if rotations is None:
+        rotations = row["R"]
+    world = (rotations @ v[..., None]).squeeze(-1)
     p = np.zeros_like(world)
     p[1:] = np.cumsum(.5*(world[1:]+world[:-1])*np.diff(row["times"])[:, None], axis=0)
     arm, rotation = row["T_bc"][:3, 3], row["T_bc"][:3, :3]
-    p = (p+row["R"]@arm-arm)@rotation
+    p = (p+rotations@arm-arm)@rotation
     backwards = row["v"][:, 0] < -.2
     return {"scene": record["scene"], "file": record["file"], "crop_s": record["crop_s"],
             "ate": float(np.sqrt(np.mean(np.sum((p-row["cam_gt"])**2, axis=1)))),
@@ -319,8 +334,9 @@ def main():
                         loss = refined_loss(every, row, options["burn_in"], options["horizons"],
                                             cfg["model"].get("refine_gamma", .8))
                     else:
-                        pred, _ = net(row["images"], row["imu"], R=row["R"])
-                        loss = loss_fn(pred, row, options["burn_in"], options["horizons"], options.get("nll_weight", 0.))
+                        pred, _, rotations = net(row["images"], row["imu"], R=row["R"], return_attitude=True)
+                        loss = loss_fn(pred, row, options["burn_in"], options["horizons"],
+                                       options.get("nll_weight", 0.), rotations=rotations)
                     if not defer_check and not torch.isfinite(loss):
                         raise ValueError("Nonfinite training loss")
                     accelerator.backward(loss)
