@@ -1,5 +1,6 @@
 """Portable, checksummed training data; reuse the audited causal sensor pipeline."""
 import argparse
+from collections import Counter, defaultdict
 import hashlib
 import json
 from pathlib import Path
@@ -234,6 +235,70 @@ class WindowPlan:
         if self.domain_share and not set(self.domain_share) <= {d for d, _ in self.by_scene}:
             raise ValueError("domain_share names a domain with no records")
 
+        self.native_early = options.get("native_early")
+        if self.native_early:
+            if self.mode != "balanced":
+                raise ValueError("native_early requires balanced sampling")
+            fraction = self.native_early["fraction"]
+            max_start = self.native_early["max_start"]
+            min_scenes = self.native_early["min_scenes"]
+            if not 0 < fraction <= 1 or max_start < 0 or min_scenes < 1:
+                raise ValueError("native_early requires a valid fraction, start limit and scene count")
+            pools = defaultdict(lambda: defaultdict(list))
+            for index, row in enumerate(self.records):
+                if row.get("domain") != "native-campaign":
+                    continue
+                for kind in ("backward", "lateral"):
+                    key = (kind, row["catalog"], row["crop_s"])
+                    starts = self.eligible[index][kind]
+                    starts = starts[:np.searchsorted(starts, max_start, side="right")]
+                    if len(starts):
+                        pools[key][row["scene"]].append((index, starts))
+            self.native_early_pools = {key: tuple(scenes.values()) for key, scenes in pools.items()
+                                       if len(scenes) >= min_scenes}
+            if not self.native_early_pools:
+                raise ValueError("native_early found no stratum meeting min_scenes")
+
+    def _retarget_native_early(self, items, epoch):
+        """Replace late native hard windows within the same kind, catalog and crop."""
+        options = self.native_early
+        rng = np.random.default_rng([self.seed, epoch, 53])
+        by_stratum = defaultdict(list)
+        parent_counts = Counter(self.records[index].get("parent_sha256", index) for index, _, _ in items)
+        forced = set()
+        for slot, (index, start, kind) in enumerate(items):
+            row = self.records[index]
+            if row.get("domain") == "native-campaign":
+                key = (kind, row["catalog"], row["crop_s"])
+                if key in self.native_early_pools:
+                    by_stratum[key].append(slot)
+                    if start <= options["max_start"]:
+                        forced.add(row["parent_sha256"])
+        for key, slots in sorted(by_stratum.items()):
+            late = [slot for slot in slots if items[slot][1] > options["max_start"]]
+            already_early = len(slots) - len(late)
+            needed = max(0, int(np.ceil(options["fraction"]*len(slots))) - already_early)
+            for slot in rng.permutation(late)[:needed]:
+                old_index, _, kind = items[slot]
+                old_parent = self.records[old_index]["parent_sha256"]
+                parent_counts[old_parent] -= 1
+                candidates = []
+                for scene in self.native_early_pools[key]:
+                    available = [(index, starts) for index, starts in scene
+                                 if self.records[index]["parent_sha256"] not in forced
+                                 and (not self.cap or parent_counts[self.records[index]["parent_sha256"]] < self.cap)]
+                    if available:
+                        candidates.append(available)
+                if not candidates:
+                    raise ValueError(f"native_early quota infeasible for {key}, seed {self.seed}, epoch {epoch}")
+                scene = candidates[rng.integers(len(candidates))]
+                index, starts = scene[rng.integers(len(scene))]
+                parent = self.records[index]["parent_sha256"]
+                parent_counts[parent] += 1
+                forced.add(parent)
+                items[slot] = (index, int(starts[rng.integers(len(starts))]), kind)
+        return items
+
     def _pick_parent(self, rng, kind, counts, domain=None):
         pool = {k: v for k, v in self.by_scene.items() if domain is None or k[0] == domain}
         if kind in ("startup", "uniform"):
@@ -282,7 +347,8 @@ class WindowPlan:
                 else:
                     starts = self.eligible[i][kind]; start = int(starts[rng.integers(len(starts))])
                 items.append((i, start, kind))
-        return [items[j] for j in rng.permutation(len(items))]
+        shuffled = [items[j] for j in rng.permutation(len(items))]
+        return self._retarget_native_early(shuffled, epoch) if self.native_early else shuffled
 
     def exposure(self, items):
         """What the epoch actually presented: draw kinds, label fractions over scored frames,
