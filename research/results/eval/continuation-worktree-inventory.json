@@ -1,0 +1,160 @@
+[
+  {
+    "path": "/data/backups/rganapa/Sebastian/eecs116_projects",
+    "branch": "refs/heads/research/learned-odometry",
+    "head": "70ea60a5d572d81f8b14410797e15068f67cb4b0",
+    "tracked_modifications": []
+  },
+  {
+    "path": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/agent-a0debecc30faa0296",
+    "branch": "refs/heads/odometry/hparam",
+    "head": "d14f81e5a375a2ef0df9e414cffe69a212de4ad5",
+    "tracked_modifications": []
+  },
+  {
+    "path": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/agent-a306704d9640bbfb3",
+    "branch": "refs/heads/odometry/attitude",
+    "head": "d8aa1ebf339f4142fc6a4e7527516a90d1bd2c7d",
+    "tracked_modifications": []
+  },
+  {
+    "path": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/agent-a93424c6b952de634",
+    "branch": "refs/heads/odometry/ekf",
+    "head": "f3ae1c8f54c90fa25dc6be2bbfe2b114f133c4c7",
+    "tracked_modifications": []
+  },
+  {
+    "path": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/agent-a9aa277ee4e8e9005",
+    "branch": "refs/heads/odometry/throughput",
+    "head": "78fd8d38881972bb9a74b77e6235be3e825c542a",
+    "tracked_modifications": []
+  },
+  {
+    "path": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/agent-ad6636639c9915912",
+    "branch": "refs/heads/odometry/deploy",
+    "head": "abfe47a2d6b0c8ba998e0179394d88899b0101e2",
+    "tracked_modifications": []
+  },
+  {
+    "path": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/agent-aec510795365a6ee1",
+    "branch": "refs/heads/odometry/refine",
+    "head": "2f0c5ba2dad9126a8e4027f934ef183ceb25efa0",
+    "tracked_modifications": []
+  },
+  {
+    "path": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/approaches",
+    "branch": "refs/heads/odometry/approaches",
+    "head": "d0e4fe9a0f7bf52305b9341d1d2cb5e6cffd07e9",
+    "tracked_modifications": []
+  },
+  {
+    "path": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/deploy-kfgrid",
+    "branch": "refs/heads/odometry/deploy-kfgrid",
+    "head": "b37831facfc550773c0b67e53f5e055ca286e136",
+    "tracked_modifications": []
+  },
+  {
+    "path": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/fuel",
+    "branch": "refs/heads/odometry/fuel",
+    "head": "f123086e3e56ad1a77c5b7f8b7b2c1db187e7cd9",
+    "tracked_modifications": [
+      " M research/native_odometry/kf_grid.hpp",
+      " M research/orientation.py"
+    ]
+  },
+  {
+    "path": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-attitude-fast",
+    "branch": "refs/heads/odometry/attitude-fast",
+    "head": "e9f0735f03ef50b4ffbe6b1b0398d721ab166251",
+    "tracked_modifications": []
+  },
+  {
+    "path": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-attitude-hybrid",
+    "branch": "refs/heads/odometry/attitude-hybrid",
+    "head": "93932ab5d5049495ccaa81313438ed885457e726",
+    "tracked_modifications": []
+  },
+  {
+    "path": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-data-coverage",
+    "branch": "refs/heads/odometry/data-coverage",
+    "head": "12a66551152a0ef3af35fe0f9455417f6c303bc2",
+    "tracked_modifications": []
+  },
+  {
+    "path": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-hparam-fast",
+    "branch": "refs/heads/odometry/hparam-fast",
+    "head": "6d82e044da7af91e60ebbc028aa4ecb07614f379",
+    "tracked_modifications": []
+  },
+  {
+    "path": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-long-budget",
+    "branch": "refs/heads/odometry/long-budget",
+    "head": "dfc4846ef85b0666222905d20a0f8af7b1365c87",
+    "tracked_modifications": []
+  },
+  {
+    "path": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/odometry-openvins",
+    "branch": "refs/heads/odometry/openvins",
+    "head": "4c3381ecb1c3ae4afb2985d6e466b575f073bb23",
+    "tracked_modifications": []
+  },
+  {
+    "path": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/openvins-diag",
+    "branch": "refs/heads/odometry/openvins-provided-diag",
+    "head": "b059d4418bfb0cfdc5fcb180409c25bf78ea7420",
+    "tracked_modifications": []
+  },
+  {
+    "path": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/provided-openvins",
+    "branch": "refs/heads/odometry/provided-openvins",
+    "head": "023198d2c5b63cedd8a86edc8ee429cfdde47893",
+    "tracked_modifications": []
+  },
+  {
+    "path": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/retrain-attitude",
+    "branch": "refs/heads/odometry/retrain-attitude",
+    "head": "c35024f30e4c0153fb17c2a4b97792fe3697ef3b",
+    "tracked_modifications": [
+      " M research/attitude_bias.py"
+    ]
+  },
+  {
+    "path": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/vel-fusion",
+    "branch": "refs/heads/odometry/vel-fusion",
+    "head": "988bc4b813a52f044cb5ed1d5fb3c2dd8e604eaa",
+    "tracked_modifications": [
+      " M research/vel_fusion.py"
+    ]
+  },
+  {
+    "path": "/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/vel-fusion-deploy",
+    "branch": "refs/heads/odometry/vel-fusion-deploy",
+    "head": "353243fe71fc4e4e5f6af5cee3a05f24260c6b40",
+    "tracked_modifications": []
+  },
+  {
+    "path": "/data/backups/rganapa/Sebastian/eecs116_visual_motion",
+    "branch": "refs/heads/research/visual-motion",
+    "head": "a4b4d868b20389a534c4cbb23232e24ea30e9618",
+    "tracked_modifications": [
+      " M research/.gitignore",
+      " M research/teacher_eval.py",
+      " M research/teacher_models.py"
+    ]
+  },
+  {
+    "path": "/data/backups/rganapa/Sebastian/odometry-bias-ablation",
+    "branch": "refs/heads/odometry/bias-ablation",
+    "head": "cede0292a0564b410ca339c948a9f3737ab4d83f",
+    "tracked_modifications": []
+  },
+  {
+    "path": "/data/backups/rganapa/Sebastian/odometry-provided-comparison",
+    "branch": "refs/heads/odometry/provided-comparison",
+    "head": "70ea60a5d572d81f8b14410797e15068f67cb4b0",
+    "tracked_modifications": [
+      " M research/HANDOFF.md",
+      " M research/SESSION_REPORT.md"
+    ]
+  }
+]
