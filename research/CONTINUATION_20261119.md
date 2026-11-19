@@ -29,6 +29,8 @@ Initial process checks found no matching existing odometry training/replay jobs.
 
 These values are audits of previously completed work, not new training results. All ATE values are mean unaligned metres. Training comparisons use seeds 217/218/219.
 
+The training inventory accounts for all original queued runs: fast HP50/50 (42screen jobs,2smoke jobs,6finalists), older slow HP8/8, N2 early resampling3/3, throughput11/11,72-epoch3/3 and learned-attitude3/3. No unfinished broad sweep remains. Individual run/checkpoint inventories are retained by the training completion report. The only newly resumed training is the bounded, previously declared attitude-input comparison.
+
 | Workstream | Matched outcome | Disposition |
 | --- | --- | --- |
 | N2 early-window resampling | N2 control → resample: original dev 0.9334 → 1.0284; proxy30 1.1098 → 1.2070; campaign30 1.0071 → 1.1388; full 1.3906 → 1.5163 | Rejected; both campaign catalogs and both crop-start groups regress. |
@@ -60,4 +62,55 @@ All table guests completed every requested frame with zero evaluator filling. Ca
 
 The N2/kf rows are single-seed historical deployment evidence, not a three-seed passing replacement. Original-dev14 raw archives remain unavailable. These raw600-frame prefix metrics are separate from older prepared601-inclusive-frame metrics. Full artifacts, per-flight failures, catalogs/scenes/parents, initialization and commands are supplied by the baseline-finish report and JSON.
 
+The separately completed original N2 public metered-Wasm comparison is also preserved under `/data/backups/rganapa/Sebastian/odometry-provided-comparison/research/results/loop/provided-comparison`: seeds217/218/219 score1.678796/1.762447/1.897711m (mean1.779651m). Those are ordinary rolling-attitude N2 guests, not the kf_grid variants. Its raw campaign native counterparts score1.435640/1.361806/1.374386m (mean1.390611m). The campaign N2 numbers in that older comparison are **native**, not actual campaign-Wasm evidence; public uses metered actual guests and corresponding native outputs. This preserves the strongest previously completed learned-model comparison without silently relabeling execution backends or attitude policies.
+
 The adjacent VINS-Mono source was also built in prior work and its ABI check passed, but its provided tests had7 passes and1 failure: noisy hovering-turn translation RPE0.23884 exceeded0.15, despite final drift0.0996 m. No completed matched public/campaign VINS-Mono replays were found. It remains a failed side-baseline check, not a selected candidate.
+
+## Port-correctness findings that supersede historical notes
+
+`KF_GRID_PARITY_REVIEW.md` records an independent source review. Historical C++ passes an empty feature mask into `recoverPose`, while Python supplies the RANSAC inliers. OpenCV uses this mask when choosing pose hypotheses, so this can change attitude and accepted measurements. The historical N2seed218 guest was rebuilt byte-for-byte from that unmasked source. Earlier NOTES claiming the mask was fixed and remaining differences were solely KLT numerics are unsupported and superseded; the historical binary measurements remain valid.
+
+The historical exporter also built ordinary `host.so` without `ODO_KF_GRID` and visual OpenCV flags. That host cannot validate the visual path. The fusion port additionally did not require an accepted rotation update before accepting a direction update, unlike the frozen Python diagnostic. Both changes are now separately named opt-in corrections, declared before their smoke scores; no historical artifacts are overwritten.
+
+The corrected single-seed218 traced public smoke measures1.27988m with corrected kf_grid and1.08677m with corrected direction fusion. It nevertheless fails Python4.12/Wasm4.12 accepted-update parity on all10flights: maximum attitude differences range8.7–27.0degrees. Explicit visual native4.13 differs from Wasm4.12 by0.0511177m maximum position on the first public flight. A completed native4.12 build from the same OpenCV source produces essentially the same discrepancy, so backend version alone does not explain it. These are failed parity evidence, not a qualified deployable improvement. The large650-replay/three-seed expansion was stopped after that failure; only owned new workers were stopped and partials retained. There was no unbounded backend search or untraced corrected candidate advancement after the failed gate.
+
+The separately predeclared staged6r fuel intervention completed120/120campaign crops with zero filling: full mean1.642432605m, peak**1,130,544,377**fuel/frame; exact rebuilt historical kf_grid control full1.642425779m and peak**1,643,004,133**. Public mean1.491599m and peak**987,811,616**, compared with1.491581m/**1,451,941,452**control. It is a31.19% reduction in campaign peak, but still5.19% above the submitted ordinary B-D0's roughly1.075Bpeak. The staged public-only peak is not its whole-roster peak.
+
+Staged guest SHA256 is `238f6901e793b8ad88bfee3fa1c322d920302ec1a474904edae0df16ec9b0c51`. An actual independent600-frame shortened-input guest replay matched every emitted pose and twist exactly against the full replay prefix, with identical timestamps/IMU packets, first camera timestamp0.045s and exact initial identity pose. Native visual reset/prefix also passed26frames. This demonstrates tested causality/first-camera behavior; it does not cure the historical visual-port equivalence failure. Final source flags, artifact hashes and all paired flight regressions are recorded in the fusion completion report. Historical C++ fusion also completed: public1.491581→1.360556m and full campaign1.642426→1.380669m at1,643,036,065peak, but remains unqualified for the same semantic/parity and missing original-raw guardrail reasons.
+
+## Newly completed input-attitude training
+
+All9 predeclared36-epoch runs are complete: one exactly matched existing rolling seed217 control and8 continuation runs. Each policy has seeds217/218/219. Degenerate essential/pose solver inputs in the originally interrupted kf_grid data derivation now reject the unavailable visual measurement instead of aborting; the repaired variant and old failed logs are separately identified. No visual threshold or model family was searched. Regenerated1784 ordered train/dev records preserve original source-shard mapping, parents, crop, scene, domain and sampler order. Explicit source-shard matching retains proxy's69records/68parents, including its known unequal-duration ambiguous parent.
+
+These are **reconstructed-input diagnostics**, not whole-guest replays. Own-attitude scores change both model inputs and the integration path. Common-attitude scores integrate each policy's predicted body velocities through the exact same native-kf_grid reference, isolating changes in the predicted velocities from integration attitude. Three-seed equal-replay mean unaligned ATE:
+
+| Input/training policy | Original dev own | Ordinary original dev own | Proxy30 own | Campaign full own | Campaign full common attitude | Public60 own / common |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Matched compiled N2 rolling control | 0.9157 | 0.9874 | 1.0995 | 1.3751 | 1.1077 | 1.7423 / 1.1844 |
+| Static08 | **0.7963** | **0.8163** | **1.1750** | 1.1548 | 0.9919 | 1.2832 / 0.9992 |
+| Runtime-repaired kf_grid_native | 0.9217 | 0.9377 | 1.1343 | **0.9724** | **0.9724** | 1.0389 / 1.0389 |
+
+**Both input arms pass their predeclared experimental gate**, which requires at least5% lower common-attitude campaign full mean and no more than5% ordinary/crop-origin regression. Static08 improves primary mean10.46%, ordinary7.49%, nominal14.08% and crop5group7.13%. Repaired kf_grid improves primary12.22%, ordinary8.65%, nominal12.71% and crop5group11.76%. Every paired seed improves in both arms. These are distinct experimental gates, not a change to historical submission qualification.
+
+Static08 nevertheless worsens proxy30 own6.87% and common3.49%. The kf_grid input arm's proxy30 own worsens3.17% (common2.47%). Neither is a submission qualification. Original dev has14records/7parents, proxy69/68, campaign120/60 and public10/10. Their seed-expanded row counts are42/207/360/30; these are not additional independent flights. Each policy's final JSON has639rows.
+
+The current compiled rolling N2 control also improves local original-dev mean over the old N2 score, but ordinary0.9874 remains about7.2% worse than historical B-D00.9215. The unchanged ordinary guardrail still matters. Static08's strong original-dev result does not erase its matched proxy regression.
+
+Actual campaign/public raw kf_grid attitudes are available, but model image histories are regenerated from prepared channel0frames; original-dev/proxy input reconstruction has a documented noncommuting-rate approximation from available gyro/attitude sufficient statistics. Rolling reconstruction and alternate-policy shortened-prefix checks pass bitwise on a real campaign sample. Geometry-degeneracy and roster-identity checks pass. The original odometry suite ultimately passes15/15 in an explicitly available CUDA environment. No truth enters deployed inference; common-attitude references are causal sensor-derived estimates, and truth is used only for training targets/scoring/diagnostic grouping.
+
+No complete C++ static08/kf_grid **input** path already exists: the old visual port changes only integration attitude, while image derotation and direct IMU/bias features retain rolling calibration. The exporter rejects non-rolling policy. Porting these new input policies requires a new causal Inputs/Orientation implementation and full Python/native/Wasm checks, raw public/campaign replay and actual whole-guest fuel. Fuel for the newly trained policies is **unmeasured**. They cannot be described as ready submission artifacts.
+
+## Completion, recommendation and review locations
+
+The executable work from the existing bounded Claude queues is now closed. All continuation-owned training, evaluation and native-build workers exited; unrelated processes and GPUs0/1 were untouched. No paid infrastructure, reserved-test measurements, submissions, remote pushes or main-branch changes occurred. Source repairs and old incomplete/failed logs are preserved rather than overwritten.
+
+**No new submission qualifies yet.** The actual provided OpenVINS guest is unsafe as a replacement on this campaign. Historical kf_grid/fusion and its staged fuel optimization are measured binary experiments, but fail a faithful Python/native/Wasm interpretation and lack original raw guardrails. Newly trained input policies pass their declared experimental gate but have proxy regressions and no complete C++/Wasm input implementation. Preserve their checkpoints for the next discussion rather than treating a reconstructed-input score as a deployable artifact. The compact3.98m/16Mserver submission remains an essential reference; reproducing it is blocked only by the unlocated source/binary, not by its reported quality. Its server score must not be compared directly with local public/campaign scores.
+
+All changes remain isolated; original worktrees and the initial checkout are preserved. Component branches and final commits:
+
+- `codex/session-integration`: this combined handoff, updated historical session notices, compact submission evidence and baseline audit.
+- `codex/baseline-finish` at `9750cb5`: [baseline report](BASELINE_FINISH_REPORT.md), [peer parity review](KF_GRID_PARITY_REVIEW.md), trajectory audit and hashes. Those report commits are integrated here.
+- `codex/fusion-finish` at `121c385`: [fusion/fuel completion report](/data/backups/rganapa/Sebastian/eecs116_projects/.codex-worktrees/fusion-finish/research/FUSION_COMPLETION.md), preserved deploy sources, named corrections, actual Wasm prefix and failed native/Python parity checks, per-flight/grouped results. Code remains on its component branch.
+- `codex/training-finish` at `1907593692d82210fc7ebf8f151017d29b5839a0`: [training completion report](/data/backups/rganapa/Sebastian/eecs116_projects/.codex-worktrees/training-finish/research/TRAINING_COMPLETION.md), source fixes, all nine checkpoint hashes and639-row policy results. Code remains on its component branch. Final verification:15/15 odometry tests,3geometry/fallback-prefix tests, real-input identity/prefix and roster contracts.
+
+`results/eval/completion-components.json` records these review locations. Reproduction commands and exact build flags live in each component report. The staged C++/Wasm artifact exists at `/data/backups/rganapa/Sebastian/eecs116_projects/.codex-worktrees/fusion-finish/research/results/loop/fusion-completion/staged6r-rebuild/odometry.wasm`; its presence and exact SHA256 were independently rechecked by the parent. It is a validated fuel/causality experiment, not an approved next-submission binary.

@@ -1,5 +1,7 @@
 # Learned odometry research report
 
+**Continuation notice, 2026-11-19:** The snapshot below is historical. The [completion audit](CONTINUATION_20261119.md) records the latest Git state, all completed Claude workstreams, the actual provided OpenVINS comparison, corrected port-provenance findings, and the additional compact submission. See also the [verified baseline report](BASELINE_FINISH_REPORT.md) and [visual-port parity review](KF_GRID_PARITY_REVIEW.md). The previous upstream OpenVINS wrapper results do not evaluate VIOBench's provided baseline.
+
 **Status at 00:08 UTC on November 19, 2026.** This report covers the work since [the GPU-box handoff](HANDOFF.md). All ATE values are mean **unaligned** trajectory RMSE in metres, averaged across the stated replays. Multi-seed model decisions use seeds **217, 218 and 219**. The original and campaign reserved test splits remain untouched. No submissions or pushes were made through this session.
 
 ## What we know
