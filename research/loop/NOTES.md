@@ -140,3 +140,11 @@ Mean of nominal and 5 s moving-start unaligned ATE on the fixed 7-flight develop
 - The exact submitted seed-217 Wasm scored 1.996 m unaligned ATE on all ten 60-second public VIOBench episodes, with zero filled frames and 1.075 billion peak fuel per frame. The public episodes all use the same ProcTHOR scene.
 - Final N-series replays finished. Three-seed N2 unaligned ATE was 0.933 m on original dev, 1.110 m on proxy validation at 30 s, and 1.007 / 1.391 m on campaign dev at 30 s / full duration (ProcTHOR 1.126 / 1.477 m, HSSD 0.888 / 1.304 m). N2 cleared the overall dev screen and exceeded the ordinary-flight guardrail (1.007 m vs 0.921 m). Three matched resampling seeds are running on GPUs 1–3.
 - Extending compiled D0 from 36 to 72 epochs improved three-seed dev ATE from 1.091 to 1.030 m and 30 s proxy ATE from 1.259 to 1.219 m. Campaign dev improved from 1.332 to 1.279 m at 30 s and from 1.832 to 1.794 m at full duration. The 5.5% original-dev improvement missed the 10% promotion gate for 144 epochs. See the report on `odometry/long-budget`.
+
+## 2026-11-19 approach survey and OpenVINS/learned splice (branch `odometry/approaches`)
+
+- Survey and ranked shortlist: [APPROACHES.md](../APPROACHES.md). Offline splice of saved guest outputs, arms predeclared in `approach_splice.py` (commit `9e688fc`) before scoring; results `results/eval/approaches/splice.json`.
+- Predeclared arms fail: re-anchoring OpenVINS on learned odometry at init 32.64 → 32.48 m campaign (the IMU back-integration anchor is not the cause); permanent divergence switch 3.05 m (rule required < 1.2).
+- Failure anatomy: late static init at a hover is followed 1-1.5 s later (smoother takeover) by a 6-25 m/s velocity transient, after which OpenVINS tracks again; early-init ProcTHOR 168-03/169-04 are linear runaways (411 m, 2232 m).
+- Post hoc (decides nothing): per-frame increment gate (OpenVINS increment if within 0.3 m/s of B-D0, else B-D0) scores 1.376 m campaign (median 0.854; B-D0 1.843, OpenVINS 32.64, oracle-min 1.258), public 1.077 with B-D0 and 0.964 with N2-s218-gated (OpenVINS 1.108). Gates 0.5/1.0 m/s: 1.424/1.473.
+- OpenVINS peak fuel is the 5 Hz keyframe solve (~2.6e9 every 4th frame vs 2-3e8 otherwise); amortizing the three smoother solves is the cheapest peak cut.

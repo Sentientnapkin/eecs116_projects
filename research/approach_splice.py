@@ -24,6 +24,12 @@ Arms (all causal; OpenVINS' init time is read from its own stdout, which a combi
                  d_ov > 2.5 m. After a trip the output follows the learned guest's relative motion from the trip frame
                  (permanent; no switching back).
   late_skip      OpenVINS as submitted if it initialized within 3.0 s of the first frame, else the learned guest
+POST HOC DIAGNOSTICS (added after the predeclared arms were scored; they decide nothing on these replays):
+  diag_gate_X    per-frame increment gate: after OpenVINS init, each frame's relative motion
+                 dT = T(k-1)^-1 T(k) (expressed in camera k-1, so both guests' increments are directly comparable) is
+                 taken from OpenVINS when |dt_ov - dt_learned| / frame_dt < X m/s, else from the learned guest;
+                 X in {0.3, 0.5, 1.0}. Motivated by the observation that late-init failures are a 1-3 s velocity
+                 transient (up to 25 m/s) when the fixed-lag smoother takes over, after which OpenVINS tracks again.
 DIAGNOSTIC ONLY (uses truth): oracle_min = per-replay min(ov, learned).
 
 Predeclared reading: handoff_guard is worth a C++ guest if, on campaign dev (120 replays), its mean full ATE is below
@@ -48,6 +54,7 @@ from viobench.tools.runner.score import load_estimates  # noqa: E402
 
 INIT = re.compile(r"initialized at t=([0-9.]+)")
 GUARD_EXCESS, GUARD_ABS, LATE = 0.5, 2.5, 3.0
+GATES = (0.3, 0.5, 1.0)
 
 
 def to_states(T, template):
@@ -96,6 +103,21 @@ def episode_rows(archive, ov_dir, learned_dir):
         T_g = T_h if trip is None else splice(T_h, T_le, trip)
         arms["handoff_guard"] = to_states(T_g, ov)
         arms["late_skip"] = ov if t_init - times[0] <= LATE else le
+    for X in GATES:
+        if k is None:
+            arms[f"diag_gate_{X}"] = le
+            continue
+        T = T_le.copy()
+        frame_dt = np.diff(times)
+        for j in range(1, n):
+            d_le = invert(T_le[j - 1]) @ T_le[j]
+            d = d_le
+            if j > k:
+                d_ov = invert(T_ov[j - 1]) @ T_ov[j]
+                if np.linalg.norm(d_ov[:3, 3] - d_le[:3, 3]) / frame_dt[j - 1] < X:
+                    d = d_ov
+            T[j] = T[j - 1] @ d
+        arms[f"diag_gate_{X}"] = to_states(T, ov)
     row = {"episode": name, "scene": e.meta.get("scene"), "duration_s": float(times[-1] - times[0]),
            "init_s": None if t_init is None else float(t_init - times[0]),
            "trip_s": None if trip is None else float(times[trip] - times[0])}
@@ -116,7 +138,7 @@ def main():
         ov_dir, le_dir = Path(ov_dir), Path(le_dir)
         archives = json.loads((ov_dir / "guest.json").read_text())["archives"]
         rows = [episode_rows(a, ov_dir, le_dir) for a in archives]
-        arms = ["ov", "learned", "handoff", "handoff_guard", "late_skip", "oracle_min"]
+        arms = ["ov", "learned", "handoff", "handoff_guard", "late_skip"] + [f"diag_gate_{X}" for X in GATES] + ["oracle_min"]
         summary = {a: {"mean": float(np.mean([r[a] for r in rows])), "median": float(np.median([r[a] for r in rows])),
                        "max": float(np.max([r[a] for r in rows])), "n_over_5m": int(sum(r[a] > 5 for r in rows))}
                    for a in arms}
@@ -126,7 +148,7 @@ def main():
                 for a in arms:
                     summary[a][f"mean_{dom}"] = float(np.mean([r[a] for r in sub]))
         summary["guard_trips"] = int(sum(r["trip_s"] is not None for r in rows))
-        report[str(ov_dir)] = {"learned": str(le_dir), "replays": len(rows), "summary": summary, "rows": rows}
+        report[f"{ov_dir.name}+{le_dir.name}"] = {"ov": str(ov_dir), "learned": str(le_dir), "replays": len(rows), "summary": summary, "rows": rows}
         print(ov_dir.name, len(rows), json.dumps({a: round(v["mean"], 3) for a, v in summary.items() if isinstance(v, dict)}),
               "trips", summary["guard_trips"], flush=True)
     Path(args.output).write_text(json.dumps(report, indent=1))
