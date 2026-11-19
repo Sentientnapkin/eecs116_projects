@@ -4,3 +4,7 @@ __pycache__/
 *.pyc
 .claude/
 .codex-worktrees/
+
+# Local research checkouts and immutable binary packages
+.worktrees/
+research/artifacts/

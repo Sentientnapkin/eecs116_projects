@@ -13,7 +13,7 @@ from odometry_eval import load_weights,replay_model,replay_velocities,integrate,
 ROOT=Path(__file__).resolve().parent
 OLD=Path('/data/backups/rganapa/Sebastian/retrain-attitude-data')
 MAIN=Path('/data/backups/rganapa/Sebastian/eecs116_projects/research')
-SOURCE=Path('/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/retrain-attitude/research')
+SOURCE=Path('/data/backups/rganapa/Sebastian/eecs116_projects/.worktrees/retrain-attitude/research')
 REPAIRED=ROOT/'results/loop/training-finish/kf_grid_native/n2'
 
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()

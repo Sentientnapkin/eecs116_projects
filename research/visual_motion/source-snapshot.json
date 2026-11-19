@@ -1,0 +1,31 @@
+{
+  "source_commit": "a4b4d868b20389a534c4cbb23232e24ea30e9618",
+  "includes_uncommitted_changes": true,
+  "original_file_sha256": {
+    "common.py": "4828cbccfa1ab065c7a538103d181a09401ee5aa2d04e14a39300f048b3f79ee",
+    "decompose.py": "c25c45b848aff5bd4673253dd2eceb55d9d3b32b5e5312b359f0780a8bc8e005",
+    "learned_probe.py": "c37492f64b2c364bb4d719ab9658265c5cfb466c93940af3ee7072bab21eb104",
+    "n1_visual_inputs.py": "18e51c0ac6432512584c7fad48ce79d39c1e8ee274b3515796e2cbb782174140",
+    "orientation.py": "5a333891491512463dd6ad8b010f9c0690c6a6c01c591a5527568de55d2f930e",
+    "pairs.py": "5470fdc88ab6129d871a6773377cecb6d0009137c5afbaf423f3eec2d5663a04",
+    "robust_replay.py": "8b3426c76cdac8777ba87c010d2beb8e123dacd0b6da1b4b900f8bb93f4f4985",
+    "seq_heads.py": "e1ba0d1e0fa080f87a0bfa48523f98c835a3942b6851ca88c6b907bd27017642",
+    "streaming.py": "4d8edcaf75bd9d7509139b2535ee493f84aa145adaefaa5a493e8b701a9a2bc5",
+    "teacher_data.py": "46cff1e72ed49e5332cba89690d410477b79327911ea09c95809d1f798d4ead8",
+    "teacher_eval.py": "b613ed1fa84a242253a63f9a4664d7d93234e5bb34f6e54f00faa6b23247c281",
+    "teacher_hub.py": "da3504fa0def5c3ab67f472ffda8ab6637b75bd229cb9359fbbabb42db2f3cc6",
+    "teacher_models.py": "0756adf70d8f2ef652cbcba5626fb8293c0ede819252179342691cd667afa1aa",
+    "teacher_store.py": "24f7881c8a62cd9ff7578d12ced39e05ed55e80c197a5103deb096299b52f1ce",
+    "teacher_train.py": "e6f5d9c2261757cddbdf0411b09080ebe9a3f40d4df593ee605caee1376abab5",
+    "test_visual_motion.py": "3712872933130f2fb55161f2eb211122abfff464a076c7900c18c7c15b2a5fc4",
+    "visual_motion_cache.py": "e87dfa63be1147ad4a5db925b289624e3e725c95f197fca6be4e4b97a24aa503",
+    "visual_motion_compare.py": "764f6819127386a1d838c99d716d9bdcf79a3acfdfecb2051b0dea3f39de1e47",
+    "configs/visual-motion-screen.json": "941234d2ca68e742b1d40eac5aee0c9406a40b94e70cbb18e9c9dfc868d9fe5e",
+    "run_n1_visual.sh": "1dfbd7b0cecc116c8ac0e45e9833f583564df4fa83fa6a10578aee755b809bd0",
+    "VISUAL_MOTION.md": "7ebd58c881fc38710014787e02b7b5feaeee68010de76f72f89ba4dba65e3faa",
+    "native_student/predictor_test.cpp": "e13281bf6c609ded8b7f5a3553578ad2dbcda9164cf0b67f889fd0c69374829b",
+    "native_student/README.md": "efcbf5015d5d258bb54906f3ef7a6a4952504d300e3cfbdd76bedb8c3933c7d9",
+    "native_student/predictor.hpp": "97452a308adc1570f410b54c1f83cc8a1c87a152867f141175b1884a518652bc",
+    "native_student/kinematics.hpp": "1a380a31365ec10d5a9a152de628628b5663b247029d63ed71f7af3858246647"
+  }
+}

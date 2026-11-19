@@ -1,0 +1,52 @@
+{
+  "package_directory": "research/artifacts/n2-kfinputs-frozen/package",
+  "archive": "research/artifacts/n2-kfinputs-frozen/frozen_n2_kfinputs_cpp_wasm.zip",
+  "parity_work": "stopped",
+  "status": "frozen experimental candidate; prior parity limitations remain",
+  "files": {
+    "frozen_n2_kfinputs_cpp_wasm.zip": {
+      "bytes": 22535267,
+      "sha256": "e34b65dd6e3b70c6d59a266cd3cdffcfe0696d442ca698e4b320427a90d78a13"
+    },
+    "package/README.md": {
+      "bytes": 11325,
+      "sha256": "790c1a2fefc2238f938a21c792a932f730f1e0d6942e95207f3e17216d4158a6"
+    },
+    "package/SHA256SUMS": {
+      "bytes": 792,
+      "sha256": "de40ecd1a1c092b2631a13de15e4fbaa3dc29bf163a9880eebd5195011c252d6"
+    },
+    "package/benchmark-results.json": {
+      "bytes": 262483,
+      "sha256": "93ca469df37a3ab8bb0852af89dd8cf31ff7e4493e0b593eae24c016b8d20e4f"
+    },
+    "package/checks-summary.json": {
+      "bytes": 3338,
+      "sha256": "2c0ffecbe03b806eaa0ec1c8740912b35cf95aae884b41a4b9b1df323b2913b1"
+    },
+    "package/freeze.json": {
+      "bytes": 660,
+      "sha256": "fd93f97f0b4f30a3cd9ed1a6e50b843703c4931af5d1c06e5e22254d735206a0"
+    },
+    "package/manifest.json": {
+      "bytes": 11524,
+      "sha256": "1e6413cd4975e19e7cdf91473117cc4847b0c797d326a82f6e940f8eeee123bc"
+    },
+    "package/source-code-and-canonical-weights.tar.gz": {
+      "bytes": 4802800,
+      "sha256": "e309d0ec601189bd8a7205d954480851d0de94b6c3af7829174c20603685d81a"
+    },
+    "package/vio_n2_kfinputs_s217.wasm": {
+      "bytes": 10614678,
+      "sha256": "8b05b203adc1f045b67df12399ee6b9e0caf28015b7d31678f5378968e2d60cf"
+    },
+    "package/vio_n2_kfinputs_s218.wasm": {
+      "bytes": 10614678,
+      "sha256": "e787620f5a5c64eb6655d930d2e0b69d393db870960d3e2df6f8c9ed8784e007"
+    },
+    "package/vio_n2_kfinputs_s219.wasm": {
+      "bytes": 10614678,
+      "sha256": "0938f841b1eb0c14c8811b4a4c758ddac986321f4bde4dbd0cd82679b29c7e3b"
+    }
+  }
+}

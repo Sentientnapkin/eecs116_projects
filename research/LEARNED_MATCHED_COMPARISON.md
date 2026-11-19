@@ -9,7 +9,7 @@ The N2 seed217/218/219 weights were exported with the existing C++17 FP32 deploy
 Commands from this worktree's `research/` (Python is `/data/backups/rganapa/Sebastian/venv-teacher/bin/python`):
 
 ```bash
-DEPLOY=/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/agent-ad6636639c9915912/research
+DEPLOY=/data/backups/rganapa/Sebastian/eecs116_projects/.worktrees/deploy/research
 MAIN=/data/backups/rganapa/Sebastian/eecs116_projects/research
 SDK=/data/backups/rganapa/Sebastian/tmp/viobench-toolchain/wasi-sdk
 python "$DEPLOY/native_odometry/export.py" "$MAIN/results/loop/N2-ssm-x3-gpu" "$MAIN/data/hub-cache/B-D0-ssm-x3-gpu/manifests/teacher-full.json" results/loop/provided-comparison/n2-217 --wasi-sdk "$SDK"

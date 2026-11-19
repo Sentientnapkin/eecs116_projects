@@ -61,7 +61,7 @@ import numpy as np
 import attitude_bias as ab
 from common import Flight
 
-SAVED = Path("/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/provided-openvins/research/results/eval/attitude-bias")
+SAVED = Path("/data/backups/rganapa/Sebastian/eecs116_projects/.worktrees/provided-openvins/research/results/eval/attitude-bias")
 RUNS = ("B-D0-ssm-x3-gpu", "B-D0-ssm-x3-s218-gpu", "B-D0-ssm-x3-s219-gpu", "N2-ssm-x3-gpu", "N2-ssm-x3-s218-gpu", "N2-ssm-x3-s219-gpu")
 ARMS = ("control", "a_replace", "a_blend", "b_sign", "ab", "c_bias", "o_truevel", "o_truedir_all", "o_truedir_gated")
 S_NET, BIAS_PRIOR, LAG = 0.35, 0.15, 2.0

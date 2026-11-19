@@ -1,0 +1,8 @@
+1266050c0b68396fac90e1effe3f4645bbc302fde6bea19f8379a9f1a62f9a6e  results/visual-motion/v0-s217/best.safetensors
+9733485c0f47cf4b9a0b201337c9234f0ce33790d2687bd4c74f20020cd9bc41  results/visual-motion/v2-s217/best.safetensors
+99f75653e1f222ea61a1f9de542defee0014dbd11be72f8ce31c3e56367afbb3  results/visual-motion/v0-mlp-s217/best.safetensors
+9baf820c5cb2bbcab1da86613921b81193a180a61e10f42e4e796bf3769f09a8  results/visual-motion/v0-mlp-s218/best.safetensors
+af1e9ef96797c4ec13fffaf1e7bc40d1cd17da16ece4d572813cef0aeb101793  results/visual-motion/v0-mlp-s219/best.safetensors
+c3f715e7a6a2eaefd7e2034c016de921b3ca1dbc7109f86ac65dd9cbe7e71ae6  results/visual-motion/v2-mlp-s217/best.safetensors
+adcca044245953cd9dbb18d9f5bc5be1e1861f979bc884e19a9ae94c5cc353fe  results/visual-motion/v2-mlp-s218/best.safetensors
+82167aa1fa496b48132e34079b97bec26c213d45a3a1f4dd5576a6dcf644342f  results/visual-motion/v2-mlp-s219/best.safetensors

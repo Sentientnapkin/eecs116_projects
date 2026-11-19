@@ -1,0 +1,54 @@
+{
+  "control": {
+    "unaligned_ate": 1.5638343130775136,
+    "ordinary_ate": 1.3918148704207203,
+    "stress_ate": 2.595950969018274,
+    "sim3_ate": 0.5936947078895963,
+    "worst_ate": 2.708149562600277,
+    "speed_rmse": 0.20711479426537074,
+    "speed_bias": -0.11637818753964865,
+    "direction_error_deg": 33.68018669544585,
+    "parents": 7,
+    "scenes": 6
+  },
+  "candidate": {
+    "unaligned_ate": 1.1440557729491359,
+    "ordinary_ate": 1.110896480369086,
+    "stress_ate": 1.343011528429435,
+    "sim3_ate": 0.3549886940761115,
+    "worst_ate": 1.8893427687669597,
+    "speed_rmse": 0.14208993269284,
+    "speed_bias": -0.07042956061028635,
+    "direction_error_deg": 18.530143241411803,
+    "parents": 7,
+    "scenes": 6
+  },
+  "relative_ate": -0.26842903792172446,
+  "relative_ordinary_ate": -0.20183603151669005,
+  "passes_screen": true,
+  "paired_scene_ate": {
+    "scenes": 6,
+    "mean_difference": -0.3374089312694803,
+    "relative": -0.2219014845229383,
+    "interval90": [
+      -0.6243051742968577,
+      -0.05051268824210281
+    ],
+    "per_scene": {
+      "ProcTHOR-Train-166": -0.914,
+      "ProcTHOR-Train-167": 0.3291,
+      "ProcTHOR-Train-168": -0.3147,
+      "ProcTHOR-Train-169": -0.793,
+      "ProcTHOR-Train-170": -0.2699,
+      "ProcTHOR-Train-171": -0.0619
+    }
+  },
+  "leave_one_scene_out": {
+    "ProcTHOR-Train-166": -0.22208,
+    "ProcTHOR-Train-167": -0.4707,
+    "ProcTHOR-Train-168": -0.34194,
+    "ProcTHOR-Train-169": -0.24628,
+    "ProcTHOR-Train-170": -0.35090000000000005,
+    "ProcTHOR-Train-171": -0.3925
+  }
+}

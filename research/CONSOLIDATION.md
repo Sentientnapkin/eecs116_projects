@@ -1,6 +1,34 @@
 # Consolidation of all odometry branches into main (2026-11-19)
 
-Every `odometry/*` and `codex/*` branch, plus the uncommitted work left in their worktrees, was merged
+## Final organization
+
+`main` is now the only local branch. The 17 former branch tips are preserved as
+descriptive `archive/2026-11-19/*` tags, and their checkouts are detached archives.
+Local internal checkouts live under ignored `.worktrees/` with descriptive names.
+Ignored compatibility symlinks retain old absolute paths used by historical commands.
+No remote branch was renamed or deleted and nothing was pushed.
+
+All previously committed solution branches were already ancestors of main.
+The remaining uncommitted visual-motion implementation and its measured JSON reports
+are now preserved under `visual_motion/` and `results/eval/visual-motion/`.
+Its older training modules are isolated to avoid overwriting the current pipeline.
+See [the experiment README](visual_motion/README.md).
+
+The frozen C++/Wasm distribution is available from this main checkout at
+`research/artifacts/n2-kfinputs-frozen/` (ignored binary assets). Its tracked index is
+`results/eval/new-model-wasm/current-package.json`; all source remains in Git.
+The seed-217 Wasm SHA-256 is unchanged:
+`8b05b203adc1f045b67df12399ee6b9e0caf28015b7d31678f5378968e2d60cf`.
+The original frozen ZIP and its internal provenance remain byte-identical.
+Further parity work remains stopped and prior qualification limitations still apply.
+
+A pre-cleanup Git bundle and the original uncommitted visual-motion source are backed up
+outside the repository at `../archive/main-consolidation-20261119/`.
+Checkpoints, caches, raw data, untracked attitude dumps and original local changes were
+preserved. Historical commit messages and immutable result identifiers were not rewritten.
+The earlier sections below describe the prior merge and its verification, not new runs.
+
+Every odometry and completion branch, plus the uncommitted work left in their worktrees, was merged
 into one history. No result was changed. Mean unaligned ATE remains the only metric. No push, no
 reserved-test scoring, no submission.
 
@@ -15,7 +43,7 @@ reserved-test scoring, no submission.
 | `attitude`, `attitude-fast`, `attitude-hybrid`, `retrain-attitude`, `bias-ablation` | Learned gyro-bias, hybrid, input-attitude retraining | learned bias 1.144 (worse); static08/kf_grid input arms pass campaign gate, regress proxy-30 s | `model.gyro_bias_correction`, `input_attitude.py` |
 | `openvins`, `openvins-provided-diag`, `provided-openvins`, `provided-comparison` | Native/provided OpenVINS baselines | public 1.108, campaign mean 32.6 (median 1.1): unusable mean | `provided_baseline/`, `openvins_native/` |
 | `approaches` | Survey and OpenVINS/learned splice | predeclared arms fail; post hoc gate 1.376 campaign (decides nothing) | `APPROACHES.md` |
-| `vel-fusion`, `fuel`, `deploy*`, `codex/new-model-*`, `codex/public-best-replay` | C++/Wasm deployment, SIMD, kf_grid visual attitude, direction fusion, staged fuel | FP32 port parity; SIMD -19.9% fuel; kf_grid N2 s218 public 1.292 / campaign 1.146 but **not parity-qualified** | `native_odometry/`, `native_odometry_staged/` |
+| `vel-fusion`, `fuel`, `deploy*`, `codex/new-model-*`, `archive/2026-11-19/public-best-replay` | C++/Wasm deployment, SIMD, kf_grid visual attitude, direction fusion, staged fuel | FP32 port parity; SIMD -19.9% fuel; kf_grid N2 s218 public 1.292 / campaign 1.146 but **not parity-qualified** | `native_odometry/`, `native_odometry_staged/` |
 | `codex/session-integration`, `baseline-finish`, `training-finish` | Audits and closure reports | see `CONTINUATION_20261119.md` | - |
 
 ## Conflict decisions (where branches touched the same code)
@@ -26,7 +54,7 @@ reserved-test scoring, no submission.
   (**attitude rotations must be passed by keyword**), batched `replay(..., return_attitude)`.
 - `odometry_eval.py`: batched GPU replay kept; attitude-aware replay and `--ekf` added on top.
 - `hp_search.py`: `command(..., overrides=None, recipe=..., local_source=...)`.
-- `native_odometry/kf_grid.hpp`: the parity-audited version from `codex/new-model-wasm`. The staged-fuel
+- `native_odometry/kf_grid.hpp`: the parity-audited version from `archive/2026-11-19/frozen-candidate`. The staged-fuel
   variant is preserved verbatim in `native_odometry_staged/` (identical to the `fuel` branch file).
 - `attitude_bias.py`: the newest version (arms, `--root`) plus the degenerate-solve guard.
 - `configs/experiments.json` is valid JSON (a text union had broken it); `RA-N2-kfgrid-x3.data` points

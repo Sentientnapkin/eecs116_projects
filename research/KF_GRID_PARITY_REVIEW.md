@@ -35,6 +35,6 @@ Local evidence:
 - [Fusion C++ pose recovery](/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/vel-fusion-deploy/research/native_odometry/kf_grid.hpp:212)
 - [Python pose recovery](/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/openvins-diag/research/attitude_bias.py:83)
 - [Pinned OpenCV mask semantics](/dev/shm/sebastian-vio/viobench/viobench/solution/build/runtime/src/opencv/modules/calib3d/src/five-point.cpp:680)
-- [Superseded historical note](/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/provided-openvins/research/loop/NOTES.md:174)
+- [Superseded historical note](/data/backups/rganapa/Sebastian/eecs116_projects/.worktrees/provided-openvins/research/loop/NOTES.md:174)
 
 The measured historical Wasm scores remain valid measurements of their exact historical binaries; their interpretation as a faithful Python port is what changes. Preserve those controls and label corrected-mask builds separately. The fusion owner is handling fixes and executable parity checks; this review introduced no new inference or experiments.

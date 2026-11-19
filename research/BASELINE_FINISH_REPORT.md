@@ -1,6 +1,6 @@
 # Provided VIOBench baseline: completed-work audit, 2026-11-19
 
-This report recovers the completed Claude work at `odometry/provided-openvins` (`023198d`) and `odometry/openvins-provided-diag` (`b059d44`). The older session report and initial NFS build logs were stale. No new estimator, threshold search, training, submission, remote push, or reserved-test access was performed in this audit.
+This report recovers the completed baseline work at `odometry/provided-openvins` (`023198d`) and `odometry/openvins-provided-diag` (`b059d44`). The older session report and initial NFS build logs were stale. No new estimator, threshold search, training, submission, remote push, or reserved-test access was performed in this audit.
 
 ## Source, build and checks
 

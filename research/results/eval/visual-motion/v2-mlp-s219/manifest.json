@@ -1,0 +1,101 @@
+{
+  "status": "completed",
+  "identity": {
+    "data_manifest_sha256": "7289545ddc6ae3a3e9f4a8b2487d461aafad69423f2caf1e426acbc80b4e9253",
+    "model": {
+      "head": "mlp",
+      "width": 128,
+      "height": 96,
+      "channels": [
+        24,
+        48,
+        96,
+        128
+      ],
+      "embedding": 128,
+      "hidden": 256,
+      "layers": 2,
+      "states": 16,
+      "correlation": true,
+      "correlation_radius": 2,
+      "frame_chunk": 8,
+      "cached_visual_size": 72
+    },
+    "seed": 219,
+    "training": {
+      "batch_size": 1,
+      "accumulation": 2,
+      "window_frames": 64,
+      "burn_in": 32,
+      "windows_per_parent": 2,
+      "learning_rate": 0.0003,
+      "horizons": [
+        0.25,
+        1,
+        3
+      ],
+      "cpu_threads": 4,
+      "distillation_weight": 0.2,
+      "patience": 0,
+      "weight_ema": 0.995,
+      "schedule": "cosine",
+      "warmup_epochs": 0.5,
+      "sampler": {
+        "mode": "original",
+        "windows_per_epoch": 244
+      }
+    },
+    "world_size": 1,
+    "teacher_sha256": null
+  },
+  "device": "cuda",
+  "parameters": 42435,
+  "pilot_data": false,
+  "sources": {
+    "teacher_train.py": "e6f5d9c2261757cddbdf0411b09080ebe9a3f40d4df593ee605caee1376abab5",
+    "teacher_models.py": "0756adf70d8f2ef652cbcba5626fb8293c0ede819252179342691cd667afa1aa",
+    "teacher_data.py": "46cff1e72ed49e5332cba89690d410477b79327911ea09c95809d1f798d4ead8"
+  },
+  "provenance": {
+    "argv": [
+      "teacher_train.py",
+      "--config",
+      "configs/visual-motion-screen.json",
+      "--seed",
+      "219",
+      "--data",
+      "data/visual-motion/v2",
+      "--set",
+      "model.cached_visual_size=72",
+      "--set",
+      "model.head=\"mlp\"",
+      "--output",
+      "results/visual-motion/v2-mlp-s219"
+    ],
+    "git_head": "a4b4d868b20389a534c4cbb23232e24ea30e9618",
+    "git_uncommitted": [
+      "M research/.gitignore",
+      " M research/teacher_eval.py",
+      " M research/teacher_models.py",
+      "?? research/VISUAL_MOTION.md",
+      "?? research/configs/visual-motion-screen.json",
+      "?? research/test_visual_motion.py",
+      "?? research/visual_motion_cache.py",
+      "?? research/visual_motion_compare.py"
+    ],
+    "source_snapshot": "source/",
+    "data_repo": "SentientNapkin/viobench-teacher-data",
+    "data_repo_revision": null,
+    "python": "3.12.12 | packaged by conda-forge | (main, Oct 22 2025, 23:25:55) [GCC 14.3.0]",
+    "platform": "Linux-5.15.0-164-generic-x86_64-with-glibc2.35",
+    "machine": "x86_64",
+    "packages": {
+      "torch": "2.15.0+cu132",
+      "numpy": "2.5.5",
+      "accelerate": "1.16.0",
+      "safetensors": "0.8.0",
+      "huggingface_hub": "2.4.0",
+      "cv2": "5.1.0"
+    }
+  }
+}

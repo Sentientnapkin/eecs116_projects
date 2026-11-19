@@ -1,5 +1,8 @@
 # Stage-2 VIO research
 
+For the current consolidated code, frozen C++/Wasm candidate and experiment locations,
+start with [Solutions on main](SOLUTIONS.md). The workflow below is historical.
+
 Run commands from this directory. Install or use an existing Python environment with NumPy, OpenCV and PyTorch. Native replay additionally uses the workspace VIOBench checkout and the bundled Python runtime from the workspace build directory. Local scoring uses unaligned first-camera position RMSE. Sim(3) ATE is a diagnostic.
 
 `experiments.json` fixes the cache version, calibration thresholds, preprocessing, seeds and training schedule. The primary roster takes one lexicographically first base parent per scene from each of `data/train` and `data/val`. The latter scenes are development scenes. ProcTHOR-Train-162 through -165 are reserved for a future frozen comparison and excluded from the training and development loader. Each run fingerprints the exact parents and cached inputs. Old cache directories and results are historical.

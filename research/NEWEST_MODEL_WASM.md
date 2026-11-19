@@ -1,10 +1,10 @@
 # Frozen newest-model C++/Wasm candidate
 
-Completed2026-11-19 on isolated branch `codex/new-model-wasm`. The newest family is **RA-N2-kfgrid-x3**, the three completed36-epoch N2 runs trained with `kf_grid_native` inputs. Their selected best-EMA checkpoints were compiled without retraining or selecting seeds by public performance. Seed217 is the default;218/219 are also available. No submission, push, reserved-test measurement, paid infrastructure or unrelated-job interruption occurred.
+Completed2026-11-19 on isolated branch `archive/2026-11-19/frozen-candidate`. The newest family is **RA-N2-kfgrid-x3**, the three completed36-epoch N2 runs trained with `kf_grid_native` inputs. Their selected best-EMA checkpoints were compiled without retraining or selecting seeds by public performance. Seed217 is the default;218/219 are also available. No submission, push, reserved-test measurement, paid infrastructure or unrelated-job interruption occurred.
 
 ## Package
 
-Directory: `/data/backups/rganapa/Sebastian/eecs116_projects/.codex-worktrees/new-model-wasm/research/results/loop/new-model-wasm/package/`.
+Directory: `/data/backups/rganapa/Sebastian/eecs116_projects/research/artifacts/n2-kfinputs-frozen/package/`.
 
 | File | Bytes | SHA256 |
 | --- | ---: | --- |

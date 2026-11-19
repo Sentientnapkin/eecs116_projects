@@ -1,0 +1,266 @@
+{
+  "s217": {
+    "control": {
+      "unaligned_ate": 2.238204885731878,
+      "ordinary_ate": 2.2712466041428883,
+      "stress_ate": 2.2010329525194914,
+      "sim3_ate": 1.141573602276626,
+      "worst_ate": 5.814034784447362,
+      "speed_rmse": 0.3084642025398964,
+      "speed_bias": -0.20528957600828512,
+      "direction_error_deg": 27.269814410818096,
+      "parents": 68,
+      "scenes": 12
+    },
+    "candidate": {
+      "unaligned_ate": 2.253103914707174,
+      "ordinary_ate": 2.4510468842939654,
+      "stress_ate": 2.0304180739220357,
+      "sim3_ate": 1.0866903842815323,
+      "worst_ate": 4.913501670427846,
+      "speed_rmse": 0.24612023253654122,
+      "speed_bias": -0.12872351899800172,
+      "direction_error_deg": 18.680165037160815,
+      "parents": 68,
+      "scenes": 12
+    },
+    "relative_ate": 0.006656686825354585,
+    "relative_ordinary_ate": 0.07916369795473144,
+    "passes_screen": false,
+    "paired_scene_ate": {
+      "scenes": 12,
+      "mean_difference": 0.025608125507203594,
+      "relative": 0.011527189145749841,
+      "interval90": [
+        -0.17007334712690808,
+        0.1945899466808578
+      ],
+      "per_scene": {
+        "ProcTHOR-Train-150": -0.0028,
+        "ProcTHOR-Train-151": 0.1531,
+        "ProcTHOR-Train-152": 0.0191,
+        "ProcTHOR-Train-153": -0.5152,
+        "ProcTHOR-Train-154": 0.0565,
+        "ProcTHOR-Train-155": 0.2579,
+        "ProcTHOR-Train-156": -0.0103,
+        "ProcTHOR-Train-157": 0.4182,
+        "ProcTHOR-Train-158": 0.4453,
+        "ProcTHOR-Train-159": 0.3499,
+        "ProcTHOR-Train-160": 0.1151,
+        "ProcTHOR-Train-161": -0.9793
+      }
+    },
+    "leave_one_scene_out": {
+      "ProcTHOR-Train-150": 0.02820909090909092,
+      "ProcTHOR-Train-151": 0.014036363636363635,
+      "ProcTHOR-Train-152": 0.026218181818181828,
+      "ProcTHOR-Train-153": 0.0747909090909091,
+      "ProcTHOR-Train-154": 0.022818181818181817,
+      "ProcTHOR-Train-155": 0.004509090909090907,
+      "ProcTHOR-Train-156": 0.02889090909090909,
+      "ProcTHOR-Train-157": -0.010063636363636356,
+      "ProcTHOR-Train-158": -0.01252727272727272,
+      "ProcTHOR-Train-159": -0.003854545454545444,
+      "ProcTHOR-Train-160": 0.01749090909090909,
+      "ProcTHOR-Train-161": 0.11698181818181817
+    }
+  },
+  "mlp-s217": {
+    "control": {
+      "unaligned_ate": 2.2064090708343254,
+      "ordinary_ate": 2.2444756644782076,
+      "stress_ate": 2.163584152984958,
+      "sim3_ate": 1.1333218558249667,
+      "worst_ate": 5.563373440745788,
+      "speed_rmse": 0.30770531842025867,
+      "speed_bias": -0.20480808640761958,
+      "direction_error_deg": 27.662536959687284,
+      "parents": 68,
+      "scenes": 12
+    },
+    "candidate": {
+      "unaligned_ate": 2.3029653901868805,
+      "ordinary_ate": 2.3323457123767337,
+      "stress_ate": 2.2699125277232963,
+      "sim3_ate": 1.096560315338806,
+      "worst_ate": 4.554236254971542,
+      "speed_rmse": 0.24668242523879863,
+      "speed_bias": -0.13409653592993667,
+      "direction_error_deg": 19.211274631757412,
+      "parents": 68,
+      "scenes": 12
+    },
+    "relative_ate": 0.04376174872959693,
+    "relative_ordinary_ate": 0.03914947677499292,
+    "passes_screen": false,
+    "paired_scene_ate": {
+      "scenes": 12,
+      "mean_difference": 0.07691541906104983,
+      "relative": 0.03501161721283746,
+      "interval90": [
+        -0.1392830408216133,
+        0.2720836303000143
+      ],
+      "per_scene": {
+        "ProcTHOR-Train-150": -0.3674,
+        "ProcTHOR-Train-151": 0.3875,
+        "ProcTHOR-Train-152": 0.2857,
+        "ProcTHOR-Train-153": -0.0697,
+        "ProcTHOR-Train-154": 0.2119,
+        "ProcTHOR-Train-155": 0.0681,
+        "ProcTHOR-Train-156": 0.4194,
+        "ProcTHOR-Train-157": -0.1466,
+        "ProcTHOR-Train-158": 0.713,
+        "ProcTHOR-Train-159": 0.3786,
+        "ProcTHOR-Train-160": 0.0322,
+        "ProcTHOR-Train-161": -0.9899
+      }
+    },
+    "leave_one_scene_out": {
+      "ProcTHOR-Train-150": 0.1172909090909091,
+      "ProcTHOR-Train-151": 0.048663636363636374,
+      "ProcTHOR-Train-152": 0.05791818181818184,
+      "ProcTHOR-Train-153": 0.09022727272727274,
+      "ProcTHOR-Train-154": 0.06462727272727274,
+      "ProcTHOR-Train-155": 0.0777,
+      "ProcTHOR-Train-156": 0.04576363636363637,
+      "ProcTHOR-Train-157": 0.09721818181818181,
+      "ProcTHOR-Train-158": 0.019072727272727272,
+      "ProcTHOR-Train-159": 0.04947272727272727,
+      "ProcTHOR-Train-160": 0.08096363636363636,
+      "ProcTHOR-Train-161": 0.1738818181818182
+    }
+  },
+  "mlp-s218": {
+    "control": {
+      "unaligned_ate": 2.266866208099479,
+      "ordinary_ate": 2.2754828153763307,
+      "stress_ate": 2.2571725249130203,
+      "sim3_ate": 1.153676427605364,
+      "worst_ate": 5.345603410964089,
+      "speed_rmse": 0.3081366291722356,
+      "speed_bias": -0.20634897516088402,
+      "direction_error_deg": 28.866796309570265,
+      "parents": 68,
+      "scenes": 12
+    },
+    "candidate": {
+      "unaligned_ate": 2.2517346622427983,
+      "ordinary_ate": 2.2558861270843513,
+      "stress_ate": 2.2470642642960508,
+      "sim3_ate": 1.07634294886315,
+      "worst_ate": 4.323199500825771,
+      "speed_rmse": 0.25058727195627684,
+      "speed_bias": -0.1377193301450461,
+      "direction_error_deg": 19.579074790340584,
+      "parents": 68,
+      "scenes": 12
+    },
+    "relative_ate": -0.006675094367111667,
+    "relative_ordinary_ate": -0.00861210120311906,
+    "passes_screen": false,
+    "paired_scene_ate": {
+      "scenes": 12,
+      "mean_difference": -0.01927267839684645,
+      "relative": -0.00857190924773816,
+      "interval90": [
+        -0.2236413300375784,
+        0.1695873826425427
+      ],
+      "per_scene": {
+        "ProcTHOR-Train-150": -0.127,
+        "ProcTHOR-Train-151": -0.031,
+        "ProcTHOR-Train-152": 0.186,
+        "ProcTHOR-Train-153": -0.2328,
+        "ProcTHOR-Train-154": -0.0106,
+        "ProcTHOR-Train-155": 0.0091,
+        "ProcTHOR-Train-156": -0.0875,
+        "ProcTHOR-Train-157": -0.0523,
+        "ProcTHOR-Train-158": 0.7616,
+        "ProcTHOR-Train-159": 0.4543,
+        "ProcTHOR-Train-160": -0.0334,
+        "ProcTHOR-Train-161": -1.0675
+      }
+    },
+    "leave_one_scene_out": {
+      "ProcTHOR-Train-150": -0.009463636363636362,
+      "ProcTHOR-Train-151": -0.018190909090909077,
+      "ProcTHOR-Train-152": -0.03791818181818181,
+      "ProcTHOR-Train-153": 0.00015454545454545772,
+      "ProcTHOR-Train-154": -0.02004545454545453,
+      "ProcTHOR-Train-155": -0.021836363636363623,
+      "ProcTHOR-Train-156": -0.01305454545454544,
+      "ProcTHOR-Train-157": -0.01625454545454543,
+      "ProcTHOR-Train-158": -0.09024545454545453,
+      "ProcTHOR-Train-159": -0.06230909090909089,
+      "ProcTHOR-Train-160": -0.01797272727272725,
+      "ProcTHOR-Train-161": 0.07603636363636365
+    }
+  },
+  "mlp-s219": {
+    "control": {
+      "unaligned_ate": 2.3125730842191317,
+      "ordinary_ate": 2.271409763916992,
+      "stress_ate": 2.3588818195590395,
+      "sim3_ate": 1.17046599106113,
+      "worst_ate": 4.342691443850208,
+      "speed_rmse": 0.30215057587740446,
+      "speed_bias": -0.19833846512451114,
+      "direction_error_deg": 31.39120624486051,
+      "parents": 68,
+      "scenes": 12
+    },
+    "candidate": {
+      "unaligned_ate": 2.2613408732669726,
+      "ordinary_ate": 2.2161668573439273,
+      "stress_ate": 2.3121616411803982,
+      "sim3_ate": 1.092655444930014,
+      "worst_ate": 4.325079260915047,
+      "speed_rmse": 0.251205289877825,
+      "speed_bias": -0.14731960284899798,
+      "direction_error_deg": 19.533911348234767,
+      "parents": 68,
+      "scenes": 12
+    },
+    "relative_ate": -0.02215376945349956,
+    "relative_ordinary_ate": -0.024320977857293258,
+    "passes_screen": false,
+    "paired_scene_ate": {
+      "scenes": 12,
+      "mean_difference": -0.037354747554967906,
+      "relative": -0.01637361624797802,
+      "interval90": [
+        -0.23787141245257637,
+        0.14655771110368873
+      ],
+      "per_scene": {
+        "ProcTHOR-Train-150": 0.1297,
+        "ProcTHOR-Train-151": 0.1473,
+        "ProcTHOR-Train-152": -0.1381,
+        "ProcTHOR-Train-153": -0.5219,
+        "ProcTHOR-Train-154": 0.0138,
+        "ProcTHOR-Train-155": -0.1914,
+        "ProcTHOR-Train-156": 0.3067,
+        "ProcTHOR-Train-157": 0.2674,
+        "ProcTHOR-Train-158": 0.5373,
+        "ProcTHOR-Train-159": 0.1999,
+        "ProcTHOR-Train-160": -0.121,
+        "ProcTHOR-Train-161": -1.0782
+      }
+    },
+    "leave_one_scene_out": {
+      "ProcTHOR-Train-150": -0.052563636363636375,
+      "ProcTHOR-Train-151": -0.05416363636363637,
+      "ProcTHOR-Train-152": -0.02821818181818183,
+      "ProcTHOR-Train-153": 0.006672727272727264,
+      "ProcTHOR-Train-154": -0.04202727272727274,
+      "ProcTHOR-Train-155": -0.02337272727272728,
+      "ProcTHOR-Train-156": -0.06865454545454547,
+      "ProcTHOR-Train-157": -0.06508181818181819,
+      "ProcTHOR-Train-158": -0.08961818181818182,
+      "ProcTHOR-Train-159": -0.058945454545454544,
+      "ProcTHOR-Train-160": -0.029772727272727274,
+      "ProcTHOR-Train-161": 0.05724545454545455
+    }
+  }
+}

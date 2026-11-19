@@ -1,0 +1,46 @@
+{
+  "seed": 217,
+  "model": {
+    "head": "mlp",
+    "width": 128,
+    "height": 96,
+    "channels": [
+      24,
+      48,
+      96,
+      128
+    ],
+    "embedding": 128,
+    "hidden": 256,
+    "layers": 2,
+    "states": 16,
+    "correlation": true,
+    "correlation_radius": 2,
+    "frame_chunk": 8,
+    "cached_visual_size": 5232
+  },
+  "training": {
+    "epochs": 4,
+    "batch_size": 1,
+    "accumulation": 2,
+    "window_frames": 64,
+    "burn_in": 32,
+    "windows_per_parent": 2,
+    "learning_rate": 0.0003,
+    "horizons": [
+      0.25,
+      1,
+      3
+    ],
+    "cpu_threads": 4,
+    "distillation_weight": 0.2,
+    "patience": 0,
+    "weight_ema": 0.995,
+    "schedule": "cosine",
+    "warmup_epochs": 0.5,
+    "sampler": {
+      "mode": "original",
+      "windows_per_epoch": 244
+    }
+  }
+}

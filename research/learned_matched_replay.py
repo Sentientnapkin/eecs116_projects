@@ -9,7 +9,7 @@ import sys
 
 import numpy as np
 
-DEPLOY = Path('/data/backups/rganapa/Sebastian/eecs116_projects/.claude/worktrees/agent-ad6636639c9915912/research')
+DEPLOY = Path('/data/backups/rganapa/Sebastian/eecs116_projects/.worktrees/deploy/research')
 sys.path.insert(0, str(DEPLOY / 'native_odometry'))
 from replay import Host
 from common import Flight

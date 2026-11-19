@@ -1,6 +1,6 @@
-# Claude training workstream completion audit
+# Training workstream completion audit
 
-Audit date: 2026-11-19 UTC. This work is isolated on `codex/training-finish` under `.codex-worktrees/training-finish`. Existing Claude worktrees, raw archives and checkpoints are preserved. No reserved test was accessed. No submission, push, or unrelated-job interruption was performed.
+Audit date: 2026-11-19 UTC. This work is isolated on `archive/2026-11-19/training-completion` under `.worktrees/training-completion`. Existing research worktrees, raw archives and checkpoints are preserved. No reserved test was accessed. No submission, push, or unrelated-job interruption was performed.
 
 
 **Final measured outcome:** both declared input-attitude interventions improve trained velocities through the same common attitude, passing their original experimental gate. Static08 improves reconstructed original-dev own-attitude ATE to **0.7963 m** (ordinary **0.8163 m**); repaired kf_grid input training is best on campaign own-attitude full (**0.9724 m**) and public (**1.0389 m**). Both regress proxy30 against the matched rolling control. Complete changed-input C++/Wasm deployment is not implemented, so these are promising research candidates rather than validated submission artifacts.
@@ -27,7 +27,7 @@ All three 36-epoch runs and all four evaluations completed in the existing data-
 | ProcTHOR campaign 30 s/full | 1.1261 / 1.4770 | 1.2293 / 1.5893 |
 | HSSD campaign 30 s/full | 0.8881 / 1.3042 | 1.0483 / 1.4433 |
 
-Original reports (with per-flight results) are `.claude/worktrees/odometry-data-coverage/research/results/eval/data-coverage/training/`. In particular `paired-*.json` retain paired seed arrays and catalog/start/motion groups. Both overlapping crop origins remain in the historical population; they are not independent flights. No further generation is justified by this failed result; the 64-flight early-lateral pilot remains a separate proposal.
+Original reports (with per-flight results) are `.worktrees/data-coverage/research/results/eval/data-coverage/training/`. In particular `paired-*.json` retain paired seed arrays and catalog/start/motion groups. Both overlapping crop origins remain in the historical population; they are not independent flights. No further generation is justified by this failed result; the 64-flight early-lateral pilot remains a separate proposal.
 
 ### Hyperparameter sweep
 
@@ -40,7 +40,7 @@ The existing bounded 21-configuration, two-seed screen and both selected 36-epoc
 | Burn-in 16 | 1.0767 | 0.9086 | 1.2528 |
 | Learning rate 0.001 | 1.1847 | 1.0260 | 1.3216 |
 
-Burn-in 16 improves dev by only 1.3% against its matched compiled control, missing the 10% gate. Learning rate 0.001 regresses dev and ordinary motion. Neither advances to deployment fuel measurement. Reports are `.claude/worktrees/odometry-hparam-fast/research/results/eval/hparam-fast/{dev-best,proxy-val-best-30s}.json`; the completed original driver log is `results/loop/hp-fast-queue.log` in that worktree. A fresh compact audit with source report hashes is `results/eval/training-finish/completed-training-audit.json` here.
+Burn-in 16 improves dev by only 1.3% against its matched compiled control, missing the 10% gate. Learning rate 0.001 regresses dev and ordinary motion. Neither advances to deployment fuel measurement. Reports are `.worktrees/hparam-fast/research/results/eval/hparam-fast/{dev-best,proxy-val-best-30s}.json`; the completed original driver log is `results/loop/hp-fast-queue.log` in that worktree. A fresh compact audit with source report hashes is `results/eval/training-finish/completed-training-audit.json` here.
 
 ### Other completed arms
 

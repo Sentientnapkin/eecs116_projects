@@ -1,6 +1,6 @@
 # Completion of visual fusion and fuel work, 2026-11-19
 
-All decisions use equal-replay mean **unaligned** position RMSE. No reserved split was accessed. Existing worktrees, artifacts, and unrelated jobs were preserved. The current worktree is `codex/fusion-finish`, starting at `odometry/vel-fusion-deploy` commit `353243fe71fc4e4e5f6af5cee3a05f24260c6b40`.
+All decisions use equal-replay mean **unaligned** position RMSE. No reserved split was accessed. Existing worktrees, artifacts, and unrelated jobs were preserved. The current worktree is `archive/2026-11-19/fusion-completion`, starting at `odometry/vel-fusion-deploy` commit `353243fe71fc4e4e5f6af5cee3a05f24260c6b40`.
 
 ## Measured whole guests
 

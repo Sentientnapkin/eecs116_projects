@@ -1,0 +1,730 @@
+[
+  {
+    "epoch": 1,
+    "loss": 0.14683213829994202,
+    "nominal_ate": 1.7484948592921477,
+    "moving_ate": 1.575341084048718,
+    "selection_score": 1.6619179716704329,
+    "sim3_ate": 0.5582000870791738,
+    "lr": 0.00028588806367609465,
+    "optimizer_updates": 122,
+    "exposure": {
+      "windows": 244,
+      "draws": {
+        "uniform": 122,
+        "startup": 122
+      },
+      "scored_frames": 15616,
+      "burn_in_frames": 7808,
+      "scored_label_fraction": {
+        "backward": 0.002,
+        "lateral": 0.0097,
+        "vertical": 0.1189,
+        "braking": 0.0038,
+        "turning": 0.0114,
+        "hover": 0.2335
+      },
+      "windows_containing": {
+        "backward": 0.0041,
+        "lateral": 0.0287,
+        "vertical": 0.2295,
+        "braking": 0.0246,
+        "turning": 0.041,
+        "hover": 0.3934
+      },
+      "unique_parents": 122,
+      "unique_scenes": 36,
+      "domain_tier_windows": {
+        "?/?": 244
+      }
+    },
+    "rows": [
+      {
+        "scene": "ProcTHOR-Train-166",
+        "file": "e2ccb38993f2ea00090d557e245ae83a4e324bae062f5d9e343b3aeea33b0ecf.npz",
+        "crop_s": 0,
+        "ate": 2.2541568275108297,
+        "sim3_ate": 0.7417094906079663,
+        "velocity_rmse": 0.24373163521945382,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-166",
+        "file": "e2cff8b992c931399d9b2d95e14b2ea33222356a9525eeb977e7b3f1cceb1bd9.npz",
+        "crop_s": 5,
+        "ate": 1.3458357751357544,
+        "sim3_ate": 0.6398078310866264,
+        "velocity_rmse": 0.23214189346782205,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-167",
+        "file": "9507af94ee14966c26546480d441e2d74090997d5f255c9d2b9cf80eb9c92857.npz",
+        "crop_s": 0,
+        "ate": 1.5515309997046478,
+        "sim3_ate": 0.40846619500225134,
+        "velocity_rmse": 0.2080343061323579,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-167",
+        "file": "57baaf75c44d91a8572b77944c7c83a61d19a14f2295cc0bb877e792524a3f30.npz",
+        "crop_s": 5,
+        "ate": 1.5974806029597655,
+        "sim3_ate": 0.3852829660563178,
+        "velocity_rmse": 0.20808722339178456,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-168",
+        "file": "6e7ef90141dd630837392cf2619221707fea720dc971f5968f2f5b68d24055c2.npz",
+        "crop_s": 0,
+        "ate": 0.9199391948177525,
+        "sim3_ate": 0.5358738786015302,
+        "velocity_rmse": 0.22568756472146093,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-168",
+        "file": "97c64a664a521df2a22747a4e889a7731fc403b637b4ad09cb4bf7fa04efb8b1.npz",
+        "crop_s": 5,
+        "ate": 1.2665445925305157,
+        "sim3_ate": 0.5508938255536785,
+        "velocity_rmse": 0.24370871561100713,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-169",
+        "file": "454a2445e1c6d96e94697cdc0866311439bfff97d3ecf863c214e24a75379cfd.npz",
+        "crop_s": 0,
+        "ate": 2.31952250135677,
+        "sim3_ate": 0.9781126257968814,
+        "velocity_rmse": 0.22556144047263968,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-169",
+        "file": "9f3b40aa9d68df4c40e46083927646e04dbe9eae160b962e5b073ed69ffd6978.npz",
+        "crop_s": 5,
+        "ate": 1.7956200439856553,
+        "sim3_ate": 0.8674987039076033,
+        "velocity_rmse": 0.24126388539294955,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-170",
+        "file": "40559b98ee65b9e8ae12370285104c6de5c68507f81af8e5c630432f60c4ae2a.npz",
+        "crop_s": 0,
+        "ate": 1.442664036393603,
+        "sim3_ate": 0.39196199238425034,
+        "velocity_rmse": 0.20787826987019378,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-170",
+        "file": "ec3c7f69ed5613d62a5c5f2ffa67dd827c4019da72a246cf15dadd043d1fa7a1.npz",
+        "crop_s": 5,
+        "ate": 1.3127961639251535,
+        "sim3_ate": 0.3864586273802824,
+        "velocity_rmse": 0.2281124072295021,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-171",
+        "file": "83819dee62d86f98aea5c44aaa81dbfb9799db358e60e783e973c8f23adf3e12.npz",
+        "crop_s": 0,
+        "ate": 1.1411292403577327,
+        "sim3_ate": 0.3644269208951052,
+        "velocity_rmse": 0.15922959212403698,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-171",
+        "file": "6cc5ea39769bd7b81259d2e2362cd61370f014e64cea687ee647918da6af0878.npz",
+        "crop_s": 5,
+        "ate": 0.8072188965272574,
+        "sim3_ate": 0.2260498109606105,
+        "velocity_rmse": 0.12389411163790419,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-166",
+        "file": "f10aeb575191eb082e7fd4948f3f07c58c6a80f1a0a9b90bf0b80bf2822b9947.npz",
+        "crop_s": 0,
+        "ate": 2.610521214903697,
+        "sim3_ate": 0.673736810621297,
+        "velocity_rmse": 0.3780831724336041,
+        "backward_frames": 106,
+        "backward_sign_accuracy": 0.0
+      },
+      {
+        "scene": "ProcTHOR-Train-166",
+        "file": "e999e8a4f858d6ac0663fed949e162b16bf42ec3d48575413170c3e202123577.npz",
+        "crop_s": 5,
+        "ate": 2.9018915132769254,
+        "sim3_ate": 0.6645215402540331,
+        "velocity_rmse": 0.4274397338895715,
+        "backward_frames": 106,
+        "backward_sign_accuracy": 0.0
+      }
+    ]
+  },
+  {
+    "epoch": 2,
+    "loss": 0.10243815183639526,
+    "nominal_ate": 1.5549947898698844,
+    "moving_ate": 1.617351349772883,
+    "selection_score": 1.5861730698213838,
+    "sim3_ate": 0.5529225842011207,
+    "lr": 0.00018920923308877476,
+    "optimizer_updates": 244,
+    "exposure": {
+      "windows": 244,
+      "draws": {
+        "startup": 122,
+        "uniform": 122
+      },
+      "scored_frames": 15616,
+      "burn_in_frames": 7808,
+      "scored_label_fraction": {
+        "backward": 0.004,
+        "lateral": 0.0112,
+        "vertical": 0.1265,
+        "braking": 0.0026,
+        "turning": 0.015,
+        "hover": 0.2362
+      },
+      "windows_containing": {
+        "backward": 0.0082,
+        "lateral": 0.0369,
+        "vertical": 0.2418,
+        "braking": 0.0123,
+        "turning": 0.0533,
+        "hover": 0.3975
+      },
+      "unique_parents": 122,
+      "unique_scenes": 36,
+      "domain_tier_windows": {
+        "?/?": 244
+      }
+    },
+    "rows": [
+      {
+        "scene": "ProcTHOR-Train-166",
+        "file": "e2ccb38993f2ea00090d557e245ae83a4e324bae062f5d9e343b3aeea33b0ecf.npz",
+        "crop_s": 0,
+        "ate": 1.5595395807074668,
+        "sim3_ate": 0.6684716404945348,
+        "velocity_rmse": 0.23540192343336153,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-166",
+        "file": "e2cff8b992c931399d9b2d95e14b2ea33222356a9525eeb977e7b3f1cceb1bd9.npz",
+        "crop_s": 5,
+        "ate": 1.0124502743968193,
+        "sim3_ate": 0.6069763851354101,
+        "velocity_rmse": 0.23717736285481317,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-167",
+        "file": "9507af94ee14966c26546480d441e2d74090997d5f255c9d2b9cf80eb9c92857.npz",
+        "crop_s": 0,
+        "ate": 1.1240028144578311,
+        "sim3_ate": 0.4054280664362725,
+        "velocity_rmse": 0.2047802831875601,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-167",
+        "file": "57baaf75c44d91a8572b77944c7c83a61d19a14f2295cc0bb877e792524a3f30.npz",
+        "crop_s": 5,
+        "ate": 1.5691029510699215,
+        "sim3_ate": 0.4126072735025191,
+        "velocity_rmse": 0.22686653725387848,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-168",
+        "file": "6e7ef90141dd630837392cf2619221707fea720dc971f5968f2f5b68d24055c2.npz",
+        "crop_s": 0,
+        "ate": 1.134969300514492,
+        "sim3_ate": 0.503653511151355,
+        "velocity_rmse": 0.2171389783090028,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-168",
+        "file": "97c64a664a521df2a22747a4e889a7731fc403b637b4ad09cb4bf7fa04efb8b1.npz",
+        "crop_s": 5,
+        "ate": 1.5156897163987932,
+        "sim3_ate": 0.5025278380337389,
+        "velocity_rmse": 0.23234889182538054,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-169",
+        "file": "454a2445e1c6d96e94697cdc0866311439bfff97d3ecf863c214e24a75379cfd.npz",
+        "crop_s": 0,
+        "ate": 2.1075814357091103,
+        "sim3_ate": 0.9878127438415385,
+        "velocity_rmse": 0.21788821537752273,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-169",
+        "file": "9f3b40aa9d68df4c40e46083927646e04dbe9eae160b962e5b073ed69ffd6978.npz",
+        "crop_s": 5,
+        "ate": 1.7195366531353242,
+        "sim3_ate": 0.8729895683698293,
+        "velocity_rmse": 0.23574420307153748,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-170",
+        "file": "40559b98ee65b9e8ae12370285104c6de5c68507f81af8e5c630432f60c4ae2a.npz",
+        "crop_s": 0,
+        "ate": 1.3957918646146261,
+        "sim3_ate": 0.343566891131652,
+        "velocity_rmse": 0.1976967309579986,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-170",
+        "file": "ec3c7f69ed5613d62a5c5f2ffa67dd827c4019da72a246cf15dadd043d1fa7a1.npz",
+        "crop_s": 5,
+        "ate": 1.5285496205899967,
+        "sim3_ate": 0.400247271131725,
+        "velocity_rmse": 0.2305863860644883,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-171",
+        "file": "83819dee62d86f98aea5c44aaa81dbfb9799db358e60e783e973c8f23adf3e12.npz",
+        "crop_s": 0,
+        "ate": 0.9139596458861489,
+        "sim3_ate": 0.43159097791662177,
+        "velocity_rmse": 0.1751796294903535,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-171",
+        "file": "6cc5ea39769bd7b81259d2e2362cd61370f014e64cea687ee647918da6af0878.npz",
+        "crop_s": 5,
+        "ate": 1.1527672565324056,
+        "sim3_ate": 0.2990008796757938,
+        "velocity_rmse": 0.14838749655206346,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-166",
+        "file": "f10aeb575191eb082e7fd4948f3f07c58c6a80f1a0a9b90bf0b80bf2822b9947.npz",
+        "crop_s": 0,
+        "ate": 2.649118887199515,
+        "sim3_ate": 0.6491906266033755,
+        "velocity_rmse": 0.36609372755574454,
+        "backward_frames": 106,
+        "backward_sign_accuracy": 0.0
+      },
+      {
+        "scene": "ProcTHOR-Train-166",
+        "file": "e999e8a4f858d6ac0663fed949e162b16bf42ec3d48575413170c3e202123577.npz",
+        "crop_s": 5,
+        "ate": 2.823362976286922,
+        "sim3_ate": 0.6568525053913251,
+        "velocity_rmse": 0.41646674649210924,
+        "backward_frames": 106,
+        "backward_sign_accuracy": 0.0
+      }
+    ]
+  },
+  {
+    "epoch": 3,
+    "loss": 0.08869407325983047,
+    "nominal_ate": 1.5071210094863772,
+    "moving_ate": 1.6097800622979375,
+    "selection_score": 1.5584505358921574,
+    "sim3_ate": 0.5696583476126384,
+    "lr": 6.865270323513047e-05,
+    "optimizer_updates": 366,
+    "exposure": {
+      "windows": 244,
+      "draws": {
+        "uniform": 122,
+        "startup": 122
+      },
+      "scored_frames": 15616,
+      "burn_in_frames": 7808,
+      "scored_label_fraction": {
+        "backward": 0.002,
+        "lateral": 0.0069,
+        "vertical": 0.1127,
+        "braking": 0.0035,
+        "turning": 0.0088,
+        "hover": 0.2342
+      },
+      "windows_containing": {
+        "backward": 0.0041,
+        "lateral": 0.0246,
+        "vertical": 0.2213,
+        "braking": 0.0164,
+        "turning": 0.0328,
+        "hover": 0.4057
+      },
+      "unique_parents": 122,
+      "unique_scenes": 36,
+      "domain_tier_windows": {
+        "?/?": 244
+      }
+    },
+    "rows": [
+      {
+        "scene": "ProcTHOR-Train-166",
+        "file": "e2ccb38993f2ea00090d557e245ae83a4e324bae062f5d9e343b3aeea33b0ecf.npz",
+        "crop_s": 0,
+        "ate": 1.3235566921565924,
+        "sim3_ate": 0.6095093807513481,
+        "velocity_rmse": 0.22908317531785213,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-166",
+        "file": "e2cff8b992c931399d9b2d95e14b2ea33222356a9525eeb977e7b3f1cceb1bd9.npz",
+        "crop_s": 5,
+        "ate": 0.8468619319288119,
+        "sim3_ate": 0.5552242179283722,
+        "velocity_rmse": 0.231565924401049,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-167",
+        "file": "9507af94ee14966c26546480d441e2d74090997d5f255c9d2b9cf80eb9c92857.npz",
+        "crop_s": 0,
+        "ate": 1.211799020574357,
+        "sim3_ate": 0.5217117939103681,
+        "velocity_rmse": 0.21744169643965403,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-167",
+        "file": "57baaf75c44d91a8572b77944c7c83a61d19a14f2295cc0bb877e792524a3f30.npz",
+        "crop_s": 5,
+        "ate": 1.7465140974187021,
+        "sim3_ate": 0.5644821028762114,
+        "velocity_rmse": 0.23951823142715667,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-168",
+        "file": "6e7ef90141dd630837392cf2619221707fea720dc971f5968f2f5b68d24055c2.npz",
+        "crop_s": 0,
+        "ate": 1.1690884586811,
+        "sim3_ate": 0.4898673219541743,
+        "velocity_rmse": 0.21894673986017943,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-168",
+        "file": "97c64a664a521df2a22747a4e889a7731fc403b637b4ad09cb4bf7fa04efb8b1.npz",
+        "crop_s": 5,
+        "ate": 1.594227032055475,
+        "sim3_ate": 0.4757481745209395,
+        "velocity_rmse": 0.23176537762326868,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-169",
+        "file": "454a2445e1c6d96e94697cdc0866311439bfff97d3ecf863c214e24a75379cfd.npz",
+        "crop_s": 0,
+        "ate": 2.0240181403011173,
+        "sim3_ate": 1.022566630811302,
+        "velocity_rmse": 0.2166488776210849,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-169",
+        "file": "9f3b40aa9d68df4c40e46083927646e04dbe9eae160b962e5b073ed69ffd6978.npz",
+        "crop_s": 5,
+        "ate": 1.7049679593569362,
+        "sim3_ate": 0.9227791902852167,
+        "velocity_rmse": 0.23562893028943754,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-170",
+        "file": "40559b98ee65b9e8ae12370285104c6de5c68507f81af8e5c630432f60c4ae2a.npz",
+        "crop_s": 0,
+        "ate": 1.5276740193977203,
+        "sim3_ate": 0.3616780638862893,
+        "velocity_rmse": 0.19591675336875797,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-170",
+        "file": "ec3c7f69ed5613d62a5c5f2ffa67dd827c4019da72a246cf15dadd043d1fa7a1.npz",
+        "crop_s": 5,
+        "ate": 1.6521824568276469,
+        "sim3_ate": 0.45092245037622547,
+        "velocity_rmse": 0.2293151711786312,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-171",
+        "file": "83819dee62d86f98aea5c44aaa81dbfb9799db358e60e783e973c8f23adf3e12.npz",
+        "crop_s": 0,
+        "ate": 0.7835569952484374,
+        "sim3_ate": 0.42099339105697003,
+        "velocity_rmse": 0.17374927652442276,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-171",
+        "file": "6cc5ea39769bd7b81259d2e2362cd61370f014e64cea687ee647918da6af0878.npz",
+        "crop_s": 5,
+        "ate": 0.9913843568750464,
+        "sim3_ate": 0.2915654772531639,
+        "velocity_rmse": 0.14415014184655325,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-166",
+        "file": "f10aeb575191eb082e7fd4948f3f07c58c6a80f1a0a9b90bf0b80bf2822b9947.npz",
+        "crop_s": 0,
+        "ate": 2.5101537400453164,
+        "sim3_ate": 0.6463674954329467,
+        "velocity_rmse": 0.3586132523649699,
+        "backward_frames": 106,
+        "backward_sign_accuracy": 0.0
+      },
+      {
+        "scene": "ProcTHOR-Train-166",
+        "file": "e999e8a4f858d6ac0663fed949e162b16bf42ec3d48575413170c3e202123577.npz",
+        "crop_s": 5,
+        "ate": 2.7323226016229434,
+        "sim3_ate": 0.6418011755334101,
+        "velocity_rmse": 0.40893349471460655,
+        "backward_frames": 106,
+        "backward_sign_accuracy": 0.0
+      }
+    ]
+  },
+  {
+    "epoch": 4,
+    "loss": 0.08539784699678421,
+    "nominal_ate": 1.4793114751448986,
+    "moving_ate": 1.5907437523623105,
+    "selection_score": 1.5350276137536045,
+    "sim3_ate": 0.5705696409478082,
+    "lr": 1.4999999999999999e-05,
+    "optimizer_updates": 488,
+    "exposure": {
+      "windows": 244,
+      "draws": {
+        "startup": 122,
+        "uniform": 122
+      },
+      "scored_frames": 15616,
+      "burn_in_frames": 7808,
+      "scored_label_fraction": {
+        "backward": 0.0036,
+        "lateral": 0.0147,
+        "vertical": 0.1048,
+        "braking": 0.0034,
+        "turning": 0.0114,
+        "hover": 0.2339
+      },
+      "windows_containing": {
+        "backward": 0.0082,
+        "lateral": 0.041,
+        "vertical": 0.2049,
+        "braking": 0.0205,
+        "turning": 0.0451,
+        "hover": 0.4016
+      },
+      "unique_parents": 122,
+      "unique_scenes": 36,
+      "domain_tier_windows": {
+        "?/?": 244
+      }
+    },
+    "rows": [
+      {
+        "scene": "ProcTHOR-Train-166",
+        "file": "e2ccb38993f2ea00090d557e245ae83a4e324bae062f5d9e343b3aeea33b0ecf.npz",
+        "crop_s": 0,
+        "ate": 1.198547315726079,
+        "sim3_ate": 0.5831438840944705,
+        "velocity_rmse": 0.2290190628851093,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-166",
+        "file": "e2cff8b992c931399d9b2d95e14b2ea33222356a9525eeb977e7b3f1cceb1bd9.npz",
+        "crop_s": 5,
+        "ate": 0.7539907314443391,
+        "sim3_ate": 0.5311145776955246,
+        "velocity_rmse": 0.23146085314532158,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-167",
+        "file": "9507af94ee14966c26546480d441e2d74090997d5f255c9d2b9cf80eb9c92857.npz",
+        "crop_s": 0,
+        "ate": 1.193038801227485,
+        "sim3_ate": 0.5531900326356528,
+        "velocity_rmse": 0.22042386904787317,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-167",
+        "file": "57baaf75c44d91a8572b77944c7c83a61d19a14f2295cc0bb877e792524a3f30.npz",
+        "crop_s": 5,
+        "ate": 1.7611312317700278,
+        "sim3_ate": 0.5966028731395124,
+        "velocity_rmse": 0.24152487302096262,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-168",
+        "file": "6e7ef90141dd630837392cf2619221707fea720dc971f5968f2f5b68d24055c2.npz",
+        "crop_s": 0,
+        "ate": 1.2182083409515785,
+        "sim3_ate": 0.48810040320932296,
+        "velocity_rmse": 0.21785861266840176,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-168",
+        "file": "97c64a664a521df2a22747a4e889a7731fc403b637b4ad09cb4bf7fa04efb8b1.npz",
+        "crop_s": 5,
+        "ate": 1.6508166986729076,
+        "sim3_ate": 0.4719559373705244,
+        "velocity_rmse": 0.2299306870681726,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-169",
+        "file": "454a2445e1c6d96e94697cdc0866311439bfff97d3ecf863c214e24a75379cfd.npz",
+        "crop_s": 0,
+        "ate": 1.9888225252907243,
+        "sim3_ate": 1.03054333962361,
+        "velocity_rmse": 0.21508443229836408,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-169",
+        "file": "9f3b40aa9d68df4c40e46083927646e04dbe9eae160b962e5b073ed69ffd6978.npz",
+        "crop_s": 5,
+        "ate": 1.673334533338773,
+        "sim3_ate": 0.9284432930459787,
+        "velocity_rmse": 0.23321837630930106,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-170",
+        "file": "40559b98ee65b9e8ae12370285104c6de5c68507f81af8e5c630432f60c4ae2a.npz",
+        "crop_s": 0,
+        "ate": 1.583969333165696,
+        "sim3_ate": 0.3614507926845761,
+        "velocity_rmse": 0.193128063799854,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-170",
+        "file": "ec3c7f69ed5613d62a5c5f2ffa67dd827c4019da72a246cf15dadd043d1fa7a1.npz",
+        "crop_s": 5,
+        "ate": 1.668054523992325,
+        "sim3_ate": 0.4655643187316566,
+        "velocity_rmse": 0.22528605577906094,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-171",
+        "file": "83819dee62d86f98aea5c44aaa81dbfb9799db358e60e783e973c8f23adf3e12.npz",
+        "crop_s": 0,
+        "ate": 0.7287248603510046,
+        "sim3_ate": 0.432398171243638,
+        "velocity_rmse": 0.17565318575917746,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-171",
+        "file": "6cc5ea39769bd7b81259d2e2362cd61370f014e64cea687ee647918da6af0878.npz",
+        "crop_s": 5,
+        "ate": 0.9133629347608658,
+        "sim3_ate": 0.3027856681801698,
+        "velocity_rmse": 0.14527828862875375,
+        "backward_frames": 0,
+        "backward_sign_accuracy": null
+      },
+      {
+        "scene": "ProcTHOR-Train-166",
+        "file": "f10aeb575191eb082e7fd4948f3f07c58c6a80f1a0a9b90bf0b80bf2822b9947.npz",
+        "crop_s": 0,
+        "ate": 2.443869149301723,
+        "sim3_ate": 0.6220342889201433,
+        "velocity_rmse": 0.3573622022336907,
+        "backward_frames": 106,
+        "backward_sign_accuracy": 0.0
+      },
+      {
+        "scene": "ProcTHOR-Train-166",
+        "file": "e999e8a4f858d6ac0663fed949e162b16bf42ec3d48575413170c3e202123577.npz",
+        "crop_s": 5,
+        "ate": 2.7145156125569354,
+        "sim3_ate": 0.6206473926945335,
+        "velocity_rmse": 0.40727436266890815,
+        "backward_frames": 106,
+        "backward_sign_accuracy": 0.0
+      }
+    ]
+  }
+]

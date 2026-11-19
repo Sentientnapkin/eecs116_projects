@@ -1,0 +1,164 @@
+{
+  "217": {
+    "control": {
+      "unaligned_ate": 1.5646882736520158,
+      "ordinary_ate": 1.3889996225936159,
+      "stress_ate": 2.618820180002416,
+      "sim3_ate": 0.5961507712852528,
+      "worst_ate": 2.74031142000069,
+      "speed_rmse": 0.20776509936792475,
+      "speed_bias": -0.11607462641176154,
+      "direction_error_deg": 34.72881369846428,
+      "parents": 7,
+      "scenes": 6
+    },
+    "candidate": {
+      "unaligned_ate": 0.9977572114938188,
+      "ordinary_ate": 0.9897340082958039,
+      "stress_ate": 1.0458964306819079,
+      "sim3_ate": 0.35065511815956113,
+      "worst_ate": 1.9749250310598,
+      "speed_rmse": 0.13703684650771247,
+      "speed_bias": -0.06192840731063198,
+      "direction_error_deg": 17.020423333657444,
+      "parents": 7,
+      "scenes": 6
+    },
+    "relative_ate": -0.36232844056213687,
+    "relative_ordinary_ate": -0.2874483245375412,
+    "passes_screen": true,
+    "paired_scene_ate": {
+      "scenes": 6,
+      "mean_difference": -0.4801303475697341,
+      "relative": -0.3166583081410441,
+      "interval90": [
+        -0.7798676491804452,
+        -0.13461011628857672
+      ],
+      "per_scene": {
+        "ProcTHOR-Train-166": -1.0877,
+        "ProcTHOR-Train-167": 0.4542,
+        "ProcTHOR-Train-168": -0.4389,
+        "ProcTHOR-Train-169": -0.8788,
+        "ProcTHOR-Train-170": -0.5162,
+        "ProcTHOR-Train-171": -0.4134
+      }
+    },
+    "leave_one_scene_out": {
+      "ProcTHOR-Train-166": -0.35862000000000005,
+      "ProcTHOR-Train-167": -0.667,
+      "ProcTHOR-Train-168": -0.4883800000000001,
+      "ProcTHOR-Train-169": -0.4004,
+      "ProcTHOR-Train-170": -0.47292000000000006,
+      "ProcTHOR-Train-171": -0.49348000000000003
+    }
+  },
+  "218": {
+    "control": {
+      "unaligned_ate": 1.5350276137536043,
+      "ordinary_ate": 1.3610001525576505,
+      "stress_ate": 2.579192380929329,
+      "sim3_ate": 0.5705696409478082,
+      "worst_ate": 2.714515612556935,
+      "speed_rmse": 0.2041464429395134,
+      "speed_bias": -0.11617688221231337,
+      "direction_error_deg": 33.863851965941755,
+      "parents": 7,
+      "scenes": 6
+    },
+    "candidate": {
+      "unaligned_ate": 1.0557812716409904,
+      "ordinary_ate": 1.0157435853930865,
+      "stress_ate": 1.2960073891284134,
+      "sim3_ate": 0.3404914970810729,
+      "worst_ate": 1.8985186575777053,
+      "speed_rmse": 0.14404509437385138,
+      "speed_bias": -0.06722498177193692,
+      "direction_error_deg": 18.001013669653133,
+      "parents": 7,
+      "scenes": 6
+    },
+    "relative_ate": -0.31220698430350213,
+    "relative_ordinary_ate": -0.2536785661013652,
+    "passes_screen": true,
+    "paired_scene_ate": {
+      "scenes": 6,
+      "mean_difference": -0.4315146079692856,
+      "relative": -0.2887202060416565,
+      "interval90": [
+        -0.7371310641825426,
+        -0.1059744331663116
+      ],
+      "per_scene": {
+        "ProcTHOR-Train-166": -0.7656,
+        "ProcTHOR-Train-167": 0.3374,
+        "ProcTHOR-Train-168": -0.2817,
+        "ProcTHOR-Train-169": -0.9966,
+        "ProcTHOR-Train-170": -0.8066,
+        "ProcTHOR-Train-171": -0.076
+      }
+    },
+    "leave_one_scene_out": {
+      "ProcTHOR-Train-166": -0.3647,
+      "ProcTHOR-Train-167": -0.5852999999999999,
+      "ProcTHOR-Train-168": -0.46148,
+      "ProcTHOR-Train-169": -0.3185,
+      "ProcTHOR-Train-170": -0.35650000000000004,
+      "ProcTHOR-Train-171": -0.5026200000000001
+    }
+  },
+  "219": {
+    "control": {
+      "unaligned_ate": 1.5326500716384572,
+      "ordinary_ate": 1.3456147357389223,
+      "stress_ate": 2.654862087035668,
+      "sim3_ate": 0.5544188918365897,
+      "worst_ate": 2.782904218955034,
+      "speed_rmse": 0.1997784654171549,
+      "speed_bias": -0.10235921074425647,
+      "direction_error_deg": 35.36410887835586,
+      "parents": 7,
+      "scenes": 6
+    },
+    "candidate": {
+      "unaligned_ate": 1.1528211771694215,
+      "ordinary_ate": 1.146547173814972,
+      "stress_ate": 1.1904651972961182,
+      "sim3_ate": 0.3401558140600987,
+      "worst_ate": 2.0727199715907068,
+      "speed_rmse": 0.14673789582257918,
+      "speed_bias": -0.07384923077287324,
+      "direction_error_deg": 17.04764722039128,
+      "parents": 7,
+      "scenes": 6
+    },
+    "relative_ate": -0.24782492853243743,
+    "relative_ordinary_ate": -0.14793800679853264,
+    "passes_screen": true,
+    "paired_scene_ate": {
+      "scenes": 6,
+      "mean_difference": -0.3051725330421397,
+      "relative": -0.20525890096435748,
+      "interval90": [
+        -0.651565833499912,
+        0.05954881126760654
+      ],
+      "per_scene": {
+        "ProcTHOR-Train-166": -0.8278,
+        "ProcTHOR-Train-167": 0.5592,
+        "ProcTHOR-Train-168": 0.0494,
+        "ProcTHOR-Train-169": -1.0161,
+        "ProcTHOR-Train-170": -0.4006,
+        "ProcTHOR-Train-171": -0.1952
+      }
+    },
+    "leave_one_scene_out": {
+      "ProcTHOR-Train-166": -0.20066,
+      "ProcTHOR-Train-167": -0.47806,
+      "ProcTHOR-Train-168": -0.3761,
+      "ProcTHOR-Train-169": -0.16299999999999998,
+      "ProcTHOR-Train-170": -0.2861,
+      "ProcTHOR-Train-171": -0.32718
+    }
+  }
+}
