@@ -194,11 +194,11 @@ def episode(job):
     row = {"R": row_R, "T_bc": row_T_bc, "times": row_times}
     tb = true_gyro_bias(flight)
     rotations, info = {"control": row_R}, {}
-    for arm in ARMS[1:]:
+    for arm in meta.get("arms", ARMS)[1:]:
         R, count, bias = attitudes(flight, arm, tb)
         rotations[arm], info[arm] = R[:n], {"windows": count, "final_bias_error": float(np.linalg.norm(bias - tb[-1]))}
     if meta.get("save_dir"):
-        np.savez(Path(meta["save_dir"]) / f"{meta['file']}.npz", kf_grid=rotations["kf_grid"], kf_grid_gated=rotations["kf_grid_gated"], times=row_times,
+        np.savez(Path(meta["save_dir"]) / f"{meta['file']}.npz", **{a: rotations[a] for a in ("kf_grid", "kf_grid_gated") if a in rotations}, times=row_times,
                  **{f"v_{run}": v for run, v in velocities.items()})
     rows = []
     for run, v in velocities.items():
@@ -210,7 +210,7 @@ def episode(job):
                 keep = int(np.sum(row_times - row_times[0] <= horizon + 1e-6))
                 if row_times[-1] - row_times[0] >= horizon - 0.1:
                     r[f"{arm}_{horizon}s"] = metrics(p[:keep], cam_gt[:keep], row_times[:keep])["ate"]
-        r.pop("save_dir", None)
+        r.pop("save_dir", None); r.pop("arms", None)
         rows.append(r)
     return rows, {meta["file"]: info}
 
@@ -225,7 +225,11 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--workers", type=int, default=24)
     parser.add_argument("--limit", type=int)
+    parser.add_argument("--arms", nargs="+", default=list(ARMS), help="subset; 'control' (the row attitude) always first")
+    parser.add_argument("--root", type=Path, help="override prepared-shard directory (e.g. input_attitude.py output)")
+    parser.add_argument("--records", type=Path, help="override records JSON (with --root)")
     args = parser.parse_args()
+    arms = ["control"] + [a for a in args.arms if a != "control"]
     cv2.setNumThreads(1); cv2.setRNGSeed(217)
     if args.set == "public":
         root = Path("/data/backups/rganapa/Sebastian/baselines/public-prepared")
@@ -235,6 +239,8 @@ def main():
         root = Path("data/native-campaign/shards")
         records = json.loads(Path("data/native-campaign/dev-records.json").read_text())["records"]
         archive = lambda r: Path("/data/backups/rganapa/Sebastian/gen/raw/dev") / r["parent_file"]
+    if args.root:
+        root, records = args.root, json.loads(args.records.read_text())["records"]
     records = records[:args.limit]
     weights = {run.name: load_weights(run, "best") for run in args.runs}
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -244,7 +250,7 @@ def main():
         lab = motion_labels(row["v"], row["times"], row["cam_gt"])
         meta = {"file": record["file"], "scene": record["scene"], "catalog": record.get("catalog"),
                 "start": "moving" if record.get("crop_s") else "static", "seconds": float(row["times"][-1] - row["times"][0]),
-                "motion": "backward/lateral" if lab["backward"].mean() > .05 or lab["lateral"].mean() > .1 else "ordinary"}
+                "arms": arms, "motion": "backward/lateral" if lab["backward"].mean() > .05 or lab["lateral"].mean() > .1 else "ordinary"}
         velocities = {name: model_velocities(run, weights[name], row, device) for name, run in
                       ((r.name, r) for r in args.runs)}
         jobs.append((archive(record), float(record.get("crop_s", 0)), velocities, row["R"], row["T_bc"],
@@ -256,7 +262,7 @@ def main():
     with ProcessPoolExecutor(args.workers) as pool:
         for r, i in pool.map(episode, jobs):
             rows += r; info.update(i)
-            print(r[0]["file"][:12], {a: round(float(np.mean([x[a] for x in r])), 3) for a in ARMS}, flush=True)
+            print(r[0]["file"][:12], {a: round(float(np.mean([x[a] for x in r])), 3) for a in arms}, flush=True)
     summary = {}
     for group, sel in (("all", lambda r: True), ("ordinary", lambda r: r["motion"] == "ordinary"),
                        ("backward/lateral", lambda r: r["motion"] != "ordinary"),
@@ -265,10 +271,10 @@ def main():
         group_rows = [r for r in rows if sel(r)]
         if group_rows:
             summary[group] = {f"{a}{h}": round(float(np.mean([r[f'{a}{h}'] for r in group_rows if f'{a}{h}' in r])), 4)
-                              for a in ARMS for h in ("", "_30s", "_60s")
+                              for a in arms for h in ("", "_30s", "_60s")
                               if any(f"{a}{h}" in r for r in group_rows)}
             summary[group]["replays"] = len(group_rows)
-    by_run = {run: {a: round(float(np.mean([r[a] for r in rows if r["run"] == run])), 4) for a in ARMS}
+    by_run = {run: {a: round(float(np.mean([r[a] for r in rows if r["run"] == run])), 4) for a in arms}
               for run in weights}
     args.output.mkdir(parents=True, exist_ok=True)
     (args.output / "summary.json").write_text(json.dumps({"set": args.set, "summary": summary, "by_run": by_run,
