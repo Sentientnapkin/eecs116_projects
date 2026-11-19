@@ -1,0 +1,26 @@
+diff --git a/viobench/tools/datasets/generate/hyperdrone_world.h.in b/viobench/tools/datasets/generate/hyperdrone_world.h.in
+index 20c7155..ebbc912 100644
+--- a/viobench/tools/datasets/generate/hyperdrone_world.h.in
++++ b/viobench/tools/datasets/generate/hyperdrone_world.h.in
+@@ -45,6 +45,7 @@ namespace hyperdrone_user {
+         static constexpr TI FRAME_STRIDE = 1;  // render at the IMU rate; frames are subsampled in Python
+         static constexpr TI NUM_WAYPOINTS = @WAYPOINTS@;  // route length (the route cycles when exhausted); scaled with the duration
+         static constexpr TI INITIALIZATION_HOLD_STEPS = @HOLD_STEPS@;  // hover before the route starts
++        @TASK_EXTRA@
+     };
+     using WORLD = hyperdrone::tasks::visual_inertial_localization::World<TASK_SPEC>;
+ }
+diff --git a/viobench/tools/datasets/generate/simulation.py b/viobench/tools/datasets/generate/simulation.py
+index 6e338c6..d197b8a 100644
+--- a/viobench/tools/datasets/generate/simulation.py
++++ b/viobench/tools/datasets/generate/simulation.py
+@@ -72,7 +72,8 @@ class SimConfig:
+         text = TEMPLATE.read_text()
+         values = {"INSTANCES": self.instances, "WIDTH": self.width, "HEIGHT": self.height,
+                   "FOV_RANGE": repr(float(self.fov_range)), "HOLD_STEPS": int(round(self.hold_seconds * imu_rate_hz)),
+-                  "WAYPOINTS": self.num_waypoints}
++                  "WAYPOINTS": self.num_waypoints,
++                  "TASK_EXTRA": os.environ.get("VIOBENCH_TASK_EXTRA", "")}  # local patch: extra autopilot knobs
+         for key, value in values.items():
+             text = text.replace(f"@{key}@", str(value))
+         assert "@" not in text, "unrendered placeholder in spec header template"

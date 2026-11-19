@@ -1,0 +1,16 @@
+# name | autopilot overrides (C++ constants of the HyperDrone visual-inertial-localization task)
+#
+# How the autopilot sets speed (from its source):
+#  - each flight draws ONE cruise speed uniformly in [CRUISE_SPEED_MIN, CRUISE_SPEED_MAX]: the top speed on straight runs
+#  - within the flight it slows for corners (near-stop on sharp ones) and while it yaws to face the new direction,
+#    then speeds up again, always within MAX_ACCELERATION / MAX_JERK, so speed changes are smooth (no jumps)
+#  - how fast the pace itself can change: min(PHASE_ACCELERATION, 0.35*MAX_ACCELERATION/CRUISE_SPEED_MAX, 0.25*MAX_JERK/(1.95*MAX_ACCELERATION))
+#  - ROADMAP_SPACING / CONNECTION_DISTANCE: how far apart the waypoints are (longer straight runs = more time at speed)
+#
+# wide_*: every flight gets its own top speed anywhere in 0.3-4 m/s; they differ in how hard the drone speeds up / slows down.
+wide_gentle | static constexpr T CRUISE_SPEED_MIN = 0.3; static constexpr T CRUISE_SPEED_MAX = 4.0; static constexpr T MAX_ACCELERATION = 3.0; static constexpr T MAX_JERK = 10.0; static constexpr T MAX_YAW_RATE = 1.6; static constexpr T PHASE_ACCELERATION = 1.0; static constexpr T PHASE_JERK = 3.0; static constexpr T ROADMAP_SPACING = 3.0; static constexpr T CONNECTION_DISTANCE = 12.0;
+wide_agile  | static constexpr T CRUISE_SPEED_MIN = 0.3; static constexpr T CRUISE_SPEED_MAX = 4.0; static constexpr T MAX_ACCELERATION = 6.0; static constexpr T MAX_JERK = 30.0; static constexpr T MAX_YAW_RATE = 1.6; static constexpr T PHASE_ACCELERATION = 1.0; static constexpr T PHASE_JERK = 3.0; static constexpr T ROADMAP_SPACING = 3.0; static constexpr T CONNECTION_DISTANCE = 12.0;
+wide_long   | static constexpr T CRUISE_SPEED_MIN = 0.3; static constexpr T CRUISE_SPEED_MAX = 4.0; static constexpr T MAX_ACCELERATION = 6.0; static constexpr T MAX_JERK = 30.0; static constexpr T MAX_YAW_RATE = 1.6; static constexpr T PHASE_ACCELERATION = 1.0; static constexpr T PHASE_JERK = 3.0; static constexpr T ROADMAP_SPACING = 4.0; static constexpr T CONNECTION_DISTANCE = 16.0;
+# reference: the styles of last night's flights
+agile2 | static constexpr T CRUISE_SPEED_MIN = 1.5; static constexpr T CRUISE_SPEED_MAX = 2.5; static constexpr T MAX_ACCELERATION = 2.0; static constexpr T MAX_JERK = 5.0; static constexpr T MAX_YAW_RATE = 1.6; static constexpr T ROADMAP_SPACING = 2.5; static constexpr T CONNECTION_DISTANCE = 10.0;
+jerky  | static constexpr T CRUISE_SPEED_MIN = 1.0; static constexpr T CRUISE_SPEED_MAX = 3.0; static constexpr T MAX_ACCELERATION = 3.5; static constexpr T MAX_JERK = 12.0; static constexpr T MAX_YAW_RATE = 1.6; static constexpr T PHASE_ACCELERATION = 0.8; static constexpr T PHASE_JERK = 2.0; static constexpr T ROADMAP_SPACING = 2.5; static constexpr T CONNECTION_DISTANCE = 10.0;
