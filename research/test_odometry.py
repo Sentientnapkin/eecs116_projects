@@ -2,16 +2,22 @@
 
     ./odometry_env.sh -m unittest test_odometry     (or: ./odometry_env.sh test_odometry.py)
 """
+import argparse
+import json
+from pathlib import Path
+from tempfile import TemporaryDirectory
 import unittest
+from unittest.mock import patch
 
 import numpy as np
 import torch
 
+import hp_search
 from odometry_data import CATEGORIES, WindowPlan, motion_labels, validate_roster
 from odometry_eval import batched_velocities
 from odometry_ledger import checks, split_for
 from odometry_models import OdometryNet
-from odometry_train import loss_fn, replay
+from odometry_train import loss_fn, make_optimizer, replay
 
 
 def labels_for(v, dt=.05):
@@ -108,6 +114,37 @@ class Metrics(unittest.TestCase):
                "T_bc": torch.eye(4)[None], "cam_gt": torch.zeros(1, n, 3)}
         loss = loss_fn(torch.zeros(1, n, 3), row, burn=5, horizons=[6.])
         self.assertTrue(torch.isfinite(loss) and float(loss) == 0.)
+
+
+class Optimizer(unittest.TestCase):
+    def test_weight_decay_defaults_to_legacy_value(self):
+        p = [torch.nn.Parameter(torch.zeros(2))]
+        self.assertEqual(make_optimizer(p, {"learning_rate": 3e-4}).param_groups[0]["weight_decay"], .01)
+        opt = make_optimizer(p, {"learning_rate": 1e-3, "weight_decay": .05})
+        self.assertEqual((opt.param_groups[0]["lr"], opt.param_groups[0]["weight_decay"]), (1e-3, .05))
+
+
+class Hyperparameters(unittest.TestCase):
+    def test_promotion_requires_both_seeds_and_ranks_paired_means(self):
+        scores = {"base": (1.3, 1.3), "lr1e-4": (1.0, 1.5), "lr6e-4": (1.2, 1.2), "lr1e-3": (1.0, 1.6)}
+        args = argparse.Namespace(trials=list(scores), tag="test")
+        with TemporaryDirectory() as root, patch.object(hp_search, "RUNS", Path(root)), \
+                patch.object(hp_search, "schedule", return_value=0) as schedule, patch("builtins.print"):
+            for trial, pair in scores.items():
+                for seed, score in zip((217, 218), pair):
+                    path = Path(root)/hp_search.run_name(trial, 12, seed, args.tag)
+                    path.mkdir()
+                    (path/"manifest.json").write_text(json.dumps({"status": "completed"}))
+                    (path/"metrics.json").write_text(json.dumps([{"selection_score": score + 1}, {"selection_score": score}]))
+            self.assertEqual(hp_search.promote(args), 0)
+            self.assertEqual(args.trials, ["lr6e-4", "lr1e-4"])
+            self.assertEqual(args.epochs, 36)
+            self.assertEqual(args.seeds, [217, 218, 219])
+            manifest = Path(root)/hp_search.run_name("base", 12, 218, args.tag)/"manifest.json"
+            manifest.write_text(json.dumps({"status": "running"}))
+            with self.assertRaisesRegex(SystemExit, "incomplete screen"):
+                hp_search.promote(argparse.Namespace(trials=list(scores), tag=args.tag))
+            schedule.assert_called_once()
 
 
 class Models(unittest.TestCase):

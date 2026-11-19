@@ -89,6 +89,12 @@ def apply_overrides(cfg, items):
         node[parts[-1]] = value
 
 
+def make_optimizer(params, options):
+    """AdamW; training.weight_decay is opt-in (default 0.01, the value every earlier run used)."""
+    return torch.optim.AdamW(params, lr=options["learning_rate"], weight_decay=options.get("weight_decay", .01),
+                             fused=True if options.get("fused_adamw") else None)
+
+
 def schedule(options, steps_per_epoch):
     total = max(1, options["epochs"]*steps_per_epoch)
     warmup = int(options.get("warmup_epochs", 0)*steps_per_epoch)
@@ -248,8 +254,7 @@ def main():
     else:
         loader = DataLoader(dataset, batch_size=options["batch_size"], shuffle=True, num_workers=0)
     net = OdometryNet(cfg["model"])
-    opt = torch.optim.AdamW(net.parameters(), lr=options["learning_rate"], weight_decay=.01,
-                            fused=True if options.get("fused_adamw") else None)
+    opt = make_optimizer(net.parameters(), options)
     steps = -(-len(loader)//options.get("accumulation", 1))
     lr_schedule = torch.optim.lr_scheduler.LambdaLR(opt, schedule(options, steps))
     net, opt, loader, lr_schedule = accelerator.prepare(net, opt, loader, lr_schedule)
@@ -299,7 +304,7 @@ def main():
                     if not defer_check and not torch.isfinite(loss):
                         raise ValueError("Nonfinite training loss")
                     accelerator.backward(loss)
-                    if accelerator.sync_gradients: accelerator.clip_grad_norm_(net.parameters(), 1.)
+                    if accelerator.sync_gradients: accelerator.clip_grad_norm_(net.parameters(), options.get("grad_clip", 1.))
                     opt.step(); opt.zero_grad()
                     if accelerator.sync_gradients:
                         lr_schedule.step()

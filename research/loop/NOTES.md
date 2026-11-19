@@ -185,3 +185,8 @@ The four-H100 retry setup completed on GPUs 2, 3, 5 and 7 after the campaign job
 | 4 | 12.53 | 2.64 | 1.585 | 0.15 | 1.735 | 2.42× | 6.94 |
 
 Four ranks reached 60.5% scaling efficiency and consumed 65.2% more GPU-seconds per warm epoch than one rank. Four ranks use 1.10 GiB of peak PyTorch allocation per H100 versus 4.21 GiB on one H100. Warm loader wait was 0.11 s at four ranks, with 1.585 s of total warm training. Best selection scores were 1.459265, 1.458970 and 1.459903 m at 1, 2 and 4 ranks. Full accuracy conclusions use the 36-epoch three-seed comparison above. Both distributed runs used NCCL P2P with NVLS disabled.
+### 2026-11-18 — Hyperparameter sweep restart
+
+- Resumed the eight `hp1` LR-screen runs from their complete epoch-1/2 checkpoints. The scheduler uses four concurrent slots on H100 GPU 4. All eight retain their original run directories and per-run caches.
+- Declared the 12-epoch paired screen and 36-epoch three-seed promotion rule in `configs/experiments.json`. Replaced the inactive 6 s horizons in two 64-frame probes before launching them. The 128-frame probe retains 6 s.
+- Queued the remaining screen, promotion, and full dev and 30 s proxy-validation replays. See `results/loop/hp-scheduler-rung0.log` and `results/loop/hp-sweep-resume.log` in this worktree for status.
