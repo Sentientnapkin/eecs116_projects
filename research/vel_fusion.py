@@ -13,8 +13,9 @@ Every fused arm is CAUSAL: a window [a, k] is measured with images a and k, so i
 position offset from frame k onward (frames a..k-1 keep their already-emitted positions). Displacements compared
 with vision are CAMERA-centre displacements (body displacement + lever-arm term) in the kf_grid world frame.
 
-Visual direction gate ("vis_ok"): essential branch (not rotation-only), kf_grid's own acceptance tests passed
-(cheirality count, |delta| <= 0.05 rad), inliers >= 30, median gyro-compensated flow >= 2 px, network camera
+Visual direction gate ("vis_ok"): essential branch (not rotation-only), kf_grid's cheirality-count test passed
+(as implemented, the |delta| <= 0.05 rad attitude test is NOT applied to the direction; noted after the runs),
+inliers >= 30, median gyro-compensated flow >= 2 px, network camera
 displacement >= 0.05 m over the window.
 
 Arms (all with kf_grid attitude):
