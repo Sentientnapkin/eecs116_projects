@@ -307,3 +307,11 @@ the origin (harness rule); zero filled frames everywhere. The pinned evaluator r
 - Predeclared and screened the original 4×16 tile and two 8×32 SIMD128 variants on seed 217. The tile with two sequential K iterations per loop won the synthetic screen at 861,235,039 peak fuel and advanced to raw replay. The exporter retains the default 4×16 and explicit scalar builds.
 - The three-seed matched raw replay reproduced all 12 archived control peaks. The selected kernel reduced peak fuel from **1,074,754,835 to 861,235,415 (19.87%)**. Pose and twist were bitwise identical across all 6,600 frames. Mean unaligned ATE was 0.658690 m in both arms. No failed or filled frames. Init fuel matched on every replay.
 - Reserved test data was preserved. [Pilot results](../results/eval/native-deploy/b-d0-cpp-fp32-convolution-pilot.json)
+
+## 2026-11-19 approach survey and OpenVINS/learned splice (branch `odometry/approaches`)
+
+- Survey and ranked shortlist: [APPROACHES.md](../APPROACHES.md). Offline splice of saved guest outputs, arms predeclared in `approach_splice.py` (commit `9e688fc`) before scoring; results `results/eval/approaches/splice.json`.
+- Predeclared arms fail: re-anchoring OpenVINS on learned odometry at init 32.64 → 32.48 m campaign (the IMU back-integration anchor is not the cause); permanent divergence switch 3.05 m (rule required < 1.2).
+- Failure anatomy: late static init at a hover is followed 1-1.5 s later (smoother takeover) by a 6-25 m/s velocity transient, after which OpenVINS tracks again; early-init ProcTHOR 168-03/169-04 are linear runaways (411 m, 2232 m).
+- Post hoc (decides nothing): per-frame increment gate (OpenVINS increment if within 0.3 m/s of B-D0, else B-D0) scores 1.376 m campaign (median 0.854; B-D0 1.843, OpenVINS 32.64, oracle-min 1.258), public 1.077 with B-D0 and 0.964 with N2-s218-gated (OpenVINS 1.108). Gates 0.5/1.0 m/s: 1.424/1.473.
+- OpenVINS peak fuel is the 5 Hz keyframe solve (~2.6e9 every 4th frame vs 2-3e8 otherwise); amortizing the three smoother solves is the cheapest peak cut.
