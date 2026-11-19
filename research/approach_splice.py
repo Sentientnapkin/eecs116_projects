@@ -42,7 +42,7 @@ import numpy as np
 SRC = Path(os.environ.get("VIOBENCH_SRC", "/dev/shm/sebastian-vio/viobench"))
 sys.path.insert(0, str(SRC))
 from viobench.tools.datasets.storage import read_episode  # noqa: E402
-from viobench.tools.geometry import invert, poses_to_matrices  # noqa: E402
+from viobench.tools.geometry import invert, matrices_to_poses, poses_to_matrices  # noqa: E402
 from viobench.tools.runner.metrics import evaluate_trajectory  # noqa: E402
 from viobench.tools.runner.score import load_estimates  # noqa: E402
 
@@ -52,10 +52,8 @@ GUARD_EXCESS, GUARD_ABS, LATE = 0.5, 2.5, 3.0
 
 def to_states(T, template):
     """(N,4,4) camera poses -> (N,13) states with template's twist columns."""
-    from scipy.spatial.transform import Rotation
     out = template.copy()
-    out[:, :3] = T[:, :3, 3]
-    out[:, 3:7] = Rotation.from_matrix(T[:, :3, :3]).as_quat()  # x y z w
+    out[:, :7] = matrices_to_poses(T)  # x y z qx qy qz qw
     return out
 
 
