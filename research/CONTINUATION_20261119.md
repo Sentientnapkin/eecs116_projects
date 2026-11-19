@@ -1,5 +1,7 @@
 # Continuation audit, 2026-11-19
 
+**Latest status: candidate frozen at the user's request.** The subsequent complete input-model C++/Wasm port is documented in [NEWEST_MODEL_WASM.md](/data/backups/rganapa/Sebastian/eecs116_projects/.codex-worktrees/new-model-wasm/research/NEWEST_MODEL_WASM.md). Canonical seed217 file `vio_n2_kfinputs_s217.wasm` has SHA256 `8b05b203adc1f045b67df12399ee6b9e0caf28015b7d31678f5378968e2d60cf`; actual public/campaign means are0.887995/1.005868m, zero filled frames and1,658,013,194peak fuel/frame. Source commit `daa73f809fcd19dc6f5bf16dd0642ca890ae7fd4` on `codex/new-model-wasm`. Packaging includes binaries, hashes, source and canonical packed weights. Strict backend parity remains unresolved. **Further parity work is stopped by explicit user instruction and must not resume without a new request.** The older snapshot below predates this port; its statements about an absent changed-input C++ implementation are historical.
+
 The user requested finishing outstanding Claude work with Codex agents before discussing new research directions. Work is isolated under `.codex-worktrees/`; existing branches and artifacts are preserved. No reserved-test scoring, submission, push, paid infrastructure, or interruption of unrelated jobs is authorized.
 
 ## Git and submission provenance
