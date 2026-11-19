@@ -1,5 +1,8 @@
 # Learned odometry research report
 
+> **2026-11-19 correction:** The earlier `odometry/openvins` results evaluate upstream OpenVINS through our own wrapper, not VIOBench’s provided OpenVINS submission. Do not use those failures to dismiss the provided baseline. Its source is now pinned at `9b1b07906aff5a3e6f00155e7aecf967d90aa960`; reproduction and current job audit are tracked in [PROVIDED_OPENVINS_COMPARISON.md](PROVIDED_OPENVINS_COMPARISON.md). Historical running-job statuses below are snapshots, not current state. Reserved original/campaign test splits remain excluded under the current instruction.
+
+
 **Status at 00:08 UTC on November 19, 2026.** This report covers the work since [the GPU-box handoff](HANDOFF.md). All ATE values are mean **unaligned** trajectory RMSE in metres, averaged across the stated replays. Multi-seed model decisions use seeds **217, 218 and 219**. The original and campaign reserved test splits remain untouched. No submissions or pushes were made through this session.
 
 ## What we know

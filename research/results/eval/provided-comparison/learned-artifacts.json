@@ -1,0 +1,35 @@
+[
+  {
+    "arm": "N2",
+    "seed": 217,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/loop/N2-ssm-x3-gpu",
+    "build": "/data/backups/rganapa/Sebastian/odometry-provided-comparison/research/results/loop/provided-comparison/n2-217",
+    "checkpoint_sha256": "2b6b51659f98c96411e9bb26f99deb572f54a86d4a84ae18742e9220e7b9c15a",
+    "config_sha256": "404cac4faf9ceb4256cd3b482706745af9918fc07ca35455de75abf5fe6f3ed5",
+    "wasm_sha256": "03b7caf0349e28517eda3a6997c753d906f87fd0be4a05411fa912874b0c95f0",
+    "weights_sha256": "d8ec75d493e054c45c57acb09eaabc88f267752f79dc2865efa9f00c6acb797e",
+    "host_sha256": "9f35daf829a8ab6380f8fa074d5688297df2d29205f9d5fa3dc9b39ddb53ed89"
+  },
+  {
+    "arm": "N2",
+    "seed": 218,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/loop/N2-ssm-x3-s218-gpu",
+    "build": "/data/backups/rganapa/Sebastian/odometry-provided-comparison/research/results/loop/provided-comparison/n2-218",
+    "checkpoint_sha256": "93d02bda767ff0bc88779708c7246f7421c6ac5a8e2faa55ec130b50f6a9bd78",
+    "config_sha256": "a18fde2ea0528f3b16f0ae49673126daa71d1a5cf40980fb34acf2feba4ca73d",
+    "wasm_sha256": "b2e2eaddd94704b1fb1eb7398b70956489da5afd021fe3c512683676b8d2821d",
+    "weights_sha256": "7f0a1d12e427b31dee826529d5867c0b9ccf1f00410f655309b12bd0e3f82eb7",
+    "host_sha256": "9f35daf829a8ab6380f8fa074d5688297df2d29205f9d5fa3dc9b39ddb53ed89"
+  },
+  {
+    "arm": "N2",
+    "seed": 219,
+    "run": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/loop/N2-ssm-x3-s219-gpu",
+    "build": "/data/backups/rganapa/Sebastian/odometry-provided-comparison/research/results/loop/provided-comparison/n2-219",
+    "checkpoint_sha256": "d23664629691da300844812fcc5642b437e26481c37c8e42a6c157204bc3d178",
+    "config_sha256": "00b9998bddfab24c25a8d8a665c0fc0e08f246ab182472e5e0e2061c79c0b266",
+    "wasm_sha256": "060450480f2d3f58ee87b4f0cda8c11ce9b97e3282bb5f5dad01e60bbd44f383",
+    "weights_sha256": "2313eb6afc7a83a4a2954e303baf77c8d4141010591737d07efb6425d4a87904",
+    "host_sha256": "9f35daf829a8ab6380f8fa074d5688297df2d29205f9d5fa3dc9b39ddb53ed89"
+  }
+]

@@ -1,5 +1,8 @@
 # Handoff: learned odometry for VIOBench (EECS 116 Project 3, Stage 2)
 
+> **2026-11-19 correction:** The earlier `odometry/openvins` results evaluate upstream OpenVINS through our own wrapper, not VIOBench’s provided OpenVINS submission. Do not use those failures to dismiss the provided baseline. Its source is now pinned at `9b1b07906aff5a3e6f00155e7aecf967d90aa960`; reproduction and current job audit are tracked in [PROVIDED_OPENVINS_COMPARISON.md](PROVIDED_OPENVINS_COMPARISON.md). Historical running-job statuses below are snapshots, not current state. Reserved original/campaign test splits remain excluded under the current instruction.
+
+
 Written 2026-11-18 ~23:30 UTC on the GPU box (`wnckcaina01`) for continuing the work in Codex.
 Everything below is the state at that time; training runs keep going after this was written.
 

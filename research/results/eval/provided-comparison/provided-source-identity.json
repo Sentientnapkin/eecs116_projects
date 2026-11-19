@@ -1,0 +1,13 @@
+{
+  "upstream_commit": "9b1b07906aff5a3e6f00155e7aecf967d90aa960",
+  "files": {
+    "viobench/solution/examples/native/openvins/rotation_update.h": "a619cb2932c5e9a47695ca9a13f58576e2c5a217324bf3dec41a66037ebb08e4",
+    "viobench/solution/examples/native/openvins/consensus_output.h": "c37848b540cba7a5c56cda9326cbdd214f65028e24d4a062bb4728acd2ce3b38",
+    "viobench/solution/examples/native/openvins/fixed_lag_vio.h": "2b5aaecdf46d8077cec8de0d439c37df16d725d1334718be50db571b4648886c",
+    "viobench/solution/examples/native/openvins/solution.cpp": "05dfc4c7ce2f5b57d2421fa7758660e13f54a2f5655ac8734099edde97525fac",
+    "viobench/solution/examples/native/openvins/README.md": "6983332ea5e43eb3fa39f904b3465735d3ab2d7b29a9aa542a61d1dd127933dc",
+    "viobench/solution/examples/native/openvins/CMakeLists.txt": "ed36b40c74f2f75d1e4b164134c5ca7690a4ca9416d89a0ff621bb45d0857624",
+    "viobench/solution/examples/native/openvins/patches/open_vins.patch": "e4cd7b78872a54598eea8474417531b53434222574b9a6d27cefe0d6fc186665"
+  },
+  "source_diff": ""
+}
