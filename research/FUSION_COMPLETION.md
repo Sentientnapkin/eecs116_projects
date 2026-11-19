@@ -66,6 +66,7 @@ From this worktree's `research/`, using `TMPDIR=/dev/shm/sebastian-vio/tmp`, `OM
 # Finish only the declared traced parity smoke (cached reports are preserved).
 /data/backups/rganapa/Sebastian/venv-viobench-9b1b079/bin/python parity_repair_smoke.py
 # Audit Python4.12 vs Wasm and explicit visual native guest; see native build logs.
+python3 build_visual_native.py
 /data/backups/rganapa/Sebastian/venv-cv412/bin/python parity_audit.py
 # Independently trim the actual public input and verify emitted staged guest prefix.
 /data/backups/rganapa/Sebastian/venv-viobench-9b1b079/bin/python staged_causal_check.py
