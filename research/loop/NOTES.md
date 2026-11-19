@@ -258,3 +258,40 @@ The comparison uses the original N2 numerical recipe and control checkpoints, th
 For the remaining raw-lateral gap, a targeted train-only generation pilot would use 16 already validated training scenes in each catalog, two opposite lateral yaw offsets per scene, 30 s durations and 0.2 s initial holds. Freeze IDs, seeds, directions and generator settings before rendering. Require label-only support in at least 12 distinct scenes per catalog within 1 s of the uncropped start after burn-in, with both lateral directions represented and the existing finite-truth and integration checks. Existing 30 s archive sizes imply about 7.6 GiB for the 64 pilot flights, before prepared shards. A successful bank would fill only the absent raw-lateral training slots in a separately declared matched-budget arm, with the feasible resample arm as the reference. The generation pilot remains a proposal.
 
 The local queue stages hardlinks to the 1,770 training and 14 development records in the frozen N2 manifest. The three training commands were dry-run checked, and the queue checks device occupancy before starting. Source shard storage is approximately 21 GiB and the three checkpoint trees should add about 2.9 GiB. Recent control epochs took 113–118 s by median across seeds, implying about 68–71 minutes per 36-epoch seed or 3.4–3.6 GPU-hours total before evaluation. The queue awaits released GPU slots.
+
+## 2026-11-19 — Provided OpenVINS baseline and visual gyro-bias attitude (branch odometry/provided-openvins)
+
+**Measured.** All guests run by the pinned upstream evaluator (jonas-eschmann/viobench @ 9b1b079, `wasm_eval.py`),
+mean unaligned ATE; public = 10 x 60 s ProcTHOR-Train-1 flights (conta-shards/viobench-public@eecdfdf); campaign dev =
+60 flights x crops 0/5 s (fresh-recording crops, 5 s crop files made by `wasm_eval.py crop`). Missing estimates count as
+the origin (harness rule); zero filled frames everywhere. The pinned evaluator reproduces the submitted result exactly
+(1.996 m, peak 1,074,756,366). Scores in results/eval/provided-comparison/.
+
+| Guest (sha256 prefix) | Public | Campaign 30 s / full | Campaign median | >5 m | Peak fuel |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Submitted B-D0 s217 (844f358b) | 1.996 | 1.324 / 1.843 | 1.321 | 6 | 1.075e9 |
+| Provided OpenVINS, unchanged (c6cd96bc) | **1.108** (median 0.923) | 6.714 / 32.642 | 1.112 | 27 | 4.350e9 |
+| B-D0 s217 + kf_grid (8 in candidates/bd0-217-kfgrid) | 1.492 | 1.276 / 1.642 | 1.281 | 4 | 1.643e9 |
+| **N2 s218 + kf_grid (089559db)** | 1.292 | **0.927 / 1.146** | **0.888** | 3 | 1.643e9 |
+| N2 s218 + kf_grid gated (cc3ae8f3) | 1.369 | 0.940 / 1.170 | 0.992 | 2 | 1.643e9 |
+
+- OpenVINS build: unchanged source; two environment-only fixes were needed (the wasm runtime recipe inherited the
+  cross-compiler CC when invoked from the example's CMake, so it is run first on its own; NFS-dated venv files made
+  ninja loop "still dirty", fixed by building on /dev/shm and backdating). Its own 7 tests pass. Initializes at
+  0.95-3.75 s on public. On campaign it has excellent medians (HSSD 0.62 m) but late moving-start initialization and
+  divergences (worst 2232 m), so its mean is unusable there. Not comparable to its README's 0.849 m median on eight
+  120 s recordings (median vs mean, different roster).
+- PyTorch public replay (prepared path, parity with the submitted wasm exact at 1.996): B-D0 3 seeds mean 2.092, N2 3 seeds
+  1.780; true velocity through our deployed attitude 1.512 (vs 0.407 on original dev) — attitude was the binding error.
+- Frozen-velocity attitude ablation (attitude_bias.py; arms fixed in its docstring before running; 6 models x flights):
+  public 1.936 -> 1.383 (kf_grid) vs oracle bias 1.289; campaign full 1.631 -> 1.355 vs oracle 1.332; no subset regresses;
+  backward/lateral unchanged (velocity-limited). The earlier visual correction (attitude nudges, no bias state) and the
+  original strict-gate measurement (kf: 10-18 of 119 windows accepted) do little; grid support (100-112 accepted) is what
+  matters. static08 alone gives ~-15% on public. A first static08 version was non-causal (applied the 0.8 s window bias
+  from frame 1); fixed to re-integrate history at the decision frame; effect tiny.
+- C++/Wasm port (odometry/deploy-kfgrid, export.py --kf-grid-opencv, wasm OpenCV 4.12 from the pinned runtime). One
+  porting bug found and fixed (RANSAC mask passed into recoverPose). Remaining Python/Wasm differences come from KLT
+  floating point (wasm SIMD vs x86) flipping accept/reject gates (traced window by window); a 3-sigma innovation gate
+  restores parity (public 1.369 vs Python 1.385) but costs accuracy, so the ungated build is the candidate.
+- Mean ATE decisions only; the public set shares one scene that is in N2's (and campaign) training, so campaign dev is
+  the stronger evidence. Proxy-validation raw archives are unavailable here, so the attitude path was not checked there.
