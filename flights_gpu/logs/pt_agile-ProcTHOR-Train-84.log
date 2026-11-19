@@ -1,0 +1,8 @@
+hyperlux: preparing renderer (WEBGPU); downloading build dependencies if needed...
+error: hyperlux: command failed: cmake -S /home/cc/eecs116/fa26/class/eecs116-abc/viobench/.venv/lib/python3.10/site-packages/hyperlux/_native/renderer -B /home/cc/eecs116/fa26/class/eecs116-abc/.cache/hyperlux/renderer-webgpu-1d8bc1a2 -DCMAKE_BUILD_TYPE=Release -DRLTOOLS_ROOT=/home/cc/eecs116/fa26/class/eecs116-abc/viobench/.venv/lib/python3.10/site-packages/hyperlux/_vendor/rl-tools -DHYPERLUX_VARIANT=WEBGPU -DHYPERLUX_NATIVE_ROOT=/home/cc/eecs116/fa26/class/eecs116-abc/viobench/.venv/lib/python3.10/site-packages/hyperlux/_native -DHYPERLUX_COMPONENT_PACKAGE=hyperlux -DPython_EXECUTABLE=/home/cc/eecs116/fa26/class/eecs116-abc/viobench/.venv/bin/python3 -DFETCHCONTENT_BASE_DIR=/home/shadow/cc/eecs116/fa26/class/eecs116-abc/.cache/hyperlux/.dependencies/renderer-webgpu-1d8bc1a2
+CMake Error at CMakeLists.txt:1 (cmake_minimum_required):
+  CMake 3.24 or higher is required.  You are running version 3.22.1
+
+
+-- Configuring incomplete, errors occurred!
+0 episodes in flights_gpu/pt_agile
