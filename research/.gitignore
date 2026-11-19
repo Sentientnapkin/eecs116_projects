@@ -1,4 +1,5 @@
 data/
+data
 results/*.pt
 *.log
 __pycache__/
@@ -8,6 +9,7 @@ __pycache__/
 /results/hub/
 # Run directories (checkpoints, source snapshots) are mirrored to the private Hub lab repo.
 /results/loop/*/
+/results/loop/training-finish
 /results/preflight-*/
 /results/logs/
 optix7cache.db
