@@ -213,6 +213,11 @@ struct GridAttitude {
         const cv::Mat E = cv::findEssentialMat(old_px, new_px, cv::Mat(K), cv::RANSAC, 0.999, 1.0, 500, mask);
         if (E.rows != 3 || E.cols != 3) { why = "essential"; return false; }
         cv::Mat cheiral;  // no input mask: like the reference, every tracked point enters the cheirality count
+#ifdef ODO_KFG_RECOVER_RANSAC_MASK
+        // Explicit parity repair: the Python reference passes the RANSAC mask.
+        // Keep historical guests reproducible without this separately named flag.
+        cheiral = mask.clone();
+#endif
         const int inliers = cv::recoverPose(E, old_px, new_px, cv::Mat(K), Rm, tm, cheiral);
         if (inliers < std::max(12.0, 0.5 * (double)old_px.size())) { why = "cheirality"; return false; }
 #ifdef ODO_VEL_FUSION
@@ -302,6 +307,10 @@ struct GridAttitude {
                 std::fprintf(stderr, "win t=%.3f rejected %s\n", t, why);
 #endif
             }
+#if defined(ODO_VEL_FUSION) && defined(ODO_FUSION_REQUIRE_ACCEPTED_ROTATION)
+            // Frozen reference vis_ok includes acceptance of the rotation fit.
+            dir_valid = dir_valid && ok;
+#endif
             current.copyTo(anchor);
             R_anchor = R;
             anchor_t = t;
