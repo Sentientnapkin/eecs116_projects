@@ -108,6 +108,18 @@ class DomainShare(unittest.TestCase):
 
 
 class Metrics(unittest.TestCase):
+    def test_hybrid_visual_interval_replaces_learned_correction_at_acceptance(self):
+        from attitude_hybrid import join_attitudes
+        from orientation import exp_so3
+
+        learned = np.stack([exp_so3((0., 0., angle)) for angle in (0., .025, .05, .075, .1)])
+        visual = np.stack([exp_so3((0., 0., angle)) for angle in (0., 0., .1, .1, .1)])
+        anchors = np.array([-1, -1, 0, -1, -1])
+        hybrid = join_attitudes(learned, visual, anchors)
+        expected = np.stack([exp_so3((0., 0., angle)) for angle in (0., .025, .1, .125, .15)])
+        np.testing.assert_allclose(hybrid, expected, atol=1e-12)
+        np.testing.assert_allclose(join_attitudes(learned[:2], visual[:2], anchors[:2]), hybrid[:2], atol=1e-12)
+
     def test_horizon_longer_than_window_is_finite(self):
         n = 20
         row = {"v": torch.zeros(1, n, 3), "R": torch.eye(3).repeat(1, n, 1, 1),
