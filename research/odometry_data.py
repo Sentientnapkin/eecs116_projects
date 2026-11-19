@@ -96,9 +96,27 @@ def prepare(config_path, output, pilot=False, max_frames=None):
 
 def load_row(root, record):
     """`root` is a prepared directory or a store (odometry_store) that resolves records."""
+    rows = getattr(root, "rows", None)
+    if rows is not None and record["file"] in rows:
+        return rows[record["file"]]  # shared, read-only
     path = root.path(record) if hasattr(root, "path") else Path(root)/record["file"]
     with np.load(path, allow_pickle=False) as data:
         return {key: data[key] for key in data.files}
+
+
+class Preloaded:
+    """A store whose records are decompressed into RAM once (in threads), so windows and
+    development replays are slices instead of re-inflating a whole .npz per window.
+    Identical arrays to load_row; opt-in via training.preload."""
+    def __init__(self, store, records, threads=16):
+        from concurrent.futures import ThreadPoolExecutor
+        self.store = store
+        records = list({r["file"]: r for r in records}.values())
+        with ThreadPoolExecutor(threads) as pool:
+            self.rows = dict(zip([r["file"] for r in records], pool.map(lambda r: load_row(store, r), records)))
+
+    def __getattr__(self, name):
+        return getattr(self.store, name)
 
 
 class Windows(Dataset):
@@ -145,6 +163,9 @@ MOVING, STILL = .2, .05
 
 
 def load_fields(root, record, keys):
+    rows = getattr(root, "rows", None)
+    if rows is not None and record["file"] in rows:
+        return {key: rows[record["file"]][key] for key in keys}
     path = root.path(record) if hasattr(root, "path") else Path(root)/record["file"]
     with np.load(path, allow_pickle=False) as data:
         return {key: data[key] for key in keys}

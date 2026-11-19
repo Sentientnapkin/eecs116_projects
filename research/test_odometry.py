@@ -11,7 +11,7 @@ from odometry_data import CATEGORIES, WindowPlan, motion_labels, validate_roster
 from odometry_eval import batched_velocities
 from odometry_ledger import checks, split_for
 from odometry_models import OdometryNet
-from odometry_train import loss_fn
+from odometry_train import loss_fn, replay
 
 
 def labels_for(v, dt=.05):
@@ -149,6 +149,56 @@ class Models(unittest.TestCase):
                 b, _ = net(images[:, 4:], imu[:, 4:], state)
                 torch.testing.assert_close(torch.cat((a, b), 1), full, atol=1e-5, rtol=1e-4)  # chunked == whole
 
+    def test_parallel_scan_matches_loop(self):
+        from odometry_models import SelectiveBlock
+        torch.manual_seed(1)
+        for scan, chunk in (("parallel", 1), ("parallel", 5), ("parallel", 32),
+                            ("parallel", 200), ("prefix", 5), ("prefix", 96)):
+            loop = SelectiveBlock(16, 8).double()
+            with torch.no_grad():  # spread rates and inputs over the clamp range, as training can
+                loop.log_rate.uniform_(-4, 4); loop.parameters_in.weight.mul_(4)
+            fast = SelectiveBlock(16, 8, scan, chunk).double()
+            fast.load_state_dict(loop.state_dict())
+            x = torch.randn(3, 70, 16, dtype=torch.float64, requires_grad=True)
+            dt = torch.rand(3, 70, dtype=torch.float64)*.1; dt[:, 0] = 2.  # large first interval
+            h0 = torch.randn(3, 16, 8, dtype=torch.float64)
+            for memory in (None, h0):
+                y1, s1 = loop(x, dt, memory); y2, s2 = fast(x, dt, memory)
+                torch.testing.assert_close(y2, y1, atol=1e-10, rtol=1e-9); torch.testing.assert_close(s2, s1)
+                g1 = torch.autograd.grad(y1.square().sum(), [x, loop.log_rate])
+                g2 = torch.autograd.grad(y2.square().sum(), [x, fast.log_rate])
+                for a, b in zip(g1, g2): torch.testing.assert_close(b, a, atol=1e-9, rtol=1e-8)
+            with torch.no_grad():  # float32, as trained: ~1e-5
+                y1, _ = loop.float()(x.float(), dt.float()); y2, _ = fast.float()(x.float(), dt.float())
+                torch.testing.assert_close(y2, y1, atol=1e-5, rtol=1e-5)
+        # Whole model: parallel == loop, and chunked == whole streaming with the parallel scan.
+        torch.manual_seed(0)
+        loop = OdometryNet(dict(self.cfg, head="ssm")).eval()
+        fast = OdometryNet(dict(self.cfg, head="ssm", ssm_scan="parallel", ssm_chunk=3)).eval()
+        fast.load_state_dict(loop.state_dict())
+        images, imu = self.inputs()
+        with torch.no_grad():
+            full, _ = loop(images, imu)
+            torch.testing.assert_close(fast(images, imu)[0], full, atol=1e-5, rtol=1e-4)
+            a, state = fast(images[:, :4], imu[:, :4])
+            b, _ = fast(images[:, 4:], imu[:, 4:], state)
+            torch.testing.assert_close(torch.cat((a, b), 1), full, atol=1e-5, rtol=1e-4)
+
+
+    def test_batched_replay_matches_single_flights(self):
+        torch.manual_seed(0)
+        net = OdometryNet(dict(self.cfg, head="ssm", ssm_scan="prefix", ssm_chunk=4,
+                               channels_last=True)).eval()
+        rows = []
+        for steps in (3, 11, 15):
+            images, imu = self.inputs(steps, seed=steps)
+            rows.append({"images": images[0].numpy(), "imu": imu[0].numpy(),
+                         "R": np.broadcast_to(np.eye(3), (steps, 3, 3)).copy(),
+                         "v": np.zeros((steps, 3))})
+        batched = replay(net, rows, "cpu", chunk=6)
+        for row, pred in zip(rows, batched):
+            single, = replay(net, [row], "cpu", chunk=6)
+            np.testing.assert_allclose(pred, single, atol=1e-6, rtol=1e-5)
 
     @unittest.skipUnless(torch.cuda.is_available(), "cuDNN flat GRU buffers exist only on CUDA")
     def test_checkpoint_keeps_every_tensor(self):

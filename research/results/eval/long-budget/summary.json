@@ -1,0 +1,266 @@
+{
+  "compared_epochs": [
+    36,
+    72
+  ],
+  "dev_reduction": 0.0553551778946082,
+  "promote_to_144": false,
+  "comparison": {
+    "campaign-dev-best-30s": {
+      "B-speed-compiled-x3": {
+        "seeds": {
+          "B-speed-compiled-x3": {
+            "equal_flight_mean_ate": 1.3174,
+            "ordinary_ate": 1.1264,
+            "static_start_ate": 1.2038,
+            "moving_start_ate": 1.431,
+            "procthor_ate": 1.4569,
+            "hssd-val_ate": 1.1779
+          },
+          "B-speed-compiled-x3-s218": {
+            "equal_flight_mean_ate": 1.29,
+            "ordinary_ate": 1.0809,
+            "static_start_ate": 1.1932,
+            "moving_start_ate": 1.3867,
+            "procthor_ate": 1.4259,
+            "hssd-val_ate": 1.154
+          },
+          "B-speed-compiled-x3-s219": {
+            "equal_flight_mean_ate": 1.3881,
+            "ordinary_ate": 1.2102,
+            "static_start_ate": 1.2691,
+            "moving_start_ate": 1.5071,
+            "procthor_ate": 1.498,
+            "hssd-val_ate": 1.2782
+          }
+        },
+        "mean": {
+          "equal_flight_mean_ate": 1.3318333333333332,
+          "ordinary_ate": 1.1391666666666667,
+          "static_start_ate": 1.2220333333333333,
+          "moving_start_ate": 1.4416,
+          "procthor_ate": 1.4602666666666666,
+          "hssd-val_ate": 1.2033666666666667
+        }
+      },
+      "B-speed-compiled-x6": {
+        "seeds": {
+          "B-speed-compiled-x6-s217": {
+            "equal_flight_mean_ate": 1.2448,
+            "ordinary_ate": 1.0363,
+            "static_start_ate": 1.1431,
+            "moving_start_ate": 1.3465,
+            "procthor_ate": 1.406,
+            "hssd-val_ate": 1.0836
+          },
+          "B-speed-compiled-x6-s218": {
+            "equal_flight_mean_ate": 1.2765,
+            "ordinary_ate": 1.0561,
+            "static_start_ate": 1.164,
+            "moving_start_ate": 1.389,
+            "procthor_ate": 1.4391,
+            "hssd-val_ate": 1.1138
+          },
+          "B-speed-compiled-x6-s219": {
+            "equal_flight_mean_ate": 1.3152,
+            "ordinary_ate": 1.1188,
+            "static_start_ate": 1.1789,
+            "moving_start_ate": 1.4515,
+            "procthor_ate": 1.4774,
+            "hssd-val_ate": 1.153
+          }
+        },
+        "mean": {
+          "equal_flight_mean_ate": 1.2788333333333333,
+          "ordinary_ate": 1.0704,
+          "static_start_ate": 1.162,
+          "moving_start_ate": 1.3956666666666666,
+          "procthor_ate": 1.4408333333333334,
+          "hssd-val_ate": 1.1168
+        }
+      }
+    },
+    "campaign-dev-best": {
+      "B-speed-compiled-x3": {
+        "seeds": {
+          "B-speed-compiled-x3": {
+            "equal_flight_mean_ate": 1.8395,
+            "ordinary_ate": 1.6325,
+            "static_start_ate": 1.8071,
+            "moving_start_ate": 1.8719,
+            "procthor_ate": 1.9235,
+            "hssd-val_ate": 1.7555
+          },
+          "B-speed-compiled-x3-s218": {
+            "equal_flight_mean_ate": 1.8072,
+            "ordinary_ate": 1.5589,
+            "static_start_ate": 1.7674,
+            "moving_start_ate": 1.8471,
+            "procthor_ate": 1.9302,
+            "hssd-val_ate": 1.6842
+          },
+          "B-speed-compiled-x3-s219": {
+            "equal_flight_mean_ate": 1.8485,
+            "ordinary_ate": 1.6448,
+            "static_start_ate": 1.794,
+            "moving_start_ate": 1.903,
+            "procthor_ate": 1.9705,
+            "hssd-val_ate": 1.7265
+          }
+        },
+        "mean": {
+          "equal_flight_mean_ate": 1.8317333333333332,
+          "ordinary_ate": 1.6120666666666668,
+          "static_start_ate": 1.7895,
+          "moving_start_ate": 1.8739999999999999,
+          "procthor_ate": 1.9414,
+          "hssd-val_ate": 1.7220666666666666
+        }
+      },
+      "B-speed-compiled-x6": {
+        "seeds": {
+          "B-speed-compiled-x6-s217": {
+            "equal_flight_mean_ate": 1.7948,
+            "ordinary_ate": 1.5439,
+            "static_start_ate": 1.7645,
+            "moving_start_ate": 1.825,
+            "procthor_ate": 1.928,
+            "hssd-val_ate": 1.6615
+          },
+          "B-speed-compiled-x6-s218": {
+            "equal_flight_mean_ate": 1.8026,
+            "ordinary_ate": 1.5371,
+            "static_start_ate": 1.7402,
+            "moving_start_ate": 1.8651,
+            "procthor_ate": 1.9608,
+            "hssd-val_ate": 1.6445
+          },
+          "B-speed-compiled-x6-s219": {
+            "equal_flight_mean_ate": 1.7845,
+            "ordinary_ate": 1.5431,
+            "static_start_ate": 1.7113,
+            "moving_start_ate": 1.8577,
+            "procthor_ate": 1.982,
+            "hssd-val_ate": 1.587
+          }
+        },
+        "mean": {
+          "equal_flight_mean_ate": 1.7939666666666667,
+          "ordinary_ate": 1.5413666666666666,
+          "static_start_ate": 1.7386666666666666,
+          "moving_start_ate": 1.8492666666666666,
+          "procthor_ate": 1.9569333333333334,
+          "hssd-val_ate": 1.631
+        }
+      }
+    },
+    "dev-best": {
+      "B-speed-compiled-x3": {
+        "seeds": {
+          "B-speed-compiled-x3": {
+            "equal_flight_mean_ate": 1.09,
+            "ordinary_ate": 0.8997,
+            "static_start_ate": 1.0041,
+            "moving_start_ate": 1.1758
+          },
+          "B-speed-compiled-x3-s218": {
+            "equal_flight_mean_ate": 1.0609,
+            "ordinary_ate": 0.8531,
+            "static_start_ate": 1.0133,
+            "moving_start_ate": 1.1085
+          },
+          "B-speed-compiled-x3-s219": {
+            "equal_flight_mean_ate": 1.1207,
+            "ordinary_ate": 0.9655,
+            "static_start_ate": 1.0708,
+            "moving_start_ate": 1.1707
+          }
+        },
+        "mean": {
+          "equal_flight_mean_ate": 1.0905333333333334,
+          "ordinary_ate": 0.9061,
+          "static_start_ate": 1.0294,
+          "moving_start_ate": 1.1516666666666666
+        }
+      },
+      "B-speed-compiled-x6": {
+        "seeds": {
+          "B-speed-compiled-x6-s217": {
+            "equal_flight_mean_ate": 0.9954,
+            "ordinary_ate": 0.8185,
+            "static_start_ate": 0.933,
+            "moving_start_ate": 1.0579
+          },
+          "B-speed-compiled-x6-s218": {
+            "equal_flight_mean_ate": 1.0376,
+            "ordinary_ate": 0.8361,
+            "static_start_ate": 1.0011,
+            "moving_start_ate": 1.074
+          },
+          "B-speed-compiled-x6-s219": {
+            "equal_flight_mean_ate": 1.0575,
+            "ordinary_ate": 0.8935,
+            "static_start_ate": 1.0022,
+            "moving_start_ate": 1.1128
+          }
+        },
+        "mean": {
+          "equal_flight_mean_ate": 1.0301666666666667,
+          "ordinary_ate": 0.8493666666666666,
+          "static_start_ate": 0.9787666666666667,
+          "moving_start_ate": 1.0815666666666668
+        }
+      }
+    },
+    "proxy-val-best-30s": {
+      "B-speed-compiled-x3": {
+        "seeds": {
+          "B-speed-compiled-x3": {
+            "equal_flight_mean_ate": 1.2692,
+            "ordinary_ate": 1.1806,
+            "static_start_ate": 1.2692
+          },
+          "B-speed-compiled-x3-s218": {
+            "equal_flight_mean_ate": 1.2264,
+            "ordinary_ate": 1.1033,
+            "static_start_ate": 1.2264
+          },
+          "B-speed-compiled-x3-s219": {
+            "equal_flight_mean_ate": 1.2805,
+            "ordinary_ate": 1.1856,
+            "static_start_ate": 1.2805
+          }
+        },
+        "mean": {
+          "equal_flight_mean_ate": 1.2587,
+          "ordinary_ate": 1.1565,
+          "static_start_ate": 1.2587
+        }
+      },
+      "B-speed-compiled-x6": {
+        "seeds": {
+          "B-speed-compiled-x6-s217": {
+            "equal_flight_mean_ate": 1.1906,
+            "ordinary_ate": 1.075,
+            "static_start_ate": 1.1906
+          },
+          "B-speed-compiled-x6-s218": {
+            "equal_flight_mean_ate": 1.2058,
+            "ordinary_ate": 1.076,
+            "static_start_ate": 1.2058
+          },
+          "B-speed-compiled-x6-s219": {
+            "equal_flight_mean_ate": 1.2603,
+            "ordinary_ate": 1.1539,
+            "static_start_ate": 1.2603
+          }
+        },
+        "mean": {
+          "equal_flight_mean_ate": 1.2189,
+          "ordinary_ate": 1.1016333333333332,
+          "static_start_ate": 1.2189
+        }
+      }
+    }
+  }
+}

@@ -183,7 +183,8 @@ def main():
     parser.add_argument("--control")
     parser.add_argument("--set", default="dev", choices=("dev", "proxy-val", "campaign-dev"))
     parser.add_argument("--ledger", default="data/ledger/ledger.json")
-    parser.add_argument("--cache-dir", default="data/hub-cache", help="Shard cache for this evaluator")
+    parser.add_argument("--cache-dir", default="data/hub-cache",
+                        help="Shard cache for this evaluator (use a dedicated one for concurrent evaluations)")
     parser.add_argument("--output", required=True)
     parser.add_argument("--max-seconds", type=float, help="Score only each replay's first N seconds (all models are causal)")
     parser.add_argument("--batch-replays", type=int, help="Independent flights per forward pass (default 8 on CUDA, 1 otherwise)")

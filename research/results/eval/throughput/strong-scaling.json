@@ -1,0 +1,41 @@
+{
+  "1": {
+    "startup_seconds": 6.08,
+    "first_epoch_seconds": 5.06,
+    "steady_epoch_seconds": 4.2,
+    "steady_train_seconds": 3.78,
+    "steady_data_wait_seconds": 0.26,
+    "steady_dev_seconds": 0.42,
+    "relative_speed": 1.0,
+    "gpu_seconds_per_steady_epoch": 4.2,
+    "best_selection_score": 1.4592649195541556,
+    "optimizer_updates": 183,
+    "peak_gpu_bytes": 4521169920
+  },
+  "2": {
+    "startup_seconds": 9.91,
+    "first_epoch_seconds": 3.2800000000000002,
+    "steady_epoch_seconds": 2.48,
+    "steady_train_seconds": 2.27,
+    "steady_data_wait_seconds": 0.17,
+    "steady_dev_seconds": 0.21,
+    "relative_speed": 1.6935483870967742,
+    "gpu_seconds_per_steady_epoch": 4.96,
+    "best_selection_score": 1.4589699434402013,
+    "optimizer_updates": 183,
+    "peak_gpu_bytes": 2298931200
+  },
+  "4": {
+    "startup_seconds": 12.53,
+    "first_epoch_seconds": 2.64,
+    "steady_epoch_seconds": 1.7349999999999999,
+    "steady_train_seconds": 1.585,
+    "steady_data_wait_seconds": 0.11,
+    "steady_dev_seconds": 0.15,
+    "relative_speed": 2.420749279538905,
+    "gpu_seconds_per_steady_epoch": 6.9399999999999995,
+    "best_selection_score": 1.45990310410192,
+    "optimizer_updates": 183,
+    "peak_gpu_bytes": 1180740096
+  }
+}
