@@ -64,6 +64,28 @@ extern "C" void host_net_step(const uint8_t *images, const float *imu, float *ve
 }
 #endif
 
+#ifdef ODO_INPUT_KF_GRID
+#ifdef __wasm__
+#define ODO_INPUT_EXPORT(name) __attribute__((export_name(name)))
+#else
+#define ODO_INPUT_EXPORT(name)
+#endif
+// Read-only debug export. It accepts no reference/truth data and is never called
+// by the benchmark runner; the same binary can be checked without tracing edits.
+extern "C" ODO_INPUT_EXPORT("input_features") void input_features(
+        uint8_t *images, float *imu, double *rotation, double *state) {
+    std::memcpy(images, estimator.images, sizeof estimator.images);
+    std::memcpy(imu, estimator.imu, sizeof estimator.imu);
+    std::memcpy(rotation, estimator.R.a, sizeof estimator.R.a);
+    const auto &att = estimator.input_policy.att;
+    for (int c = 0; c < 3; ++c) { state[c] = att.bias[c]; state[3 + c] = att.P[c]; }
+    state[6] = att.decided; state[7] = att.accepted; state[8] = att.rejected;
+    state[9] = estimator.input_policy.pooled_decided;
+    for (int c = 0; c < 3; ++c) state[10 + c] = estimator.vb[c];
+}
+#undef ODO_INPUT_EXPORT
+#endif
+
 extern "C" int32_t abi_version() { return VIOBENCH_ABI_VERSION; }
 extern "C" void *alloc(uint32_t size) { return std::malloc(size); }
 extern "C" int32_t frame_width() { return 320; }
@@ -99,6 +121,9 @@ extern "C" int32_t init(const char *config_json, uint32_t length) {
     if (!odo_weights) return VIOBENCH_STATUS_ERROR;
 #endif
     if (odo::bind(weights, odo_weights) != ODO_WEIGHTS) return VIOBENCH_STATUS_ERROR;
+#ifdef ODO_INPUT_KF_GRID
+    estimator.~Estimator();
+#endif
     new (&estimator) odo::Estimator;
     estimator.init(&weights, int(camera[0]), int(camera[1]), camera[2], camera[3], camera[4], camera[5], transform);
     ready = true;
@@ -109,6 +134,14 @@ extern "C" int32_t step(double t, const uint8_t *frame, const double *imu, int32
     if (!ready || !frame || !out || !std::isfinite(t) || (estimator.have_v && t - estimator.time_origin <= estimator.last_t)
             || imu_count < 0 || imu_count > odo::Orientation::MAX_PACKET || (imu_count && !imu))
         return VIOBENCH_STATUS_ERROR;
+#ifdef ODO_INPUT_KF_GRID
+    try {
+        estimator.step(t, frame, imu, imu_count, out);
+    } catch (const std::exception &) {
+        return VIOBENCH_STATUS_ERROR;
+    }
+#else
     estimator.step(t, frame, imu, imu_count, out);
+#endif
     return VIOBENCH_STATUS_OK;
 }

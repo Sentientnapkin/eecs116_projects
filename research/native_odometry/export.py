@@ -19,21 +19,35 @@ WASM_KERNEL_FLAGS = {
 }
 
 
-def opencv_flags(opencv_build):
+def opencv_flags(opencv_build, input_policy=False):
     """Compile/link flags for the wasm OpenCV built by the pinned VIOBench runtime recipe (build/runtime/opencv-build)."""
     build = Path(opencv_build).resolve()
     source = Path(next(l.split("=", 1)[1] for l in (build / "CMakeCache.txt").read_text().splitlines()
                        if l.startswith("OpenCV_SOURCE_DIR:")))
-    includes = [f"-I{build}"] + [f"-I{source}/modules/{m}/include" for m in ("core", "imgproc", "video", "calib3d", "features2d", "flann", "dnn")]
-    libraries = [build / f"lib/libopencv_{m}.a" for m in ("video", "calib3d", "features2d", "flann", "imgproc", "core")]
-    return (["-DODO_KF_GRID", "-fwasm-exceptions", "-mllvm", "-wasm-use-legacy-eh=false", *includes],
+    modules = (("core", "imgproc", "video", "geometry", "features", "flann") if (source / "modules/geometry").exists()
+               else ("core", "imgproc", "video", "calib3d", "features2d", "flann", "dnn"))
+    includes = [f"-I{build}"] + [f"-I{source}/modules/{m}/include" for m in modules]
+    library_names = (("video", "features", "geometry", "flann", "imgproc", "core") if (source / "modules/geometry").exists()
+                     else ("video", "calib3d", "features2d", "flann", "imgproc", "core"))
+    libraries = [build / f"lib/libopencv_{m}.a" for m in library_names]
+    policy_flag = "-DODO_INPUT_KF_GRID" if input_policy else "-DODO_KF_GRID"
+    return ([policy_flag, "-fwasm-exceptions", "-mllvm", "-wasm-use-legacy-eh=false", *includes],
             [*map(str, libraries), str(build / "3rdparty/lib/libzlib.a"), "-lunwind", "-lpthread",
              "-Wl,-z,stack-size=8388608", "-Wl,--stack-first"])
 
 
-def export(run, manifest, output, wasi_sdk, wasm_kernel="simd-4x16", kf_grid_opencv=None):
+def export(run, manifest, output, wasi_sdk, wasm_kernel="simd-4x16", kf_grid_opencv=None,
+           input_policy=False, native_opencv=None):
     model = json.loads((run / "config.json").read_text())["model"]
-    sensor = json.loads(manifest.read_text())["sensor_config"]
+    manifest_data = json.loads(manifest.read_text())
+    sensor = manifest_data["sensor_config"]
+    declared_policy = manifest_data.get("input_policy", "rolling")
+    if input_policy and declared_policy != "kf_grid_native":
+        raise ValueError("Changed-input export requires the actual kf_grid_native training manifest")
+    if not input_policy and declared_policy != "rolling":
+        raise ValueError("Changed-input weights must be exported with --input-kf-grid")
+    if input_policy and (not kf_grid_opencv or not native_opencv):
+        raise ValueError("Changed-input export requires both Wasm and native OpenCV build paths")
     width, height = (model[key] for key in ("width", "height"))
     channels = model["channels"]
     stride = [2 if i < 3 else 1 for i in range(len(channels))]
@@ -117,13 +131,24 @@ def export(run, manifest, output, wasi_sdk, wasm_kernel="simd-4x16", kf_grid_ope
     abi = Path(viobench.__file__).parent / "solution/runtime/native"
     flags = ["-std=c++17", "-O3", "-ffp-contract=off", "-Wall", "-Wextra", "-Werror",
              "-I", str(output), "-I", str(abi), str(SOURCE / "guest.cpp")]
-    subprocess.run([*shlex.split(os.environ.get("CXX", "c++")), *flags, "-march=native", "-fPIC", "-shared",
-                    "-o", output / "host.so"], check=True)
+    native_extra, native_link = [], []
+    if input_policy:
+        build = Path(native_opencv).resolve()
+        source = Path(next(l.split("=", 1)[1] for l in (build / "CMakeCache.txt").read_text().splitlines()
+                           if l.startswith("OpenCV_SOURCE_DIR:")))
+        modules = (("core", "imgproc", "video", "geometry", "features", "flann") if (source / "modules/geometry").exists()
+                   else ("core", "imgproc", "video", "calib3d", "features2d", "flann"))
+        native_extra = ["-DODO_INPUT_KF_GRID", f"-I{build}"] + [f"-I{source}/modules/{m}/include" for m in modules]
+        library_names = (("video", "features", "geometry", "flann", "imgproc", "core") if (source / "modules/geometry").exists()
+                         else ("video", "calib3d", "features2d", "flann", "imgproc", "core"))
+        native_link = [f"-L{build}/lib", f"-Wl,-rpath,{build}/lib"] + [f"-lopencv_{m}" for m in library_names]
+    subprocess.run([*shlex.split(os.environ.get("CXX", "c++")), *flags, *native_extra,
+                    "-march=native", "-fPIC", "-shared", *native_link, "-o", output / "host.so"], check=True)
     if wasi_sdk:
         assembly = output / "weights.S"
         assembly.write_text('.section .rodata.odo_weights,"",@\n.globl odo_weights\n.p2align 4\n'
                             'odo_weights:\n.incbin "weights.f32"\n.size odo_weights, .-odo_weights\n')
-        compile_extra, link_extra = opencv_flags(kf_grid_opencv) if kf_grid_opencv else ([], [])
+        compile_extra, link_extra = opencv_flags(kf_grid_opencv, input_policy) if kf_grid_opencv else ([], [])
         compile_extra += shlex.split(os.environ.get("ODO_WASM_EXTRA_FLAGS", ""))  # e.g. -DODO_KF_GRID_TRACE
         subprocess.run([wasi_sdk.resolve() / "bin/clang++", *flags, *compile_extra, *WASM_KERNEL_FLAGS[wasm_kernel],
                         "-mexec-model=reactor", "-Wl,--initial-memory=67108864", "-Wl,--strip-debug", "weights.S",
@@ -139,10 +164,13 @@ def main():
     parser.add_argument("--wasm-kernel", choices=WASM_KERNEL_FLAGS, default="simd-4x16")
     parser.add_argument("--kf-grid-opencv", type=Path,
                         help="Build the visual gyro-bias attitude (ODO_KF_GRID) against this wasm OpenCV build directory")
+    parser.add_argument("--input-kf-grid", action="store_true", help="Complete newest kf_grid_native INPUT policy, not integration-only")
+    parser.add_argument("--native-opencv", type=Path, help="Native OpenCV build for the same visual input path in host.so")
     args = parser.parse_args()
     if not args.wasi_sdk and args.wasm_kernel != "simd-4x16":
         parser.error("--wasm-kernel needs --wasi-sdk")
-    print(json.dumps(export(args.run, args.manifest, args.output, args.wasi_sdk, args.wasm_kernel, args.kf_grid_opencv)))
+    print(json.dumps(export(args.run, args.manifest, args.output, args.wasi_sdk, args.wasm_kernel,
+                            args.kf_grid_opencv, args.input_kf_grid, args.native_opencv)))
 
 
 if __name__ == "__main__":

@@ -647,11 +647,17 @@ struct Inputs {
 #ifdef ODO_KF_GRID
 #include "kf_grid.hpp"
 #endif
+#ifdef ODO_INPUT_KF_GRID
+#include "new_model_inputs.hpp"
+#endif
 namespace odo {
 
 // ---------------------------------------------------------------- estimator (streaming.Estimator)
 struct Estimator {
     Inputs in;
+#ifdef ODO_INPUT_KF_GRID
+    NewModelInputs input_policy;
+#endif
     Net net;
     M3 R_bc;
     double offset[3], position[3] = {0, 0, 0}, last_v[3] = {0, 0, 0}, last_t = 0, time_origin = 0;
@@ -676,6 +682,9 @@ struct Estimator {
         mv(R_bc, tvec, offset);
         for (double &o : offset) o = -o;
         in.init(width, height, fx, fy, cx, cy, R_bc);
+#ifdef ODO_INPUT_KF_GRID
+        input_policy.init(fx, fy, cx, cy, R_bc);
+#endif
 #ifdef ODO_KF_GRID
         att.init(fx, fy, cx, cy, R_bc);
 #endif
@@ -691,6 +700,9 @@ struct Estimator {
         }
         t -= time_origin;
         R = in.step(t, rgb, packet, n, images, imu, time_origin);
+#ifdef ODO_INPUT_KF_GRID
+        R = input_policy.step(t, rgb, in.sw, in.sh, packet, n, time_origin, R, images, imu, !have_v);
+#endif
         net.step(images, imu, vb);
 #ifdef ODO_KF_GRID
         // Integrate (and report) with the visual-bias attitude; the network's inputs above are unchanged.
@@ -743,7 +755,9 @@ struct Estimator {
         else { double s = std::sqrt(1.0 + q(2, 2) - q(0, 0) - q(1, 1)) * 2; qw = (q(1, 0) - q(0, 1)) / s; qx = (q(0, 2) + q(2, 0)) / s; qy = (q(1, 2) + q(2, 1)) / s; qz = .25 * s; }
         out[3] = qx; out[4] = qy; out[5] = qz; out[6] = qw;
         double ang[3] = {0, 0, 0};
-#ifdef ODO_KF_GRID
+#ifdef ODO_INPUT_KF_GRID
+        const double *tb = input_policy.att.bias;
+#elif defined(ODO_KF_GRID)
         const double *tb = att.bias;
 #else
         const double tb[3] = {in.orient.bias[0] + in.orient.learned[0], in.orient.bias[1] + in.orient.learned[1], in.orient.bias[2] + in.orient.learned[2]};

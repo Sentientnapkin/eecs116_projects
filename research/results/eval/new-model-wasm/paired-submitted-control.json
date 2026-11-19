@@ -1,0 +1,1175 @@
+{
+  "public": {
+    "control": "submitted B-D0 seed217; actual Wasm; fixed historical artifact",
+    "candidate": "newest kf_grid INPUT model seed217; actual Wasm",
+    "mean_difference_m": -1.1076099625296525,
+    "improved": 10,
+    "regressed": 0,
+    "largest_regression": null,
+    "groups": {
+      "scene": {
+        "ProcTHOR-Train-1": -1.1076099625296525
+      },
+      "parent": {
+        "sim-ProcTHOR-Train-1-0000": -0.7744701444004759,
+        "sim-ProcTHOR-Train-1-0001": -0.5020915005976154,
+        "sim-ProcTHOR-Train-1-0002": -0.801859727417055,
+        "sim-ProcTHOR-Train-1-0003": -1.3526976471957886,
+        "sim-ProcTHOR-Train-1-0004": -0.8457049064566371,
+        "sim-ProcTHOR-Train-1-0005": -1.4611546129026296,
+        "sim-ProcTHOR-Train-1-0006": -2.263499940042769,
+        "sim-ProcTHOR-Train-1-0007": -0.6115434752986386,
+        "sim-ProcTHOR-Train-1-0008": -0.6495384466788489,
+        "sim-ProcTHOR-Train-1-0009": -1.8135392243060675
+      }
+    },
+    "rows": [
+      {
+        "episode": "sim-ProcTHOR-Train-1-0000",
+        "scene": "ProcTHOR-Train-1",
+        "parent": "sim-ProcTHOR-Train-1-0000",
+        "old_ate": 1.484448137285297,
+        "new_ate": 0.709977992884821,
+        "difference": -0.7744701444004759
+      },
+      {
+        "episode": "sim-ProcTHOR-Train-1-0001",
+        "scene": "ProcTHOR-Train-1",
+        "parent": "sim-ProcTHOR-Train-1-0001",
+        "old_ate": 2.0298982337994658,
+        "new_ate": 1.5278067332018503,
+        "difference": -0.5020915005976154
+      },
+      {
+        "episode": "sim-ProcTHOR-Train-1-0002",
+        "scene": "ProcTHOR-Train-1",
+        "parent": "sim-ProcTHOR-Train-1-0002",
+        "old_ate": 1.4734526128373464,
+        "new_ate": 0.6715928854202914,
+        "difference": -0.801859727417055
+      },
+      {
+        "episode": "sim-ProcTHOR-Train-1-0003",
+        "scene": "ProcTHOR-Train-1",
+        "parent": "sim-ProcTHOR-Train-1-0003",
+        "old_ate": 2.242975481239407,
+        "new_ate": 0.8902778340436183,
+        "difference": -1.3526976471957886
+      },
+      {
+        "episode": "sim-ProcTHOR-Train-1-0004",
+        "scene": "ProcTHOR-Train-1",
+        "parent": "sim-ProcTHOR-Train-1-0004",
+        "old_ate": 1.8570570359585237,
+        "new_ate": 1.0113521295018866,
+        "difference": -0.8457049064566371
+      },
+      {
+        "episode": "sim-ProcTHOR-Train-1-0005",
+        "scene": "ProcTHOR-Train-1",
+        "parent": "sim-ProcTHOR-Train-1-0005",
+        "old_ate": 2.481333631969061,
+        "new_ate": 1.0201790190664313,
+        "difference": -1.4611546129026296
+      },
+      {
+        "episode": "sim-ProcTHOR-Train-1-0006",
+        "scene": "ProcTHOR-Train-1",
+        "parent": "sim-ProcTHOR-Train-1-0006",
+        "old_ate": 2.9371754803132077,
+        "new_ate": 0.673675540270439,
+        "difference": -2.263499940042769
+      },
+      {
+        "episode": "sim-ProcTHOR-Train-1-0007",
+        "scene": "ProcTHOR-Train-1",
+        "parent": "sim-ProcTHOR-Train-1-0007",
+        "old_ate": 1.405299939240454,
+        "new_ate": 0.7937564639418153,
+        "difference": -0.6115434752986386
+      },
+      {
+        "episode": "sim-ProcTHOR-Train-1-0008",
+        "scene": "ProcTHOR-Train-1",
+        "parent": "sim-ProcTHOR-Train-1-0008",
+        "old_ate": 1.4177836969872084,
+        "new_ate": 0.7682452503083596,
+        "difference": -0.6495384466788489
+      },
+      {
+        "episode": "sim-ProcTHOR-Train-1-0009",
+        "scene": "ProcTHOR-Train-1",
+        "parent": "sim-ProcTHOR-Train-1-0009",
+        "old_ate": 2.6266257832696973,
+        "new_ate": 0.8130865589636297,
+        "difference": -1.8135392243060675
+      }
+    ],
+    "interpretation": "matched artifact benchmark, not an isolated component/training ablation"
+  },
+  "campaign": {
+    "control": "submitted B-D0 seed217; actual Wasm; fixed historical artifact",
+    "candidate": "newest kf_grid INPUT model seed217; actual Wasm",
+    "mean_difference_m": -0.8371773104027308,
+    "improved": 96,
+    "regressed": 24,
+    "largest_regression": {
+      "episode": "dev-ProcTHOR-Train-166-00-crop5",
+      "scene": "ProcTHOR-Train-166",
+      "parent": "95f4720fd3b45a3ad92eacd1814ceab7229d8cc8c12e1aebe4f4e91668dfcfc0",
+      "old_ate": 1.425411665726653,
+      "new_ate": 2.2674816624059595,
+      "difference": 0.8420699966793066
+    },
+    "groups": {
+      "scene": {
+        "102816114": 0.11434469254315933,
+        "103997586_171030666": -1.0037457795001203,
+        "104348361_171513414": -0.33850174750749545,
+        "104862501_172226556": -0.8237673885681391,
+        "105515184_173104128": 0.18294557450975077,
+        "106366104_174226329": -2.357916692933911,
+        "106366410_174226806": -0.4658751538542591,
+        "106878858_174886965": -1.399544847826381,
+        "107734056_175999839": -0.7243869689658291,
+        "107734158_175999998": -0.4111986819229396,
+        "107734176_176000019": -0.5188457845208302,
+        "107734254_176000121": -2.54491216090035,
+        "107734338_176000244": -0.5760885106559027,
+        "108736689_177263340": 0.3811379951343262,
+        "108736884_177263634": -0.9309649765261164,
+        "ProcTHOR-Train-166": 0.15566187240748547,
+        "ProcTHOR-Train-167": -1.016189029458211,
+        "ProcTHOR-Train-168": -1.7698261806272206,
+        "ProcTHOR-Train-169": -1.1781276687584488,
+        "ProcTHOR-Train-170": -0.4459077013645076,
+        "ProcTHOR-Train-171": -1.2248108444338521
+      },
+      "parent": {
+        "02c79e27703812f567a41dcf2ac2a4ad5c17bd20e54f788f976ac66a2bdbf13f": -0.2589829791946532,
+        "07f0823becaf09cf1db0342e6edd560c73a30203e2d1f7a74b0b31d2a653986f": -0.42406880510988704,
+        "1a68d92c31010fd76de25ff38a1e60df5c52b59c575bbb8447afc6fcc7bd916e": -1.5834227538903538,
+        "1b3e5725698289ef173a4180af527596fa90b90bbdbd115cf99a7a09bab4c234": -0.6550120387472425,
+        "217fc28fe9a8520a049fff9566bcdd184ad5c9e1adff75c6cace1ee92570402d": -0.5399021120911796,
+        "24f09ab27fc06568b1890582ac685d5ce383bd0c93f91470c3a2a5abfb6f6afe": -0.08721859680610983,
+        "2c39ca26d09847f7b55ddab051ec06f74c0c17f517f9bd5b777bf55b0c30d57d": -0.24274454211873858,
+        "2c45d86473eac7dfdfc9051f19c60ffa8242e054372f3cca6b1e20933fc62d93": -0.13248066272625297,
+        "303680194cc0b654435358d25ce38d2363fb84d8a739a0dc2f72d4b07a096898": -4.1759312737766425,
+        "388bdcbed3b1967002d7bc57326e48aef38c036d9f6ffaaeaf34bf32a3637171": 0.17345939572432706,
+        "3fbe5df0641412c490afa0769e5b14158391d5ca4990d15410c838ac5919a9c8": 0.2767265567848821,
+        "407582d4dcc63bdfffa8fc221072b4cd6d89c0e957b09016a1907d4a7b5bc88e": -1.0594925264737807,
+        "460cb571e5f841ae394da2d9f88a04eb0f5ac7394f912cdb3a1c4464a2d09bc5": -0.36940055480230416,
+        "46af1a92e2f490f9cf49caaa1632865fed8f92da81e92309842235c1c7042983": -1.3005379965242014,
+        "498dd39754e9860acf1eaa1c8fdc1bbefce84ec73ea07733c8f67f964fe1e45c": -0.3010307570325099,
+        "4b0b6c1b3d94c349d87b7b3f8f638eaffc86c244bc1b6e7329d11b72ceca31f3": -0.988361294235149,
+        "50a00c116fcbc26a55927c2102da63a1b134c432378f3c80116110960972cc27": 0.45310974582561137,
+        "56263102ea7add12ef303e8ad8aa0ba6053858cff56f6d914e7608de6e4c843d": 0.1857133747463633,
+        "5672ab6aa8da56e92c13b041a2d5c7de778ea9409e600159279e478deb7002dd": -0.6615930872108771,
+        "568c7330628d5d2e889a237c49647f3b2e7d13f5ade705828fc610c3aad99c54": -4.265498904614121,
+        "59d2564382f92ff5251661a55b2b67cf996ca1058136016f2c572ee583e3c40b": -0.187780877769252,
+        "63e660113cedd505c80aa29b3a2ad3dac02c3fc16f34dce6bddb2db84ab8ad8d": -0.17260747803810872,
+        "66792f01635f71c9cf9ab5c1a3114439af095b3117f7df8e871e75894dca0634": -1.7780127641943402,
+        "699d09c9b85f85d3cbd08c3ff8c1c029d6e04b6de1df6f37f0b5b95492d99828": -0.6346164860766272,
+        "6a4e1cdca482564904bf4ecf78e3e4f62a6946765b639dffe4e9fcaff32bef49": -0.7848892676667334,
+        "7989c60b7a790e4038714cc85164565450c7fff7c5c0d99982b17aff95505ce3": 0.13066966122174664,
+        "86141f883555f9a395b8df96146a91db7240a92790705d566fc887b7a04028f3": -1.9129659416998748,
+        "92129bf0b171524860c2cd3cd3e1952c91a8c0cdfad37a64efdf6e66b7e2d6a4": 0.40111864432721683,
+        "92632cd45e7a2301f5e6eba7a4b053023eac1f55585d0fce153ee303b6ddc7bd": -3.1958078672222476,
+        "95f4720fd3b45a3ad92eacd1814ceab7229d8cc8c12e1aebe4f4e91668dfcfc0": 0.6974387883379605,
+        "9841d3abd2d8274f03b336a772a1f6ce67d9218400f120bc0473d62320b4b37c": -0.06233176744432278,
+        "9c3a4073887ce2f6f61c89969ab73e2bed8ebd689ce31da1f17caa1c33655f47": -0.8305835555519883,
+        "9f32c363719de92a1e02c98b9e26095d2b00185f3c6b400feb6826872382e7cf": -0.3760984818307834,
+        "a0bd711b196522672dc26651a8bb40f376f2ac708cd342acabde3f0564fd8200": -0.30553463746403814,
+        "a14d9bed58e5e6ee2bba4d9561268b6873c69b35a21c497e34b98489c2fd716e": -0.7992696449822652,
+        "a1591693fca0430a2715153e00fcdae50a6f11edd1eef7e56a82b94506fa3213": -0.4604126436965094,
+        "a20e801428a20a8e7ae193707615b7f7ba9a31aa6ed5187d3f89ed83d2c04ef8": -0.13747086078503268,
+        "a4ead067681fdf2d63e3061f8266ec56ae5a95e6a6a7f7148380da18e40e4232": -0.5395326342299582,
+        "a5b45399b7720cb8e36d9dc8994fd3414d959f9b9bdad2777d0dbd1f0b6c937c": -0.12990219764035638,
+        "ab3329e0f767a6dbdfd5ecb2d0e741981a5599fadf24d35c5718426a84661b18": -0.5896305697854416,
+        "afcec49b091fb26ea51a9f19493cfdce0234a61d3c0e99eed3e461d1b2663a7b": -2.3304251878246713,
+        "b3b2bb43d8035817ccfa63a5bf40bf71cb192a7db41964d976ea8563a3e440a6": 0.13047798705806185,
+        "b40cfce41e89b92594db432b24acdab960c97e0a39282c6a87f73a2fe1c3ccd9": -0.13525276144854098,
+        "b5525c90ada593fa25d39c4df1f16b5e8db3470c0088aa414df26c230f055b67": -0.7567814472975021,
+        "ba3da960f9eaf5db4b6c224cc26919a02cedf99033dd38ad2bb6d14ef6370b89": -0.2030080123380098,
+        "bca46f5f5eac59220c15b7033cdb64e4162ac6617a2f3443fc2380287e96af64": -2.0986887837773356,
+        "be5014f6c2e03f09f0777838e14e5f883ee9e5bf72a04b23243a8709ae92280f": -0.25780914018364476,
+        "c0edfb3cf8e42e2492ac741d108114af17a4d28fe57a2aceb449c527c3877485": -0.8154092859973532,
+        "c9198763de9f3c7ab100755c8cb3e2fc74710aa152e97d2cde6165c54c5d2765": -0.3488498014959831,
+        "cabdd4319436fab1f18efea7b5a5c294f5adbef000454ed61f15873b464b3675": -0.7827764665095012,
+        "d1f3815444dfb28d209f4eea8f389173c0bd1dab2141d8fba53459c6583a6829": -0.7004009118754265,
+        "d34c7400d7bd282c968444172fae4c10cb3753e55d08b9d44d4a52d46beaf316": -2.4741809789767166,
+        "d4ca5e88ebbdce1e715ef01010f079e0ec07ab44648c4f1f95616b96be7a3a48": -1.6191854109334942,
+        "d6c95ed65b3cfa3e422e44cce18ea5c3c6a7d1ac8f3bbd0f1d06405fefd0594e": 0.09801972386457203,
+        "da4e5066cd7835a6fd0e260e1ca68e226f6388fd145dfa15bc808f27a109bfc7": -2.9308431708675613,
+        "e2a3a0bbb09935d3b0103326d98601a3db57a2f4b155860461b7e18abeb0f2c5": -0.42436714937452347,
+        "e82c666e047c6154df490358830b87b9f7f26564acc5e07d605228a6676e4c2d": 0.5765626155222892,
+        "e9f3d664719b5a30ff6896720b35f1ba1be9c88803dc1533949884a904c5049b": -5.263283717525027,
+        "f2cbccc714671c97287d78355f4f9e8391ada4fc5a604c8854a099537f343f04": -1.3930179199720114,
+        "f892531df8c21c5c8a59978499c4df1e5fcd8a8813e82ff2643b9a32ef1f8161": -0.8765284097476935
+      }
+    },
+    "rows": [
+      {
+        "episode": "dev-102816114-00",
+        "scene": "102816114",
+        "parent": "7989c60b7a790e4038714cc85164565450c7fff7c5c0d99982b17aff95505ce3",
+        "old_ate": 0.5782204339768613,
+        "new_ate": 0.704837959029225,
+        "difference": 0.12661752505236368
+      },
+      {
+        "episode": "dev-102816114-01",
+        "scene": "102816114",
+        "parent": "d6c95ed65b3cfa3e422e44cce18ea5c3c6a7d1ac8f3bbd0f1d06405fefd0594e",
+        "old_ate": 0.611114203905685,
+        "new_ate": 0.6877244093954021,
+        "difference": 0.07661020548971709
+      },
+      {
+        "episode": "dev-103997586_171030666-00",
+        "scene": "103997586_171030666",
+        "parent": "07f0823becaf09cf1db0342e6edd560c73a30203e2d1f7a74b0b31d2a653986f",
+        "old_ate": 1.2048462101291295,
+        "new_ate": 0.5641256633248074,
+        "difference": -0.6407205468043221
+      },
+      {
+        "episode": "dev-103997586_171030666-01",
+        "scene": "103997586_171030666",
+        "parent": "1a68d92c31010fd76de25ff38a1e60df5c52b59c575bbb8447afc6fcc7bd916e",
+        "old_ate": 1.4884687469920306,
+        "new_ate": 0.35121525523838554,
+        "difference": -1.137253491753645
+      },
+      {
+        "episode": "dev-104348361_171513414-00",
+        "scene": "104348361_171513414",
+        "parent": "a4ead067681fdf2d63e3061f8266ec56ae5a95e6a6a7f7148380da18e40e4232",
+        "old_ate": 1.5650292662164837,
+        "new_ate": 0.931334358289986,
+        "difference": -0.6336949079264977
+      },
+      {
+        "episode": "dev-104348361_171513414-01",
+        "scene": "104348361_171513414",
+        "parent": "a20e801428a20a8e7ae193707615b7f7ba9a31aa6ed5187d3f89ed83d2c04ef8",
+        "old_ate": 2.0769849765949333,
+        "new_ate": 1.7106299675788637,
+        "difference": -0.36635500901606965
+      },
+      {
+        "episode": "dev-104862501_172226556-00",
+        "scene": "104862501_172226556",
+        "parent": "66792f01635f71c9cf9ab5c1a3114439af095b3117f7df8e871e75894dca0634",
+        "old_ate": 2.8244434269067837,
+        "new_ate": 0.7761594754221703,
+        "difference": -2.0482839514846134
+      },
+      {
+        "episode": "dev-104862501_172226556-01",
+        "scene": "104862501_172226556",
+        "parent": "b3b2bb43d8035817ccfa63a5bf40bf71cb192a7db41964d976ea8563a3e440a6",
+        "old_ate": 0.6686378156577192,
+        "new_ate": 0.7335436674336316,
+        "difference": 0.06490585177591246
+      },
+      {
+        "episode": "dev-105515184_173104128-00",
+        "scene": "105515184_173104128",
+        "parent": "24f09ab27fc06568b1890582ac685d5ce383bd0c93f91470c3a2a5abfb6f6afe",
+        "old_ate": 0.47992121989523256,
+        "new_ate": 0.4196272893631408,
+        "difference": -0.060293930532091755
+      },
+      {
+        "episode": "dev-105515184_173104128-01",
+        "scene": "105515184_173104128",
+        "parent": "50a00c116fcbc26a55927c2102da63a1b134c432378f3c80116110960972cc27",
+        "old_ate": 0.44005769779492676,
+        "new_ate": 1.1801972119649402,
+        "difference": 0.7401395141700134
+      },
+      {
+        "episode": "dev-106366104_174226329-00",
+        "scene": "106366104_174226329",
+        "parent": "217fc28fe9a8520a049fff9566bcdd184ad5c9e1adff75c6cace1ee92570402d",
+        "old_ate": 0.6857402931932369,
+        "new_ate": 0.6014429132685541,
+        "difference": -0.08429737992468278
+      },
+      {
+        "episode": "dev-106366104_174226329-01",
+        "scene": "106366104_174226329",
+        "parent": "303680194cc0b654435358d25ce38d2363fb84d8a739a0dc2f72d4b07a096898",
+        "old_ate": 8.58378151638832,
+        "new_ate": 4.745458514057491,
+        "difference": -3.8383230023308297
+      },
+      {
+        "episode": "dev-106366410_174226806-00",
+        "scene": "106366410_174226806",
+        "parent": "2c45d86473eac7dfdfc9051f19c60ffa8242e054372f3cca6b1e20933fc62d93",
+        "old_ate": 0.7403546885748963,
+        "new_ate": 1.2039213749226996,
+        "difference": 0.4635666863478033
+      },
+      {
+        "episode": "dev-106366410_174226806-01",
+        "scene": "106366410_174226806",
+        "parent": "a14d9bed58e5e6ee2bba4d9561268b6873c69b35a21c497e34b98489c2fd716e",
+        "old_ate": 0.42356136384838117,
+        "new_ate": 0.3550812736434628,
+        "difference": -0.06848009020491835
+      },
+      {
+        "episode": "dev-106878858_174886965-00",
+        "scene": "106878858_174886965",
+        "parent": "bca46f5f5eac59220c15b7033cdb64e4162ac6617a2f3443fc2380287e96af64",
+        "old_ate": 3.590062090455163,
+        "new_ate": 1.4594125777495712,
+        "difference": -2.1306495127055918
+      },
+      {
+        "episode": "dev-106878858_174886965-01",
+        "scene": "106878858_174886965",
+        "parent": "d1f3815444dfb28d209f4eea8f389173c0bd1dab2141d8fba53459c6583a6829",
+        "old_ate": 1.209548764602521,
+        "new_ate": 0.7130241379157607,
+        "difference": -0.49652462668676023
+      },
+      {
+        "episode": "dev-107734056_175999839-00",
+        "scene": "107734056_175999839",
+        "parent": "4b0b6c1b3d94c349d87b7b3f8f638eaffc86c244bc1b6e7329d11b72ceca31f3",
+        "old_ate": 1.7191886683551139,
+        "new_ate": 0.8564842709957442,
+        "difference": -0.8627043973593697
+      },
+      {
+        "episode": "dev-107734056_175999839-01",
+        "scene": "107734056_175999839",
+        "parent": "a1591693fca0430a2715153e00fcdae50a6f11edd1eef7e56a82b94506fa3213",
+        "old_ate": 1.3487235556985768,
+        "new_ate": 0.7645326274270164,
+        "difference": -0.5841909282715604
+      },
+      {
+        "episode": "dev-107734158_175999998-00",
+        "scene": "107734158_175999998",
+        "parent": "699d09c9b85f85d3cbd08c3ff8c1c029d6e04b6de1df6f37f0b5b95492d99828",
+        "old_ate": 1.5072880967942823,
+        "new_ate": 0.5175400621608882,
+        "difference": -0.9897480346333941
+      },
+      {
+        "episode": "dev-107734158_175999998-01",
+        "scene": "107734158_175999998",
+        "parent": "59d2564382f92ff5251661a55b2b67cf996ca1058136016f2c572ee583e3c40b",
+        "old_ate": 1.2144198714331371,
+        "new_ate": 1.0150912355680348,
+        "difference": -0.1993286358651023
+      },
+      {
+        "episode": "dev-107734176_176000019-00",
+        "scene": "107734176_176000019",
+        "parent": "5672ab6aa8da56e92c13b041a2d5c7de778ea9409e600159279e478deb7002dd",
+        "old_ate": 0.7113184116687694,
+        "new_ate": 0.45681994886702115,
+        "difference": -0.25449846280174826
+      },
+      {
+        "episode": "dev-107734176_176000019-01",
+        "scene": "107734176_176000019",
+        "parent": "9f32c363719de92a1e02c98b9e26095d2b00185f3c6b400feb6826872382e7cf",
+        "old_ate": 1.4908214652801375,
+        "new_ate": 1.2344155992145789,
+        "difference": -0.2564058660655586
+      },
+      {
+        "episode": "dev-107734254_176000121-00",
+        "scene": "107734254_176000121",
+        "parent": "e9f3d664719b5a30ff6896720b35f1ba1be9c88803dc1533949884a904c5049b",
+        "old_ate": 6.473649066084727,
+        "new_ate": 1.3218076212267822,
+        "difference": -5.151841444857945
+      },
+      {
+        "episode": "dev-107734254_176000121-01",
+        "scene": "107734254_176000121",
+        "parent": "388bdcbed3b1967002d7bc57326e48aef38c036d9f6ffaaeaf34bf32a3637171",
+        "old_ate": 0.8006317888910298,
+        "new_ate": 0.8616304733335639,
+        "difference": 0.06099868444253409
+      },
+      {
+        "episode": "dev-107734338_176000244-00",
+        "scene": "107734338_176000244",
+        "parent": "cabdd4319436fab1f18efea7b5a5c294f5adbef000454ed61f15873b464b3675",
+        "old_ate": 1.2686338132825108,
+        "new_ate": 0.5502844035368001,
+        "difference": -0.7183494097457107
+      },
+      {
+        "episode": "dev-107734338_176000244-01",
+        "scene": "107734338_176000244",
+        "parent": "460cb571e5f841ae394da2d9f88a04eb0f5ac7394f912cdb3a1c4464a2d09bc5",
+        "old_ate": 0.800572274261508,
+        "new_ate": 0.6397276292586532,
+        "difference": -0.16084464500285478
+      },
+      {
+        "episode": "dev-108736689_177263340-00",
+        "scene": "108736689_177263340",
+        "parent": "56263102ea7add12ef303e8ad8aa0ba6053858cff56f6d914e7608de6e4c843d",
+        "old_ate": 0.5027827067760718,
+        "new_ate": 0.6493817523609721,
+        "difference": 0.14659904558490022
+      },
+      {
+        "episode": "dev-108736689_177263340-01",
+        "scene": "108736689_177263340",
+        "parent": "e82c666e047c6154df490358830b87b9f7f26564acc5e07d605228a6676e4c2d",
+        "old_ate": 0.8200098598449664,
+        "new_ate": 1.3074040117677606,
+        "difference": 0.4873941519227941
+      },
+      {
+        "episode": "dev-108736884_177263634-00",
+        "scene": "108736884_177263634",
+        "parent": "d4ca5e88ebbdce1e715ef01010f079e0ec07ab44648c4f1f95616b96be7a3a48",
+        "old_ate": 1.9983377757721565,
+        "new_ate": 0.6569790991835591,
+        "difference": -1.3413586765885974
+      },
+      {
+        "episode": "dev-108736884_177263634-01",
+        "scene": "108736884_177263634",
+        "parent": "2c39ca26d09847f7b55ddab051ec06f74c0c17f517f9bd5b777bf55b0c30d57d",
+        "old_ate": 0.3972501973294348,
+        "new_ate": 0.7128984494626821,
+        "difference": 0.3156482521332473
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-166-00",
+        "scene": "ProcTHOR-Train-166",
+        "parent": "95f4720fd3b45a3ad92eacd1814ceab7229d8cc8c12e1aebe4f4e91668dfcfc0",
+        "old_ate": 1.2889546777593714,
+        "new_ate": 1.8417622577559858,
+        "difference": 0.5528075799966143
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-166-01",
+        "scene": "ProcTHOR-Train-166",
+        "parent": "3fbe5df0641412c490afa0769e5b14158391d5ca4990d15410c838ac5919a9c8",
+        "old_ate": 0.31045581331114613,
+        "new_ate": 0.6103155606300231,
+        "difference": 0.299859747318877
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-166-02",
+        "scene": "ProcTHOR-Train-166",
+        "parent": "63e660113cedd505c80aa29b3a2ad3dac02c3fc16f34dce6bddb2db84ab8ad8d",
+        "old_ate": 0.6389616832368704,
+        "new_ate": 0.462971451315349,
+        "difference": -0.1759902319215214
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-166-03",
+        "scene": "ProcTHOR-Train-166",
+        "parent": "92129bf0b171524860c2cd3cd3e1952c91a8c0cdfad37a64efdf6e66b7e2d6a4",
+        "old_ate": 0.877484908024899,
+        "new_ate": 1.0502062657867879,
+        "difference": 0.1727213577618889
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-166-04",
+        "scene": "ProcTHOR-Train-166",
+        "parent": "e2a3a0bbb09935d3b0103326d98601a3db57a2f4b155860461b7e18abeb0f2c5",
+        "old_ate": 0.816270110084781,
+        "new_ate": 0.461082044206344,
+        "difference": -0.355188065878437
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-167-00",
+        "scene": "ProcTHOR-Train-167",
+        "parent": "b5525c90ada593fa25d39c4df1f16b5e8db3470c0088aa414df26c230f055b67",
+        "old_ate": 1.483748209685399,
+        "new_ate": 0.6259030445685593,
+        "difference": -0.8578451651168398
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-167-01",
+        "scene": "ProcTHOR-Train-167",
+        "parent": "da4e5066cd7835a6fd0e260e1ca68e226f6388fd145dfa15bc808f27a109bfc7",
+        "old_ate": 7.508644684606693,
+        "new_ate": 2.269573126598932,
+        "difference": -5.239071558007762
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-167-02",
+        "scene": "ProcTHOR-Train-167",
+        "parent": "02c79e27703812f567a41dcf2ac2a4ad5c17bd20e54f788f976ac66a2bdbf13f",
+        "old_ate": 1.0041672026900998,
+        "new_ate": 0.7785631231974861,
+        "difference": -0.22560407949261374
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-167-03",
+        "scene": "ProcTHOR-Train-167",
+        "parent": "be5014f6c2e03f09f0777838e14e5f883ee9e5bf72a04b23243a8709ae92280f",
+        "old_ate": 1.062428957924711,
+        "new_ate": 0.8158274528957818,
+        "difference": -0.2466015050289292
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-167-04",
+        "scene": "ProcTHOR-Train-167",
+        "parent": "f892531df8c21c5c8a59978499c4df1e5fcd8a8813e82ff2643b9a32ef1f8161",
+        "old_ate": 2.0926728794602525,
+        "new_ate": 1.5255857766157965,
+        "difference": -0.567087102844456
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-168-00",
+        "scene": "ProcTHOR-Train-168",
+        "parent": "46af1a92e2f490f9cf49caaa1632865fed8f92da81e92309842235c1c7042983",
+        "old_ate": 2.2234310212875363,
+        "new_ate": 1.009928559553091,
+        "difference": -1.2135024617344454
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-168-01",
+        "scene": "ProcTHOR-Train-168",
+        "parent": "f2cbccc714671c97287d78355f4f9e8391ada4fc5a604c8854a099537f343f04",
+        "old_ate": 2.6252719669200513,
+        "new_ate": 1.3574671087349772,
+        "difference": -1.267804858185074
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-168-02",
+        "scene": "ProcTHOR-Train-168",
+        "parent": "9c3a4073887ce2f6f61c89969ab73e2bed8ebd689ce31da1f17caa1c33655f47",
+        "old_ate": 1.6602935326547656,
+        "new_ate": 0.5484143160563796,
+        "difference": -1.111879216598386
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-168-03",
+        "scene": "ProcTHOR-Train-168",
+        "parent": "407582d4dcc63bdfffa8fc221072b4cd6d89c0e957b09016a1907d4a7b5bc88e",
+        "old_ate": 2.514464928769521,
+        "new_ate": 1.6209407765180097,
+        "difference": -0.8935241522515114
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-168-04",
+        "scene": "ProcTHOR-Train-168",
+        "parent": "568c7330628d5d2e889a237c49647f3b2e7d13f5ade705828fc610c3aad99c54",
+        "old_ate": 7.998278746293331,
+        "new_ate": 1.937677163839359,
+        "difference": -6.060601582453972
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-169-00",
+        "scene": "ProcTHOR-Train-169",
+        "parent": "a5b45399b7720cb8e36d9dc8994fd3414d959f9b9bdad2777d0dbd1f0b6c937c",
+        "old_ate": 1.1028485362200349,
+        "new_ate": 0.9557108380001129,
+        "difference": -0.14713769821992195
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-169-01",
+        "scene": "ProcTHOR-Train-169",
+        "parent": "ab3329e0f767a6dbdfd5ecb2d0e741981a5599fadf24d35c5718426a84661b18",
+        "old_ate": 1.4786828564858492,
+        "new_ate": 0.832345088024967,
+        "difference": -0.6463377684608822
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-169-02",
+        "scene": "ProcTHOR-Train-169",
+        "parent": "92632cd45e7a2301f5e6eba7a4b053023eac1f55585d0fce153ee303b6ddc7bd",
+        "old_ate": 4.1391732576838685,
+        "new_ate": 1.0724061471186621,
+        "difference": -3.0667671105652063
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-169-03",
+        "scene": "ProcTHOR-Train-169",
+        "parent": "9841d3abd2d8274f03b336a772a1f6ce67d9218400f120bc0473d62320b4b37c",
+        "old_ate": 0.8209614010409398,
+        "new_ate": 0.8229690667757374,
+        "difference": 0.0020076657347976035
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-169-04",
+        "scene": "ProcTHOR-Train-169",
+        "parent": "86141f883555f9a395b8df96146a91db7240a92790705d566fc887b7a04028f3",
+        "old_ate": 3.8316620743394556,
+        "new_ate": 2.2146399836693034,
+        "difference": -1.6170220906701522
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-170-00",
+        "scene": "ProcTHOR-Train-170",
+        "parent": "1b3e5725698289ef173a4180af527596fa90b90bbdbd115cf99a7a09bab4c234",
+        "old_ate": 1.3304693710375548,
+        "new_ate": 0.4487892799337353,
+        "difference": -0.8816800911038195
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-170-01",
+        "scene": "ProcTHOR-Train-170",
+        "parent": "c9198763de9f3c7ab100755c8cb3e2fc74710aa152e97d2cde6165c54c5d2765",
+        "old_ate": 0.7302560712872896,
+        "new_ate": 0.363908138302542,
+        "difference": -0.36634793298474766
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-170-02",
+        "scene": "ProcTHOR-Train-170",
+        "parent": "a0bd711b196522672dc26651a8bb40f376f2ac708cd342acabde3f0564fd8200",
+        "old_ate": 1.0616381123746288,
+        "new_ate": 1.0091194204557528,
+        "difference": -0.05251869191887604
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-170-03",
+        "scene": "ProcTHOR-Train-170",
+        "parent": "b40cfce41e89b92594db432b24acdab960c97e0a39282c6a87f73a2fe1c3ccd9",
+        "old_ate": 0.9476196184496203,
+        "new_ate": 0.8461609156943404,
+        "difference": -0.1014587027552799
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-170-04",
+        "scene": "ProcTHOR-Train-170",
+        "parent": "6a4e1cdca482564904bf4ecf78e3e4f62a6946765b639dffe4e9fcaff32bef49",
+        "old_ate": 1.0923366449034522,
+        "new_ate": 0.5992357029075251,
+        "difference": -0.493100941995927
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-171-00",
+        "scene": "ProcTHOR-Train-171",
+        "parent": "c0edfb3cf8e42e2492ac741d108114af17a4d28fe57a2aceb449c527c3877485",
+        "old_ate": 1.0726851009186704,
+        "new_ate": 0.5210998359522419,
+        "difference": -0.5515852649664286
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-171-01",
+        "scene": "ProcTHOR-Train-171",
+        "parent": "afcec49b091fb26ea51a9f19493cfdce0234a61d3c0e99eed3e461d1b2663a7b",
+        "old_ate": 3.2486709146626596,
+        "new_ate": 1.2016873462192181,
+        "difference": -2.0469835684434416
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-171-02",
+        "scene": "ProcTHOR-Train-171",
+        "parent": "ba3da960f9eaf5db4b6c224cc26919a02cedf99033dd38ad2bb6d14ef6370b89",
+        "old_ate": 0.8283824183614107,
+        "new_ate": 0.8102077003541329,
+        "difference": -0.018174718007277768
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-171-03",
+        "scene": "ProcTHOR-Train-171",
+        "parent": "498dd39754e9860acf1eaa1c8fdc1bbefce84ec73ea07733c8f67f964fe1e45c",
+        "old_ate": 0.4824907041632039,
+        "new_ate": 0.48128973150991855,
+        "difference": -0.001200972653285337
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-171-04",
+        "scene": "ProcTHOR-Train-171",
+        "parent": "d34c7400d7bd282c968444172fae4c10cb3753e55d08b9d44d4a52d46beaf316",
+        "old_ate": 4.058883349225663,
+        "new_ate": 1.6613047731618307,
+        "difference": -2.3975785760638324
+      },
+      {
+        "episode": "dev-102816114-00-crop5",
+        "scene": "102816114",
+        "parent": "7989c60b7a790e4038714cc85164565450c7fff7c5c0d99982b17aff95505ce3",
+        "old_ate": 0.4955578414244735,
+        "new_ate": 0.6302796388156031,
+        "difference": 0.1347217973911296
+      },
+      {
+        "episode": "dev-102816114-01-crop5",
+        "scene": "102816114",
+        "parent": "d6c95ed65b3cfa3e422e44cce18ea5c3c6a7d1ac8f3bbd0f1d06405fefd0594e",
+        "old_ate": 0.604047536856524,
+        "new_ate": 0.723476779095951,
+        "difference": 0.11942924223942697
+      },
+      {
+        "episode": "dev-103997586_171030666-00-crop5",
+        "scene": "103997586_171030666",
+        "parent": "07f0823becaf09cf1db0342e6edd560c73a30203e2d1f7a74b0b31d2a653986f",
+        "old_ate": 0.9929149996540587,
+        "new_ate": 0.7854979362386068,
+        "difference": -0.20741706341545196
+      },
+      {
+        "episode": "dev-103997586_171030666-01-crop5",
+        "scene": "103997586_171030666",
+        "parent": "1a68d92c31010fd76de25ff38a1e60df5c52b59c575bbb8447afc6fcc7bd916e",
+        "old_ate": 2.647655740177113,
+        "new_ate": 0.6180637241500503,
+        "difference": -2.0295920160270624
+      },
+      {
+        "episode": "dev-104348361_171513414-00-crop5",
+        "scene": "104348361_171513414",
+        "parent": "a4ead067681fdf2d63e3061f8266ec56ae5a95e6a6a7f7148380da18e40e4232",
+        "old_ate": 1.6052361971097306,
+        "new_ate": 1.159865836576312,
+        "difference": -0.4453703605334187
+      },
+      {
+        "episode": "dev-104348361_171513414-01-crop5",
+        "scene": "104348361_171513414",
+        "parent": "a20e801428a20a8e7ae193707615b7f7ba9a31aa6ed5187d3f89ed83d2c04ef8",
+        "old_ate": 1.989075342038989,
+        "new_ate": 2.0804886294849934,
+        "difference": 0.0914132874460043
+      },
+      {
+        "episode": "dev-104862501_172226556-00-crop5",
+        "scene": "104862501_172226556",
+        "parent": "66792f01635f71c9cf9ab5c1a3114439af095b3117f7df8e871e75894dca0634",
+        "old_ate": 2.3005048709457796,
+        "new_ate": 0.7927632940417125,
+        "difference": -1.507741576904067
+      },
+      {
+        "episode": "dev-104862501_172226556-01-crop5",
+        "scene": "104862501_172226556",
+        "parent": "b3b2bb43d8035817ccfa63a5bf40bf71cb192a7db41964d976ea8563a3e440a6",
+        "old_ate": 0.6849522016832001,
+        "new_ate": 0.8810023240234114,
+        "difference": 0.19605012234021124
+      },
+      {
+        "episode": "dev-105515184_173104128-00-crop5",
+        "scene": "105515184_173104128",
+        "parent": "24f09ab27fc06568b1890582ac685d5ce383bd0c93f91470c3a2a5abfb6f6afe",
+        "old_ate": 0.6568993541996293,
+        "new_ate": 0.5427560911195014,
+        "difference": -0.1141432630801279
+      },
+      {
+        "episode": "dev-105515184_173104128-01-crop5",
+        "scene": "105515184_173104128",
+        "parent": "50a00c116fcbc26a55927c2102da63a1b134c432378f3c80116110960972cc27",
+        "old_ate": 0.6689607016750769,
+        "new_ate": 0.8350406791562862,
+        "difference": 0.16607997748120928
+      },
+      {
+        "episode": "dev-106366104_174226329-00-crop5",
+        "scene": "106366104_174226329",
+        "parent": "217fc28fe9a8520a049fff9566bcdd184ad5c9e1adff75c6cace1ee92570402d",
+        "old_ate": 1.6986660939010747,
+        "new_ate": 0.7031592496433983,
+        "difference": -0.9955068442576764
+      },
+      {
+        "episode": "dev-106366104_174226329-01-crop5",
+        "scene": "106366104_174226329",
+        "parent": "303680194cc0b654435358d25ce38d2363fb84d8a739a0dc2f72d4b07a096898",
+        "old_ate": 7.586030833772264,
+        "new_ate": 3.0724912885498084,
+        "difference": -4.513539545222455
+      },
+      {
+        "episode": "dev-106366410_174226806-00-crop5",
+        "scene": "106366410_174226806",
+        "parent": "2c45d86473eac7dfdfc9051f19c60ffa8242e054372f3cca6b1e20933fc62d93",
+        "old_ate": 1.7278233697024392,
+        "new_ate": 0.99929535790213,
+        "difference": -0.7285280118003092
+      },
+      {
+        "episode": "dev-106366410_174226806-01-crop5",
+        "scene": "106366410_174226806",
+        "parent": "a14d9bed58e5e6ee2bba4d9561268b6873c69b35a21c497e34b98489c2fd716e",
+        "old_ate": 2.077130265431821,
+        "new_ate": 0.5470710656722089,
+        "difference": -1.530059199759612
+      },
+      {
+        "episode": "dev-106878858_174886965-00-crop5",
+        "scene": "106878858_174886965",
+        "parent": "bca46f5f5eac59220c15b7033cdb64e4162ac6617a2f3443fc2380287e96af64",
+        "old_ate": 3.7836855177565316,
+        "new_ate": 1.7169574629074522,
+        "difference": -2.0667280548490794
+      },
+      {
+        "episode": "dev-106878858_174886965-01-crop5",
+        "scene": "106878858_174886965",
+        "parent": "d1f3815444dfb28d209f4eea8f389173c0bd1dab2141d8fba53459c6583a6829",
+        "old_ate": 1.6694380474926855,
+        "new_ate": 0.7651608504285927,
+        "difference": -0.9042771970640928
+      },
+      {
+        "episode": "dev-107734056_175999839-00-crop5",
+        "scene": "107734056_175999839",
+        "parent": "4b0b6c1b3d94c349d87b7b3f8f638eaffc86c244bc1b6e7329d11b72ceca31f3",
+        "old_ate": 2.409610917938723,
+        "new_ate": 1.295592726827795,
+        "difference": -1.1140181911109281
+      },
+      {
+        "episode": "dev-107734056_175999839-01-crop5",
+        "scene": "107734056_175999839",
+        "parent": "a1591693fca0430a2715153e00fcdae50a6f11edd1eef7e56a82b94506fa3213",
+        "old_ate": 1.6218782249646708,
+        "new_ate": 1.2852438658432124,
+        "difference": -0.33663435912145845
+      },
+      {
+        "episode": "dev-107734158_175999998-00-crop5",
+        "scene": "107734158_175999998",
+        "parent": "699d09c9b85f85d3cbd08c3ff8c1c029d6e04b6de1df6f37f0b5b95492d99828",
+        "old_ate": 0.7410308205422529,
+        "new_ate": 0.4615458830223926,
+        "difference": -0.2794849375198603
+      },
+      {
+        "episode": "dev-107734158_175999998-01-crop5",
+        "scene": "107734158_175999998",
+        "parent": "59d2564382f92ff5251661a55b2b67cf996ca1058136016f2c572ee583e3c40b",
+        "old_ate": 1.1455240471333643,
+        "new_ate": 0.9692909274599626,
+        "difference": -0.17623311967340172
+      },
+      {
+        "episode": "dev-107734176_176000019-00-crop5",
+        "scene": "107734176_176000019",
+        "parent": "5672ab6aa8da56e92c13b041a2d5c7de778ea9409e600159279e478deb7002dd",
+        "old_ate": 1.5414173599869354,
+        "new_ate": 0.47272964836692966,
+        "difference": -1.0686877116200058
+      },
+      {
+        "episode": "dev-107734176_176000019-01-crop5",
+        "scene": "107734176_176000019",
+        "parent": "9f32c363719de92a1e02c98b9e26095d2b00185f3c6b400feb6826872382e7cf",
+        "old_ate": 1.4357060778416944,
+        "new_ate": 0.9399149802456861,
+        "difference": -0.49579109759600826
+      },
+      {
+        "episode": "dev-107734254_176000121-00-crop5",
+        "scene": "107734254_176000121",
+        "parent": "e9f3d664719b5a30ff6896720b35f1ba1be9c88803dc1533949884a904c5049b",
+        "old_ate": 6.739021737254325,
+        "new_ate": 1.3642957470622163,
+        "difference": -5.374725990192109
+      },
+      {
+        "episode": "dev-107734254_176000121-01-crop5",
+        "scene": "107734254_176000121",
+        "parent": "388bdcbed3b1967002d7bc57326e48aef38c036d9f6ffaaeaf34bf32a3637171",
+        "old_ate": 0.35184440737602074,
+        "new_ate": 0.6377645143821408,
+        "difference": 0.28592010700612003
+      },
+      {
+        "episode": "dev-107734338_176000244-00-crop5",
+        "scene": "107734338_176000244",
+        "parent": "cabdd4319436fab1f18efea7b5a5c294f5adbef000454ed61f15873b464b3675",
+        "old_ate": 1.3367390391124947,
+        "new_ate": 0.489535515839203,
+        "difference": -0.8472035232732917
+      },
+      {
+        "episode": "dev-107734338_176000244-01-crop5",
+        "scene": "107734338_176000244",
+        "parent": "460cb571e5f841ae394da2d9f88a04eb0f5ac7394f912cdb3a1c4464a2d09bc5",
+        "old_ate": 1.1649316090772899,
+        "new_ate": 0.5869751444755363,
+        "difference": -0.5779564646017535
+      },
+      {
+        "episode": "dev-108736689_177263340-00-crop5",
+        "scene": "108736689_177263340",
+        "parent": "56263102ea7add12ef303e8ad8aa0ba6053858cff56f6d914e7608de6e4c843d",
+        "old_ate": 0.35759146977774614,
+        "new_ate": 0.5824191736855725,
+        "difference": 0.22482770390782636
+      },
+      {
+        "episode": "dev-108736689_177263340-01-crop5",
+        "scene": "108736689_177263340",
+        "parent": "e82c666e047c6154df490358830b87b9f7f26564acc5e07d605228a6676e4c2d",
+        "old_ate": 0.6539749522232156,
+        "new_ate": 1.3197060313449998,
+        "difference": 0.6657310791217842
+      },
+      {
+        "episode": "dev-108736884_177263634-00-crop5",
+        "scene": "108736884_177263634",
+        "parent": "d4ca5e88ebbdce1e715ef01010f079e0ec07ab44648c4f1f95616b96be7a3a48",
+        "old_ate": 3.2109018786054158,
+        "new_ate": 1.3138897333270245,
+        "difference": -1.8970121452783912
+      },
+      {
+        "episode": "dev-108736884_177263634-01-crop5",
+        "scene": "108736884_177263634",
+        "parent": "2c39ca26d09847f7b55ddab051ec06f74c0c17f517f9bd5b777bf55b0c30d57d",
+        "old_ate": 1.426738465564982,
+        "new_ate": 0.6256011291942575,
+        "difference": -0.8011373363707245
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-166-00-crop5",
+        "scene": "ProcTHOR-Train-166",
+        "parent": "95f4720fd3b45a3ad92eacd1814ceab7229d8cc8c12e1aebe4f4e91668dfcfc0",
+        "old_ate": 1.425411665726653,
+        "new_ate": 2.2674816624059595,
+        "difference": 0.8420699966793066
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-166-01-crop5",
+        "scene": "ProcTHOR-Train-166",
+        "parent": "3fbe5df0641412c490afa0769e5b14158391d5ca4990d15410c838ac5919a9c8",
+        "old_ate": 0.2840594359829626,
+        "new_ate": 0.5376528022338499,
+        "difference": 0.2535933662508873
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-166-02-crop5",
+        "scene": "ProcTHOR-Train-166",
+        "parent": "63e660113cedd505c80aa29b3a2ad3dac02c3fc16f34dce6bddb2db84ab8ad8d",
+        "old_ate": 0.7884373648011112,
+        "new_ate": 0.6192126406464151,
+        "difference": -0.16922472415469603
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-166-03-crop5",
+        "scene": "ProcTHOR-Train-166",
+        "parent": "92129bf0b171524860c2cd3cd3e1952c91a8c0cdfad37a64efdf6e66b7e2d6a4",
+        "old_ate": 0.6758557157282891,
+        "new_ate": 1.3053716466208338,
+        "difference": 0.6295159308925448
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-166-04-crop5",
+        "scene": "ProcTHOR-Train-166",
+        "parent": "e2a3a0bbb09935d3b0103326d98601a3db57a2f4b155860461b7e18abeb0f2c5",
+        "old_ate": 1.2136859398076147,
+        "new_ate": 0.7201397069370048,
+        "difference": -0.49354623287060995
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-167-00-crop5",
+        "scene": "ProcTHOR-Train-167",
+        "parent": "b5525c90ada593fa25d39c4df1f16b5e8db3470c0088aa414df26c230f055b67",
+        "old_ate": 1.6311995187455834,
+        "new_ate": 0.975481789267419,
+        "difference": -0.6557177294781644
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-167-01-crop5",
+        "scene": "ProcTHOR-Train-167",
+        "parent": "da4e5066cd7835a6fd0e260e1ca68e226f6388fd145dfa15bc808f27a109bfc7",
+        "old_ate": 3.057201303032671,
+        "new_ate": 2.4345865193053102,
+        "difference": -0.6226147837273608
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-167-02-crop5",
+        "scene": "ProcTHOR-Train-167",
+        "parent": "02c79e27703812f567a41dcf2ac2a4ad5c17bd20e54f788f976ac66a2bdbf13f",
+        "old_ate": 1.3119513308925386,
+        "new_ate": 1.019589451995846,
+        "difference": -0.29236187889669263
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-167-03-crop5",
+        "scene": "ProcTHOR-Train-167",
+        "parent": "be5014f6c2e03f09f0777838e14e5f883ee9e5bf72a04b23243a8709ae92280f",
+        "old_ate": 1.3373125890668693,
+        "new_ate": 1.068295813728509,
+        "difference": -0.2690167753383603
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-167-04-crop5",
+        "scene": "ProcTHOR-Train-167",
+        "parent": "f892531df8c21c5c8a59978499c4df1e5fcd8a8813e82ff2643b9a32ef1f8161",
+        "old_ate": 1.956868430985793,
+        "new_ate": 0.7708987143348621,
+        "difference": -1.185969716650931
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-168-00-crop5",
+        "scene": "ProcTHOR-Train-168",
+        "parent": "46af1a92e2f490f9cf49caaa1632865fed8f92da81e92309842235c1c7042983",
+        "old_ate": 2.5135215409208587,
+        "new_ate": 1.1259480096069012,
+        "difference": -1.3875735313139574
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-168-01-crop5",
+        "scene": "ProcTHOR-Train-168",
+        "parent": "f2cbccc714671c97287d78355f4f9e8391ada4fc5a604c8854a099537f343f04",
+        "old_ate": 2.8845516418116017,
+        "new_ate": 1.3663206600526532,
+        "difference": -1.5182309817589486
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-168-02-crop5",
+        "scene": "ProcTHOR-Train-168",
+        "parent": "9c3a4073887ce2f6f61c89969ab73e2bed8ebd689ce31da1f17caa1c33655f47",
+        "old_ate": 1.2886936531452426,
+        "new_ate": 0.7394057586396522,
+        "difference": -0.5492878945055905
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-168-03-crop5",
+        "scene": "ProcTHOR-Train-168",
+        "parent": "407582d4dcc63bdfffa8fc221072b4cd6d89c0e957b09016a1907d4a7b5bc88e",
+        "old_ate": 2.4438426141727985,
+        "new_ate": 1.2183817134767485,
+        "difference": -1.22546090069605
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-168-04-crop5",
+        "scene": "ProcTHOR-Train-168",
+        "parent": "568c7330628d5d2e889a237c49647f3b2e7d13f5ade705828fc610c3aad99c54",
+        "old_ate": 4.515036063610049,
+        "new_ate": 2.0446398368357794,
+        "difference": -2.4703962267742696
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-169-00-crop5",
+        "scene": "ProcTHOR-Train-169",
+        "parent": "a5b45399b7720cb8e36d9dc8994fd3414d959f9b9bdad2777d0dbd1f0b6c937c",
+        "old_ate": 0.8419542025244231,
+        "new_ate": 0.7292875054636323,
+        "difference": -0.1126666970607908
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-169-01-crop5",
+        "scene": "ProcTHOR-Train-169",
+        "parent": "ab3329e0f767a6dbdfd5ecb2d0e741981a5599fadf24d35c5718426a84661b18",
+        "old_ate": 1.1319612323730832,
+        "new_ate": 0.5990378612630822,
+        "difference": -0.532923371110001
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-169-02-crop5",
+        "scene": "ProcTHOR-Train-169",
+        "parent": "92632cd45e7a2301f5e6eba7a4b053023eac1f55585d0fce153ee303b6ddc7bd",
+        "old_ate": 4.213012551340922,
+        "new_ate": 0.8881639274616332,
+        "difference": -3.324848623879289
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-169-03-crop5",
+        "scene": "ProcTHOR-Train-169",
+        "parent": "9841d3abd2d8274f03b336a772a1f6ce67d9218400f120bc0473d62320b4b37c",
+        "old_ate": 0.8452664508438015,
+        "new_ate": 0.7185952502203583,
+        "difference": -0.12667120062344317
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-169-04-crop5",
+        "scene": "ProcTHOR-Train-169",
+        "parent": "86141f883555f9a395b8df96146a91db7240a92790705d566fc887b7a04028f3",
+        "old_ate": 4.31724325647306,
+        "new_ate": 2.1083334637434628,
+        "difference": -2.2089097927295973
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-170-00-crop5",
+        "scene": "ProcTHOR-Train-170",
+        "parent": "1b3e5725698289ef173a4180af527596fa90b90bbdbd115cf99a7a09bab4c234",
+        "old_ate": 1.2444613662425985,
+        "new_ate": 0.8161173798519332,
+        "difference": -0.4283439863906653
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-170-01-crop5",
+        "scene": "ProcTHOR-Train-170",
+        "parent": "c9198763de9f3c7ab100755c8cb3e2fc74710aa152e97d2cde6165c54c5d2765",
+        "old_ate": 0.7604621251485971,
+        "new_ate": 0.42911045514137863,
+        "difference": -0.3313516700072185
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-170-02-crop5",
+        "scene": "ProcTHOR-Train-170",
+        "parent": "a0bd711b196522672dc26651a8bb40f376f2ac708cd342acabde3f0564fd8200",
+        "old_ate": 1.1372157355295236,
+        "new_ate": 0.5786651525203234,
+        "difference": -0.5585505830092002
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-170-03-crop5",
+        "scene": "ProcTHOR-Train-170",
+        "parent": "b40cfce41e89b92594db432b24acdab960c97e0a39282c6a87f73a2fe1c3ccd9",
+        "old_ate": 1.4531859110304042,
+        "new_ate": 1.2841390908886021,
+        "difference": -0.16904682014180206
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-170-04-crop5",
+        "scene": "ProcTHOR-Train-170",
+        "parent": "6a4e1cdca482564904bf4ecf78e3e4f62a6946765b639dffe4e9fcaff32bef49",
+        "old_ate": 1.7327632813756288,
+        "new_ate": 0.6560856880380893,
+        "difference": -1.0766775933375397
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-171-00-crop5",
+        "scene": "ProcTHOR-Train-171",
+        "parent": "c0edfb3cf8e42e2492ac741d108114af17a4d28fe57a2aceb449c527c3877485",
+        "old_ate": 1.670101135883612,
+        "new_ate": 0.5908678288553343,
+        "difference": -1.0792333070282778
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-171-01-crop5",
+        "scene": "ProcTHOR-Train-171",
+        "parent": "afcec49b091fb26ea51a9f19493cfdce0234a61d3c0e99eed3e461d1b2663a7b",
+        "old_ate": 3.920886092773929,
+        "new_ate": 1.3070192855680278,
+        "difference": -2.613866807205901
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-171-02-crop5",
+        "scene": "ProcTHOR-Train-171",
+        "parent": "ba3da960f9eaf5db4b6c224cc26919a02cedf99033dd38ad2bb6d14ef6370b89",
+        "old_ate": 1.3101575292838092,
+        "new_ate": 0.9223162226150674,
+        "difference": -0.38784130666874184
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-171-03-crop5",
+        "scene": "ProcTHOR-Train-171",
+        "parent": "498dd39754e9860acf1eaa1c8fdc1bbefce84ec73ea07733c8f67f964fe1e45c",
+        "old_ate": 1.1379222348621847,
+        "new_ate": 0.5370616934504502,
+        "difference": -0.6008605414117345
+      },
+      {
+        "episode": "dev-ProcTHOR-Train-171-04-crop5",
+        "scene": "ProcTHOR-Train-171",
+        "parent": "d34c7400d7bd282c968444172fae4c10cb3753e55d08b9d44d4a52d46beaf316",
+        "old_ate": 4.23905007866274,
+        "new_ate": 1.6882666967731392,
+        "difference": -2.550783381889601
+      }
+    ],
+    "interpretation": "matched artifact benchmark, not an isolated component/training ablation"
+  }
+}

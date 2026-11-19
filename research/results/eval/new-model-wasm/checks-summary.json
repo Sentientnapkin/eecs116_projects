@@ -1,0 +1,107 @@
+{
+  "abi": {
+    "217": "passed5steps",
+    "218": "passed5steps",
+    "219": "passed5steps"
+  },
+  "python_stream_matches_training_batch": {
+    "frames": 1200,
+    "sensor_only": true,
+    "checks": {
+      "images": true,
+      "imu": true,
+      "R": true
+    },
+    "max": {
+      "images": 0.0,
+      "imu": 0.0,
+      "R": 0.0
+    }
+  },
+  "causality": {
+    "wasm_sha256": "8b05b203adc1f045b67df12399ee6b9e0caf28015b7d31678f5378968e2d60cf",
+    "frames": 600,
+    "emitted_pose_and_twist_prefix_exact": true,
+    "max_component_delta": 0.0,
+    "first_camera_pose_exact": true,
+    "first_camera_timestamp": 0.045,
+    "future_measurements_supplied": false
+  },
+  "strict_parity": {
+    "opencv412": {
+      "frames": 1200,
+      "python_opencv": "5.1.0",
+      "model_run": "/data/backups/rganapa/Sebastian/eecs116_projects/.codex-worktrees/training-finish/research/results/loop/RA-N2-kfgrid-x3-codexfinish",
+      "python_cpp_position_max_m": 1.0512417520185902,
+      "cpp_wasm_position_max_m": 0.023863024742433698,
+      "python_cpp_fixed_input_velocity_max": 4.76837158203125e-07,
+      "python_cpp_imu_max": 0.016622021794319153,
+      "python_cpp_R_max": 0.21090474723595465,
+      "cpp_wasm_R_max": 0.0075900367853329875,
+      "python_cpp_pixels_max": 255,
+      "peak_whole_guest_step_fuel": 1146702690,
+      "first_camera_pose": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "opencv510_initial": {
+      "frames": 1200,
+      "python_opencv": "5.1.0",
+      "model_run": "/data/backups/rganapa/Sebastian/eecs116_projects/.codex-worktrees/training-finish/research/results/loop/RA-N2-kfgrid-x3-codexfinish",
+      "python_cpp_position_max_m": 1.0520420459140631,
+      "cpp_wasm_position_max_m": 0.33883558506806705,
+      "python_cpp_fixed_input_velocity_max": 4.76837158203125e-07,
+      "python_cpp_imu_max": 0.015939898788928986,
+      "python_cpp_R_max": 0.20534646653209246,
+      "cpp_wasm_R_max": 0.05288200433604036,
+      "python_cpp_pixels_max": 255,
+      "peak_whole_guest_step_fuel": 1339437698,
+      "first_camera_pose": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "opencv510_isolated": {
+      "frames": 1200,
+      "python_opencv": "5.1.0",
+      "model_run": "/data/backups/rganapa/Sebastian/eecs116_projects/.codex-worktrees/training-finish/research/results/loop/RA-N2-kfgrid-x3-codexfinish",
+      "python_cpp_position_max_m": 0.01070654546128228,
+      "cpp_wasm_position_max_m": 0.42225525851780465,
+      "python_cpp_fixed_input_velocity_max": 4.76837158203125e-07,
+      "python_cpp_imu_max": 0.0011307001113891602,
+      "python_cpp_R_max": 0.004725770874226584,
+      "cpp_wasm_R_max": 0.17240172933506412,
+      "python_cpp_pixels_max": 255,
+      "peak_whole_guest_step_fuel": 1322621161,
+      "first_camera_pose": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    }
+  },
+  "synthetic_contracts": {
+    "passed": [
+      "static gyro-bias startup and reset",
+      "rotating startup and reset"
+    ],
+    "strict_visual_state_parity": "FAILED at2e-5 absolute tolerance; largest observed first failure4.44336653e-5",
+    "test_log": "guest-contracts-final.log.txt"
+  },
+  "qualified_submission": false
+}
