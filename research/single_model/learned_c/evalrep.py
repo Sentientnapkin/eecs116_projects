@@ -24,10 +24,10 @@ def nudge(text, k):
 def run(name, src, sets, reps, workers):
     for k in range(reps):
         nm = f'{name}_r{k}'
-        d = RV.OUT / nm
+        d = RV.OUT / ('lc_' + nm)
         d.mkdir(parents=True, exist_ok=True)
         (d / 'in.c').write_text(nudge(Path(src).read_text(), k))
-        wasm = RV.build(d / 'in.c', RV.CMAKE_DEFAULT, '', nm)
+        wasm = RV.build(d / 'in.c', RV.CMAKE_DEFAULT, '', 'lc_' + nm)
         for st in sets:
             pool = RV.EPISODES if st == 's171' else F3
             sc = RV.run_guest_fast(wasm, pool, d / ('eval' if st == 's171' else 'eval_f3'), workers=workers, name=nm)
