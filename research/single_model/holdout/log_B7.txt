@@ -1,0 +1,14 @@
+240 episodes, 0 cached, workers=24 (no video)
+20/240 finished, 11.4s
+40/240 finished, 25.3s
+60/240 finished, 40.2s
+80/240 finished, 45.9s
+100/240 finished, 53.7s
+120/240 finished, 66.9s
+140/240 finished, 73.9s
+160/240 finished, 86.0s
+180/240 finished, 96.7s
+200/240 finished, 103.7s
+220/240 finished, 112.4s
+240/240 finished, 123.8s
+B7 n 240 mean 0.8817333167749485

@@ -1,0 +1,165 @@
+711 episodes, 0 cached, workers=24 (no video)
+711 episodes, 0 cached, workers=24 (no video)
+20/711 finished, 24.8s
+20/711 finished, 24.8s
+40/711 finished, 45.7s
+40/711 finished, 45.7s
+60/711 finished, 65.7s
+60/711 finished, 66.1s
+80/711 finished, 67.2s
+80/711 finished, 67.2s
+100/711 finished, 85.6s
+100/711 finished, 85.7s
+120/711 finished, 101.2s
+120/711 finished, 101.1s
+140/711 finished, 111.6s
+140/711 finished, 111.7s
+160/711 finished, 117.1s
+160/711 finished, 117.2s
+180/711 finished, 133.9s
+180/711 finished, 134.0s
+200/711 finished, 149.6s
+200/711 finished, 149.7s
+220/711 finished, 163.7s
+220/711 finished, 163.6s
+240/711 finished, 181.5s
+240/711 finished, 181.9s
+260/711 finished, 202.7s
+260/711 finished, 202.8s
+280/711 finished, 224.8s
+280/711 finished, 224.8s
+300/711 finished, 226.0s
+300/711 finished, 246.3s
+320/711 finished, 247.9s
+320/711 finished, 248.4s
+340/711 finished, 266.5s
+340/711 finished, 266.9s
+360/711 finished, 287.3s
+360/711 finished, 287.7s
+380/711 finished, 307.5s
+380/711 finished, 307.7s
+400/711 finished, 309.8s
+400/711 finished, 309.8s
+420/711 finished, 330.1s
+420/711 finished, 330.2s
+440/711 finished, 349.1s
+440/711 finished, 349.1s
+460/711 finished, 373.5s
+460/711 finished, 373.6s
+480/711 finished, 375.3s
+480/711 finished, 375.3s
+500/711 finished, 403.2s
+500/711 finished, 403.3s
+520/711 finished, 431.7s
+520/711 finished, 431.7s
+540/711 finished, 453.6s
+540/711 finished, 453.8s
+560/711 finished, 471.4s
+560/711 finished, 471.7s
+580/711 finished, 495.9s
+580/711 finished, 496.0s
+600/711 finished, 497.9s
+600/711 finished, 498.0s
+620/711 finished, 519.9s
+620/711 finished, 519.8s
+640/711 finished, 541.1s
+640/711 finished, 541.2s
+660/711 finished, 563.9s
+660/711 finished, 564.1s
+680/711 finished, 587.1s
+680/711 finished, 587.4s
+700/711 finished, 590.2s
+700/711 finished, 590.2s
+711/711 finished, 604.4s
+rep 1 done (['ACCEL_NOISE=0.2828', 'KLT_MIN_EIG=2.01']) 608s
+711/711 finished, 606.0s
+rep 2 done (['ACCEL_NOISE=0.2772', 'KLT_MIN_EIG=1.99']) 609s
+711 episodes, 0 cached, workers=24 (no video)
+711 episodes, 0 cached, workers=24 (no video)
+20/711 finished, 25.9s
+20/711 finished, 24.0s
+40/711 finished, 51.0s
+40/711 finished, 49.1s
+60/711 finished, 72.7s
+60/711 finished, 71.9s
+80/711 finished, 75.3s
+80/711 finished, 75.6s
+100/711 finished, 93.0s
+100/711 finished, 95.0s
+120/711 finished, 114.1s
+120/711 finished, 112.2s
+140/711 finished, 130.2s
+140/711 finished, 128.5s
+160/711 finished, 131.3s
+160/711 finished, 129.4s
+180/711 finished, 145.2s
+180/711 finished, 143.6s
+200/711 finished, 157.3s
+200/711 finished, 155.5s
+220/711 finished, 168.3s
+220/711 finished, 168.8s
+240/711 finished, 184.1s
+240/711 finished, 182.4s
+260/711 finished, 200.5s
+260/711 finished, 198.7s
+280/711 finished, 217.4s
+280/711 finished, 215.6s
+300/711 finished, 218.3s
+300/711 finished, 232.0s
+320/711 finished, 235.1s
+320/711 finished, 233.3s
+340/711 finished, 251.7s
+340/711 finished, 250.0s
+360/711 finished, 272.3s
+360/711 finished, 272.3s
+380/711 finished, 276.4s
+380/711 finished, 286.6s
+400/711 finished, 298.4s
+400/711 finished, 296.8s
+420/711 finished, 320.1s
+420/711 finished, 319.5s
+440/711 finished, 326.8s
+440/711 finished, 335.9s
+460/711 finished, 339.3s
+460/711 finished, 339.5s
+480/711 finished, 356.3s
+480/711 finished, 354.5s
+500/711 finished, 371.4s
+500/711 finished, 370.4s
+520/711 finished, 378.4s
+520/711 finished, 376.6s
+540/711 finished, 390.3s
+540/711 finished, 388.6s
+560/711 finished, 414.4s
+560/711 finished, 412.9s
+580/711 finished, 419.8s
+580/711 finished, 418.1s
+600/711 finished, 436.7s
+600/711 finished, 435.1s
+620/711 finished, 455.8s
+620/711 finished, 454.1s
+640/711 finished, 471.3s
+640/711 finished, 473.3s
+660/711 finished, 488.0s
+660/711 finished, 486.2s
+680/711 finished, 489.3s
+680/711 finished, 491.7s
+700/711 finished, 503.2s
+700/711 finished, 501.4s
+711/711 finished, 508.8s
+rep 3 done (['PIXEL_STD=1.5075', 'ACCEL_NOISE=0.2814']) 1120s
+711/711 finished, 509.7s
+rep 4 done (['DETECT_MIN_SCORE=995', 'KLT_MIN_EIG=2.02', 'PIXEL_STD=1.4925']) 1123s
+== B7 [fresh]: n=711 flights, R=5 replicates
+per-replicate mean: 0.618 0.624 0.640 0.620 0.663
+mean of replicate means 0.633  | spread of the mean across replicates: std 0.019 range 0.045
+mean per-flight std 0.137 | median per-flight std 0.038
+high-variance flights 57 (carry 31.0% of the mean)  consistently bad 13 (carry 14.4%)
+  flights >3 m per replicate: 21 24 25 26 26 (avg 24.4)
+  flights >5 m per replicate: 8 6 9 7 11 (avg 8.2)
+  flights >10 m per replicate: 0 0 1 0 0 (avg 0.2)
+  replicate median 0.35 0.35 0.36 0.34 0.35  p90 1.14 1.12 1.23 1.13 1.38
+  dev (n=475): rep means 0.608 0.596 0.625 0.597 0.637 | avg 0.612 std 0.018 | mean flight std 0.126 | hv 35
+  confirm (n=236): rep means 0.640 0.681 0.669 0.667 0.716 | avg 0.674 std 0.028 | mean flight std 0.160 | hv 22
+  static (n=356): avg of rep means 0.420  mean flight std 0.083  hv 12
+  mid (n=355): avg of rep means 0.847  mean flight std 0.191  hv 45

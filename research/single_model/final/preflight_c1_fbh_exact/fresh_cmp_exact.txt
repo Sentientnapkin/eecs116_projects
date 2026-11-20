@@ -1,0 +1,5 @@
+n 711 mean 0.618372 B6 0.618372
+ate identical to B6 table: 711 / 711
+completed all True filled nonzero [] errors [] nonfinite ate []
+B7 fresh peak 12.31M median-of-peaks 9.80 p95-of-peaks 10.74 ['episode', 'start', 'scene', 'catalog', 'group', 'ate', 'completed', 'filled', 'peak_fuel', 'error']
+B6 fresh peak 24.50M median-of-peaks 19.40 p95-of-peaks 21.16 ['episode', 'start', 'scene', 'catalog', 'group', 'ate', 'completed', 'filled', 'peak_fuel', 'error']

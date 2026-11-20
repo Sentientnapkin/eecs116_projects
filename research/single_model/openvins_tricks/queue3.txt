@@ -1,0 +1,7 @@
+ctrl	
+oc1	OX_OC=1
+fejatt	OX_FEJ_H=2
+fejpos	OX_FEJ_H=3
+blr40	OX_BLR=40.0
+mid1	OX_MID=1
+fejhf	OX_FEJ_H=1 OX_FEJ_F=1

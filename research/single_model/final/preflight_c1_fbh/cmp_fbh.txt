@@ -1,0 +1,45 @@
+sha a/b/c1/fe2_fbh_r0 ['c8dc91deb9a9', 'c8dc91deb9a9', '28ab13673e5a', '06ab12b0fd5a']
+estimate.tum identical a vs b: 171 / 171
+ate_full a==b 171
+estimate.tum identical a vs fe2_fbh_r0 (frontend run): 171 / 171  ate_full equal 171 maxdiff 0.0
+non-finite in estimate.tum/stderr/evaluate.log: []
+a filled_full!=0 [] incomplete [] failure [] err [] frames {1200} {1200}
+ peak 21.779M (0.1089% of 2e10) worst p95 16.943M median p95 15.664M mean p95 15.377M median-of-median 9916575.5
+b filled_full!=0 [] incomplete [] failure [] err [] frames {1200} {1200}
+ peak 21.779M (0.1089% of 2e10) worst p95 16.943M median p95 15.664M mean p95 15.377M median-of-median 9916575.5
+C1 filled_full!=0 [] incomplete [] failure [] err [] frames {1200} {1200}
+ peak 21.316M (0.1066% of 2e10) worst p95 16.243M median p95 14.472M mean p95 14.336M median-of-median 8635306.5
+FB-C1 per-flight p95 delta mean 1040456 median 1244610 max 1958128
+search static 56 C1 0.624 FB 0.494
+search mid 63 C1 1.466 FB 1.354
+val static 12 C1 0.558 FB 0.428
+val mid 13 C1 0.522 FB 0.454
+search all 119 C1 1.070 FB 0.950
+flights differing from C1 by >0.5 m (folds 0-3):
+  fast-102344469-01 static fold3 C1 1.550 FB 0.718 d -0.832
+  fast-104348361_171513414-01 static fold0 C1 0.920 FB 0.310 d -0.609
+  fast-106366104_174226329-00 static fold2 C1 3.874 FB 3.273 d -0.602
+  fast-106366371_174226743-01 static fold3 C1 1.121 FB 0.607 d -0.514
+  fast-ProcTHOR-Train-106-01 static fold1 C1 1.163 FB 0.236 d -0.927
+  fast-ProcTHOR-Train-151-07 static fold1 C1 0.715 FB 3.555 d +2.840
+  fast-ProcTHOR-Train-171-04 static fold1 C1 4.243 FB 0.186 d -4.058
+  fastmid-102344457-01 mid fold0 C1 3.274 FB 1.134 d -2.140
+  fastmid-103997643_171030747-01 mid fold0 C1 0.838 FB 0.326 d -0.512
+  fastmid-104348361_171513414-02 mid fold0 C1 0.634 FB 1.901 d +1.267
+  fastmid-106366104_174226329-02 mid fold2 C1 4.400 FB 3.506 d -0.894
+  fastmid-106366410_174226806-02 mid fold0 C1 2.318 FB 1.174 d -1.144
+  fastmid-107734146_175999971-01 mid fold2 C1 0.731 FB 3.249 d +2.518
+  fastmid-108294897_176710602-00 mid fold1 C1 1.266 FB 0.766 d -0.500
+  fastmid-108294897_176710602-01 mid fold1 C1 7.543 FB 6.944 d -0.599
+  fastmid-ProcTHOR-Train-0-01 mid fold2 C1 1.417 FB 2.334 d +0.917
+  fastmid-ProcTHOR-Train-100-01 mid fold0 C1 0.881 FB 1.696 d +0.815
+  fastmid-ProcTHOR-Train-100-02 mid fold0 C1 6.783 FB 5.495 d -1.287
+  fastmid-ProcTHOR-Train-123-00 mid fold2 C1 4.975 FB 0.638 d -4.338
+  fastmid-ProcTHOR-Train-143-01 mid fold0 C1 4.859 FB 2.922 d -1.937
+  fastmid-ProcTHOR-Train-151-00 mid fold1 C1 3.900 FB 0.602 d -3.299
+  fastmid-ProcTHOR-Train-151-10 mid fold1 C1 2.199 FB 3.615 d +1.416
+  fastmid-ProcTHOR-Train-158-07 mid fold1 C1 3.718 FB 4.734 d +1.016
+  fastmid-ProcTHOR-Train-178-01 mid fold0 C1 2.661 FB 7.168 d +4.507
+  fastmid-ProcTHOR-Train-57-02 mid fold0 C1 4.242 FB 3.331 d -0.911
+  fastmid-ProcTHOR-Train-82-00 mid fold3 C1 1.001 FB 0.383 d -0.618
+  fold-4 differing >0.5 m (count only): 1

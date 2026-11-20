@@ -1,0 +1,25 @@
+57 episodes, 0 cached, workers=24 (no video)
+20/57 finished, 14.3s
+40/57 finished, 25.4s
+57/57 finished, 33.1s
+0 ['RB_DEBUG=1']
+57 episodes, 0 cached, workers=24 (no video)
+20/57 finished, 15.2s
+40/57 finished, 23.3s
+57/57 finished, 32.8s
+1 ['RB_DEBUG=1', 'ACCEL_NOISE=0.2828', 'KLT_MIN_EIG=2.01']
+57 episodes, 0 cached, workers=24 (no video)
+20/57 finished, 13.5s
+40/57 finished, 24.0s
+57/57 finished, 30.1s
+2 ['RB_DEBUG=1', 'ACCEL_NOISE=0.2772', 'KLT_MIN_EIG=1.99']
+57 episodes, 0 cached, workers=24 (no video)
+20/57 finished, 13.4s
+40/57 finished, 24.6s
+57/57 finished, 31.6s
+3 ['RB_DEBUG=1', 'PIXEL_STD=1.5075', 'ACCEL_NOISE=0.2814']
+57 episodes, 0 cached, workers=24 (no video)
+20/57 finished, 14.9s
+40/57 finished, 26.0s
+57/57 finished, 34.5s
+4 ['RB_DEBUG=1', 'DETECT_MIN_SCORE=995', 'KLT_MIN_EIG=2.02', 'PIXEL_STD=1.4925']

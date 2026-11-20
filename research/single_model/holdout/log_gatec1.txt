@@ -1,0 +1,14 @@
+240 episodes, 0 cached, workers=40 (no video)
+20/240 finished, 13.5s
+40/240 finished, 13.6s
+60/240 finished, 25.7s
+80/240 finished, 26.1s
+100/240 finished, 33.3s
+120/240 finished, 37.4s
+140/240 finished, 44.3s
+160/240 finished, 48.1s
+180/240 finished, 55.1s
+200/240 finished, 56.7s
+220/240 finished, 61.4s
+240/240 finished, 69.6s
+gatec1 n 240 mean 0.9720312574956328

@@ -1,0 +1,10 @@
+144 episodes, 0 cached, workers=24 (no video)
+20/144 finished, 18.0s
+40/144 finished, 29.7s
+60/144 finished, 43.0s
+80/144 finished, 55.0s
+100/144 finished, 66.7s
+120/144 finished, 77.7s
+140/144 finished, 91.3s
+144/144 finished, 96.3s
+off 0 done

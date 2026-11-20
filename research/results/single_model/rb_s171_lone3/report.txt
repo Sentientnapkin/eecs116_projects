@@ -1,0 +1,7 @@
+== rb_s171_lone3  (wasm f7f9254d6a9f)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  1.028 (base  2.307) median  0.43 p90  3.09 >5m  3 >10m  1 | paired d=-1.279 [-1.984,-0.722] | err@2/5/30s 0.51/0.67/0.97
+search static n= 56 mean  0.428 (base  0.667) median  0.34 p90  0.57 >5m  0 >10m  0 | paired d=-0.238 [-0.420,-0.115] | err@2/5/30s 0.03/0.23/0.38
+search mid    n= 63 mean  1.561 (base  3.764) median  0.59 p90  3.84 >5m  3 >10m  1 | paired d=-2.204 [-3.491,-1.254] | err@2/5/30s 0.94/1.07/1.49
+val    all    n= 25 mean  0.483 (base  2.032) median  0.39 p90  0.68 >5m  0 >10m  0 | paired d=-1.549 [-3.315,-0.438] | err@2/5/30s 0.26/0.26/0.42
+val    static n= 12 mean  0.466 (base  0.713) median  0.48 p90  0.65 >5m  0 >10m  0 | paired d=-0.247 [-0.548,-0.055] | err@2/5/30s 0.04/0.18/0.44
+val    mid    n= 13 mean  0.498 (base  3.250) median  0.33 p90  0.75 >5m  0 >10m  0 | paired d=-2.751 [-6.667,-0.478] | err@2/5/30s 0.47/0.34/0.41

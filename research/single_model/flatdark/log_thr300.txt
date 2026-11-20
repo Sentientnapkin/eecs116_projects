@@ -1,0 +1,11 @@
+167 episodes, 0 cached, workers=12 (no video)
+20/167 finished, 23.5s
+40/167 finished, 43.9s
+60/167 finished, 61.0s
+80/167 finished, 80.5s
+100/167 finished, 96.5s
+120/167 finished, 116.2s
+140/167 finished, 129.2s
+160/167 finished, 141.3s
+167/167 finished, 148.7s
+fd_thr300 done 167

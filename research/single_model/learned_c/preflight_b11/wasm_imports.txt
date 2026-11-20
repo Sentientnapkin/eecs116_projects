@@ -1,0 +1,2 @@
+ imports: []
+ exports: [('memory', 2), ('_initialize', 0), ('abi_version', 0), ('alloc', 0), ('frame_width', 0), ('init', 0), ('step', 0)]

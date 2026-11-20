@@ -1,0 +1,1 @@
+{"wasm_sha256": "9353f276e4f2f0ec95d185394871474f1e27012def94bc1547fdbfdfaa0466fb", "fixture": "fastmid-ProcTHOR-Train-57-01.npz", "frames": 400, "init2_status": 0, "init3_status": 0, "second_equals_first": true, "after_partial_equals_first": true, "first_pose_identity": true}

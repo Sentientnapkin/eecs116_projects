@@ -12,7 +12,7 @@ def one(args):
     t, s, meta = T.load_truth(d, ep)
     from viobench.tools.datasets.storage import read_episode
     e = read_episode(f'{d}/{ep}.zip', frames='none')
-    axis = np.asarray(e.T_body_camera)[:3, 2]
+    axis = np.array([0.0, 0.0, 1.0])  # load_truth states are camera-frame (fresh/NOTES CORRECTION): optical axis = +z
     n = int(np.sum(t - t[0] <= 0.5 + 1e-9)); v = s[:n, 7:10].mean(0); sp = float(np.linalg.norm(v))
     ang = float(np.degrees(np.arccos(np.clip(v @ axis / max(sp, 1e-9), -1, 1)))) if sp > 1e-6 else None
     return ep, dict(speed0=sp, angle=ang, scene=scene, catalog=catalog, fold=fold, selected=sel, start='mid' if ep.startswith('fastmid') else 'static')

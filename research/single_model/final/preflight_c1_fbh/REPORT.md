@@ -1,0 +1,15 @@
+# Preflight of B6 = G+C1+FB (adopted_fbh.c), wasm SHA-256 c8dc91deb9a90991d6ba962f22a474a1f33dd5efc5ab5967d3b68d492fdbb25d
+Built twice with run_variant.build() (default CMake): byte-identical; equals fuel/publish/gp_msckf_startup_gate_c1_fbh.wasm. Verified copy: gp_msckf_startup_gate_c1_fbh_verified.wasm (not copied to final/submit).
+Evidence: abi_check.txt wasm_imports.txt cmp_fbh.txt poison_g*.log poison_summary.txt reset_check.txt fb_stats.txt fresh_cmp_fbh.txt (+scripts). No sealed_aggregate.json opened; fold-4 flights only counted.
+| # | Check | Result | Evidence |
+|1| viobench check | PASS | ok (5 steps), exit 0 (harmless tempdir cleanup noise on stderr)
+|2| zero imports | PASS | imports []; exports memory,_initialize,abi_version,alloc,frame_width,init,step
+|3| determinism | PASS | 171/171 estimate.tum + ate_full identical across two scorings; rebuild byte-identical
+|4| causality | PASS | 360/360 cases = 18 fixtures (9 static hover, 9 mid, folds 0-3 only, f0win generator) x 20 prefixes (1,2,4,5,8-12,19-21,24,40,41,50,60,120,600,1199): poison+prefix+repeat bit-equal, 0 guest failures; odd and even prefixes straddle FB parity, hold window 8-20 covered
+|5| reset/re-init | PASS | 8 flights (5 hover, 3 mid): re-init replay and partial+re-init bit-equal, first pose identity
+|6| filled/completed | PASS | 171/171 completed, 1200 frames, filled_full 0; fresh 711/711 completed, filled 0
+|7| fuel | PASS | selected: peak 21.78M (C1 21.32M), worst p95 16.94M (16.24M), median p95 15.66M (14.47M), mean p95 +1.04M (+7%); fresh peak 24.50M (C1 23.40M), 0.1225% of 2e10 budget
+|8| FB behaviour | PASS | debug build (estimates bit-identical to release on 171): FB checks 50% of forward-OK tracks; drops 10.0% of checked tracks per flight on average (static 9.3%, mid 10.7%; range 2.7-50.5%), = 5.0% of forward-OK tracks, 4.7% of all tracked. It only kills tracks (alive=0), cannot create frames; no NaN/inf in 171 estimate.tum or stderr; filled 0
+|9| independent re-score | PASS | 171/171 estimate.tum bit-identical to frontend run fe2_fbh_r0 (different build, same results); fresh 711/711 ate equal to frontend table_fe2_fbh; fresh mean 0.6184, paired vs C1 -0.114 [-0.167,-0.064] (static 0.471->0.409, mid 0.995->0.829), >5 m 8 vs 8, >10 m 0 vs 0, max 6.91
+Selected search 1.070->0.950 (static 0.624->0.494, mid 1.466->1.354), val static 0.558->0.428, mid 0.522->0.454 (single run).
+Flights differing from C1 by >0.5 m: selected folds 0-3: 27 (19 better, 8 worse); fold 4: 1 (count only). Worse: Train-151-07 static 0.72->3.56, mid 178-01 2.66->7.17, 107734146_175999971-01 0.73->3.25, 104348361_171513414-02 0.63->1.90, 151-10 2.20->3.62, 158-07 3.72->4.73, 0-01 1.42->2.33, 100-01 0.88->1.70. Fresh: 66 better / 33 worse by >0.5 m; worst +4.80 (static 166-05 1.51->6.30), +3.77 (103997643_171030747-00 mid). Reason: not attributable to a single cause; FB removes tracks, which changes the chaotic vision path (both signs), mechanism is removal of drifting tracks; hold/VZ/LAT logic is unchanged vs C1.

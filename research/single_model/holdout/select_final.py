@@ -23,7 +23,7 @@ def pick(c, n, cap, rng, iters=60000):
     # start: tilted weighted sample
     z = (ext - ext.mean()) / ext.std() + (trv - trv.mean()) / trv.std()
     w = np.exp(0.8 * z); w /= w.sum()
-    S = list(rng.choice(len(c), n, replace=False, p=w)); inS = set(S); cur = cost(S)
+    S = [int(i) for i in np.random.default_rng(rng.randrange(10**6)).choice(len(c), n, replace=False, p=w)]; inS = set(S); cur = cost(S)
     for it in range(iters):
         i = rng.randrange(n); j = rng.randrange(len(c))
         if j in inS: continue

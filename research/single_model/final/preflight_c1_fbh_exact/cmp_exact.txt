@@ -1,0 +1,16 @@
+sha a/b/B6/mx_B7 ['31137e4fb26f', '31137e4fb26f', 'c8dc91deb9a9', '31137e4fb26f'] n 171 171
+determinism a vs b: estimate.tum identical 171 / 171  ate_full equal 171  fuel.npy equal 171
+B7 vs B6 estimate.tum byte-identical 171 / 171  twist.txt identical 171  ate_full equal 171
+B7 vs mx_B7 matrix run estimate.tum identical 171 / 171
+non-finite in estimate.tum/twist/stderr/stdout/evaluate.log: []
+B7 filled_full!=0 [] incomplete [] failure [] frames {1200} {1200}
+ peak 11.028M (0.0551% of 2e10) worst p95 8.422M median p95 7.923M mean p95 7.721M median-of-medians 5.606M median-of-peaks 9.800M
+B7b filled_full!=0 [] incomplete [] failure [] frames {1200} {1200}
+ peak 11.028M (0.0551% of 2e10) worst p95 8.422M median p95 7.923M mean p95 7.721M median-of-medians 5.606M median-of-peaks 9.800M
+B6 filled_full!=0 [] incomplete [] failure [] frames {1200} {1200}
+ peak 21.779M (0.1089% of 2e10) worst p95 16.943M median p95 15.664M mean p95 15.377M median-of-medians 9.917M median-of-peaks 19.371M
+fuel.npy len {1200}
+global max fuel 11.028M flight fast-ProcTHOR-Train-160-09 frame 551
+argmax frame histogram (top 12 frames): [(382, 3), (82, 3), (281, 2), (23, 2), (61, 2), (477, 2), (1149, 2), (469, 2), (329, 2), (1053, 2), (81, 2), (249, 2)]
+argmax frame range 22 1185 ; fraction of flights with argmax <=60: 0.017543859649122806
+frame0 fuel mean 2.99M max 3.47M

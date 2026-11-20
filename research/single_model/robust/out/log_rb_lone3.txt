@@ -1,0 +1,203 @@
+711 episodes, 0 cached, workers=24 (no video)
+20/711 finished, 15.1s
+40/711 finished, 27.4s
+60/711 finished, 39.9s
+80/711 finished, 48.2s
+100/711 finished, 58.5s
+120/711 finished, 68.0s
+140/711 finished, 78.8s
+160/711 finished, 85.5s
+180/711 finished, 91.0s
+200/711 finished, 100.5s
+220/711 finished, 112.7s
+240/711 finished, 123.4s
+260/711 finished, 132.3s
+280/711 finished, 143.3s
+300/711 finished, 152.9s
+320/711 finished, 160.3s
+340/711 finished, 173.3s
+360/711 finished, 185.6s
+380/711 finished, 203.5s
+400/711 finished, 213.5s
+420/711 finished, 225.4s
+440/711 finished, 234.8s
+460/711 finished, 248.8s
+480/711 finished, 256.9s
+500/711 finished, 269.7s
+520/711 finished, 282.8s
+540/711 finished, 294.3s
+560/711 finished, 307.3s
+580/711 finished, 320.0s
+600/711 finished, 328.2s
+620/711 finished, 339.6s
+640/711 finished, 352.5s
+660/711 finished, 358.1s
+680/711 finished, 367.5s
+700/711 finished, 376.4s
+711/711 finished, 386.6s
+rep 0 done (['RB_LONE=3']) 389s
+711 episodes, 0 cached, workers=24 (no video)
+20/711 finished, 19.1s
+40/711 finished, 36.9s
+60/711 finished, 49.7s
+80/711 finished, 59.7s
+100/711 finished, 68.6s
+120/711 finished, 79.1s
+140/711 finished, 93.2s
+160/711 finished, 100.6s
+180/711 finished, 106.4s
+200/711 finished, 115.8s
+220/711 finished, 127.8s
+240/711 finished, 136.4s
+260/711 finished, 144.0s
+280/711 finished, 152.9s
+300/711 finished, 162.3s
+320/711 finished, 171.2s
+340/711 finished, 182.3s
+360/711 finished, 195.7s
+380/711 finished, 208.0s
+400/711 finished, 215.1s
+420/711 finished, 222.6s
+440/711 finished, 230.7s
+460/711 finished, 241.3s
+480/711 finished, 248.3s
+500/711 finished, 258.3s
+520/711 finished, 270.4s
+540/711 finished, 279.0s
+560/711 finished, 291.0s
+580/711 finished, 302.6s
+600/711 finished, 308.6s
+620/711 finished, 318.2s
+640/711 finished, 329.0s
+660/711 finished, 339.7s
+680/711 finished, 347.4s
+700/711 finished, 356.3s
+711/711 finished, 363.2s
+rep 1 done (['RB_LONE=3', 'ACCEL_NOISE=0.2828', 'KLT_MIN_EIG=2.01']) 755s
+711 episodes, 0 cached, workers=24 (no video)
+20/711 finished, 15.2s
+40/711 finished, 31.1s
+60/711 finished, 42.0s
+80/711 finished, 51.3s
+100/711 finished, 59.9s
+120/711 finished, 71.0s
+140/711 finished, 82.8s
+160/711 finished, 91.8s
+180/711 finished, 98.0s
+200/711 finished, 110.6s
+220/711 finished, 126.1s
+240/711 finished, 135.6s
+260/711 finished, 143.2s
+280/711 finished, 153.5s
+300/711 finished, 161.8s
+320/711 finished, 168.6s
+340/711 finished, 180.3s
+360/711 finished, 194.6s
+380/711 finished, 209.4s
+400/711 finished, 218.1s
+420/711 finished, 225.8s
+440/711 finished, 232.4s
+460/711 finished, 242.4s
+480/711 finished, 248.4s
+500/711 finished, 257.7s
+520/711 finished, 266.9s
+540/711 finished, 275.1s
+560/711 finished, 283.8s
+580/711 finished, 292.6s
+600/711 finished, 296.2s
+620/711 finished, 302.5s
+640/711 finished, 310.2s
+660/711 finished, 316.3s
+680/711 finished, 321.6s
+700/711 finished, 327.5s
+711/711 finished, 333.7s
+rep 2 done (['RB_LONE=3', 'ACCEL_NOISE=0.2772', 'KLT_MIN_EIG=1.99']) 1092s
+711 episodes, 0 cached, workers=24 (no video)
+20/711 finished, 11.9s
+40/711 finished, 23.3s
+60/711 finished, 32.5s
+80/711 finished, 39.2s
+100/711 finished, 47.0s
+120/711 finished, 55.9s
+140/711 finished, 65.8s
+160/711 finished, 71.3s
+180/711 finished, 77.0s
+200/711 finished, 85.8s
+220/711 finished, 96.7s
+240/711 finished, 101.8s
+260/711 finished, 108.7s
+280/711 finished, 116.0s
+300/711 finished, 123.0s
+320/711 finished, 126.8s
+340/711 finished, 135.7s
+360/711 finished, 148.4s
+380/711 finished, 162.1s
+400/711 finished, 169.3s
+420/711 finished, 178.2s
+440/711 finished, 186.7s
+460/711 finished, 196.5s
+480/711 finished, 205.2s
+500/711 finished, 213.9s
+520/711 finished, 223.0s
+540/711 finished, 232.8s
+560/711 finished, 242.4s
+580/711 finished, 253.2s
+600/711 finished, 258.8s
+620/711 finished, 267.6s
+640/711 finished, 278.7s
+660/711 finished, 285.2s
+680/711 finished, 291.4s
+700/711 finished, 299.4s
+711/711 finished, 305.5s
+rep 3 done (['RB_LONE=3', 'PIXEL_STD=1.5075', 'ACCEL_NOISE=0.2814']) 1399s
+711 episodes, 0 cached, workers=24 (no video)
+20/711 finished, 14.1s
+40/711 finished, 27.0s
+60/711 finished, 37.3s
+80/711 finished, 43.6s
+100/711 finished, 50.3s
+120/711 finished, 58.8s
+140/711 finished, 68.7s
+160/711 finished, 74.7s
+180/711 finished, 80.7s
+200/711 finished, 88.7s
+220/711 finished, 100.7s
+240/711 finished, 106.6s
+260/711 finished, 111.8s
+280/711 finished, 119.5s
+300/711 finished, 126.5s
+320/711 finished, 132.4s
+340/711 finished, 141.5s
+360/711 finished, 154.7s
+380/711 finished, 164.5s
+400/711 finished, 173.1s
+420/711 finished, 180.7s
+440/711 finished, 186.5s
+460/711 finished, 196.1s
+480/711 finished, 203.1s
+500/711 finished, 210.1s
+520/711 finished, 218.6s
+540/711 finished, 228.0s
+560/711 finished, 237.2s
+580/711 finished, 250.3s
+600/711 finished, 257.5s
+620/711 finished, 262.9s
+640/711 finished, 273.9s
+660/711 finished, 285.1s
+680/711 finished, 293.0s
+700/711 finished, 298.4s
+711/711 finished, 306.1s
+rep 4 done (['RB_LONE=3', 'DETECT_MIN_SCORE=995', 'KLT_MIN_EIG=2.02', 'PIXEL_STD=1.4925']) 1707s
+== lone3 [fresh]: n=711 flights, R=5 replicates
+per-replicate mean: 0.601 0.617 0.626 0.628 0.637
+mean of replicate means 0.622  | spread of the mean across replicates: std 0.013 range 0.035
+mean per-flight std 0.125 | median per-flight std 0.041
+high-variance flights 49 (carry 26.6% of the mean)  consistently bad 13 (carry 12.8%)
+  flights >3 m per replicate: 21 20 23 23 25 (avg 22.4)
+  flights >5 m per replicate: 3 3 6 3 8 (avg 4.6)
+  flights >10 m per replicate: 0 0 0 0 0 (avg 0.0)
+  replicate median 0.34 0.36 0.35 0.36 0.35  p90 1.17 1.19 1.18 1.21 1.20
+  dev (n=475): rep means 0.586 0.611 0.625 0.625 0.627 | avg 0.615 std 0.017 | mean flight std 0.131 | hv 35
+  confirm (n=236): rep means 0.631 0.629 0.628 0.634 0.657 | avg 0.636 std 0.012 | mean flight std 0.113 | hv 14
+  static (n=356): avg of rep means 0.432  mean flight std 0.090  hv 12
+  mid (n=355): avg of rep means 0.812  mean flight std 0.159  hv 37

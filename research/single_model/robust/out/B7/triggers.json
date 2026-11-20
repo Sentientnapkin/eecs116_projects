@@ -1,0 +1,1966 @@
+[
+{
+"episode": "fast-ProcTHOR-Train-100-02",
+"ates": [
+4.275687621831559,
+6.691693295254134,
+4.7109566526108875,
+5.682336938952541,
+6.10976877696806
+],
+"best": 0,
+"worst": 1,
+"fdiv": 169,
+"fsplit": 8,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 7.94610619535956e-06,
+"fjump": 154,
+"jump_keys": [
+"kf",
+"fbd"
+],
+"jump_flags": [],
+"jump_size": 0.06455371709159251,
+"near": [
+0.0,
+0.0
+],
+"lockout": 4,
+"start": "static",
+"t_split": 0.45
+},
+{
+"episode": "fast-ProcTHOR-Train-113-02",
+"ates": [
+0.4678777421427741,
+0.7122987736284891,
+1.6968531110787495,
+0.48043705337773635,
+0.5597526899242745
+],
+"best": 0,
+"worst": 2,
+"fdiv": 610,
+"fsplit": 67,
+"split_keys": [
+"gate",
+"used"
+],
+"split_flags": [],
+"d_at_split": 0.04697155433422573,
+"fjump": 610,
+"jump_keys": [
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.19353108104255196,
+"near": [
+1.0,
+1.0
+],
+"lockout": 4,
+"start": "static",
+"t_split": 3.4
+},
+{
+"episode": "fast-ProcTHOR-Train-143-00",
+"ates": [
+2.502525920235246,
+3.3809724732388085,
+1.3664518381594362,
+1.6165620664650495,
+1.2833913558930548
+],
+"best": 4,
+"worst": 1,
+"fdiv": 108,
+"fsplit": 23,
+"split_keys": [
+"fbd",
+"used",
+"att"
+],
+"split_flags": [],
+"d_at_split": 0.0038899118461225026,
+"fjump": 108,
+"jump_keys": [
+"fbd",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.0303121046254754,
+"near": [
+0.0,
+0.0
+],
+"lockout": 2,
+"start": "static",
+"t_split": 1.2
+},
+{
+"episode": "fast-ProcTHOR-Train-143-01",
+"ates": [
+0.4528810900999402,
+0.5066917589266271,
+2.1877766589304732,
+0.6130405806535515,
+0.35899080189936516
+],
+"best": 4,
+"worst": 2,
+"fdiv": 63,
+"fsplit": 41,
+"split_keys": [
+"tri",
+"used"
+],
+"split_flags": [],
+"d_at_split": 0.05168524131622357,
+"fjump": 63,
+"jump_keys": [
+"tri",
+"used"
+],
+"jump_flags": [],
+"jump_size": 0.15483275066954,
+"near": [
+0.0,
+0.0
+],
+"lockout": 2,
+"start": "static",
+"t_split": 2.1
+},
+{
+"episode": "fast-ProcTHOR-Train-151-01",
+"ates": [
+1.7055554941743318,
+1.129062344187399,
+1.4508099541012798,
+2.487802548948614,
+0.9496815241662174
+],
+"best": 4,
+"worst": 3,
+"fdiv": 90,
+"fsplit": 2,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 1.8477661347814731e-06,
+"fjump": 14,
+"jump_keys": [
+"fbd",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.09624210196680391,
+"near": [
+0.0,
+0.0
+],
+"lockout": 1,
+"start": "static",
+"t_split": 0.14
+},
+{
+"episode": "fast-ProcTHOR-Train-154-04",
+"ates": [
+0.6225885783286891,
+0.6118347366528063,
+1.9462342678389013,
+0.6239268436287263,
+1.9415382876283835
+],
+"best": 1,
+"worst": 2,
+"fdiv": 421,
+"fsplit": 97,
+"split_keys": [
+"kf",
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 0.0018039619297793813,
+"fjump": 325,
+"jump_keys": [
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.051762294966158945,
+"near": [
+0.0,
+0.0
+],
+"lockout": 0,
+"start": "static",
+"t_split": 4.89
+},
+{
+"episode": "fast-ProcTHOR-Train-158-09",
+"ates": [
+1.71135623656084,
+2.9275265645361714,
+2.2778934300445632,
+1.8542479436706572,
+2.632214573674965
+],
+"best": 0,
+"worst": 1,
+"fdiv": 96,
+"fsplit": 22,
+"split_keys": [
+"tri",
+"used"
+],
+"split_flags": [],
+"d_at_split": 0.0013687357467195053,
+"fjump": 89,
+"jump_keys": [
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.014682391491492128,
+"near": [
+0.0,
+0.0
+],
+"lockout": 1,
+"start": "static",
+"t_split": 1.15
+},
+{
+"episode": "fast-ProcTHOR-Train-160-01",
+"ates": [
+0.9452099966832764,
+0.6111543822480615,
+4.563385765436954,
+4.314846895134954,
+3.6112318046201892
+],
+"best": 1,
+"worst": 2,
+"fdiv": 214,
+"fsplit": 17,
+"split_keys": [
+"tri",
+"used"
+],
+"split_flags": [],
+"d_at_split": 0.006305205097323446,
+"fjump": 214,
+"jump_keys": [
+"tri",
+"gate",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.45383987597060227,
+"near": [
+0.0,
+0.0
+],
+"lockout": 2,
+"start": "static",
+"t_split": 0.9
+},
+{
+"episode": "fast-ProcTHOR-Train-166-02",
+"ates": [
+2.291026668586172,
+2.3101163924795713,
+5.467221838118412,
+3.658126206084754,
+3.5140115182753875
+],
+"best": 0,
+"worst": 2,
+"fdiv": 77,
+"fsplit": 17,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 4.8289570052579594e-05,
+"fjump": 43,
+"jump_keys": [
+"tri",
+"gate",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.01736778735434577,
+"near": [
+0.0,
+0.0
+],
+"lockout": 1,
+"start": "static",
+"t_split": 0.9
+},
+{
+"episode": "fast-ProcTHOR-Train-166-05",
+"ates": [
+6.3038110848371405,
+4.587581237264702,
+2.276045923584339,
+7.891198588102868,
+7.3297071974067896
+],
+"best": 2,
+"worst": 3,
+"fdiv": 117,
+"fsplit": 9,
+"split_keys": [
+"fbd",
+"tri",
+"att"
+],
+"split_flags": [],
+"d_at_split": 4.191388460535392e-05,
+"fjump": 117,
+"jump_keys": [
+"fbd",
+"tri",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.13598951457385738,
+"near": [
+0.0,
+0.0
+],
+"lockout": 3,
+"start": "static",
+"t_split": 0.49
+},
+{
+"episode": "fast-ProcTHOR-Train-169-04",
+"ates": [
+1.3539238525588853,
+0.48895932129917474,
+1.2145750957742043,
+0.25568504349053855,
+0.6055819807681074
+],
+"best": 3,
+"worst": 0,
+"fdiv": 472,
+"fsplit": 46,
+"split_keys": [
+"fbd",
+"tri",
+"att"
+],
+"split_flags": [],
+"d_at_split": 0.0004213859922093802,
+"fjump": 467,
+"jump_keys": [
+"gate",
+"used"
+],
+"jump_flags": [],
+"jump_size": 0.14656865168253894,
+"near": [
+0.0,
+0.0
+],
+"lockout": 0,
+"start": "static",
+"t_split": 2.35
+},
+{
+"episode": "fast-ProcTHOR-Train-6-01",
+"ates": [
+0.22562924390344594,
+1.3061744456510582,
+0.21710853030405458,
+0.25078433464153593,
+0.2489845890362472
+],
+"best": 2,
+"worst": 1,
+"fdiv": 173,
+"fsplit": 6,
+"split_keys": [
+"kf",
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 1.605553779650142e-05,
+"fjump": 173,
+"jump_keys": [
+"fbd",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.3014346206935014,
+"near": [
+0.0,
+0.0
+],
+"lockout": 3,
+"start": "static",
+"t_split": 0.34
+},
+{
+"episode": "fastmid-102344193-00",
+"ates": [
+1.2375163215714948,
+4.230758856497022,
+1.6460932536554054,
+1.0856769457173325,
+1.8194154924393906
+],
+"best": 3,
+"worst": 1,
+"fdiv": 56,
+"fsplit": 10,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 7.989424359539579e-05,
+"fjump": 53,
+"jump_keys": [
+"kf"
+],
+"jump_flags": [],
+"jump_size": 0.14694320885167814,
+"near": [
+0.0,
+0.0
+],
+"lockout": 3,
+"start": "mid",
+"t_split": 0.55
+},
+{
+"episode": "fastmid-103997643_171030747-00",
+"ates": [
+4.8659829652117566,
+7.455044336339147,
+5.794006958041018,
+0.4530155842534338,
+6.352626819292498
+],
+"best": 3,
+"worst": 1,
+"fdiv": 34,
+"fsplit": 25,
+"split_keys": [
+"gate",
+"used"
+],
+"split_flags": [],
+"d_at_split": 0.1624828252410339,
+"fjump": 34,
+"jump_keys": [
+"gate",
+"used"
+],
+"jump_flags": [],
+"jump_size": 0.147158206409413,
+"near": [
+1.0,
+1.0
+],
+"lockout": 3,
+"start": "mid",
+"t_split": 1.29
+},
+{
+"episode": "fastmid-104862573_172226682-01",
+"ates": [
+6.7271410528672915,
+4.9657571505418385,
+5.681575754862862,
+4.702026059850851,
+4.131753819596581
+],
+"best": 4,
+"worst": 0,
+"fdiv": 91,
+"fsplit": 2,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 0.0,
+"fjump": 32,
+"jump_keys": [
+"kf",
+"fbd",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.08722537529496978,
+"near": [
+0.0,
+0.0
+],
+"lockout": 9,
+"start": "mid",
+"t_split": 0.14
+},
+{
+"episode": "fastmid-106366173_174226431-01",
+"ates": [
+3.425432279714303,
+3.2427339265278867,
+3.0559517739514352,
+4.926907501194485,
+3.46585194227164
+],
+"best": 2,
+"worst": 3,
+"fdiv": 95,
+"fsplit": 50,
+"split_keys": [
+"fbd",
+"tri",
+"att"
+],
+"split_flags": [],
+"d_at_split": 0.013752722794670956,
+"fjump": 91,
+"jump_keys": [
+"fbd",
+"tri",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.15609556663474827,
+"near": [
+0.0,
+0.0
+],
+"lockout": 3,
+"start": "mid",
+"t_split": 2.54
+},
+{
+"episode": "fastmid-107734119_175999932-01",
+"ates": [
+3.492042489514302,
+4.160120791291615,
+3.554551419109172,
+3.1126626123515426,
+3.389488288676797
+],
+"best": 3,
+"worst": 1,
+"fdiv": 73,
+"fsplit": 12,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 0.00018959102042885923,
+"fjump": 73,
+"jump_keys": [
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.25185498210564067,
+"near": [
+0.0,
+0.0
+],
+"lockout": 4,
+"start": "mid",
+"t_split": 0.65
+},
+{
+"episode": "fastmid-108294624_176710203-01",
+"ates": [
+0.8768933609464238,
+1.004423936419496,
+2.077917648852122,
+1.196845225542431,
+1.304552631374801
+],
+"best": 0,
+"worst": 2,
+"fdiv": 130,
+"fsplit": 32,
+"split_keys": [
+"fbd",
+"tri",
+"att"
+],
+"split_flags": [],
+"d_at_split": 4.877671905737915e-05,
+"fjump": 130,
+"jump_keys": [
+"kf",
+"tri",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.08403903599927923,
+"near": [
+0.0,
+0.0
+],
+"lockout": 2,
+"start": "mid",
+"t_split": 1.65
+},
+{
+"episode": "fastmid-108294783_176710410-00",
+"ates": [
+0.3257869091873698,
+0.311862853313882,
+0.3234617249992317,
+0.2672080537591812,
+7.180584626284513
+],
+"best": 3,
+"worst": 4,
+"fdiv": 13,
+"fsplit": 13,
+"split_keys": [
+"tri",
+"used"
+],
+"split_flags": [],
+"d_at_split": 0.663626861468965,
+"fjump": 13,
+"jump_keys": [
+"tri",
+"used"
+],
+"jump_flags": [],
+"jump_size": 0.6629141784491918,
+"near": [
+0.0,
+0.0
+],
+"lockout": 5,
+"start": "mid",
+"t_split": 0.69
+},
+{
+"episode": "fastmid-ProcTHOR-Train-0-00",
+"ates": [
+2.784103706815371,
+2.70167862744141,
+2.7315934462082465,
+3.2470553974304583,
+1.7434480772241585
+],
+"best": 4,
+"worst": 3,
+"fdiv": 175,
+"fsplit": 57,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 0.0018702459549613654,
+"fjump": 175,
+"jump_keys": [
+"kf",
+"tri",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.14810454512083499,
+"near": [
+0.0,
+0.0
+],
+"lockout": 3,
+"start": "mid",
+"t_split": 2.9
+},
+{
+"episode": "fastmid-ProcTHOR-Train-123-02",
+"ates": [
+1.0863112155835217,
+1.0881593676348564,
+1.1237231402574537,
+1.1135040724109815,
+2.860974755721969
+],
+"best": 0,
+"worst": 4,
+"fdiv": 40,
+"fsplit": 6,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 0.0,
+"fjump": 40,
+"jump_keys": [
+"kf",
+"fbd",
+"tri",
+"used"
+],
+"jump_flags": [],
+"jump_size": 3.0317920011115262,
+"near": [
+0.0,
+0.0
+],
+"lockout": 3,
+"start": "mid",
+"t_split": 0.34
+},
+{
+"episode": "fastmid-ProcTHOR-Train-130-02",
+"ates": [
+1.0876607190345722,
+4.533369630780444,
+1.9655537253821138,
+0.8775194184323587,
+2.8261470411664837
+],
+"best": 3,
+"worst": 1,
+"fdiv": 38,
+"fsplit": 14,
+"split_keys": [
+"kf",
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 0.0005586981513744853,
+"fjump": 38,
+"jump_keys": [
+"fbd",
+"tri",
+"gate",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.22033694221036726,
+"near": [
+0.0,
+0.0
+],
+"lockout": 3,
+"start": "mid",
+"t_split": 0.74
+},
+{
+"episode": "fastmid-ProcTHOR-Train-150-01",
+"ates": [
+2.959699419169334,
+2.987288268176974,
+0.9136559881511636,
+0.9960247417115686,
+2.7716442125074745
+],
+"best": 2,
+"worst": 1,
+"fdiv": 40,
+"fsplit": 24,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 0.000195992462990313,
+"fjump": 40,
+"jump_keys": [
+"tri",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.39195207664885295,
+"near": [
+0.0,
+0.0
+],
+"lockout": 5,
+"start": "mid",
+"t_split": 1.25
+},
+{
+"episode": "fastmid-ProcTHOR-Train-151-03",
+"ates": [
+6.455728059112931,
+1.724050708265749,
+6.577735548285452,
+3.745565316464847,
+3.8696278477974304
+],
+"best": 1,
+"worst": 2,
+"fdiv": 45,
+"fsplit": 6,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 1.6718871500055344e-05,
+"fjump": 45,
+"jump_keys": [
+"fbd",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.25260391815634675,
+"near": [
+0.0,
+0.0
+],
+"lockout": 3,
+"start": "mid",
+"t_split": 0.34
+},
+{
+"episode": "fastmid-ProcTHOR-Train-151-04",
+"ates": [
+3.8351803032076917,
+1.7090634514724898,
+2.4615038270809295,
+1.8889450656045095,
+2.727347727298819
+],
+"best": 1,
+"worst": 0,
+"fdiv": 79,
+"fsplit": 42,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 6.35823760172853e-05,
+"fjump": 79,
+"jump_keys": [
+"kf",
+"fbd",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.2175434286265998,
+"near": [
+0.0,
+0.0
+],
+"lockout": 3,
+"start": "mid",
+"t_split": 2.15
+},
+{
+"episode": "fastmid-ProcTHOR-Train-153-11",
+"ates": [
+2.074524094337622,
+3.5583687802802486,
+2.3784644592863327,
+3.5463570886731133,
+2.5852075846223963
+],
+"best": 0,
+"worst": 1,
+"fdiv": 81,
+"fsplit": 15,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 3.3639160468104815e-05,
+"fjump": 81,
+"jump_keys": [
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.4073894570026787,
+"near": [
+0.0,
+0.0
+],
+"lockout": 3,
+"start": "mid",
+"t_split": 0.8
+},
+{
+"episode": "fastmid-ProcTHOR-Train-155-02",
+"ates": [
+1.0566222944300936,
+1.015517132804499,
+1.1413083410074032,
+3.564321538131361,
+0.8769106966648376
+],
+"best": 4,
+"worst": 3,
+"fdiv": 35,
+"fsplit": 19,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 0.00374617529616544,
+"fjump": 35,
+"jump_keys": [
+"fbd",
+"gate",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.4132145091571966,
+"near": [
+0.0,
+0.0
+],
+"lockout": 2,
+"start": "mid",
+"t_split": 0.99
+},
+{
+"episode": "fastmid-ProcTHOR-Train-155-08",
+"ates": [
+0.25642195128352596,
+0.21404790493540163,
+0.2841828516955709,
+0.23005355861819277,
+1.9362779156636898
+],
+"best": 1,
+"worst": 4,
+"fdiv": 31,
+"fsplit": 14,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 0.0010778742242339063,
+"fjump": 22,
+"jump_keys": [
+"fbd",
+"tri",
+"used"
+],
+"jump_flags": [],
+"jump_size": 0.19037521620018616,
+"near": [
+0.0,
+0.0
+],
+"lockout": 3,
+"start": "mid",
+"t_split": 0.74
+},
+{
+"episode": "fastmid-ProcTHOR-Train-159-08",
+"ates": [
+0.40705849798673405,
+0.48154507284082365,
+0.5661625039805093,
+0.3745324025906134,
+1.9637060170585112
+],
+"best": 3,
+"worst": 4,
+"fdiv": 28,
+"fsplit": 29,
+"split_keys": [
+"tri",
+"used"
+],
+"split_flags": [],
+"d_at_split": 0.8867603270454335,
+"fjump": 28,
+"jump_keys": [],
+"jump_flags": [],
+"jump_size": 0.5607358602681133,
+"near": [
+0.0,
+0.0
+],
+"lockout": 3,
+"start": "mid",
+"t_split": 1.5
+},
+{
+"episode": "fastmid-ProcTHOR-Train-160-01",
+"ates": [
+2.498742092541178,
+2.4627445747997436,
+1.1467057082689618,
+2.372214586634993,
+1.0458365986703861
+],
+"best": 4,
+"worst": 0,
+"fdiv": 58,
+"fsplit": 10,
+"split_keys": [
+"kf",
+"used",
+"att"
+],
+"split_flags": [],
+"d_at_split": 0.0605796837646133,
+"fjump": 58,
+"jump_keys": [
+"gate",
+"used"
+],
+"jump_flags": [],
+"jump_size": 0.343453982166193,
+"near": [
+0.0,
+0.0
+],
+"lockout": 2,
+"start": "mid",
+"t_split": 0.55
+},
+{
+"episode": "fastmid-ProcTHOR-Train-160-09",
+"ates": [
+1.6096246629192679,
+3.539369341681696,
+1.636413041830608,
+1.1530785041689033,
+1.5666099523331538
+],
+"best": 3,
+"worst": 1,
+"fdiv": 179,
+"fsplit": 128,
+"split_keys": [
+"kf",
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 0.017050110127518357,
+"fjump": 179,
+"jump_keys": [
+"gate",
+"used"
+],
+"jump_flags": [],
+"jump_size": 0.8000685411223476,
+"near": [
+0.0,
+0.0
+],
+"lockout": 2,
+"start": "mid",
+"t_split": 6.45
+},
+{
+"episode": "fastmid-ProcTHOR-Train-161-00",
+"ates": [
+4.550194435280373,
+4.52524088333925,
+4.571417116767428,
+4.518985955673163,
+7.409147802166954
+],
+"best": 3,
+"worst": 4,
+"fdiv": 117,
+"fsplit": 20,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 0.00037018128966502555,
+"fjump": 117,
+"jump_keys": [
+"kf",
+"fbd",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 1.8356543270773282,
+"near": [
+0.0,
+0.0
+],
+"lockout": 3,
+"start": "mid",
+"t_split": 1.04
+},
+{
+"episode": "fastmid-ProcTHOR-Train-166-02",
+"ates": [
+0.8344419227617389,
+1.5414673101081224,
+0.8509275038545304,
+1.5206809385466644,
+0.49807602859461214
+],
+"best": 4,
+"worst": 1,
+"fdiv": 149,
+"fsplit": 24,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 0.00016180794348970122,
+"fjump": 149,
+"jump_keys": [
+"fbd",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.15135273603569552,
+"near": [
+0.0,
+0.0
+],
+"lockout": 1,
+"start": "mid",
+"t_split": 1.25
+},
+{
+"episode": "fastmid-ProcTHOR-Train-166-04",
+"ates": [
+2.113522868955549,
+4.884255672800715,
+3.440501532469676,
+6.671141774336114,
+3.500800915624861
+],
+"best": 0,
+"worst": 3,
+"fdiv": 106,
+"fsplit": 13,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 9.284240505348733e-06,
+"fjump": 106,
+"jump_keys": [
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.216779934144871,
+"near": [
+0.0,
+0.0
+],
+"lockout": 2,
+"start": "mid",
+"t_split": 0.69
+},
+{
+"episode": "fastmid-ProcTHOR-Train-167-05",
+"ates": [
+1.8054335471910767,
+1.5528701041802968,
+0.9370037010128882,
+1.547059285625149,
+0.6645818638879546
+],
+"best": 4,
+"worst": 0,
+"fdiv": 223,
+"fsplit": 160,
+"split_keys": [
+"kf"
+],
+"split_flags": [],
+"d_at_split": 0.0031847520537400006,
+"fjump": 223,
+"jump_keys": [
+"tri",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.22687835466711964,
+"near": [
+1.0,
+1.0
+],
+"lockout": 1,
+"start": "mid",
+"t_split": 8.04
+},
+{
+"episode": "fastmid-ProcTHOR-Train-169-04",
+"ates": [
+2.5625269126387455,
+2.3506290285140072,
+2.5457774716754735,
+2.199000195896489,
+1.3462988525838238
+],
+"best": 4,
+"worst": 0,
+"fdiv": 19,
+"fsplit": 1,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 0.0,
+"fjump": 19,
+"jump_keys": [
+"kf",
+"fbd",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.6254331370704317,
+"near": [
+0.0,
+0.0
+],
+"lockout": 3,
+"start": "mid",
+"t_split": 0.1
+},
+{
+"episode": "fastmid-ProcTHOR-Train-176-02",
+"ates": [
+0.5837943136987366,
+0.538388865213589,
+0.5279933790675514,
+0.4346215397663298,
+2.662924304536723
+],
+"best": 3,
+"worst": 4,
+"fdiv": 16,
+"fsplit": 3,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 2.2866398702929318e-06,
+"fjump": 16,
+"jump_keys": [
+"fbd",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.1974281998747204,
+"near": [
+0.0,
+0.0
+],
+"lockout": 3,
+"start": "mid",
+"t_split": 0.2
+},
+{
+"episode": "fastmid-ProcTHOR-Train-176-03",
+"ates": [
+1.650512537060125,
+1.9099899342893172,
+1.3707449238120148,
+0.8411606152021638,
+0.8542354571455798
+],
+"best": 3,
+"worst": 1,
+"fdiv": 34,
+"fsplit": 23,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 0.0004688825283597151,
+"fjump": 34,
+"jump_keys": [
+"fbd",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.506946290684196,
+"near": [
+0.0,
+0.0
+],
+"lockout": 2,
+"start": "mid",
+"t_split": 1.2
+},
+{
+"episode": "fastmid-ProcTHOR-Train-176-04",
+"ates": [
+0.9060914273958188,
+1.6135903291836853,
+3.0581753848140925,
+3.1553413076090773,
+1.8779556474277912
+],
+"best": 0,
+"worst": 3,
+"fdiv": 58,
+"fsplit": 7,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 8.047559168490556e-06,
+"fjump": 58,
+"jump_keys": [
+"kf",
+"fbd",
+"tri",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.21969472651080302,
+"near": [
+0.0,
+0.0
+],
+"lockout": 3,
+"start": "mid",
+"t_split": 0.4
+},
+{
+"episode": "fastmid-ProcTHOR-Train-176-05",
+"ates": [
+6.290305560199443,
+5.87664635520557,
+10.085891450493786,
+7.582158728630744,
+5.98180577735761
+],
+"best": 1,
+"worst": 2,
+"fdiv": 82,
+"fsplit": 13,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 0.000817281782483397,
+"fjump": 38,
+"jump_keys": [
+"kf",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.13149162136967513,
+"near": [
+0.0,
+0.0
+],
+"lockout": 3,
+"start": "mid",
+"t_split": 0.69
+},
+{
+"episode": "fastmid-ProcTHOR-Train-176-06",
+"ates": [
+5.094176581920893,
+1.4173339090057835,
+1.7399412030468155,
+3.0807346144917744,
+2.2564823684782094
+],
+"best": 1,
+"worst": 0,
+"fdiv": 82,
+"fsplit": 14,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 2.2699433518493673e-05,
+"fjump": 82,
+"jump_keys": [
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.30008695549316783,
+"near": [
+0.0,
+0.0
+],
+"lockout": 2,
+"start": "mid",
+"t_split": 0.74
+},
+{
+"episode": "fastmid-ProcTHOR-Train-176-07",
+"ates": [
+0.6712664094071215,
+0.707665783731045,
+2.74454286003159,
+0.7272072230239659,
+0.7199650664378247
+],
+"best": 0,
+"worst": 2,
+"fdiv": 25,
+"fsplit": 12,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 1.7635332984057435e-05,
+"fjump": 25,
+"jump_keys": [
+"kf",
+"fbd",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 1.2088772098621539,
+"near": [
+0.0,
+0.0
+],
+"lockout": 5,
+"start": "mid",
+"t_split": 0.65
+},
+{
+"episode": "fastmid-ProcTHOR-Train-176-11",
+"ates": [
+2.291102315193316,
+1.0549088109119535,
+3.1817939795992465,
+1.8335542082136984,
+1.6076245240795528
+],
+"best": 1,
+"worst": 2,
+"fdiv": 38,
+"fsplit": 38,
+"split_keys": [
+"fbd",
+"used",
+"att"
+],
+"split_flags": [],
+"d_at_split": 0.3434719931544063,
+"fjump": 38,
+"jump_keys": [
+"fbd",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.3405616085946292,
+"near": [
+1.0,
+1.0
+],
+"lockout": 2,
+"start": "mid",
+"t_split": 1.95
+},
+{
+"episode": "fastmid-ProcTHOR-Train-177-11",
+"ates": [
+0.315134069144922,
+0.3122027039568683,
+0.2683424327169993,
+0.24280958458623125,
+1.76217133195676
+],
+"best": 3,
+"worst": 4,
+"fdiv": 9,
+"fsplit": 1,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 5.162620346151787e-07,
+"fjump": 9,
+"jump_keys": [
+"kf",
+"tri",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.2097096603960844,
+"near": [
+0.0,
+0.0
+],
+"lockout": 3,
+"start": "mid",
+"t_split": 0.1
+},
+{
+"episode": "fastmid-ProcTHOR-Train-178-08",
+"ates": [
+2.061264567943448,
+2.3312690509720255,
+1.9542565593891403,
+1.2914111569625264,
+7.41671527986052
+],
+"best": 3,
+"worst": 4,
+"fdiv": 107,
+"fsplit": 3,
+"split_keys": [
+"kf",
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 1.5959370238535235e-06,
+"fjump": 107,
+"jump_keys": [],
+"jump_flags": [],
+"jump_size": 0.1858066571567336,
+"near": [
+0.0,
+0.0
+],
+"lockout": 3,
+"start": "mid",
+"t_split": 0.2
+},
+{
+"episode": "fastmid-ProcTHOR-Train-181-01",
+"ates": [
+2.294658486945272,
+3.2136094917656064,
+1.7284981998333946,
+1.843766363281934,
+3.562266726871514
+],
+"best": 2,
+"worst": 4,
+"fdiv": 13,
+"fsplit": 13,
+"split_keys": [
+"fbd",
+"used",
+"att"
+],
+"split_flags": [],
+"d_at_split": 0.33341862980700837,
+"fjump": 13,
+"jump_keys": [
+"fbd",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.3334119415612526,
+"near": [
+0.0,
+0.0
+],
+"lockout": 3,
+"start": "mid",
+"t_split": 0.69
+},
+{
+"episode": "fastmid-ProcTHOR-Train-190-00",
+"ates": [
+0.6578619335029695,
+0.3266627169375259,
+5.8237674140141085,
+0.7804061459029868,
+0.743747560978032
+],
+"best": 1,
+"worst": 2,
+"fdiv": 61,
+"fsplit": 21,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 5.4379563302726495e-05,
+"fjump": 49,
+"jump_keys": [
+"kf",
+"fbd",
+"gate",
+"used"
+],
+"jump_flags": [],
+"jump_size": 0.0921074268011677,
+"near": [
+0.0,
+0.0
+],
+"lockout": 2,
+"start": "mid",
+"t_split": 1.09
+},
+{
+"episode": "fastmid-ProcTHOR-Train-192-02",
+"ates": [
+0.23443071781777744,
+0.21805134690583994,
+0.23638502879965037,
+0.22162137958591308,
+2.0974266069179928
+],
+"best": 1,
+"worst": 4,
+"fdiv": 12,
+"fsplit": 12,
+"split_keys": [
+"gate",
+"used"
+],
+"split_flags": [],
+"d_at_split": 0.5574289575842047,
+"fjump": 12,
+"jump_keys": [
+"gate",
+"used"
+],
+"jump_flags": [],
+"jump_size": 0.5574128432819472,
+"near": [
+1.0,
+1.0
+],
+"lockout": 3,
+"start": "mid",
+"t_split": 0.65
+},
+{
+"episode": "fastmid-ProcTHOR-Train-3-01",
+"ates": [
+0.4310703051002616,
+0.6444878605459119,
+1.4406647066322942,
+0.851215515430271,
+0.9972146594764091
+],
+"best": 0,
+"worst": 2,
+"fdiv": 51,
+"fsplit": 20,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 6.5784045177874905e-06,
+"fjump": 51,
+"jump_keys": [
+"fbd",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.19867205134667815,
+"near": [
+0.0,
+0.0
+],
+"lockout": 3,
+"start": "mid",
+"t_split": 1.04
+},
+{
+"episode": "fastmid-ProcTHOR-Train-57-00",
+"ates": [
+5.775553794146154,
+5.644459285585236,
+5.686695333398095,
+6.756528144016381,
+7.048841658472326
+],
+"best": 1,
+"worst": 4,
+"fdiv": 131,
+"fsplit": 103,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 0.0024529677684477385,
+"fjump": 130,
+"jump_keys": [
+"fbd",
+"gate",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.15283751283567623,
+"near": [
+0.0,
+0.0
+],
+"lockout": 3,
+"start": "mid",
+"t_split": 5.2
+},
+{
+"episode": "fastmid-ProcTHOR-Train-6-02",
+"ates": [
+0.44729957262448833,
+0.5036557518028106,
+0.4945515793112779,
+0.45090939272545444,
+1.571519925061145
+],
+"best": 0,
+"worst": 4,
+"fdiv": 11,
+"fsplit": 10,
+"split_keys": [
+"gate",
+"used"
+],
+"split_flags": [],
+"d_at_split": 0.18551317386188115,
+"fjump": 11,
+"jump_keys": [
+"kf",
+"fbd",
+"gate",
+"used"
+],
+"jump_flags": [],
+"jump_size": 0.46034308472428254,
+"near": [
+1.0,
+1.0
+],
+"lockout": 7,
+"start": "mid",
+"t_split": 0.55
+},
+{
+"episode": "fastmid-ProcTHOR-Train-63-01",
+"ates": [
+1.4664796793638584,
+1.4019634502750327,
+1.444658179217821,
+2.0712278806973963,
+1.0343234010048923
+],
+"best": 4,
+"worst": 3,
+"fdiv": 69,
+"fsplit": 7,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 6.4915890961747345e-06,
+"fjump": 69,
+"jump_keys": [
+"tri",
+"used"
+],
+"jump_flags": [],
+"jump_size": 1.2313001259814644,
+"near": [
+0.0,
+0.0
+],
+"lockout": 3,
+"start": "mid",
+"t_split": 0.4
+},
+{
+"episode": "fastmid-ProcTHOR-Train-64-00",
+"ates": [
+6.257230289196382,
+7.971428517555379,
+3.2278196852411987,
+3.9272260043723124,
+5.164869716732437
+],
+"best": 2,
+"worst": 1,
+"fdiv": 129,
+"fsplit": 99,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 0.00043865169604597755,
+"fjump": 129,
+"jump_keys": [
+"kf",
+"fbd",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.2687613834674725,
+"near": [
+0.0,
+0.0
+],
+"lockout": 1,
+"start": "mid",
+"t_split": 5.0
+},
+{
+"episode": "fastmid-ProcTHOR-Train-64-01",
+"ates": [
+2.616738473445938,
+3.01141804487147,
+3.809179208043978,
+3.9658138427233407,
+4.448661686525247
+],
+"best": 0,
+"worst": 4,
+"fdiv": 181,
+"fsplit": 5,
+"split_keys": [
+"kf"
+],
+"split_flags": [],
+"d_at_split": 0.0,
+"fjump": 181,
+"jump_keys": [
+"fbd",
+"gate",
+"used"
+],
+"jump_flags": [],
+"jump_size": 0.5355546338768673,
+"near": [
+0.0,
+0.0
+],
+"lockout": 1,
+"start": "mid",
+"t_split": 0.29
+},
+{
+"episode": "fastmid-ProcTHOR-Train-7-01",
+"ates": [
+1.3503383138089755,
+1.417869861873507,
+1.379394210641749,
+1.3854375701261272,
+2.501657478240422
+],
+"best": 0,
+"worst": 4,
+"fdiv": 42,
+"fsplit": 20,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 0.00010596302837308521,
+"fjump": 42,
+"jump_keys": [
+"fbd",
+"gate",
+"used"
+],
+"jump_flags": [],
+"jump_size": 0.8533482990666293,
+"near": [
+0.0,
+0.0
+],
+"lockout": 2,
+"start": "mid",
+"t_split": 1.04
+},
+{
+"episode": "fastmid-ProcTHOR-Train-74-02",
+"ates": [
+0.258081603014955,
+0.49307148827000585,
+0.641664594253695,
+0.40984562362107346,
+1.9246369572836493
+],
+"best": 0,
+"worst": 4,
+"fdiv": 13,
+"fsplit": 13,
+"split_keys": [
+"kf",
+"used",
+"att"
+],
+"split_flags": [],
+"d_at_split": 0.33756695184879715,
+"fjump": 13,
+"jump_keys": [
+"kf",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 0.33756695184879715,
+"near": [
+0.0,
+1.0
+],
+"lockout": 1,
+"start": "mid",
+"t_split": 0.69
+},
+{
+"episode": "fastmid-ProcTHOR-Train-85-02",
+"ates": [
+4.975280593128115,
+2.6964107614304273,
+5.397233599808764,
+5.496889082776413,
+5.543766267013176
+],
+"best": 1,
+"worst": 4,
+"fdiv": 155,
+"fsplit": 122,
+"split_keys": [
+"fbd"
+],
+"split_flags": [],
+"d_at_split": 0.003342429628662949,
+"fjump": 155,
+"jump_keys": [
+"fbd",
+"used",
+"att"
+],
+"jump_flags": [],
+"jump_size": 1.1014345542485295,
+"near": [
+0.0,
+0.0
+],
+"lockout": 1,
+"start": "mid",
+"t_split": 6.14
+}
+]

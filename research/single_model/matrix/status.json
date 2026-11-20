@@ -1,0 +1,58 @@
+{
+ "B0": {
+  "preflight": "n/a (submitted baseline; server completed 12/12)",
+  "evidence": "server run 2026-11-19 19:05 PT",
+  "submission": "SUBMITTED, server 3.22 m"
+ },
+ "B1": {
+  "preflight": "PASS (check 8 = finding, not blocker)",
+  "evidence": "final/preflight/REPORT.md",
+  "submission": "not submitted (G submitted instead)"
+ },
+ "B2": {
+  "preflight": "PASS",
+  "evidence": "final/preflight_gate/ (report_a.txt, cmp_gate.txt, abi_check.txt); server result final/SERVER_RESULT.md",
+  "submission": "SUBMITTED 2026-11-19 23:06 PT, server 1.244 m (peak fuel 20.9 M, e7aa5aee 7.70 m regression)"
+ },
+ "B3": {
+  "preflight": "PASS (then REJECTED on fresh generalization)",
+  "evidence": "final/preflight_fgt/REPORT.md",
+  "submission": "not submitted (rejected)"
+ },
+ "B4": {
+  "preflight": "PASS",
+  "evidence": "final/preflight_c1/REPORT.md",
+  "submission": "not submitted"
+ },
+ "B5": {
+  "preflight": "partial: fuel-agent checks pass (ABI, byte-identical estimate.tum vs B4 on 144/144 visible, ATE identical 711/711, 8/8 fixtures, causality 40/40, reset 5/5); no standalone preflight report yet",
+  "evidence": "fuel/NOTES.md",
+  "submission": "not submitted"
+ },
+ "B6": {
+  "preflight": "PASS 9/9",
+  "evidence": "final/preflight_c1_fbh/REPORT.md; wasm staged at fuel/publish/ (not in final/submit)",
+  "submission": "not submitted"
+ },
+ "B7": {
+  "preflight": "bit-identical to B6 (144 visible + 711 fresh); fuel agent checks done (fuel/NOTES.md Part 3); no standalone preflight report",
+  "evidence": "fuel/NOTES.md Part 3; fuel/publish/",
+  "submission": "not submitted"
+ },
+ "B8": {
+  "preflight": "not preflighted (evaluated, not adopted)",
+  "evidence": "cmbx/NOTES.md",
+  "submission": "not submitted"
+ },
+ "B9": {
+  "preflight": "not preflighted (not adopted)",
+  "evidence": "-",
+  "submission": "not submitted"
+ },
+ "B10": {
+  "preflight": "not built (no wasm)",
+  "evidence": "learned_c/NOTES.md: in-filter prototype on B6 (net lcF injected at frame 5) search 0.816 / val 0.442 vs B6 0.931 / 0.441 (3-rep means), peak fuel ~26 M; no plain-C wasm, no fresh/holdout scores",
+  "submission": "not submitted"
+ },
+ "_recommendation": "1. **B7 (G+C1+FB+exact fuel)**: fresh 0.618 (best, tied with B6/B8 within noise, paired vs B2 -0.195 [-0.275,-0.119], >10 m: 0, max 6.9 m), static 0.409, 12-draw proxy median 0.78 / P(any >5 m) 0.20 (B2: 0.94 / 0.43), peak fuel 12.3 M (B6/B8 24.5 M, B2 22.8 M). Estimates bit-identical to B6, which is fully preflighted 9/9; B7's own checks are by the fuel agent (no standalone preflight report yet) -> run the standard preflight on the exact wasm before submitting. Holdout: pending.\n2. **B6 (G+C1+FB)**: same accuracy as B7, preflight 9/9 PASS, but 2x the peak fuel. Safe fallback if B7's preflight is not finished.\n3. **B8 (CMBX on B6)**: statistical tie on fresh (0.613 vs 0.618), search/val slightly worse, no proxy improvement, fresh was partly used to select CMBX; not adopted.\n4. **B5 (G+C1+exact)**: fresh 0.733, 11.5 M, strictly dominated by B7 on accuracy; B4 same accuracy at 2x fuel.\n5. **B9 (tuned vector)**: search/val of B9 is within the 0.2 noise of B4; fresh 0.711 vs B4 0.733 is inside the 0.04 noise band plus held-out fresh-B showed no gain: not adopted.\n6. **B2 (submitted G)**, B1, B3: B3 has no generalization (fresh worse than B2 despite search gain; more >10 m tails); B2 is the current server build at 1.244.\nCommon weak spots for all builds: reverse starts (135-180 deg, n=18), start speed >=1.8 m/s (23 flights, 2.2-2.9 m), flat/dark scenes (n=6/7, 1.4-2.6 m) and the B2-regression class (n=17, B6/B7 2.09 vs B2 5.78; this class is selected on B2's outcome so it flatters later builds). Sealed fold 4 numbers (reported once, not used for selection): B7/B6 0.815 vs B2 1.146 vs B0 1.948."
+}

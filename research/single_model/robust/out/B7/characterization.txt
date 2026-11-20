@@ -1,0 +1,77 @@
+N=711  mean-of-means 0.633  high-variance 57 (8.0%) carry 31.0% of mean; hv excl. consistently-bad 49; consistently bad 13 carry 14.4%
+mean ATE hv 2.45 vs rest 0.475;  if hv flights were replaced by the rest mean: 0.475; if hv replaced by their min: mean 0.555
+-- by start
+  static n=356 hv=12 (3.4%) mean 0.420 mean-std 0.083
+  mid n=355 hv=45 (12.7%) mean 0.847 mean-std 0.191
+-- by angle
+  [0,45) n=182 hv= 22 (12.1%) mean 0.709 mean-std 0.187
+  [45,90) n=100 hv= 10 (10.0%) mean 0.747 mean-std 0.149
+  [90,135) n= 55 hv=  8 (14.5%) mean 1.115 mean-std 0.238
+  [135,181) n= 18 hv=  5 (27.8%) mean 1.974 mean-std 0.323
+-- by speed0
+  [0,0.3) n= 66 hv=  8 (12.1%) mean 0.620 mean-std 0.140
+  [0.3,0.6) n=107 hv=  6 ( 5.6%) mean 0.659 mean-std 0.100
+  [0.6,1.0) n= 73 hv= 10 (13.7%) mean 0.804 mean-std 0.234
+  [1.0,1.8) n= 86 hv= 10 (11.6%) mean 0.902 mean-std 0.197
+  [1.8,10) n= 23 hv= 11 (47.8%) mean 2.300 mean-std 0.604
+-- by travel
+  [0,30) n= 53 hv=  2 ( 3.8%) mean 0.362 mean-std 0.072
+  [30,45) n=304 hv= 23 ( 7.6%) mean 0.576 mean-std 0.140
+  [45,60) n=320 hv= 27 ( 8.4%) mean 0.702 mean-std 0.138
+  [60,80) n= 34 hv=  5 (14.7%) mean 0.915 mean-std 0.201
+-- by turn
+  [0.3,0.5) n=  2 hv=  0 ( 0.0%) mean 1.407 mean-std 0.308
+  [0.5,0.7) n=348 hv= 24 ( 6.9%) mean 0.634 mean-std 0.140
+  [0.7,1.01) n=361 hv= 33 ( 9.1%) mean 0.627 mean-std 0.134
+-- by flat
+  [0,1e-09) n=484 hv= 35 ( 7.2%) mean 0.519 mean-std 0.127
+  [1e-09,0.1) n=177 hv= 12 ( 6.8%) mean 0.711 mean-std 0.128
+  [0.1,0.3) n= 49 hv= 10 (20.4%) mean 1.476 mean-std 0.273
+  [0.3,1.01) n=  1 hv=  0 ( 0.0%) mean 0.658 mean-std 0.072
+-- by dark
+  [0,1e-09) n=674 hv= 49 ( 7.3%) mean 0.574 mean-std 0.124
+  [1e-09,0.1) n= 13 hv=  4 (30.8%) mean 2.050 mean-std 0.520
+  [0.1,0.3) n= 21 hv=  3 (14.3%) mean 1.391 mean-std 0.276
+  [0.3,1.01) n=  3 hv=  1 (33.3%) mean 2.456 mean-std 0.511
+-- by p90
+  [0,1.5) n=320 hv= 26 ( 8.1%) mean 0.589 mean-std 0.136
+  [1.5,2.5) n=391 hv= 31 ( 7.9%) mean 0.669 mean-std 0.138
+-- by catalog
+  hssd-train n=76 hv=7 (9.2%) mean 0.634
+  hssd-val n=57 hv=0 (0.0%) mean 0.477
+  procthor n=578 hv=50 (8.7%) mean 0.648
+-- by scene: scenes with >=3 hv flights
+  ProcTHOR-Train-176: 7/24
+  ProcTHOR-Train-166: 4/12
+  ProcTHOR-Train-151: 3/17
+  ProcTHOR-Train-160: 3/19
+  ProcTHOR-Train-143: 2/3
+  ProcTHOR-Train-169: 2/11
+  ProcTHOR-Train-6: 2/5
+  ProcTHOR-Train-155: 2/24
+-- worst 25 hv flights (by std)
+  fastmid-108294783_176710410-00 mid ang 109 v0 0.86 travel 35.79 flat 0.0 dark 0.0 reps 0.33 0.31 0.32 0.27 7.18
+  fastmid-103997643_171030747-00 mid ang 29 v0 0.64 travel 48.97 flat 0.0 dark 0.0 reps 4.87 7.46 5.79 0.45 6.35
+  fastmid-ProcTHOR-Train-178-08 mid ang 32 v0 1.56 travel 44.79 flat 0.017 dark 0.0 reps 2.06 2.33 1.95 1.29 7.42
+  fastmid-ProcTHOR-Train-190-00 mid ang 18 v0 1.03 travel 42.25 flat 0.05 dark 0.0 reps 0.66 0.33 5.82 0.78 0.74
+  fast-ProcTHOR-Train-166-05 static ang 62 v0 0.03 travel 41.02 flat 0.067 dark 0.083 reps 6.30 4.59 2.28 7.89 7.33
+  fastmid-ProcTHOR-Train-151-03 mid ang 50 v0 1.86 travel 46.44 flat 0.0 dark 0.0 reps 6.46 1.72 6.58 3.75 3.87
+  fast-ProcTHOR-Train-160-01 static ang 62 v0 0.03 travel 63.77 flat 0.0 dark 0.0 reps 0.95 0.61 4.56 4.31 3.61
+  fastmid-ProcTHOR-Train-64-00 mid ang 99 v0 0.83 travel 46.83 flat 0.217 dark 0.133 reps 6.26 7.97 3.23 3.93 5.16
+  fastmid-ProcTHOR-Train-176-05 mid ang 11 v0 2.29 travel 42.72 flat 0.0 dark 0.0 reps 6.29 5.88 10.09 7.58 5.98
+  fastmid-ProcTHOR-Train-166-04 mid ang 2 v0 1.03 travel 44.92 flat 0.117 dark 0.05 reps 2.11 4.88 3.44 6.67 3.50
+  fastmid-ProcTHOR-Train-130-02 mid ang 17 v0 2.14 travel 56.17 flat 0.0 dark 0.0 reps 1.09 4.53 1.97 0.88 2.83
+  fastmid-ProcTHOR-Train-176-06 mid ang 26 v0 0.30 travel 35.99 flat 0.1 dark 0.1 reps 5.09 1.42 1.74 3.08 2.26
+  fast-ProcTHOR-Train-166-02 static ang 62 v0 0.03 travel 45.57 flat 0.05 dark 0.05 reps 2.29 2.31 5.47 3.66 3.51
+  fastmid-ProcTHOR-Train-161-00 mid ang 63 v0 2.20 travel 45.94 flat 0.0 dark 0.0 reps 4.55 4.53 4.57 4.52 7.41
+  fastmid-102344193-00 mid ang 11 v0 2.19 travel 53.71 flat 0.0 dark 0.0 reps 1.24 4.23 1.65 1.09 1.82
+  fastmid-ProcTHOR-Train-85-02 mid ang 70 v0 0.93 travel 37.0 flat 0.133 dark 0.1 reps 4.98 2.70 5.40 5.50 5.54
+  fastmid-ProcTHOR-Train-155-02 mid ang 15 v0 0.55 travel 29.31 flat 0.0 dark 0.0 reps 1.06 1.02 1.14 3.56 0.88
+  fastmid-ProcTHOR-Train-150-01 mid ang 149 v0 0.47 travel 35.14 flat 0.0 dark 0.0 reps 2.96 2.99 0.91 1.00 2.77
+  fastmid-104862573_172226682-01 mid ang 142 v0 1.54 travel 45.55 flat 0.017 dark 0.0 reps 6.73 4.97 5.68 4.70 4.13
+  fast-ProcTHOR-Train-100-02 static ang 62 v0 0.03 travel 58.11 flat 0.183 dark 0.317 reps 4.28 6.69 4.71 5.68 6.11
+  fastmid-ProcTHOR-Train-176-04 mid ang 94 v0 0.69 travel 45.58 flat 0.0 dark 0.0 reps 0.91 1.61 3.06 3.16 1.88
+  fastmid-ProcTHOR-Train-176-02 mid ang 55 v0 1.16 travel 44.35 flat 0.0 dark 0.0 reps 0.58 0.54 0.53 0.43 2.66
+  fastmid-ProcTHOR-Train-160-09 mid ang 4 v0 1.53 travel 46.95 flat 0.0 dark 0.0 reps 1.61 3.54 1.64 1.15 1.57
+  fastmid-ProcTHOR-Train-176-07 mid ang 140 v0 0.03 travel 42.4 flat 0.0 dark 0.0 reps 0.67 0.71 2.74 0.73 0.72
+  fast-ProcTHOR-Train-143-00 static ang 62 v0 0.03 travel 56.08 flat 0.0 dark 0.0 reps 2.50 3.38 1.37 1.62 1.28

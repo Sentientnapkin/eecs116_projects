@@ -21,6 +21,15 @@
 #ifndef LC_REPLACE
 #define LC_REPLACE 1         /* 1: once the net has been applied, the heading prior's startup role ends */
 #endif
+#ifndef LC_SLOW_V
+#define LC_SLOW_V 0.0       /* predicted speed below this: sigma floor LC_SLOW_FLOOR instead (hover-like starts) */
+#endif
+#ifndef LC_SLOW_FLOOR
+#define LC_SLOW_FLOOR LC_FLOOR
+#endif
+#ifndef LC_SPD_K
+#define LC_SPD_K 0.0         /* sigma *= 1 + K*predicted speed (calibration for fast starts) */
+#endif
 #ifndef LC_ENABLE
 #define LC_ENABLE 1
 #endif
@@ -41,7 +50,7 @@ static float lc_a0[24 * 32 * LC_C0], lc_a1[12 * 16 * LC_C1], lc_a2[6 * 8 * LC_C2
 static float lc_vec[19], lc_out[12];
 static double lc_Rc[9], lc_Vi[3], lc_Rs[9], lc_Vs[3], lc_R5[9], lc_V5[3], lc_fm[2][3], lc_gm[2][3], lc_tprev, lc_Rf5[9], lc_vf5[3];
 static int lc_have_row, lc_frame, lc_next, lc_ready, lc_applied, lc_active;
-static const signed char lc_at_tab[3][6] = {{0, 0, 0, 0, 0, 0}, {0, 1, 2, 3, 3, 4}, {0, 1, 2, 3, 4, 5}};
+static const signed char lc_at_tab[4][6] = {{0, 0, 0, 0, 0, 0}, {0, 1, 2, 3, 3, 4}, {0, 1, 2, 3, 4, 5}, {0, 1, 1, 1, 1, 1}};
 
 static void lc_exp(const double *w, double *r) { /* Rodrigues, same as prep.py exp_rot (first order below 1e-9) */
     double th = sqrt(w[0] * w[0] + w[1] * w[1] + w[2] * w[2]);
@@ -71,31 +80,32 @@ static void lc_rows(const double *imu, int n, double *fm, double *gm) {
     for (int i = 0; i < 3; i++) { fm[i] = n ? fs[i] / n : 0; gm[i] = n ? gs[i] / n : 0; }
 }
 
-/* 320x240 RGB -> gray (mean of channels, float) -> exact area resampling by 2.5 -> 128x96 uint8 (rounded) */
+/* 320x240 RGB -> gray (mean of channels, float) -> exact area resampling by 2.5 -> 128x96 uint8 (rounded). The 2.5 ratio makes the taps periodic
+ * (5 source pixels -> 2 outputs with weights {1,1,.5} and {.5,1,1}); same float operations in the same order as the generic version -> bit-identical, ~3x cheaper. */
 static void lc_gray128(const uint8_t *rgb, uint8_t *out) {
-    static float g[320];
+    const float k3 = 1.0f / 3.0f;
     for (int y = 0; y < 240; y++) {
-        const uint8_t *p = rgb + 960 * y;
-        for (int x = 0; x < 320; x++) g[x] = (float)(p[3 * x] + p[3 * x + 1] + p[3 * x + 2]) * (1.0f / 3.0f);
-        for (int i = 0; i < LC_W; i++) {
-            float lo = 2.5f * i, hi = lo + 2.5f, acc = 0;
-            int j0 = (int)lo, j1 = (int)ceilf(hi);
-            for (int j = j0; j < j1 && j < 320; j++) { float a = lo > j ? lo : (float)j, b = hi < j + 1 ? hi : (float)(j + 1); acc += (b - a) * g[j]; }
-            lc_tmp[y * LC_W + i] = acc * 0.4f;
+        const uint8_t *p = rgb + 960 * y; float *t = lc_tmp + y * LC_W;
+        for (int m = 0; m < 64; m++, p += 15) {
+            float g0 = (float)(p[0] + p[1] + p[2]) * k3, g1 = (float)(p[3] + p[4] + p[5]) * k3, g2 = (float)(p[6] + p[7] + p[8]) * k3,
+                  g3 = (float)(p[9] + p[10] + p[11]) * k3, g4 = (float)(p[12] + p[13] + p[14]) * k3;
+            t[2 * m] = ((g0 + g1) + 0.5f * g2) * 0.4f; t[2 * m + 1] = ((0.5f * g2 + g3) + g4) * 0.4f;
         }
     }
     for (int i = 0; i < LC_H; i++) {
-        float lo = 2.5f * i, hi = lo + 2.5f;
-        int j0 = (int)lo, j1 = (int)ceilf(hi);
-        for (int x = 0; x < LC_W; x++) {
-            float acc = 0;
-            for (int j = j0; j < j1 && j < 240; j++) { float a = lo > j ? lo : (float)j, b = hi < j + 1 ? hi : (float)(j + 1); acc += (b - a) * lc_tmp[j * LC_W + x]; }
-            float v = acc * 0.4f + 0.5f;
-            out[i * LC_W + x] = (uint8_t)(v < 0 ? 0 : v > 255 ? 255 : (int)v);
+        const float *r0 = lc_tmp + (5 * (i >> 1)) * LC_W; uint8_t *o = out + i * LC_W;
+        if (i & 1) {
+            const float *a = r0 + 2 * LC_W, *b = r0 + 3 * LC_W, *c = r0 + 4 * LC_W;
+            for (int x = 0; x < LC_W; x++) { float v = ((0.5f * a[x] + b[x]) + c[x]) * 0.4f + 0.5f; o[x] = (uint8_t)(v < 0 ? 0 : v > 255 ? 255 : (int)v); }
+        } else {
+            const float *a = r0, *b = r0 + LC_W, *c = r0 + 2 * LC_W;
+            for (int x = 0; x < LC_W; x++) { float v = ((a[x] + b[x]) + 0.5f * c[x]) * 0.4f + 0.5f; o[x] = (uint8_t)(v < 0 ? 0 : v > 255 ? 255 : (int)v); }
         }
     }
 }
 
+/* 1 once the frame-K step has been reached: the heading prior's startup role ends (the zero-mean speed prior takes over until the net lands) */
+#define LC_PRIOR_OFF (LC_REPLACE && lc_active && lc_frame >= LC_K)
 static void lc_begin(const uint8_t *frame, const double *imu, int n) { /* frame 0 (init step) */
     memset(lc_Rc, 0, sizeof lc_Rc); lc_Rc[0] = lc_Rc[4] = lc_Rc[8] = 1; memset(lc_Vi, 0, sizeof lc_Vi);
     lc_have_row = 0; lc_frame = 0; lc_next = 0; lc_ready = 0; lc_applied = 0; lc_active = LC_ENABLE;
@@ -189,10 +199,11 @@ static void lc_head(void) {
 /* the filter measurement: body-frame velocity at frame K, expressed as the world innovation at frame K applied to the current state */
 static void lc_apply(void) {
     double sd[3], mu[3], dw[3], r[3];
+    double spd = sqrt(lc_out[6] * lc_out[6] + lc_out[7] * lc_out[7] + lc_out[8] * lc_out[8]), fl = spd < LC_SLOW_V ? LC_SLOW_FLOOR : LC_FLOOR;
     for (int i = 0; i < 3; i++) {
         double lv = lc_out[9 + i]; lv = lv < -7 ? -7 : lv > 4 ? 4 : lv;
-        double s = LC_SCALE * exp(0.5 * lv); s = sqrt(s * s + LC_EXTRA_SD * LC_EXTRA_SD);
-        sd[i] = s < LC_FLOOR ? LC_FLOOR : s; mu[i] = lc_out[6 + i];
+        double s = LC_SCALE * exp(0.5 * lv) * (1.0 + LC_SPD_K * spd); s = sqrt(s * s + LC_EXTRA_SD * LC_EXTRA_SD);
+        sd[i] = s < fl ? fl : s; mu[i] = lc_out[6 + i];
     }
     for (int i = 0; i < 3; i++) dw[i] = lc_Rf5[3 * i] * mu[0] + lc_Rf5[3 * i + 1] * mu[1] + lc_Rf5[3 * i + 2] * mu[2] - lc_vf5[i];
     memset(Hs, 0, sizeof Hs);

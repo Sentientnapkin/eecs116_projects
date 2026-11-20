@@ -295,3 +295,20 @@ Remaining exact ideas with small yield (each <= 0.2 M at peak): separable box su
 
 ## 2.5 Area-score arithmetic for G+C1 (`score2.py` logic; ATE at the point does not change)
 At fixed ATE, cutting peak 21.7 -> 10.8 M is worth 0.676 * ln(21.7/10.8) = +0.47 points (scenarios A/B above: 0.43-0.47 depending on the frontier). Exchange rate unchanged: a further 10 % fuel = +0.07 points; 30 % fuel = 8.5-12 % ATE.
+
+# PART 3: forward-backward KLT check (frontend/adopted_fbh.c) on the exact source
+`adopted_fbh_base.c` = copy of frontend/adopted_fbh.c; `IN=adopted_fbh_base.c NOARMS=1 OUT=adopted_c1_fbh_exact.c python3 mkv.py` gives `adopted_c1_fbh_exact.c` (+ `.patch`, `c1fbh/`).
+The FB patch only edits `track_all`; the backward `klt(cur, prev, ...)` call goes through the same rewritten kernels (extract etc.). Wasm builds: `fuel_fbx` (exact, -O3),
+`fuel_fbbase` (non-exact adopted_fbh.c, -O2, cmake default). In progress: results below are filled in as checks finish.
+
+## 3.1 Results (exact FB build `fuel_fbx`, wasm sha256 31137e4fb26f73249d6ededffd71669df307886a3f929ffe2bc5d28204ff0137; non-exact `fuel_fbbase` = adopted_fbh.c at -O2)
+- Bit identity vs adopted_fbh.c: estimate.tum byte-identical 144/144 visible flights; ATE identical 711/711 fresh (mean 0.618372 both); 8/8 fixtures x 1200 frames; reset check 5/5 (+ first replay equal);
+  future-poison/prefix/determinism 40/40 (8 flights x prefixes 8, 9, 14, 21, 301: gate decision frame 8, hold window 8-20, FB alternation parity both ways; `fuel_preflight/poison_fbx.log`); 119 harness flights bit-identical.
+- Fuel: search+val peak 21.78 -> **11.03 M**, median of flight peaks 19.37 -> 9.80, mean p95 15.40 -> 7.74, mean median 9.81 -> 5.47. Fresh: peak 24.50 -> **12.31 M**, p95 15.61 -> 7.83, median 9.83 -> 5.45.
+  (FB check costs +0.85 M median / +0.2 M peak over the c1y exact build: 4.62 -> 5.47 M.)
+- FB-specific exact savings: implemented (`opt3.py`, `USE_FBT=1`) a per-track template cache: the backward template (current image at the new position) is bit-for-bit the next frame's forward template; 46 % of forward
+  level-templates hit the cache; measured saving only 0.06 M mean (1 %): templates cost ~3 k ops each, the FB overhead is dominated by the backward iterations (patch extraction 1.2 k + residual loop 1.6 k per iteration).
+  Not adopted (bit-identical, 1 %, extra state). Not exact: reusing forward patches for the first backward iteration (positions differ by rounding); skipping back-tracks for new tracks (changes decisions).
+- Registry: all 44 names have exactly one `#define` in the FB exact source, default render identical; 9 vectors rendered into adopted_fbh.c and the exact source: 216/216 flights bit-identical. The FB patch adds NO #define: the 0.5 px threshold is the literal `0.25` (squared)
+  and the alternation is `(frame_no + i) & 1`. To register: `#define FB_MAX_PX 0.5` (range 0.25-1.0, log) used as FB_MAX_PX*FB_MAX_PX (value-identical at 0.5); not done, to keep the source identical to the evaluated one.
+- Publishing: staged in `fuel/publish/` (wasm + source pairs, SHA256SUMS_new). Copying into final/submit was blocked by the permission classifier (see final message).

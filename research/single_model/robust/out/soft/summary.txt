@@ -1,0 +1,13 @@
+== soft [fresh]: n=711 flights, R=5 replicates
+per-replicate mean: 0.624 0.627 0.636 0.634 0.626
+mean of replicate means 0.630  | spread of the mean across replicates: std 0.005 range 0.012
+mean per-flight std 0.132 | median per-flight std 0.043
+high-variance flights 44 (carry 25.2% of the mean)  consistently bad 12 (carry 13.2%)
+  flights >3 m per replicate: 22 21 22 17 22 (avg 20.8)
+  flights >5 m per replicate: 4 5 4 7 6 (avg 5.2)
+  flights >10 m per replicate: 1 0 1 0 0 (avg 0.4)
+  replicate median 0.35 0.36 0.36 0.36 0.37  p90 1.21 1.13 1.16 1.14 1.10
+  dev (n=475): rep means 0.627 0.613 0.641 0.642 0.604 | avg 0.625 std 0.017 | mean flight std 0.135 | hv 35
+  confirm (n=236): rep means 0.618 0.657 0.625 0.619 0.671 | avg 0.638 std 0.025 | mean flight std 0.125 | hv 9
+  static (n=356): avg of rep means 0.447  mean flight std 0.098  hv 13
+  mid (n=355): avg of rep means 0.813  mean flight std 0.166  hv 31

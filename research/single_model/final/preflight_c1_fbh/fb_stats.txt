@@ -1,0 +1,4 @@
+flights 171 final frame {1199} dbg estimate.tum identical to release build: 171 nan/inf in stderr: []
+all 171 per-flight mean: dropped/checked 0.1000 (min 0.0267 max 0.5051), dropped/forward-OK tracks 0.0497, dropped/all-tracked 0.0467, checked/forward-ok 0.499
+static 85 per-flight mean: dropped/checked 0.0926 (min 0.0267 max 0.5051), dropped/forward-OK tracks 0.0461, dropped/all-tracked 0.0435, checked/forward-ok 0.499
+mid 86 per-flight mean: dropped/checked 0.1074 (min 0.0576 max 0.5000), dropped/forward-OK tracks 0.0532, dropped/all-tracked 0.0498, checked/forward-ok 0.498

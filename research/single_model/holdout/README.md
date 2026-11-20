@@ -19,3 +19,17 @@ existing sidecar/roster, in scenes mostly absent from gen/raw-fast.
   (and from the native campaign roster).
 - Scene choice and truth-statistic-only calibration selection: see make_roster.py and select_final.py here
   (details and numbers are appended below as the run progresses).
+
+## Realized set (final selection, 240 flights in gen/raw-holdout/final -> symlinks to bench/)
+- Candidates generated: 620 (256 stage-1 static: one per eligible scene; 364 stage-2: extra static + mid in scenes with stage-1 extent >= 2.8 m;
+  0 generation failures). Stage-2 allocation and the final selection (select_final.py: 120+120 without replacement, <=3 per scene per start type,
+  seeded local search to match mean extent 4.694 / path 59.6 as closely as possible) use truth statistics only; no estimator result anywhere.
+- Scenes: all catalog scenes already appear in some roster/manifest, so NONE is entirely new. 110 scenes used: 101 absent from gen/raw-fast
+  (58 ProcTHOR + 43 HSSD-train), 9 HSSD-Val43 dev houses reused (new seeds). Reserved test scenes excluded. 0 seed / (scene,seed) collisions.
+- Audit vs selected171/fresh711: AUDIT.md (audit_dist.py). Gates: verify_zips.py (240/240 load, 1200 frames, finite, not stalled, truth integration <= 0.0011 m).
+- Caveat: hitting the extent anchor requires big houses, so the mix is HSSD-train heavy (112 hssd-train, 99 procthor, 29 hssd-val) vs selected (44/94/33).
+- Rejected candidate zips (380) were kept under gen/raw-holdout/bench (not in final/); do not score them.
+
+## Scoring
+`holdout/score_build.sh <wasm> <name>` (copy of fresh/run_fresh.py on final/ via run_holdout.py; refuses a second run of a name; logs SCORED.log).
+Tables: table_<name>.json/csv; summary RESULTS.md (analyze.py). Scored once: base (gp_msckf.wasm), gate (G), gatec1 (G+C1).

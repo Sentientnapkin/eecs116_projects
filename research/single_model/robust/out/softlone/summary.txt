@@ -1,0 +1,13 @@
+== softlone [fresh]: n=711 flights, R=5 replicates
+per-replicate mean: 0.620 0.632 0.614 0.624 0.598
+mean of replicate means 0.618  | spread of the mean across replicates: std 0.013 range 0.034
+mean per-flight std 0.123 | median per-flight std 0.044
+high-variance flights 44 (carry 25.8% of the mean)  consistently bad 7 (carry 6.6%)
+  flights >3 m per replicate: 20 22 16 18 14 (avg 18.0)
+  flights >5 m per replicate: 3 3 2 3 5 (avg 3.2)
+  flights >10 m per replicate: 0 0 0 0 0 (avg 0.0)
+  replicate median 0.38 0.37 0.37 0.37 0.37  p90 1.23 1.25 1.16 1.19 1.13
+  dev (n=475): rep means 0.622 0.632 0.614 0.633 0.590 | avg 0.618 std 0.017 | mean flight std 0.122 | hv 27
+  confirm (n=236): rep means 0.618 0.633 0.613 0.606 0.616 | avg 0.617 std 0.010 | mean flight std 0.127 | hv 17
+  static (n=356): avg of rep means 0.451  mean flight std 0.106  hv 12
+  mid (n=355): avg of rep means 0.785  mean flight std 0.141  hv 32

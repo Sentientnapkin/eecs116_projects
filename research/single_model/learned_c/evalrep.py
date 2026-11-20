@@ -21,13 +21,16 @@ def nudge(text, k):
     return text
 
 
+CMAKE = RV.CMAKE_DEFAULT
+
+
 def run(name, src, sets, reps, workers):
     for k in range(reps):
         nm = f'{name}_r{k}'
         d = RV.OUT / ('lc_' + nm)
         d.mkdir(parents=True, exist_ok=True)
         (d / 'in.c').write_text(nudge(Path(src).read_text(), k))
-        wasm = RV.build(d / 'in.c', RV.CMAKE_DEFAULT, '', 'lc_' + nm)
+        wasm = RV.build(d / 'in.c', CMAKE, '', 'lc_' + nm)
         for st in sets:
             pool = RV.EPISODES if st == 's171' else F3
             sc = RV.run_guest_fast(wasm, pool, d / ('eval' if st == 's171' else 'eval_f3'), workers=workers, name=nm)
@@ -62,8 +65,9 @@ def summarize(name, reps, sets):
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument('name'); ap.add_argument('src'); ap.add_argument('--set', default='s171'); ap.add_argument('--reps', type=int, default=3); ap.add_argument('--workers', type=int, default=24)
-    ap.add_argument('--summ_only', action='store_true')
+    ap.add_argument('--summ_only', action='store_true'); ap.add_argument('--cmake', default='')
     a = ap.parse_args(); sets = a.set.split(',')
+    if a.cmake: CMAKE = Path(a.cmake).resolve()
     if not a.summ_only:
         run(a.name, a.src, sets, a.reps, a.workers)
     summarize(a.name, a.reps, sets)

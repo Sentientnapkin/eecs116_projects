@@ -1,0 +1,13 @@
+== step [fresh]: n=711 flights, R=5 replicates
+per-replicate mean: 2.763 2.802 2.699 2.766 2.766
+mean of replicate means 2.759  | spread of the mean across replicates: std 0.037 range 0.103
+mean per-flight std 0.580 | median per-flight std 0.108
+high-variance flights 237 (carry 79.5% of the mean)  consistently bad 174 (carry 72.1%)
+  flights >3 m per replicate: 212 210 211 212 212 (avg 211.4)
+  flights >5 m per replicate: 139 141 142 134 139 (avg 139.0)
+  flights >10 m per replicate: 46 46 43 43 47 (avg 45.0)
+  replicate median 0.86 0.80 0.81 0.86 0.82  p90 8.13 8.29 7.73 8.03 8.07
+  dev (n=475): rep means 2.780 2.785 2.726 2.754 2.784 | avg 2.766 std 0.025 | mean flight std 0.588 | hv 161
+  confirm (n=236): rep means 2.730 2.837 2.643 2.791 2.729 | avg 2.746 std 0.073 | mean flight std 0.564 | hv 76
+  static (n=356): avg of rep means 0.877  mean flight std 0.199  hv 47
+  mid (n=355): avg of rep means 4.647  mean flight std 0.962  hv 190

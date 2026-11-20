@@ -1,0 +1,24 @@
+n 711 mean 0.6184
+ate equal to frontend fe2_fbh table: 711 / 711 maxdiff 0.0
+completed all True filled nonzero [] errors [] nan ate []
+fresh peak FB 24.50M (C1 23.40M), median-of-peaks FB 19.40 C1 18.67, p95-of-peaks FB 21.16 C1 20.67, max % of 2e10 0.1225
+all 711 C1 0.733 FB 0.618 d -0.114 [-0.167 -0.064] >5 8 8 >10 0 0 max 6.91
+static 356 C1 0.471 FB 0.409 d -0.062 [-0.096 -0.029] >5 1 1 >10 0 0 max 6.30
+mid 355 C1 0.995 FB 0.829 d -0.166 [-0.258 -0.078] >5 7 7 >10 0 0 max 6.91
+worse >0.5: 33 better >0.5: 66 worse>0.3 53 better>0.3 104
+  fast-ProcTHOR-Train-166-05 static C1 1.51 FB 6.30 d +4.80
+  fastmid-103997643_171030747-00 mid C1 1.10 FB 4.87 d +3.77
+  fastmid-ProcTHOR-Train-166-00 mid C1 4.28 FB 6.91 d +2.63
+  fastmid-ProcTHOR-Train-64-00 mid C1 3.65 FB 6.26 d +2.61
+  fastmid-ProcTHOR-Train-176-06 mid C1 2.56 FB 5.09 d +2.53
+  fastmid-ProcTHOR-Train-191-00 mid C1 0.64 FB 3.11 d +2.47
+  fastmid-104862573_172226682-01 mid C1 4.32 FB 6.73 d +2.40
+  fastmid-ProcTHOR-Train-151-04 mid C1 1.65 FB 3.84 d +2.18
+  fastmid-108294783_176710410-00 mid C1 6.97 FB 0.33 d -6.64
+  fastmid-102344193-00 mid C1 6.93 FB 1.24 d -5.70
+  fastmid-ProcTHOR-Train-157-11 mid C1 4.94 FB 0.39 d -4.55
+  fastmid-ProcTHOR-Train-91-02 mid C1 4.52 FB 0.20 d -4.32
+  fast-ProcTHOR-Train-166-00 static C1 4.87 FB 1.26 d -3.61
+  fastmid-ProcTHOR-Train-176-11 mid C1 5.74 FB 2.29 d -3.45
+  fastmid-ProcTHOR-Train-192-02 mid C1 3.50 FB 0.23 d -3.26
+  fastmid-ProcTHOR-Train-130-02 mid C1 4.18 FB 1.09 d -3.09

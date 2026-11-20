@@ -104,3 +104,21 @@ The bit-exact rewrite ports unchanged onto the new accuracy base (G + C1, `inven
 ### Gaps
 - Approximate arms (f32 KLT, detect throttling, 5 clones) were not re-run on G+C1; they would need 10+ replicates and a paired fresh test.
 - The loop's build step was not changed to -O3 (the loop was not touched).
+
+
+## (6) Forward-backward KLT check on the exact source
+
+### Takeaway
+The alternate-frame forward-backward KLT check ports onto the exact source with identical outputs; the exact FB build needs 11.0 M peak (search+val) and 12.3 M (fresh) versus 21.8 / 24.5 M for the non-exact FB build.
+
+### Cited Findings
+- Bit identity of `fuel_fbx` vs adopted_fbh.c: 144/144 visible estimate.tum byte-identical, 711/711 fresh ATE identical, 8/8 fixtures, reset 5/5, 40/40 causality cases — [NOTES.md Part 3](research/single_model/fuel/NOTES.md)
+- Fuel (search+val): peak 21.78 -> 11.03 M, p95 15.40 -> 7.74, median 9.81 -> 5.47; fresh peak 24.50 -> 12.31 M.
+- A per-track template cache (backward template == next forward template) is exact but saves only 1 % (0.06 M); the FB overhead is the backward iterations.
+- The FB patch adds no `#define`; the registry renders identically (216/216 flights bit-identical on 9 vectors); proposed parameter FB_MAX_PX 0.5 (0.25-1.0).
+
+### Inferences
+- Remaining exact savings are small; the FB check costs about 0.85 M median and 0.2 M peak.
+
+### Gaps
+- Publishing into final/submit and the full preflight of the non-exact FB build are outside this work.

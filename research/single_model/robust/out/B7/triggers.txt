@@ -1,0 +1,20 @@
+57 hv flights with best/worst replicate gap >= 0.5 m (of 57 debug-run hv flights); never-diverged (no d>0.2): 0
+first discrete split between best and worst replicate (type = first counter that differs):
+  FB-drop: 37
+  triangulation: 9
+  chi2-gate/used: 5
+  chi2-gate: 4
+  KLT-fail: 2
+  detail (counter sets):  [(('fbd',), 32), (('tri', 'used'), 5), (('kf', 'fbd'), 5), (('gate', 'used'), 4), (('fbd', 'tri', 'att'), 4), (('fbd', 'used', 'att'), 3), (('kf', 'used', 'att'), 2), (('kf',), 2)]
+  split frame median 15; divergence>0.2m frame median 77; d at split median 0.0004 m
+largest single-frame jump in best-worst distance (before reaching 0.2 m): type at that frame:
+  chi2-gate/used: 26
+  triangulation: 16
+  chi2-gate: 11
+  none: 2
+  FB-drop: 1
+  KLT-fail: 1
+  jump size median 0.220 m, share of flights whose divergence is a >0.1 m single-frame jump: 0.84
+lock-out (>=40 consecutive frames with >=3 features attempted and 0 used in the worse replicate): 0 / 57; max run median 3
+start types {'static': 12, 'mid': 45}
+time of divergence (frame of d>0.2): <3 s (60 frames) 24, 3-10 s 28, 10-30 s 4, >30 s 1

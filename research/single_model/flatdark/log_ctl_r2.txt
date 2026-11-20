@@ -1,0 +1,11 @@
+167 episodes, 0 cached, workers=12 (no video)
+20/167 finished, 17.7s
+40/167 finished, 33.8s
+60/167 finished, 48.6s
+80/167 finished, 64.4s
+100/167 finished, 79.4s
+120/167 finished, 95.1s
+140/167 finished, 109.5s
+160/167 finished, 122.8s
+167/167 finished, 129.9s
+fd_ctl_r2 done 167

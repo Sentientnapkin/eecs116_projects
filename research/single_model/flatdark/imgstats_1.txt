@@ -1,0 +1,12 @@
+fastmid-106366104_174226329-00 mean=94.33 std=3.19 noise=0.44 c1000=2.08 c500=6.58 c250=12.42 c100=16.75 sat=0.00 blk=0.00
+fastmid-ProcTHOR-Train-85-02 mean=100.44 std=49.33 noise=0.00 c1000=5.33 c500=5.33 c250=5.33 c100=5.33 sat=0.00 blk=0.45
+fastmid-ProcTHOR-Train-85-01 mean=73.10 std=67.16 noise=0.00 c1000=8.25 c500=8.25 c250=8.25 c100=8.25 sat=0.00 blk=0.60
+fastmid-ProcTHOR-Train-57-00 mean=170.14 std=14.05 noise=0.00 c1000=8.50 c500=8.67 c250=8.92 c100=9.50 sat=0.00 blk=0.00
+fast-ProcTHOR-Train-100-02 mean=20.09 std=18.27 noise=0.00 c1000=7.42 c500=7.75 c250=7.92 c100=8.00 sat=0.00 blk=0.67
+fastmid-ProcTHOR-Train-64-00 mean=105.58 std=75.33 noise=0.00 c1000=7.17 c500=7.33 c250=7.33 c100=7.67 sat=0.00 blk=0.50
+fast-ProcTHOR-Train-166-05 mean=91.46 std=77.98 noise=0.00 c1000=11.17 c500=11.25 c250=11.25 c100=11.75 sat=0.00 blk=0.52
+fastmid-ProcTHOR-Train-166-00 mean=99.99 std=76.14 noise=0.00 c1000=9.83 c500=9.83 c250=10.00 c100=10.58 sat=0.00 blk=0.47
+fastmid-ProcTHOR-Train-154-03 mean=190.34 std=15.57 noise=0.00 c1000=8.92 c500=9.67 c250=10.42 c100=11.08 sat=0.00 blk=0.00
+fast-ProcTHOR-Train-0-02 mean=127.52 std=24.44 noise=0.00 c1000=13.58 c500=14.17 c250=14.25 c100=14.50 sat=0.00 blk=0.00
+fastmid-ProcTHOR-Train-76-02 mean=132.16 std=38.28 noise=0.00 c1000=24.67 c500=27.58 c250=29.83 c100=31.33 sat=0.01 blk=0.00
+fast-102344193-00 mean=132.74 std=52.93 noise=0.43 c1000=40.17 c500=42.33 c250=42.75 c100=42.83 sat=0.00 blk=0.01

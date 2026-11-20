@@ -30,7 +30,7 @@ def main():
     allr = [r for r in split2.load_rows() if r['role'] == 'val' and r['pool'] == 'fast']   # fold 3 only
     rows = [r for r in allr if r['start'] == 'mid'][:nw // 2] + [r for r in allr if r['start'] == 'static'][:nw // 2]
     exe = HERE / 'lc_test.bin'
-    subprocess.check_call(['gcc', '-O2', '-I', wdir, '-I', str(HERE), '-o', str(exe), str(HERE / 'lc_test.c'), '-lm'])
+    subprocess.check_call(['gcc', '-O2', '-I', wdir, '-I', str(HERE), '-o', str(exe), *([f'-DLC_CORE_H="{__import__("os").environ["LC_CORE"]}"'] if 'LC_CORE' in __import__('os').environ else []), str(HERE / 'lc_test.c'), '-lm'])
     anchors = [0, 40, 100]
     dump(rows, HERE / 'lc_dump.bin', anchors)
     subprocess.check_call([str(exe), str(HERE / 'lc_dump.bin'), str(HERE / 'lc_out.bin')])

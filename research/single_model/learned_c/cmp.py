@@ -14,7 +14,7 @@ def boot(d, sc, n=3000, seed=1):
     rng = np.random.default_rng(seed); u, inv = np.unique(sc, return_inverse=True)
     s = np.bincount(inv, weights=d); k = np.bincount(inv); idx = rng.integers(0, len(u), (n, len(u)))
     return np.percentile(s[idx].sum(1) / k[idx].sum(1), [2.5, 97.5])
-bins = [('all', np.ones(len(eps), bool)), ('static', ~mid), ('mid', mid), ('mid v>0.3', mid & (spd > 0.3))] + [(f'ang {lo}-{hi}', mid & (spd > 0.3) & (ang >= lo) & (ang < hi)) for lo, hi in [(0, 45), (45, 90), (90, 135), (135, 181)]]
+bins = [('all', np.ones(len(eps), bool)), ('static', ~mid), ('mid', mid), ('mid v>0.3', mid & (spd > 0.3))] + [('v>1.8', mid & (spd > 1.8)), ('0.3<v<=1.8', mid & (spd > 0.3) & (spd <= 1.8)), ('v<=0.3 mid', mid & (spd <= 0.3))] + [(f'ang {lo}-{hi}', mid & (spd > 0.3) & (ang >= lo) & (ang < hi)) for lo, hi in [(0, 45), (45, 90), (90, 135), (135, 181)]]
 print(f'{kind}: n={len(eps)}  ref={ref}')
 for lab, m in bins:
     if m.sum() == 0: continue

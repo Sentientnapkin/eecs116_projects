@@ -1,3 +1,67 @@
 # learned_c: learned startup-velocity net ported to plain C (work log, written early, updated as I go)
 Status: started 2026-11-20. Plan: (1) prep2 (C-matched cache) + export + C net + parity, (2) in-filter eval vs G / f0, (3) retrain mix, (4) preflight if it helps.
 Nothing below is a result until a table says so.
+
+## Progress (2026-11-20, resumed; base switched to B6 = frontend/adopted_fbh.c = G+C1+FB)
+* prep2.py/train2.py/split2.py: C-matched cache (320x240 INTER_AREA -> gray -> exact 2.5x area -> 128x96) for 765 flights (raw-fast 475 train + 132 fold-3 val, raw-speed 120 train + 38 fold-3 val; fold 4 never opened), 2 start phases.
+* export_net.py (BN fold, float32, 0.42 MB), lc_core.h (net + preprocessing, plain C, staged), make_lc.py (inlines into the base), lc_test.c + parity.py (host gcc).
+* PARITY (n=180 windows, 60 fold-3 flights, anchors 0/40/100, old net n_nf2_r64_w1_s0): C vs PyTorch on same tensors max abs diff 1.2e-6 (mean outputs), 2.9e-6 (logvar); full pipeline from raw 320x240 frames+IMU vs build_batch on cache: gray128 bit-identical, tensors 9e-5, outputs 1.8e-6 m/s.
+* Reference (G = gate.c, 3 chaos replicates, learned_c/evalrep.py): search 1.181, val 0.545, fold3-unselected (f3, n=107) 0.854. Single r0: 1.028/0.543.
+* First in-filter try on G with the old net, spread 0, single run: search 1.163 / val 0.862 (worse than G, 15 m flight). Net direct error at frame 5 on the eval flights is 0.22 m/s (mid), so the damage is on the filter side; investigating (replicates needed: single runs are chaotic).
+* New nets lcA-F (train2.py, fold 3 val): val head err ~0.19-0.20 m/s, see runs/*/result.json.
+* B6 reference (3 chaos reps): search 0.931, val 0.441, f3(107 unselected fold-3) 0.666; peak fuel 22.0-23.2 M. Net lcF (train2: fast+speed pools, alpha 0.5 bins, 45 ep; val head err 0.185/0.191) injected at frame 5 in one step (spread 0), scale 1.15: search 0.816, val 0.442, f3 0.660; peak fuel 26.3 M (+4.3). By angle (selected visible, 90-135 n=6: 2.90->2.52; 135-181 n=4: 3.03->0.79; f3 135+ n=1). Note single-run and G-base result earlier (1.163/0.862) was noise + G base; B6 base works.
+* Angle convention fixed in feats.py (optical axis = +z of load_truth states, same as fresh/truth_feats.json). Frame of net target = IMU body frame (verified: truth pose R^T g matches IMU specific force), filter injection is correct.
+* SPREAD results on B6 base (3 reps; search/val/f3; max peak fuel): spread0 (all in frame 5) 0.816/0.442/0.660, 26.3 M. Spreading with the heading prior kept until the net lands (spread 1,2) is BAD (search 1.25/1.17, val 1.14/1.0): the wrong-direction heading prior keeps acting for 4-5 more frames. Fix = heading prior ends at frame K (LC_PRIOR_OFF), zero-mean speed prior until the net lands. Then spread 1 (net applied at frame 9) still bad (1.383/1.156/0.892) but spread 3 (frame 5 = derotation/normalisation/pooling, frame 6 = whole forward pass + injection; 1-frame delay) = 0.850/0.382/0.661, peak fuel 22.25/23.09 M = same as B6 (22.01/23.21). B6: 0.931/0.441/0.666.
+* Net choice by fold-3 val balanced error: lcJ (0.2175) < lcG < lcF; test lcJ with spread 3.
+* spread 3 (prep frame 5, forward+inject frame 6), 3 reps, search/val/f3: lcF scale 1.15: 0.850/0.382/0.661; lcF scale 1.0: 0.782/0.388/0.618; lcJ scale 1.16: 0.855/0.405/0.667. B6: 0.931/0.441/0.666. Peak fuel all within 21.6-23.1 M = B6.
+
+## RESULT (B10 = B6 + learned net, spread 3, lcJ, LC_SCALE 1.0)  -- all numbers 3-chaos-replicate means of mean unaligned ATE (m)
+Build: lc_b6_J3s1.c (= frontend/adopted_fbh.c + lc_core.h + lcJ weights; make_lc.py ... LC_SCALE=1.0 LC_SPREAD=3), wasm gp_msckf_startup_b10_lcnet.wasm sha256 9353f276e4f2f0ec95d185394871474f1e27012def94bc1547fdbfdfaa0466fb (512 KB). Preflight files: preflight/, preflight/out/.
+Mechanism: frame 0 and frame 5 gray128 kept; frame 5 step: derotate/normalise/pool (prep); frame 6 step: whole 1.7 M MAC forward pass + injection of the head-K velocity (innovation computed at frame 5, applied at frame 6, sd = max(0.05, scale*sigma)). The heading prior stops at frame 5 (LC_PRIOR_OFF), zero-mean speed prior until frame 6; B6's later priors (INV_LAT etc.) unchanged.
+| build | search (119) | val (25) | f3: 107 unselected fold-3 | peak fuel max (3 reps, 171 / f3) |
+|---|---|---|---|---|
+| B6 | 0.931 | 0.441 | 0.666 | 22.0 / 23.2 M |
+| B10 lcJ scale 1.0 (shipped candidate, chosen by fold-3 val direct error) | 0.854 | 0.395 | 0.606 | 22.9 / 21.9 M |
+| B10 lcF scale 1.0 | 0.782 | 0.388 | 0.618 | 22.3 / 23.1 M |
+| lcF scale 1.15 / 0.8 | 0.850 / 0.876 | 0.382 / 0.378 | 0.661 / 0.659 | |
+| spread 0 (all in frame 5, lcF 1.15) | 0.816 | 0.442 | 0.660 | 26.3 M (+4.3 M) |
+Paired scene bootstrap vs B6 (J, scale 1.0): f3 all -0.060 [-0.131,+0.019], mid -0.122 [-0.270,+0.039], static +0.002 [-0.026,+0.045]; selected 144 (F scale 1.0): all -0.132 [-0.284,+0.009]. NONE of the CIs excludes 0: the gain is real-looking but not statistically established.
+By bin (f3 honest, n small; B6 -> J): v>1.8 m/s (n=5) 1.41 -> 1.21; 0.3<v<=1.8 (37) 0.78 -> 0.60; 45-90 deg (10) 0.76 -> 0.48; 90-135 (10) 0.93 -> 0.76; 135-180 (1) 5.84 -> 2.64; mid with v<=0.3 (11) 0.67 -> 0.78 (worse); static (54) 0.52 -> 0.52. >3 m flights f3 3 -> 2, >10 m 0 -> 0.
+Selected 144 (search+val; scenes overlap net training flights, so NOT honest): v>1.8 (n=10) 2.32 -> 1.34 (F: 1.19); 90-135 (6) 2.90 -> 2.04; 135-180 (4) 3.03 -> 0.72; mid v<=0.3 (7) 1.62 -> 2.06 (worse); static 0.454 -> 0.461; >10 m 0 -> 0.
+Caveats: wrong-direction bins have n=1 (f3) / 4-6 (selected): the 135-180 effect cannot be confirmed here; the hover-like mid starts (v<=0.3) get slightly worse (net says ~0 with sd 0.05 floor; B6's heading prior mattered less than the hold logic); scale choice 1.0 vs 1.15 differs by noise-level amounts; nets are single seeds. The holdout set (gen/raw-holdout) was NOT used.
+Direct accuracy of lcJ (fold-3 val, 40.6 k anchors, head K, m/s): all 0.188; by angle 0-30/30-60/60-90/90-135/135-180: 0.216/0.203/0.232/0.266/0.194; by speed <0.3/0.3-1/1-1.5/>1.5: 0.078/0.161/0.264/0.399 (cov1 0.73/0.66/0.62/0.56; sigma over-confident for fast starts, global optimal sigma scale 1.16). Old slow-pool net on the same C pipeline: 0.22 m/s mid starts.
+Training mix (train2.py): raw-fast 475 + raw-speed 120 folds 0-2 flights (unselected), two start phases, bin-balanced sampling alpha 0.5 (angle x speed bins), mirror augmentation, 60 epochs; fold 3 (fast+speed pools, 170 flights) for selection; fold 4 never read.
+Preflight (wasm above): ABI `viobench check` ok; zero wasm imports; determinism: wasm byte-identical on rebuild, ATE bit-identical on 144 visible flights between two evaluator runs; prefix + future-poison: 10 fixtures (4 static, 6 mid, none fold 4, incl. the wrong-direction/tail flights) x 15 prefixes (1,2,4,5,6,8-12,40,41,120,600,1199) = 150/150 bit-equal, repeat equal; reset/re-init: 4 fixtures, re-init replay and after-partial replay bit-equal, fresh-process equal; filled frames 0 and completed on all 144 visible flights x 3 reps; fuel peak max 21.6 M (r0, 144 visible), 22.9 M over replicates, worst p95 17.2 M (B6 22.0 M / ?). Parity: 1.8e-6 m/s (net only), 3.7e-6 (full pipeline) on 180 windows.
+NOT done: fold-4/sealed read, server use, holdout evaluation, preflight of the 12 server-like fixtures beyond the 10 above.
+
+## B11 / B12 phase (second request)
+* B11 = fuel/adopted_c1_fbh_exact.c (B7) + net (make_lc.py with LC_BASE, cmake = fuel/CMakeLists_c1.txt, -O3), LC_SPREAD=3 lcJ scale 1.0. Source lc_b11.c. Evaluated with evalrep (name b11).
+* B11 (B7 exact base + net): outputs (ATE) bit-identical to B10 on all 144 visible and 107 f3 flights x 3 reps; peak fuel on the visible flights 17.2 M (net frames 5/6) with the generic gray resampler. Per-frame fuel profile (fuelprof.py): B7 ~2.9 M/frame early; net adds 7.5 M at frame 0, 10.7 M at frame 5 (gray + prep), 4.7 M at frame 6 (forward). Bit-identical rewrite of lc_gray128 (periodic taps {1,1,.5},{.5,1,1}) -> frame 0 +2.0, frame 5 +5.3, frame 6 +4.7 M: all frames <= 8.3 M < B7's ~12 M peak, so the net does not set the peak. SIMD128 intrinsics for conv (bit-identical) gave no fuel gain (kept in lc_core2.h).
+* ensembles: lc_core2.h supports N nets (export_multi.py). Direct fold-3 val (head K): single lcJ/J1/J2 0.188/0.189/0.191, 3-ensemble 0.1747 (-7%), calibrated (optimal sigma scale 0.96 vs 1.16 single), lcK (120 epochs) 0.1856, lcL (width 1.5) 0.1842.
+
+## B11 PREFLIGHT (wasm learned_c/gp_msckf_startup_b11_lcnet_exact.wasm, sha256 38f9aab00bce8124a9d4e7a789a25874332403e375efe83eb7228e2b971bd37f; source lc_b11.c = fuel/adopted_c1_fbh_exact.c + lc_core.h + lcJ, LC_SCALE 1.0, LC_SPREAD 3; cmake fuel/CMakeLists_c1.txt (-O3); files in preflight_b11/)
+| # | Check | Result |
+|1| viobench check | ok (5 steps) |
+|2| zero imports | imports [], exports memory,_initialize,abi_version,alloc,frame_width,init,step |
+|3| determinism | ATE bit-identical across two independent scorings of the final wasm on the 144 visible flights; wasm == the evalrep r0 build; 3 chaos replicates + f3 identical to B10 flight by flight |
+|4| causality | 306/306 cases pass (18 fixtures: 9 static 9 mid, folds 0-3, f0win generator, research/check_future_poison.py; prefixes 1,2,4,5,6,8,9,10,11,12,20,21,40,41,120,600,1199; repeat+prefix+poison bit-equal) |
+|5| reset/re-init | 8 fixtures x 600 frames: re-init replay and partial+re-init replay bit-equal, first pose identity |
+|6| filled/completed | 0 filled, all completed on 144 visible flights and 107 f3 flights, x3 replicates |
+|7| fuel | peak 11.86 M (visible, 3 reps), 11.72 M (f3); = B7's peak. Net frames: frame 0 +2.0 M, frame 5 8.2 M total, frame 6 7.6 M total |
+|8| identity vs B10 | ATE bit-identical on 144 visible + 107 f3 flights in all 3 replicates; fixture poses bit-equal (cmpwasm.py) |
+Holdout scene overlap (metadata only, no scoring): 240 final flights, 110 scenes; 7 scenes (23 flights) are in the net's training rosters (fast pool 7, speed pool 5, all inside the 7); the other 103 scenes are not.
+Fold 3 (my honest sets) is scene-disjoint from the training scenes by construction (fold = hash of scene).
+
+## B12 search (improved net): NO candidate beats B10 -> no B12 delivered
+Variants on the exact base (3 replicates; search / val / f3; max peak fuel). B10=B11 reference: 0.854 / 0.395 / 0.606 / 11.9 M.
+| variant | search | val | f3 | note |
+|---|---|---|---|---|
+| 3-net ensemble lcJ,J1,J2 (mean, var = mean var + var of means), scale 1.0 | 0.872 | 0.499 | 0.705 | direct val err 0.1747 vs 0.188 single, but peak fuel 20.7 M if all in frame 6; worse in filter |
+| lcK single (120 epochs, direct 0.1856) | 0.924 | 0.507 | 0.672 | |
+| lcJ, hover rule (predicted speed < 0.3 -> sigma floor 0.15) | 0.839 | 0.558 | 0.576 | mid v<=0.3 f3 0.775 -> 0.595 but val +0.16; halves disagree |
+| lcJ, sigma floor 0.10 everywhere | 0.942 | 0.363 | 0.657 | |
+| lcJ, measurement delay 2 frames | 1.015 | 0.462 | 0.593 | delay hurts search |
+Confirm halves (scene-hash split of s171 visible and of f3; d = variant - B10): every variant is worse in at least one half of each set (e3 +0.07/0.00/+0.08/+0.13, K1 +0.10/+0.05/-0.01/+0.18, hover +0.09/-0.05/0.00/-0.08, floor0.1 +0.05/+0.08/-0.01/+0.14). Nothing passes "better on both halves".
+Reading: replicates only re-draw the vision chaos for ONE net; different nets (even same recipe, different seed) move the f3 mean by about +-0.05 and the 25-flight val mean by +-0.1. Better direct velocity accuracy (ensemble -7 %, 120 epochs -1.5 %) does not translate into a measurable in-filter gain; B10's 0.606 / 0.395 may be partly a favourable net draw (lcJ was chosen on direct val error, not in-filter). Earlier nets (lcF 0.618, lcJ at scale 1.16 0.667, lcF at 1.15 0.661) put the net-to-net spread at 0.606-0.705 around B6's 0.666, i.e. B10's gain over B6 on f3 is within model-draw noise; the one-shot holdout (coordinator) is the evidence for it, not these tables.
+Data: no new flights could be generated here; the mix is raw-fast 475 + raw-speed 120 (folds 0-2), bin-balanced (alpha 0.5; alpha 0.75/1.0 were worse on val), mirror augmentation on, two start phases. Server-speed starts remain thin (>1.5 m/s anchors ~10 % of the data; error 0.40 m/s there, cov1 0.56).
+Not done: more start offsets (phases) beyond 2, retraining on new server-speed flights.

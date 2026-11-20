@@ -1,0 +1,10 @@
+      |                                                                        ^~~~~~~~~~~~~~~~~~~
+      |                         ^~~~~~~~~~~~~~~~~~~~
+      |                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                                                              ^~~~~~~~~~~~~~~~~~~~~~~~
+      |                                                                                                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+(1) net-only: windows 180 (rows 60 anchors [0, 40, 100] ) max abs diff mean outputs 1.79e-06, logvar 4.29e-06
+(2) pipeline: gray128 frame0 C vs cache: max diff 0 levels, mean 0.0000, frac !=0 0.0000
+    input tensor max abs diff 9.441376e-05  vec diff [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    outputs: max abs diff mean 3.70e-06 (headK 1.85e-06) logvar 8.58e-06
+    headK error vs truth: C 0.163 m/s, torch-on-cache 0.163 m/s
