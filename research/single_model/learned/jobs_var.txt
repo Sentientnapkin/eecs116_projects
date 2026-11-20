@@ -1,0 +1,17 @@
+--name v_nf3_gap2_r64_w1_s0 --res 64 --width 1 --nf 3 --gap 2 --seed 0
+--name v_nf2_gap1_r64_w1_s0 --res 64 --width 1 --nf 2 --gap 1 --seed 0
+--name v_nf2_gap2_r64_w1_s0 --res 64 --width 1 --nf 2 --gap 2 --seed 0
+--name v_noimg_r64_s0 --res 64 --width 1 --nf 3 --gap 1 --seed 0 --no_img 1
+--name v_novec_r64_s0 --res 64 --width 1 --nf 3 --gap 1 --seed 0 --no_vec 1
+--name v_noderot_r64_s0 --res 64 --width 1 --nf 3 --gap 1 --seed 0 --no_derot 1
+--name v_deep_r64_w1_s0 --res 64 --width 1 --nf 3 --gap 1 --seed 0 --deep 1
+--name v_nf3gap2_r32_w1_s0 --res 32 --width 1 --nf 3 --gap 2 --seed 0
+--name v_nf3_gap2_r64_w1_s1 --res 64 --width 1 --nf 3 --gap 2 --seed 1
+--name v_nf2_gap1_r64_w1_s1 --res 64 --width 1 --nf 2 --gap 1 --seed 1
+--name v_nf2_gap2_r64_w1_s1 --res 64 --width 1 --nf 2 --gap 2 --seed 1
+--name v_nf3_gap1_r64_w1_s1 --res 64 --width 1 --nf 3 --gap 1 --seed 1
+--name v_noimg_r64_s1 --res 64 --width 1 --nf 3 --gap 1 --seed 1 --no_img 1
+--name v_novec_r64_s1 --res 64 --width 1 --nf 3 --gap 1 --seed 1 --no_vec 1
+--name v_noderot_r64_s1 --res 64 --width 1 --nf 3 --gap 1 --seed 1 --no_derot 1
+--name v_deep_r64_w1_s1 --res 64 --width 1 --nf 3 --gap 1 --seed 1 --deep 1
+--name v_nf3gap2_r32_w1_s1 --res 32 --width 1 --nf 3 --gap 2 --seed 1

@@ -1,0 +1,11 @@
+ensemble of 3 sd_nf2_r64_w1
+head 0
+all anchors                    n= 31548 | net err 0.217 med 0.147 ang 5.8 mag 0.174 nll -5.06 cov1 0.66 cov2 0.90 | zero err 0.806 | heading err 0.765 ang 34.0
+real mid starts (frame 0)      n=    66 | net err 0.221 med 0.136 ang 5.6 mag 0.164 nll -5.43 cov1 0.70 cov2 0.91 | zero err 0.882 | heading err 0.815 ang 24.6
+real static starts (frame 0)   n=    66 | net err 0.059 med 0.055 ang nan mag 0.041 nll -8.61 cov1 0.66 cov2 0.94 | zero err 0.062 | heading err 0.653 ang nan
+speed>1.5 anchors              n=  4269 | net err 0.527 med 0.465 ang 4.5 mag 0.464 nll -0.86 cov1 0.51 cov2 0.78 | zero err 1.951 | heading err 1.634 ang 27.1
+head 1
+all anchors                    n= 31548 | net err 0.224 med 0.152 ang 5.8 mag 0.182 nll -5.10 cov1 0.66 cov2 0.90 | zero err 0.808 | heading err 0.765 ang 34.0
+real mid starts (frame 0)      n=    66 | net err 0.213 med 0.152 ang 5.9 mag 0.159 nll -5.71 cov1 0.70 cov2 0.95 | zero err 0.877 | heading err 0.860 ang 41.5
+real static starts (frame 0)   n=    66 | net err 0.036 med 0.028 ang nan mag 0.023 nll -9.62 cov1 0.92 cov2 0.98 | zero err 0.034 | heading err 0.633 ang nan
+speed>1.5 anchors              n=  4279 | net err 0.544 med 0.484 ang 4.3 mag 0.488 nll -0.82 cov1 0.49 cov2 0.77 | zero err 1.952 | heading err 1.634 ang 27.3

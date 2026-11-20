@@ -1,0 +1,36 @@
+{
+  "status": "exploratory_full_data_refit",
+  "arm": {
+    "name": "abs-position-a1.0-b0.2-o0.5-position-smooth-safe",
+    "mode": "absolute",
+    "window_s": 2.0,
+    "agreement_abs": 1.0,
+    "agreement_rel": 0.2,
+    "blend": 0.5,
+    "referee": "position",
+    "fallback_abs": 6.0,
+    "fallback_rel": 1.0,
+    "max_speed": 12.0,
+    "max_accel": 100.0,
+    "smooth_s": 0.5,
+    "check_init": true,
+    "agreement_space": "position"
+  },
+  "training_median_cap_met": true,
+  "summary": {
+    "n": 171,
+    "mean": 0.9858567806621238,
+    "median": 0.5034314627763612,
+    "p90": 2.543911220124441,
+    "max": 7.455647019993737,
+    "trimmed95_mean": 0.7553005134512236,
+    "winsorized5_95_mean": 0.9172523377613847,
+    "above_5m": 6,
+    "above_10m": 0,
+    "worst10pct_share": 0.4471742372027078,
+    "bootstrap12_p5_p95": [
+      0.48834345471046225,
+      1.6583304382896484
+    ]
+  }
+}

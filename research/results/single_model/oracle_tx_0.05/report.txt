@@ -1,0 +1,7 @@
+== oracle_tx_0.05  (wasm 9e7ae663f6a3)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  1.756 (base  2.307) median  0.63 p90  4.10 >5m 11 >10m  3 | paired d=-0.551 [-1.051,-0.116] | err@2/5/30s 0.82/1.31/1.72
+search static n= 56 mean  0.655 (base  0.667) median  0.49 p90  0.97 >5m  1 >10m  0 | paired d=-0.012 [-0.107,+0.099] | err@2/5/30s 0.12/0.40/0.56
+search mid    n= 63 mean  2.734 (base  3.764) median  1.44 p90  5.42 >5m 10 >10m  3 | paired d=-1.030 [-1.934,-0.285] | err@2/5/30s 1.44/2.11/2.75
+val    all    n= 25 mean  1.011 (base  2.032) median  0.78 p90  1.48 >5m  1 >10m  0 | paired d=-1.021 [-2.687,+0.366] | err@2/5/30s 0.66/0.96/0.96
+val    static n= 12 mean  0.582 (base  0.713) median  0.46 p90  0.87 >5m  0 >10m  0 | paired d=-0.130 [-0.468,+0.072] | err@2/5/30s 0.11/0.14/0.59
+val    mid    n= 13 mean  1.407 (base  3.250) median  0.92 p90  2.42 >5m  1 >10m  0 | paired d=-1.842 [-5.706,+0.580] | err@2/5/30s 1.18/1.73/1.31

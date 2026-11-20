@@ -1,0 +1,15 @@
+fastmid-107734176_176000019-00 fixture release frame 8 | evaluator decision released 8 match True
+fastmid-ProcTHOR-Train-107-00 fixture release frame 8 | evaluator decision released 8 match True
+fastmid-106366104_174226329-00 fixture release frame None | evaluator decision undecided None match True
+fastmid-108294897_176710602-01 fixture release frame None | evaluator decision held 4 match True
+fastmid-ProcTHOR-Train-57-01 fixture release frame None | evaluator decision held 24 match True
+fast-106366104_174226329-00 fixture release frame None | evaluator decision imu-static(gate inactive) None match True
+fast-ProcTHOR-Train-151-09 fixture release frame None | evaluator decision imu-static(gate inactive) None match True
+fastmid-107734254_176000121-00 fixture release frame 8 | evaluator decision released 8 match True
+fastmid-ProcTHOR-Train-5-02 fixture release frame 8 | evaluator decision released 8 match True
+fastmid-106366104_174226329-02 fixture release frame None | evaluator decision undecided None match True
+fastmid-102344280-01 fixture release frame None | evaluator decision held 12 match True
+fastmid-ProcTHOR-Train-57-02 fixture release frame None | evaluator decision held 28 match True
+fast-ProcTHOR-Train-170-01 fixture release frame None | evaluator decision imu-static(gate inactive) None match True
+fast-102344469-01 fixture release frame None | evaluator decision imu-static(gate inactive) None match True
+match 14 /14

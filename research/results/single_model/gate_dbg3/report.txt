@@ -1,0 +1,7 @@
+== gate_dbg3  (wasm e0e436aaf8b2)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean 13.645 (base  2.307) median 13.50 p90 16.74 >5m 119 >10m 115 | paired d=+11.339 [+10.437,+12.149] | err@2/5/30s 13.38/12.85/13.58
+search static n= 56 mean 12.245 (base  0.667) median 12.17 p90 13.91 >5m 56 >10m 53 | paired d=+11.578 [+11.107,+12.043] | err@2/5/30s 13.03/11.90/11.96
+search mid    n= 63 mean 14.890 (base  3.764) median 14.64 p90 17.11 >5m 63 >10m 62 | paired d=+11.126 [+9.634,+12.434] | err@2/5/30s 13.69/13.69/15.02
+val    all    n= 25 mean 13.699 (base  2.032) median 13.63 p90 16.54 >5m 25 >10m 25 | paired d=+11.667 [+9.701,+13.145] | err@2/5/30s 13.10/12.77/13.30
+val    static n= 12 mean 13.320 (base  0.713) median 12.38 p90 16.31 >5m 12 >10m 12 | paired d=+12.608 [+11.806,+13.766] | err@2/5/30s 13.04/11.74/14.15
+val    mid    n= 13 mean 14.048 (base  3.250) median 13.94 p90 16.43 >5m 13 >10m 13 | paired d=+10.798 [+6.484,+13.456] | err@2/5/30s 13.16/13.72/12.51

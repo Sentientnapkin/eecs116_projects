@@ -1,0 +1,7 @@
+== learned_imu_B  (wasm 2fb2cf8db44c)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  1.372 (base  2.307) median  0.61 p90  3.91 >5m 10 >10m  1 | paired d=-0.934 [-1.630,-0.321] | err@2/5/30s 0.54/1.04/1.26
+search static n= 56 mean  0.831 (base  0.667) median  0.47 p90  1.39 >5m  1 >10m  0 | paired d=+0.164 [-0.011,+0.408] | err@2/5/30s 0.29/0.56/0.74
+search mid    n= 63 mean  1.853 (base  3.764) median  0.74 p90  5.76 >5m  9 >10m  1 | paired d=-1.911 [-3.211,-0.863] | err@2/5/30s 0.77/1.48/1.71
+val    all    n= 25 mean  0.846 (base  2.032) median  0.38 p90  1.27 >5m  1 >10m  0 | paired d=-1.186 [-2.558,-0.073] | err@2/5/30s 0.40/0.78/0.79
+val    static n= 12 mean  0.592 (base  0.713) median  0.42 p90  1.19 >5m  0 >10m  0 | paired d=-0.121 [-0.442,+0.130] | err@2/5/30s 0.27/0.29/0.54
+val    mid    n= 13 mean  1.081 (base  3.250) median  0.35 p90  3.98 >5m  1 >10m  0 | paired d=-2.168 [-5.507,-0.077] | err@2/5/30s 0.52/1.23/1.02

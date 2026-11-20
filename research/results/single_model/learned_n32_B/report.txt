@@ -1,0 +1,7 @@
+== learned_n32_B  (wasm d73be8be9390)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  1.100 (base  2.307) median  0.52 p90  1.57 >5m  5 >10m  1 | paired d=-1.206 [-1.936,-0.666] | err@2/5/30s 0.36/0.65/0.98
+search static n= 56 mean  0.700 (base  0.667) median  0.42 p90  1.09 >5m  1 >10m  0 | paired d=+0.034 [-0.077,+0.153] | err@2/5/30s 0.13/0.39/0.68
+search mid    n= 63 mean  1.456 (base  3.764) median  0.57 p90  3.66 >5m  4 >10m  1 | paired d=-2.308 [-3.594,-1.308] | err@2/5/30s 0.57/0.88/1.24
+val    all    n= 25 mean  0.712 (base  2.032) median  0.57 p90  1.32 >5m  0 >10m  0 | paired d=-1.319 [-2.901,-0.334] | err@2/5/30s 0.26/0.57/0.65
+val    static n= 12 mean  0.829 (base  0.713) median  0.70 p90  1.34 >5m  0 >10m  0 | paired d=+0.117 [-0.287,+0.397] | err@2/5/30s 0.16/0.42/0.83
+val    mid    n= 13 mean  0.604 (base  3.250) median  0.33 p90  1.14 >5m  0 >10m  0 | paired d=-2.645 [-6.182,-0.516] | err@2/5/30s 0.35/0.71/0.48

@@ -1,0 +1,7 @@
+== health_starve  (wasm abefce5ee11b)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  2.037 (base  2.307) median  0.82 p90  6.22 >5m 15 >10m  4 | paired d=-0.270 [-0.568,-0.033] | err@2/5/30s 0.95/1.64/1.87
+search static n= 56 mean  0.672 (base  0.667) median  0.52 p90  0.88 >5m  1 >10m  0 | paired d=+0.005 [-0.013,+0.024] | err@2/5/30s 0.13/0.40/0.62
+search mid    n= 63 mean  3.250 (base  3.764) median  1.63 p90  8.43 >5m 14 >10m  4 | paired d=-0.514 [-1.020,-0.078] | err@2/5/30s 1.68/2.74/2.98
+val    all    n= 25 mean  1.219 (base  2.032) median  0.64 p90  1.62 >5m  1 >10m  0 | paired d=-0.812 [-1.887,+0.000] | err@2/5/30s 0.93/1.13/1.20
+val    static n= 12 mean  0.702 (base  0.713) median  0.57 p90  1.10 >5m  0 >10m  0 | paired d=-0.010 [-0.022,+0.001] | err@2/5/30s 0.16/0.32/0.64
+val    mid    n= 13 mean  1.697 (base  3.250) median  0.79 p90  3.87 >5m  1 >10m  0 | paired d=-1.553 [-4.202,+0.000] | err@2/5/30s 1.65/1.88/1.71

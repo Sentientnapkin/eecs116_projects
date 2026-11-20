@@ -1,0 +1,126 @@
+--- a/solution.cpp
++++ b/solution.cpp
+@@ -46,6 +46,14 @@
+     double reference_time = 0;
+     bool refining_reference = false;
+     Pose camera0;
++    // Recovery uses a new local initialization epoch and a persistent ABI gauge.
++    // No optimized state from before a reset is reused as a new estimator prior.
++    Pose recovery_origin;
++    Pose last_output;
++    Vec3 last_output_velocity = Vec3::Zero(); // first-camera axes
++    bool restarted = false, recovering = false, injected_reset = false;
++    double recovery_time = 0;
++    long frame_count = 0;
+     std::vector<Measurement> history;
+ };
+ State state;
+@@ -160,7 +168,7 @@
+     std::setvbuf(stdout, nullptr, _IONBF, 0);
+     std::setvbuf(stderr, nullptr, _IONBF, 0);
+     try {
+-        if (state.estimator) throw std::runtime_error("init called twice");
++        state = State{}; // init is a full deterministic reset, including recovery state
+         if (!json || !length) throw std::runtime_error("empty configuration");
+         configure(std::string(json, length));
+         cv::setNumThreads(1);
+@@ -214,9 +222,35 @@
+         header.stamp = ros::Time(time);
+         auto& estimator = *state.estimator;
+         estimator.processImage(observations, header);
++#ifdef VIO_FAULT_RESET_SECONDS
++        if (!state.injected_reset && state.output_ready && time - state.first_time >= VIO_FAULT_RESET_SECONDS) {
++            estimator.clearState();
++            estimator.setParameter();
++            state.injected_reset = true;
++            std::fprintf(stderr, "TEL forced_reset t=%.6f\n", time);
++        }
++#endif
++        ++state.frame_count;
++#ifdef VIO_TELEMETRY
++        std::fprintf(stderr, "TEL vins f=%ld t=%.6f solver=%d tracks=%zu features=%zu bg=%.6f ba=%.6f\n",
++                     state.frame_count, time, int(estimator.solver_flag), observations.size(), estimator.f_manager.feature.size(),
++                     estimator.Bgs[WINDOW_SIZE].norm(), estimator.Bas[WINDOW_SIZE].norm());
++#endif
++        const double previous_frame_time = state.last_time;
+         state.last_time = time;
+         if (estimator.solver_flag != Estimator::NON_LINEAR) {
+-            if (state.output_ready) throw std::runtime_error("estimator reset after initialization; original camera frame was lost");
++            if (state.output_ready) {
++                // The estimator deliberately rebooted; retain the last camera pose
++                // in the ABI gauge and start a new bounded local IMU history.
++                state.recovery_origin = state.last_output;
++                state.recovery_origin.position += state.last_output_velocity * (time - previous_frame_time);
++                state.recovery_time = state.first_time = time;
++                state.initial_rotation.setIdentity();
++                state.history.assign(1, latest);
++                state.output_ready = false;
++                state.restarted = state.recovering = true;
++                std::fprintf(stderr, "TEL vins_recovery t=%.6f\n", time);
++            }
+             state.anchored = false;
+             state.refining_reference = false;
+         } else {
+@@ -241,8 +275,22 @@
+                 // A stationary initializer has a metric zero-velocity constraint. A dynamic
+                 // initializer instead waits for its reference to finish fixed-lag smoothing;
+                 // publishing its provisional scale would create large fictitious motion.
+-                state.output_ready = true;
+-                state.history.clear();
++                if (state.recovering && estimator.Vs[WINDOW_SIZE].norm() > 6.0) {
++                    // An implausible dynamic initializer is not a metric recovery.
++                    // Continue the bounded prediction while it refines its scale.
++                } else {
++                    if (state.recovering) {
++                        const double age = time - state.recovery_time;
++                        state.recovery_origin.position += state.last_output_velocity * (1.0 - std::exp(-age));
++                        state.recovery_origin.rotation *= state.R_camera_imu * state.initial_rotation * state.R_camera_imu.transpose();
++                        // Anchor the current optimized camera, never backintegrate
++                        // a second uncertain velocity to the reboot exposure.
++                        state.camera0 = camera_pose(estimator.Rs[WINDOW_SIZE], estimator.Ps[WINDOW_SIZE]);
++                    }
++                    state.output_ready = true;
++                    state.recovering = false;
++                }
++                if (state.output_ready) state.history.clear();
+                 state.history.shrink_to_fit();
+                 std::printf("vins_mono: initialized at t=%.3f (origin t=%.3f)\n", time, state.first_time);
+             }
+@@ -267,17 +315,36 @@
+                 out[i + 10] = angular_velocity[i];
+             }
+             for (int i = 0; i < 4; ++i) out[i + 3] = orientation.coeffs()[i];
++            if (state.recovering) {
++                // Previous metric velocity expires over one second; never amplify
++                // uncertain inertial translation during a fresh initialization.
++                const double age = time - state.recovery_time;
++                const double decay = std::exp(-age);
++                state.last_output.rotation = state.recovery_origin.rotation * orientation.toRotationMatrix();
++                state.last_output.position = state.recovery_origin.position + state.last_output_velocity * (1.0 - decay);
++                const Eigen::Quaterniond recovered(state.last_output.rotation);
++                const Vec3 v_camera = state.last_output.rotation.transpose() * state.last_output_velocity * decay;
++                for (int i = 0; i < 3; ++i) { out[i] = state.last_output.position[i]; out[i + 7] = v_camera[i]; }
++                for (int i = 0; i < 4; ++i) out[i + 3] = recovered.coeffs()[i];
++            }
+             return VIOBENCH_STATUS_OK;
+         }
+         const Pose camera = camera_pose(estimator.Rs[WINDOW_SIZE], estimator.Ps[WINDOW_SIZE]);
+-        const Vec3 position = state.camera0.rotation.transpose() * (camera.position - state.camera0.position);
++        Vec3 position = state.camera0.rotation.transpose() * (camera.position - state.camera0.position);
+         Eigen::Quaterniond orientation(state.camera0.rotation.transpose() * camera.rotation);
+         orientation.normalize();
++        if (state.restarted) {
++            position = state.recovery_origin.position + state.recovery_origin.rotation * position;
++            orientation = Eigen::Quaterniond(state.recovery_origin.rotation) * orientation;
++            orientation.normalize();
++        }
++        state.last_output = {orientation.toRotationMatrix(), position};
+         if (orientation.w() < 0) orientation.coeffs() *= -1;
+         const Vec3 omega = gyro_mean - estimator.Bgs[WINDOW_SIZE];
+         const Vec3 velocity = camera.rotation.transpose() * estimator.Vs[WINDOW_SIZE] +
+                                 state.R_camera_imu * omega.cross(state.p_camera_in_imu);
+         const Vec3 angular_velocity = state.R_camera_imu * omega;
++        state.last_output_velocity = state.last_output.rotation * velocity;
+         for (int i = 0; i < 3; ++i) {
+             out[i] = position[i];
+             out[i + 7] = velocity[i];

@@ -1,0 +1,23 @@
+--- a/solution.cpp
++++ b/solution.cpp
+@@ -46,6 +46,7 @@
+     double reference_time = 0;
+     bool refining_reference = false;
+     Pose camera0;
++    long frame_count = 0;
+     std::vector<Measurement> history;
+ };
+ State state;
+@@ -214,6 +215,12 @@
+         header.stamp = ros::Time(time);
+         auto& estimator = *state.estimator;
+         estimator.processImage(observations, header);
++        ++state.frame_count;
++#ifdef VIO_TELEMETRY
++        std::fprintf(stderr, "TEL vins f=%ld t=%.6f solver=%d tracks=%zu features=%zu bg=%.6f ba=%.6f\n",
++                     state.frame_count, time, int(estimator.solver_flag), observations.size(), estimator.f_manager.feature.size(),
++                     estimator.Bgs[WINDOW_SIZE].norm(), estimator.Bas[WINDOW_SIZE].norm());
++#endif
+         state.last_time = time;
+         if (estimator.solver_flag != Estimator::NON_LINEAR) {
+             if (state.output_ready) throw std::runtime_error("estimator reset after initialization; original camera frame was lost");

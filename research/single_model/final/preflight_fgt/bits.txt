@@ -1,0 +1,2 @@
+fgt_toff vs preflight_gate_a: n=171/171 estimate.tum identical 171, missing 0, ate_full identical 171, differing 0
+fgt_goff vs tails_adopted: n=171/171 estimate.tum identical 171, missing 0, ate_full identical 171, differing 0

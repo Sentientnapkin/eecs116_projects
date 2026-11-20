@@ -1,0 +1,6 @@
+--name sd_vmin_nf2_r64_w1_s0 --res 64 --width 1 --nf 2 --gap 1 --seed 0 --scene_disjoint 1 --vec_min 1
+--name sd_vmin_nf2_r64_w1_s1 --res 64 --width 1 --nf 2 --gap 1 --seed 1 --scene_disjoint 1 --vec_min 1
+--name sd_vmin_nf2_r64_w1_s2 --res 64 --width 1 --nf 2 --gap 1 --seed 2 --scene_disjoint 1 --vec_min 1
+--name sd_nf2_r64_w1_s0_x --res 64 --width 1 --nf 2 --gap 1 --seed 10 --scene_disjoint 1
+--name sd_nf2_r64_w1_s1_x --res 64 --width 1 --nf 2 --gap 1 --seed 11 --scene_disjoint 1
+--name sd_nf2_r64_w1_s2_x --res 64 --width 1 --nf 2 --gap 1 --seed 12 --scene_disjoint 1

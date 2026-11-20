@@ -1,0 +1,5 @@
+sdvmin_B sdvmin --mode B --scale 1.3
+sdx_B sdx --mode B --scale 1.0
+sdx_A sdx --mode A --scale 1.0
+sdvmin_A sdvmin --mode A --scale 1.3
+sdx_B_s13 sdx --mode B --scale 1.3

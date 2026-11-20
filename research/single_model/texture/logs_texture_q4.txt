@@ -1,0 +1,27 @@
+Warming shared module cache for 525963771f14: /dev/shm/sebastian-vio/guard-cache/525963771f14cd7e93c9a1b7d2345f2835a8ffb3cc281b3ec80cd21d2ff06498
+171 episodes, 0 cached, workers=32
+10/171 finished, 30.5s
+20/171 finished, 30.6s
+30/171 finished, 33.0s
+40/171 finished, 46.5s
+50/171 finished, 50.0s
+60/171 finished, 53.8s
+70/171 finished, 64.6s
+80/171 finished, 74.6s
+90/171 finished, 80.6s
+100/171 finished, 94.1s
+110/171 finished, 102.7s
+120/171 finished, 108.8s
+130/171 finished, 118.5s
+140/171 finished, 124.0s
+150/171 finished, 127.6s
+160/171 finished, 138.5s
+170/171 finished, 155.3s
+171/171 finished, 155.6s
+== texture_q4  (wasm 525963771f14)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  1.906 (base  2.307) median  0.91 p90  4.92 >5m 12 >10m  4 | paired d=-0.400 [-1.008,+0.025] | err@2/5/30s 0.96/1.52/1.79
+search static n= 56 mean  0.857 (base  0.667) median  0.57 p90  1.72 >5m  1 >10m  0 | paired d=+0.191 [+0.079,+0.315] | err@2/5/30s 0.12/0.46/0.73
+search mid    n= 63 mean  2.839 (base  3.764) median  1.66 p90  7.21 >5m 11 >10m  4 | paired d=-0.926 [-2.066,-0.126] | err@2/5/30s 1.71/2.47/2.74
+val    all    n= 25 mean  1.343 (base  2.032) median  0.72 p90  2.23 >5m  1 >10m  1 | paired d=-0.689 [-1.553,+0.179] | err@2/5/30s 0.90/1.23/1.34
+val    static n= 12 mean  0.693 (base  0.713) median  0.57 p90  0.89 >5m  0 >10m  0 | paired d=-0.020 [-0.314,+0.272] | err@2/5/30s 0.15/0.29/0.69
+val    mid    n= 13 mean  1.944 (base  3.250) median  1.05 p90  2.35 >5m  1 >10m  1 | paired d=-1.306 [-3.621,+0.233] | err@2/5/30s 1.58/2.09/1.95

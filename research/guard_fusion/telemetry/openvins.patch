@@ -1,0 +1,28 @@
+--- a/solution.cpp
++++ b/solution.cpp
+@@ -262,6 +262,7 @@
+     std::vector<ov_core::ImuData> imu;  // every sample since the first frame, until the first camera pose is known
+     Eigen::Matrix3d R_I0_I = Eigen::Matrix3d::Identity();  // gyro attitude before initialization
+     bool anchored = false;
++    bool graph_guarded = false;
+     Pose camera0;  // the first camera frame in the world frame: the first IMU frame until initialization, then OpenVINS' global frame
+     double last[VIOBENCH_STATE_VALUES] = {0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0};
+     double last_conservative[VIOBENCH_STATE_VALUES] = {0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0};
+@@ -488,6 +489,17 @@
+         Output combined;
+         if (!consensus.update(chain, anchor, conservative, combined))
+             throw std::runtime_error("consensus output rejected invalid candidates");
++#ifdef VIO_TELEMETRY
++        const double spread = std::max({(chain.position-anchor.position).norm(),
++            (chain.position-conservative.position).norm(), (anchor.position-conservative.position).norm()});
++        std::fprintf(stderr, "TEL ov f=%ld t=%.6f init=%d/%d factors=%zu/%zu/%zu cost=%.6g/%.6g/%.6g spread=%.6f guarded=%d/%d\n",
++            chain_state.frames, t, int(chain_state.vio->started()), int(anchor_state.vio->started()),
++            chain_state.vio->smoother.last_visual_factors, anchor_state.vio->smoother.last_visual_factors,
++            chain_state.vio->conservative->last_visual_factors,
++            chain_state.vio->smoother.last_final_cost, anchor_state.vio->smoother.last_final_cost,
++            chain_state.vio->conservative->last_final_cost, spread,
++            int(chain_state.graph_guarded), int(anchor_state.graph_guarded));
++#endif
+         output_to_abi(combined, out);
+         return VIOBENCH_STATUS_OK;
+     } catch (const std::exception& error) {

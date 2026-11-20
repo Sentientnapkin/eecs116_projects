@@ -1,0 +1,109 @@
+--- research/single_model/final/f0.c	2026-11-20 06:18:21.610607000 +0000
++++ research/single_model/gate/adopted.c	2026-11-20 06:56:19.972735000 +0000
+@@ -75,6 +75,38 @@
+ #ifndef DET_FORCE
+ #define DET_FORCE 8.8                    /* m/s^2, |mean specific force| above this = moving */
+ #endif
++/* ---- movement gate (research/single_model/gate): release the startup prior when vision says the camera is at rest ---- */
++#ifndef GATE_MODE
++#define GATE_MODE 1         /* 0 off (= f0); 1 hard release; 2 soft (scale prior mean/sigma by disparity) */
++#endif
++#ifndef GATE_DISP
++#define GATE_DISP 2.0       /* px: release if every de-rotated clone-pair median disparity so far is below this */
++#endif
++#ifndef GATE_PAIRS
++#define GATE_PAIRS 2        /* number of clone pairs (4 frames = 0.2 s each) needed before a decision */
++#endif
++#ifndef GATE_PAIRS_MAX
++#define GATE_PAIRS_MAX 5    /* decisions are re-evaluated up to this pair (1 s) while no pair exceeded the threshold */
++#endif
++#ifndef GATE_SOFT_D
++#define GATE_SOFT_D 1.5     /* px: soft form, weight = clamp(d_mean / GATE_SOFT_D, 0, 1) */
++#endif
++#ifndef GATE_SOFT_MIN
++#define GATE_SOFT_MIN 0.3
++#endif
++#ifndef GATE_DEBUG
++#define GATE_DEBUG 0
++#endif
++#ifndef GATE_STRESS
++#define GATE_STRESS 0       /* TEST ONLY: detector sees the first IMU window with extra noise (total 2x) and extra bias (total 2x range) */
++#endif
++#ifndef GATE_STRESS_OFF
++#define GATE_STRESS_OFF 0.0 /* TEST ONLY: add this to the detector's |mean specific force| */
++#endif
++static double dbg_f, dbg_g, dbg_n;
++static int gate_pairs, gate_released, gate_force_zupt;
++static double gate_max, gate_sum, gate_w = 1.0, gate_last = -1.0;
++
+ #ifndef PRIOR_MODE
+ #define PRIOR_MODE 3   /* C2: 0 original; 1 startup prior with START_STD (isotropic); 2 anisotropic (SPEED_STD_H/Z);
+                           3 heading-aware camera-axis prior, nonzero mean (START_MEAN_FWD, START_STD_X/Y/Z) */
+@@ -452,6 +484,20 @@
+     for (int r = 0; r < count; r++)
+         for (int i = 0; i < 3; i++) gm[i] += imu[7 * r + 4 + i] / count;
+     moving = sqrt(gm[0] * gm[0] + gm[1] * gm[1] + gm[2] * gm[2]) > DET_GYRO || sqrt(f[0] * f[0] + f[1] * f[1] + f[2] * f[2]) > DET_FORCE;
++    if (GATE_STRESS || GATE_STRESS_OFF != 0.0) { /* test only: corrupt what the detector sees, not the filter */
++        double fs[3] = {0, 0, 0}, gs[3] = {0, 0, 0}, bb[6];
++        unsigned seed = (unsigned)(fabs(f[0] * 1e6)) * 2654435761u + (unsigned)(fabs(f[2] * 1e6));
++        for (int i = 0; i < 6; i++) { seed = seed * 1664525u + 1013904223u; bb[i] = ((seed >> 8) / 8388608.0 - 1.0) * (i < 3 ? ACCEL_BIAS_MAX : GYRO_BIAS_MAX); }
++        for (int r = 0; r < count; r++)
++            for (int i = 0; i < 3; i++) {
++                double n[2];
++                for (int k = 0; k < 2; k++) { seed = seed * 1664525u + 1013904223u; double u1 = ((seed >> 8) + 1.0) / 16777217.0; seed = seed * 1664525u + 1013904223u; double u2 = (seed >> 8) / 16777216.0; n[k] = sqrt(-2 * log(u1)) * cos(6.283185307179586 * u2); }
++                fs[i] += (imu[7 * r + 1 + i] + bb[i] + 1.7320508 * ACCEL_NOISE * n[0]) / count;
++                gs[i] += (imu[7 * r + 4 + i] + bb[3 + i] + 1.7320508 * GYRO_NOISE * n[1]) / count;
++            }
++        moving = sqrt(gs[0] * gs[0] + gs[1] * gs[1] + gs[2] * gs[2]) > DET_GYRO || sqrt(fs[0] * fs[0] + fs[1] * fs[1] + fs[2] * fs[2]) + GATE_STRESS_OFF > DET_FORCE;
++    }
++    dbg_f = sqrt(f[0]*f[0]+f[1]*f[1]+f[2]*f[2]); dbg_g = sqrt(gm[0]*gm[0]+gm[1]*gm[1]+gm[2]*gm[2]); dbg_n = count;
+     double ts = moving ? MOVE_TILT_STD : INIT_TILT_STD, vs = moving ? MOVE_VEL_STD : INIT_VELOCITY_STD;
+     t_start = t;
+     double tilt[9] = {ts * ts, 0, 0, 0, ts * ts, 0, 0, 0, 0}; /* yaw: gauge */
+@@ -531,9 +577,10 @@
+     r[0] = mean[0] - ba[0]; r[1] = mean[1] - ba[1];
+     update(r, Hs, 2, ACCEL_NOISE * ACCEL_NOISE / n + THRUST_MODEL_STD * THRUST_MODEL_STD, THRUST_GATE);
+     double scale = sqrt(SPEED_TAU / FRAME_DT);
+-    int startup = moving && PRIOR_MODE && last_t - t_start < START_T;
++    int startup = moving && PRIOR_MODE && !gate_released && last_t - t_start < START_T;
+     if (PRIOR_MODE == 3 && startup) { /* whitened camera-axis prior with nonzero mean */
+         double Rwc[9], mu[3] = {START_MEAN_X, START_MEAN_Y, START_MEAN_FWD}, sd[3] = {START_STD_X, START_STD_Y, START_STD_Z}, vc[3];
++        if (GATE_MODE == 2) { double k = GATE_SOFT_MIN + (1 - GATE_SOFT_MIN) * gate_w; for (int i = 0; i < 3; i++) { mu[i] *= gate_w; sd[i] *= k; } }
+         m3mul(R, R_bc, Rwc);
+         m3tvec(Rwc, vel, vc);
+         memset(Hs, 0, sizeof Hs);
+@@ -1035,7 +1082,18 @@
+         disp[j + 1] = v;
+     }
+     double median = n % 2 ? disp[n / 2] : 0.5 * (disp[n / 2 - 1] + disp[n / 2]);
+-    if (median < ZUPT_DISPARITY) {
++    gate_last = median;
++    if (GATE_MODE && !gate_released && moving) { /* movement gate: uses only clone pairs up to now */
++        gate_pairs++; gate_sum += median; if (median > gate_max) gate_max = median;
++        if (GATE_MODE == 1) {
++            if (gate_max >= GATE_DISP) gate_pairs = 1000000; /* movement seen: prior stays for good */
++            else if (gate_pairs >= GATE_PAIRS && gate_pairs <= GATE_PAIRS_MAX) { gate_released = 1; gate_force_zupt = 1; }
++        } else {
++            gate_w = gate_sum / gate_pairs / GATE_SOFT_D; if (gate_w > 1) gate_w = 1;
++        }
++    }
++    if (median < ZUPT_DISPARITY || gate_force_zupt) {
++        gate_force_zupt = 0;
+         double r[3];
+         memset(Hs, 0, sizeof Hs);
+         for (int i = 0; i < 3; i++) { Hs[i * MAXD + V + i] = 1; r[i] = -vel[i]; }
+@@ -1205,6 +1263,7 @@
+             return VIOBENCH_STATUS_OK;
+         }
+         initialize(imu, imu_count, t);
++        gate_pairs = 0; gate_released = 0; gate_force_zupt = 0; gate_max = 0; gate_sum = 0; gate_w = 1.0; gate_last = -1.0;
+         frame_no = 0; clone_every = CLONE_EVERY; min_obs = MIN_OBS; tri_min_eig = TRI_MIN_EIG;
+         nclones = 0; clone_counter = 0; frames_since_clone = 0; nlost = 0; detect_cursor = 0;
+         memset(tracks, 0, sizeof tracks);
+@@ -1222,5 +1281,6 @@
+     if (imu_count) imu_measurements(imu, imu_count);
+     vision(frame);
+     write_state(out);
++    if (GATE_DEBUG == 2) { out[0] = dbg_f; out[1] = dbg_g; out[2] = dbg_n; } else if (GATE_DEBUG) { out[0] = gate_last; out[1] = gate_released; out[2] = (gate_pairs > 999 ? 999 : gate_pairs) + 1000 * moving; }
+     return VIOBENCH_STATUS_OK;
+ }

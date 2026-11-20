@@ -1,0 +1,21 @@
+n 171 171 171 171 sha ac8251454f5cf9564a09b93ae37cf258442f4854b84fffbe2fad20d72582a9b6 ac8251454f5cf9564a09b93ae37cf258442f4854b84fffbe2fad20d72582a9b6 ac8251454f5cf9564a09b93ae37cf258442f4854b84fffbe2fad20d72582a9b6
+estimate.tum identical a vs b: 171 / 171 missing 0 bad []
+ate_full a==b bit-identical 171  a==gate agent 171 maxdiff 0.0
+estimate.tum identical a vs gate agent 171
+a filled_full!=0 [] incomplete [] failure [] err [] frames {1200} {1200}
+ peak 22542799 worst p95 15933679.549999999 frac 0.00112713995 worst fast-ProcTHOR-Train-159-00 median p95 14329465.299999999
+b filled_full!=0 [] incomplete [] failure [] err [] frames {1200} {1200}
+ peak 22542799 worst p95 15933679.549999999 frac 0.00112713995 worst fast-ProcTHOR-Train-159-00 median p95 14329465.299999999
+f0 peak 22542801 worst p95 15933681.549999999
+base peak 22542783 worst p95 15977004.25
+vs f0 per-flight |diff|>0.1:
+ differ>0.1 (all): 4 of 171; of which fold4 (ids hidden): 0
+  fastmid-107734176_176000019-00 mid fold3 f0 0.572 gate 1.066 d +0.495
+  fastmid-107734254_176000121-00 mid fold1 f0 0.493 gate 0.331 d -0.162
+  fastmid-ProcTHOR-Train-107-00 mid fold0 f0 0.654 gate 0.519 d -0.135
+  fastmid-ProcTHOR-Train-5-02 mid fold0 f0 0.680 gate 0.380 d -0.300
+ bit-identical to f0: 167 static: 85 / 85
+search static 56 f0 0.678 gate 0.678
+search mid 63 f0 1.348 gate 1.339
+val static 12 f0 0.607 gate 0.607
+val mid 13 f0 0.447 gate 0.485

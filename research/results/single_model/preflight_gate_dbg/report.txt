@@ -1,0 +1,7 @@
+== preflight_gate_dbg  (wasm b6609b2c38cd)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean 1010.835 (base  2.307) median 1004.10 p90 1997.99 >5m 119 >10m 77 | paired d=+1008.528 [+883.716,+1136.284] | err@2/5/30s 1007.90/1012.14/1012.09
+search static n= 56 mean  9.006 (base  0.667) median  8.69 p90 12.07 >5m 56 >10m 14 | paired d=+8.339 [+7.693,+8.958] | err@2/5/30s 0.65/9.41/7.43
+search mid    n= 63 mean 1901.349 (base  3.764) median 1996.26 p90 1999.36 >5m 63 >10m 63 | paired d=+1897.585 [+1788.710,+1976.915] | err@2/5/30s 1903.22/1903.47/1905.12
+val    all    n= 25 mean 1003.311 (base  2.032) median 1000.87 p90 1998.21 >5m 25 >10m 19 | paired d=+1001.279 [+683.366,+1390.989] | err@2/5/30s 999.43/1005.42/1003.89
+val    static n= 12 mean 10.178 (base  0.713) median  9.99 p90 12.21 >5m 12 >10m  6 | paired d=+9.465 [+8.408,+10.236] | err@2/5/30s 0.74/12.39/9.28
+val    mid    n= 13 mean 1920.049 (base  3.250) median 1996.89 p90 1998.41 >5m 13 >10m 13 | paired d=+1916.799 [+1720.982,+1995.764] | err@2/5/30s 1921.30/1922.07/1921.99

@@ -1,0 +1,7 @@
+== health_pvh08  (wasm c8bd0e7d3b7f)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  2.568 (base  2.307) median  0.71 p90  7.43 >5m 21 >10m 10 | paired d=+0.261 [-0.120,+0.610] | err@2/5/30s 0.93/1.89/2.46
+search static n= 56 mean  0.643 (base  0.667) median  0.44 p90  0.88 >5m  1 >10m  0 | paired d=-0.024 [-0.112,+0.064] | err@2/5/30s 0.14/0.35/0.58
+search mid    n= 63 mean  4.279 (base  3.764) median  1.15 p90 12.03 >5m 20 >10m 10 | paired d=+0.515 [-0.195,+1.165] | err@2/5/30s 1.64/3.26/4.13
+val    all    n= 25 mean  1.212 (base  2.032) median  0.61 p90  2.05 >5m  1 >10m  0 | paired d=-0.820 [-1.798,+0.030] | err@2/5/30s 0.92/1.28/1.04
+val    static n= 12 mean  0.664 (base  0.713) median  0.58 p90  1.05 >5m  0 >10m  0 | paired d=-0.049 [-0.379,+0.142] | err@2/5/30s 0.20/0.32/0.68
+val    mid    n= 13 mean  1.718 (base  3.250) median  0.78 p90  2.78 >5m  1 >10m  0 | paired d=-1.532 [-4.024,+0.068] | err@2/5/30s 1.58/2.16/1.37

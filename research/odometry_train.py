@@ -205,6 +205,7 @@ def main():
     parser.add_argument("--epochs", type=int)
     parser.add_argument("--seed", type=int)
     parser.add_argument("--resume", type=Path)
+    parser.add_argument("--init-weights", type=Path, help="Warm-start weights only; optimizer/schedule restart for new runs. Repeat with --resume to verify identity.")
     parser.add_argument("--cpu", action="store_true")
     parser.add_argument("--hub-repo", help="Private HF repo to sync each completed epoch to")
     parser.add_argument("--set", action="append", dest="overrides", metavar="KEY=JSON",
@@ -249,6 +250,8 @@ def main():
                 "seed": cfg["seed"], "training": {k:v for k,v in cfg["training"].items() if k != "epochs"},
                 "world_size": accelerator.num_processes,
                 "teacher_sha256": None}  # legacy field (removed distillation option); kept so checkpoints resume
+    if args.init_weights:
+        identity["initial_weights_sha256"] = digest(args.init_weights)
     if args.group_size:  # only present when used, so older runs still resume
         identity["shard_group"] = args.group_size
     if args.hub_repo and accelerator.is_main_process:
@@ -266,7 +269,8 @@ def main():
         # Planned windows: fixed windows per epoch, so optimizer updates match across datasets.
         data.prefetch(manifest["datasets"]["train"] + manifest["datasets"]["development"])
         if options.get("preload"):
-            data = Preloaded(data, manifest["datasets"]["train"] + manifest["datasets"]["development"])
+            data = Preloaded(data, manifest["datasets"]["train"] + manifest["datasets"]["development"],
+                             threads=options.get("preload_threads", 16))
         dataset = PlannedWindows(data, manifest["datasets"]["train"], options["window_frames"],
                                  options["burn_in"], options["sampler"], cfg["seed"])
         workers = options.get("num_workers", 0)
@@ -283,6 +287,8 @@ def main():
     else:
         loader = DataLoader(dataset, batch_size=options["batch_size"], shuffle=True, num_workers=0)
     net = OdometryNet(cfg["model"])
+    if args.init_weights:
+        net.load_state_dict(load_file(str(args.init_weights), device="cpu"), strict=True)
     opt = make_optimizer(net.parameters(), options)
     steps = -(-len(loader)//options.get("accumulation", 1))
     lr_schedule = torch.optim.lr_scheduler.LambdaLR(opt, schedule(options, steps))

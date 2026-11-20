@@ -1,0 +1,498 @@
+{
+ "args": {
+  "name": "sd_nf2_r32_w0.5_s1",
+  "res": 32,
+  "width": 0.5,
+  "nf": 2,
+  "gap": 1,
+  "seed": 1,
+  "epochs": 24,
+  "bs": 256,
+  "lr": 0.002,
+  "deep": 0,
+  "no_img": 0,
+  "no_vec": 0,
+  "no_derot": 0,
+  "scene_disjoint": 1,
+  "steps_per_epoch": 400
+ },
+ "params": 34012,
+ "macs": 162144,
+ "best_epoch": 22,
+ "val": {
+  "err": [
+   0.2848846912384033,
+   0.2917099595069885
+  ],
+  "rmse": [
+   0.38147738575935364,
+   0.3883994221687317
+  ],
+  "ang_med": [
+   8.988042831420898,
+   9.300708770751953
+  ],
+  "mag_err": [
+   0.21595601737499237,
+   0.22326068580150604
+  ],
+  "nll": [
+   -4.092485427856445,
+   -4.12272310256958
+  ],
+  "cov1": [
+   0.6068108081817627,
+   0.6104031801223755
+  ],
+  "cov2": [
+   0.8743607401847839,
+   0.8794640898704529
+  ],
+  "sig_mean": [
+   0.12634818255901337,
+   0.1295849084854126
+  ]
+ },
+ "log": [
+  {
+   "epoch": 0,
+   "train": 0.19657068610191344,
+   "val_err": [
+    0.5185189247131348,
+    0.5375585556030273
+   ],
+   "val_nll": 0.3332005441188812
+  },
+  {
+   "epoch": 1,
+   "train": -2.887495257277042,
+   "val_err": [
+    0.4494425058364868,
+    0.46800360083580017
+   ],
+   "val_nll": -2.575634241104126
+  },
+  {
+   "epoch": 2,
+   "train": -3.786901493668556,
+   "val_err": [
+    0.39096835255622864,
+    0.4025968313217163
+   ],
+   "val_nll": -3.1737775802612305
+  },
+  {
+   "epoch": 3,
+   "train": -4.3937427765131,
+   "val_err": [
+    0.3617857098579407,
+    0.37343329191207886
+   ],
+   "val_nll": -3.482527256011963
+  },
+  {
+   "epoch": 4,
+   "train": -4.705621678233147,
+   "val_err": [
+    0.33606570959091187,
+    0.35209381580352783
+   ],
+   "val_nll": -3.6591150760650635
+  },
+  {
+   "epoch": 5,
+   "train": -4.937978546619416,
+   "val_err": [
+    0.3190974295139313,
+    0.32652604579925537
+   ],
+   "val_nll": -4.032718658447266
+  },
+  {
+   "epoch": 6,
+   "train": -5.083068168163299,
+   "val_err": [
+    0.31239768862724304,
+    0.3195118308067322
+   ],
+   "val_nll": -4.093116760253906
+  },
+  {
+   "epoch": 7,
+   "train": -5.190705589056015,
+   "val_err": [
+    0.3148382604122162,
+    0.3197990953922272
+   ],
+   "val_nll": -4.194570064544678
+  },
+  {
+   "epoch": 8,
+   "train": -5.272958841323852,
+   "val_err": [
+    0.3163455128669739,
+    0.3233059346675873
+   ],
+   "val_nll": -3.6566810607910156
+  },
+  {
+   "epoch": 9,
+   "train": -5.331689175367355,
+   "val_err": [
+    0.2993551194667816,
+    0.3047012984752655
+   ],
+   "val_nll": -4.234228610992432
+  },
+  {
+   "epoch": 10,
+   "train": -5.415411632061005,
+   "val_err": [
+    0.2939455807209015,
+    0.30386224389076233
+   ],
+   "val_nll": -4.065745830535889
+  },
+  {
+   "epoch": 11,
+   "train": -5.466903171539307,
+   "val_err": [
+    0.2979627251625061,
+    0.3021043837070465
+   ],
+   "val_nll": -4.249489784240723
+  },
+  {
+   "epoch": 12,
+   "train": -5.52577494263649,
+   "val_err": [
+    0.2919190227985382,
+    0.3002142012119293
+   ],
+   "val_nll": -4.23516845703125
+  },
+  {
+   "epoch": 13,
+   "train": -5.550589151382447,
+   "val_err": [
+    0.2936951518058777,
+    0.30259469151496887
+   ],
+   "val_nll": -4.250096797943115
+  },
+  {
+   "epoch": 14,
+   "train": -5.59926388502121,
+   "val_err": [
+    0.30316609144210815,
+    0.31004467606544495
+   ],
+   "val_nll": -3.7254767417907715
+  },
+  {
+   "epoch": 15,
+   "train": -5.6283794009685515,
+   "val_err": [
+    0.28907763957977295,
+    0.29585105180740356
+   ],
+   "val_nll": -4.269211769104004
+  },
+  {
+   "epoch": 16,
+   "train": -5.653794460296631,
+   "val_err": [
+    0.291420578956604,
+    0.29678764939308167
+   ],
+   "val_nll": -4.2036824226379395
+  },
+  {
+   "epoch": 17,
+   "train": -5.673483353853226,
+   "val_err": [
+    0.28950002789497375,
+    0.29647210240364075
+   ],
+   "val_nll": -4.0613603591918945
+  },
+  {
+   "epoch": 18,
+   "train": -5.721191972494125,
+   "val_err": [
+    0.2856695055961609,
+    0.29258355498313904
+   ],
+   "val_nll": -4.186441421508789
+  },
+  {
+   "epoch": 19,
+   "train": -5.743590408563614,
+   "val_err": [
+    0.2887229323387146,
+    0.2967187166213989
+   ],
+   "val_nll": -4.085701942443848
+  },
+  {
+   "epoch": 20,
+   "train": -5.748792110681534,
+   "val_err": [
+    0.2854817807674408,
+    0.292358934879303
+   ],
+   "val_nll": -4.107874870300293
+  },
+  {
+   "epoch": 21,
+   "train": -5.753547556400299,
+   "val_err": [
+    0.28561511635780334,
+    0.2927379906177521
+   ],
+   "val_nll": -4.118875026702881
+  },
+  {
+   "epoch": 22,
+   "train": -5.766149102449417,
+   "val_err": [
+    0.2848846912384033,
+    0.2917099595069885
+   ],
+   "val_nll": -4.107604503631592
+  },
+  {
+   "epoch": 23,
+   "train": -5.763756749629974,
+   "val_err": [
+    0.28593653440475464,
+    0.29290392994880676
+   ],
+   "val_nll": -4.06134033203125
+  }
+ ],
+ "n_train_flights": 218,
+ "n_train_anchors": 52102,
+ "n_val_flights": 132,
+ "n_val_anchors": 31548,
+ "train_flights": [
+  "fast-103997970_171031287-00",
+  "fast-103997970_171031287-01",
+  "fast-104348037_171512898-00",
+  "fast-104348037_171512898-01",
+  "fast-107734056_175999839-00",
+  "fast-107734056_175999839-01",
+  "fast-107734056_175999839-02",
+  "fast-107734119_175999932-00",
+  "fast-107734119_175999932-01",
+  "fast-108294465_176709960-00",
+  "fast-108294465_176709960-01",
+  "fast-108294684_176710278-00",
+  "fast-108294684_176710278-01",
+  "fast-108736689_177263340-00",
+  "fast-108736689_177263340-01",
+  "fast-108736689_177263340-02",
+  "fast-ProcTHOR-Train-148-00",
+  "fast-ProcTHOR-Train-148-01",
+  "fast-ProcTHOR-Train-148-02",
+  "fast-ProcTHOR-Train-150-00",
+  "fast-ProcTHOR-Train-150-01",
+  "fast-ProcTHOR-Train-150-02",
+  "fast-ProcTHOR-Train-150-03",
+  "fast-ProcTHOR-Train-150-04",
+  "fast-ProcTHOR-Train-150-05",
+  "fast-ProcTHOR-Train-150-06",
+  "fast-ProcTHOR-Train-150-07",
+  "fast-ProcTHOR-Train-150-08",
+  "fast-ProcTHOR-Train-150-09",
+  "fast-ProcTHOR-Train-150-10",
+  "fast-ProcTHOR-Train-150-11",
+  "fast-ProcTHOR-Train-152-00",
+  "fast-ProcTHOR-Train-152-01",
+  "fast-ProcTHOR-Train-152-02",
+  "fast-ProcTHOR-Train-152-03",
+  "fast-ProcTHOR-Train-152-04",
+  "fast-ProcTHOR-Train-152-05",
+  "fast-ProcTHOR-Train-152-06",
+  "fast-ProcTHOR-Train-152-07",
+  "fast-ProcTHOR-Train-152-08",
+  "fast-ProcTHOR-Train-152-09",
+  "fast-ProcTHOR-Train-152-10",
+  "fast-ProcTHOR-Train-152-11",
+  "fast-ProcTHOR-Train-153-00",
+  "fast-ProcTHOR-Train-153-01",
+  "fast-ProcTHOR-Train-153-02",
+  "fast-ProcTHOR-Train-153-03",
+  "fast-ProcTHOR-Train-153-04",
+  "fast-ProcTHOR-Train-153-05",
+  "fast-ProcTHOR-Train-153-06",
+  "fast-ProcTHOR-Train-153-07",
+  "fast-ProcTHOR-Train-153-08",
+  "fast-ProcTHOR-Train-153-09",
+  "fast-ProcTHOR-Train-153-10",
+  "fast-ProcTHOR-Train-153-11",
+  "fast-ProcTHOR-Train-155-00",
+  "fast-ProcTHOR-Train-155-01",
+  "fast-ProcTHOR-Train-155-02",
+  "fast-ProcTHOR-Train-155-03",
+  "fast-ProcTHOR-Train-155-04",
+  "fast-ProcTHOR-Train-155-05",
+  "fast-ProcTHOR-Train-155-06",
+  "fast-ProcTHOR-Train-155-07",
+  "fast-ProcTHOR-Train-155-08",
+  "fast-ProcTHOR-Train-155-09",
+  "fast-ProcTHOR-Train-155-10",
+  "fast-ProcTHOR-Train-155-11",
+  "fast-ProcTHOR-Train-157-00",
+  "fast-ProcTHOR-Train-157-01",
+  "fast-ProcTHOR-Train-157-02",
+  "fast-ProcTHOR-Train-157-03",
+  "fast-ProcTHOR-Train-157-04",
+  "fast-ProcTHOR-Train-157-05",
+  "fast-ProcTHOR-Train-157-06",
+  "fast-ProcTHOR-Train-157-07",
+  "fast-ProcTHOR-Train-157-08",
+  "fast-ProcTHOR-Train-157-09",
+  "fast-ProcTHOR-Train-157-10",
+  "fast-ProcTHOR-Train-157-11",
+  "fast-ProcTHOR-Train-176-00",
+  "fast-ProcTHOR-Train-176-01",
+  "fast-ProcTHOR-Train-176-02",
+  "fast-ProcTHOR-Train-176-03",
+  "fast-ProcTHOR-Train-176-04",
+  "fast-ProcTHOR-Train-176-05",
+  "fast-ProcTHOR-Train-176-06",
+  "fast-ProcTHOR-Train-176-07",
+  "fast-ProcTHOR-Train-176-08",
+  "fast-ProcTHOR-Train-176-09",
+  "fast-ProcTHOR-Train-176-10",
+  "fast-ProcTHOR-Train-176-11",
+  "fast-ProcTHOR-Train-179-00",
+  "fast-ProcTHOR-Train-179-01",
+  "fast-ProcTHOR-Train-179-02",
+  "fast-ProcTHOR-Train-179-03",
+  "fast-ProcTHOR-Train-179-04",
+  "fast-ProcTHOR-Train-179-05",
+  "fast-ProcTHOR-Train-179-06",
+  "fast-ProcTHOR-Train-179-07",
+  "fast-ProcTHOR-Train-179-08",
+  "fast-ProcTHOR-Train-179-09",
+  "fast-ProcTHOR-Train-179-10",
+  "fast-ProcTHOR-Train-179-11",
+  "fast-ProcTHOR-Train-7-00",
+  "fast-ProcTHOR-Train-7-01",
+  "fast-ProcTHOR-Train-7-02",
+  "fast-ProcTHOR-Train-85-00",
+  "fast-ProcTHOR-Train-85-01",
+  "fast-ProcTHOR-Train-85-02",
+  "fastmid-103997970_171031287-00",
+  "fastmid-103997970_171031287-01",
+  "fastmid-104348037_171512898-00",
+  "fastmid-104348037_171512898-01",
+  "fastmid-107734056_175999839-00",
+  "fastmid-107734056_175999839-01",
+  "fastmid-107734056_175999839-02",
+  "fastmid-107734119_175999932-00",
+  "fastmid-107734119_175999932-01",
+  "fastmid-108294465_176709960-00",
+  "fastmid-108294465_176709960-01",
+  "fastmid-108294684_176710278-00",
+  "fastmid-108294684_176710278-01",
+  "fastmid-108736689_177263340-00",
+  "fastmid-108736689_177263340-01",
+  "fastmid-108736689_177263340-02",
+  "fastmid-ProcTHOR-Train-148-00",
+  "fastmid-ProcTHOR-Train-148-01",
+  "fastmid-ProcTHOR-Train-148-02",
+  "fastmid-ProcTHOR-Train-150-00",
+  "fastmid-ProcTHOR-Train-150-01",
+  "fastmid-ProcTHOR-Train-150-02",
+  "fastmid-ProcTHOR-Train-150-03",
+  "fastmid-ProcTHOR-Train-150-04",
+  "fastmid-ProcTHOR-Train-150-05",
+  "fastmid-ProcTHOR-Train-150-06",
+  "fastmid-ProcTHOR-Train-150-07",
+  "fastmid-ProcTHOR-Train-150-08",
+  "fastmid-ProcTHOR-Train-150-09",
+  "fastmid-ProcTHOR-Train-150-10",
+  "fastmid-ProcTHOR-Train-150-11",
+  "fastmid-ProcTHOR-Train-152-00",
+  "fastmid-ProcTHOR-Train-152-01",
+  "fastmid-ProcTHOR-Train-152-02",
+  "fastmid-ProcTHOR-Train-152-03",
+  "fastmid-ProcTHOR-Train-152-04",
+  "fastmid-ProcTHOR-Train-152-05",
+  "fastmid-ProcTHOR-Train-152-06",
+  "fastmid-ProcTHOR-Train-152-07",
+  "fastmid-ProcTHOR-Train-152-08",
+  "fastmid-ProcTHOR-Train-152-09",
+  "fastmid-ProcTHOR-Train-152-10",
+  "fastmid-ProcTHOR-Train-152-11",
+  "fastmid-ProcTHOR-Train-153-00",
+  "fastmid-ProcTHOR-Train-153-01",
+  "fastmid-ProcTHOR-Train-153-02",
+  "fastmid-ProcTHOR-Train-153-03",
+  "fastmid-ProcTHOR-Train-153-04",
+  "fastmid-ProcTHOR-Train-153-05",
+  "fastmid-ProcTHOR-Train-153-06",
+  "fastmid-ProcTHOR-Train-153-07",
+  "fastmid-ProcTHOR-Train-153-08",
+  "fastmid-ProcTHOR-Train-153-09",
+  "fastmid-ProcTHOR-Train-153-10",
+  "fastmid-ProcTHOR-Train-153-11",
+  "fastmid-ProcTHOR-Train-155-00",
+  "fastmid-ProcTHOR-Train-155-01",
+  "fastmid-ProcTHOR-Train-155-02",
+  "fastmid-ProcTHOR-Train-155-03",
+  "fastmid-ProcTHOR-Train-155-04",
+  "fastmid-ProcTHOR-Train-155-05",
+  "fastmid-ProcTHOR-Train-155-06",
+  "fastmid-ProcTHOR-Train-155-07",
+  "fastmid-ProcTHOR-Train-155-08",
+  "fastmid-ProcTHOR-Train-155-09",
+  "fastmid-ProcTHOR-Train-155-10",
+  "fastmid-ProcTHOR-Train-155-11",
+  "fastmid-ProcTHOR-Train-157-00",
+  "fastmid-ProcTHOR-Train-157-01",
+  "fastmid-ProcTHOR-Train-157-02",
+  "fastmid-ProcTHOR-Train-157-03",
+  "fastmid-ProcTHOR-Train-157-04",
+  "fastmid-ProcTHOR-Train-157-05",
+  "fastmid-ProcTHOR-Train-157-06",
+  "fastmid-ProcTHOR-Train-157-07",
+  "fastmid-ProcTHOR-Train-157-08",
+  "fastmid-ProcTHOR-Train-157-09",
+  "fastmid-ProcTHOR-Train-157-10",
+  "fastmid-ProcTHOR-Train-157-11",
+  "fastmid-ProcTHOR-Train-176-00",
+  "fastmid-ProcTHOR-Train-176-01",
+  "fastmid-ProcTHOR-Train-176-02",
+  "fastmid-ProcTHOR-Train-176-03",
+  "fastmid-ProcTHOR-Train-176-04",
+  "fastmid-ProcTHOR-Train-176-05",
+  "fastmid-ProcTHOR-Train-176-06",
+  "fastmid-ProcTHOR-Train-176-07",
+  "fastmid-ProcTHOR-Train-176-08",
+  "fastmid-ProcTHOR-Train-176-09",
+  "fastmid-ProcTHOR-Train-176-10",
+  "fastmid-ProcTHOR-Train-176-11",
+  "fastmid-ProcTHOR-Train-179-00",
+  "fastmid-ProcTHOR-Train-179-01",
+  "fastmid-ProcTHOR-Train-179-02",
+  "fastmid-ProcTHOR-Train-179-03",
+  "fastmid-ProcTHOR-Train-179-04",
+  "fastmid-ProcTHOR-Train-179-05",
+  "fastmid-ProcTHOR-Train-179-06",
+  "fastmid-ProcTHOR-Train-179-07",
+  "fastmid-ProcTHOR-Train-179-08",
+  "fastmid-ProcTHOR-Train-179-09",
+  "fastmid-ProcTHOR-Train-179-10",
+  "fastmid-ProcTHOR-Train-179-11",
+  "fastmid-ProcTHOR-Train-7-00",
+  "fastmid-ProcTHOR-Train-7-01",
+  "fastmid-ProcTHOR-Train-7-02",
+  "fastmid-ProcTHOR-Train-85-00",
+  "fastmid-ProcTHOR-Train-85-01",
+  "fastmid-ProcTHOR-Train-85-02"
+ ]
+}

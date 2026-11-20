@@ -1,0 +1,8 @@
+sd64_B_g3 sd64 --mode B --scale 1.0 --gate_speed 0.3
+sd64_AB_s10 sd64 --mode AB --scale 1.0
+sd64_A_s10 sd64 --mode A --scale 1.0
+sd64_A_hold sd64 --mode A --scale 1.0 --hold_prior_frames 20
+sd128_B_s10 sd128 --mode B --scale 1.0
+sd32_B_s10 sd32 --mode B --scale 1.0
+sd64_hB sd64 --mode B --scale 1.0 --base v3 --defs=PRIOR_MODE=3\ START_T=0.25
+sd64_hB_t1 sd64 --mode B --scale 1.0 --base v3 --defs=PRIOR_MODE=3\ START_T=1.0

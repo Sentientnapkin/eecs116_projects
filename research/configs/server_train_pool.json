@@ -1,0 +1,22 @@
+{
+  "name": "N3-T0-nonselected-train-scenes",
+  "raw_root": "/data/backups/rganapa/Sebastian/gen/raw-fast",
+  "campaign_roster": "configs/native_campaign.json",
+  "selection": "results/eval/server-benchmark/selection.json",
+  "baseline_manifest": "../.worktrees/training-completion/research/results/loop/training-finish/kf_grid_native/n2/manifest.json",
+  "baseline_runs": "../.worktrees/training-completion/research/results/loop",
+  "per_start": 100,
+  "seed": 20261120,
+  "input_policy": "kf_grid_native",
+  "output": "data/server-training/t0",
+  "workers": 24,
+  "training": {
+    "epochs": 12,
+    "seeds": [217, 218, 219],
+    "server_domain_share": 0.5,
+    "windows_per_epoch": 244,
+    "checkpoint_selection": "original development only",
+    "evaluation": "selected171 clean+dev only, once after training",
+    "gate": "three seed mean raw ATE improves >=10%; every seed improves; original dev regression <=5%"
+  }
+}

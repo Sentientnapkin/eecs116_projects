@@ -1,0 +1,400 @@
+--- solution_orig.c	2026-11-20 04:21:21.942591000 +0000
++++ adopted_c2.c	2026-11-20 06:07:30.227709000 +0000
+@@ -40,6 +40,7 @@
+ #include <math.h>
+ #include <stdlib.h>
+ #include <string.h>
++#include <stdio.h>
+ 
+ #ifndef M_PI
+ #define M_PI 3.14159265358979323846
+@@ -113,6 +114,114 @@
+ #define DETECT_MIN_SCORE 1000.0 /* Shi-Tomasi score; ~ OpenCV goodFeaturesToTrack quality 0.01 on these frames */
+ #define BORDER (KLT_R + 3)
+ 
++/* =====================================================================================================================
++ * HEALTH CHECKS (C5) and FLIGHT-ENVELOPE PRIORS (C6): every block is switchable; all defaults are 0 = original behaviour
++ * (apart from HC_LOG, which only prints to stderr).
++ * ===================================================================================================================== */
++#ifndef HC_LOG
++#define HC_LOG 1               /* trip / NIS log lines on stderr */
++#endif
++#ifndef HC_NIS_Z
++#define HC_NIS_Z 0.0           /* >0: gate on the stacked MSCKF update, chi2 quantile at this z (Wilson-Hilferty) */
++#endif
++#ifndef HC_NIS_LOG_Z
++#define HC_NIS_LOG_Z 3.09      /* NIS monitor: log when the stacked NIS exceeds this z quantile */
++#endif
++#ifndef HC_LIM
++#define HC_LIM 0               /* 1: plausibility limits as pseudo-measurements */
++#endif
++#ifndef HC_VMAX
++#define HC_VMAX 3.5            /* m/s */
++#endif
++#ifndef HC_VZMAX
++#define HC_VZMAX 1.5           /* m/s */
++#endif
++#ifndef HC_TILTMAX
++#define HC_TILTMAX 40.0        /* deg */
++#endif
++#ifndef HC_LIM_STD
++#define HC_LIM_STD 0.2         /* pseudo-measurement std (m/s; for tilt: rad) */
++#endif
++#ifndef HC_RESET
++#define HC_RESET 0             /* 1: soft reset when a limit trips (inflate V/P, re-apply the velocity prior) */
++#endif
++#ifndef HC_RESET_VSTD
++#define HC_RESET_VSTD 1.0      /* m/s added to the velocity sigma */
++#endif
++#ifndef HC_RESET_PSTD
++#define HC_RESET_PSTD 0.3      /* m added to the position sigma */
++#endif
++#ifndef HC_STARVE
++#define HC_STARVE 1            /* 1: track-starvation mode */
++#endif
++#ifndef HC_STARVE_T
++#define HC_STARVE_T 1.5        /* s without an accepted stacked update */
++#endif
++#ifndef HC_STARVE_SCALE
++#define HC_STARVE_SCALE 0.6    /* velocity prior std multiplier while starved */
++#endif
++/* recovery from the diagnostics (E1): triggers from the filter's own statistics, response = soft reset + relaxed gate */
++#ifndef HC_REC
++#define HC_REC 0               /* 1: enable the recovery triggers below */
++#endif
++#ifndef HC_REC_VSTD
++#define HC_REC_VSTD 0.0        /* >0: trigger when sqrt(trace Pv) exceeds this (m/s) ... */
++#endif
++#ifndef HC_REC_T0
++#define HC_REC_T0 3.0          /* ... after this many seconds */
++#endif
++#ifndef HC_REC_SPEED
++#define HC_REC_SPEED 0.0       /* >0: trigger when |v| exceeds this (m/s) while t < HC_REC_TMAX */
++#endif
++#ifndef HC_REC_TMAX
++#define HC_REC_TMAX 10.0
++#endif
++#ifndef HC_REC_TRIFAIL
++#define HC_REC_TRIFAIL 0.0     /* >0: trigger when the triangulation failure rate of the last second exceeds this */
++#endif
++#ifndef HC_REC_MINUSED
++#define HC_REC_MINUSED 0      /* >0: trigger when fewer features than this were accepted in the last second */
++#endif
++#ifndef HC_REC_COOL
++#define HC_REC_COOL 2.0        /* s between recoveries */
++#endif
++#ifndef HC_REC_VINF
++#define HC_REC_VINF 1.0        /* m/s added to the velocity sigma on recovery */
++#endif
++#ifndef HC_REC_TINF
++#define HC_REC_TINF 0.1        /* rad added to the roll/pitch sigma on recovery */
++#endif
++#ifndef HC_REC_Z
++#define HC_REC_Z 1.645         /* per-feature gate z while relaxed */
++#endif
++#ifndef HC_REC_RELAX
++#define HC_REC_RELAX 2.0       /* s the relaxed gate lasts */
++#endif
++#ifndef HC_REC_ZERO
++#define HC_REC_ZERO 0          /* 1: also re-apply the zero-mean velocity prior (sigma 0.5 * SPEED_STD-equivalent) */
++#endif
++#ifndef PRI_Z_STD
++#define PRI_Z_STD 0.8          /* >0: height relative to start ~ N(0, std^2), applied like the velocity prior */
++#endif
++#ifndef PRI_Z_TAU
++#define PRI_Z_TAU 10.0         /* s */
++#endif
++#ifndef PRI_VZ_STD
++#define PRI_VZ_STD 0.3         /* >0: vertical velocity prior std (replaces SPEED_STD on z) */
++#endif
++#ifndef PRI_VH_STD
++#define PRI_VH_STD 0.0         /* >0: horizontal velocity prior std (replaces SPEED_STD on x, y) */
++#endif
++#ifndef PRI_LAT_STD
++#define PRI_LAT_STD 0.5        /* >0: body lateral (y) velocity ~ N(0, std^2) */
++#endif
++#ifndef PRI_LAT_TAU
++#define PRI_LAT_TAU 2.0
++#endif
++#ifndef PRI_START_S
++#define PRI_START_S 0.0        /* the C6 priors are only active after this many seconds from the first frame */
++#endif
++
+ /* error-state layout */
+ #define CORE 18
+ #define MAXD (CORE + 6 * (MAX_CLONES + 1))
+@@ -300,7 +409,9 @@
+ /* EKF update with residual r (k), Jacobian H (k x D, row-major, leading dimension MAXD) and isotropic noise variance.
+  * Rejected (returns 0) if r^T S^-1 r > gate. Sums run only over the columns where H is nonzero.
+  * P <- P - (HP)^T S^-1 HP, written symmetrically. */
++static double upd_m2; static int upd_k;
+ static int update(const double *r, const double *H, int k, double noise, double gate) {
++    upd_k = -1;
+     int nz[MAXD], nnz = 0;
+     for (int i = 0; i < D; i++) {
+         int any = 0;
+@@ -326,6 +437,7 @@
+     chol_solve(Sm, k, y); /* y = S^-1 r */
+     double m2 = 0;
+     for (int a = 0; a < k; a++) m2 += r[a] * y[a];
++    upd_m2 = m2; upd_k = k;
+     if (m2 > gate) return 0;
+     double col[MAXK];
+     for (int j = 0; j < D; j++) { /* Kt = S^-1 HP (the transposed gain), column by column */
+@@ -427,7 +539,40 @@
+ 
+ static double Hs[3 * MAXD]; /* Jacobian rows of the small updates */
+ 
++/* ---- health state ---- */
++static double cur_z = CHI2_Z; /* per-feature gate z (relaxed during a recovery) */
++static long fw_att, fw_fail, fw_used; /* feature counters over the current 1 s window */
++static long frame_no;
++static double t_first, t_last_vis;
++static long hc_n[8]; /* 0 nis-log 1 nis-gate 2 speed 3 vz 4 tilt 5 starve-frames 6 starve-entries 7 resets */
++static int starved;
++#define HC_NAMES "nis_hi nis_rej vmax vzmax tilt starve_fr starve_n reset"
++static void hc_log(int kind, double t, double a, double b) {
++#if HC_LOG
++    static const char *nm[8] = {"nis_hi", "nis_rej", "vmax", "vzmax", "tilt", "starve_fr", "starve_n", "reset"};
++    hc_n[kind]++;
++    long n = hc_n[kind];
++    if (kind == 5 && n % 20 != 1) return;
++    if (n <= 40 || n % 10 == 0) fprintf(stderr, "HC %s n=%ld f=%ld t=%.2f a=%.3f b=%.3f\n", nm[kind], n, frame_no, t - t_first, a, b);
++#else
++    hc_n[kind]++;
++#endif
++}
++static void hc_summary(double t) {
++#if HC_LOG
++    if (frame_no % 100 == 0)
++        fprintf(stderr, "HC sum f=%ld nis_hi=%ld nis_rej=%ld vmax=%ld vzmax=%ld tilt=%ld starve_fr=%ld starve_n=%ld reset=%ld\n", frame_no,
++                hc_n[0], hc_n[1], hc_n[2], hc_n[3], hc_n[4], hc_n[5], hc_n[6], hc_n[7]);
++#endif
++    (void)t;
++}
++static double chi2_z(int dof, double z) { /* Wilson-Hilferty */
++    double a = 2.0 / (9.0 * dof), b = 1 - a + z * sqrt(a);
++    return dof * b * b * b;
++}
++
+ /* per frame: thrust model (frame-mean body x/y specific force = b_a,x/y), then the velocity prior */
++static double t_now;
+ static void imu_measurements(const double *imu, int n) {
+     double mean[2] = {0, 0}, r[3];
+     for (int k = 0; k < n; k++) { mean[0] += imu[7 * k + 1] / n; mean[1] += imu[7 * k + 2] / n; }
+@@ -435,12 +580,140 @@
+     Hs[BA] = 1; Hs[MAXD + BA + 1] = 1;
+     r[0] = mean[0] - ba[0]; r[1] = mean[1] - ba[1];
+     update(r, Hs, 2, ACCEL_NOISE * ACCEL_NOISE / n + THRUST_MODEL_STD * THRUST_MODEL_STD, THRUST_GATE);
+-    double std = SPEED_STD * sqrt(SPEED_TAU / FRAME_DT);
++    double sv[3] = {SPEED_STD, SPEED_STD, SPEED_STD};
++    if (PRI_VH_STD > 0) sv[0] = sv[1] = PRI_VH_STD;
++    if (PRI_VZ_STD > 0) sv[2] = PRI_VZ_STD;
++#if HC_STARVE
++    if (starved) for (int i = 0; i < 3; i++) sv[i] *= HC_STARVE_SCALE;
++#endif
+     memset(Hs, 0, sizeof Hs);
+-    for (int i = 0; i < 3; i++) { Hs[i * MAXD + V + i] = 1; r[i] = -vel[i]; }
+-    update(r, Hs, 3, std * std, INFINITY);
++    double sc = sqrt(SPEED_TAU / FRAME_DT);
++    if (sv[0] == SPEED_STD && sv[1] == SPEED_STD && sv[2] == SPEED_STD) { /* original arithmetic, bit-identical */
++        double std = SPEED_STD * sc;
++        for (int i = 0; i < 3; i++) { Hs[i * MAXD + V + i] = 1; r[i] = -vel[i]; }
++        update(r, Hs, 3, std * std, INFINITY);
++    } else {
++        for (int i = 0; i < 3; i++) { Hs[i * MAXD + V + i] = 1 / (sv[i] * sc); r[i] = -vel[i] / (sv[i] * sc); }
++        update(r, Hs, 3, 1.0, INFINITY);
++    }
++    if (t_now - t_first >= PRI_START_S) {
++        if (PRI_Z_STD > 0) {
++            double s = PRI_Z_STD * sqrt(PRI_Z_TAU / FRAME_DT), r1[1] = {-pos[2] / s};
++            memset(Hs, 0, sizeof Hs);
++            Hs[P + 2] = 1 / s;
++            update(r1, Hs, 1, 1.0, INFINITY);
++        }
++        if (PRI_LAT_STD > 0) { /* body lateral velocity: vb = R^T v, vb_y = R[:,1].v ; d vb_y = R[:,1].dv + ([vb]x)[1,:].dth */
++            double vb[3], s = PRI_LAT_STD * sqrt(PRI_LAT_TAU / FRAME_DT), r1[1];
++            m3tvec(R, vel, vb);
++            r1[0] = -vb[1] / s;
++            memset(Hs, 0, sizeof Hs);
++            for (int i = 0; i < 3; i++) Hs[V + i] = R[3 * i + 1] / s;
++            Hs[TH + 0] = vb[2] / s; /* ([vb]x) row 1 = [vb_z, 0, -vb_x] */
++            Hs[TH + 1] = 0;
++            Hs[TH + 2] = -vb[0] / s;
++            update(r1, Hs, 1, 1.0, INFINITY);
++        }
++    }
+ }
+ 
++static double rec_until = -1e9, rec_last = -1e9;
++static void recovery(double t) {
++    double ts = t - t_first;
++    if (t > rec_until) cur_z = CHI2_Z;
++    int trig = 0;
++    double a = 0, b = 0;
++    if (HC_REC_VSTD > 0 && ts >= HC_REC_T0) {
++        double sv = sqrt(Pm[V * MAXD + V] + Pm[(V + 1) * MAXD + V + 1] + Pm[(V + 2) * MAXD + V + 2]);
++        if (sv > HC_REC_VSTD) { trig |= 1; a = sv; }
++    }
++    if (HC_REC_SPEED > 0 && ts < HC_REC_TMAX && ts >= 1.0) {
++        double sp = sqrt(vel[0] * vel[0] + vel[1] * vel[1] + vel[2] * vel[2]);
++        if (sp > HC_REC_SPEED) { trig |= 2; b = sp; }
++    }
++    if (frame_no % 20 == 0) { /* 1 s window */
++        if (ts >= 1.5) {
++            if (HC_REC_TRIFAIL > 0 && fw_att >= 5 && (double)fw_fail / fw_att > HC_REC_TRIFAIL) { trig |= 4; a = (double)fw_fail / fw_att; }
++            if (HC_REC_MINUSED > 0 && fw_used < HC_REC_MINUSED) { trig |= 8; b = fw_used; }
++        }
++        fw_att = fw_fail = fw_used = 0;
++    }
++    if (!trig || t - rec_last < HC_REC_COOL) return;
++    rec_last = t; rec_until = t + HC_REC_RELAX; cur_z = HC_REC_Z;
++    hc_log(7, t, trig, a + b);
++    for (int i = 0; i < 3; i++) Pm[(V + i) * MAXD + V + i] += HC_REC_VINF * HC_REC_VINF;
++    for (int i = 0; i < 2; i++) {
++        Pm[(TH + i) * MAXD + TH + i] += HC_REC_TINF * HC_REC_TINF;
++        Pm[(TH + i) * MAXD + TH0 + i] += HC_REC_TINF * HC_REC_TINF;
++        Pm[(TH0 + i) * MAXD + TH + i] += HC_REC_TINF * HC_REC_TINF;
++        Pm[(TH0 + i) * MAXD + TH0 + i] += HC_REC_TINF * HC_REC_TINF;
++    }
++    if (HC_REC_ZERO) {
++        double sc = sqrt(SPEED_TAU / FRAME_DT), r3[3];
++        memset(Hs, 0, sizeof Hs);
++        for (int i = 0; i < 3; i++) { Hs[i * MAXD + V + i] = 1 / (SPEED_STD * sc); r3[i] = -vel[i] / (SPEED_STD * sc); }
++        update(r3, Hs, 3, 1.0, INFINITY);
++    }
++}
++
++/* plausibility limits (pseudo-measurements pulling the state back to the limit) and the soft reset; called after the
++   vision update. Returns after logging every trip. */
++static void health_checks(double t) {
++    int trip = 0;
++    double r[3];
++#if HC_LIM
++    {
++        double sp = sqrt(vel[0] * vel[0] + vel[1] * vel[1] + vel[2] * vel[2]);
++        if (sp > HC_VMAX) {
++            trip |= 1; hc_log(2, t, sp, 0);
++            double k = HC_VMAX / sp - 1; /* r = v_limit - v along v */
++            memset(Hs, 0, sizeof Hs);
++            for (int i = 0; i < 3; i++) { Hs[i * MAXD + V + i] = 1 / HC_LIM_STD; r[i] = k * vel[i] / HC_LIM_STD; }
++            update(r, Hs, 3, 1.0, INFINITY);
++        }
++        if (fabs(vel[2]) > HC_VZMAX) {
++            trip |= 2; hc_log(3, t, vel[2], 0);
++            double r1[1] = {((vel[2] > 0 ? HC_VZMAX : -HC_VZMAX) - vel[2]) / HC_LIM_STD};
++            memset(Hs, 0, sizeof Hs);
++            Hs[V + 2] = 1 / HC_LIM_STD;
++            update(r1, Hs, 1, 1.0, INFINITY);
++        }
++        double zbx = R[2], zby = R[5], zbz = R[8]; /* body z axis in the world */
++        double tilt = acos(fmin(1.0, fmax(-1.0, zbz))) * 180.0 / M_PI;
++        if (tilt > HC_TILTMAX) {
++            trip |= 4; hc_log(4, t, tilt, 0);
++            double sn = sqrt(zbx * zbx + zby * zby), lim = HC_TILTMAX * M_PI / 180.0;
++            if (sn > 1e-6) {
++                double k = sin(lim) / sn - 1; /* pull horizontal components of body z back to the limit */
++                /* zb = R e3 ; d zb = -R [e3]x dth ; ( -R [e3]x ) rows x,y: [ R01 * ... ] computed explicitly: [e3]x e? */
++                /* R[e3]x = columns: R*[e3]x = [R e2 ... ] -> (R [e3]x)_{i,0} = R[i][1], (.,1) = -R[i][0], (.,2)=0 */
++                double r2[2] = {k * zbx / HC_LIM_STD, k * zby / HC_LIM_STD};
++                memset(Hs, 0, sizeof Hs);
++                Hs[TH + 0] = -R[1] / HC_LIM_STD; Hs[TH + 1] = R[0] / HC_LIM_STD;
++                Hs[MAXD + TH + 0] = -R[4] / HC_LIM_STD; Hs[MAXD + TH + 1] = R[3] / HC_LIM_STD;
++                update(r2, Hs, 2, 1.0, INFINITY);
++            }
++        }
++    }
++#endif
++#if HC_RESET
++    if (trip) {
++        hc_log(7, t, trip, 0);
++        for (int i = 0; i < 3; i++) {
++            Pm[(V + i) * MAXD + V + i] += HC_RESET_VSTD * HC_RESET_VSTD;
++            Pm[(P + i) * MAXD + P + i] += HC_RESET_PSTD * HC_RESET_PSTD;
++        }
++        double sc = sqrt(SPEED_TAU / FRAME_DT), r3[3];
++        memset(Hs, 0, sizeof Hs);
++        for (int i = 0; i < 3; i++) { Hs[i * MAXD + V + i] = 1 / (SPEED_STD * sc * 0.5); r3[i] = -vel[i] / (SPEED_STD * sc * 0.5); }
++        update(r3, Hs, 3, 1.0, INFINITY);
++    }
++#endif
++    (void)trip; (void)r;
++}
++
++/* per frame: thrust model
++
+ /* =====================================================================================================================
+  * Clones
+  * ===================================================================================================================== */
+@@ -500,7 +773,7 @@
+  * ===================================================================================================================== */
+ 
+ static double chi2_quantile(int dof) { /* Wilson-Hilferty */
+-    double a = 2.0 / (9.0 * dof), b = 1 - a + CHI2_Z * sqrt(a);
++    double a = 2.0 / (9.0 * dof), b = 1 - a + cur_z * sqrt(a);
+     return dof * b * b * b;
+ }
+ 
+@@ -575,7 +848,8 @@
+     }
+     if (o.n < MIN_OBS) return 0;
+     double pf[3];
+-    if (!triangulate(&o, ci, pf)) return 0;
++    fw_att++;
++    if (!triangulate(&o, ci, pf)) { fw_fail++; return 0; }
+     int m = 2 * o.n;
+     double RbcT[9];
+     m3tmul(R_bc, I3, RbcT); /* R_bc^T */
+@@ -673,6 +947,7 @@
+         rbig[*nrows + a] = r0[a];
+     }
+     *nrows += k0;
++    fw_used++;
+     return 1;
+ }
+ 
+@@ -710,7 +985,12 @@
+         }
+         nrows = nclone_cols;
+     }
+-    update(rbig, Hbig, nrows, (PIXEL_STD / fx) * (PIXEL_STD / fx), INFINITY);
++    double gate = INFINITY;
++    if (HC_NIS_Z > 0) gate = chi2_z(nrows, HC_NIS_Z);
++    int ok = update(rbig, Hbig, nrows, (PIXEL_STD / fx) * (PIXEL_STD / fx), gate);
++    if (upd_k == nrows && upd_m2 > chi2_z(nrows, HC_NIS_LOG_Z)) hc_log(0, t_now, upd_m2 / nrows, nrows);
++    if (ok) t_last_vis = t_now;
++    else if (upd_k == nrows && upd_m2 > gate) hc_log(1, t_now, upd_m2 / nrows, nrows);
+ }
+ 
+ /* =====================================================================================================================
+@@ -1085,6 +1365,7 @@
+             return VIOBENCH_STATUS_OK;
+         }
+         initialize(imu, imu_count, t);
++        t_first = t_last_vis = t_now = t; frame_no = 0; cur_z = CHI2_Z; rec_until = rec_last = -1e9; fw_att = fw_fail = fw_used = 0; starved = 0; memset(hc_n, 0, sizeof hc_n);
+         nclones = 0; clone_counter = 0; frames_since_clone = 0; nlost = 0; detect_cursor = 0;
+         memset(tracks, 0, sizeof tracks);
+         cur_pyr = 0;
+@@ -1097,9 +1378,22 @@
+         write_state(out);
+         return VIOBENCH_STATUS_OK;
+     }
++    t_now = t; frame_no++;
+     for (int r = 0; r < imu_count; r++) propagate(imu + 7 * r);
+     if (imu_count) imu_measurements(imu, imu_count);
+     vision(frame);
++    health_checks(t);
++#if HC_REC
++    recovery(t);
++#endif
++#if HC_STARVE
++    {
++        int s_now = (t - t_last_vis) > HC_STARVE_T;
++        if (s_now) { hc_log(5, t, t - t_last_vis, 0); if (!starved) hc_log(6, t, t - t_last_vis, 0); }
++        starved = s_now;
++    }
++#endif
++    hc_summary(t);
+     write_state(out);
+     return VIOBENCH_STATUS_OK;
+ }

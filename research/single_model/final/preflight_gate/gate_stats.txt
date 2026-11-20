@@ -1,0 +1,23 @@
+frame index of decision (time) distribution: Counter({(4, 0.245): 69, (8, 0.445): 9, (12, 0.645): 3, (24, 1.245): 1, (28, 1.445): 1})
+confusion ALL 171 (start tag x decision):
+  ('mid', 'held') 79
+  ('mid', 'released') 4
+  ('mid', 'undecided') 3
+  ('static', 'imu-static(gate inactive)') 85
+
+flag: static flights with IMU moving but not released: none
+static flights IMU-static (gate inactive): 85 of 85 ; static flights released by gate: 0
+mid flights released (visible only, with true start speed):
+  fastmid-107734176_176000019-00 fold3 frame 8 t 0.445 v0 0.23 maxd 1.59 
+  fastmid-107734254_176000121-00 fold1 frame 8 t 0.445 v0 0.50 maxd 1.65 
+  fastmid-ProcTHOR-Train-107-00 fold0 frame 8 t 0.445 v0 0.04 maxd 1.09 
+  fastmid-ProcTHOR-Train-5-02 fold0 frame 8 t 0.445 v0 0.20 maxd 1.77 
+mid released fold4 (count only): 0
+mid IMU-static (visible) with v0: []
+visible-only confusion: [(('mid', 'held'), 69), (('mid', 'released'), 4), (('mid', 'undecided'), 3), (('static', 'imu-static(gate inactive)'), 68)]
+mid visible by v0 bin x decision:
+  v0 0.0-0.2 {'undecided': 2, 'released': 1}
+  v0 0.2-0.5 {'held': 11, 'released': 3}
+  v0 0.5-1.0 {'held': 28}
+  v0 1.0-99.0 {'held': 30, 'undecided': 1}
+static visible v0 max 0.038813411654409734

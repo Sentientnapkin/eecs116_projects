@@ -8,6 +8,10 @@ The latest candidate is **N2 trained with kf_grid visual-attitude inputs**, comp
 
 [Latest candidate report and artifact paths](research/NEWEST_MODEL_WASM.md) · [Current code map](research/SOLUTIONS.md)
 
+## New structural pipelines prepared for scoring
+
+Four seed217 Wasm guests are now built: unchanged control, Manhattan yaw correction, visual translation-direction correction, and both. Their learned inputs stay fixed; the new modules modify integration only. Geometry, official ABI and synthetic reset/prefix checks pass. Dataset scoring has not started, so no accuracy improvement is claimed. See [pipeline implementation, artifacts and scoring command](research/structural_pipelines/README.md) and the [readiness index](research/results/eval/structural-pipelines/ready.json). The original frozen candidate and its unresolved parity limitations remain intact.
+
 ## How to read the results
 
 ATE below means mean unaligned position RMSE in metres. Prepared original dev, proxy validation, raw public, campaign-30, full campaign and server submissions are different evaluations; compare numbers only within their stated set. Unless a row says otherwise, later training comparisons use three seeds. Campaign has 120 overlapping resets from 60 parents, not 120 independent flights. Public is a development diagnostic for expanded-data models because its scene occurs in campaign training. Historical reports contain superseded status statements; the latest candidate report takes precedence for the frozen artifact.

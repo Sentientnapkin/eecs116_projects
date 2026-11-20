@@ -1,0 +1,7 @@
+== texture_det600  (wasm b1a8a1b4ae2c)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  2.060 (base  2.307) median  0.75 p90  6.74 >5m 16 >10m  4 | paired d=-0.247 [-0.577,+0.059] | err@2/5/30s 0.96/1.93/2.03
+search static n= 56 mean  0.619 (base  0.667) median  0.41 p90  0.84 >5m  1 >10m  0 | paired d=-0.048 [-0.101,-0.002] | err@2/5/30s 0.13/0.40/0.54
+search mid    n= 63 mean  3.341 (base  3.764) median  1.97 p90  7.85 >5m 15 >10m  4 | paired d=-0.423 [-1.023,+0.166] | err@2/5/30s 1.71/3.30/3.36
+val    all    n= 25 mean  0.966 (base  2.032) median  0.56 p90  1.58 >5m  1 >10m  0 | paired d=-1.066 [-2.351,-0.096] | err@2/5/30s 0.79/1.12/0.85
+val    static n= 12 mean  0.512 (base  0.713) median  0.45 p90  0.61 >5m  0 >10m  0 | paired d=-0.201 [-0.568,+0.031] | err@2/5/30s 0.16/0.30/0.47
+val    mid    n= 13 mean  1.385 (base  3.250) median  0.80 p90  2.31 >5m  1 >10m  0 | paired d=-1.865 [-4.871,-0.036] | err@2/5/30s 1.38/1.88/1.20

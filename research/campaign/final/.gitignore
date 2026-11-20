@@ -1,0 +1,7 @@
+results/**/report/
+results/**/cache/
+results/**/evaluate.log
+results/**/run.lock
+*.log
+
+frozen-composite.wasm

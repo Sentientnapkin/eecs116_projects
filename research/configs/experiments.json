@@ -183,7 +183,7 @@
           0.0,
           0.2
         ],
-        "note": "CPU only. Use native-campaign training records, both 0 s and 5 s crops. Sample four distinct parents from each catalog x regime group after sorting, using a fixed RNG. Use a pooled per-axis RMS velocity residual from all tuning frames and all three frozen best checkpoints as the fixed measurement standard deviation (floor 0.01 m/s). Select the grid member with lowest equal-replay ATE averaged over the three seeds, breaking ties in grid order. Use fixed gyro attitude, gravity prior sigma 0.5 m/s², accelerometer bias walk 0.02 m/s²/sqrt(s) when enabled, and disable learned variance. Freeze before reading development predictions."
+        "note": "CPU only. Use native-campaign training records, both 0 s and 5 s crops. Sample four distinct parents from each catalog x regime group after sorting, using a fixed RNG. Use a pooled per-axis RMS velocity residual from all tuning frames and all three frozen best checkpoints as the fixed measurement standard deviation (floor 0.01 m/s). Select the grid member with lowest equal-replay ATE averaged over the three seeds, breaking ties in grid order. Use fixed gyro attitude, gravity prior sigma 0.5 m/s\u00b2, accelerometer bias walk 0.02 m/s\u00b2/sqrt(s) when enabled, and disable learned variance. Freeze before reading development predictions."
       },
       "evaluate": {
         "dev": null,
@@ -759,5 +759,34 @@
     "interaction": "Freeze original image derotation and IMU model inputs for isolation; complete system must later regenerate both with new orientation before deployment. No artifact qualifies based solely on frozen-velocity result.",
     "fuel": "No whole guest implementation unless screen passes; no kernel extrapolation",
     "parity": "raw reconstruction control must match prepared R <=1e-6; replay prefix must equal corresponding full prefix"
+  },
+  "server_training_pilot": {
+    "declared_at": "2026-11-20T03:12:16.996342+00:00",
+    "driver": "python -m server_training.pilot --config configs/server_train_pool.json --launch",
+    "config": "configs/server_train_pool.json",
+    "names": [
+      "N3-T0-control",
+      "N3-T0-treatment"
+    ],
+    "seeds": [
+      217,
+      218,
+      219
+    ],
+    "initialization": "seed-matched frozen N2 kf_grid_native weights; fresh optimizer and EMA",
+    "control": "baseline N2 train data",
+    "treatment": "50% baseline / 50% nonselected raw-fast train-scene flights",
+    "epochs": 12,
+    "windows_per_epoch": 244,
+    "checkpoint": "fixed final epoch EMA",
+    "selection": "original development only; clean/dev used once after training",
+    "metric": "mean_unaligned_ate_m",
+    "gate": {
+      "heldout_relative_improvement_vs_n2": 0.1,
+      "all_seeds_improve": true,
+      "original_dev_max_regression": 0.05
+    },
+    "remote_writes": false,
+    "training_excludes": "selected171 IDs, clean150-161/176-179, reserved162-165/172-175, campaign dev/test scenes; no Val scene unless in campaign train"
   }
 }

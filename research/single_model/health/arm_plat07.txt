@@ -1,0 +1,7 @@
+== health_plat07  (wasm 4f7df1807e3f)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  1.789 (base  2.307) median  0.75 p90  4.66 >5m 11 >10m  4 | paired d=-0.517 [-0.923,-0.208] | err@2/5/30s 0.96/1.47/1.79
+search static n= 56 mean  0.599 (base  0.667) median  0.42 p90  0.86 >5m  1 >10m  0 | paired d=-0.068 [-0.126,-0.015] | err@2/5/30s 0.15/0.32/0.55
+search mid    n= 63 mean  2.847 (base  3.764) median  1.50 p90  7.12 >5m 10 >10m  4 | paired d=-0.917 [-1.648,-0.338] | err@2/5/30s 1.68/2.49/2.89
+val    all    n= 25 mean  1.739 (base  2.032) median  0.60 p90  2.12 >5m  2 >10m  1 | paired d=-0.293 [-0.784,+0.181] | err@2/5/30s 0.93/1.55/1.80
+val    static n= 12 mean  0.608 (base  0.713) median  0.47 p90  1.14 >5m  0 >10m  0 | paired d=-0.105 [-0.410,+0.134] | err@2/5/30s 0.18/0.41/0.62
+val    mid    n= 13 mean  2.783 (base  3.250) median  0.76 p90  4.63 >5m  2 >10m  1 | paired d=-0.467 [-1.782,+0.286] | err@2/5/30s 1.62/2.61/2.90

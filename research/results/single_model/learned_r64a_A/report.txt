@@ -1,0 +1,7 @@
+== learned_r64a_A  (wasm 2217d7ba735c)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  1.102 (base  2.307) median  0.54 p90  2.16 >5m  6 >10m  0 | paired d=-1.204 [-1.937,-0.622] | err@2/5/30s 0.43/0.77/1.02
+search static n= 56 mean  0.704 (base  0.667) median  0.43 p90  1.03 >5m  1 >10m  0 | paired d=+0.038 [-0.059,+0.153] | err@2/5/30s 0.16/0.38/0.64
+search mid    n= 63 mean  1.456 (base  3.764) median  0.62 p90  4.02 >5m  5 >10m  0 | paired d=-2.308 [-3.591,-1.295] | err@2/5/30s 0.66/1.11/1.36
+val    all    n= 25 mean  0.577 (base  2.032) median  0.47 p90  0.91 >5m  0 >10m  0 | paired d=-1.455 [-3.047,-0.399] | err@2/5/30s 0.27/0.47/0.48
+val    static n= 12 mean  0.610 (base  0.713) median  0.59 p90  0.98 >5m  0 >10m  0 | paired d=-0.102 [-0.386,+0.042] | err@2/5/30s 0.23/0.19/0.66
+val    mid    n= 13 mean  0.546 (base  3.250) median  0.32 p90  0.72 >5m  0 >10m  0 | paired d=-2.703 [-6.250,-0.564] | err@2/5/30s 0.30/0.72/0.33

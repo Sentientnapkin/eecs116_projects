@@ -1,0 +1,32 @@
+--- orig.c	2026-11-20 04:20:03.381956000 +0000
++++ adopt.c	2026-11-20 06:13:23.280556000 +0000
+@@ -111,6 +111,9 @@
+ #define CELL_H (IMG_H / GRID_Y)
+ #define MAX_TRACKS (GRID_X * GRID_Y)
+ #define DETECT_MIN_SCORE 1000.0 /* Shi-Tomasi score; ~ OpenCV goodFeaturesToTrack quality 0.01 on these frames */
++#define DETECT_BRIGHT_REF 130.0 /* mean gray at which the detection threshold is the full DETECT_MIN_SCORE */
++#define DETECT_BRIGHT_MIN 0.15  /* floor of the brightness scale of the threshold (dark / low-contrast frames) */
++static double det_scale = 1.0;  /* threshold scale of the current frame = clamp((mean gray / ref)^2, min, 1) */
+ #define BORDER (KLT_R + 3)
+ 
+ /* error-state layout */
+@@ -827,6 +830,10 @@
+ /* top up the grid: in every cell without a live track, the best corner (stride 2) above DETECT_MIN_SCORE becomes a new
+    track. Only empty cells are scored, so the cost follows the number of lost tracks. */
+ static void detect(int which) {
++    { long sum = 0; /* adaptive detection threshold: dark frames have proportionally weaker corner scores */
++      for (int i = 0; i < IMG_W * IMG_H; i += 7) sum += pyr[which][0][i];
++      double b = (double)sum / (IMG_W * IMG_H / 7) / DETECT_BRIGHT_REF;
++      det_scale = b * b; if (det_scale > 1) det_scale = 1; if (det_scale < DETECT_BRIGHT_MIN) det_scale = DETECT_BRIGHT_MIN; }
+     int occupied[MAX_TRACKS] = {0}, free_slot[MAX_TRACKS], nfree = 0;
+     for (int i = 0; i < MAX_TRACKS; i++) {
+         if (tracks[i].alive) occupied[cell_of(tracks[i].x, tracks[i].y)] = 1;
+@@ -837,7 +844,7 @@
+         int cell = (detect_cursor + k) % MAX_TRACKS;
+         if (occupied[cell]) continue;
+         int x0 = (cell % GRID_X) * CELL_W, y0 = (cell / GRID_X) * CELL_H;
+-        double best = DETECT_MIN_SCORE;
++        double best = DETECT_MIN_SCORE * det_scale;
+         int bx = -1, by = -1;
+         for (int y = y0 + 1; y < y0 + CELL_H; y += 2) {
+             if (y < BORDER || y >= IMG_H - BORDER) continue;

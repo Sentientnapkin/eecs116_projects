@@ -1,0 +1,10 @@
+sd64_B sd64 --mode B --scale 1.3
+sd64_A sd64 --mode A --scale 1.3
+sd32_B sd32 --mode B --scale 1.3
+sd32h_B sd32h --mode B --scale 1.3
+sd128_B sd128 --mode B --scale 1.3
+sd3_B sd3 --mode B --scale 1.3
+n64_B n64 --mode B --scale 1.0
+n32_B n32 --mode B --scale 1.0
+sd64_B_s10 sd64 --mode B --scale 1.0
+sd64_B_s20 sd64 --mode B --scale 2.0

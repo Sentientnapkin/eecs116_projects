@@ -1,0 +1,238 @@
+--- orig.c	2026-11-20 04:21:04.743450000 +0000
++++ adopted.c	2026-11-20 06:16:25.015235000 +0000
+@@ -61,6 +61,81 @@
+ /* initial uncertainty: roll/pitch from the first IMU window; the episode may start in flight */
+ #define INIT_TILT_STD 0.05     /* rad */
+ #define INIT_VELOCITY_STD 1.0  /* m/s */
++/* startup variants (research/single_model/startup). All are active only when motion is detected in the first IMU
++   window (hover starts keep the original initialisation), unless noted. */
++#ifndef MOVE_TILT_STD
++#define MOVE_TILT_STD 0.15      /* C1: tilt sigma when moving at frame 0 */
++#endif
++#ifndef MOVE_VEL_STD
++#define MOVE_VEL_STD INIT_VELOCITY_STD   /* C1: initial velocity sigma when moving */
++#endif
++#ifndef DET_GYRO
++#define DET_GYRO 0.2                     /* rad/s, |mean gyro| of the first window above this = moving */
++#endif
++#ifndef DET_FORCE
++#define DET_FORCE 8.8                    /* m/s^2, |mean specific force| above this = moving */
++#endif
++#ifndef PRIOR_MODE
++#define PRIOR_MODE 3   /* C2: 0 original; 1 startup prior with START_STD (isotropic); 2 anisotropic (SPEED_STD_H/Z);
++                          3 heading-aware camera-axis prior, nonzero mean (START_MEAN_FWD, START_STD_X/Y/Z) */
++#endif
++#ifndef START_T
++#define START_T 2.0                      /* s, duration of the startup prior */
++#endif
++#ifndef START_STD
++#define START_STD 1.0
++#endif
++#ifndef SPEED_STD_H
++#define SPEED_STD_H 1.0
++#endif
++#ifndef SPEED_STD_Z
++#define SPEED_STD_Z 0.3
++#endif
++#ifndef ANISO_ALWAYS
++#define ANISO_ALWAYS 0                   /* 1: mode 2 applies for the whole flight, not just START_T */
++#endif
++#ifndef START_MEAN_X
++#define START_MEAN_X 0.0                 /* camera-x (lateral) mean of the heading prior; robustness tests */
++#endif
++#ifndef START_MEAN_Y
++#define START_MEAN_Y 0.0
++#endif
++#ifndef POST_ANISO
++#define POST_ANISO 0                     /* 1: with PRIOR_MODE 3, apply the C2b anisotropic velocity prior after START_T */
++#endif
++#ifndef START_MEAN_FWD
++#define START_MEAN_FWD 0.9
++#endif
++#ifndef START_STD_X
++#define START_STD_X 0.5
++#endif
++#ifndef START_STD_Y
++#define START_STD_Y 0.35
++#endif
++#ifndef START_STD_Z
++#define START_STD_Z 0.6
++#endif
++#ifndef PRIOR_GATE
++#define PRIOR_GATE INFINITY              /* C2e: chi2 gate of the velocity prior update */
++#endif
++#ifndef FAST_FRAMES
++#define FAST_FRAMES 0                    /* C3: number of initial frames with the fast lock-on settings */
++#endif
++#ifndef FAST_CLONE_EVERY
++#define FAST_CLONE_EVERY 2
++#endif
++#ifndef FAST_MIN_OBS
++#define FAST_MIN_OBS 2
++#endif
++#ifndef FAST_TRI_EIG
++#define FAST_TRI_EIG 1e-6
++#endif
++#ifndef FAST_CHI2_Z
++#define FAST_CHI2_Z CHI2_Z              /* per-feature gate z during the fast window */
++#endif
++#ifndef FAST_ALL
++#define FAST_ALL 0                       /* 1: C3 also for hover starts */
++#endif
+ 
+ /* thrust model: body x/y specific force = b_a,x/y + noise (no rotor drag in the simulator) */
+ #define THRUST_MODEL_STD 0.05  /* m/s^2, unmodelled x/y force */
+@@ -132,6 +207,8 @@
+ static int D = CORE;
+ static double last_t;
+ static int initialized;
++static int moving, frame_no, clone_every = CLONE_EVERY, min_obs = MIN_OBS;
++static double tri_min_eig = TRI_MIN_EIG, t_start, chi2_z = 1.645;
+ 
+ typedef struct { int id; double R[9], p[3]; } Clone;
+ static Clone clones[MAX_CLONES + 1];
+@@ -371,9 +448,27 @@
+     memset(bg, 0, sizeof bg); memset(ba, 0, sizeof ba);
+     memset(Pm, 0, sizeof Pm);
+     D = CORE;
+-    double tilt[9] = {INIT_TILT_STD * INIT_TILT_STD, 0, 0, 0, INIT_TILT_STD * INIT_TILT_STD, 0, 0, 0, 0}; /* yaw: gauge */
++    double gm[3] = {0, 0, 0};
++    for (int r = 0; r < count; r++)
++        for (int i = 0; i < 3; i++) gm[i] += imu[7 * r + 4 + i] / count;
++    moving = sqrt(gm[0] * gm[0] + gm[1] * gm[1] + gm[2] * gm[2]) > DET_GYRO || sqrt(f[0] * f[0] + f[1] * f[1] + f[2] * f[2]) > DET_FORCE;
++    double ts = moving ? MOVE_TILT_STD : INIT_TILT_STD, vs = moving ? MOVE_VEL_STD : INIT_VELOCITY_STD;
++    t_start = t;
++    double tilt[9] = {ts * ts, 0, 0, 0, ts * ts, 0, 0, 0, 0}; /* yaw: gauge */
+     set_block(TH, TH, tilt, 1); set_block(TH, TH0, tilt, 1); set_block(TH0, TH, tilt, 1); set_block(TH0, TH0, tilt, 1);
+-    set_block(V, V, I3, INIT_VELOCITY_STD * INIT_VELOCITY_STD);
++    set_block(V, V, I3, vs * vs);
++    if (moving && PRIOR_MODE == 3) { /* heading-aware: mean along the camera axis, covariance in camera axes */
++        double Rwc[9], mu[3] = {START_MEAN_X, START_MEAN_Y, START_MEAN_FWD}, sd[3] = {START_STD_X, START_STD_Y, START_STD_Z}, C[9];
++        m3mul(R, R_bc, Rwc);
++        m3vec(Rwc, mu, vel);
++        for (int i = 0; i < 3; i++)
++            for (int j = 0; j < 3; j++) {
++                double a = 0;
++                for (int k = 0; k < 3; k++) a += Rwc[3 * i + k] * sd[k] * sd[k] * Rwc[3 * j + k];
++                C[3 * i + j] = a;
++            }
++        set_block(V, V, C, 1);
++    }
+     set_block(BG, BG, I3, GYRO_BIAS_MAX * GYRO_BIAS_MAX / 3);
+     set_block(BA, BA, I3, ACCEL_BIAS_MAX * ACCEL_BIAS_MAX / 3);
+     for (int i = 0; i < 3; i++) omega[i] = imu[7 * (count - 1) + 4 + i];
+@@ -435,10 +530,27 @@
+     Hs[BA] = 1; Hs[MAXD + BA + 1] = 1;
+     r[0] = mean[0] - ba[0]; r[1] = mean[1] - ba[1];
+     update(r, Hs, 2, ACCEL_NOISE * ACCEL_NOISE / n + THRUST_MODEL_STD * THRUST_MODEL_STD, THRUST_GATE);
+-    double std = SPEED_STD * sqrt(SPEED_TAU / FRAME_DT);
++    double scale = sqrt(SPEED_TAU / FRAME_DT);
++    int startup = moving && PRIOR_MODE && last_t - t_start < START_T;
++    if (PRIOR_MODE == 3 && startup) { /* whitened camera-axis prior with nonzero mean */
++        double Rwc[9], mu[3] = {START_MEAN_X, START_MEAN_Y, START_MEAN_FWD}, sd[3] = {START_STD_X, START_STD_Y, START_STD_Z}, vc[3];
++        m3mul(R, R_bc, Rwc);
++        m3tvec(Rwc, vel, vc);
++        memset(Hs, 0, sizeof Hs);
++        for (int i = 0; i < 3; i++) {
++            r[i] = (mu[i] - vc[i]) / (sd[i] * scale);
++            for (int j = 0; j < 3; j++) Hs[i * MAXD + V + j] = Rwc[3 * j + i] / (sd[i] * scale);
++        }
++        update(r, Hs, 3, 1.0, PRIOR_GATE);
++        return;
++    }
++    double sh = SPEED_STD, sz = SPEED_STD;
++    if (startup && PRIOR_MODE == 1) sh = sz = START_STD;
++    if ((PRIOR_MODE == 2 && moving && (startup || ANISO_ALWAYS)) || (PRIOR_MODE == 3 && POST_ANISO && moving)) { sh = SPEED_STD_H; sz = SPEED_STD_Z; }
+     memset(Hs, 0, sizeof Hs);
+-    for (int i = 0; i < 3; i++) { Hs[i * MAXD + V + i] = 1; r[i] = -vel[i]; }
+-    update(r, Hs, 3, std * std, INFINITY);
++    double sd3[3] = {sh * scale, sh * scale, sz * scale};
++    for (int i = 0; i < 3; i++) { Hs[i * MAXD + V + i] = 1 / sd3[i]; r[i] = -vel[i] / sd3[i]; }
++    update(r, Hs, 3, 1.0, PRIOR_GATE);
+ }
+ 
+ /* =====================================================================================================================
+@@ -500,7 +612,7 @@
+  * ===================================================================================================================== */
+ 
+ static double chi2_quantile(int dof) { /* Wilson-Hilferty */
+-    double a = 2.0 / (9.0 * dof), b = 1 - a + CHI2_Z * sqrt(a);
++    double a = 2.0 / (9.0 * dof), b = 1 - a + chi2_z * sqrt(a);
+     return dof * b * b * b;
+ }
+ 
+@@ -523,7 +635,7 @@
+     }
+     double lmin, lmax;
+     sym3_eig_minmax(A, &lmin, &lmax);
+-    if (lmin < TRI_MIN_EIG * lmax) return 0;
++    if (lmin < tri_min_eig * lmax) return 0;
+     if (!solve3(A, b, pf)) return 0;
+     for (int it = 0; it < 3; it++) {
+         double JtJ[9] = {0}, Jtr[3] = {0};
+@@ -573,7 +685,7 @@
+         if (c < 0) continue;
+         ci[o.n] = c; o.cid[o.n] = o_in->cid[k]; o.x[o.n] = o_in->x[k]; o.y[o.n] = o_in->y[k]; o.n++;
+     }
+-    if (o.n < MIN_OBS) return 0;
++    if (o.n < min_obs) return 0;
+     double pf[3];
+     if (!triangulate(&o, ci, pf)) return 0;
+     int m = 2 * o.n;
+@@ -872,7 +984,7 @@
+             t->x = nx; t->y = ny;
+         } else {
+             t->alive = 0;
+-            if (t->obs.n >= MIN_OBS && nlost < 2 * MAX_TRACKS) lost[nlost++] = t->obs;
++            if (t->obs.n >= min_obs && nlost < 2 * MAX_TRACKS) lost[nlost++] = t->obs;
+         }
+     }
+ }
+@@ -951,7 +1063,15 @@
+     double Rwc_now[9];
+     m3mul(R, R_bc, Rwc_now);
+     track_all(prev, cur, Rwc_now);
+-    if (++frames_since_clone >= CLONE_EVERY) {
++    {
++        int fast = FAST_FRAMES > 0 && frame_no < FAST_FRAMES && (moving || FAST_ALL);
++        clone_every = fast ? FAST_CLONE_EVERY : CLONE_EVERY;
++        min_obs = fast ? FAST_MIN_OBS : MIN_OBS;
++        tri_min_eig = fast ? FAST_TRI_EIG : TRI_MIN_EIG;
++        chi2_z = fast ? FAST_CHI2_Z : CHI2_Z;
++        frame_no++;
++    }
++    if (++frames_since_clone >= clone_every) {
+         frames_since_clone = 0;
+         add_clone();
+         record_observations();
+@@ -963,7 +1083,7 @@
+             int oldest = clones[0].id;
+             for (int i = 0; i < MAX_TRACKS && nb < MAX_BATCH; i++) {
+                 Obs *o = &tracks[i].obs;
+-                if (tracks[i].alive && o->n >= MIN_OBS && o->cid[0] == oldest) take_for_update(o, batch, &nb);
++                if (tracks[i].alive && o->n >= min_obs && o->cid[0] == oldest) take_for_update(o, batch, &nb);
+             }
+             msckf_update(batch, nb);
+             remove_oldest_clone();
+@@ -983,10 +1103,10 @@
+         memmove(lost, lost + take, (nlost - take) * sizeof(Obs));
+         nlost -= take;
+         if (nclones == MAX_CLONES) { /* the next clone pushes clones[0] out */
+-            int oldest = clones[0].id, phase = frames_since_clone - 1; /* 0 .. CLONE_EVERY - 2 */
+-            for (int i = phase; i < MAX_TRACKS && nb < MAX_BATCH; i += CLONE_EVERY - 1) {
++            int oldest = clones[0].id, phase = frames_since_clone - 1;
++            for (int i = phase; i < MAX_TRACKS && nb < MAX_BATCH; i += clone_every - 1) {
+                 Obs *o = &tracks[i].obs;
+-                if (tracks[i].alive && o->n >= MIN_OBS && o->cid[0] == oldest) take_for_update(o, batch, &nb);
++                if (tracks[i].alive && o->n >= min_obs && o->cid[0] == oldest) take_for_update(o, batch, &nb);
+             }
+         }
+         msckf_update(batch, nb);
+@@ -1085,6 +1205,7 @@
+             return VIOBENCH_STATUS_OK;
+         }
+         initialize(imu, imu_count, t);
++        frame_no = 0; clone_every = CLONE_EVERY; min_obs = MIN_OBS; tri_min_eig = TRI_MIN_EIG;
+         nclones = 0; clone_counter = 0; frames_since_clone = 0; nlost = 0; detect_cursor = 0;
+         memset(tracks, 0, sizeof tracks);
+         cur_pyr = 0;

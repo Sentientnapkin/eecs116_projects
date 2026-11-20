@@ -1,0 +1,7 @@
+== learned_sdvmin_A  (wasm f48e71d48573)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  1.230 (base  2.307) median  0.54 p90  2.64 >5m  7 >10m  2 | paired d=-1.076 [-1.846,-0.455] | err@2/5/30s 0.45/0.82/1.11
+search static n= 56 mean  0.679 (base  0.667) median  0.45 p90  1.09 >5m  1 >10m  0 | paired d=+0.012 [-0.066,+0.089] | err@2/5/30s 0.16/0.37/0.62
+search mid    n= 63 mean  1.721 (base  3.764) median  0.71 p90  4.04 >5m  6 >10m  2 | paired d=-2.044 [-3.402,-0.975] | err@2/5/30s 0.71/1.22/1.54
+val    all    n= 25 mean  0.533 (base  2.032) median  0.45 p90  0.92 >5m  0 >10m  0 | paired d=-1.499 [-3.143,-0.404] | err@2/5/30s 0.28/0.32/0.45
+val    static n= 12 mean  0.594 (base  0.713) median  0.54 p90  1.06 >5m  0 >10m  0 | paired d=-0.118 [-0.493,+0.168] | err@2/5/30s 0.26/0.35/0.59
+val    mid    n= 13 mean  0.477 (base  3.250) median  0.45 p90  0.81 >5m  0 >10m  0 | paired d=-2.773 [-6.555,-0.518] | err@2/5/30s 0.31/0.30/0.31

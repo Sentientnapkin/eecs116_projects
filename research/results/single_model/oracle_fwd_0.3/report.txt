@@ -1,0 +1,7 @@
+== oracle_fwd_0.3  (wasm b1dd1cdc73bf)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  1.520 (base  2.307) median  0.58 p90  4.53 >5m 10 >10m  2 | paired d=-0.786 [-1.493,-0.224] | err@2/5/30s 0.70/1.06/1.47
+search static n= 56 mean  0.904 (base  0.667) median  0.44 p90  1.08 >5m  2 >10m  1 | paired d=+0.237 [-0.040,+0.650] | err@2/5/30s 0.15/0.37/0.92
+search mid    n= 63 mean  2.068 (base  3.764) median  0.79 p90  6.33 >5m  8 >10m  1 | paired d=-1.696 [-2.863,-0.764] | err@2/5/30s 1.19/1.67/1.96
+val    all    n= 25 mean  0.855 (base  2.032) median  0.51 p90  1.71 >5m  0 >10m  0 | paired d=-1.177 [-2.684,-0.165] | err@2/5/30s 0.33/0.51/0.85
+val    static n= 12 mean  0.847 (base  0.713) median  0.60 p90  1.26 >5m  0 >10m  0 | paired d=+0.135 [-0.357,+0.899] | err@2/5/30s 0.17/0.37/0.82
+val    mid    n= 13 mean  0.861 (base  3.250) median  0.40 p90  1.81 >5m  0 >10m  0 | paired d=-2.388 [-5.620,-0.455] | err@2/5/30s 0.48/0.65/0.88

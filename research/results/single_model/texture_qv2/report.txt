@@ -1,0 +1,7 @@
+== texture_qv2  (wasm a997854003dd)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  1.929 (base  2.307) median  0.83 p90  5.73 >5m 16 >10m  2 | paired d=-0.378 [-0.844,-0.029] | err@2/5/30s 0.97/1.73/1.84
+search static n= 56 mean  0.648 (base  0.667) median  0.46 p90  0.93 >5m  1 >10m  0 | paired d=-0.018 [-0.075,+0.044] | err@2/5/30s 0.13/0.36/0.58
+search mid    n= 63 mean  3.067 (base  3.764) median  1.83 p90  7.85 >5m 15 >10m  2 | paired d=-0.697 [-1.543,-0.040] | err@2/5/30s 1.72/2.94/2.96
+val    all    n= 25 mean  1.595 (base  2.032) median  0.70 p90  1.32 >5m  1 >10m  1 | paired d=-0.437 [-0.943,+0.023] | err@2/5/30s 0.93/1.22/1.70
+val    static n= 12 mean  0.596 (base  0.713) median  0.49 p90  0.95 >5m  0 >10m  0 | paired d=-0.117 [-0.444,+0.031] | err@2/5/30s 0.17/0.29/0.55
+val    mid    n= 13 mean  2.518 (base  3.250) median  1.03 p90  2.53 >5m  1 >10m  1 | paired d=-0.732 [-2.307,+0.089] | err@2/5/30s 1.63/2.07/2.75

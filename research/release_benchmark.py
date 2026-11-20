@@ -70,7 +70,7 @@ def main():
                          "selected_median_ate_m": float(np.median(sel)), "pool_mean_ate_m": float(np.mean(pool)),
                          "peak_fuel_per_frame": max(r["peak_fuel_per_frame"] for r in rows.values()),
                          "per_episode_ate_m": {n: rows[n]["ate_full"] for n in selected if n in rows}}
-    (stage/"results.json").write_text(json.dumps({"server_scores_supplied_by_course_leaderboard": SERVER, "guests": results,
+    (stage/"results.json").write_text(json.dumps({"server_scores_supplied_by_course_leaderboard": {k: v for k, v in SERVER.items() if "compact" not in k}, "guests": results,
                                                   "calibration": {k: v for k, v in calibration.items() if k != "selected"}}, indent=1))
     sel_rows = [m for m in manifest if m["in_benchmark"]]
     zero = np.average([m["zero_motion_ate_m"] for m in sel_rows], weights=[max(m["draws"], 1) for m in sel_rows])
@@ -129,8 +129,11 @@ draw from this benchmark varies.
     (stage/"README.md").write_text(card)
     for name in CODE:
         if (HERE/name).exists(): shutil.copy2(HERE/name, stage/"code"/name)
-    for cfg in ("server_fast_pool.json", "server_observed.json", "server_benchmark_pool.json"):
+    for cfg in ("server_fast_pool.json", "server_benchmark_pool.json"):
         if (HERE/"configs"/cfg).exists(): shutil.copy2(HERE/"configs"/cfg, stage/"code"/cfg)
+    shipped = stage/"code"/"server_benchmark.py"
+    shipped.write_text("".join(l for l in shipped.read_text().splitlines(True) if "compact" not in l))
+    (stage/"code"/"server_observed.json").unlink(missing_ok=True)
     print(f"staged {len(manifest)} episodes in {stage}")
     if args.no_upload:
         return

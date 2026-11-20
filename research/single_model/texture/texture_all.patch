@@ -1,0 +1,409 @@
+--- texture/orig.c	2026-11-20 04:20:03.381956000 +0000
++++ texture/texture.c	2026-11-20 04:27:20.667653000 +0000
+@@ -40,6 +40,15 @@
+ #include <math.h>
+ #include <stdlib.h>
+ #include <string.h>
++#ifdef TEX_DEBUG
++#include <stdio.h>
++/* ---- TEX_DEBUG: per-frame counters and covariance/state log to stderr (analysis builds only) ---- */
++static int dbg_klt_err, dbg_klt_tex, dbg_klt_oob, dbg_tri_fail, dbg_chi_fail, dbg_acc, dbg_det, dbg_empty, dbg_alive, dbg_upd_rows;
++static double dbg_bright, dbg_grad;
++#define DBG(x) x
++#else
++#define DBG(x)
++#endif
+ 
+ #ifndef M_PI
+ #define M_PI 3.14159265358979323846
+@@ -81,12 +90,16 @@
+ #define MAX_CLONES 6           /* window ~ MAX_CLONES * CLONE_EVERY frames = 1.2 s */
+ #define MIN_OBS 3              /* clone observations a feature needs */
+ #define MAX_OBS 8
+-#define PIXEL_STD 1.5          /* px, measurement noise of a tracked point */
++#ifndef PIXEL_STD
++#define PIXEL_STD 1.5
++#endif  /* px, measurement noise of a tracked point */
+ #define MIN_DEPTH 0.2          /* m, triangulated depth accepted */
+ #define MAX_DEPTH 40.0
+ #define TRI_MIN_EIG 1e-6       /* ray matrix: smallest / largest eigenvalue below this = rays ~parallel (wide lens:
+                                   stricter values reject most tracks) */
+-#define CHI2_Z 1.645           /* per-feature gate: 95 % (Wilson-Hilferty approximation of the chi^2 quantile) */
++#ifndef CHI2_Z
++#define CHI2_Z 1.645
++#endif  /* per-feature gate: 95 % (Wilson-Hilferty approximation of the chi^2 quantile) */
+ #define MAX_UPDATE_FEATURES 20 /* ended tracks processed per in-between frame */
+ 
+ /* vision ZUPT */
+@@ -103,16 +116,54 @@
+ #define KLT_ITERS 5            /* per level */
+ #define KLT_EPS 0.03           /* px, stop on the finest level */
+ #define KLT_EPS_COARSE 0.1     /* px of the level, stop on coarser levels */
+-#define KLT_MAX_ERR 25.0       /* mean |I - T| in gray levels above which a track is dropped */
++#ifndef KLT_MAX_ERR
++#define KLT_MAX_ERR 25.0
++#endif  /* mean |I - T| in gray levels above which a track is dropped */
+ #define KLT_MIN_EIG 2.0        /* min eigenvalue of the template gradient matrix, per pixel */
+ #define GRID_X 10              /* detection grid: one feature per cell */
+ #define GRID_Y 6
+ #define CELL_W (IMG_W / GRID_X)
+ #define CELL_H (IMG_H / GRID_Y)
+ #define MAX_TRACKS (GRID_X * GRID_Y)
+-#define DETECT_MIN_SCORE 1000.0 /* Shi-Tomasi score; ~ OpenCV goodFeaturesToTrack quality 0.01 on these frames */
++#ifndef DETECT_MIN_SCORE
++#define DETECT_MIN_SCORE 1000.0
++#endif  /* Shi-Tomasi score; ~ OpenCV goodFeaturesToTrack quality 0.01 on these frames */
+ #define BORDER (KLT_R + 3)
+ 
++/* ---- texture / consistency arms (each defaults to the original behaviour) ---- */
++#ifndef TEX_DETECT_BRIGHT      /* 1: detection threshold scaled by clamp((mean gray / 130)^2, TEX_DETECT_BRIGHT_MIN, 1) */
++#define TEX_DETECT_BRIGHT 0
++#endif
++#ifndef TEX_DETECT_BRIGHT_MIN
++#define TEX_DETECT_BRIGHT_MIN 0.15
++#endif
++#ifndef TEX_KLT_NORM           /* 1: KLT residual with the patch mean removed; 2: mean removed and gain fitted */
++#define TEX_KLT_NORM 0
++#endif
++#ifndef TEX_KLT_RETRY          /* 1: a track lost from the gyro-predicted start is retried from its last position */
++#define TEX_KLT_RETRY 0
++#endif
++#ifndef Q_TH_MULT              /* process-noise multipliers on the IMU white noise terms */
++#define Q_TH_MULT 1.0
++#endif
++#ifndef Q_V_MULT
++#define Q_V_MULT 1.0
++#endif
++#ifndef TEX_FEJ                /* 1: feature Jacobians at the clone poses at cloning time; 2: and the feature point triangulated there too */
++#define TEX_FEJ 0
++#endif
++#ifndef TEX_GATE_EARLY_Z       /* per-feature gate z-score during the first TEX_GATE_EARLY_T seconds */
++#define TEX_GATE_EARLY_Z CHI2_Z
++#endif
++#ifndef TEX_GATE_EARLY_T
++#define TEX_GATE_EARLY_T 0.0
++#endif
++#ifndef TEX_PIX_LEN_K          /* pixel std multiplier 1 + K (MAX_OBS - n) / (MAX_OBS - MIN_OBS) for a feature with n observations */
++#define TEX_PIX_LEN_K 0.0
++#endif
++static double cur_time;        /* time of the current step */
++static double det_scale = 1.0; /* detection threshold scale of the current frame */
++
+ /* error-state layout */
+ #define CORE 18
+ #define MAXD (CORE + 6 * (MAX_CLONES + 1))
+@@ -133,7 +184,7 @@
+ static double last_t;
+ static int initialized;
+ 
+-typedef struct { int id; double R[9], p[3]; } Clone;
++typedef struct { int id; double R[9], p[3], Rf[9], pf[3]; } Clone; /* Rf, pf: pose at cloning time (FEJ) */
+ static Clone clones[MAX_CLONES + 1];
+ static int nclones, clone_counter, frames_since_clone;
+ 
+@@ -413,7 +464,7 @@
+         }
+     }
+     /* Q: white noise on orientation and velocity; the GP bias kernels' random-walk increments */
+-    double q_th = (GYRO_NOISE * dt) * (GYRO_NOISE * dt), q_v = (ACCEL_NOISE * dt) * (ACCEL_NOISE * dt);
++    double q_th = Q_TH_MULT * (GYRO_NOISE * dt) * (GYRO_NOISE * dt), q_v = Q_V_MULT * (ACCEL_NOISE * dt) * (ACCEL_NOISE * dt);
+     double q_bg = GYRO_BIAS_WALK * GYRO_BIAS_WALK * dt, q_ba = ACCEL_BIAS_WALK * ACCEL_BIAS_WALK * dt;
+     for (int i = 0; i < 3; i++) {
+         Pm[(TH + i) * MAXD + TH + i] += q_th; Pm[(V + i) * MAXD + V + i] += q_v;
+@@ -465,6 +516,8 @@
+     clones[nclones].id = clone_counter++;
+     memcpy(clones[nclones].R, R, sizeof R);
+     memcpy(clones[nclones].p, pos, sizeof pos);
++    memcpy(clones[nclones].Rf, R, sizeof R);
++    memcpy(clones[nclones].pf, pos, sizeof pos);
+     nclones++;
+ }
+ 
+@@ -488,11 +541,13 @@
+     return -1;
+ }
+ 
++static int fej_mode; /* 1: camera_pose returns the pose at cloning time */
+ static void camera_pose(const Clone *c, double *Rwc, double *pwc) { /* camera pose of a clone in the world */
+     double t[3];
+-    m3mul(c->R, R_bc, Rwc);
+-    m3vec(c->R, p_bc, t);
+-    for (int i = 0; i < 3; i++) pwc[i] = c->p[i] + t[i];
++    const double *Rs = fej_mode ? c->Rf : c->R, *ps = fej_mode ? c->pf : c->p;
++    m3mul(Rs, R_bc, Rwc);
++    m3vec(Rs, p_bc, t);
++    for (int i = 0; i < 3; i++) pwc[i] = ps[i] + t[i];
+ }
+ 
+ /* =====================================================================================================================
+@@ -500,7 +555,8 @@
+  * ===================================================================================================================== */
+ 
+ static double chi2_quantile(int dof) { /* Wilson-Hilferty */
+-    double a = 2.0 / (9.0 * dof), b = 1 - a + CHI2_Z * sqrt(a);
++    double z = cur_time < TEX_GATE_EARLY_T ? TEX_GATE_EARLY_Z : CHI2_Z;
++    double a = 2.0 / (9.0 * dof), b = 1 - a + z * sqrt(a);
+     return dof * b * b * b;
+ }
+ 
+@@ -575,8 +631,15 @@
+     }
+     if (o.n < MIN_OBS) return 0;
+     double pf[3];
+-    if (!triangulate(&o, ci, pf)) return 0;
++    if (!triangulate(&o, ci, pf)) { DBG(dbg_tri_fail++;) return 0; }
+     int m = 2 * o.n;
++    double pfj[3] = {pf[0], pf[1], pf[2]}; /* point the Jacobians are evaluated at */
++#if TEX_FEJ == 2
++    fej_mode = 1;
++    int okj = triangulate(&o, ci, pfj);
++    fej_mode = 0;
++    if (!okj) { pfj[0] = pf[0]; pfj[1] = pf[1]; pfj[2] = pf[2]; }
++#endif
+     double RbcT[9];
+     m3tmul(R_bc, I3, RbcT); /* R_bc^T */
+     memset(Hx, 0, m * MAXD * sizeof(double));
+@@ -587,11 +650,20 @@
+         for (int i = 0; i < 3; i++) dpt[i] = pf[i] - pwc[i];
+         m3tvec(Rwc, dpt, pc);
+         double iz = 1 / pc[2];
+-        double jp[6] = {iz, 0, -pc[0] * iz * iz, 0, iz, -pc[1] * iz * iz};
+         rr[2 * k] = o.x[k] - pc[0] * iz;
+         rr[2 * k + 1] = o.y[k] - pc[1] * iz;
+-        for (int i = 0; i < 3; i++) tmp[i] = pf[i] - c->p[i];
+-        m3tvec(c->R, tmp, u); /* the feature in the clone's body frame */
++        const double *Rj = c->R, *pj = c->p; /* linearization point of the Jacobians */
++#if TEX_FEJ
++        Rj = c->Rf; pj = c->pf;
++        fej_mode = 1; camera_pose(c, Rwc, pwc); fej_mode = 0;
++        for (int i = 0; i < 3; i++) dpt[i] = pfj[i] - pwc[i];
++        m3tvec(Rwc, dpt, pc);
++        if (pc[2] < 1e-3) return 0;
++        iz = 1 / pc[2];
++#endif
++        double jp[6] = {iz, 0, -pc[0] * iz * iz, 0, iz, -pc[1] * iz * iz};
++        for (int i = 0; i < 3; i++) tmp[i] = pfj[i] - pj[i];
++        m3tvec(Rj, tmp, u); /* the feature in the clone's body frame */
+         double A[6], sku[9]; /* A = Jpi R_bc^T (2x3) */
+         for (int r2 = 0; r2 < 2; r2++)
+             for (int cc = 0; cc < 3; cc++) A[3 * r2 + cc] = jp[3 * r2] * RbcT[cc] + jp[3 * r2 + 1] * RbcT[3 + cc] + jp[3 * r2 + 2] * RbcT[6 + cc];
+@@ -602,7 +674,7 @@
+                 double s_th = 0, s_p = 0;
+                 for (int t = 0; t < 3; t++) {
+                     s_th += A[3 * r2 + t] * sku[3 * t + cc];
+-                    s_p += A[3 * r2 + t] * c->R[3 * cc + t]; /* (A R_c^T)[r2][cc] */
++                    s_p += A[3 * r2 + t] * Rj[3 * cc + t]; /* (A R_c^T)[r2][cc] */
+                 }
+                 Hx[(2 * k + r2) * MAXD + off + cc] = s_th;
+                 Hx[(2 * k + r2) * MAXD + off + 3 + cc] = -s_p;
+@@ -638,7 +710,11 @@
+         for (int i = c; i < m; i++) rr[i] -= s * v[i];
+     }
+     int k0 = m - 3;
+-    const double *H0 = Hx + 3 * MAXD, *r0 = rr + 3;
++    double *H0 = Hx + 3 * MAXD, *r0 = rr + 3;
++    if (TEX_PIX_LEN_K > 0) { /* heavier noise for short tracks: whiten the feature's rows by 1/w */
++        double wf = 1 + TEX_PIX_LEN_K * (double)(MAX_OBS - o.n) / (MAX_OBS - MIN_OBS), iw = 1 / wf;
++        for (int a = 0; a < k0; a++) { for (int j = 0; j < D; j++) H0[a * MAXD + j] *= iw; r0[a] *= iw; }
++    }
+     /* gate on r0^T (H0 P H0^T + s^2 I)^-1 r0, over the observing clones' columns only (H0 is zero elsewhere) */
+     double sigma2 = (PIXEL_STD / fx) * (PIXEL_STD / fx);
+     int nzc[6 * MAX_OBS], nnz = 0, seen[MAX_CLONES + 1] = {0};
+@@ -666,13 +742,14 @@
+     chol_solve(Sm, k0, y);
+     double m2 = 0;
+     for (int a = 0; a < k0; a++) m2 += r0[a] * y[a];
+-    if (m2 > chi2_quantile(k0)) return 0;
++    if (m2 > chi2_quantile(k0)) { DBG(dbg_chi_fail++;) return 0; }
+     if (*nrows + k0 > MAX_ROWS) return 0;
+     for (int a = 0; a < k0; a++) {
+         memcpy(Hbig + (*nrows + a) * MAXD, H0 + a * MAXD, D * sizeof(double));
+         rbig[*nrows + a] = r0[a];
+     }
+     *nrows += k0;
++    DBG(dbg_acc++; dbg_upd_rows += k0;)
+     return 1;
+ }
+ 
+@@ -755,10 +832,10 @@
+         const uint8_t *I0 = pyr[prev][L], *I1 = pyr[cur][L];
+         double px = x0 * s, py = y0 * s, ddx = dx * s, ddy = dy * s;
+         if (px < KLT_R + 2 || py < KLT_R + 2 || px > w - KLT_R - 3 || py > h - KLT_R - 3) {
+-            if (L == 0) return 0;
++            if (L == 0) { DBG(dbg_klt_oob++;) return 0; }
+             continue;
+         }
+-        double hxx = 0, hxy = 0, hyy = 0;
++        double hxx = 0, hxy = 0, hyy = 0, tmean = 0, tvar = 0;
+         const int pw = 2 * KLT_R + 3;
+         extract(I0, w, px, py, KLT_R + 1, patch);
+         int n = 0;
+@@ -770,23 +847,39 @@
+                 GY[n] = 0.5 * (q[pw] - q[-pw]);
+                 hxx += GX[n] * GX[n]; hxy += GX[n] * GY[n]; hyy += GY[n] * GY[n];
+             }
++#if TEX_KLT_NORM
++        for (n = 0; n < KLT_N; n++) tmean += T[n];
++        tmean /= KLT_N;
++        for (n = 0; n < KLT_N; n++) tvar += (T[n] - tmean) * (T[n] - tmean);
++#endif
+         double det = hxx * hyy - hxy * hxy;
+         double mineig = 0.5 * (hxx + hyy) - sqrt(0.25 * (hxx - hyy) * (hxx - hyy) + hxy * hxy);
+         if (mineig < KLT_MIN_EIG * KLT_N || det <= 0) { /* no texture at this level */
+-            if (L == 0) return 0;
++            if (L == 0) { DBG(dbg_klt_tex++;) return 0; }
+             dx = ddx / s; dy = ddy / s;
+             continue;
+         }
+         for (int it = 0; it < KLT_ITERS; it++) {
+             double qx = px + ddx, qy = py + ddy;
+             if (qx < KLT_R + 1 || qy < KLT_R + 1 || qx > w - KLT_R - 2 || qy > h - KLT_R - 2) {
+-                if (L == 0) return 0;
++                if (L == 0) { DBG(dbg_klt_oob++;) return 0; }
+                 break;
+             }
+             double bx = 0, by = 0, esum = 0;
+             extract(I1, w, qx, qy, KLT_R, cur_patch);
++            double cmean = 0, gain = 1.0;
++#if TEX_KLT_NORM
++            for (n = 0; n < KLT_N; n++) cmean += cur_patch[n];
++            cmean /= KLT_N;
++#if TEX_KLT_NORM == 2
++            { double cov = 0;
++              for (n = 0; n < KLT_N; n++) cov += (cur_patch[n] - cmean) * (T[n] - tmean);
++              gain = tvar > 1e-9 ? cov / tvar : 1.0;
++              gain = gain < 0.5 ? 0.5 : gain > 2.0 ? 2.0 : gain; }
++#endif
++#endif
+             for (n = 0; n < KLT_N; n++) {
+-                double e = cur_patch[n] - T[n];
++                double e = TEX_KLT_NORM ? (cur_patch[n] - cmean) - gain * (T[n] - tmean) : cur_patch[n] - T[n];
+                 bx += GX[n] * e; by += GY[n] * e;
+                 esum += fabs(e);
+             }
+@@ -798,7 +891,7 @@
+         }
+         dx = ddx / s; dy = ddy / s;
+     }
+-    if (err > KLT_MAX_ERR) return 0;
++    if (err > KLT_MAX_ERR) { DBG(dbg_klt_err++;) return 0; }
+     *ox = x0 + dx; *oy = y0 + dy;
+     return 1;
+ }
+@@ -827,6 +920,12 @@
+ /* top up the grid: in every cell without a live track, the best corner (stride 2) above DETECT_MIN_SCORE becomes a new
+    track. Only empty cells are scored, so the cost follows the number of lost tracks. */
+ static void detect(int which) {
++#if TEX_DETECT_BRIGHT
++    { long sum = 0;
++      for (int i = 0; i < IMG_W * IMG_H; i += 7) sum += pyr[which][0][i];
++      double b = (double)sum / (IMG_W * IMG_H / 7) / 130.0;
++      det_scale = b * b; if (det_scale > 1) det_scale = 1; if (det_scale < TEX_DETECT_BRIGHT_MIN) det_scale = TEX_DETECT_BRIGHT_MIN; }
++#endif
+     int occupied[MAX_TRACKS] = {0}, free_slot[MAX_TRACKS], nfree = 0;
+     for (int i = 0; i < MAX_TRACKS; i++) {
+         if (tracks[i].alive) occupied[cell_of(tracks[i].x, tracks[i].y)] = 1;
+@@ -837,7 +936,7 @@
+         int cell = (detect_cursor + k) % MAX_TRACKS;
+         if (occupied[cell]) continue;
+         int x0 = (cell % GRID_X) * CELL_W, y0 = (cell / GRID_X) * CELL_H;
+-        double best = DETECT_MIN_SCORE;
++        double best = DETECT_MIN_SCORE * det_scale;
+         int bx = -1, by = -1;
+         for (int y = y0 + 1; y < y0 + CELL_H; y += 2) {
+             if (y < BORDER || y >= IMG_H - BORDER) continue;
+@@ -847,7 +946,9 @@
+                 if (s > best) { best = s; bx = x; by = y; }
+             }
+         }
++        if (bx < 0) { DBG(dbg_empty++;) }
+         if (bx >= 0) {
++            DBG(dbg_det++;)
+             Track *t = &tracks[free_slot[--nfree]];
+             t->alive = 1; t->x = bx; t->y = by; t->obs.n = 0;
+         }
+@@ -868,7 +969,11 @@
+         double gx = t->x, gy = t->y;
+         if (rp[2] > 1e-3) { gx = fx * rp[0] / rp[2] + cx; gy = fy * rp[1] / rp[2] + cy; }
+         double nx, ny;
+-        if (klt(prev, cur, t->x, t->y, gx, gy, &nx, &ny) && nx >= 0 && ny >= 0 && nx < IMG_W && ny < IMG_H) {
++        int ok = klt(prev, cur, t->x, t->y, gx, gy, &nx, &ny);
++#if TEX_KLT_RETRY
++        if (!ok && (fabs(gx - t->x) > 1.5 || fabs(gy - t->y) > 1.5)) ok = klt(prev, cur, t->x, t->y, t->x, t->y, &nx, &ny);
++#endif
++        if (ok && nx >= 0 && ny >= 0 && nx < IMG_W && ny < IMG_H) {
+             t->x = nx; t->y = ny;
+         } else {
+             t->alive = 0;
+@@ -1036,6 +1141,51 @@
+  * ABI (docs/ABI.md): _initialize -> frame_width -> init(config) -> alloc x3 -> step x N
+  * ===================================================================================================================== */
+ 
++
++#ifdef TEX_DEBUG
++/* One line per frame:  T t | out pos(3) vel(3) | pos cov (6, upper tri, output frame) | vel cov (6) | counters.
++ * Output-frame covariance: pos_out ~ R_ci R0^T p   -> J = [R_ci R0^T on dp, R_ci [R0^T p]x on dtheta0]
++ *                          vel_out ~ R_ci R^T v   -> J = [R_ci R^T on dv, R_ci [R^T v]x on dtheta]  (lever-arm term ignored) */
++static void debug_cov3(const double *Jth, int ith, const double *Jv, int iv, double *c6) {
++    double A[9];
++    int idx[6][2] = {{0,0},{0,1},{0,2},{1,1},{1,2},{2,2}};
++    for (int q = 0; q < 6; q++) {
++        int a = idx[q][0], b = idx[q][1];
++        double s = 0;
++        for (int i = 0; i < 3; i++) for (int j = 0; j < 3; j++) {
++            s += Jv[3 * a + i] * Jv[3 * b + j] * Pm[(iv + i) * MAXD + iv + j];
++            s += Jth[3 * a + i] * Jth[3 * b + j] * Pm[(ith + i) * MAXD + ith + j];
++            s += Jv[3 * a + i] * Jth[3 * b + j] * Pm[(iv + i) * MAXD + ith + j];
++            s += Jth[3 * a + i] * Jv[3 * b + j] * Pm[(ith + i) * MAXD + iv + j];
++        }
++        c6[q] = s;
++    }
++    (void)A;
++}
++static void debug_log(double t, const uint8_t *frame, const double *out) {
++    double Rci[9], q[3], b[3], sk[9], J1[9], J2[9], J3[9], J4[9], cp[6], cv[6], tmp[9];
++    for (int i = 0; i < 3; i++) for (int j = 0; j < 3; j++) Rci[3 * i + j] = T_cam_imu[4 * i + j];
++    m3tvec(R0, pos, q); m3tvec(R, vel, b);
++    skew(q, sk); m3mul(Rci, sk, J1);          /* d pos_out / d theta0 */
++    m3tmul(R0, I3, tmp); m3mul(Rci, tmp, J2); /* R_ci R0^T */
++    debug_cov3(J1, TH0, J2, P, cp);
++    skew(b, sk); m3mul(Rci, sk, J3);          /* d vel_out / d theta */
++    m3tmul(R, I3, tmp); m3mul(Rci, tmp, J4);  /* R_ci R^T */
++    debug_cov3(J3, TH, J4, V, cv);
++    long sum = 0;
++    for (int i = 0; i < IMG_W * IMG_H; i += 7) sum += pyr[cur_pyr][0][i];
++    int alive = 0, longt = 0;
++    for (int i = 0; i < MAX_TRACKS; i++) if (tracks[i].alive) { alive++; if (tracks[i].obs.n >= MIN_OBS) longt++; }
++    fprintf(stderr, "T %.3f %.5f %.5f %.5f %.5f %.5f %.5f", t, out[0], out[1], out[2], out[7], out[8], out[9]);
++    for (int i = 0; i < 6; i++) fprintf(stderr, " %.6g", cp[i]);
++    for (int i = 0; i < 6; i++) fprintf(stderr, " %.6g", cv[i]);
++    fprintf(stderr, " | alive %d long %d det %d empty %d kerr %d ktex %d koob %d tri %d chi %d acc %d rows %d bright %.1f nclones %d\n",
++            alive, longt, dbg_det, dbg_empty, dbg_klt_err, dbg_klt_tex, dbg_klt_oob, dbg_tri_fail, dbg_chi_fail, dbg_acc,
++            dbg_upd_rows, (double)sum / (IMG_W * IMG_H / 7), nclones);
++    (void)frame;
++}
++#endif
++
+ int32_t abi_version(void) { return VIOBENCH_ABI_VERSION; }
+ void *alloc(uint32_t size) { return malloc(size ? size : 1); }
+ int32_t frame_width(void) { return IMG_W; }
+@@ -1078,6 +1228,7 @@
+ /* frame: 240 x 320 x 3 RGB; imu: imu_count rows [t, ax, ay, az, gx, gy, gz] with t_prev_frame < t <= t;
+    out: [x, y, z, qx, qy, qz, qw, vx, vy, vz, wx, wy, wz] */
+ int32_t step(double t, const uint8_t *frame, const double *imu, int32_t imu_count, double *out) {
++    cur_time = t;
+     if (!initialized) {
+         if (imu_count == 0) { /* no IMU yet: identity, at rest */
+             memset(out, 0, VIOBENCH_STATE_VALUES * sizeof(double));
+@@ -1099,7 +1250,11 @@
+     }
+     for (int r = 0; r < imu_count; r++) propagate(imu + 7 * r);
+     if (imu_count) imu_measurements(imu, imu_count);
++    DBG(dbg_klt_err = dbg_klt_tex = dbg_klt_oob = dbg_tri_fail = dbg_chi_fail = dbg_acc = dbg_det = dbg_empty = dbg_upd_rows = 0;)
+     vision(frame);
+     write_state(out);
++#ifdef TEX_DEBUG
++    debug_log(t, frame, out);
++#endif
+     return VIOBENCH_STATUS_OK;
+ }

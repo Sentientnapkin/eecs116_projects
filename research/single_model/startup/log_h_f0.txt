@@ -1,0 +1,27 @@
+Warming shared module cache for ada776d55c22: /dev/shm/sebastian-vio/guard-cache/ada776d55c2277dc8d3237132280903ab6e5d85c21f6d8fdbcefd412055b2623
+171 episodes, 0 cached, workers=32
+10/171 finished, 37.6s
+20/171 finished, 40.7s
+30/171 finished, 41.8s
+40/171 finished, 83.1s
+50/171 finished, 86.9s
+60/171 finished, 100.8s
+70/171 finished, 121.9s
+80/171 finished, 137.8s
+90/171 finished, 151.0s
+100/171 finished, 184.0s
+110/171 finished, 197.2s
+120/171 finished, 214.8s
+130/171 finished, 241.0s
+140/171 finished, 251.6s
+150/171 finished, 265.0s
+160/171 finished, 295.1s
+170/171 finished, 325.7s
+171/171 finished, 326.0s
+== startup_h_f0  (wasm ada776d55c22)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  1.800 (base  2.307) median  0.68 p90  5.38 >5m 13 >10m  2 | paired d=-0.506 [-0.972,-0.117] | err@2/5/30s 0.89/1.43/1.74
+search static n= 56 mean  0.678 (base  0.667) median  0.49 p90  0.97 >5m  1 >10m  0 | paired d=+0.011 [-0.019,+0.047] | err@2/5/30s 0.13/0.40/0.62
+search mid    n= 63 mean  2.798 (base  3.764) median  1.02 p90  8.40 >5m 12 >10m  2 | paired d=-0.966 [-1.764,-0.229] | err@2/5/30s 1.56/2.34/2.74
+val    all    n= 25 mean  1.618 (base  2.032) median  0.59 p90  2.32 >5m  1 >10m  1 | paired d=-0.413 [-1.008,+0.192] | err@2/5/30s 0.74/1.29/1.64
+val    static n= 12 mean  0.607 (base  0.713) median  0.53 p90  1.13 >5m  0 >10m  0 | paired d=-0.105 [-0.419,+0.076] | err@2/5/30s 0.16/0.32/0.56
+val    mid    n= 13 mean  2.552 (base  3.250) median  0.85 p90  3.20 >5m  1 >10m  1 | paired d=-0.698 [-2.410,+0.326] | err@2/5/30s 1.28/2.18/2.64

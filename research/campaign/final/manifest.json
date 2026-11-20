@@ -1,0 +1,138 @@
+{
+  "declared_at": "2026-11-20T03:20:04.582274+00:00",
+  "status": "sealed_confirmation_of_experimental_rule_not_G1_promotion",
+  "flights": 192,
+  "scene_count": 16,
+  "static": 96,
+  "mid": 96,
+  "output_seconds": 60,
+  "first_flight_seed": 9800000,
+  "last_flight_seed": 9800191,
+  "seed_collision_policy": "exclude every integer seed in all current research/configs JSON files before assigning",
+  "config_sha256": "d689986ee122cb51747e90be7c44cf5c8d0ad75c691f956c05a4b49d5e9034de",
+  "rule_config": "selected_config_median.json",
+  "artifact_policy": "artifact-freeze.json must be created with exact v4 wasm SHA before the first evaluation; generation may start after rule freeze",
+  "scope": "new seeds/flights in previously used clean scenes; flight-held-out confirmation, not scene-held-out validation",
+  "hssd_clean_scenes": [],
+  "hssd_note": "No clean HSSD scene exists in the benchmark rosters; none relabeled",
+  "forbidden_procthor": [
+    162,
+    163,
+    164,
+    165,
+    172,
+    173,
+    174,
+    175
+  ],
+  "reserved_campaign_scenes": [
+    "102343992",
+    "102344094",
+    "102344529",
+    "102815835",
+    "102816036",
+    "102816600",
+    "102816756",
+    "102817140",
+    "103997586_171030669",
+    "103997895_171031182",
+    "104348010_171512832",
+    "104348028_171512877",
+    "104348328_171513363",
+    "104862384_172226319",
+    "104862417_172226382",
+    "105515211_173104185",
+    "105515379_173104395",
+    "106366104_174226332",
+    "106366386_174226770",
+    "106878867_174886977",
+    "106878915_174887025",
+    "106878960_174887073",
+    "106879005_174887124",
+    "106879080_174887211",
+    "107733960_175999701",
+    "107734287_176000160",
+    "108736779_177263484",
+    "108736800_177263517",
+    "ProcTHOR-Train-162",
+    "ProcTHOR-Train-163",
+    "ProcTHOR-Train-164",
+    "ProcTHOR-Train-165",
+    "ProcTHOR-Train-172",
+    "ProcTHOR-Train-173",
+    "ProcTHOR-Train-174",
+    "ProcTHOR-Train-175"
+  ],
+  "raw_root": "/data/backups/rganapa/Sebastian/gen/raw-guard-final",
+  "gpu": 7,
+  "generation_workers_max": 32,
+  "evaluation_workers_max": 32,
+  "allowed_retries": "same declared flight/seed only after infrastructure failure; no substitutions or dropping failures",
+  "selection_policy": "score the fixed guest exactly once on each generated episode; no result-dependent tuning or threshold changes",
+  "metrics": [
+    "mean_unaligned_ate_m",
+    "median_unaligned_ate_m",
+    "tail_counts",
+    "filled_frames",
+    "whole_guest_peak_fuel_per_frame"
+  ],
+  "scanned_configs": [
+    {
+      "path": "research/configs/experiments.json",
+      "sha256": "db652789e6d8e85266b692566e05640f82840e612987efeb80e045f16bffa905"
+    },
+    {
+      "path": "research/configs/native_campaign.json",
+      "sha256": "495c2fb1f022926ace0cfadcb9d89a462f1fb02bbe9bef03f481040d8b64c7b7"
+    },
+    {
+      "path": "research/configs/odometry.json",
+      "sha256": "d16d078a3ab4c9f39a0186e5ffff7827ec8f95e6c4538102d27b8988a5697388"
+    },
+    {
+      "path": "research/configs/sensor.json",
+      "sha256": "f506d715ab210ae64bf697cbafdf63bbc175ff3ba982df7b6d92699bc50e2a3f"
+    },
+    {
+      "path": "research/configs/server_benchmark_pool.json",
+      "sha256": "d8ada36ed6441951b4ea927865fd6f5e329cb55b96d4ddc677056133589be9f0"
+    },
+    {
+      "path": "research/configs/server_benchmark_pool_r2.json",
+      "sha256": "f9a62e9807b61dad1dfff31de060c5e40b8ce5fc02a65ef22574ae9a8a5613c8"
+    },
+    {
+      "path": "research/configs/server_fast_mid_pool.json",
+      "sha256": "2f47cc578a12e721c535f30f4e1474754926eb1b1e5e26c48a177bd3da4b32a9"
+    },
+    {
+      "path": "research/configs/server_fast_pool.json",
+      "sha256": "50c263f41631ab3d1444aa1fc23750214bc84578a08ac9e722ddf0e06fc4f299"
+    },
+    {
+      "path": "research/configs/server_mid_smoke.json",
+      "sha256": "081ea8cecd0add5c258c05c1d8355776c6b59bbf4dd1a609173c3ce4179ae635"
+    },
+    {
+      "path": "research/configs/server_observed.json",
+      "sha256": "79a77ea7c298d77c2ef9a4f722d39d1d2c55c607e50266d2da4e9a78007020e7"
+    },
+    {
+      "path": "research/configs/server_speed_probe.json",
+      "sha256": "799e7a4b1ff19d215a3dd023374f8d09345ae90394c1e5f5ecccc18497e58fcc"
+    },
+    {
+      "path": "research/configs/server_speed_probe2.json",
+      "sha256": "a4af11985861213854c1501604871d9250e99b4fdd65d2129adc561c2f5aff45"
+    },
+    {
+      "path": "research/configs/server_speed_probe3.json",
+      "sha256": "1b03f6eb6f892f0d4cbcbc116afd7c574747eace79501f51cdaccbd9ad380ec2"
+    },
+    {
+      "path": "research/configs/server_train_pool.json",
+      "sha256": "34493da114c977918b666b0bb650a208b95600d18a5549b5e08c39fe08ab8c04"
+    }
+  ],
+  "roster_sha256": "d79c50cb371b9e91aa922f236f41944bb6eea526b64059c18669689ca5c75efb"
+}

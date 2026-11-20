@@ -1,0 +1,7 @@
+== texture_noise2  (wasm fb90a620e070)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  2.115 (base  2.307) median  0.81 p90  6.05 >5m 15 >10m  4 | paired d=-0.192 [-0.482,+0.030] | err@2/5/30s 0.97/1.76/2.00
+search static n= 56 mean  0.635 (base  0.667) median  0.46 p90  0.95 >5m  1 >10m  0 | paired d=-0.032 [-0.083,+0.020] | err@2/5/30s 0.13/0.40/0.57
+search mid    n= 63 mean  3.430 (base  3.764) median  1.80 p90  8.86 >5m 14 >10m  4 | paired d=-0.334 [-0.827,+0.060] | err@2/5/30s 1.72/2.97/3.27
+val    all    n= 25 mean  2.017 (base  2.032) median  0.59 p90  4.67 >5m  3 >10m  1 | paired d=-0.015 [-0.197,+0.259] | err@2/5/30s 0.93/1.41/2.11
+val    static n= 12 mean  0.580 (base  0.713) median  0.49 p90  0.96 >5m  0 >10m  0 | paired d=-0.133 [-0.432,+0.056] | err@2/5/30s 0.16/0.30/0.58
+val    mid    n= 13 mean  3.344 (base  3.250) median  0.85 p90  8.19 >5m  3 >10m  1 | paired d=+0.094 [-0.211,+0.559] | err@2/5/30s 1.64/2.45/3.53

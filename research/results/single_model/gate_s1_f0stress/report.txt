@@ -1,0 +1,7 @@
+== gate_s1_f0stress  (wasm 8c06516dda7e)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  1.068 (base  2.307) median  0.54 p90  2.78 >5m  4 >10m  0 | paired d=-1.238 [-1.968,-0.676] | err@2/5/30s 0.62/0.84/0.98
+search static n= 56 mean  0.673 (base  0.667) median  0.45 p90  0.97 >5m  1 >10m  0 | paired d=+0.007 [-0.025,+0.044] | err@2/5/30s 0.16/0.40/0.61
+search mid    n= 63 mean  1.419 (base  3.764) median  0.66 p90  4.08 >5m  3 >10m  0 | paired d=-2.345 [-3.661,-1.364] | err@2/5/30s 1.03/1.24/1.31
+val    all    n= 25 mean  0.524 (base  2.032) median  0.49 p90  0.80 >5m  0 >10m  0 | paired d=-1.508 [-3.254,-0.335] | err@2/5/30s 0.37/0.29/0.45
+val    static n= 12 mean  0.607 (base  0.713) median  0.53 p90  1.13 >5m  0 >10m  0 | paired d=-0.105 [-0.419,+0.076] | err@2/5/30s 0.16/0.32/0.56
+val    mid    n= 13 mean  0.447 (base  3.250) median  0.37 p90  0.72 >5m  0 >10m  0 | paired d=-2.803 [-6.647,-0.510] | err@2/5/30s 0.56/0.27/0.35

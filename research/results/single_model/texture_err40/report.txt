@@ -1,0 +1,7 @@
+== texture_err40  (wasm 09e28ac776ef)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  2.376 (base  2.307) median  0.83 p90  7.27 >5m 19 >10m  8 | paired d=+0.069 [-0.272,+0.418] | err@2/5/30s 0.96/1.76/2.25
+search static n= 56 mean  0.666 (base  0.667) median  0.48 p90  0.97 >5m  1 >10m  0 | paired d=-0.000 [-0.036,+0.035] | err@2/5/30s 0.14/0.41/0.65
+search mid    n= 63 mean  3.896 (base  3.764) median  1.69 p90 10.60 >5m 18 >10m  8 | paired d=+0.131 [-0.534,+0.796] | err@2/5/30s 1.69/2.96/3.68
+val    all    n= 25 mean  1.102 (base  2.032) median  0.67 p90  1.76 >5m  1 >10m  0 | paired d=-0.930 [-2.017,+0.009] | err@2/5/30s 0.93/1.02/1.16
+val    static n= 12 mean  0.657 (base  0.713) median  0.54 p90  0.90 >5m  0 >10m  0 | paired d=-0.055 [-0.288,+0.178] | err@2/5/30s 0.16/0.31/0.71
+val    mid    n= 13 mean  1.512 (base  3.250) median  0.84 p90  2.01 >5m  1 >10m  0 | paired d=-1.737 [-4.457,-0.017] | err@2/5/30s 1.63/1.68/1.58

@@ -1,0 +1,35 @@
+{
+  "status": "completed",
+  "input_policy": "kf_grid_native",
+  "train_flights": 200,
+  "heldout_flights": 70,
+  "train_start_counts": {
+    "static": 100,
+    "mid": 100
+  },
+  "heldout_group_counts": {
+    "dev": 49,
+    "clean": 21
+  },
+  "train_catalog_counts": {
+    "hssd-train": 68,
+    "procthor": 132
+  },
+  "train_unique_scenes": 64,
+  "heldout_unique_scenes": 24,
+  "train_heldout_scene_overlap": [],
+  "train_selected171_id_overlap": [],
+  "native_resolution_counts": {
+    "native": 270
+  },
+  "data_manifest": "/data/backups/rganapa/Sebastian/eecs116_projects/research/data/server-training/t0/manifest.json",
+  "config": "/data/backups/rganapa/Sebastian/eecs116_projects/research/configs/server_train_pool.json",
+  "reserved_test_prepared": false,
+  "remote_writes": false,
+  "preprocessing_source_matches_frozen_training": {
+    "common.py": true,
+    "input_attitude.py": true,
+    "attitude_bias.py": true,
+    "streaming.py": true
+  }
+}

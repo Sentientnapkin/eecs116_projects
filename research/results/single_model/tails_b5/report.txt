@@ -1,0 +1,7 @@
+== tails_b5  (wasm 871d797617c2)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  1.219 (base  2.307) median  0.54 p90  2.52 >5m  7 >10m  1 | paired d=-1.088 [-1.828,-0.543] | err@2/5/30s 0.58/0.76/1.14
+search static n= 56 mean  0.695 (base  0.667) median  0.49 p90  0.97 >5m  1 >10m  0 | paired d=+0.029 [-0.019,+0.100] | err@2/5/30s 0.13/0.40/0.62
+search mid    n= 63 mean  1.684 (base  3.764) median  0.66 p90  4.78 >5m  6 >10m  1 | paired d=-2.080 [-3.399,-1.099] | err@2/5/30s 0.97/1.08/1.61
+val    all    n= 25 mean  0.526 (base  2.032) median  0.49 p90  0.80 >5m  0 >10m  0 | paired d=-1.505 [-3.250,-0.331] | err@2/5/30s 0.35/0.30/0.47
+val    static n= 12 mean  0.607 (base  0.713) median  0.53 p90  1.13 >5m  0 >10m  0 | paired d=-0.105 [-0.419,+0.076] | err@2/5/30s 0.16/0.32/0.56
+val    mid    n= 13 mean  0.452 (base  3.250) median  0.37 p90  0.74 >5m  0 >10m  0 | paired d=-2.798 [-6.647,-0.503] | err@2/5/30s 0.52/0.28/0.38

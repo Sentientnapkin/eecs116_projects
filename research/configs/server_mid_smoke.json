@@ -1,0 +1,142 @@
+{
+ "flights": [
+  {
+   "id": "fastmid-ProcTHOR-Train-74-02",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-74",
+   "seed": 940338,
+   "seconds": 79.4,
+   "regime": "benchmark",
+   "hold_seconds": 0.2,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 3.0,
+    "CRUISE_SPEED_MAX": 4.5,
+    "MAX_ACCELERATION": 6.0,
+    "MAX_JERK": 30.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   },
+   "setting": "K",
+   "crop_start_s": 19.4
+  },
+  {
+   "id": "fastmid-ProcTHOR-Train-179-08",
+   "split": "bench",
+   "group": "clean",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-179",
+   "seed": 940188,
+   "seconds": 82.2,
+   "regime": "benchmark",
+   "hold_seconds": 0.2,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 4.0,
+    "CRUISE_SPEED_MAX": 6.0,
+    "MAX_ACCELERATION": 8.0,
+    "MAX_JERK": 40.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   },
+   "setting": "K2",
+   "crop_start_s": 22.2
+  },
+  {
+   "id": "fastmid-ProcTHOR-Train-150-00",
+   "split": "bench",
+   "group": "clean",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-150",
+   "seed": 940000,
+   "seconds": 73.85,
+   "regime": "benchmark",
+   "hold_seconds": 0.2,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 3.0,
+    "CRUISE_SPEED_MAX": 4.5,
+    "MAX_ACCELERATION": 6.0,
+    "MAX_JERK": 30.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   },
+   "setting": "K",
+   "crop_start_s": 13.85
+  },
+  {
+   "id": "fastmid-ProcTHOR-Train-153-07",
+   "split": "bench",
+   "group": "clean",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-153",
+   "seed": 940043,
+   "seconds": 70.9,
+   "regime": "benchmark",
+   "hold_seconds": 0.2,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 4.0,
+    "CRUISE_SPEED_MAX": 6.0,
+    "MAX_ACCELERATION": 8.0,
+    "MAX_JERK": 40.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   },
+   "setting": "K2",
+   "crop_start_s": 10.9
+  },
+  {
+   "id": "fastmid-ProcTHOR-Train-157-10",
+   "split": "bench",
+   "group": "clean",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-157",
+   "seed": 940094,
+   "seconds": 68.15,
+   "regime": "benchmark",
+   "hold_seconds": 0.2,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 3.0,
+    "CRUISE_SPEED_MAX": 4.5,
+    "MAX_ACCELERATION": 6.0,
+    "MAX_JERK": 30.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   },
+   "setting": "K",
+   "crop_start_s": 8.15
+  },
+  {
+   "id": "fastmid-ProcTHOR-Train-178-11",
+   "split": "bench",
+   "group": "clean",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-178",
+   "seed": 940179,
+   "seconds": 66.95,
+   "regime": "benchmark",
+   "hold_seconds": 0.2,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 4.0,
+    "CRUISE_SPEED_MAX": 6.0,
+    "MAX_ACCELERATION": 8.0,
+    "MAX_JERK": 40.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   },
+   "setting": "K2",
+   "crop_start_s": 6.95
+  }
+ ]
+}

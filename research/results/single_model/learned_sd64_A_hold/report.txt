@@ -1,0 +1,7 @@
+== learned_sd64_A_hold  (wasm 2462773bef5d)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  0.953 (base  2.307) median  0.53 p90  1.55 >5m  5 >10m  0 | paired d=-1.354 [-2.061,-0.799] | err@2/5/30s 0.42/0.56/0.87
+search static n= 56 mean  0.648 (base  0.667) median  0.46 p90  1.14 >5m  1 >10m  0 | paired d=-0.019 [-0.094,+0.055] | err@2/5/30s 0.17/0.37/0.55
+search mid    n= 63 mean  1.224 (base  3.764) median  0.60 p90  2.73 >5m  4 >10m  0 | paired d=-2.540 [-3.774,-1.547] | err@2/5/30s 0.65/0.73/1.15
+val    all    n= 25 mean  0.485 (base  2.032) median  0.39 p90  0.78 >5m  0 >10m  0 | paired d=-1.547 [-3.256,-0.416] | err@2/5/30s 0.28/0.24/0.49
+val    static n= 12 mean  0.588 (base  0.713) median  0.55 p90  0.99 >5m  0 >10m  0 | paired d=-0.124 [-0.421,+0.053] | err@2/5/30s 0.27/0.24/0.66
+val    mid    n= 13 mean  0.390 (base  3.250) median  0.36 p90  0.57 >5m  0 >10m  0 | paired d=-2.860 [-6.663,-0.572] | err@2/5/30s 0.30/0.24/0.33

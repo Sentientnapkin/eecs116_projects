@@ -1,0 +1,9 @@
+{
+  "declared_at": "2026-11-20T03:20:55.858922+00:00",
+  "manifest_sha256": "db7d5fac864566f71feeb1ca8c74d0636ef0962b600c1abe7e1a2affa7da677e",
+  "artifact": "/data/backups/rganapa/Sebastian/eecs116_projects/research/artifacts/guard-composite-median-v4/composite.wasm",
+  "sha256": "665f4bca8e187d2f2b9987c7c32e8614bfe13d835918abe56b85ec82117ea0e5",
+  "config_sha256": "d689986ee122cb51747e90be7c44cf5c8d0ad75c691f956c05a4b49d5e9034de",
+  "rule": "frozen_v3_median_rule_with_v4_init_and_containment_fixes",
+  "status": "experimental_confirmation_only_not_G1_promotion"
+}
