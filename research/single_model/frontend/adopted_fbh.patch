@@ -1,0 +1,16 @@
+--- ../inventive/adopted.c	2026-11-20 10:05:39.874487000 +0000
++++ adopted_fbh.c	2026-11-20 11:18:48.774510000 +0000
+@@ -1197,7 +1197,12 @@
+         double gx = t->x, gy = t->y;
+         if (rp[2] > 1e-3) { gx = fx * rp[0] / rp[2] + cx; gy = fy * rp[1] / rp[2] + cy; }
+         double nx, ny;
+-        if (klt(prev, cur, t->x, t->y, gx, gy, &nx, &ny) && nx >= 0 && ny >= 0 && nx < IMG_W && ny < IMG_H) {
++        int ok = klt(prev, cur, t->x, t->y, gx, gy, &nx, &ny) && nx >= 0 && ny >= 0 && nx < IMG_W && ny < IMG_H;
++        if (ok && ((frame_no + i) & 1)) { /* forward-backward check on alternate frames: back-track must return within 0.5 px */
++            double bx, by;
++            if (!klt(cur, prev, nx, ny, t->x, t->y, &bx, &by) || (bx - t->x) * (bx - t->x) + (by - t->y) * (by - t->y) > 0.25) ok = 0;
++        }
++        if (ok) {
+             t->x = nx; t->y = ny;
+         } else {
+             t->alive = 0;

@@ -1018,7 +1018,8 @@ static int feature_rows(const Obs *o_in, int *nrows) {
         rr[2 * k + 1] = o.y[k] - pc[1] * iz;
         const double *Rj = c->R, *pj = c->p; /* linearisation point of the Jacobian (OpenVINS do_fej: Rot_fej / pos_fej of the clone) */
         if (c->fej) {
-            Rj = c->Rf; pj = c->pf;
+            if (OX_FEJ_H != 3) Rj = c->Rf;
+            if (OX_FEJ_H != 2) pj = c->pf;
             double Rw2[9], t2[3];
             m3mul(Rj, R_bc, Rw2); m3vec(Rj, p_bc, t2);
             for (int i = 0; i < 3; i++) dpt[i] = pf[i] - (pj[i] + t2[i]);

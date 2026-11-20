@@ -422,6 +422,8 @@ new = '''#if F_QR
 ''' + old + '#endif\n'
 src = src.replace(old, new)
 exec(open('opt2.py').read())
+import os as _os
+if _os.environ.get('USE_FBT'): exec(open('opt3.py').read())  # measured: only -0.06 M (1 %), not adopted
 import os
 if not os.environ.get('NOARMS'): exec(open('arms.py').read())
 open(os.environ.get('OUT', 'v.c'), 'w').write(src)

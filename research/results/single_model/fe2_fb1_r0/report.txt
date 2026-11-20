@@ -1,0 +1,7 @@
+== fe2_fb1_r0  (wasm 31e7ee3bdb7f)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  0.988 (base  2.307) median  0.39 p90  2.20 >5m  5 >10m  0 | paired d=-1.318 [-2.091,-0.704] | err@2/5/30s 0.45/0.57/0.95
+search static n= 56 mean  0.494 (base  0.667) median  0.31 p90  0.78 >5m  0 >10m  0 | paired d=-0.173 [-0.382,-0.002] | err@2/5/30s 0.03/0.21/0.47
+search mid    n= 63 mean  1.427 (base  3.764) median  0.60 p90  3.69 >5m  5 >10m  0 | paired d=-2.337 [-3.685,-1.246] | err@2/5/30s 0.82/0.90/1.38
+val    all    n= 25 mean  0.434 (base  2.032) median  0.39 p90  0.68 >5m  0 >10m  0 | paired d=-1.598 [-3.340,-0.476] | err@2/5/30s 0.23/0.22/0.39
+val    static n= 12 mean  0.391 (base  0.713) median  0.38 p90  0.53 >5m  0 >10m  0 | paired d=-0.321 [-0.604,-0.159] | err@2/5/30s 0.04/0.14/0.35
+val    mid    n= 13 mean  0.473 (base  3.250) median  0.44 p90  0.71 >5m  0 >10m  0 | paired d=-2.776 [-6.665,-0.520] | err@2/5/30s 0.40/0.29/0.42

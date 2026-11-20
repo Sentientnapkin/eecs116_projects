@@ -24,6 +24,9 @@ rep('#include <string.h>\n', '''#include <string.h>
 #ifndef FE_FB
 #define FE_FB 0            /* forward-backward KLT check */
 #endif
+#ifndef FE_FB_HALF
+#define FE_FB_HALF 0       /* check each track on alternate frames only */
+#endif
 #ifndef FE_FB_PX
 #define FE_FB_PX 0.5
 #endif
@@ -84,7 +87,7 @@ rep('''    for (int i = 0; i < IMG_W * IMG_H; i++) g[i] = (uint8_t)((77 * rgb[3 
 # --- forward-backward
 rep('''        if (klt(prev, cur, t->x, t->y, gx, gy, &nx, &ny) && nx >= 0 && ny >= 0 && nx < IMG_W && ny < IMG_H) {
             t->x = nx; t->y = ny;''', '''        int ok = klt(prev, cur, t->x, t->y, gx, gy, &nx, &ny) && nx >= 0 && ny >= 0 && nx < IMG_W && ny < IMG_H;
-        if (FE_FB && ok) {
+        if (FE_FB && ok && (!FE_FB_HALF || ((frame_no + i) & 1))) {
             double bx, by;
             if (!klt(cur, prev, nx, ny, t->x, t->y, &bx, &by) || (bx - t->x) * (bx - t->x) + (by - t->y) * (by - t->y) > FE_FB_PX * FE_FB_PX) { ok = 0; fe_fb_kill++; }
         }

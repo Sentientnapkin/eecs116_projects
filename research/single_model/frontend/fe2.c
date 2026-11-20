@@ -53,6 +53,9 @@
 #ifndef FE_FB
 #define FE_FB 0            /* forward-backward KLT check */
 #endif
+#ifndef FE_FB_HALF
+#define FE_FB_HALF 0       /* check each track on alternate frames only */
+#endif
 #ifndef FE_FB_PX
 #define FE_FB_PX 0.5
 #endif
@@ -1289,7 +1292,7 @@ static void track_all(int prev, int cur, const double *Rwc_now) {
         if (rp[2] > 1e-3) { gx = fx * rp[0] / rp[2] + cx; gy = fy * rp[1] / rp[2] + cy; }
         double nx, ny;
         int ok = klt(prev, cur, t->x, t->y, gx, gy, &nx, &ny) && nx >= 0 && ny >= 0 && nx < IMG_W && ny < IMG_H;
-        if (FE_FB && ok) {
+        if (FE_FB && ok && (!FE_FB_HALF || ((frame_no + i) & 1))) {
             double bx, by;
             if (!klt(cur, prev, nx, ny, t->x, t->y, &bx, &by) || (bx - t->x) * (bx - t->x) + (by - t->y) * (by - t->y) > FE_FB_PX * FE_FB_PX) { ok = 0; fe_fb_kill++; }
         }

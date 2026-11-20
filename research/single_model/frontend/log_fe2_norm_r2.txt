@@ -8,3 +8,10 @@
 140/171 finished, 35.9s
 160/171 finished, 41.8s
 171/171 finished, 42.1s
+== fe2_norm_r2  (wasm e1e0d30c8391)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  1.079 (base  2.307) median  0.56 p90  2.50 >5m  5 >10m  0 | paired d=-1.228 [-1.997,-0.575] | err@2/5/30s 0.57/0.76/0.99
+search static n= 56 mean  0.527 (base  0.667) median  0.47 p90  0.75 >5m  0 >10m  0 | paired d=-0.140 [-0.438,+0.103] | err@2/5/30s 0.04/0.25/0.47
+search mid    n= 63 mean  1.569 (base  3.764) median  0.73 p90  3.81 >5m  5 >10m  0 | paired d=-2.195 [-3.561,-1.120] | err@2/5/30s 1.05/1.21/1.46
+val    all    n= 25 mean  0.501 (base  2.032) median  0.48 p90  0.77 >5m  0 >10m  0 | paired d=-1.531 [-3.220,-0.459] | err@2/5/30s 0.27/0.29/0.44
+val    static n= 12 mean  0.480 (base  0.713) median  0.50 p90  0.64 >5m  0 >10m  0 | paired d=-0.233 [-0.613,-0.037] | err@2/5/30s 0.05/0.28/0.45
+val    mid    n= 13 mean  0.520 (base  3.250) median  0.48 p90  0.84 >5m  0 >10m  0 | paired d=-2.730 [-6.547,-0.486] | err@2/5/30s 0.48/0.30/0.43

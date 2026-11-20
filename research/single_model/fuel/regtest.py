@@ -5,7 +5,9 @@ sys.path.insert(0, '.')
 from pathlib import Path
 from research.single_model.autoloop import params as P
 F = Path('research/single_model/fuel'); T = Path('/data/backups/rganapa/Sebastian/tmp/regt'); T.mkdir(exist_ok=True)
-mine = F / 'adopted_c1_exact.c'
+import os
+mine = Path(os.environ.get('NEWSRC', str(F / 'adopted_c1_exact.c')))
+REF = os.environ.get('REFSRC', 'research/single_model/fuel/adopted_base.c')
 assert P.render(P.default_vec(), 1.0, mine) == mine.read_text(), 'default render of exact source not identical'
 print('registry', P.check_registry(), 'ok on adopted.c; exact source: every name has exactly one #define and default render is identical', flush=True)
 rng = random.Random(7); vecs = []
@@ -24,7 +26,7 @@ for i in range(6):
 ok = 0; tot = 0
 for name, v in vecs:
     if P.ill_posed(v): print(name, 'ill-posed, skipped', P.ill_posed(v)); continue
-    for tag, src in (('ref', 'research/single_model/fuel/adopted_base.c'), ('new', None)):
+    for tag, src in (('ref', REF), ('new', None)):
         text = P.render(v, 1.0, Path(src) if src else mine); (T / f'{name}_{tag}.c').write_text(text)
         subprocess.run([str(F / 'buildfuel.sh'), str(T / f'{name}_{tag}.c'), str(T / f'{name}_{tag}.wasm')] + (['-O3'] if tag == 'new' else []), check=False)
         subprocess.run(['/data/backups/rganapa/Sebastian/venv-viobench-9b1b079/bin/python', '-B', str(F / 'prof_run.py'), str(T / f'{name}_{tag}.wasm'), str(T / f'{name}_{tag}_out'), '24', '12'],

@@ -1,12 +1,63 @@
 {
- "phase": "A",
- "spent": 243.02071356773376,
- "step": 0.3,
- "gen": 0,
- "ref": "7ad38c135773",
- "promotions": [],
- "top": [],
- "active": [],
+ "phase": "done",
+ "spent": 13685.962038755417,
+ "step": 0.15,
+ "gen": 8,
+ "ref": "ba7c9bb8d93e",
+ "promotions": [
+  {
+   "hash": "b9a6228e370d",
+   "t": 6162.292671442032,
+   "prev": "7ad38c135773",
+   "search": 1.0242359047596705,
+   "val": 0.5763575481116971,
+   "fresh_a": 0.699892005331914
+  },
+  {
+   "hash": "ba7c9bb8d93e",
+   "t": 7967.786684751511,
+   "prev": "b9a6228e370d",
+   "search": 0.9528778611976314,
+   "val": 0.5869162456384965,
+   "fresh_a": 0.6881262313448034
+  }
+ ],
+ "top": [
+  "GYRO_NOISE",
+  "KLT_MIN_EIG",
+  "INV_VZ",
+  "START_STD_X",
+  "MIN_DEPTH",
+  "HOLD_T",
+  "ZUPT_DISPARITY",
+  "INV_LAT",
+  "INIT_VELOCITY_STD",
+  "MIN_OBS",
+  "ZUPT_STD",
+  "START_MEAN_FWD"
+ ],
+ "active": [
+  "GYRO_NOISE",
+  "KLT_MIN_EIG",
+  "INV_VZ",
+  "START_STD_X",
+  "MIN_DEPTH",
+  "HOLD_T",
+  "ZUPT_DISPARITY",
+  "INV_LAT",
+  "INIT_VELOCITY_STD",
+  "MIN_OBS",
+  "ZUPT_STD",
+  "START_MEAN_FWD",
+  "KLT_MAX_ERR",
+  "CHI2_Z",
+  "INIT_TILT_STD",
+  "ACCEL_NOISE",
+  "SPEED_STD",
+  "DETECT_MIN_SCORE",
+  "MOVE_TILT_STD",
+  "THRUST_GATE"
+ ],
  "started": 1795169021.7287931,
  "cfg": {
   "budget_h": 4.0,
@@ -25,5 +76,11 @@
   "mu": 4,
   "lam": 6
  },
- "spent_saved": 243.02070903778076
+ "spent_saved": 13685.962038040161,
+ "finalists": [
+  "ba7c9bb8d93e",
+  "7ad38c135773",
+  "99dae1b82d0a",
+  "45ef8f98c348"
+ ]
 }
