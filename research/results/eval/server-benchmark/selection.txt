@@ -1,0 +1,2 @@
+882 flights; pool zero-ATE mean 3.226 path 46.9 m (scene-balanced 3.463); tilted to extent 4.694 (server 4.694), path 59.6 m (server 59.6); effective sample 159
+300 draws -> 171 distinct flights; weighted zero-ATE mean 4.526, path 60.2 m

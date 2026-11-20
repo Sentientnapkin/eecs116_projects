@@ -27,6 +27,7 @@ hover, stalls, darkness and low texture are flagged in the audit, never dropped.
 """
 import argparse
 import json
+import os
 import random
 import shutil
 import time
@@ -142,13 +143,52 @@ def audit(flight):
     return out
 
 
+def apply_task_overrides(overrides):
+    """Point the simulator at the stock world template, or at a copy whose TASK_SPEC shadows constants such as
+    CRUISE_SPEED_MIN/MAX, MAX_ACCELERATION, MAX_JERK (the planner's knobs; defaults 0.45-0.8 m/s, 0.7, 2.0)."""
+    import hashlib
+    import viobench.tools.datasets.generate.simulation as simulation
+    stock = Path(simulation.__file__).with_name("hyperdrone_world.h.in")
+    if not overrides:
+        simulation.TEMPLATE = stock; return
+    anchor = "        static constexpr TI INITIALIZATION_HOLD_STEPS"
+    text = stock.read_text()
+    assert anchor in text
+    lines = "".join(f"        static constexpr T {k} = {float(v)!r};\n" for k, v in sorted(overrides.items()))
+    text = text.replace(anchor, lines + anchor, 1)
+    path = Path(os.environ.get("TMPDIR", "/tmp"))/f"hyperdrone_world_{hashlib.sha256(text.encode()).hexdigest()[:10]}.h.in"
+    if not path.exists():
+        tmp = path.with_suffix(f".{os.getpid()}"); tmp.write_text(text); tmp.replace(path)
+    simulation.TEMPLATE = path
+
+
+def crop_episode(e, start):
+    """Fresh-recording crop of an in-memory episode: keep frames from the first one at or after `start` s, shift times so
+    that frame is the recording's first, keep one frame interval of IMU before it. The drone is already in motion there
+    (same construction as wasm_eval.crop)."""
+    from viobench.tools.datasets.episode import Episode
+    k = int(np.searchsorted(e.frame_times, e.frame_times[0] + start - 1e-9))
+    shift = e.frame_times[k] - e.frame_times[0]
+    t0 = e.frame_times[k] - e.frame_interval - 1e-6
+    imu = e.imu[e.imu[:, 0] > t0].copy(); imu[:, 0] -= shift
+    gt = e.ground_truth[e.ground_truth[:, 0] >= t0 - 0.02].copy(); gt[:, 0] -= shift
+    config = json.loads(json.dumps(e.config))
+    config["episode"]["num_frames"] = int(e.num_frames - k)
+    cropped = Episode(name=e.name, config=config, frame_times=e.frame_times[k:] - shift, frames=np.asarray(e.frames)[k:],
+                      imu=imu, ground_truth=gt, T_body_camera=e.T_body_camera,
+                      meta={k2: v for k2, v in e.meta.items() if k2 not in ("hash", "path")} | {"crop_start_s": start})
+    cropped.check_consistency()
+    return cropped
+
+
 def generate(args):
     from viobench.tools.datasets.generate.simulation import SimConfig, scene_references, simulate, hssd_scenes
     from viobench.tools.datasets.storage import write_episode
     from robust_sim import IndependentYaw
     from common import Flight
     from pairs import digest
-    roster = json.loads(ROSTER.read_text())["flights"]
+    RAW = Path(args.gen_raw)
+    roster = json.loads(Path(args.gen_roster).read_text())["flights"]
     mine = [f for i, f in enumerate(roster) if i % args.workers == args.worker
             and (not args.split or f["split"] in args.split) and (not args.ids or f["id"] in args.ids)][:args.limit]
     log_path = RAW/"generated.jsonl"
@@ -162,6 +202,7 @@ def generate(args):
         started, status, record = time.time(), "ok", None
         try:
             klass = IndependentYaw if f["regime"] == "independent-yaw" else SimConfig
+            apply_task_overrides(f.get("task_overrides"))
             sim = klass(instances=1, duration_seconds=f["seconds"], hold_seconds=f["hold_seconds"],
                         waypoints=max(8, round(f["seconds"]*f["waypoints_per_second"])))
             if f["catalog"] == "hssd-val":
@@ -171,6 +212,8 @@ def generate(args):
                 refs = scene_references([f["scene"]])
             episode, = simulate(sim, refs, 1, seed=f["seed"], name="native-campaign", log=lambda m: None)
             episode.check_consistency()
+            if f.get("crop_start_s"):
+                episode = crop_episode(episode, f["crop_start_s"])
             partial = RAW/"partial"; partial.mkdir(parents=True, exist_ok=True)
             write_episode(episode, partial/target.name)
             flight = Flight(partial/target.name)
@@ -283,6 +326,8 @@ def main():
     parser.add_argument("--batch", type=int, default=400)
     parser.add_argument("--raw", action="store_true", help="upload: include the raw archives")
     parser.add_argument("--staging", default=str(ROOT/"data"/"native-campaign"))
+    parser.add_argument("--gen-roster", default=str(ROSTER), help="generate: roster file (default: the native campaign)")
+    parser.add_argument("--gen-raw", default=str(RAW), help="generate: output directory (default: the native campaign's)")
     args = parser.parse_args()
     if args.action == "roster":
         from viobench.tools.datasets.generate.simulation import hssd_scenes

@@ -1,0 +1,17 @@
+882 flights; zero-motion ATE (the identity pose) mean 3.226
+
+b_d0             n= 613 mean   3.165 median  2.844 p90   4.933 max    10.30 | worse than identity 35.4%  >3 m 45.5%  worst-10% carry 20.5% of error  trimmed(95%) mean 2.929
+
+Spearman(ATE/zero-ATE, flight property): which properties make a guest relatively worse
+                    travel speed_p50 speed_p90     hover   turning   lateral  vertical      dark      flatstart_offset  ATE~zero
+b_d0                 -0.28     -0.27     -0.28      0.05      0.26      0.00     -0.15      0.09      0.01      0.13      0.91
+
+By flight extent (zero-motion ATE terciles): mean ATE per guest
+                      extent low      extent mid     extent high
+b_d0                       1.940           2.758           4.642
+
+By catalog / group: mean ATE per guest
+catalog             hssd-train      hssd-val      procthor
+b_d0                     3.536         4.251         2.812
+group                    clean           dev          seen
+b_d0                     2.707         3.930         3.182

@@ -1,0 +1,9 @@
+171 flights; pool zero-ATE mean 4.117 path 56.2 m (scene-balanced 3.823); tilted to 300 draws -> 171 distinct flights; weighted extent 4.526 (server 4.694), path 60.2 m (server 59.6); effective sample 90
+  b_d0             pool   3.844  calibrated   4.196  12-episode 90% [  3.46,   5.06]  server 4.55  INSIDE
+  bd0_kfgrid       pool   3.829  calibrated   4.193  12-episode 90% [  3.47,   5.04]  server -  
+  bd0_velfusion    pool   3.767  calibrated   4.142  12-episode 90% [  3.41,   5.01]  server -  
+  dead_reckoning   pool   6.698  calibrated   7.035  12-episode 90% [  6.02,   8.22]  server 9.065463414163448  outside
+  n2_kfgrid        pool   3.633  calibrated   3.960  12-episode 90% [  3.23,   4.81]  server -  
+  n2_kfinputs_s217 pool   3.508  calibrated   3.894  12-episode 90% [  3.18,   4.76]  server -  
+  openvins         pool  28.529  calibrated  31.155  12-episode 90% [  0.66, 175.36]  server 0.5532605176928356  outside
+  vins_mono        pool   5.506  calibrated   4.716  12-episode 90% [  0.56,  18.29]  server 0.47537535896686567  outside

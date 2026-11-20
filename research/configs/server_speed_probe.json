@@ -1,0 +1,1221 @@
+{
+ "spec": "speed probe: default spec except planner speed/accel/jerk",
+ "flights": [
+  {
+   "id": "speedA-108294897_176710602",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "hssd-train",
+   "scene": "108294897_176710602",
+   "seed": 900000,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 0.8,
+    "CRUISE_SPEED_MAX": 1.2,
+    "MAX_ACCELERATION": 0.7,
+    "MAX_JERK": 2.0
+   },
+   "setting": "A"
+  },
+  {
+   "id": "speedA-104862501_172226556",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "104862501_172226556",
+   "seed": 900001,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 0.8,
+    "CRUISE_SPEED_MAX": 1.2,
+    "MAX_ACCELERATION": 0.7,
+    "MAX_JERK": 2.0
+   },
+   "setting": "A"
+  },
+  {
+   "id": "speedA-107734338_176000244",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "107734338_176000244",
+   "seed": 900002,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 0.8,
+    "CRUISE_SPEED_MAX": 1.2,
+    "MAX_ACCELERATION": 0.7,
+    "MAX_JERK": 2.0
+   },
+   "setting": "A"
+  },
+  {
+   "id": "speedA-107734146_175999971",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "hssd-train",
+   "scene": "107734146_175999971",
+   "seed": 900003,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 0.8,
+    "CRUISE_SPEED_MAX": 1.2,
+    "MAX_ACCELERATION": 0.7,
+    "MAX_JERK": 2.0
+   },
+   "setting": "A"
+  },
+  {
+   "id": "speedA-103997478_171030525",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "hssd-train",
+   "scene": "103997478_171030525",
+   "seed": 900004,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 0.8,
+    "CRUISE_SPEED_MAX": 1.2,
+    "MAX_ACCELERATION": 0.7,
+    "MAX_JERK": 2.0
+   },
+   "setting": "A"
+  },
+  {
+   "id": "speedA-106366371_174226743",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "hssd-train",
+   "scene": "106366371_174226743",
+   "seed": 900005,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 0.8,
+    "CRUISE_SPEED_MAX": 1.2,
+    "MAX_ACCELERATION": 0.7,
+    "MAX_JERK": 2.0
+   },
+   "setting": "A"
+  },
+  {
+   "id": "speedA-104348361_171513414",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "104348361_171513414",
+   "seed": 900006,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 0.8,
+    "CRUISE_SPEED_MAX": 1.2,
+    "MAX_ACCELERATION": 0.7,
+    "MAX_JERK": 2.0
+   },
+   "setting": "A"
+  },
+  {
+   "id": "speedA-108294624_176710203",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "hssd-train",
+   "scene": "108294624_176710203",
+   "seed": 900007,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 0.8,
+    "CRUISE_SPEED_MAX": 1.2,
+    "MAX_ACCELERATION": 0.7,
+    "MAX_JERK": 2.0
+   },
+   "setting": "A"
+  },
+  {
+   "id": "speedA-107734176_176000019",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "107734176_176000019",
+   "seed": 900008,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 0.8,
+    "CRUISE_SPEED_MAX": 1.2,
+    "MAX_ACCELERATION": 0.7,
+    "MAX_JERK": 2.0
+   },
+   "setting": "A"
+  },
+  {
+   "id": "speedA-107734254_176000121",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "107734254_176000121",
+   "seed": 900009,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 0.8,
+    "CRUISE_SPEED_MAX": 1.2,
+    "MAX_ACCELERATION": 0.7,
+    "MAX_JERK": 2.0
+   },
+   "setting": "A"
+  },
+  {
+   "id": "speedA-ProcTHOR-Train-107",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-107",
+   "seed": 900010,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 0.8,
+    "CRUISE_SPEED_MAX": 1.2,
+    "MAX_ACCELERATION": 0.7,
+    "MAX_JERK": 2.0
+   },
+   "setting": "A"
+  },
+  {
+   "id": "speedA-ProcTHOR-Train-170",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-170",
+   "seed": 900011,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 0.8,
+    "CRUISE_SPEED_MAX": 1.2,
+    "MAX_ACCELERATION": 0.7,
+    "MAX_JERK": 2.0
+   },
+   "setting": "A"
+  },
+  {
+   "id": "speedA-106366104_174226329",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "106366104_174226329",
+   "seed": 900012,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 0.8,
+    "CRUISE_SPEED_MAX": 1.2,
+    "MAX_ACCELERATION": 0.7,
+    "MAX_JERK": 2.0
+   },
+   "setting": "A"
+  },
+  {
+   "id": "speedA-106366410_174226806",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "106366410_174226806",
+   "seed": 900013,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 0.8,
+    "CRUISE_SPEED_MAX": 1.2,
+    "MAX_ACCELERATION": 0.7,
+    "MAX_JERK": 2.0
+   },
+   "setting": "A"
+  },
+  {
+   "id": "speedA-102344280",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "hssd-train",
+   "scene": "102344280",
+   "seed": 900014,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 0.8,
+    "CRUISE_SPEED_MAX": 1.2,
+    "MAX_ACCELERATION": 0.7,
+    "MAX_JERK": 2.0
+   },
+   "setting": "A"
+  },
+  {
+   "id": "speedA-106878858_174886965",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "106878858_174886965",
+   "seed": 900015,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 0.8,
+    "CRUISE_SPEED_MAX": 1.2,
+    "MAX_ACCELERATION": 0.7,
+    "MAX_JERK": 2.0
+   },
+   "setting": "A"
+  },
+  {
+   "id": "speedB-108294897_176710602",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "hssd-train",
+   "scene": "108294897_176710602",
+   "seed": 900016,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.2,
+    "CRUISE_SPEED_MAX": 1.8,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "B"
+  },
+  {
+   "id": "speedB-104862501_172226556",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "104862501_172226556",
+   "seed": 900017,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.2,
+    "CRUISE_SPEED_MAX": 1.8,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "B"
+  },
+  {
+   "id": "speedB-107734338_176000244",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "107734338_176000244",
+   "seed": 900018,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.2,
+    "CRUISE_SPEED_MAX": 1.8,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "B"
+  },
+  {
+   "id": "speedB-107734146_175999971",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "hssd-train",
+   "scene": "107734146_175999971",
+   "seed": 900019,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.2,
+    "CRUISE_SPEED_MAX": 1.8,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "B"
+  },
+  {
+   "id": "speedB-103997478_171030525",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "hssd-train",
+   "scene": "103997478_171030525",
+   "seed": 900020,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.2,
+    "CRUISE_SPEED_MAX": 1.8,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "B"
+  },
+  {
+   "id": "speedB-106366371_174226743",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "hssd-train",
+   "scene": "106366371_174226743",
+   "seed": 900021,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.2,
+    "CRUISE_SPEED_MAX": 1.8,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "B"
+  },
+  {
+   "id": "speedB-104348361_171513414",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "104348361_171513414",
+   "seed": 900022,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.2,
+    "CRUISE_SPEED_MAX": 1.8,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "B"
+  },
+  {
+   "id": "speedB-108294624_176710203",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "hssd-train",
+   "scene": "108294624_176710203",
+   "seed": 900023,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.2,
+    "CRUISE_SPEED_MAX": 1.8,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "B"
+  },
+  {
+   "id": "speedB-107734176_176000019",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "107734176_176000019",
+   "seed": 900024,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.2,
+    "CRUISE_SPEED_MAX": 1.8,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "B"
+  },
+  {
+   "id": "speedB-107734254_176000121",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "107734254_176000121",
+   "seed": 900025,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.2,
+    "CRUISE_SPEED_MAX": 1.8,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "B"
+  },
+  {
+   "id": "speedB-ProcTHOR-Train-107",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-107",
+   "seed": 900026,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.2,
+    "CRUISE_SPEED_MAX": 1.8,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "B"
+  },
+  {
+   "id": "speedB-ProcTHOR-Train-170",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-170",
+   "seed": 900027,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.2,
+    "CRUISE_SPEED_MAX": 1.8,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "B"
+  },
+  {
+   "id": "speedB-106366104_174226329",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "106366104_174226329",
+   "seed": 900028,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.2,
+    "CRUISE_SPEED_MAX": 1.8,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "B"
+  },
+  {
+   "id": "speedB-106366410_174226806",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "106366410_174226806",
+   "seed": 900029,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.2,
+    "CRUISE_SPEED_MAX": 1.8,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "B"
+  },
+  {
+   "id": "speedB-102344280",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "hssd-train",
+   "scene": "102344280",
+   "seed": 900030,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.2,
+    "CRUISE_SPEED_MAX": 1.8,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "B"
+  },
+  {
+   "id": "speedB-106878858_174886965",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "106878858_174886965",
+   "seed": 900031,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.2,
+    "CRUISE_SPEED_MAX": 1.8,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "B"
+  },
+  {
+   "id": "speedC-108294897_176710602",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "hssd-train",
+   "scene": "108294897_176710602",
+   "seed": 900032,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.6,
+    "CRUISE_SPEED_MAX": 2.4,
+    "MAX_ACCELERATION": 2.0,
+    "MAX_JERK": 6.0
+   },
+   "setting": "C"
+  },
+  {
+   "id": "speedC-104862501_172226556",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "104862501_172226556",
+   "seed": 900033,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.6,
+    "CRUISE_SPEED_MAX": 2.4,
+    "MAX_ACCELERATION": 2.0,
+    "MAX_JERK": 6.0
+   },
+   "setting": "C"
+  },
+  {
+   "id": "speedC-107734338_176000244",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "107734338_176000244",
+   "seed": 900034,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.6,
+    "CRUISE_SPEED_MAX": 2.4,
+    "MAX_ACCELERATION": 2.0,
+    "MAX_JERK": 6.0
+   },
+   "setting": "C"
+  },
+  {
+   "id": "speedC-107734146_175999971",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "hssd-train",
+   "scene": "107734146_175999971",
+   "seed": 900035,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.6,
+    "CRUISE_SPEED_MAX": 2.4,
+    "MAX_ACCELERATION": 2.0,
+    "MAX_JERK": 6.0
+   },
+   "setting": "C"
+  },
+  {
+   "id": "speedC-103997478_171030525",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "hssd-train",
+   "scene": "103997478_171030525",
+   "seed": 900036,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.6,
+    "CRUISE_SPEED_MAX": 2.4,
+    "MAX_ACCELERATION": 2.0,
+    "MAX_JERK": 6.0
+   },
+   "setting": "C"
+  },
+  {
+   "id": "speedC-106366371_174226743",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "hssd-train",
+   "scene": "106366371_174226743",
+   "seed": 900037,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.6,
+    "CRUISE_SPEED_MAX": 2.4,
+    "MAX_ACCELERATION": 2.0,
+    "MAX_JERK": 6.0
+   },
+   "setting": "C"
+  },
+  {
+   "id": "speedC-104348361_171513414",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "104348361_171513414",
+   "seed": 900038,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.6,
+    "CRUISE_SPEED_MAX": 2.4,
+    "MAX_ACCELERATION": 2.0,
+    "MAX_JERK": 6.0
+   },
+   "setting": "C"
+  },
+  {
+   "id": "speedC-108294624_176710203",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "hssd-train",
+   "scene": "108294624_176710203",
+   "seed": 900039,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.6,
+    "CRUISE_SPEED_MAX": 2.4,
+    "MAX_ACCELERATION": 2.0,
+    "MAX_JERK": 6.0
+   },
+   "setting": "C"
+  },
+  {
+   "id": "speedC-107734176_176000019",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "107734176_176000019",
+   "seed": 900040,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.6,
+    "CRUISE_SPEED_MAX": 2.4,
+    "MAX_ACCELERATION": 2.0,
+    "MAX_JERK": 6.0
+   },
+   "setting": "C"
+  },
+  {
+   "id": "speedC-107734254_176000121",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "107734254_176000121",
+   "seed": 900041,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.6,
+    "CRUISE_SPEED_MAX": 2.4,
+    "MAX_ACCELERATION": 2.0,
+    "MAX_JERK": 6.0
+   },
+   "setting": "C"
+  },
+  {
+   "id": "speedC-ProcTHOR-Train-107",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-107",
+   "seed": 900042,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.6,
+    "CRUISE_SPEED_MAX": 2.4,
+    "MAX_ACCELERATION": 2.0,
+    "MAX_JERK": 6.0
+   },
+   "setting": "C"
+  },
+  {
+   "id": "speedC-ProcTHOR-Train-170",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-170",
+   "seed": 900043,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.6,
+    "CRUISE_SPEED_MAX": 2.4,
+    "MAX_ACCELERATION": 2.0,
+    "MAX_JERK": 6.0
+   },
+   "setting": "C"
+  },
+  {
+   "id": "speedC-106366104_174226329",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "106366104_174226329",
+   "seed": 900044,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.6,
+    "CRUISE_SPEED_MAX": 2.4,
+    "MAX_ACCELERATION": 2.0,
+    "MAX_JERK": 6.0
+   },
+   "setting": "C"
+  },
+  {
+   "id": "speedC-106366410_174226806",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "106366410_174226806",
+   "seed": 900045,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.6,
+    "CRUISE_SPEED_MAX": 2.4,
+    "MAX_ACCELERATION": 2.0,
+    "MAX_JERK": 6.0
+   },
+   "setting": "C"
+  },
+  {
+   "id": "speedC-102344280",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "hssd-train",
+   "scene": "102344280",
+   "seed": 900046,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.6,
+    "CRUISE_SPEED_MAX": 2.4,
+    "MAX_ACCELERATION": 2.0,
+    "MAX_JERK": 6.0
+   },
+   "setting": "C"
+  },
+  {
+   "id": "speedC-106878858_174886965",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "106878858_174886965",
+   "seed": 900047,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.6,
+    "CRUISE_SPEED_MAX": 2.4,
+    "MAX_ACCELERATION": 2.0,
+    "MAX_JERK": 6.0
+   },
+   "setting": "C"
+  },
+  {
+   "id": "speedD-108294897_176710602",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "hssd-train",
+   "scene": "108294897_176710602",
+   "seed": 900048,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.0,
+    "CRUISE_SPEED_MAX": 1.5,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "D"
+  },
+  {
+   "id": "speedD-104862501_172226556",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "104862501_172226556",
+   "seed": 900049,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.0,
+    "CRUISE_SPEED_MAX": 1.5,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "D"
+  },
+  {
+   "id": "speedD-107734338_176000244",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "107734338_176000244",
+   "seed": 900050,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.0,
+    "CRUISE_SPEED_MAX": 1.5,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "D"
+  },
+  {
+   "id": "speedD-107734146_175999971",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "hssd-train",
+   "scene": "107734146_175999971",
+   "seed": 900051,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.0,
+    "CRUISE_SPEED_MAX": 1.5,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "D"
+  },
+  {
+   "id": "speedD-103997478_171030525",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "hssd-train",
+   "scene": "103997478_171030525",
+   "seed": 900052,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.0,
+    "CRUISE_SPEED_MAX": 1.5,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "D"
+  },
+  {
+   "id": "speedD-106366371_174226743",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "hssd-train",
+   "scene": "106366371_174226743",
+   "seed": 900053,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.0,
+    "CRUISE_SPEED_MAX": 1.5,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "D"
+  },
+  {
+   "id": "speedD-104348361_171513414",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "104348361_171513414",
+   "seed": 900054,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.0,
+    "CRUISE_SPEED_MAX": 1.5,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "D"
+  },
+  {
+   "id": "speedD-108294624_176710203",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "hssd-train",
+   "scene": "108294624_176710203",
+   "seed": 900055,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.0,
+    "CRUISE_SPEED_MAX": 1.5,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "D"
+  },
+  {
+   "id": "speedD-107734176_176000019",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "107734176_176000019",
+   "seed": 900056,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.0,
+    "CRUISE_SPEED_MAX": 1.5,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "D"
+  },
+  {
+   "id": "speedD-107734254_176000121",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "107734254_176000121",
+   "seed": 900057,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.0,
+    "CRUISE_SPEED_MAX": 1.5,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "D"
+  },
+  {
+   "id": "speedD-ProcTHOR-Train-107",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-107",
+   "seed": 900058,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.0,
+    "CRUISE_SPEED_MAX": 1.5,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "D"
+  },
+  {
+   "id": "speedD-ProcTHOR-Train-170",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-170",
+   "seed": 900059,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.0,
+    "CRUISE_SPEED_MAX": 1.5,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "D"
+  },
+  {
+   "id": "speedD-106366104_174226329",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "106366104_174226329",
+   "seed": 900060,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.0,
+    "CRUISE_SPEED_MAX": 1.5,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "D"
+  },
+  {
+   "id": "speedD-106366410_174226806",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "106366410_174226806",
+   "seed": 900061,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.0,
+    "CRUISE_SPEED_MAX": 1.5,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "D"
+  },
+  {
+   "id": "speedD-102344280",
+   "split": "bench",
+   "group": "seen",
+   "catalog": "hssd-train",
+   "scene": "102344280",
+   "seed": 900062,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.0,
+    "CRUISE_SPEED_MAX": 1.5,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "D"
+  },
+  {
+   "id": "speedD-106878858_174886965",
+   "split": "bench",
+   "group": "dev",
+   "catalog": "hssd-val",
+   "scene": "106878858_174886965",
+   "seed": 900063,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.0,
+    "CRUISE_SPEED_MAX": 1.5,
+    "MAX_ACCELERATION": 1.4,
+    "MAX_JERK": 4.0
+   },
+   "setting": "D"
+  }
+ ]
+}

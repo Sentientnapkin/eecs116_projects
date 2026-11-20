@@ -1,0 +1,56 @@
+171 flights; zero-motion ATE (the identity pose) mean 4.117
+
+b_d0             n= 171 mean   3.844 median  3.488 p90   5.589 max    10.30 | worse than identity 22.2%  >3 m 67.8%  worst-10% carry 19.7% of error  trimmed(95%) mean 3.581
+bd0_kfgrid       n= 171 mean   3.829 median  3.482 p90   5.637 max    10.23 | worse than identity 24.0%  >3 m 67.8%  worst-10% carry 19.6% of error  trimmed(95%) mean 3.572
+bd0_velfusion    n= 171 mean   3.767 median  3.390 p90   5.553 max    10.10 | worse than identity 18.1%  >3 m 66.1%  worst-10% carry 19.8% of error  trimmed(95%) mean 3.509
+dead_reckoning   n= 171 mean   6.698 median  6.354 p90   9.557 max    15.46 | worse than identity 94.7%  >3 m 99.4%  worst-10% carry 17.1% of error  trimmed(95%) mean 6.368
+n2_kfgrid        n= 171 mean   3.633 median  3.414 p90   5.492 max    10.90 | worse than identity 20.5%  >3 m 57.3%  worst-10% carry 19.4% of error  trimmed(95%) mean 3.377
+n2_kfinputs_s217 n= 171 mean   3.508 median  3.239 p90   5.514 max    10.38 | worse than identity 17.0%  >3 m 59.1%  worst-10% carry 19.8% of error  trimmed(95%) mean 3.253
+openvins         n= 171 mean  28.529 median  0.584 p90   9.680 max  2168.27 | worse than identity 19.3%  >3 m 19.9%  worst-10% carry 96.4% of error  trimmed(95%) mean 2.495
+                 initialized: median 1.2s, p90 6.0s, never 3.5%; mean ATE if init <=3 s 0.982 vs later 168.475
+vins_mono        n= 171 mean   5.506 median  0.621 p90   3.923 max   225.59 | worse than identity  9.9%  >3 m 11.7%  worst-10% carry 88.1% of error  trimmed(95%) mean 1.029
+                 initialized: median 1.9s, p90 5.4s, never 0.6%; mean ATE if init <=3 s 3.391 vs later 9.841
+
+Spearman(ATE/zero-ATE, flight property): which properties make a guest relatively worse
+                    travel speed_p50 speed_p90     hover   turning   lateral  vertical      dark      flatstart_offset  ATE~zero
+b_d0                 -0.11     -0.07     -0.19     -0.17      0.34      0.27      0.03      0.04      0.16      0.21      0.93
+bd0_kfgrid           -0.05     -0.01     -0.14     -0.22      0.36      0.31      0.06     -0.02      0.18      0.24      0.94
+bd0_velfusion         0.02      0.05     -0.07     -0.30      0.38      0.32      0.14      0.02      0.22      0.30      0.94
+dead_reckoning       -0.38     -0.39     -0.38     -0.00      0.40      0.24      0.08      0.20      0.14      0.13      0.47
+n2_kfgrid             0.08      0.09      0.03     -0.11      0.16      0.24      0.03     -0.03      0.15      0.06      0.89
+n2_kfinputs_s217      0.08      0.07      0.09     -0.05      0.05      0.13      0.08      0.10      0.19      0.02      0.89
+openvins             -0.14     -0.15     -0.19     -0.14      0.29      0.20      0.33      0.17      0.56      0.15     -0.09
+vins_mono            -0.11     -0.14     -0.13     -0.25      0.32      0.23      0.28      0.21      0.49      0.33     -0.08
+
+By flight extent (zero-motion ATE terciles): mean ATE per guest
+                      extent low      extent mid     extent high
+b_d0                       2.559           3.479           5.495
+bd0_kfgrid                 2.522           3.478           5.488
+bd0_velfusion              2.444           3.416           5.441
+dead_reckoning             5.768           6.342           7.982
+n2_kfgrid                  2.464           3.288           5.146
+n2_kfinputs_s217           2.353           3.165           5.005
+openvins                  12.796          53.267          19.524
+vins_mono                 10.794           1.086           4.639
+
+By catalog / group: mean ATE per guest
+catalog             hssd-train      hssd-val      procthor
+b_d0                     4.389         4.605         3.322
+bd0_kfgrid               4.347         4.616         3.311
+bd0_velfusion            4.271         4.560         3.253
+dead_reckoning           7.283         6.873         6.362
+n2_kfgrid                4.131         4.326         3.156
+n2_kfinputs_s217         3.980         4.206         3.041
+openvins                 3.134         1.293        49.977
+vins_mono                3.429         3.773         7.087
+group                    clean           dev          seen
+b_d0                     3.384         4.253         3.741
+bd0_kfgrid               3.413         4.245         3.714
+bd0_velfusion            3.381         4.187         3.643
+dead_reckoning           6.323         6.669         6.789
+n2_kfgrid                3.155         4.042         3.533
+n2_kfinputs_s217         2.917         3.888         3.445
+openvins                33.910        51.049        16.484
+vins_mono                2.081         5.221         6.357
+
+flights where both OpenVINS and VINS-Mono exceed 3 m: 7.6%
