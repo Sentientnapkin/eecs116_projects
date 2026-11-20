@@ -1,0 +1,7 @@
+== edge_cmbx_r1  (wasm 3b05813bad9d)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  1.133 (base  2.307) median  0.58 p90  1.66 >5m  7 >10m  2 | paired d=-1.174 [-1.935,-0.574] | err@2/5/30s 0.51/0.68/1.07
+search static n= 56 mean  0.687 (base  0.667) median  0.48 p90  0.88 >5m  1 >10m  0 | paired d=+0.020 [-0.045,+0.095] | err@2/5/30s 0.13/0.42/0.63
+search mid    n= 63 mean  1.529 (base  3.764) median  0.72 p90  4.42 >5m  6 >10m  2 | paired d=-2.236 [-3.635,-1.152] | err@2/5/30s 0.85/0.91/1.47
+val    all    n= 25 mean  0.569 (base  2.032) median  0.47 p90  0.97 >5m  0 >10m  0 | paired d=-1.463 [-3.187,-0.314] | err@2/5/30s 0.36/0.29/0.50
+val    static n= 12 mean  0.606 (base  0.713) median  0.43 p90  0.92 >5m  0 >10m  0 | paired d=-0.106 [-0.394,+0.107] | err@2/5/30s 0.18/0.25/0.60
+val    mid    n= 13 mean  0.534 (base  3.250) median  0.47 p90  0.93 >5m  0 >10m  0 | paired d=-2.716 [-6.531,-0.482] | err@2/5/30s 0.52/0.32/0.42

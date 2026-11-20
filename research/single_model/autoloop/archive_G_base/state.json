@@ -1,0 +1,61 @@
+{
+ "phase": "stopped",
+ "spent": 2392.46821641922,
+ "step": 0.3,
+ "gen": 0,
+ "ref": "3bf122401656",
+ "promotions": [],
+ "top": [
+  "GYRO_NOISE",
+  "ACCEL_NOISE",
+  "INIT_TILT_STD",
+  "INIT_VELOCITY_STD",
+  "MOVE_TILT_STD",
+  "DET_FORCE",
+  "ACCEL_BIAS_WALK",
+  "GYRO_BIAS_WALK",
+  "START_T",
+  "GATE_PAIRS",
+  "GATE_DISP",
+  "DET_GYRO"
+ ],
+ "active": [
+  "GYRO_NOISE",
+  "ACCEL_NOISE",
+  "INIT_TILT_STD",
+  "INIT_VELOCITY_STD",
+  "MOVE_TILT_STD",
+  "DET_FORCE",
+  "ACCEL_BIAS_WALK",
+  "GYRO_BIAS_WALK",
+  "START_T",
+  "GATE_PAIRS",
+  "GATE_DISP",
+  "DET_GYRO",
+  "GATE_PAIRS_MAX"
+ ],
+ "started": 1795166529.803761,
+ "cfg": {
+  "budget_h": 5.0,
+  "reserve_min": 25.0,
+  "reps": 3,
+  "workers": 24,
+  "concurrent": 2,
+  "load_max": 140.0,
+  "a_frac": 0.4,
+  "b_frac": 0.7,
+  "topk": 12,
+  "seed": 20261120,
+  "keep_best": 20,
+  "step0": 0.3,
+  "step_min": 0.07,
+  "mu": 4,
+  "lam": 6
+ },
+ "spent_saved": 2392.4682142734528,
+ "resume": "B",
+ "finalists": [
+  "3bf122401656",
+  "3bf122401656"
+ ]
+}

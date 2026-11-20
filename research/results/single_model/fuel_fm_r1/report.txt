@@ -1,0 +1,7 @@
+== fuel_fm_r1  (wasm dd17ff19ac80)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  1.231 (base  2.307) median  0.55 p90  2.98 >5m  7 >10m  2 | paired d=-1.076 [-1.824,-0.487] | err@2/5/30s 0.59/0.81/1.18
+search static n= 56 mean  0.690 (base  0.667) median  0.47 p90  0.97 >5m  1 >10m  0 | paired d=+0.024 [-0.059,+0.123] | err@2/5/30s 0.13/0.42/0.63
+search mid    n= 63 mean  1.711 (base  3.764) median  0.77 p90  4.70 >5m  6 >10m  2 | paired d=-2.053 [-3.414,-0.995] | err@2/5/30s 0.99/1.14/1.67
+val    all    n= 25 mean  0.555 (base  2.032) median  0.46 p90  0.87 >5m  0 >10m  0 | paired d=-1.476 [-3.197,-0.325] | err@2/5/30s 0.34/0.29/0.53
+val    static n= 12 mean  0.585 (base  0.713) median  0.48 p90  0.75 >5m  0 >10m  0 | paired d=-0.127 [-0.358,+0.066] | err@2/5/30s 0.18/0.25/0.63
+val    mid    n= 13 mean  0.528 (base  3.250) median  0.45 p90  0.89 >5m  0 >10m  0 | paired d=-2.722 [-6.545,-0.482] | err@2/5/30s 0.49/0.34/0.43

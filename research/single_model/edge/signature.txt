@@ -1,0 +1,20 @@
+server e7aa signature (G): ATE 7.70 rot .235 (max .308) vel 1.52 scale .572 sim3 3.67 dpm .090 dist 74 m
+ratio ATE/Sim3-ATE = 2.1; ATE/dist = 0.104 m/m; rot max/rms 1.31
+nearest pool flights under G (all non-fold4, n=726), distance in (log scale/.3, rot/.1, vel/.4, sim3/1) units:
+1.90 fast-106366104_174226329-00          static ATE 8.04(base 8.04 f0 8.04 T 2.45) rot 0.071/max 0.128 vel 1.27 sc 0.49 s3 3.12 dpm 0.148 v0 0.03 ang -
+2.15 fastmid-ProcTHOR-Train-151-09        mid    ATE 6.38(base 2.70 f0 6.38 T 6.38) rot 0.227/max 0.319 vel 1.14 sc 0.73 s3 1.92 dpm 0.105 v0 1.06 ang 48
+2.51 fastmid-106366104_174226329-01       mid    ATE 4.90(base 7.24 f0 4.90 T 3.17) rot 0.320/max 0.543 vel 1.22 sc 0.30 s3 3.19 dpm 0.082 v0 0.04 ang -
+2.55 fastmid-ProcTHOR-Train-151-00        mid    ATE 2.88(base 3.32 f0 2.88 T 2.88) rot 0.251/max 0.357 vel 0.98 sc 0.71 s3 1.65 dpm 0.020 v0 0.79 ang 142
+2.72 fastmid-106366104_174226329-02       mid    ATE 5.85(base 5.63 f0 5.85 T 1.76) rot 0.232/max 0.408 vel 0.97 sc 0.29 s3 3.06 dpm 0.146 v0 0.11 ang -
+2.80 fast-ProcTHOR-Train-176-02           static ATE 4.71(base 4.81 f0 4.71 T 4.71) rot 0.224/max 0.404 vel 0.85 sc 0.43 s3 1.63 dpm 0.081 v0 0.03 ang -
+2.85 fastmid-ProcTHOR-Train-176-07        mid    ATE 3.30(base 5.78 f0 3.30 T 4.64) rot 0.226/max 0.370 vel 0.98 sc 0.39 s3 1.53 dpm 0.077 v0 0.04 ang -
+2.85 fastmid-ProcTHOR-Train-168-00        mid    ATE 3.15(base 0.25 f0 3.15 T 1.66) rot 0.217/max 0.286 vel 0.96 sc 0.70 s3 1.29 dpm 0.053 v0 0.55 ang 93
+3.10 fastmid-ProcTHOR-Train-169-01        mid    ATE 7.21(base 1.48 f0 7.21 T 7.25) rot 0.310/max 0.443 vel 1.03 sc 0.33 s3 1.61 dpm 0.144 v0 0.79 ang 100
+3.25 fastmid-ProcTHOR-Train-178-01        mid    ATE 3.39(base 8.60 f0 3.39 T 0.70) rot 0.216/max 0.360 vel 0.90 sc 0.80 s3 1.05 dpm 0.049 v0 1.76 ang 121
+3.27 fastmid-ProcTHOR-Train-170-02        mid    ATE 3.49(base 4.98 f0 3.49 T 0.39) rot 0.452/max 0.545 vel 1.20 sc 0.52 s3 1.39 dpm 0.073 v0 1.12 ang 144
+3.28 fastmid-ProcTHOR-Train-100-02        mid    ATE 4.37(base 16.59 f0 4.37 T 5.36) rot 0.517/max 0.796 vel 1.09 sc 0.53 s3 2.41 dpm 0.095 v0 0.65 ang 81
+G scale<0.75 & ATE>3: 25 of which base<2: 5 mid 20 v0<0.6 13
+mid v0[0.0,0.3) n=59  scale<0.75: base 11.9% G 13.6%; ATE>3: base 13.6% G 13.6%
+mid v0[0.3,0.6) n=99  scale<0.75: base 12.1% G 5.1%; ATE>3: base 9.1% G 3.0%
+mid v0[0.6,1.2) n=121  scale<0.75: base 20.7% G 13.2%; ATE>3: base 20.7% G 10.7%
+mid v0[1.2,9.0) n=84  scale<0.75: base 23.8% G 4.8%; ATE>3: base 36.9% G 9.5%

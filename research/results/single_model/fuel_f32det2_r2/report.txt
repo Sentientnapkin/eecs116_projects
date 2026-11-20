@@ -1,0 +1,7 @@
+== fuel_f32det2_r2  (wasm 9ba91c633085)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  1.160 (base  2.307) median  0.58 p90  3.16 >5m  3 >10m  0 | paired d=-1.146 [-1.909,-0.544] | err@2/5/30s 0.52/0.83/1.08
+search static n= 56 mean  0.792 (base  0.667) median  0.46 p90  1.01 >5m  1 >10m  0 | paired d=+0.125 [-0.002,+0.277] | err@2/5/30s 0.13/0.40/0.77
+search mid    n= 63 mean  1.488 (base  3.764) median  0.77 p90  3.99 >5m  2 >10m  0 | paired d=-2.276 [-3.599,-1.197] | err@2/5/30s 0.87/1.21/1.36
+val    all    n= 25 mean  0.609 (base  2.032) median  0.49 p90  1.10 >5m  0 >10m  0 | paired d=-1.423 [-3.134,-0.378] | err@2/5/30s 0.36/0.36/0.55
+val    static n= 12 mean  0.580 (base  0.713) median  0.50 p90  1.06 >5m  0 >10m  0 | paired d=-0.133 [-0.491,+0.036] | err@2/5/30s 0.12/0.29/0.56
+val    mid    n= 13 mean  0.635 (base  3.250) median  0.49 p90  1.10 >5m  0 >10m  0 | paired d=-2.614 [-6.363,-0.445] | err@2/5/30s 0.57/0.44/0.54

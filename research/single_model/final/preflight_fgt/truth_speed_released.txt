@@ -1,0 +1,6 @@
+fastmid-106366104_174226329-02 true speed mean t<=0.45: 0.11  at 0.6-0.7: 0.15  at 1s 0.24
+fastmid-106366104_174226329-01 true speed mean t<=0.45: 0.17  at 0.6-0.7: 0.27  at 1s 1.02
+fastmid-107734176_176000019-00 true speed mean t<=0.45: 0.23  at 0.6-0.7: 0.42  at 1s 0.61
+fastmid-107734254_176000121-00 true speed mean t<=0.45: 0.50  at 0.6-0.7: 0.98  at 1s 1.07
+fastmid-ProcTHOR-Train-107-00 true speed mean t<=0.45: 0.04  at 0.6-0.7: 0.07  at 1s 0.10
+fastmid-ProcTHOR-Train-5-02 true speed mean t<=0.45: 0.20  at 0.6-0.7: 0.28  at 1s 0.39

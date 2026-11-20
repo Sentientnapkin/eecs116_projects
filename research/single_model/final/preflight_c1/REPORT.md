@@ -1,0 +1,18 @@
+# Preflight of C1 (gate G + HOLD + VZ 0.3 + LAT 0.5) = inventive/adopted.c
+wasm final/submit/gp_msckf_startup_gate_c1.wasm, SHA-256 28ab13673e5a32370af26fad02f128b9589faf56feee7e6756f3ef2585f00214 (source final/submit/gate_c1.c).
+Built with run_variant.build() (default CMake, no defines) twice: byte-identical to each other and to results/single_model/inv_adopted/solution.wasm.
+Evidence files in this folder: abi_check.txt wasm_imports.txt cmp_c1.txt poison_summary.txt (+poison_g*.log) reset_check.txt hold_audit*.txt hold_noise_K*.jsonl diff_reasons.txt fresh_cmp.txt.
+Fold-4 flights are never listed per flight (counts/aggregates only); no sealed_aggregate.json opened; no private server episodes.
+| # | Check | Result | Evidence |
+|---|---|---|---|
+| 1 | viobench check | PASS | ok (5 steps), exit 0 |
+| 2 | zero imports / C only | PASS | imports [] ; exports memory,_initialize,abi_version,alloc,frame_width,init,step ; source is C (stdio fprintf only under INV_DBG, no import) |
+| 3 | determinism | PASS | 171/171 estimate.tum identical (two scorings), ate_full identical; wasm rebuild byte-identical |
+| 4 | causality | PASS | 324/324: 18 fixtures (9 static hover, 9 mid, folds 0-3 only, corrected f0win generator) x prefixes 1,2,8-12,19,20,21,24,40,41,50,60,120,600,1199; poison+prefix+repeat all bit-equal, no guest failure. Hold start (frame 8) and stop (frame 21: time limit; gyro/force checks) are straddled by prefixes 8-12, 19-21, 24; the hold decision uses only the current window mean gyro/force and t-t_start, latched in hold_on (reset at init) |
+| 5 | reset/re-init | PASS | 7 flights (5 hover incl. the one switched off at frame 8, 2 mid) x (re-init replay, partial replay+re-init) bit-equal, first pose identity |
+| 6 | filled frame 0 / completed | PASS | 171/171 completed, 1200 frames, filled_full 0, no failure |
+| 7 | fuel | PASS | 171: peak 21.32M (G 22.54M: peak flight differs, chaotic), worst p95 16.24M (G 15.93M), mean p95 +0.14M (+1.0%) vs G. Fresh 711: peak 23.40M vs G 22.76M (+2.8%). Max 0.117% of 2e10 |
+| 8 | hold behaviour | PASS (caveats) | detector confusion: static 85/85 hover, mid 86/86 moving; hold ran 13 frames (8..20) on 84/85 static, off at frame 21 by time; 1 static (176000121-01) switched off at its first eligible frame by gyro>0.12; no mid flight ever had hold active (0 frames); static start with IMU noise 2x (27 runs): hold survived to the time limit in 2, mostly switched off by the gyro check after 0-10 frames, detector never flipped to moving; at 3x 3/27 flipped to moving. Stress (detector forced to hover on all 171): mid hold active 3 flights, 1 for 13 frames (an actual at-rest-looking mid start), others 1-2 frames; 83/86 mid are switched off at frame 8 |
+| 9 | independent re-score | PASS | 171/171 ate_full == inventive's own run; fresh 711/711 == inventive fresh table; fresh G 0.813 -> C1 0.733 (static 0.573->0.471, mid 1.054->0.995, >5 m 17->8, >10 m 1->0), scene-bootstrap delta -0.080 [-0.142,-0.021] |
+Flights differing from G by >0.3 m (folds 0-3, 28 flights; see diff_reasons.txt): all 12 static ones had the hold active; the 16 mid flights have hold inactive and differ only through VZ/LAT (chaotic vision path, +-). Notable regression: static 171-04 G 0.36 -> 4.24 (hold-only 0.26, vz+lat-only 0.25: an interaction, not additive); mid 57-02 1.17 -> 4.24, 100-02 4.37 -> 6.78, 176710602-01 5.37 -> 7.54. Big gains: static 174226329-00 8.04 -> 3.87; mid 174226329-02 5.85 -> 4.40. 6 more fold-4 flights differ (not listed). On fresh: 72 flights improve >0.3 m, 46 regress >0.3 m.
+Caveats: HOLD assumes at-rest start with g = 9.81 and relies on the thin detector margin (static |f| up to 8.69-8.82 vs threshold 8.8); 2x noise makes the hold fail safe (off), not wrong.

@@ -1,0 +1,5 @@
+fgt_merged n 171 filled_full!=0 0 incomplete 0 failure 0 peak fuel 22.98M (0.115% of 2e10) worst p95 16.37M median p95 14.76M mean ate 0.825
+fgt_merged_b n 171 filled_full!=0 0 incomplete 0 failure 0 peak fuel 22.98M (0.115% of 2e10) worst p95 16.37M median p95 14.76M mean ate 0.825
+final_f0 n 171 filled_full!=0 0 incomplete 0 failure 0 peak fuel 22.54M (0.113% of 2e10) worst p95 15.93M median p95 14.34M mean ate 0.976
+preflight_gate_a n 171 filled_full!=0 0 incomplete 0 failure 0 peak fuel 22.54M (0.113% of 2e10) worst p95 15.93M median p95 14.33M mean ate 0.976
+tails_adopted n 171 filled_full!=0 0 incomplete 0 failure 0 peak fuel 22.98M (0.115% of 2e10) worst p95 16.37M median p95 14.76M mean ate 0.812

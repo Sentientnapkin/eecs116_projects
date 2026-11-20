@@ -1,0 +1,7 @@
+== inv_zuptg  (wasm 7af1edd9f120)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  1.036 (base  2.307) median  0.52 p90  2.78 >5m  4 >10m  0 | paired d=-1.270 [-2.002,-0.699] | err@2/5/30s 0.59/0.78/0.96
+search static n= 56 mean  0.696 (base  0.667) median  0.43 p90  1.05 >5m  1 >10m  0 | paired d=+0.030 [-0.026,+0.100] | err@2/5/30s 0.14/0.39/0.64
+search mid    n= 63 mean  1.339 (base  3.764) median  0.63 p90  3.77 >5m  3 >10m  0 | paired d=-2.425 [-3.714,-1.438] | err@2/5/30s 0.99/1.13/1.23
+val    all    n= 25 mean  0.517 (base  2.032) median  0.49 p90  0.80 >5m  0 >10m  0 | paired d=-1.515 [-3.259,-0.370] | err@2/5/30s 0.34/0.36/0.48
+val    static n= 12 mean  0.552 (base  0.713) median  0.52 p90  0.75 >5m  0 >10m  0 | paired d=-0.161 [-0.483,-0.001] | err@2/5/30s 0.16/0.40/0.53
+val    mid    n= 13 mean  0.485 (base  3.250) median  0.37 p90  0.82 >5m  0 >10m  0 | paired d=-2.765 [-6.615,-0.495] | err@2/5/30s 0.50/0.32/0.43

@@ -1,0 +1,13 @@
+inv_hold|INV_HOLD=1
+inv_gyv|INV_GYV=0.73
+inv_az|INV_AZ=1
+inv_vz|INV_VZ=0.3
+inv_lat|INV_LAT=0.5
+inv_shell1|INV_SHELL=1
+inv_shell2|INV_SHELL=2
+inv_fade|INV_FADE=1.0
+inv_huber|INV_HUBER=4.0
+inv_cruise|INV_CRUISE=0.4
+inv_zuptg|INV_ZUPTG=1
+inv_bias|INV_BAZ=0.06 INV_BGSD=0.006
+inv_depth|MAX_DEPTH=12.0

@@ -1,0 +1,10 @@
+G (my run) all n=711 mean 0.8130 median 0.437 >5 17 >10 1 | static n=356 mean 0.573 | mid n=355 mean 1.054
+C1 (my run) all n=711 mean 0.7327 median 0.419 >5 8 >10 0 | static n=356 mean 0.471 | mid n=355 mean 0.995
+G (existing fresh/table_gate) all n=711 mean 0.8130 median 0.437 >5 17 >10 1 | static n=356 mean 0.573 | mid n=355 mean 1.054
+C1 (inventive table) all n=711 mean 0.7327 median 0.419 >5 8 >10 0 | static n=356 mean 0.471 | mid n=355 mean 0.995
+C1 mine == inventive per-flight: 711 / 711  G mine == existing G table: 711 / 711
+failed/incomplete/filled flights C1: 0 G: 0
+peak fuel C1 23.398M G 22.756M
+paired delta mean -0.0803 ; improved>0.3: 72 regressed>0.3: 46 ; worst regress 4.00, best -6.23
+scene bootstrap delta 95% CI [-0.142, -0.021] (n scenes 101)
+worst C1 flights: [(8.0, 'fastmid-ProcTHOR-Train-151-03'), (7.5, 'fastmid-ProcTHOR-Train-85-02'), (7.0, 'fastmid-108294783_176710410-00'), (6.9, 'fastmid-102344193-00'), (5.7, 'fastmid-ProcTHOR-Train-176-11')]

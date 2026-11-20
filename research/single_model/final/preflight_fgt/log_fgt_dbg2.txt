@@ -1,0 +1,10 @@
+171 episodes, 0 cached, workers=24 (no video)
+20/171 finished, 5.3s
+40/171 finished, 10.2s
+60/171 finished, 14.5s
+80/171 finished, 19.0s
+100/171 finished, 24.3s
+120/171 finished, 24.6s
+140/171 finished, 29.3s
+160/171 finished, 33.6s
+171/171 finished, 33.8s

@@ -1,0 +1,7 @@
+== inv_vzlat  (wasm 1c908aeeefa3)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  1.051 (base  2.307) median  0.54 p90  2.78 >5m  3 >10m  0 | paired d=-1.256 [-1.989,-0.681] | err@2/5/30s 0.57/0.77/0.99
+search static n= 56 mean  0.584 (base  0.667) median  0.43 p90  0.93 >5m  0 >10m  0 | paired d=-0.083 [-0.276,+0.054] | err@2/5/30s 0.09/0.33/0.53
+search mid    n= 63 mean  1.466 (base  3.764) median  0.65 p90  4.23 >5m  3 >10m  0 | paired d=-2.298 [-3.616,-1.315] | err@2/5/30s 0.98/1.16/1.40
+val    all    n= 25 mean  0.559 (base  2.032) median  0.55 p90  0.88 >5m  0 >10m  0 | paired d=-1.473 [-3.174,-0.327] | err@2/5/30s 0.33/0.30/0.53
+val    static n= 12 mean  0.598 (base  0.713) median  0.55 p90  0.72 >5m  0 >10m  0 | paired d=-0.114 [-0.490,+0.117] | err@2/5/30s 0.14/0.29/0.61
+val    mid    n= 13 mean  0.522 (base  3.250) median  0.46 p90  0.93 >5m  0 >10m  0 | paired d=-2.727 [-6.543,-0.461] | err@2/5/30s 0.50/0.31/0.45

@@ -1,0 +1,7 @@
+== inv_huber  (wasm 16049cc24112)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  1.375 (base  2.307) median  0.71 p90  2.88 >5m  7 >10m  1 | paired d=-0.931 [-1.667,-0.345] | err@2/5/30s 0.62/0.85/1.18
+search static n= 56 mean  0.841 (base  0.667) median  0.62 p90  1.33 >5m  1 >10m  0 | paired d=+0.174 [+0.068,+0.301] | err@2/5/30s 0.13/0.47/0.70
+search mid    n= 63 mean  1.850 (base  3.764) median  0.90 p90  4.74 >5m  6 >10m  1 | paired d=-1.914 [-3.254,-0.831] | err@2/5/30s 1.06/1.19/1.62
+val    all    n= 25 mean  0.749 (base  2.032) median  0.56 p90  1.32 >5m  0 >10m  0 | paired d=-1.283 [-2.996,-0.250] | err@2/5/30s 0.32/0.31/0.65
+val    static n= 12 mean  0.916 (base  0.713) median  0.69 p90  1.47 >5m  0 >10m  0 | paired d=+0.204 [-0.225,+0.488] | err@2/5/30s 0.16/0.35/0.84
+val    mid    n= 13 mean  0.594 (base  3.250) median  0.49 p90  1.02 >5m  0 >10m  0 | paired d=-2.655 [-6.415,-0.437] | err@2/5/30s 0.47/0.28/0.47

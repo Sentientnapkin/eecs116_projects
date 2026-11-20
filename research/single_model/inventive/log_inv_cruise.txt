@@ -1,0 +1,17 @@
+171 episodes, 0 cached, workers=24 (no video)
+20/171 finished, 9.0s
+40/171 finished, 17.3s
+60/171 finished, 23.9s
+80/171 finished, 31.3s
+100/171 finished, 34.7s
+120/171 finished, 40.0s
+140/171 finished, 47.1s
+160/171 finished, 53.8s
+171/171 finished, 54.3s
+== inv_cruise  (wasm 56270b0b5ce9)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  1.174 (base  2.307) median  0.56 p90  3.43 >5m  6 >10m  0 | paired d=-1.133 [-1.878,-0.555] | err@2/5/30s 0.59/0.84/1.13
+search static n= 56 mean  0.678 (base  0.667) median  0.49 p90  0.97 >5m  1 >10m  0 | paired d=+0.011 [-0.019,+0.047] | err@2/5/30s 0.13/0.40/0.62
+search mid    n= 63 mean  1.615 (base  3.764) median  0.73 p90  4.42 >5m  5 >10m  0 | paired d=-2.149 [-3.496,-1.127] | err@2/5/30s 0.99/1.22/1.59
+val    all    n= 25 mean  0.562 (base  2.032) median  0.49 p90  1.18 >5m  0 >10m  0 | paired d=-1.469 [-3.160,-0.341] | err@2/5/30s 0.34/0.32/0.50
+val    static n= 12 mean  0.607 (base  0.713) median  0.53 p90  1.13 >5m  0 >10m  0 | paired d=-0.105 [-0.419,+0.076] | err@2/5/30s 0.16/0.32/0.56
+val    mid    n= 13 mean  0.521 (base  3.250) median  0.36 p90  1.10 >5m  0 >10m  0 | paired d=-2.728 [-6.468,-0.515] | err@2/5/30s 0.50/0.32/0.44

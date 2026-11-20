@@ -1,0 +1,50 @@
+G reference inv_gbase_r0 vs submitted-gate preflight_gate_a ate_full identical: 171 /171
+n 171 171 171 171 sha a/b/inv 28ab13673e5a 28ab13673e5a 28ab13673e5a G-run sha 0e08033bdf1d
+estimate.tum identical a vs b: 171 / 171
+estimate.tum identical a vs inventive run: 171 / 171
+ate_full a==b 171  a==inventive 171 maxdiff a-inv 0.0
+dbg build rows identical to a except last-row xyz: 171 / 171
+a filled_full!=0 [] incomplete [] failure [] err [] frames {1200} {1200}
+ peak 21.316M (0.1066% of 2e10) worst p95 16.243M median p95 14.472M mean p95 14.336M  worst-peak flight fast-ProcTHOR-Train-160-02
+ per-flight mean fuel p95 sum 14336232.392690059
+b filled_full!=0 [] incomplete [] failure [] err [] frames {1200} {1200}
+ peak 21.316M (0.1066% of 2e10) worst p95 16.243M median p95 14.472M mean p95 14.336M  worst-peak flight fast-ProcTHOR-Train-160-02
+ per-flight mean fuel p95 sum 14336232.392690059
+G(inv_gbase_r0) filled_full!=0 [] incomplete [] failure [] err [] frames {1200} {1200}
+ peak 22.543M (0.1127% of 2e10) worst p95 15.934M median p95 14.329M mean p95 14.193M  worst-peak flight fast-ProcTHOR-Train-159-00
+ per-flight mean fuel p95 sum 14192621.06754386
+C1-G per-flight p95 fuel delta: mean 143611 median 127915 max 1399559 ; peak delta mean -26121 max 2871681 min -3803770
+search static 56 G 0.678 C1 0.624
+search mid 63 G 1.339 C1 1.466
+val static 12 G 0.607 C1 0.558
+val mid 13 G 0.485 C1 0.522
+flights differing from G by >0.3 m (fold4 ids/values hidden, counted only):
+  fast-102344457-00 static fold0 G 0.928 C1 0.424 d -0.504
+  fast-102344469-01 static fold3 G 1.176 C1 1.550 d +0.374
+  fast-106366104_174226329-00 static fold2 G 8.038 C1 3.874 d -4.164
+  fast-106878858_174886965-00 static fold1 G 0.602 C1 0.904 d +0.302
+  fast-ProcTHOR-Train-151-09 static fold1 G 1.471 C1 0.675 d -0.797
+  fast-ProcTHOR-Train-151-11 static fold1 G 1.006 C1 0.517 d -0.489
+  fast-ProcTHOR-Train-160-02 static fold3 G 0.751 C1 0.308 d -0.444
+  fast-ProcTHOR-Train-170-01 static fold1 G 1.474 C1 0.818 d -0.656
+  fast-ProcTHOR-Train-171-04 static fold1 G 0.359 C1 4.243 d +3.885
+  fast-ProcTHOR-Train-191-00 static fold2 G 0.635 C1 0.318 d -0.317
+  fast-ProcTHOR-Train-65-00 static fold2 G 0.334 C1 0.663 d +0.329
+  fast-ProcTHOR-Train-91-02 static fold2 G 1.176 C1 0.288 d -0.888
+  fastmid-102344457-01 mid fold0 G 3.816 C1 3.274 d -0.542
+  fastmid-106366104_174226329-00 mid fold2 G 8.498 C1 7.597 d -0.900
+  fastmid-106366104_174226329-01 mid fold2 G 4.899 C1 4.170 d -0.729
+  fastmid-106366104_174226329-02 mid fold2 G 5.850 C1 4.400 d -1.450
+  fastmid-106366410_174226806-02 mid fold0 G 1.767 C1 2.318 d +0.550
+  fastmid-108294897_176710602-01 mid fold1 G 5.369 C1 7.543 d +2.174
+  fastmid-ProcTHOR-Train-0-01 mid fold2 G 1.061 C1 1.417 d +0.356
+  fastmid-ProcTHOR-Train-100-02 mid fold0 G 4.368 C1 6.783 d +2.414
+  fastmid-ProcTHOR-Train-123-00 mid fold2 G 4.144 C1 4.975 d +0.832
+  fastmid-ProcTHOR-Train-141-01 mid fold2 G 0.931 C1 0.615 d -0.316
+  fastmid-ProcTHOR-Train-143-01 mid fold0 G 3.607 C1 4.859 d +1.252
+  fastmid-ProcTHOR-Train-151-00 mid fold1 G 2.883 C1 3.900 d +1.017
+  fastmid-ProcTHOR-Train-158-07 mid fold1 G 2.754 C1 3.718 d +0.964
+  fastmid-ProcTHOR-Train-178-01 mid fold0 G 3.393 C1 2.661 d -0.733
+  fastmid-ProcTHOR-Train-57-02 mid fold0 G 1.170 C1 4.242 d +3.072
+  fold-4 flights differing >0.3 m: 6
+bit-identical to G (static): 0 / 85  mid: 0 / 86

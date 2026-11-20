@@ -1,0 +1,1 @@
+{"flat": ["DET_GYRO", "GATE_DISP", "GATE_PAIRS", "GATE_PAIRS_MAX"], "note": "parameters whose measured effect on G-base search mean was < 0.02 m at 0.8x/1.25x; skipped in phase A of the rebased run"}

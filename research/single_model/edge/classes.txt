@@ -1,0 +1,75 @@
+| class | n | base mean | f0 | G | T | M | G >3 | G >5 | base >5 | T >5 | G-worse-than-base>1.5 |
+|--|--|--|--|--|--|--|--|--|--|--|--|
+| static | 363 | 0.61 | 0.60 | 0.60 | 0.59 | 0.59 | 6 (2%) | 4 (1%) | 5 | 4 | 1 |
+| mid v0<0.3 | 59 | 1.42 | 1.09 | 1.15 | 1.14 | 1.21 | 8 (14%) | 3 (5%) | 4 | 2 | 5 |
+| mid v0 0.3-0.6 | 99 | 1.35 | 0.83 | 0.80 | 0.72 | 0.70 | 3 (3%) | 1 (1%) | 4 | 0 | 3 |
+| mid v0 0.6-1.2 | 121 | 2.42 | 1.10 | 1.10 | 1.10 | 1.11 | 13 (11%) | 7 (6%) | 12 | 7 | 5 |
+| mid v0 1.2-1.8 | 59 | 2.76 | 0.87 | 0.87 | 0.83 | 0.83 | 3 (5%) | 1 (2%) | 8 | 1 | 1 |
+| mid v0>=1.8 (fast) | 25 | 4.73 | 2.39 | 2.39 | 2.53 | 2.53 | 5 (20%) | 3 (12%) | 10 | 4 | 2 |
+| mid moving, axis<45deg | 34 | 1.51 | 1.24 | 1.25 | 1.05 | 1.05 | 2 (6%) | 2 (6%) | 2 | 1 | 1 |
+| mid moving, 45-90 | 104 | 2.92 | 1.04 | 1.04 | 0.97 | 0.98 | 10 (10%) | 3 (3%) | 19 | 4 | 3 |
+| mid moving, 90-135 (lateral/back) | 137 | 2.09 | 0.93 | 0.92 | 0.97 | 0.95 | 8 (6%) | 4 (3%) | 10 | 4 | 6 |
+| mid moving, >=135 (reverse) | 29 | 2.28 | 1.64 | 1.64 | 1.59 | 1.59 | 4 (14%) | 3 (10%) | 3 | 3 | 1 |
+| yaw rate max<20 deg/s | 8 | 1.47 | 1.51 | 1.51 | 0.92 | 0.92 | 1 (12%) | 1 (12%) | 0 | 0 | 1 |
+| yaw rate max 20-35 | 13 | 1.86 | 1.26 | 1.26 | 1.40 | 1.40 | 3 (23%) | 0 (0%) | 2 | 2 | 0 |
+| yaw rate max>=35 (sat.) | 705 | 1.39 | 0.83 | 0.83 | 0.81 | 0.82 | 34 (5%) | 18 (3%) | 41 | 16 | 16 |
+| tilt0 <12 | 726 | 1.40 | 0.84 | 0.84 | 0.82 | 0.83 | 38 (5%) | 19 (3%) | 43 | 18 | 17 |
+| tilt_max >=35 | 726 | 1.40 | 0.84 | 0.84 | 0.82 | 0.83 | 38 (5%) | 19 (3%) | 43 | 18 | 17 |
+| vertical share >=0.35 | 718 | 1.38 | 0.83 | 0.84 | 0.82 | 0.82 | 36 (5%) | 18 (3%) | 41 | 17 | 17 |
+| speed_max <4 | 725 | 1.40 | 0.84 | 0.84 | 0.82 | 0.83 | 38 (5%) | 19 (3%) | 43 | 18 | 17 |
+| travel >=65 m | 25 | 1.51 | 0.71 | 0.71 | 0.70 | 0.69 | 0 (0%) | 0 (0%) | 2 | 0 | 0 |
+| travel <40 m | 167 | 0.99 | 0.73 | 0.73 | 0.73 | 0.73 | 6 (4%) | 4 (2%) | 5 | 4 | 4 |
+| dark_fraction>0.2 | 8 | 4.30 | 2.81 | 2.81 | 2.57 | 2.57 | 3 (38%) | 1 (12%) | 3 | 2 | 1 |
+| flat_fraction>0.2 | 9 | 4.33 | 3.85 | 3.85 | 1.64 | 1.88 | 4 (44%) | 3 (33%) | 4 | 0 | 0 |
+| hover_frac>=0.15 | 2 | 0.55 | 0.16 | 0.16 | 0.16 | 0.16 | 0 (0%) | 0 (0%) | 0 | 0 | 0 |
+| setting K (3-4.5 m/s cruise) | 358 | 1.29 | 0.86 | 0.85 | 0.83 | 0.83 | 21 (6%) | 10 (3%) | 17 | 9 | 9 |
+| setting K2 (4-6) | 368 | 1.49 | 0.82 | 0.83 | 0.82 | 0.83 | 17 (5%) | 9 (2%) | 26 | 9 | 8 |
+| accel rms top quartile | 182 | 1.71 | 0.81 | 0.83 | 0.82 | 0.84 | 8 (4%) | 5 (3%) | 15 | 3 | 3 |
+| all | 726 | 1.40 | 0.84 | 0.84 | 0.82 | 0.83 | 38 (5%) | 19 (3%) | 43 | 18 | 17 |
+v0 [0.01 0.2  0.75 1.6  2.54]
+yawrate_max [ 13.57  46.07  62.47  81.65 107.13]
+tilt0 [ 0.08  0.26  0.26  4.05 10.15]
+tilt_max [137.32 175.67 179.06 179.67 179.96]
+speed_max [1.28 2.01 2.58 3.12 4.15]
+acc_rms [0.64 1.01 1.28 1.55 1.86]
+vz_share [0.22 0.48 0.62 0.74 0.94]
+
+G >3 m flights (non-fold4 pool): mechanism table  sig = scale<0.75
+fastmid-ProcTHOR-Train-151-03        mid   G 12.53 base 5.25 T 12.53 rot 1.11 vel 1.52 sc 0.45 v0 1.89 ang 140 yaw 47 tilt0 4 flat 0.00 dark 0.00
+fastmid-ProcTHOR-Train-176-05        mid   G 9.59 base 21.48 T 9.66 rot 0.14 vel 1.24 sc 0.24 v0 2.22 ang 93 yaw 67 tilt0 2 flat 0.00 dark 0.00
+fast-ProcTHOR-Train-100-02           stat  G 9.21 base 5.30 T 4.05 rot 0.15 vel 0.90 sc 0.06 v0 0.03 ang - yaw 55 tilt0 0 flat 0.18 dark 0.32
+fastmid-ProcTHOR-Train-157-11        mid   G 9.12 base 0.50 T 0.38 rot 0.37 vel 1.35 sc 0.17 v0 0.47 ang 25 yaw 65 tilt0 4 flat 0.00 dark 0.00
+fastmid-106366104_174226329-00       mid   G 8.50 base 10.35 T 3.28 rot 0.53 vel 1.09 sc 0.20 v0 1.10 ang 92 yaw 57 tilt0 2 flat 1.00 dark 0.00
+fast-106366104_174226329-00          stat  G 8.04 base 8.04 T 2.45 rot 0.07 vel 1.27 sc 0.49 v0 0.03 ang - yaw 59 tilt0 0 flat 1.00 dark 0.00
+fastmid-ProcTHOR-Train-150-00        mid   G 7.52 base 0.37 T 7.52 rot 0.15 vel 1.43 sc 0.20 v0 0.18 ang - yaw 47 tilt0 1 flat 0.00 dark 0.00
+fastmid-ProcTHOR-Train-169-01        mid   G 7.21 base 1.48 T 7.25 rot 0.31 vel 1.03 sc 0.33 v0 0.79 ang 100 yaw 48 tilt0 3 flat 0.00 dark 0.00
+fast-ProcTHOR-Train-143-00           stat  G 6.88 base 8.94 T 7.64 rot 0.09 vel 0.63 sc 0.80 v0 0.03 ang - yaw 68 tilt0 0 flat 0.00 dark 0.00
+fastmid-ProcTHOR-Train-176-11        mid   G 6.67 base 4.56 T 1.52 rot 0.29 vel 0.95 sc 0.22 v0 0.94 ang 89 yaw 17 tilt0 1 flat 0.00 dark 0.00
+fastmid-ProcTHOR-Train-166-00        mid   G 6.46 base 3.82 T 7.65 rot 0.26 vel 0.95 sc 0.07 v0 0.89 ang 123 yaw 49 tilt0 5 flat 0.07 dark 0.07
+fastmid-ProcTHOR-Train-151-09        mid   G 6.38 base 2.70 T 6.38 rot 0.23 vel 1.14 sc 0.73 v0 1.06 ang 48 yaw 87 tilt0 5 flat 0.00 dark 0.00
+fast-ProcTHOR-Train-157-00           stat  G 6.11 base 6.12 T 6.11 rot 0.06 vel 1.13 sc 0.32 v0 0.03 ang - yaw 89 tilt0 0 flat 0.00 dark 0.00
+fastmid-104348361_171513414-01       mid   G 6.10 base 4.08 T 2.42 rot 0.04 vel 0.66 sc 1.04 v0 1.25 ang 89 yaw 37 tilt0 1 flat 0.00 dark 0.00
+fastmid-106366104_174226329-02       mid   G 5.85 base 5.63 T 1.76 rot 0.23 vel 0.97 sc 0.29 v0 0.11 ang - yaw 83 tilt0 4 flat 1.00 dark 0.00
+fastmid-ProcTHOR-Train-151-04        mid   G 5.50 base 1.94 T 3.73 rot 0.85 vel 1.23 sc 0.57 v0 0.30 ang 50 yaw 96 tilt0 4 flat 0.00 dark 0.00
+fastmid-108294897_176710602-01       mid   G 5.37 base 8.52 T 2.03 rot 0.30 vel 0.93 sc 0.97 v0 1.82 ang 25 yaw 75 tilt0 4 flat 0.00 dark 0.00
+fastmid-ProcTHOR-Train-85-02         mid   G 5.19 base 9.59 T 7.56 rot 0.24 vel 0.76 sc 0.21 v0 0.94 ang 156 yaw 79 tilt0 4 flat 0.13 dark 0.10
+fastmid-ProcTHOR-Train-176-03        mid   G 5.10 base 3.65 T 5.02 rot 0.40 vel 0.72 sc 0.73 v0 1.02 ang 165 yaw 67 tilt0 4 flat 0.00 dark 0.00
+fastmid-106366104_174226329-01       mid   G 4.90 base 7.24 T 3.17 rot 0.32 vel 1.22 sc 0.30 v0 0.04 ang - yaw 38 tilt0 0 flat 1.00 dark 0.00
+fast-ProcTHOR-Train-176-02           stat  G 4.71 base 4.81 T 4.71 rot 0.22 vel 0.85 sc 0.43 v0 0.03 ang - yaw 56 tilt0 0 flat 0.00 dark 0.00
+fastmid-106366173_174226431-01       mid   G 4.38 base 5.24 T 0.72 rot 0.06 vel 0.87 sc 0.93 v0 0.91 ang 60 yaw 64 tilt0 5 flat 0.00 dark 0.00
+fastmid-ProcTHOR-Train-100-02        mid   G 4.37 base 16.59 T 5.36 rot 0.52 vel 1.09 sc 0.53 v0 0.65 ang 81 yaw 76 tilt0 4 flat 0.20 dark 0.43
+fastmid-ProcTHOR-Train-85-01         mid   G 4.33 base 4.59 T 5.17 rot 0.09 vel 0.57 sc 0.55 v0 0.21 ang 88 yaw 21 tilt0 3 flat 0.18 dark 0.20
+fast-ProcTHOR-Train-166-00           stat  G 4.17 base 5.29 T 6.51 rot 0.09 vel 0.91 sc 0.23 v0 0.03 ang - yaw 28 tilt0 0 flat 0.20 dark 0.25
+fastmid-ProcTHOR-Train-123-00        mid   G 4.14 base 15.79 T 0.73 rot 0.06 vel 0.79 sc 0.89 v0 0.97 ang 62 yaw 103 tilt0 5 flat 0.00 dark 0.00
+fastmid-102344457-01                 mid   G 3.82 base 0.42 T 0.88 rot 0.12 vel 0.58 sc 0.98 v0 0.31 ang 111 yaw 65 tilt0 4 flat 0.00 dark 0.00
+fastmid-ProcTHOR-Train-3-01          mid   G 3.65 base 1.11 T 1.02 rot 0.21 vel 0.70 sc 0.86 v0 0.17 ang - yaw 61 tilt0 2 flat 0.00 dark 0.00
+fastmid-ProcTHOR-Train-143-01        mid   G 3.61 base 6.22 T 3.43 rot 0.13 vel 0.72 sc 0.92 v0 1.91 ang 90 yaw 66 tilt0 2 flat 0.00 dark 0.00
+fastmid-ProcTHOR-Train-170-02        mid   G 3.49 base 4.98 T 0.39 rot 0.45 vel 1.20 sc 0.52 v0 1.12 ang 144 yaw 75 tilt0 4 flat 0.00 dark 0.00
+fastmid-ProcTHOR-Train-179-02        mid   G 3.45 base 1.68 T 3.45 rot 0.09 vel 0.30 sc 1.00 v0 0.91 ang 115 yaw 96 tilt0 5 flat 0.00 dark 0.00
+fastmid-ProcTHOR-Train-178-01        mid   G 3.39 base 8.60 T 0.70 rot 0.22 vel 0.90 sc 0.80 v0 1.76 ang 121 yaw 46 tilt0 6 flat 0.00 dark 0.00
+fastmid-ProcTHOR-Train-176-07        mid   G 3.30 base 5.78 T 4.64 rot 0.23 vel 0.98 sc 0.39 v0 0.04 ang - yaw 56 tilt0 1 flat 0.00 dark 0.00
+fastmid-ProcTHOR-Train-178-08        mid   G 3.16 base 7.28 T 2.33 rot 0.08 vel 0.61 sc 0.80 v0 1.53 ang 86 yaw 59 tilt0 3 flat 0.02 dark 0.00
+fastmid-ProcTHOR-Train-168-00        mid   G 3.15 base 0.25 T 1.66 rot 0.22 vel 0.96 sc 0.70 v0 0.55 ang 93 yaw 61 tilt0 3 flat 0.02 dark 0.00
+fastmid-102816114-00                 mid   G 3.13 base 0.37 T 0.19 rot 0.08 vel 0.75 sc 0.81 v0 0.08 ang - yaw 56 tilt0 0 flat 0.00 dark 0.00
+fastmid-ProcTHOR-Train-6-00          mid   G 3.08 base 8.01 T 5.34 rot 0.28 vel 0.84 sc 0.84 v0 2.04 ang 45 yaw 68 tilt0 5 flat 0.00 dark 0.00
+fastmid-ProcTHOR-Train-166-04        mid   G 3.00 base 5.50 T 1.70 rot 0.07 vel 0.80 sc 0.16 v0 1.00 ang 88 yaw 25 tilt0 3 flat 0.12 dark 0.05

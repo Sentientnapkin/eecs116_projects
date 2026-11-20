@@ -1,0 +1,13 @@
+ctrl|
+oc1|OX_OC=1
+oc1f|OX_OC=1 OX_FEJ_F=1
+fejhf|OX_FEJ_H=1 OX_FEJ_F=1
+fejhf3|OX_FEJ_H=1 OX_FEJ_F=1 OX_FEJ_T0=3.0
+fejf|OX_FEJ_F=1
+mid1|OX_MID=1
+blr40|OX_BLR=40.0
+blr20|OX_BLR=20.0
+tri4|TRI_MIN_EIG=1e-4
+chi20|CHI2_Z=2.0
+upd10|OX_UPD_STD=1.0
+cl8|MAX_CLONES=8

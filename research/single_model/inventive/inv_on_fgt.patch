@@ -1,0 +1,246 @@
+--- fgt_base.c	2026-11-20 07:35:54.420911000 +0000
++++ inv.c	2026-11-20 09:29:13.044439000 +0000
+@@ -40,6 +40,7 @@
+ #include <math.h>
+ #include <stdlib.h>
+ #include <string.h>
++#include <stdio.h>
+ 
+ #ifndef M_PI
+ #define M_PI 3.14159265358979323846
+@@ -237,6 +238,80 @@
+ #define FGT_GUARD 1
+ #endif
+ 
++/* =================================== inventive additions (research/single_model/inventive) ===================================
++   every block is off by default (0) so INV_* all 0 reproduces fgt.c exactly. -D flags work (all #ifndef). */
++#ifndef INV_HOLD
++#define INV_HOLD 0          /* 1: hover start, first HOLD_T s at rest: gyro mean = bg, specific force = R^T g + ba as pseudo-measurements */
++#endif
++#ifndef HOLD_T
++#define HOLD_T 1.0
++#endif
++#ifndef HOLD_T0
++#define HOLD_T0 0.4  /* s: the first ~0.4 s are still settling (truth |w| 0.12 -> 0.03 rad/s) */
++#endif
++#ifndef HOLD_GN
++#define HOLD_GN 0.12
++#endif
++#ifndef HOLD_TAU
++#define HOLD_TAU 1.0        /* noise inflation: frame measurements are independent, so 1.0 = honest; >1 conservative */
++#endif
++#ifndef INV_SHELL
++#define INV_SHELL 0         /* 1: hinge speed prior |v| <= SHELL_MAX (sd SHELL_SD) ; 2: two-sided |v| ~ SHELL_MU +- SHELL_SD after SHELL_T0 s */
++#endif
++#ifndef SHELL_MAX
++#define SHELL_MAX 2.0
++#endif
++#ifndef SHELL_MU
++#define SHELL_MU 0.9
++#endif
++#ifndef SHELL_SD
++#define SHELL_SD 0.5
++#endif
++#ifndef SHELL_T0
++#define SHELL_T0 3.0
++#endif
++#ifndef SHELL_TAU
++#define SHELL_TAU 2.0
++#endif
++#ifndef INV_AZ
++#define INV_AZ 0            /* 1: world-vertical acceleration of the frame-mean specific force ~ N(0, AZ_SD^2): tilt / ba_z link */
++#endif
++#ifndef AZ_SD
++#define AZ_SD 0.7
++#endif
++#ifndef AZ_TAU
++#define AZ_TAU 0.5
++#endif
++#ifndef INV_VZ
++#define INV_VZ 0            /* >0: world vertical velocity prior sd in the steady-state prior (replaces SPEED_STD on z) */
++#endif
++#ifndef INV_LAT
++#define INV_LAT 0           /* >0: body lateral (y) velocity ~ N(0, INV_LAT^2) after the startup prior */
++#endif
++#ifndef INV_FADE
++#define INV_FADE 0.0        /* s: startup heading prior mean decays linearly to 0 over this time after START_T */
++#endif
++#ifndef INV_HUBER
++#define INV_HUBER 0.0       /* >0: features with chi2 in (gate, HUBER*gate) are down-weighted by sqrt(gate/chi2) instead of rejected */
++#endif
++#ifndef INV_CRUISE
++#define INV_CRUISE 0.0      /* >0: moving starts, after START_T: steady-state prior mean along the camera axis (m/s) with sd (0.5,0.5,0.8) */
++#endif
++#ifndef INV_ZUPTG
++#define INV_ZUPTG 0         /* 1: vision ZUPT also asserts gyro = bias when the frame gyro is small */
++#endif
++#ifndef INV_BAZ
++#define INV_BAZ 0.0         /* >0: initial accel-bias sd override (m/s^2), else uniform-range sd */
++#endif
++#ifndef INV_BGSD
++#define INV_BGSD 0.0
++#endif
++#ifndef INV_DBG
++#define INV_DBG 0
++#endif
++static int hold_on = 1;
++static double gm_frame[3];
++
+ /* thrust model: body x/y specific force = b_a,x/y + noise (no rotor drag in the simulator) */
+ #define THRUST_MODEL_STD 0.05  /* m/s^2, unmodelled x/y force */
+ #define THRUST_GATE 9.21       /* chi^2, 2 dof, 99 % */
+@@ -591,8 +666,8 @@
+             }
+         set_block(V, V, C, 1);
+     }
+-    set_block(BG, BG, I3, GYRO_BIAS_MAX * GYRO_BIAS_MAX / 3);
+-    set_block(BA, BA, I3, ACCEL_BIAS_MAX * ACCEL_BIAS_MAX / 3);
++    set_block(BG, BG, I3, INV_BGSD > 0 ? INV_BGSD * INV_BGSD : GYRO_BIAS_MAX * GYRO_BIAS_MAX / 3);
++    set_block(BA, BA, I3, INV_BAZ > 0 ? INV_BAZ * INV_BAZ : ACCEL_BIAS_MAX * ACCEL_BIAS_MAX / 3);
+     for (int i = 0; i < 3; i++) omega[i] = imu[7 * (count - 1) + 4 + i];
+     last_t = t;
+ }
+@@ -646,18 +721,56 @@
+ 
+ /* per frame: thrust model (frame-mean body x/y specific force = b_a,x/y), then the velocity prior */
+ static void imu_measurements(const double *imu, int n) {
+-    double mean[2] = {0, 0}, r[3];
+-    for (int k = 0; k < n; k++) { mean[0] += imu[7 * k + 1] / n; mean[1] += imu[7 * k + 2] / n; }
++    double mean[2] = {0, 0}, r[3], fm[3] = {0, 0, 0};
++    for (int k = 0; k < n; k++) { mean[0] += imu[7 * k + 1] / n; mean[1] += imu[7 * k + 2] / n; fm[2] += imu[7 * k + 3] / n; gm_frame[0] += 0; }
++    fm[0] = mean[0]; fm[1] = mean[1];
++    double gmv[3] = {0, 0, 0};
++    for (int k = 0; k < n; k++) for (int i = 0; i < 3; i++) gmv[i] += imu[7 * k + 4 + i] / n;
++    for (int i = 0; i < 3; i++) gm_frame[i] = gmv[i];
+     memset(Hs, 0, sizeof Hs);
+     Hs[BA] = 1; Hs[MAXD + BA + 1] = 1;
+     r[0] = mean[0] - ba[0]; r[1] = mean[1] - ba[1];
+     update(r, Hs, 2, ACCEL_NOISE * ACCEL_NOISE / n + THRUST_MODEL_STD * THRUST_MODEL_STD, THRUST_GATE);
++    double tt = last_t - t_start;
++    if (INV_HOLD && !moving && hold_on) {
++        double gn = sqrt(gmv[0] * gmv[0] + gmv[1] * gmv[1] + gmv[2] * gmv[2]), fn = sqrt(fm[0] * fm[0] + fm[1] * fm[1] + fm[2] * fm[2]);
++        if (tt > HOLD_T || (tt >= HOLD_T0 && (gn > HOLD_GN || fabs(fn - GRAVITY) > 1.0))) { hold_on = 0; if (INV_DBG) fprintf(stderr, "HOLD off t=%.3f gn=%.3f fn=%.3f n=%d\n", tt, gn, fn, n); }
++        else if (tt < HOLD_T0) { }
++        else {
++            double rg[3];
++            memset(Hs, 0, sizeof Hs);
++            for (int i = 0; i < 3; i++) { Hs[i * MAXD + BG + i] = 1; rg[i] = gmv[i] - bg[i]; }
++            update(rg, Hs, 3, HOLD_TAU * GYRO_NOISE * GYRO_NOISE / n, INFINITY);
++            double g0[3] = {0, 0, GRAVITY}, gb[3], sk[9], ra[3];
++            m3tvec(R, g0, gb);
++            skew(gb, sk);
++            memset(Hs, 0, sizeof Hs);
++            for (int i = 0; i < 3; i++) {
++                for (int j = 0; j < 3; j++) Hs[i * MAXD + TH + j] = sk[3 * i + j];
++                Hs[i * MAXD + BA + i] = 1;
++                ra[i] = fm[i] - gb[i] - ba[i];
++            }
++            update(ra, Hs, 3, HOLD_TAU * ACCEL_NOISE * ACCEL_NOISE / n, INFINITY);
++        }
++    }
+     double scale = sqrt(SPEED_TAU / FRAME_DT);
+-    int startup = moving && PRIOR_MODE && !gate_released && last_t - t_start < START_T;
+-    if (VI_MODE && vi_ok == 1 && startup) return; /* flow-based velocity replaces the heading prior */
++    if (INV_AZ && tt > 0.2) {
++        double a[3] = {fm[0] - ba[0], fm[1] - ba[1], fm[2] - ba[2]}, Ra[3], sk[9], Rsk[9];
++        m3vec(R, a, Ra);
++        skew(a, sk); m3mul(R, sk, Rsk);
++        memset(Hs, 0, sizeof Hs);
++        double s_az = AZ_SD * sqrt(AZ_TAU / FRAME_DT);
++        for (int j = 0; j < 3; j++) { Hs[TH + j] = -Rsk[6 + j] / s_az; Hs[BA + j] = -R[6 + j] / s_az; }
++        double rz[1] = {-(Ra[2] - GRAVITY) / s_az};
++        update(rz, Hs, 1, 1.0, 9.0);
++    }
++    int startup = moving && PRIOR_MODE && !gate_released && tt < START_T + (INV_FADE > 0 ? INV_FADE : 0);
++    int in_start = tt < START_T;
++    if (VI_MODE && vi_ok == 1 && startup && in_start) return; /* flow-based velocity replaces the heading prior */
+     if (PRIOR_MODE == 3 && startup) { /* whitened camera-axis prior with nonzero mean */
+         double Rwc[9], mu[3] = {START_MEAN_X, START_MEAN_Y, START_MEAN_FWD}, sd[3] = {START_STD_X, START_STD_Y, START_STD_Z}, vc[3];
+         if (GATE_MODE == 2) { double k = GATE_SOFT_MIN + (1 - GATE_SOFT_MIN) * gate_w; for (int i = 0; i < 3; i++) { mu[i] *= gate_w; sd[i] *= k; } }
++        if (!in_start) { double w = 1.0 - (tt - START_T) / INV_FADE; if (w < 0) w = 0; for (int i = 0; i < 3; i++) mu[i] *= w; if (vi_ok == 1) return; }
+         m3mul(R, R_bc, Rwc);
+         m3tvec(Rwc, vel, vc);
+         memset(Hs, 0, sizeof Hs);
+@@ -671,10 +784,44 @@
+     double sh = SPEED_STD, sz = SPEED_STD;
+     if (startup && PRIOR_MODE == 1) sh = sz = START_STD;
+     if ((PRIOR_MODE == 2 && moving && (startup || ANISO_ALWAYS)) || (PRIOR_MODE == 3 && POST_ANISO && moving)) { sh = SPEED_STD_H; sz = SPEED_STD_Z; }
++    if (INV_VZ > 0) sz = INV_VZ;
++    if (INV_CRUISE > 0 && moving && !startup) { /* steady-state prior with a camera-axis mean */
++        double Rwc[9], mu[3] = {0, 0, INV_CRUISE}, sd[3] = {0.5, 0.5, 0.8}, vc[3];
++        m3mul(R, R_bc, Rwc); m3tvec(Rwc, vel, vc);
++        memset(Hs, 0, sizeof Hs);
++        for (int i = 0; i < 3; i++) {
++            r[i] = (mu[i] - vc[i]) / (sd[i] * scale);
++            for (int j = 0; j < 3; j++) Hs[i * MAXD + V + j] = Rwc[3 * j + i] / (sd[i] * scale);
++        }
++        update(r, Hs, 3, 1.0, PRIOR_GATE);
++    } else {
+     memset(Hs, 0, sizeof Hs);
+     double sd3[3] = {sh * scale, sh * scale, sz * scale};
+     for (int i = 0; i < 3; i++) { Hs[i * MAXD + V + i] = 1 / sd3[i]; r[i] = -vel[i] / sd3[i]; }
+     update(r, Hs, 3, 1.0, PRIOR_GATE);
++    }
++    if (INV_LAT > 0 && !startup) { /* body lateral velocity ~ N(0, s^2) */
++        double vb[3], skv[9], rl[1], sl = INV_LAT * sqrt(SPEED_TAU / FRAME_DT);
++        m3tvec(R, vel, vb);
++        skew(vb, skv);
++        memset(Hs, 0, sizeof Hs);
++        for (int j = 0; j < 3; j++) { Hs[TH + j] = skv[3 + j] / sl; Hs[V + j] = R[3 * j + 1] / sl; }
++        rl[0] = -vb[1] / sl;
++        update(rl, Hs, 1, 1.0, INFINITY);
++    }
++    if (INV_SHELL && !startup) {
++        double sp = sqrt(vel[0] * vel[0] + vel[1] * vel[1] + vel[2] * vel[2]);
++        int on = 0; double mu = 0, sdv = SHELL_SD;
++        if (INV_SHELL == 1 && sp > SHELL_MAX) { on = 1; mu = SHELL_MAX; }
++        if (INV_SHELL == 2 && tt > SHELL_T0 && sp > 0.15) { on = 1; mu = SHELL_MU; }
++        if (on) {
++            double rs[1], ss = sdv * sqrt(SHELL_TAU / FRAME_DT);
++            memset(Hs, 0, sizeof Hs);
++            for (int j = 0; j < 3; j++) Hs[V + j] = vel[j] / sp / ss;
++            rs[0] = (mu - sp) / ss;
++            update(rs, Hs, 1, 1.0, INFINITY);
++        }
++    }
+ }
+ 
+ /* =====================================================================================================================
+@@ -902,11 +1049,12 @@
+     chol_solve(Sm, k0, y);
+     double m2 = 0;
+     for (int a = 0; a < k0; a++) m2 += r0[a] * y[a];
+-    if (m2 > chi2_quantile(k0)) return 0;
++    double gq = chi2_quantile(k0), hw = 1.0;
++    if (m2 > gq) { if (INV_HUBER > 0 && m2 < INV_HUBER * gq) hw = sqrt(gq / m2); else return 0; }
+     if (*nrows + k0 > MAX_ROWS) return 0;
+     for (int a = 0; a < k0; a++) {
+-        memcpy(Hbig + (*nrows + a) * MAXD, H0 + a * MAXD, D * sizeof(double));
+-        rbig[*nrows + a] = r0[a];
++        for (int j = 0; j < D; j++) Hbig[(*nrows + a) * MAXD + j] = hw * H0[a * MAXD + j];
++        rbig[*nrows + a] = hw * r0[a];
+     }
+     *nrows += k0;
+     return 1;
+@@ -1175,6 +1323,12 @@
+         memset(Hs, 0, sizeof Hs);
+         for (int i = 0; i < 3; i++) { Hs[i * MAXD + V + i] = 1; r[i] = -vel[i]; }
+         update(r, Hs, 3, ZUPT_STD * ZUPT_STD, INFINITY);
++        if (INV_ZUPTG && sqrt(gm_frame[0] * gm_frame[0] + gm_frame[1] * gm_frame[1] + gm_frame[2] * gm_frame[2]) < 0.1) {
++            double rg[3];
++            memset(Hs, 0, sizeof Hs);
++            for (int i = 0; i < 3; i++) { Hs[i * MAXD + BG + i] = 1; rg[i] = gm_frame[i] - bg[i]; }
++            update(rg, Hs, 3, 3.0 * GYRO_NOISE * GYRO_NOISE / 10.0, INFINITY);
++        }
+     }
+ }
+ 
+@@ -1434,7 +1588,7 @@
+         }
+         initialize(imu, imu_count, t);
+         gate_pairs = 0; gate_released = 0; gate_force_zupt = 0; gate_max = 0; gate_sum = 0; gate_w = 1.0; gate_last = -1.0;
+-        vi_ok = 0; vi_done = 0; g_have = 0; g_ema = 0; tex_scale = 1.0; frame_no = 0; clone_every = CLONE_EVERY; min_obs = MIN_OBS; tri_min_eig = TRI_MIN_EIG;
++        hold_on = 1; vi_ok = 0; vi_done = 0; g_have = 0; g_ema = 0; tex_scale = 1.0; frame_no = 0; clone_every = CLONE_EVERY; min_obs = MIN_OBS; tri_min_eig = TRI_MIN_EIG;
+         nclones = 0; clone_counter = 0; frames_since_clone = 0; nlost = 0; detect_cursor = 0;
+         memset(tracks, 0, sizeof tracks);
+         cur_pyr = 0;

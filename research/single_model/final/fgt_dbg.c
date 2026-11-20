@@ -1164,7 +1164,7 @@ static void vision_zupt(void) {
     if (GATE_MODE && !gate_released && moving) { /* movement gate: uses only clone pairs up to now */
         gate_pairs++; gate_sum += median; if (median > gate_max) gate_max = median;
         if (GATE_MODE == 1) {
-            if (gate_max >= GATE_DISP) { gate_pairs = 1000000; dg_latch = frame_no; } /* movement seen: prior stays for good */
+            if (gate_max >= GATE_DISP) { gate_pairs = 1000000; if (dg_latch < 0) dg_latch = frame_no; } /* movement seen: prior stays for good */
             else if (gate_pairs >= GATE_PAIRS && gate_pairs <= GATE_PAIRS_MAX) { gate_released = 1; gate_force_zupt = 1; dg_rel = frame_no; }
         } else {
             gate_w = gate_sum / gate_pairs / GATE_SOFT_D; if (gate_w > 1) gate_w = 1;

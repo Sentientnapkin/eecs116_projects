@@ -1,0 +1,11 @@
+flights 171
+confusion start label vs detector: {('static', 'hover'): 85, ('mid', 'hover'): 86}
+hold activated on 87 flights; by start label {'static': 84, 'mid': 3}
+flights with moving=0 (hold eligible): 171 ; of which hold never activated: 84
+active frame count histogram (eligible): [(0, 84), (1, 1), (2, 1), (13, 85)]
+first active frame: [(8, 87)]  last active frame: [(8, 1), (9, 1), (20, 85)]
+switch-off reason/frame (eligible): [(('gyro>0.12', 8), 83), (('gyro>0.12', 9), 1), (('gyro>0.12', 10), 1), (('time(>1.0s)', 21), 85), (('|f|-g>1', 8), 1)]
+MID-start flights: 86 detector moving 0 hold-eligible (moving=0) 86 with any active frame 3 max consecutive active frames on any mid flight 13
+STATIC flights: 85 detector says moving 0 hold active 84 max run 13
+static flights switched off before time limit (gyro/force reason): 1
+  note fast-107734254_176000121-01 {'start': 'static', 'fold': 1, 'n_active': 0, 'runmax': 0, 'off_frame': 8, 'reason': 'gyro>0.12', 'first': -1, 'moving': 0, 'last': -1}

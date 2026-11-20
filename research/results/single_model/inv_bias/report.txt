@@ -1,0 +1,7 @@
+== inv_bias  (wasm 71233f642d51)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  1.129 (base  2.307) median  0.58 p90  2.07 >5m  5 >10m  0 | paired d=-1.177 [-1.931,-0.588] | err@2/5/30s 0.56/0.78/1.02
+search static n= 56 mean  0.621 (base  0.667) median  0.44 p90  1.04 >5m  0 >10m  0 | paired d=-0.046 [-0.205,+0.093] | err@2/5/30s 0.14/0.39/0.53
+search mid    n= 63 mean  1.581 (base  3.764) median  0.77 p90  4.09 >5m  5 >10m  0 | paired d=-2.183 [-3.521,-1.162] | err@2/5/30s 0.93/1.12/1.46
+val    all    n= 25 mean  0.586 (base  2.032) median  0.44 p90  1.22 >5m  0 >10m  0 | paired d=-1.446 [-3.137,-0.314] | err@2/5/30s 0.32/0.32/0.56
+val    static n= 12 mean  0.617 (base  0.713) median  0.46 p90  1.22 >5m  0 >10m  0 | paired d=-0.095 [-0.399,+0.144] | err@2/5/30s 0.19/0.30/0.64
+val    mid    n= 13 mean  0.558 (base  3.250) median  0.41 p90  1.03 >5m  0 >10m  0 | paired d=-2.692 [-6.394,-0.484] | err@2/5/30s 0.44/0.33/0.48

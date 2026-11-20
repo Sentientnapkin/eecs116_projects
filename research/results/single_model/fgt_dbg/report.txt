@@ -1,0 +1,7 @@
+== fgt_dbg  (wasm d1280151ee93)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean 344.528 (base  2.307) median 10.54 p90 691.67 >5m 79 >10m 61 | paired d=+342.221 [+298.727,+386.289] | err@2/5/30s 21.00/50.87/298.26
+search static n= 56 mean  4.499 (base  0.667) median  4.41 p90  6.42 >5m 16 >10m  0 | paired d=+3.832 [+3.439,+4.230] | err@2/5/30s 1.75/3.17/4.01
+search mid    n= 63 mean 646.775 (base  3.764) median 690.83 p90 691.93 >5m 63 >10m 61 | paired d=+643.011 [+601.781,+676.384] | err@2/5/30s 38.11/93.27/559.81
+val    all    n= 25 mean 334.426 (base  2.032) median 11.71 p90 691.47 >5m 16 >10m 13 | paired d=+332.394 [+211.988,+473.149] | err@2/5/30s 21.05/50.11/291.02
+val    static n= 12 mean  4.959 (base  0.713) median  4.13 p90  7.02 >5m  4 >10m  1 | paired d=+4.246 [+2.856,+6.248] | err@2/5/30s 1.75/3.24/5.34
+val    mid    n= 13 mean 638.549 (base  3.250) median 691.27 p90 692.29 >5m 12 >10m 12 | paired d=+635.300 [+499.562,+690.453] | err@2/5/30s 38.86/93.37/554.73
