@@ -19,8 +19,10 @@ def nudge(defs, k):
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument('name'); ap.add_argument('src'); ap.add_argument('defs', nargs='?', default='')
     ap.add_argument('--reps', type=int, default=1); ap.add_argument('--sets', default='sel,fresh'); ap.add_argument('--workers', type=int, default=24)
-    ap.add_argument('--first', type=int, default=0)
+    ap.add_argument('--first', type=int, default=0); ap.add_argument('--cmake', default='')
     a = ap.parse_args()
+    global CMAKE
+    if a.cmake: CMAKE = RV.ROOT / a.cmake
     (HERE / 'tables').mkdir(exist_ok=True)
     for k in range(a.first, a.first + a.reps):
         nm = f'tc_{a.name}_r{k}'

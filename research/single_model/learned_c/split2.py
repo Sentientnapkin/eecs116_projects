@@ -17,4 +17,8 @@ def load_rows():
         fo = S.fold_of(d['catalog'], d['scene'])
         role = 'sealed' if fo == 4 else 'val' if fo == 3 else 'train'
         rows.append(dict(name=n, catalog=d['catalog'], scene=d['scene'], fold=fo, selected=False, role=role, start='speed', dir=str(SPEED), pool='speed'))
+    NEW = Path(__file__).parent / 'gen' / 'new_rows.json'
+    if NEW.exists():
+        for n, r in json.load(open(NEW)).items():
+            r = dict(r); r['fold'] = S.fold_of(r['catalog'], r['scene']); r['selected'] = False; assert r['fold'] in (0, 1, 2); rows.append(r)
     return rows

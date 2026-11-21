@@ -1,0 +1,7 @@
+== bk_b13age50  (wasm e1170c02fb0b)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  0.710 (base  2.307) median  0.36 p90  1.17 >5m  3 >10m  0 | paired d=-1.597 [-2.341,-0.984] | err@2/5/30s 0.28/0.41/0.70
+search static n= 56 mean  0.405 (base  0.667) median  0.31 p90  0.50 >5m  0 >10m  0 | paired d=-0.261 [-0.437,-0.120] | err@2/5/30s 0.03/0.22/0.36
+search mid    n= 63 mean  0.980 (base  3.764) median  0.46 p90  3.43 >5m  3 >10m  0 | paired d=-2.784 [-4.095,-1.723] | err@2/5/30s 0.50/0.59/1.00
+val    all    n= 25 mean  0.413 (base  2.032) median  0.30 p90  0.90 >5m  0 >10m  0 | paired d=-1.618 [-3.412,-0.488] | err@2/5/30s 0.17/0.25/0.40
+val    static n= 12 mean  0.358 (base  0.713) median  0.32 p90  0.50 >5m  0 >10m  0 | paired d=-0.355 [-0.737,-0.134] | err@2/5/30s 0.03/0.20/0.29
+val    mid    n= 13 mean  0.465 (base  3.250) median  0.29 p90  0.95 >5m  0 >10m  0 | paired d=-2.785 [-6.693,-0.526] | err@2/5/30s 0.30/0.29/0.50

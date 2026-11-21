@@ -1,0 +1,20 @@
+{
+ "tc_pv25_r2": {
+  "proxy|fresh|0.5": 0.7559296899710692,
+  "proxy|fresh|0.75": 0.8075646220716342,
+  "proxy|sel|0.5": 0.5555449026040563,
+  "proxy|sel|0.75": 0.46124509117527795,
+  "class|fresh (Jeffreys)|0.5": 0.8087971120750999,
+  "lo5|fresh (Jeffreys)|0.5": 0.7212499819507597,
+  "class|fresh (Jeffreys)|0.75": 0.7993512579468455,
+  "lo5|fresh (Jeffreys)|0.75": 0.703358290013728,
+  "class|sel (Jeffreys)|0.5": 0.6741761496825378,
+  "lo5|sel (Jeffreys)|0.5": 0.504887210645006,
+  "class|sel (Jeffreys)|0.75": 0.646353016634821,
+  "lo5|sel (Jeffreys)|0.75": 0.4459304749670375,
+  "class|pooled all sets (Jeffreys)|0.5": 0.8112089742067602,
+  "lo5|pooled all sets (Jeffreys)|0.5": 0.7370119992361456,
+  "class|pooled all sets (Jeffreys)|0.75": 0.8018905548329802,
+  "lo5|pooled all sets (Jeffreys)|0.75": 0.7235421843882962
+ }
+}

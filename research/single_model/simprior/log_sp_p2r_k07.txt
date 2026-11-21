@@ -1,0 +1,17 @@
+171 episodes, 0 cached, workers=24 (no video)
+20/171 finished, 11.2s
+40/171 finished, 21.8s
+60/171 finished, 29.3s
+80/171 finished, 38.8s
+100/171 finished, 48.8s
+120/171 finished, 49.5s
+140/171 finished, 58.1s
+160/171 finished, 66.9s
+171/171 finished, 71.7s
+== sp_p2r_k07  (wasm bc6421bf1437)  baseline = submitted gp_msckf (pool mean 2.21)
+search all    n=119 mean  0.818 (base  2.307) median  0.42 p90  2.03 >5m  2 >10m  0 | paired d=-1.488 [-2.217,-0.900] | err@2/5/30s 0.43/0.50/0.79
+search static n= 56 mean  0.451 (base  0.667) median  0.35 p90  0.59 >5m  0 >10m  0 | paired d=-0.216 [-0.461,-0.032] | err@2/5/30s 0.03/0.23/0.40
+search mid    n= 63 mean  1.144 (base  3.764) median  0.56 p90  3.01 >5m  2 >10m  0 | paired d=-2.620 [-3.892,-1.605] | err@2/5/30s 0.79/0.74/1.15
+val    all    n= 25 mean  0.454 (base  2.032) median  0.40 p90  0.70 >5m  0 >10m  0 | paired d=-1.578 [-3.353,-0.455] | err@2/5/30s 0.23/0.23/0.40
+val    static n= 12 mean  0.406 (base  0.713) median  0.39 p90  0.51 >5m  0 >10m  0 | paired d=-0.307 [-0.616,-0.161] | err@2/5/30s 0.04/0.15/0.40
+val    mid    n= 13 mean  0.499 (base  3.250) median  0.43 p90  0.77 >5m  0 >10m  0 | paired d=-2.751 [-6.667,-0.494] | err@2/5/30s 0.41/0.31/0.41

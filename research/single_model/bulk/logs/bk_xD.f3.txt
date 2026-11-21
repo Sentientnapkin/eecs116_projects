@@ -1,0 +1,8 @@
+107 episodes, 0 cached, workers=28 (no video)
+20/107 finished, 18.2s
+40/107 finished, 24.9s
+60/107 finished, 41.9s
+80/107 finished, 48.1s
+100/107 finished, 55.9s
+107/107 finished, 62.1s
+bk_xD f3 n 107 mean 0.4920243243472346

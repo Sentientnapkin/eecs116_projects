@@ -372,8 +372,18 @@ static double tri_min_eig = TRI_MIN_EIG, t_start, chi2_z = 1.645;
 #ifndef TC_MON
 #define TC_MON 0            /* B: early-warning monitor + net re-anchor */
 #endif
+#ifndef TC_PHB
+#define TC_PHB -1
+#endif
 #ifndef TC_PH
 #define TC_PH -1
+#endif
+static int tc_rows, tc_began;
+#ifndef TC_POST
+#define TC_POST 0
+#endif
+#ifndef TC_ROWMAX
+#define TC_ROWMAX -1
 #endif
 static int tc_att, tc_used, tc_gate, tc_tri; static double tc_nis;
 static int tc_nanch;        /* number of net re-anchors started (>0 keeps the startup heading prior off) */
@@ -14287,6 +14297,7 @@ static void lc_step(const uint8_t *frame, const double *imu, int n) {
         }
     }
     if (lc_frame < LC_K) return;
+    if (tc_nanch > 0 && TC_ROWMAX >= 0 && lc_frame >= LC_K && tc_rows > TC_ROWMAX) return; /* defer the stage to a lighter frame */
     if (tc_nanch > 0 && TC_PH >= 0 && (frame_no & 3) != TC_PH) return; /* re-anchor stages only on the cheap phase of the clone cycle */
     const signed char *at = lc_at_tab[LC_SPREAD];
     while (lc_next < 6 && lc_frame >= LC_K + at[lc_next]) {
@@ -14326,6 +14337,19 @@ static void lc_step(const uint8_t *frame, const double *imu, int n) {
 #endif
 #define TC_HIST 61
 static double tc_hist[TC_HIST][3]; static int tc_hn;
+#ifndef TC_PULL
+#define TC_PULL 0
+#endif
+#ifndef TC_PULL_SD
+#define TC_PULL_SD 2.0
+#endif
+#ifndef TC_LIVE_THR
+#define TC_LIVE_THR 25
+#endif
+#ifndef TC_LIVE_N
+#define TC_LIVE_N 40
+#endif
+static int tc_live_run;
 static void tc_prior(void) {
     double tt = last_t - t_start;
     memcpy(tc_hist[tc_hn % TC_HIST], pos, sizeof pos); tc_hn++;
@@ -14344,6 +14368,14 @@ static void tc_prior(void) {
             memset(Hs, 0, sizeof Hs); Hs[P + 2] = 1.0 / s;
             update(rr, Hs, 1, 1.0, INFINITY);
         }
+    }
+#endif
+#if TC_PULL
+    if (tc_live_run >= TC_LIVE_N && moving) { /* starved: stay-near-start is the best estimate; pull position toward the origin */
+        double s = TC_PULL_SD * sqrt(SPEED_TAU / FRAME_DT), rr[3];
+        memset(Hs, 0, sizeof Hs);
+        for (int j = 0; j < 3; j++) { rr[j] = -pos[j] / s; Hs[j * MAXD + P + j] = 1.0 / s; }
+        update(rr, Hs, 3, 1.0, INFINITY);
     }
 #endif
 #if TC_SPD
@@ -14381,12 +14413,6 @@ static void tc_prior(void) {
 #ifndef TC_SPMIN
 #define TC_SPMIN 1.2        /* ... and est speed above this (m/s) */
 #endif
-#ifndef TC_LIVE_THR
-#define TC_LIVE_THR 25      /* starvation: live tracks below this for TC_LIVE_N frames */
-#endif
-#ifndef TC_LIVE_N
-#define TC_LIVE_N 40
-#endif
 #ifndef TC_PERIOD
 #define TC_PERIOD 100       /* frames between re-anchors while starved (0: never) */
 #endif
@@ -14411,8 +14437,26 @@ static void tc_prior(void) {
 #ifndef TC_MAXANCH
 #define TC_MAXANCH 12
 #endif
-static int tc_uring[64], tc_unow, tc_live_run, tc_fire, tc_last_fire = -100000, tc_frame;
+#ifndef TC_LIVE_TRIG
+#define TC_LIVE_TRIG 0      /* second trigger: live tracks below this for TC_LTN frames after TC_T0 */
+#endif
+#ifndef TC_LTN
+#define TC_LTN 20
+#endif
+#ifndef TC_PVW_THR
+#define TC_PVW_THR 0.0      /* second trigger: 20-frame mean of sqrt(trace Pv) above this during TC_T0..TC_PVW_T1 */
+#endif
+#ifndef TC_PVW_T1
+#define TC_PVW_T1 3.0
+#endif
+static double tc_pvring[32]; static int tc_live_lo;
+static int tc_uring[64], tc_unow, tc_fire, tc_last_fire = -100000, tc_frame;
 static double tc_score;
+static void tc_reset(void) { /* re-init: all tailcap state back to power-on values */
+    tc_att = tc_used = tc_gate = tc_tri = 0; tc_nis = 0; tc_nanch = 0; tc_lcscale = 1.0f; tc_lcfloor = -1.0f;
+    memset(tc_hist, 0, sizeof tc_hist); tc_hn = 0; memset(tc_uring, 0, sizeof tc_uring); memset(tc_pvring, 0, sizeof tc_pvring);
+    tc_live_lo = 0; tc_live_run = 0; tc_fire = 0; tc_last_fire = -100000; tc_frame = 0; tc_score = 0;
+}
 static void tc_monitor(int live) {
     tc_frame++;
     tc_uring[tc_frame & 63] = tc_used;
@@ -14422,6 +14466,9 @@ static void tc_monitor(int live) {
     double psp = sqrt(lc_out[6] * lc_out[6] + lc_out[7] * lc_out[7] + lc_out[8] * lc_out[8]);
     int ready = lc_applied && lc_next >= 6 && moving;       /* net has landed: predicted speed is meaningful */
     int fire = 0;
+    double pvnow = sqrt(Pm[V * MAXD + V] + Pm[(V + 1) * MAXD + V + 1] + Pm[(V + 2) * MAXD + V + 2]);
+    tc_pvring[tc_frame & 31] = pvnow;
+    tc_live_lo = live < TC_LIVE_TRIG ? tc_live_lo + 1 : 0;
 #if TC_MON
     if (tc_nanch < TC_MAXANCH && tc_frame - tc_last_fire > 30 && lc_applied && lc_next >= 6) {
         if (TC_STARTUP_MON && moving && tt >= TC_T0 && tt <= TC_T1 && ready) {
@@ -14429,9 +14476,14 @@ static void tc_monitor(int live) {
             if (lock && runaway) fire = 1;
         }
         if (TC_PV_THR > 0 && moving && tt >= TC_T0 && tc_frame - tc_last_fire >= TC_PV_PERIOD && sqrt(Pm[V * MAXD + V] + Pm[(V + 1) * MAXD + V + 1] + Pm[(V + 2) * MAXD + V + 2]) > TC_PV_THR) fire = 3;
+        if (TC_LIVE_TRIG > 0 && moving && tt >= TC_T0 && tc_frame - tc_last_fire >= TC_PV_PERIOD && tc_live_lo >= TC_LTN) fire = 4;
+        if (TC_PVW_THR > 0 && moving && tt >= TC_T0 && tt <= TC_PVW_T1 && tc_frame - tc_last_fire >= TC_PV_PERIOD) {
+            double m = 0; for (int k = 0; k < 20; k++) m += tc_pvring[(tc_frame - k) & 31]; if (m / 20 > TC_PVW_THR) fire = 5;
+        }
         if (TC_PERIOD > 0 && moving && tc_live_run >= TC_LIVE_N && tc_frame - tc_last_fire >= TC_PERIOD && tt > TC_T1) fire = 2;
     }
 #endif
+    if (fire && TC_PHB >= 0 && (frame_no & 3) != TC_PHB) fire = 0;
     tc_fire = fire;
     if (fire) tc_last_fire = tc_frame;
 #if TC_LOG
@@ -14879,6 +14931,7 @@ static int feature_rows(const Obs *o_in, int *nrows) {
 static void msckf_update(Obs *batch, int nbatch) {
     int nrows = 0;
     for (int b = 0; b < nbatch; b++) feature_rows(&batch[b], &nrows);
+    tc_rows += nrows;
     if (!nrows) return;
     int nclone_cols = D - CORE;
     if (nrows > nclone_cols) {
@@ -15437,6 +15490,7 @@ int32_t step(double t, const uint8_t *frame, const double *imu, int32_t imu_coun
             return VIOBENCH_STATUS_OK;
         }
         initialize(imu, imu_count, t);
+        tc_reset();
         hold_on = 1; gate_pairs = 0; gate_released = 0; gate_force_zupt = 0; gate_max = 0; gate_sum = 0; gate_w = 1.0; gate_last = -1.0;
         frame_no = 0; clone_every = CLONE_EVERY; min_obs = MIN_OBS; tri_min_eig = TRI_MIN_EIG;
         nclones = 0; clone_counter = 0; frames_since_clone = 0; nlost = 0; detect_cursor = 0;
@@ -15454,18 +15508,21 @@ int32_t step(double t, const uint8_t *frame, const double *imu, int32_t imu_coun
     }
     for (int r = 0; r < imu_count; r++) propagate(imu + 7 * r);
     if (imu_count) imu_measurements(imu, imu_count);
-#if TC_RAD || TC_SPD
+#if TC_RAD || TC_SPD || TC_PULL
     tc_prior();
 #endif
     if (tc_fire && imu_count) {
         tc_fire = 0; tc_nanch++;
         tc_lcscale = (float)TC_RE_SCALE; tc_lcfloor = (float)TC_RE_FLOOR;
         for (int i = 0; i < 3; i++) Pm[(V + i) * MAXD + V + i] += TC_INFL_V * TC_INFL_V;
-        lc_begin(frame, imu, imu_count);
-    } else
+        lc_begin(frame, imu, imu_count); tc_began = 1;
+    } else if (!(TC_POST && tc_nanch > 0))
     lc_step(frame, imu, imu_count);
+    tc_rows = 0;
     vision(frame);
-#if TC_LOG || TC_MON
+    if (TC_POST && tc_nanch > 0 && !tc_began) lc_step(frame, imu, imu_count);
+    tc_began = 0;
+#if TC_LOG || TC_MON || TC_PULL
     { int live = 0; for (int i = 0; i < MAX_TRACKS; i++) live += tracks[i].alive; tc_monitor(live); }
 #endif
     write_state(out);

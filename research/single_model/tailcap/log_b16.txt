@@ -1,0 +1,33 @@
+144 episodes, 0 cached, workers=24 (no video)
+20/144 finished, 12.6s
+40/144 finished, 21.6s
+60/144 finished, 30.5s
+80/144 finished, 38.3s
+100/144 finished, 47.8s
+120/144 finished, 56.4s
+140/144 finished, 63.9s
+144/144 finished, 69.6s
+711 episodes, 0 cached, workers=24 (no video)
+20/711 finished, 13.2s
+40/711 finished, 24.7s
+60/711 finished, 33.9s
+80/711 finished, 40.3s
+100/711 finished, 47.4s
+120/711 finished, 55.4s
+140/711 finished, 65.0s
+160/711 finished, 70.5s
+180/711 finished, 75.7s
+200/711 finished, 83.5s
+220/711 finished, 95.2s
+240/711 finished, 102.0s
+260/711 finished, 107.8s
+280/711 finished, 114.1s
+300/711 finished, 123.0s
+320/711 finished, 126.1s
+340/711 finished, 135.5s
+360/711 finished, 145.4s
+380/711 finished, 156.1s
+400/711 finished, 162.2s
+420/711 finished, 169.3s
+440/711 finished, 175.4s
+460/711 finished, 184.7s

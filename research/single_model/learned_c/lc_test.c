@@ -28,6 +28,9 @@ int main(int argc, char **argv) {
         lc_begin(frames[0], imu[0], nimu[0]);
         for (int k = 1; k <= 5; k++) lc_step(frames[k], imu[k], nimu[k]);
         for (int k = 6; k <= 9; k++) lc_step(frames[5], imu[5], 0); /* later stages of the staged forward pass */
+#ifdef LC_NN
+        if (LC_NN > 1) { double mq[3], vq[3]; lc_combine(mq, vq); for (int i = 0; i < 3; i++) { lc_out[0][6 + i] = (float)mq[i]; lc_out[0][9 + i] = (float)log(vq[i]); } }
+#endif
         fwrite(lc_in, 4, LC_PH * LC_PW * 5, o); fwrite(lc_vec, 4, 19, o); fwrite(LC_OUT0, 4, 12, o);
         fwrite(lc_g0, 1, LC_H * LC_W, o); fwrite(lc_g5, 1, LC_H * LC_W, o);
     }

@@ -291,6 +291,9 @@ static double gm_frame[3];
 #ifndef ITER_BACK
 #define ITER_BACK 0.0       /* >0: fall back to the plain update when the mean squared stacked residual after relinearization exceeds ITER_BACK times the first one */
 #endif
+#ifndef ITER_MAXF
+#define ITER_MAXF 0         /* >0: batches with more than this many features are updated without iteration */
+#endif
 #ifndef ITER_TH
 #define ITER_TH 0.0         /* >0: with ITER_UPD>1 iterate only when the first Gauss-Newton step has norm >= ITER_TH */
 #endif
@@ -339,6 +342,12 @@ static double gm_frame[3];
 #endif
 #ifndef MAP_NEAR
 #define MAP_NEAR 0          /* 1: when a live track lies within 10 px of the prediction, match only around that track (it identifies the feature; S=3) instead of skipping the point */
+#endif
+#ifndef MAP_KEEP_F
+#define MAP_KEEP_F 0        /* >0: points created before this frame are kept in MAP_KEEP_N reserved slots (the early map has the smallest drift) */
+#endif
+#ifndef MAP_KEEP_N
+#define MAP_KEEP_N 0
 #endif
 #ifndef MAP_DBG
 #define MAP_DBG 0
@@ -987,7 +996,7 @@ static int triangulate(const Obs *o, const int *ci, double *pf) {
 #endif
 typedef struct { int valid, born, used; double pw[3], c0[3], offx, offy, sig; uint8_t t[MAP_PS * MAP_PS]; } MapPt;
 static MapPt mp[MAP_N];
-static int mp_next, mp_cursor, mp_adds, map_img;
+static int mp_keep, mp_next, mp_cursor, mp_adds, map_img;
 static long mp_tries, mp_match, mp_acc;
 static void map_add(const double *pf, double px, double py) {
     if (mp_adds >= 2) return;
@@ -1003,7 +1012,13 @@ static void map_add(const double *pf, double px, double py) {
         }
     int cx1 = (int)floor(px * 0.5 + 0.5), cy1 = (int)floor(py * 0.5 + 0.5), w = IMG_W >> 1, h = IMG_H >> 1, r = MAP_PS / 2;
     if (cx1 < r + 1 || cy1 < r + 1 || cx1 >= w - r - 1 || cy1 >= h - r - 1) return;
-    MapPt *m = &mp[mp_next]; mp_next = (mp_next + 1) % MAP_N;
+    MapPt *m;
+    if (MAP_KEEP_F > 0 && frame_no < MAP_KEEP_F) { /* early points (small drift) go to reserved slots that are never overwritten */
+        if (mp_keep >= MAP_KEEP_N) return;
+        m = &mp[mp_keep++];
+    } else {
+        m = &mp[MAP_KEEP_N + mp_next]; mp_next = (mp_next + 1) % (MAP_N - MAP_KEEP_N);
+    }
     m->valid = 1; m->born = frame_no; m->used = -1000000;
     for (int i = 0; i < 3; i++) { m->pw[i] = pf[i]; m->c0[i] = pwc[i]; }
     m->offx = px * 0.5 - cx1; m->offy = py * 0.5 - cy1; m->sig = MAP_SIG0 + MAP_SIGD * Pc[2];
@@ -1310,6 +1325,11 @@ static int solve_dx(const double *r, const double *H, int k, double noise, doubl
 /* iterated (Gauss-Newton, re-linearized) stacked update: x_i = x0 (+) dx_i, r_eff = r_i + H_i dx_i, dx_{i+1} = K_i r_eff, K from the prior P */
 static void msckf_update(Obs *batch, int nbatch) {
     double noise = (PIXEL_STD / fx) * (PIXEL_STD / fx), dx[MAXD], dxn[MAXD], reff[MAX_ROWS > MAXD ? MAXD : MAX_ROWS];
+    if (ITER_MAXF > 0 && nbatch > ITER_MAXF) { /* big start-up bursts: one linearization (fuel) */
+        int k1 = build_rows(batch, nbatch);
+        if (k1) update(rbig, Hbig, k1, noise, INFINITY);
+        return;
+    }
     memset(dx, 0, sizeof dx);
     save_state();
     static double H0s[MAXD * MAXD], r0s[MAXD];
@@ -1788,7 +1808,7 @@ int32_t step(double t, const uint8_t *frame, const double *imu, int32_t imu_coun
         memset(tracks, 0, sizeof tracks);
         max_clones = MAX_CLONES;
 #if MAP_MODE
-        memset(mp, 0, sizeof mp); mp_next = 0; mp_cursor = 0; mp_adds = 0; mp_tries = mp_match = mp_acc = 0;
+        memset(mp, 0, sizeof mp); mp_keep = 0; mp_next = 0; mp_cursor = 0; mp_adds = 0; mp_tries = mp_match = mp_acc = 0;
 #endif
         cur_pyr = 0;
         build_pyramid(frame, cur_pyr);

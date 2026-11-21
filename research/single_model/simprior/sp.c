@@ -278,6 +278,69 @@ static double gate_max, gate_sum, gate_w = 1.0, gate_last = -1.0;
 #define INV_GYV_SDX 0.35
 #endif
 static double gyv_mx;
+/* ===== simprior (research/single_model/simprior): simulator-derived dynamics priors, all off by default ===== */
+#ifndef SP_P1
+#define SP_P1 0          /* 1: gyro-conditioned start-velocity prior (cam axes mean from [1,wz,sat,wx,wy], regime sigma) */
+#endif
+#ifndef SP_P1_SLOPE
+#define SP_P1_SLOPE 1.0  /* scales the gyro-dependent part of the mean (sensitivity test) */
+#endif
+#ifndef SP_P1_SDMIN
+#define SP_P1_SDMIN 0.12 /* floor on all sigmas (m/s) */
+#endif
+#ifndef SP_P1_SDK
+#define SP_P1_SDK 1.0    /* sigma inflation */
+#endif
+#ifndef SP_P1_FWD
+#define SP_P1_FWD 1      /* 0: keep default forward (z) mean/sigma, only condition x,y */
+#endif
+#ifndef SP_P2
+#define SP_P2 0          /* 1: coordinated-turn lateral velocity measurement replaces INV_LAT; 2: in addition to INV_LAT */
+#endif
+#ifndef SP_P2_K
+#define SP_P2_K 0.99
+#endif
+#ifndef SP_P2_S0
+#define SP_P2_S0 0.06    /* sigma |wz|<0.15 */
+#endif
+#ifndef SP_P2_S1
+#define SP_P2_S1 0.18
+#endif
+#ifndef SP_P2_S2
+#define SP_P2_S2 0.22
+#endif
+#ifndef SP_P3
+#define SP_P3 0          /* 1: anisotropic start tilt (moving starts): x-rot SP_TX, y-rot SP_TY */
+#endif
+#ifndef SP_TX
+#define SP_TX 0.074
+#endif
+#ifndef SP_TY
+#define SP_TY 0.110
+#endif
+#ifndef SP_P4
+#define SP_P4 0          /* 1: hold robust (needs 2 consecutive violations; use -DHOLD_T=2.5); 2: + velocity ZUPT during hold */
+#endif
+#ifndef SP_P4V
+#define SP_P4V 0.1
+#endif
+static double sp_mu[3] = {0, 0, 0.9}, sp_sd[3] = {0.5, 0.35, 0.6};
+static int sp_viol;
+static const double SP_B[15] = {0.0235,-0.6329,-0.0535,-0.8438,0.0856,-0.0004,-0.0307,-0.0016,0.2634,-0.0506,0.9180,0.0090,-0.6493,0.0554,-0.7663};
+static const double SP_S[9] = {0.0461,0.3368,0.4115,0.1295,0.3806,0.4530,0.3995,0.2949,0.5359};
+static void sp_start(const double *gm) { /* gm: mean gyro of the first window (body axes) */
+    double wz = gm[2], sat = fabs(wz) / 0.65, x[5];
+    if (sat > 1) sat = 1;
+    x[0] = 1; x[1] = wz; x[2] = sat; x[3] = gm[0]; x[4] = gm[1];
+    int g = fabs(wz) < 0.15 ? 0 : fabs(wz) < 0.45 ? 1 : 2;
+    for (int k = 0; k < 3; k++) {
+        double m = SP_B[5 * k];
+        for (int i = 1; i < 5; i++) m += SP_P1_SLOPE * SP_B[5 * k + i] * x[i];
+        double sd = SP_S[3 * g + k] * SP_P1_SDK; if (sd < SP_P1_SDMIN) sd = SP_P1_SDMIN;
+        if (k == 2 && !SP_P1_FWD) continue;
+        sp_mu[k] = m; sp_sd[k] = sd;
+    }
+}
 static int hold_on = 1;
 static double gm_frame[3];
 
@@ -768,10 +831,13 @@ static void initialize(const double *imu, int count, double t) {
     double ts = moving ? MOVE_TILT_STD : INIT_TILT_STD, vs = moving ? MOVE_VEL_STD : INIT_VELOCITY_STD;
     t_start = t;
     double tilt[9] = {ts * ts, 0, 0, 0, ts * ts, 0, 0, 0, 0}; /* yaw: gauge */
+    if (SP_P3 && moving) { tilt[0] = SP_TX * SP_TX; tilt[4] = SP_TY * SP_TY; }
+    sp_mu[0] = START_MEAN_X; sp_mu[1] = START_MEAN_Y; sp_mu[2] = START_MEAN_FWD; sp_sd[0] = START_STD_X; sp_sd[1] = START_STD_Y; sp_sd[2] = START_STD_Z; sp_viol = 0;
+    if (SP_P1 && moving) sp_start(gm);
     set_block(TH, TH, tilt, 1); set_block(TH, TH0, tilt, 1); set_block(TH0, TH, tilt, 1); set_block(TH0, TH0, tilt, 1);
     set_block(V, V, I3, vs * vs);
     if (moving && PRIOR_MODE == 3) { /* heading-aware: mean along the camera axis, covariance in camera axes */
-        double Rwc[9], mu[3] = {START_MEAN_X, START_MEAN_Y, START_MEAN_FWD}, sd[3] = {START_STD_X, START_STD_Y, START_STD_Z}, C[9];
+        double Rwc[9], mu[3] = {sp_mu[0], sp_mu[1], sp_mu[2]}, sd[3] = {sp_sd[0], sp_sd[1], sp_sd[2]}, C[9];
         if (INV_GYV > 0) { /* gyro of the first window in camera axes */
             double wc[3], gb2[3] = {0, 0, 0};
             for (int rr2 = 0; rr2 < count; rr2++) for (int i = 0; i < 3; i++) gb2[i] += imu[7 * rr2 + 4 + i] / count;
@@ -858,7 +924,8 @@ static void imu_measurements(const double *imu, int n) {
     double tt = last_t - t_start;
     if (INV_HOLD && !moving && hold_on) {
         double gn = sqrt(gmv[0] * gmv[0] + gmv[1] * gmv[1] + gmv[2] * gmv[2]), fn = sqrt(fm[0] * fm[0] + fm[1] * fm[1] + fm[2] * fm[2]);
-        if (tt > HOLD_T || (tt >= HOLD_T0 && (gn > HOLD_GN || fabs(fn - GRAVITY) > 1.0))) { hold_on = 0; if (INV_DBG) fprintf(stderr, "HOLD off t=%.3f gn=%.3f fn=%.3f n=%d\n", tt, gn, fn, n); }
+        int vio = (tt >= HOLD_T0 && (gn > HOLD_GN || fabs(fn - GRAVITY) > 1.0)); if (SP_P4) { sp_viol = vio ? sp_viol + 1 : 0; vio = sp_viol >= 2; }
+        if (tt > HOLD_T || vio) { hold_on = 0; if (INV_DBG) fprintf(stderr, "HOLD off t=%.3f gn=%.3f fn=%.3f n=%d\n", tt, gn, fn, n); }
         else if (tt < HOLD_T0) { }
         else {
             double rg[3];
@@ -875,6 +942,12 @@ static void imu_measurements(const double *imu, int n) {
                 ra[i] = fm[i] - gb[i] - ba[i];
             }
             update(ra, Hs, 3, HOLD_TAU * ACCEL_NOISE * ACCEL_NOISE / n, INFINITY);
+            if (SP_P4 >= 2) {
+                double rv[3], sv = SP_P4V * sqrt(SPEED_TAU / FRAME_DT);
+                memset(Hs, 0, sizeof Hs);
+                for (int i = 0; i < 3; i++) { Hs[i * MAXD + V + i] = 1 / sv; rv[i] = -vel[i] / sv; }
+                update(rv, Hs, 3, 1.0, INFINITY);
+            }
         }
     }
     double scale = sqrt(SPEED_TAU / FRAME_DT);
@@ -891,7 +964,7 @@ static void imu_measurements(const double *imu, int n) {
     int startup = moving && PRIOR_MODE && !gate_released && tt < START_T + (INV_FADE > 0 ? INV_FADE : 0);
     int in_start = tt < START_T;
     if (PRIOR_MODE == 3 && startup) { /* whitened camera-axis prior with nonzero mean */
-        double Rwc[9], mu[3] = {START_MEAN_X, START_MEAN_Y, START_MEAN_FWD}, sd[3] = {START_STD_X, START_STD_Y, START_STD_Z}, vc[3];
+        double Rwc[9], mu[3] = {sp_mu[0], sp_mu[1], sp_mu[2]}, sd[3] = {sp_sd[0], sp_sd[1], sp_sd[2]}, vc[3];
         if (INV_GYV > 0) { mu[0] += gyv_mx; sd[0] = INV_GYV_SDX; }
         if (GATE_MODE == 2) { double k = GATE_SOFT_MIN + (1 - GATE_SOFT_MIN) * gate_w; for (int i = 0; i < 3; i++) { mu[i] *= gate_w; sd[i] *= k; } }
         if (!in_start) { double w = 1.0 - (tt - START_T) / INV_FADE; if (w < 0) w = 0; for (int i = 0; i < 3; i++) mu[i] *= w; }
@@ -924,13 +997,23 @@ static void imu_measurements(const double *imu, int n) {
     for (int i = 0; i < 3; i++) { Hs[i * MAXD + V + i] = 1 / sd3[i]; r[i] = -vel[i] / sd3[i]; }
     update(r, Hs, 3, 1.0, PRIOR_GATE);
     }
-    if (INV_LAT > 0 && !startup) { /* body lateral velocity ~ N(0, s^2) */
+    if (INV_LAT > 0 && SP_P2 != 1 && !startup) { /* body lateral velocity ~ N(0, s^2) */
         double vb[3], skv[9], rl[1], sl = INV_LAT * sqrt(SPEED_TAU / FRAME_DT);
         m3tvec(R, vel, vb);
         skew(vb, skv);
         memset(Hs, 0, sizeof Hs);
         for (int j = 0; j < 3; j++) { Hs[TH + j] = skv[3 + j] / sl; Hs[V + j] = R[3 * j + 1] / sl; }
         rl[0] = -vb[1] / sl;
+        update(rl, Hs, 1, 1.0, INFINITY);
+    }
+    if (SP_P2 && !startup) { /* coordinated turn: body-left velocity = K * wz * |v_h| */
+        double wz = gmv[2] - bg[2], vh = sqrt(vel[0] * vel[0] + vel[1] * vel[1]), aw = fabs(wz);
+        double sg = (aw < 0.15 ? SP_P2_S0 : aw < 0.45 ? SP_P2_S1 : SP_P2_S2) * sqrt(SPEED_TAU / FRAME_DT);
+        double vb[3], skv[9], rl[1];
+        m3tvec(R, vel, vb); skew(vb, skv);
+        memset(Hs, 0, sizeof Hs);
+        for (int j = 0; j < 3; j++) { Hs[TH + j] = skv[3 + j] / sg; Hs[V + j] = R[3 * j + 1] / sg; }
+        rl[0] = (SP_P2_K * wz * vh - vb[1]) / sg;
         update(rl, Hs, 1, 1.0, INFINITY);
     }
     if (INV_SHELL && !startup) {

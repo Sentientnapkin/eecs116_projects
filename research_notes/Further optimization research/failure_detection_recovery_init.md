@@ -74,3 +74,16 @@ Ranking = (expected reduction of the >3 m mass on B7/B11) x (probability the evi
 7. Information-eigenvalue degeneracy monitor with hysteresis (2611.07687 [V]); diagnostic only for starved coasting; response = ramp-down of velocity update strength or switch to coasting prior. Low evidence.
 8. Learned adaptive IMU noise/bias dynamics for coasting (LBDU-VIO [V], AirIMU [V]): -25% under outage on EuRoC; heavy to port (neural ODE). Expected effect on starved-coasting tails (9/21 fresh >3 m) maybe -15%; the cheapest analogue is scheduling GP bias process noise with flight state (no net). Overlaps with other agents (learned components).
 9. Not recommended here: Faessler active recovery, ORB-SLAM3 Atlas/relocalization, laser-range init, depth-net init (no hardware/size budget), hard plausibility clamps (negative evidence), FEJ/OC (negative evidence).
+
+## 5. Cheap tests on B7 exact (litfail/lit.c = fuel/adopted_c1_fbh_exact.c + switches, all 0 = B7; control lit_ctrl_r0 reproduces search 0.950 / val 0.442)
+Ref for fresh = fresh/table_fe2_fbh.json (B6 = B7 bit-identical, 0.618; >3/5/10 = 21/8/0). Selected-set 3-rep ref fe2_fbh: 0.931 / val 0.441. Learned net (B11) not duplicated; tests on B7 only.
+| arm | switch | search r0 (>5 m) | val | fresh 711 mean (d vs B7) | fresh >3/>5/>10 | dev d / confirm d | verdict |
+|---|---|---|---|---|---|---|---|
+| retest | LIT_RETEST=1 (two-step gate: re-triangulate and re-gate rejected features after first update) | 0.973 (4) | 0.423 | 0.627 (+0.009 [-0.014,+0.035]) | 22/10/0 | +0.016 / -0.005 | reject, no tail effect |
+| hub | LIT_HUB=1.0 (in-gate Huber weight) | 1.006 (5) | 0.417 | 0.637 (+0.018 [-0.026,+0.066]) | 21/10/1 | -0.009 / +0.072 | reject |
+| adapt | LIT_ADAPT=1 (covariance matching, s in [1,4], rate 0.005) | 0.964 (4); 3-rep 0.922 vs 0.931 (d -0.009 [-0.064,+0.041]), >3 per rep 12/10/10 vs 12/10/11 | 0.433 (3-rep) | 0.597 (-0.021 [-0.053,+0.004]) | 19/5/0 | -0.029 / -0.005 | tie (noise-level); tails flat on selected |
+| adapt2 | LIT_ADAPT=1 LIT_AD_MAX=16 LIT_AD_RATE=0.02 | 0.933 (4) | 0.432 | 0.601 (-0.017 [-0.062,+0.026]) | 17/7/1 | -0.018 / -0.016 | tie; best of the three (21->17 >3 m, one new >10 m), CI spans 0; not adopted, would need 3 replicates on fresh plus the 0.03 bar |
+Conclusion: none of the three in-filter robustness variants moves the tail beyond chaos (fresh noise 0.02-0.04). Consistent with b6fix (A3, A5), inventive (Huber) and health: startup divergence is overconfident-wrong, not an update-weighting problem. Covariance matching is the only mildly positive one (both settings -0.02, same sign on dev and confirm) and is cheap (no extra rows); if anything is carried forward, test adapt2 on B11 with 3 replicates. Files: research/single_model/litfail/{lit.c,run.sh,runr.sh,fresh.sh,log_*}; results research/results/single_model/lit_*; tables fresh/table_lit_{retest,adapt,hub,adapt2}.json.
+
+## 6. Coordinator update (session restart)
+The flat/dark dead-track class has a ~3 m floor (stay-at-origin optimal), so effort belongs on startup/init. That favours items 1 and 6 of section 3 (closed-form startup cross-check, excitation-based scale trust) as the remaining untested, falsifiable-offline ideas; the in-filter robust-update family (items 2-4) is exhausted at the noise level.
