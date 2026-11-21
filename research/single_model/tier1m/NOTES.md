@@ -52,3 +52,78 @@ Score arithmetic (vs B16 server 17.0 M, local fresh 0.354): break-even local fre
 - GOV (op-budget governor, t1.c GOV=1): per-frame budget GOV_B; vision (GOV_VIS=1 every frame, 2 = 10 Hz; VSPLIT=1 splits the 10 Hz
   vision A=pyramid+even tracks+clone / B=odd tracks+record+zupt+detect), then MSCKF features within the budget (feature splitting),
   detection cells, map try, net units. Calibrated constants GC_* (instructions): pyramid 211k, KLT call 5.2k, row ~80k, cell 20k.
+- (rate-limit pause 06:41-09:24; resumed from disk)
+| kP2C | ki + DET_PERIOD=2 DET_COOL=8 | (see tables) | | | | |
+| kB12 | ki + DET_COOL=8 DET_BUDGET=12 | 0.358 | | | | ok: 12 cells/frame budget is fine (3 was not) |
+- NS_PREPV (f32x4 projective derotation, exact to 3 decimals on mu after fixing a u8 load bug): prep 3.07 -> 2.01 M total.
+- NS_CONVQ (12-bit i16 dot-product conv): outputs match (1e-3) but MORE fuel (first-use weight quantization 0.75 M, steps 150-200k): off.
+- VKC (velocity-at-K clone, CORE 24 incl. 3 zero padding states so D stays a multiple of 6) + NS_HOLD (no MSCKF until the net lands):
+  sub48 median recovers (0.271 vs instant-net 0.287) but tails remain (>1 m: 5 vs 1).
+- GOV tiers, full fresh-711 (1 rep; common: KLT_INT GOV NET_SLICE NS_GRAYI NS_PREPV NS_HOLD VKC PRIOR_MERGE F_MIRV F_CLONEV GRAY_G COVPROP
+  MAP_ZI MAP_SCAN=24 DET_STRIDE=4 DET_COOL=8 GATE2 ITER_TH=0.1; GC_ROW=105k GC_UNIT=160k):
+| T4 | GOV_B=3.6e6 | 0.392 | +0.039 [+0.017,+0.063] | +0.034 / +0.047 | 4/0/0 | peak 3.98 M |
+| T2 | GOV_B=1.8e6 | 0.666 | +0.313 | +0.361 / +0.215 | 16/4/0 | peak 2.07 M; BAD |
+- T2 diagnosis (sub48): free net units 0.64/0.43, free detection 0.87/0.53, free MSCKF rows 0.49/0.32 (peak 19.9 M) -> the MSCKF row
+  budget is the problem: demand 10.8 rows/frame (p90 27, p99 54) at ~105k instructions/row = 1.13 M/frame MEAN; supply at B=1.8 M 7.7.
+  GOV_PRUNE (drop observations of marginalized clones from queued features before budgeting) added.
+| T3 | GOV_B=2.7e6 PRUNE | 0.410 | +0.057 [+0.028,+0.086] | +0.039 / +0.093 | 4/1/0 | peak 2.96 M |
+| T2b | GOV_B=2.0e6 PRUNE ITER_UPD=1 GC_ROW=65k | 0.492 | +0.139 | +0.126 / +0.165 | 11/2/0 | peak 2.41 M |
+- Area vs B16 server point (0.28*log2(17/peak) - 2.24*ln(fresh/0.354)): ki +0.25 (13.5 M, 0.330), T4 +0.36, T3 +0.38, T2b +0.05.
+- Queued: T2c (T2b + 40 tracks), T4u (T4 + PRUNE + GOV_UMAX=40: net lands faster), T6 (B=5.6e6 UMAX 60 ROWCAP 36: net lands frame 7,
+  profile peak 5.71 M), T1v (B=0.9e6, 10 Hz VSPLIT, KLT_VEL, PRIOR_EVERY=2, ITER 1), T1n (T1v without the net, profile peak 1.08 M).
+- preflight.sh <wasm> <outdir>: sha, imports, ABI check, poison/prefix/repeat on 18 fixtures x 33 prefixes (0-16, 20, 24, 29-31,
+  40, 41, 60, 99-105, 120, 600, 1199), reset check on 8 fixtures.
+| T2c | T2b + GRID 8x5 (40 tracks) | 0.501 | +0.147 | | 12/2/0 | peak 2.51 M |
+| T4u | T4 + PRUNE + GOV_UMAX=40 (net lands ~frame 8) | 0.389 | +0.036 [+0.007,+0.063] | +0.024 / +0.059 | 3/0/0 | peak 4.00 M |
+| T6 | B=5.6e6 PRUNE UMAX 60 ROWCAP 36 (net lands frame 7) | 0.387 | +0.033 [+0.010,+0.056] | +0.030 / +0.038 | 4/0/0 | peak 5.92 M |
+- COORDINATOR targets (09:5x): <=7 M with ATE as close to B16 as possible (<=0.39 beats b16_mid_m7 0.890@7.27 M server), ~0.41 at
+  <=3.5 M, 1 M tier. T4u and T6 both meet target 1; T4u dominates on area (4.0 M). Baked sources t1m_T4u.c / t1m_T6.c (defines
+  prepended to t1_i.c); wasm byte-identical to the define builds: t1m_T4u.wasm sha256 aa99218d04b2b93fb6b5cf56f2461f07198dab9f033f7da3ddfa06f5cdf124db,
+  t1m_T6.wasm 44ffff2eb5c2a6094435a26175a98dbe8ce24331cc15dc659b8abdd4c15a22b5. Preflight running (preflight_T6/, preflight_T4u/);
+  T6 ABI ok, zero imports. Reps r1/r2 queued; component attribution at B=50e6 (X50*) queued.
+- sel144 (visible folds 0-3) T4u: search 0.613 vs B16 0.595 (>3 m 6/6), val (n=25) 0.503 vs 0.374 (one flight 3.78 vs 1.42; chaotic tails both ways). Peak sel 3.98 M.
+| T6 x3 reps | | 0.387 (0.387/0.389/0.386) vs B16 0.356 | +0.031 [+0.010,+0.052] | +0.030 / +0.032 | 3.0/0.0/0.0 (B16 4.3/1.3/0) | peak 5.97 M |
+- PREFLIGHT T6 and T4u: PASS. ABI check ok, zero imports, poison/prefix/repeat 594/594 each (18 fixtures x 33 prefixes incl 0-16,
+  20, 24, 29-31, 40, 41, 60, 99-105, 120, 600, 1199), reset 8/8 x 700 frames, 711/711 completed, 0 filled, 0 errors,
+  determinism sel144 scored twice: ATE identical 144/144 (T4u). SHA256SUMS in tier1m/.
+| T4u x3 reps | | 0.391 (0.389/0.395/0.390) vs B16 0.356 | +0.035 [+0.011,+0.060] | +0.028 / +0.049 | 2.7/0.0/0.0 | peak 4.10 M; area +0.37 vs B16 point |
+| T1v | B=0.9e6 10 Hz VSPLIT KLT_VEL PRIOR_EVERY=2 ITER 1 RESERVE | 1.106 | +0.752 | +0.717 / +0.823 | 43/15/1 | peak 1.20 M; net lands frame ~45-80 |
+| X50 | common at B=50e6 (no budget; net lands at K) | 0.360 | | | | peak 12.3 M: components cost ~+0.03 vs ki, budget/delay another ~+0.03 |
+## B17 (coordinator 10:2x): B17 = B16 + LI_GATENET=0.2 + LI_PVS=1 (LI_PVS_T0=3.0); fresh 0.337 (lateinit/tables/gnp_r*.json)
+- addb17.py ports both switches (same code as lateinit/li.c) into any B16-path source; t1.c now has them (default off).
+- b17_exact.c = fuel_b13/final/b16_exact_and_g0_source.c + B17 switches ON: fresh-711 ATE bit-identical to B17 711/711, peak 16.09 M
+  (B17 20.17 M); rebuild byte-identical; wasm b17_exact.wasm sha256 44dcb8615023e636c795e530a2793a2dad3c1c45b0f42a3fdc52f26bc420f74a.
+  Preflight running (preflight_b17x/, prefixes now incl. 61-66, 70, 80 for the static re-anchor) + sel144 determinism.
+- cmp.py: BASE env selects the reference tables (BASE=lateinit/tables/gnp_r%d.json for B17).
+| T4uB | T4u + LI_GATENET=0.2 LI_PVS=1 | 0.384 vs B17 0.338 | +0.045 [+0.014,+0.082] | +0.040 / +0.056 | 3/1/1 | peak 4.00 M (T4u vs B17: +0.051) |
+- E7 family (near-exact, no governor): NET_SLICE + NS_SCHED (gray0 4 steps/frame before K, gray5+prep at K, convs+head at K+1 = B16
+  timing; re-anchor split over 2 frames and deferred while rows > NS_RA_ROWS) + KLT_INT MAP_ZI MAP_SCAN=24 MAP_SPREAD F_CLONEV F_MIRV
+  ROWCAP=30 (split) DET_COOL=8 DET_STRIDE=4 GRAY_G COVPROP PRIOR_MERGE + B17 switches. Profile peak 5.68 M (initial net K+1 frame 5.5 M).
+- PREFLIGHT b17_exact: PASS. ABI ok, zero imports, poison/prefix/repeat 738/738 (18 fixtures x 41 prefixes incl. 0-16, 20, 24, 29-31,
+  40, 41, 60-66, 70, 80, 99-105, 120, 600, 1199), reset 8/8 x 700 frames, determinism sel144 identical to B17 144/144 (and fresh
+  711/711 identical to B17), 0 filled. b17_exact.wasm = zero-risk submission (local peak 16.09 M fresh / 14.66 M sel).
+| E7c | E7 family, NS_RA_ROWS=12 | 0.380 vs B17 0.338 | +0.042 [+0.014,+0.077] | +0.045 / +0.035 | 2/1/1 | fresh peak 7.51 M: dominated by T4uB (4.0 M) |
+| X50n | X50 without NET_SLICE/HOLD/VKC (B16 net timing) | 0.383 | +0.029 | | | single-rep noise ~+-0.012..0.02: X50 0.360 vs X50n 0.383 is not a real ordering |
+- DECISION for the <=7 M target: T4uB (4.0 M) beats every 5-7.5 M build on local ATE within noise -> submit candidate = T4uB.
+  Baked source t1m_T4uB.c (byte-identical wasm to the define build), wasm t1m_T4uB.wasm; preflight_T4uB/ running; reps r1/r2 queued.
+| T4uB x3 reps | | 0.381 (0.384/0.383/0.377) vs B17 0.337 / B16 0.356 | +0.045 [+0.022,+0.069] vs B17; +0.025 [+0.003,..] vs B16 | +0.040 / +0.054 | 2.0/0.3/0.3 (B17 2.3/0/0) | peak 4.10 M, 0 filled, 0 errors |
+- PREFLIGHT T4uB: PASS (ABI ok, zero imports, poison/prefix/repeat 738/738 incl. 60-66/70/80 static re-anchor prefixes, reset 8/8,
+  baked source byte-identical). t1m_T4uB.wasm sha256 e13ccbbf1502c9e6d115ee88e5e1a35ce672f6368da9af06ebfc4528201faaa2.
+  Area vs B16 server point: +0.42 (server projection ~0.84 m at 4.1 M vs b16_mid_m7 0.890 @ 7.27 M).
+- T4uB sel144 determinism 144/144 identical.
+- T4uB sel144 vs B17: search 0.633 vs 0.556 (>3 m 6 vs 5), val 0.497 vs 0.367 (1 flight >3 m): the selected set shows a larger loss than fresh (+0.08/+0.13).
+| T3u | B=2.9e6 PRUNE UMAX 40 (no B17 switches) | 0.400 | +0.046 [+0.025,+0.069] | +0.040 / +0.060 | 3/0/0 | peak 3.15 M; area +0.41 |
+| T1n | T1v without the net | 0.994 | +0.640 | +0.591 / +0.739 | 50/16/1 | peak 1.18 M |
+## PARETO (fresh-711; area = 0.28*log2(17/peak) - 2.24*ln(fresh/0.356) vs the B16 server point)
+| build | peak M | fresh | reps | >3/5/10 | area |
+| b17_exact (bit-identical B17) | 16.1 | 0.338 | = B17 | 2.3/0/0 | +0.12 |
+| T6 (B=5.6 M) | 5.97 | 0.387 | 3 | 3/0/0 | +0.24 |
+| T4uB (B=3.6 M + B17 sw.) PREFLIGHTED | 4.10 | 0.381 | 3 | 2/0.3/0.3 | +0.42 |
+| T3u (B=2.9 M) | 3.15 | 0.400 | 1 | 3/0/0 | +0.41 |
+| T2b (B=2.0 M, ITER 1) | 2.41 | 0.492 | 1 | 11/2/0 | +0.05 |
+| T1v (0.9 M, 10 Hz) | 1.20 | 1.106 | 1 | 43/15/1 | -1.48 |
+| T1n (0.9 M, no net) | 1.18 | 0.994 | 1 | 50/16/1 | -1.23 |
+Why the curve breaks below ~3 M: MSCKF rows cost ~100k instructions each (demand ~11 rows/frame mean, p99 54) and the startup
+net (7.5 M after frame K) must land within ~2-3 frames of K (delay of 3 frames +0.01 median, 8 frames +0.09; VKC+HOLD recovers the
+median but not the tails). Next levers: cheaper rows (Givens null-space, f32 P, dynamic VK block), cheaper exact net prep (scalar
+bilinear gather dominates the 2 M prep).

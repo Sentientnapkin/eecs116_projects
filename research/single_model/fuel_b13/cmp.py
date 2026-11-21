@@ -29,3 +29,8 @@ print('%s reps=%d n=%d | base mean per rep %s (avg %.3f) | cand %s (avg %.3f) | 
     '/'.join('%.1f' % x for x in [(B > 3).sum(1).mean(), (B > 5).sum(1).mean(), (B > 10).sum(1).mean()]),
     '/'.join('%.1f' % x for x in [(C > 3).sum(1).mean(), (C > 5).sum(1).mean(), (C > 10).sum(1).mean()]), pk / 1e6))
 print('   worst flight cand rep-avg %.2f (base %.2f); flights newly >3 m (rep-avg): %d, fixed: %d; mean of per-rep max %.2f (base %.2f)' % (C.mean(0).max(), B.mean(0).max(), ((C.mean(0) > 3) & (B.mean(0) <= 3)).sum(), ((C.mean(0) <= 3) & (B.mean(0) > 3)).sum(), C.max(1).mean(), B.max(1).mean()))
+import hashlib
+cat = {r['episode']: r['catalog'] for r in json.load(open(H.parent / 'bulk/tables/bk_xC.json'))}
+fo = np.array([int(hashlib.sha256((cat[e] + ':' + sc[e]).encode()).hexdigest()[:8], 16) % 5 for e in eps])
+for nm, m in (('dev f0-2', fo <= 2), ('confirm f3-4', fo >= 3)):
+    print('   %s n=%d base %.3f cand %.3f d=%+.3f  >3 base %.1f cand %.1f' % (nm, m.sum(), B[:, m].mean(), C[:, m].mean(), C[:, m].mean() - B[:, m].mean(), (B[:, m] > 3).sum(1).mean(), (C[:, m] > 3).sum(1).mean()))

@@ -1,0 +1,14 @@
+{
+ "gnp_r2": {
+  "proxy|fresh|0.5": 1.0,
+  "proxy|fresh|0.75": 1.0,
+  "class|fresh (Jeffreys)|0.5": 0.9491145899889288,
+  "lo5|fresh (Jeffreys)|0.5": 0.8871878027874804,
+  "class|fresh (Jeffreys)|0.75": 0.9445759460699579,
+  "lo5|fresh (Jeffreys)|0.75": 0.8835128102984836,
+  "class|pooled all sets (Jeffreys)|0.5": 0.9491145899889288,
+  "lo5|pooled all sets (Jeffreys)|0.5": 0.8950458511405097,
+  "class|pooled all sets (Jeffreys)|0.75": 0.9445759460699579,
+  "lo5|pooled all sets (Jeffreys)|0.75": 0.885367680001246
+ }
+}

@@ -1,0 +1,25 @@
+Exception ignored in: <finalize object at 0x7f1e1a1c4fa0; dead>
+Traceback (most recent call last):
+  File "/home/rganapa/miniforge3/lib/python3.12/weakref.py", line 590, in __call__
+    return info.func(*info.args, **(info.kwargs or {}))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rganapa/miniforge3/lib/python3.12/tempfile.py", line 939, in _cleanup
+    cls._rmtree(name, ignore_errors=ignore_errors)
+  File "/home/rganapa/miniforge3/lib/python3.12/tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "/home/rganapa/miniforge3/lib/python3.12/shutil.py", line 759, in rmtree
+    _rmtree_safe_fd(stack, onexc)
+  File "/home/rganapa/miniforge3/lib/python3.12/shutil.py", line 703, in _rmtree_safe_fd
+    onexc(func, path, err)
+  File "/home/rganapa/miniforge3/lib/python3.12/shutil.py", line 662, in _rmtree_safe_fd
+    os.rmdir(name, dir_fd=dirfd)
+OSError: [Errno 39] Directory not empty: '/data/backups/rganapa/Sebastian/tmp/t1mpf_preflight_T6/viobench-5de3ppve'
+module: frames (240, 320, 3)
+init: fuel 39,042 wall 0 ms
+step 0: fuel      1,861,480 wall     0.40 ms pose [0. 0. 0. 0. 0. 0. 1.] twist [ 0.     0.     0.9    0.082  0.015 -0.062]
+step 1: fuel      2,024,602 wall     0.32 ms pose [ 0.    -0.     0.045  0.001  0.001 -0.     1.   ] twist [ 0.002 -0.002  0.91  -0.081  0.109 -0.023]
+step 2: fuel      1,309,803 wall     0.21 ms pose [ 0.001 -0.     0.091 -0.     0.001 -0.     1.   ] twist [ 0.001 -0.006  0.914  0.081 -0.208 -0.105]
+step 3: fuel      1,329,886 wall     0.20 ms pose [ 0.001 -0.     0.137 -0.001  0.001 -0.     1.   ] twist [ 0.002 -0.005  0.918 -0.112 -0.037  0.068]
+step 4: fuel      1,354,324 wall     0.21 ms pose [ 0.    -0.     0.183 -0.     0.001 -0.001  1.   ] twist [ 0.005  0.001  0.923  0.002 -0.011  0.06 ]
+check: ok (5 steps)
+exit 0

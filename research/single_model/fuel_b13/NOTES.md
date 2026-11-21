@@ -76,3 +76,11 @@ Peak floor of g0: map_relocalize (3.6-5 M on clone frames with 6 tries), net fra
 Deliverables: final/b16_exact.wasm (preflight/exact: ABI ok, zero imports, poison/prefix/repeat 486/486, reset 8/8, 711/711 ATE identical to B16), final/b16_g0.wasm (preflight/g0 pending/see below), final/SHA256SUMS, source final/b16_exact_and_g0_source.c (= b16q.c; g0 = -DKLT_R=3 -DGATE2=1 -DITER_TH=0.1 with the cmake recipe, -O3).
 Conclusion: exact rewrites give -20% peak free; ATE-neutral arms give a further -7%; deeper cuts (1/2 peak) cost 15-20% ATE which is about break-even to negative under the stated score slopes. Ideas not done: exact SIMD of map ZNCC (lane per dx, 3.6 M), Givens null-space, f32 covariance blocks, op-budget governor.
 Transfer: all changes are in b16x/b16q (B16 source); B13 differs only by the tc_* blocks, B15 (B11 base) lacks iterated update/map so only QR/solve_dx-free paths: KLT_R=3, DET_PERIOD, cl5, VIS4 transfer; GATE2/ITER_TH/solve_dx do not apply.
+
+## 8. VIS4 finalists, 3 replicates (fresh-711), final decision
+| build | peak M (max rep) | fresh mean (3 reps) | d vs B16 0.356 [CI] | dev / confirm(f3-4) d | >3/5/10 | est. points vs B16 |
+| g0 (preflighted) | 15.01 | 0.359 | +0.003 [-0.014,+0.019] | +0.006 / -0.004 | 7.3/2.0/0 | +0.11 |
+| w4 (VIS4 L3 cl5 gate2 ith kr3) | 9.48 | 0.415 | +0.059 [+0.026,+0.095] | +0.066 / +0.044 | 4.0/1.0/0 | -0.04 |
+| w1 (VIS4 L3, cl6) | 16.75 | 0.401 | +0.044 [+0.005,+0.087] | +0.045 / +0.043 | 4.0/1.3/0 | -0.17 |
+Points: +0.28*log2(20.17/peak) - 0.5*ln(ATE ratio)/ln(1.25). Selected-val (fold 3, n=25) not run for VIS4 (not recommended).
+RECOMMENDED: b16_g0 (final/b16_g0.wasm sha 9e3918756217e6a9ffcc1f6185799da50de6364410c5e2b5dad3d31170e3eee2): preflight/g0 ABI ok, zero imports, poison/prefix/repeat 486/486, reset 8/8. Safe fallback: b16_exact (bit-identical, preflight/exact). VIS4 break-even: not recommended; tier1m agent may reuse b16s.c.

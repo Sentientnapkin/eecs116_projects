@@ -8,7 +8,7 @@ def load(p):
     d = json.load(open(p)); return {r['episode']: r for r in d if r.get('ate') is not None and r['episode'] in tags}
 names = sys.argv[1:]
 cand = [load(H / 'tables' / (n + '.json')) for n in names]
-base = [load(H.parent / ('tailcap/tables/b16r_r%d.json' % k)) for k in range(len(cand))]
+import os; BP = os.environ.get('BASE', 'tailcap/tables/b16r_r%d.json'); base = [load(H.parent / (BP % k)) for k in range(len(cand))]
 eps = sorted(set.intersection(*[set(x) for x in base + cand]))
 B = np.array([[t[e]['ate'] for e in eps] for t in base]); C = np.array([[t[e]['ate'] for e in eps] for t in cand])
 sc = {e: tags[e]['scene'] for e in eps}; scenes = sorted(set(sc.values()))

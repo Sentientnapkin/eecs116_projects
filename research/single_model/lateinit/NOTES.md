@@ -68,3 +68,32 @@ never re-anchored even with sqrt(tr Pv) > 0.25 for 57-95 % of its frames (bad st
 static starts after 3 s). Pools (1 rep): bad27 2.499 -> 2.203; static bad: 100-02 5.76 -> 1.57, 85-01 4.19 -> 2.63, 57-00 2.25 ->
 0.48, 154-04 1.48 -> 0.43, 155-00 1.09 -> 0.42, 154-09 1.61 -> 1.81, 106366104-00 3.51 -> 4.53 (starved, live tracks ~1);
 good40 0.262 -> 0.260. Full dev/confirm runs queued (pvs3, pvs1).
+
+## 6. More arms (1 rep, vs B16r r0; dev 0.399 / conf 0.362)
+| arm | dev d [CI] | dev >1/>3/>5 | conf d [CI] | conf >1/>3 | better/worse >0.3 dev; conf | peak |
+| t10 (TC_T0=1.0), p15 (TC_PV_THR=0.15) | identical: tc_b16.c hard-#defines the TC/ITER/MAP values at the top, so -D cannot override them. li.c now wraps them in #ifndef (same values). |
+| gn2 = LI_GATENET=0.2 | -0.009 [-0.022,-0.001] | 25/8/2 | -0.006 [-0.016,+0.002] | 10/1 | 4/0; 2/1 | 20.2 M |
+| zn3 = LI_ZNET=3 + gn 0.3 (no ZUPT at all in the first 3 s while net speed > 0.3) | -0.009 | 25/8/2 | -0.002 | 11/1 | 4/0; 1/0 | 20.2 M | = gn3 (the regular ZUPT adds nothing)
+| ff30 / ff30m2 (C3 fast lock-on 30 frames, min obs 3 / 2) | +0.020 / +0.022 | 36 / 36 >1 | +0.023 / +0.009 | | 18/31 | 34.3 M | REJECT (worse, fuel)
+| pvs3 / pvs1 (pv re-anchor also on static starts after 3 / 1.5 s) | -0.016 [-0.035,-0.001] | 24/7/1 | +0.003 [-0.004,+0.010] | 12/2 | 5/1; 1/3 | 20.2 M | dev win, confirm flat (1 new >3 m): no agreement yet
+Next: 3 replicates of gn2 and gnp = gn2 + pvs3 (q8.sh).
+
+## 7. Replicates (3 reps each, paired with B16r r0-r2; per-replicate d [95% CI])
+| arm | dev d r0/r1/r2 | conf d r0/r1/r2 | 3-rep means dev / conf / fresh711 | >3 m dev / conf (per rep) | >5 | persistent >3 (>=2 reps, 855) | peak |
+| B16 | | | 0.400 / 0.368 / 0.356 | 8.3 / 1.3 | 2.3 / 0.3 | 9 | 18.25 / 20.17 M |
+| gn2 | -0.009 [-0.021,-0.001] / -0.008 [-0.017,-0.001] / -0.011 [-0.026,-0.001] | -0.006 / -0.007 [-0.014,-0.001] / -0.009 [-0.019,-0.002] | 0.390 / 0.361 / 0.351 | 7.7 / 1.3 | 2.3 / 0.3 | 9 | same |
+| gnp = gn2 + pvs3 | -0.025 [-0.046,-0.008] / -0.024 [-0.056,-0.004] / -0.026 [-0.050,-0.007] | -0.003 [-0.015,+0.008] / -0.014 [-0.031,-0.002] / -0.020 [-0.040,-0.005] | 0.374 / 0.356 / 0.337 | 6.0 / 1.3 | 1.3 / 0.0 | 7 | same |
+gnp: no >10 m flights; fresh static 0.312 -> 0.283, mid 0.401 -> 0.390. certify.py (fresh rates, Jeffreys, pm 0.5) P(12 clean): B16 0.89/0.88/0.90 -> gnp 0.89/0.89/0.95; flat-rate 0.93/0.91/0.93 -> 0.94/0.93/0.99 (certify_out/).
+DECISION: adopt gnp as candidate B17 = B16 + LI_GATENET=0.2 + LI_PVS=1 (LI_PVS_T0=3.0). Dev and confirm agree in sign on all 3
+replicates (dev CI excludes 0 in 3/3, confirm in 2/3); fresh711 -5.3 %; tails down; peak fuel unchanged.
+Expected server effect: modest (~-5 %); the two fixes target false start-up ZUPTs (mid starts) and never-re-anchored static starts.
+
+## 8. B17 build + preflight (preflight_b17/)
+Source li_b17.c = 3 defines + li_frozen5.c (li_frozen5.c with no defines builds to the B16 wasm byte for byte, sha 1108dcfb...).
+wasm gp_msckf_startup_b17.wasm sha256 a0a9ec83e558d3aa5f52a3b10382d0c3b7e2540608fa0e1913e3a51e62729b96; rebuild byte-identical;
+identical to the define-built gnp r0 wasm (so gnp r0 tables are this wasm's results: sel 144 + fresh 711 completed, 0 filled,
+peak 18.25 / 20.17 M). Determinism: sel144 re-scored, estimate.tum identical to gnp r0 144/144. ABI check ok, zero imports.
+Causality/poison/prefix/repeat: 648/648 PASS (18 fixtures folds 0-3 x 36 prefixes incl. 29-31, 60-66 (static re-anchor can
+start at 3 s), 70, 80, 99-105, 120, 600, 1199); reset 8/8 fixtures x 600 frames (re-init and partial-then-re-init equal, first pose
+identity); 0 guest errors. ALL PREFLIGHT CHECKS PASS. SHA256SUMS in lateinit/ (wasm a0a9ec83...9b96). Holdout NOT scored (coordinator).
+Files: gp_msckf_startup_b17.wasm, li_b17.c, preflight_b17/, tables/gnp_r*.json, certify_out/.

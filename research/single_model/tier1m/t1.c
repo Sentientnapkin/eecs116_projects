@@ -1,3 +1,12 @@
+#ifndef LI_GATENET
+#define LI_GATENET 0.0      /* B17: no gate-forced ZUPT once the startup net has predicted a speed above this (m/s) */
+#endif
+#ifndef LI_PVS
+#define LI_PVS 0            /* B17: the pv re-anchor trigger also for static (hover) starts, from LI_PVS_T0 s on */
+#endif
+#ifndef LI_PVS_T0
+#define LI_PVS_T0 3.0
+#endif
 #ifndef ITER_UPD
 #define ITER_UPD 2
 #endif
@@ -1199,7 +1208,7 @@ static double Hs[3 * MAXD]; /* Jacobian rows of the small updates */
 #define GC_CLONE 30e3
 #endif
 #ifndef GC_ROW
-#define GC_ROW 80e3
+#define GC_ROW 105e3
 #endif
 #ifndef GC_BATCH
 #define GC_BATCH 30e3
@@ -1210,6 +1219,21 @@ static double Hs[3 * MAXD]; /* Jacobian rows of the small updates */
 #ifndef GC_MAP
 #define GC_MAP 150e3
 #endif
+#ifndef NS_RESERVE
+#define NS_RESERVE 0   /* tier1m: budget reserved for net micro-steps (before detection) while a net is pending */
+#endif
+#ifndef GOV_PRUNE
+#define GOV_PRUNE 0
+#endif
+#ifndef GOV_FREE_ROW
+#define GOV_FREE_ROW 0
+#endif
+#ifndef GOV_FREE_NET
+#define GOV_FREE_NET 0  /* diagnostics */
+#endif
+#ifndef GOV_FREE_DET
+#define GOV_FREE_DET 0
+#endif
 #ifndef GOV_UMAX
 #define GOV_UMAX 12
 #endif
@@ -1217,7 +1241,7 @@ static double Hs[3 * MAXD]; /* Jacobian rows of the small updates */
 #define GC_STASH 240e3
 #endif
 #ifndef GC_UNIT
-#define GC_UNIT 130e3
+#define GC_UNIT 160e3
 #endif
 static double gov_used; static int gov_cells = 1000, gov_ncell, gov_maptries, gov_units, gov_mapdid, gov_prior, gov_vis, gov_nb;
 
@@ -14540,6 +14564,15 @@ static void lc_gray128(const uint8_t *rgb, uint8_t *out) {
 #ifndef NS_HOLD_MAX
 #define NS_HOLD_MAX 1000000
 #endif
+#ifndef NS_SCHED
+#define NS_SCHED 0
+#endif
+#ifndef NS_RA_SPLIT
+#define NS_RA_SPLIT 1   /* re-anchor: conv0+conv1 one frame, conv2+conv3+head the next */
+#endif
+#ifndef NS_RA_ROWS
+#define NS_RA_ROWS TC_ROWMAX  /* re-anchor net stages wait while this frame's MSCKF rows exceed this */
+#endif
 #ifndef NS_DELAY
 #define NS_DELAY 0   /* test: frames after K before the post-K micro-steps may run */
 #endif
@@ -14714,7 +14747,7 @@ static void ns_prep_rows_v(int v0, int v1) {
             }
             v128_t vv = wasm_v128_load(val);
             wasm_v128_store(ox1 + u, vv); wasm_v128_store(om + u, mf);
-            wasm_v128_store(ox0 + u, wasm_f32x4_convert_u32x4(wasm_u32x4_load16x4(g0 + u) ));
+            wasm_v128_store(ox0 + u, wasm_f32x4_convert_u32x4(wasm_u32x4_extend_low_u16x8(wasm_u16x8_load8x8(g0 + u))));
             acc1 = wasm_f32x4_add(acc1, vv); accm = wasm_f32x4_add(accm, mf);
         }
         int gs = 0; for (int u = 0; u < LC_W; u++) gs += g0[u];
@@ -14779,6 +14812,53 @@ LC_CONVR(ns_conv0, 5, LC_C0, LC_PH, LC_PW, LC_W0, LC_B0)
 LC_CONVR(ns_conv1, LC_C0, LC_C1, 24, 32, LC_W1, LC_B1)
 LC_CONVR(ns_conv2, LC_C1, LC_C2, 12, 16, LC_W2, LC_B2)
 LC_CONVR(ns_conv3, LC_C2, LC_C3, 6, 8, LC_W3, LC_B3)
+/* tier1m NS_CONVQ: conv layers in 12-bit fixed point (i16 lanes, i32x4 dot products of ci pairs), per-layer scales from the
+ * weight max and the input-tensor max (computed when the layer starts). Approximate (~1e-3 relative). */
+#ifndef NS_CONVQ
+#define NS_CONVQ 0
+#endif
+static int16_t nsq_w[4][9 * 32 * 48 + 64];
+static float nsq_sw[4]; static int nsq_ready[4];
+static int16_t nsq_in[48 * 64 * 6 + 64];
+static float nsq_sin;
+static void ns_convq(const float *in, float *out, int CI, int CO, int IH, int IW, const float *Wt, const float *Bt, int oy0, int oy1, int L) {
+    const int CIp = (CI + 1) & ~1, OW = IW / 2;
+    if (!nsq_ready[L]) {
+        float mx = 1e-20f; for (int i = 0; i < 9 * CI * CO; i++) { float a = fabsf(Wt[i]); if (a > mx) mx = a; }
+        float sc = 2047.0f / mx; nsq_sw[L] = sc;
+        for (int t = 0; t < 9; t++) for (int cp = 0; cp < CIp / 2; cp++) for (int co = 0; co < CO; co++) for (int e = 0; e < 2; e++) {
+            int ci = 2 * cp + e; float w = ci < CI ? Wt[t * CI * CO + ci * CO + co] : 0.0f;
+            nsq_w[L][((t * (CIp / 2) + cp) * CO + co) * 2 + e] = (int16_t)lrintf(w * sc);
+        }
+        nsq_ready[L] = 1;
+    }
+    if (oy0 == 0) {
+        float mx = 1e-20f; const int N = IH * IW * CI;
+        for (int i = 0; i < N; i++) { float a = fabsf(in[i]); if (a > mx) mx = a; }
+        nsq_sin = 2047.0f / mx;
+        for (int px = 0; px < IH * IW; px++) { for (int ci = 0; ci < CI; ci++) nsq_in[px * CIp + ci] = (int16_t)lrintf(in[px * CI + ci] * nsq_sin); if (CIp > CI) nsq_in[px * CIp + CI] = 0; }
+    }
+    const v128_t inv = wasm_f32x4_splat(1.0f / (nsq_sw[L] * nsq_sin)), zero = wasm_f32x4_splat(0.0f);
+    const int16_t *Wq = nsq_w[L];
+    for (int oy = oy0; oy < oy1; oy++) for (int ox = 0; ox < OW; ox++) {
+        v128_t acc[12]; for (int q = 0; q < CO / 4; q++) acc[q] = wasm_i32x4_splat(0);
+        for (int ky = 0; ky < 3; ky++) { int iy = oy * 2 - 1 + ky; if (iy < 0 || iy >= IH) continue;
+            for (int kx = 0; kx < 3; kx++) { int ix = ox * 2 - 1 + kx; if (ix < 0 || ix >= IW) continue;
+                const int16_t *ip = nsq_in + (iy * IW + ix) * CIp; const int16_t *wp = Wq + (ky * 3 + kx) * (CIp / 2) * CO * 2;
+                for (int cp = 0; cp < CIp / 2; cp++, wp += CO * 2) {
+                    const v128_t a = wasm_v128_load32_splat(ip + 2 * cp);
+                    for (int q = 0; q < CO / 4; q++) acc[q] = wasm_i32x4_add(acc[q], wasm_i32x4_dot_i16x8(a, wasm_v128_load(wp + 8 * q)));
+                } } }
+        float *op = out + (oy * OW + ox) * CO;
+        for (int q = 0; q < CO / 4; q++) wasm_v128_store(op + 4 * q, wasm_f32x4_max(wasm_f32x4_add(wasm_f32x4_mul(wasm_f32x4_convert_i32x4(acc[q]), inv), wasm_v128_load(Bt + 4 * q)), zero));
+    }
+}
+#if NS_CONVQ
+#define ns_conv0(i, o, a, b) ns_convq(i, o, 5, LC_C0, LC_PH, LC_PW, LC_W0, LC_B0, a, b, 0)
+#define ns_conv1(i, o, a, b) ns_convq(i, o, LC_C0, LC_C1, 24, 32, LC_W1, LC_B1, a, b, 1)
+#define ns_conv2(i, o, a, b) ns_convq(i, o, LC_C1, LC_C2, 12, 16, LC_W2, LC_B2, a, b, 2)
+#define ns_conv3(i, o, a, b) ns_convq(i, o, LC_C2, LC_C3, 6, 8, LC_W3, LC_B3, a, b, 3)
+#endif
 static void ns_head(int part) {
     if (part == 0) {
         for (int j = 0; j < 32; j++) ns_emb[j] = LC_FB0[j];
@@ -15189,7 +15269,7 @@ static void tc_monitor(int live) {
             int lock = u < TC_U_THR, runaway = sp > TC_SPMIN && sp > TC_RATIO * (psp > 0.2 ? psp : 0.2);
             if (lock && runaway) fire = 1;
         }
-        if (TC_PV_THR > 0 && moving && tt >= TC_T0 && tc_frame - tc_last_fire >= TC_PV_PERIOD && sqrt(Pm[V * MAXD + V] + Pm[(V + 1) * MAXD + V + 1] + Pm[(V + 2) * MAXD + V + 2]) > TC_PV_THR) fire = 3;
+        if (TC_PV_THR > 0 && (moving || (LI_PVS && tt >= LI_PVS_T0)) && tt >= TC_T0 && tc_frame - tc_last_fire >= TC_PV_PERIOD && sqrt(Pm[V * MAXD + V] + Pm[(V + 1) * MAXD + V + 1] + Pm[(V + 2) * MAXD + V + 2]) > TC_PV_THR) fire = 3;
         if (TC_LIVE_TRIG > 0 && moving && tt >= TC_T0 && tc_frame - tc_last_fire >= TC_PV_PERIOD && tc_live_lo >= TC_LTN) fire = 4;
         if (TC_PVW_THR > 0 && moving && tt >= TC_T0 && tt <= TC_PVW_T1 && tc_frame - tc_last_fire >= TC_PV_PERIOD) {
             double m = 0; for (int k = 0; k < 20; k++) m += tc_pvring[(tc_frame - k) & 31]; if (m / 20 > TC_PVW_THR) fire = 5;
@@ -16675,6 +16755,7 @@ static void vision_zupt(void) {
             gate_w = gate_sum / gate_pairs / GATE_SOFT_D; if (gate_w > 1) gate_w = 1;
         }
     }
+    if (LI_GATENET > 0 && gate_force_zupt && lc_active && lc_applied && sqrt(lc_out[6] * lc_out[6] + lc_out[7] * lc_out[7] + lc_out[8] * lc_out[8]) > LI_GATENET) gate_force_zupt = 0;
     if (median < ZUPT_DISPARITY || gate_force_zupt) {
         gate_force_zupt = 0;
         double r[3];
@@ -16896,10 +16977,20 @@ static void vision(const uint8_t *frame) {
         }
     }
     /* MSCKF features within the budget (none while the startup net is pending: NS_HOLD) */
-    int cap = gov_rows_cap(); if (cap > ROWCAP) cap = ROWCAP;
+    int cap = GOV_FREE_ROW ? 100000 : gov_rows_cap(); if (cap > ROWCAP) cap = ROWCAP;
 #if NET_SLICE
     if (NS_HOLD && lc_active && !lc_applied && tc_nanch == 0 && frame_no < NS_HOLD_MAX) cap = 0;
 #endif
+    if (GOV_PRUNE) { /* drop observations of marginalized clones (they would cost budget but give no rows) */
+        int w = 0;
+        for (int q = 0; q < nlost; q++) {
+            Obs *o = &lost[q]; int k = 0;
+            for (int j = 0; j < o->n; j++) if (clone_index(o->cid[j]) >= 0) { o->cid[k] = o->cid[j]; o->x[k] = o->x[j]; o->y[k] = o->y[j]; k++; }
+            o->n = k;
+            if (k >= MIN_OBS) { if (w != q) lost[w] = *o; w++; }
+        }
+        nlost = w;
+    }
     int nb = 0, rw = 0, tk = 0;
     while (tk < nlost && nb < MAX_BATCH) {
         int m = gov_fit(&lost[tk], rw, cap);
@@ -16941,14 +17032,14 @@ static void vision(const uint8_t *frame) {
 #if VSPLIT
     if (GOV_VIS == 2) {
         if (!vis) {
-            int left = (int)((GOV_B - gov_used) / GC_CELL);
+            int left = GOV_FREE_DET ? 1000 : (int)((GOV_B - gov_used - (lc_active && !lc_applied ? NS_RESERVE : 0)) / GC_CELL);
             gov_cells = left < 0 ? 0 : left > DET_BUDGET ? DET_BUDGET : left;
             gov_ncell = 0; detect(cur_pyr); gov_used += gov_ncell * GC_CELL;
         }
     } else
 #endif
     if (vis) {
-        int left = (int)((GOV_B - gov_used) / GC_CELL);
+        int left = GOV_FREE_DET ? 1000 : (int)((GOV_B - gov_used - (lc_active && !lc_applied ? NS_RESERVE : 0)) / GC_CELL);
         gov_cells = left < 0 ? 0 : left > DET_BUDGET ? DET_BUDGET : left;
         gov_ncell = 0;
         detect(cur);
@@ -17222,7 +17313,7 @@ int32_t step(double t, const uint8_t *frame, const double *imu, int32_t imu_coun
 #endif
 #if GOV
         alt_ph = GOV_VIS == 2 ? 1 : 0; gov_maptries = 0;
-        { int c = (int)((GOV_B - GC_PYR - GC_FIXED) / GC_CELL); gov_cells = c < 1 ? 1 : c > DET_BUDGET0 ? DET_BUDGET0 : c; }
+        { int c = (int)((GOV_B - GC_PYR - GC_FIXED - (NET_SLICE ? GC_STASH : 0) - 100e3) / GC_CELL); gov_cells = c < 1 ? 1 : c > DET_BUDGET0 ? DET_BUDGET0 : c; }
 #endif
         pe_cnt = 0; pe_sum[0] = pe_sum[1] = 0;
 #if MAP_MODE
@@ -17269,11 +17360,17 @@ int32_t step(double t, const uint8_t *frame, const double *imu, int32_t imu_coun
 #if NET_SLICE
     { /* tier1m governor: more net micro-steps on frames without MSCKF rows */
         int units = tc_rows > NS_BUSY ? NET_UNITS : NET_UNITS_IDLE;
+        if (NS_SCHED) { /* fixed schedule: gray0 4 steps/frame before K, gray5 + prep at K, convs + head at K+1 (as B16's LC_SPREAD=3) */
+            int lim = lc_frame < LC_K ? 16 : lc_frame == LC_K ? 62 : (tc_nanch > 0 && NS_RA_SPLIT && ns_pos < 86) ? 86 : NS_STEPS;
+            units = 0; while (ns_pos + units < lim && units < (lc_frame < LC_K ? 4 : 100)) units++;
+            if (tc_nanch > 0 && lc_frame >= LC_K && tc_rows > NS_RA_ROWS && ns_pos >= 32) units = 0; /* re-anchor: as B16, defer to a lighter frame */
+        }
 #if ALT2
         if (alt_ph == 1) units = NET_UNITS_V; /* this was a vision frame */
 #endif
 #if GOV
         units = 0; while (units < GOV_UMAX && GOV_B - gov_used > GC_UNIT) { units++; gov_used += GC_UNIT; }
+        if (GOV_FREE_NET) units = 12;
         gov_units = units;
 #endif
         for (int u = 0; u < units && lc_active && !lc_applied && ns_pos < NS_STEPS; u++) { if (NS_DELAY && ns_pos >= 16 && lc_frame < LC_K + NS_DELAY) break; if (!ns_do(ns_pos)) break; ns_pos++; }
