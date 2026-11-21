@@ -64,3 +64,10 @@ Poison/prefix/repeat: 342/342 cases bit-equal (18 fixtures x 19 prefixes incl. 2
 | pv25 + 20-frame-mean Pv>0.18 in 1.5-3 s (pvw) | 8.3 | 5.7 | 2.7 | 0.472 | 0.641 (4.0) | 15.8 (val 14.4) | 11 | 10 / 1 | mean -0.01 (noise level), tails equal
 | pv25 cheap re-anchor (rmf: TC_POST=1 TC_ROWMAX=30) | 8.3 | 6.0 | 2.3 | 0.482 | 0.685 (4.7) | 13.0 | 11 | 7 / 0 | same tails, peak 15.8 -> 13.0 M
 Conclusion: second triggers add nothing measurable over pv25 (pv already encodes the low-track signal). rmf (B15b; source tc_c.c with defines TC_MON=1 TC_STARTUP_MON=0 TC_PERIOD=0 TC_PV_THR=0.25 TC_T0=1.5 TC_POST=1 TC_ROWMAX=30) is the fuel-cheaper variant; outputs differ from B15 (not bit-identical), NOT preflighted.
+
+## B16 = B13 + pv25 (port onto bulk/exact/b13x.c: mktc2.py tc_b13.c tc_d.c / tc_e.c; runset --cmake bulk/exact/CMakeLists.txt; q13*.sh)
+B13 defines: ITER_UPD=2 ITER_BACK=1.0 ITER_TH=0.03 MAP_MODE=1 MAP_AGE=100 MAP_ANG=40 MAP_TRY=6 MAP_ZNCC=0.85 MAP_NEAR=1. pv25 defines: TC_MON=1 TC_STARTUP_MON=0 TC_PERIOD=0 TC_PV_THR=0.25 TC_T0=1.5. tc_reset() at init included. Switch OFF (tc_d.c, no TC defines) is bit-identical to B13 on the 144 visible flights (144/144).
+3 reps, per-replicate means (fresh = 711 incl. dev f0-2 / confirm f3-4 net-honest 236; fresh f3 = the 107 unselected fold-3 flights):
+| | fresh >3 / >5 | dev >3 | conf >3 / >5 | fresh mean | conf mean | sel search mean (>3) | sel val | peak (sel / fresh) |
+| B13 | 10.7 / 4.7 | 6.3 | 4.3 / 2.0 | 0.405 | 0.430 | 0.685 (8.0) | 0.364 | 18.5 / 20.2 M |
+| B16 (pv25) | 4.7 / 2.0 | 2.7 | 2.0 / 1.0 | 0.358 | 0.370 | 0.593 (5.3) | 0.363 | 20.3 / 25.2 M |
