@@ -9,7 +9,7 @@ cd ../../..; $P -B research/single_model/fuel/prof_run.py research/single_model/
 cd research/single_model/fuel_b13
 $P - <<PY
 import numpy as np, glob, os
-a='../../results/single_model/fuelb13_prof'; b='$O'
+a='../../results/single_model/'+'fuelb16_prof'; b='$O'
 ne=0; n=0
 for f in sorted(glob.glob(b+'/*.npz')):
     g=os.path.join(a,os.path.basename(f))

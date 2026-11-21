@@ -3,9 +3,10 @@ import json, sys, numpy as np
 from pathlib import Path
 H = Path(__file__).resolve().parent
 def load(p):
-    d = json.load(open(p)); return {r['episode']: r for r in d if r['ate'] is not None}
-pre = sys.argv[1]; R = int(sys.argv[2]) if len(sys.argv) > 2 else 3
-base = [load(H.parent / 'bulk/tables' / n) for n in ['bk_xC.json', 'bk_xCr1.json', 'bk_xCr2.json'][:R]]
+    d = json.load(open(p)); return {r['episode']: r for r in d if r['ate'] is not None and r.get('set','fresh') == 'fresh'}
+pre = sys.argv[1]; R = int(sys.argv[2]) if len(sys.argv) > 2 and sys.argv[2].isdigit() else 3
+BASE = ['tailcap/tables/b16r_r0.json', 'tailcap/tables/b16r_r1.json', 'tailcap/tables/b16r_r2.json'] if '--b13' not in sys.argv else ['bulk/tables/bk_xC.json', 'bulk/tables/bk_xCr1.json', 'bulk/tables/bk_xCr2.json']
+base = [load(H.parent / n) for n in BASE[:R]]
 cand = []
 for k in range(R):
     p = H / 'tables' / (pre + ('' if k == 0 else 'r%d' % k) + '.json')

@@ -1,0 +1,2761 @@
+{
+  "wasm": "research/results/single_model/fb_b16exact/solution.wasm",
+  "sha256": "7bde3b9a58be1d33fdc70bcd49bf84b8c000dbb43ce6fba25b933a917ed2f1d3",
+  "results": [
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-108294897_176710602-01.npz",
+      "prefix_frames": 1,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-108294897_176710602-01.npz",
+      "prefix_frames": 2,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-108294897_176710602-01.npz",
+      "prefix_frames": 4,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-108294897_176710602-01.npz",
+      "prefix_frames": 5,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-108294897_176710602-01.npz",
+      "prefix_frames": 6,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-108294897_176710602-01.npz",
+      "prefix_frames": 8,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-108294897_176710602-01.npz",
+      "prefix_frames": 9,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-108294897_176710602-01.npz",
+      "prefix_frames": 10,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-108294897_176710602-01.npz",
+      "prefix_frames": 11,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-108294897_176710602-01.npz",
+      "prefix_frames": 12,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-108294897_176710602-01.npz",
+      "prefix_frames": 20,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-108294897_176710602-01.npz",
+      "prefix_frames": 21,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-108294897_176710602-01.npz",
+      "prefix_frames": 23,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-108294897_176710602-01.npz",
+      "prefix_frames": 24,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-108294897_176710602-01.npz",
+      "prefix_frames": 28,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-108294897_176710602-01.npz",
+      "prefix_frames": 40,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-108294897_176710602-01.npz",
+      "prefix_frames": 41,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-108294897_176710602-01.npz",
+      "prefix_frames": 50,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-108294897_176710602-01.npz",
+      "prefix_frames": 99,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-108294897_176710602-01.npz",
+      "prefix_frames": 100,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-108294897_176710602-01.npz",
+      "prefix_frames": 101,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-108294897_176710602-01.npz",
+      "prefix_frames": 103,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-108294897_176710602-01.npz",
+      "prefix_frames": 104,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-108294897_176710602-01.npz",
+      "prefix_frames": 105,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-108294897_176710602-01.npz",
+      "prefix_frames": 120,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-108294897_176710602-01.npz",
+      "prefix_frames": 600,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-108294897_176710602-01.npz",
+      "prefix_frames": 1199,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-158-07.npz",
+      "prefix_frames": 1,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-158-07.npz",
+      "prefix_frames": 2,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-158-07.npz",
+      "prefix_frames": 4,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-158-07.npz",
+      "prefix_frames": 5,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-158-07.npz",
+      "prefix_frames": 6,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-158-07.npz",
+      "prefix_frames": 8,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-158-07.npz",
+      "prefix_frames": 9,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-158-07.npz",
+      "prefix_frames": 10,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-158-07.npz",
+      "prefix_frames": 11,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-158-07.npz",
+      "prefix_frames": 12,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-158-07.npz",
+      "prefix_frames": 20,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-158-07.npz",
+      "prefix_frames": 21,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-158-07.npz",
+      "prefix_frames": 23,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-158-07.npz",
+      "prefix_frames": 24,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-158-07.npz",
+      "prefix_frames": 28,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-158-07.npz",
+      "prefix_frames": 40,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-158-07.npz",
+      "prefix_frames": 41,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-158-07.npz",
+      "prefix_frames": 50,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-158-07.npz",
+      "prefix_frames": 99,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-158-07.npz",
+      "prefix_frames": 100,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-158-07.npz",
+      "prefix_frames": 101,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-158-07.npz",
+      "prefix_frames": 103,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-158-07.npz",
+      "prefix_frames": 104,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-158-07.npz",
+      "prefix_frames": 105,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-158-07.npz",
+      "prefix_frames": 120,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-158-07.npz",
+      "prefix_frames": 600,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-158-07.npz",
+      "prefix_frames": 1199,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-123-00.npz",
+      "prefix_frames": 1,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-123-00.npz",
+      "prefix_frames": 2,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-123-00.npz",
+      "prefix_frames": 4,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-123-00.npz",
+      "prefix_frames": 5,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-123-00.npz",
+      "prefix_frames": 6,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-123-00.npz",
+      "prefix_frames": 8,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-123-00.npz",
+      "prefix_frames": 9,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-123-00.npz",
+      "prefix_frames": 10,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-123-00.npz",
+      "prefix_frames": 11,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-123-00.npz",
+      "prefix_frames": 12,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-123-00.npz",
+      "prefix_frames": 20,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-123-00.npz",
+      "prefix_frames": 21,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-123-00.npz",
+      "prefix_frames": 23,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-123-00.npz",
+      "prefix_frames": 24,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-123-00.npz",
+      "prefix_frames": 28,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-123-00.npz",
+      "prefix_frames": 40,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-123-00.npz",
+      "prefix_frames": 41,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-123-00.npz",
+      "prefix_frames": 50,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-123-00.npz",
+      "prefix_frames": 99,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-123-00.npz",
+      "prefix_frames": 100,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-123-00.npz",
+      "prefix_frames": 101,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-123-00.npz",
+      "prefix_frames": 103,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-123-00.npz",
+      "prefix_frames": 104,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-123-00.npz",
+      "prefix_frames": 105,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-123-00.npz",
+      "prefix_frames": 120,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-123-00.npz",
+      "prefix_frames": 600,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-123-00.npz",
+      "prefix_frames": 1199,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-151-00.npz",
+      "prefix_frames": 1,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-151-00.npz",
+      "prefix_frames": 2,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-151-00.npz",
+      "prefix_frames": 4,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-151-00.npz",
+      "prefix_frames": 5,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-151-00.npz",
+      "prefix_frames": 6,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-151-00.npz",
+      "prefix_frames": 8,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-151-00.npz",
+      "prefix_frames": 9,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-151-00.npz",
+      "prefix_frames": 10,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-151-00.npz",
+      "prefix_frames": 11,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-151-00.npz",
+      "prefix_frames": 12,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-151-00.npz",
+      "prefix_frames": 20,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-151-00.npz",
+      "prefix_frames": 21,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-151-00.npz",
+      "prefix_frames": 23,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-151-00.npz",
+      "prefix_frames": 24,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-151-00.npz",
+      "prefix_frames": 28,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-151-00.npz",
+      "prefix_frames": 40,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-151-00.npz",
+      "prefix_frames": 41,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-151-00.npz",
+      "prefix_frames": 50,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-151-00.npz",
+      "prefix_frames": 99,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-151-00.npz",
+      "prefix_frames": 100,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-151-00.npz",
+      "prefix_frames": 101,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-151-00.npz",
+      "prefix_frames": 103,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-151-00.npz",
+      "prefix_frames": 104,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-151-00.npz",
+      "prefix_frames": 105,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-151-00.npz",
+      "prefix_frames": 120,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-151-00.npz",
+      "prefix_frames": 600,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-151-00.npz",
+      "prefix_frames": 1199,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-106366104_174226329-00.npz",
+      "prefix_frames": 1,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-106366104_174226329-00.npz",
+      "prefix_frames": 2,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-106366104_174226329-00.npz",
+      "prefix_frames": 4,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-106366104_174226329-00.npz",
+      "prefix_frames": 5,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-106366104_174226329-00.npz",
+      "prefix_frames": 6,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-106366104_174226329-00.npz",
+      "prefix_frames": 8,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-106366104_174226329-00.npz",
+      "prefix_frames": 9,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-106366104_174226329-00.npz",
+      "prefix_frames": 10,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-106366104_174226329-00.npz",
+      "prefix_frames": 11,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-106366104_174226329-00.npz",
+      "prefix_frames": 12,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-106366104_174226329-00.npz",
+      "prefix_frames": 20,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-106366104_174226329-00.npz",
+      "prefix_frames": 21,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-106366104_174226329-00.npz",
+      "prefix_frames": 23,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-106366104_174226329-00.npz",
+      "prefix_frames": 24,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-106366104_174226329-00.npz",
+      "prefix_frames": 28,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-106366104_174226329-00.npz",
+      "prefix_frames": 40,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-106366104_174226329-00.npz",
+      "prefix_frames": 41,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-106366104_174226329-00.npz",
+      "prefix_frames": 50,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-106366104_174226329-00.npz",
+      "prefix_frames": 99,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-106366104_174226329-00.npz",
+      "prefix_frames": 100,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-106366104_174226329-00.npz",
+      "prefix_frames": 101,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-106366104_174226329-00.npz",
+      "prefix_frames": 103,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-106366104_174226329-00.npz",
+      "prefix_frames": 104,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-106366104_174226329-00.npz",
+      "prefix_frames": 105,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-106366104_174226329-00.npz",
+      "prefix_frames": 120,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-106366104_174226329-00.npz",
+      "prefix_frames": 600,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-106366104_174226329-00.npz",
+      "prefix_frames": 1199,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-0-01.npz",
+      "prefix_frames": 1,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-0-01.npz",
+      "prefix_frames": 2,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-0-01.npz",
+      "prefix_frames": 4,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-0-01.npz",
+      "prefix_frames": 5,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-0-01.npz",
+      "prefix_frames": 6,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-0-01.npz",
+      "prefix_frames": 8,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-0-01.npz",
+      "prefix_frames": 9,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-0-01.npz",
+      "prefix_frames": 10,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-0-01.npz",
+      "prefix_frames": 11,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-0-01.npz",
+      "prefix_frames": 12,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-0-01.npz",
+      "prefix_frames": 20,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-0-01.npz",
+      "prefix_frames": 21,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-0-01.npz",
+      "prefix_frames": 23,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-0-01.npz",
+      "prefix_frames": 24,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-0-01.npz",
+      "prefix_frames": 28,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-0-01.npz",
+      "prefix_frames": 40,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-0-01.npz",
+      "prefix_frames": 41,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-0-01.npz",
+      "prefix_frames": 50,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-0-01.npz",
+      "prefix_frames": 99,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-0-01.npz",
+      "prefix_frames": 100,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-0-01.npz",
+      "prefix_frames": 101,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-0-01.npz",
+      "prefix_frames": 103,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-0-01.npz",
+      "prefix_frames": 104,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-0-01.npz",
+      "prefix_frames": 105,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-0-01.npz",
+      "prefix_frames": 120,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-0-01.npz",
+      "prefix_frames": 600,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "research/results/single_model/preflight_c1_fx/fastmid-ProcTHOR-Train-0-01.npz",
+      "prefix_frames": 1199,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    }
+  ],
+  "pass": true
+}
