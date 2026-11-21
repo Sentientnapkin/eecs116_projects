@@ -1,0 +1,12 @@
+711 episodes, 0 cached, workers=48 (no video)
+20/711 finished, 35.7s
+40/711 finished, 36.7s
+60/711 finished, 58.1s
+80/711 finished, 63.1s
+100/711 finished, 63.7s
+120/711 finished, 94.1s
+140/711 finished, 95.7s
+160/711 finished, 96.9s
+180/711 finished, 126.4s
+200/711 finished, 128.4s
+220/711 finished, 157.6s

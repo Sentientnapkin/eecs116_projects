@@ -1,0 +1,170 @@
+flights 60 frames 72000 peak 3.99M p99 3.67M p95 3.27M median 1.66M mean 1.84M
+
+ALL n= 72000
+  step other                                    0.000 M
+  propagate                                     0.027 M
+  imu_meas(updates)                             0.007 M
+  lc_step (net conv stages+misc)                0.001 M
+  vision other                                  0.012 M
+  pyramid                                       0.211 M
+  track_all (klt)                               0.009 M
+  clone ops/record/zupt/remove                  0.013 M
+  map_relocalize                                0.027 M
+  detect                                        0.164 M
+  write_state                                   0.001 M
+  build_rows other(QR)                          0.000 M
+  solve_dx (iter)                               0.007 M
+  update() EKF                                  0.014 M
+  feature_rows other(jac,nullspace,gate)        0.015 M
+  triangulate                                   0.014 M
+  net prep                                      0.004 M
+  -                                             0.001 M
+  net head                                      0.002 M
+  net apply                                     0.000 M
+  gray128                                       0.003 M
+  save/restore                                  0.001 M
+  inject                                        0.008 M
+  klt()                                         0.304 M
+  fr jac build                                  0.001 M
+  fr nullspace                                  0.032 M
+  fr gate H0P                                   0.078 M
+  fr gate S                                     0.038 M
+  fr chol+chi2                                  0.008 M
+  fr copy rows                                  0.006 M
+  fr map_add                                    0.004 M
+  upd HP                                        0.170 M
+  upd S                                         0.057 M
+  upd chol                                      0.026 M
+  upd Kt                                        0.112 M
+  upd dx                                        0.008 M
+  upd Pupd                                      0.217 M
+  sdx HP                                        0.153 M
+  sdx S                                         0.053 M
+  sdx chol+dx                                   0.028 M
+  TOTAL                                         1.841 M
+
+median frames n= 4844
+  step other                                    0.000 M
+  propagate                                     0.027 M
+  imu_meas(updates)                             0.007 M
+  lc_step (net conv stages+misc)                0.003 M
+  vision other                                  0.009 M
+  pyramid                                       0.211 M
+  track_all (klt)                               0.009 M
+  clone ops/record/zupt/remove                  0.007 M
+  map_relocalize                                0.033 M
+  detect                                        0.178 M
+  write_state                                   0.001 M
+  build_rows other(QR)                          0.000 M
+  solve_dx (iter)                               0.006 M
+  update() EKF                                  0.014 M
+  feature_rows other(jac,nullspace,gate)        0.013 M
+  triangulate                                   0.012 M
+  net prep                                      0.013 M
+  -                                             0.000 M
+  net head                                      0.002 M
+  net apply                                     0.000 M
+  gray128                                       0.015 M
+  save/restore                                  0.001 M
+  inject                                        0.010 M
+  klt()                                         0.335 M
+  fr jac build                                  0.000 M
+  fr nullspace                                  0.026 M
+  fr gate H0P                                   0.063 M
+  fr gate S                                     0.031 M
+  fr chol+chi2                                  0.006 M
+  fr copy rows                                  0.005 M
+  fr map_add                                    0.004 M
+  upd HP                                        0.141 M
+  upd S                                         0.033 M
+  upd chol                                      0.010 M
+  upd Kt                                        0.056 M
+  upd dx                                        0.007 M
+  upd Pupd                                      0.207 M
+  sdx HP                                        0.123 M
+  sdx S                                         0.028 M
+  sdx chol+dx                                   0.010 M
+  TOTAL                                         1.657 M
+
+top 0.5% n= 360
+  step other                                    0.000 M
+  propagate                                     0.027 M
+  imu_meas(updates)                             0.007 M
+  lc_step (net conv stages+misc)                0.000 M
+  vision other                                  0.034 M
+  pyramid                                       0.211 M
+  track_all (klt)                               0.010 M
+  clone ops/record/zupt/remove                  0.061 M
+  map_relocalize                                0.009 M
+  detect                                        0.073 M
+  write_state                                   0.001 M
+  build_rows other(QR)                          0.000 M
+  solve_dx (iter)                               0.015 M
+  update() EKF                                  0.023 M
+  feature_rows other(jac,nullspace,gate)        0.036 M
+  triangulate                                   0.032 M
+  net prep                                      0.000 M
+  -                                             0.000 M
+  net head                                      0.001 M
+  net apply                                     0.000 M
+  gray128                                       0.000 M
+  save/restore                                  0.001 M
+  inject                                        0.011 M
+  klt()                                         0.377 M
+  fr jac build                                  0.001 M
+  fr nullspace                                  0.085 M
+  fr gate H0P                                   0.254 M
+  fr gate S                                     0.114 M
+  fr chol+chi2                                  0.023 M
+  fr copy rows                                  0.016 M
+  fr map_add                                    0.015 M
+  upd HP                                        0.499 M
+  upd S                                         0.187 M
+  upd chol                                      0.088 M
+  upd Kt                                        0.351 M
+  upd dx                                        0.015 M
+  upd Pupd                                      0.430 M
+  sdx HP                                        0.481 M
+  sdx S                                         0.182 M
+  sdx chol+dx                                   0.097 M
+  TOTAL                                         3.768 M
+
+frame idx: mean / max total (M); top phases of the max frame mean
+    0    1.78 /   1.97   detect 1.42; pyramid 0.20; step other 0.11; clone ops/record/zupt/remove 0.01
+    1    1.36 /   1.70   gray128 0.75; detect 0.38; klt() 0.27; pyramid 0.21
+    2    0.60 /   0.84   klt() 0.38; pyramid 0.21; detect 0.16; upd Pupd 0.03
+    3    0.58 /   0.87   klt() 0.31; detect 0.26; pyramid 0.21; upd Pupd 0.02
+    4    0.61 /   0.89   klt() 0.31; detect 0.27; pyramid 0.21; upd Pupd 0.02
+    5    1.61 /   1.78   gray128 0.71; klt() 0.36; lc_step (net conv stages+misc) 0.24; pyramid 0.21
+    6    1.60 /   1.74   net prep 0.88; klt() 0.42; pyramid 0.21; detect 0.07
+    7    2.14 /   2.26   net prep 0.90; pyramid 0.21; klt() 0.11; upd Pupd 0.03
+    8    3.01 /   3.28   detect 1.11; pyramid 0.21; upd Pupd 0.08; upd HP 0.02
+    9    3.08 /   3.45   klt() 0.40; net head 0.38; - 0.35; pyramid 0.21
+   10    0.86 /   1.73   detect 0.22; pyramid 0.21; klt() 0.21; upd Pupd 0.15
+   11    0.73 /   2.03   klt() 0.38; pyramid 0.21; upd Pupd 0.15; build_rows other(QR) 0.15
+   12    0.75 /   1.31   detect 0.49; klt() 0.21; pyramid 0.21; upd Pupd 0.10
+   13    0.77 /   1.56   klt() 0.36; upd Pupd 0.24; pyramid 0.21; upd HP 0.13
+   19    0.79 /   1.16   klt() 0.44; detect 0.26; pyramid 0.21; upd Pupd 0.07
+   20    2.14 /   3.32   upd Pupd 0.52; upd HP 0.42; sdx HP 0.38; upd Kt 0.34
+   21    1.83 /   3.22   upd HP 0.40; sdx HP 0.38; upd Pupd 0.37; klt() 0.35
+   22    2.12 /   3.35   upd HP 0.40; upd Pupd 0.38; sdx HP 0.38; upd Kt 0.35
+   23    2.31 /   3.33   upd HP 0.40; sdx HP 0.38; upd Pupd 0.37; klt() 0.34
+   24    2.64 /   3.81   upd HP 0.54; sdx HP 0.52; upd Pupd 0.45; upd Kt 0.41
+   25    1.98 /   3.27   klt() 0.42; upd HP 0.40; sdx HP 0.38; upd Pupd 0.37
+   26    1.81 /   3.26   upd HP 0.40; sdx HP 0.38; upd Pupd 0.37; upd Kt 0.33
+   59    1.79 /   3.36   upd HP 0.40; upd Pupd 0.38; sdx HP 0.38; upd Kt 0.35
+   60    1.76 /   3.69   upd HP 0.47; sdx HP 0.45; upd Pupd 0.41; klt() 0.39
+   61    2.40 /   3.27   upd HP 0.40; sdx HP 0.38; upd Pupd 0.37; klt() 0.37
+   62    2.26 /   3.26   klt() 0.44; upd HP 0.40; sdx HP 0.38; upd Pupd 0.37
+   63    2.31 /   3.26   upd HP 0.40; sdx HP 0.38; upd Pupd 0.37; klt() 0.34
+   64    2.18 /   3.81   upd HP 0.47; sdx HP 0.45; klt() 0.42; upd Pupd 0.41
+   65    2.49 /   3.28   upd HP 0.40; sdx HP 0.38; upd Pupd 0.37; klt() 0.37
+  100    1.42 /   3.62   upd HP 0.47; sdx HP 0.45; klt() 0.44; upd Pupd 0.41
+  101    1.92 /   3.27   klt() 0.40; upd HP 0.37; upd Pupd 0.37; sdx HP 0.35
+  102    1.75 /   3.27   upd HP 0.40; sdx HP 0.38; upd Pupd 0.37; klt() 0.36
+  103    1.68 /   3.33   klt() 0.50; upd HP 0.40; sdx HP 0.38; upd Pupd 0.37
+  200    1.60 /   3.78   upd HP 0.50; sdx HP 0.49; upd Pupd 0.43; klt() 0.43
+  300    1.43 /   3.65   upd HP 0.47; sdx HP 0.45; klt() 0.43; upd Pupd 0.41
+
+per-flight peak frame index histogram: [ 0 10  0  3  1  0  1  0  2  0]
+per-flight peaks: median 3.79 max 3.99 min 3.29

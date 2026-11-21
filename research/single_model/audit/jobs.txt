@@ -1,0 +1,21 @@
+ab_hold0_r2|a.c|INV_HOLD=0|2
+ab_prior0_r1|a.c|PRIOR_MODE=0|1
+ab_prior0_r2|a.c|PRIOR_MODE=0|2
+ab_ghp|a.c|GATE_MODE=0 INV_HOLD=0 PRIOR_MODE=0|0
+ab_vz0|a.c|INV_VZ=0|0
+ab_thr0|a.c|AB_THRUST=0|0
+ab_vp0|a.c|AB_VPRIOR=0|0
+ab_zupt0|a.c|AB_ZUPT=0|0
+ab_prune0|a.c|GOV_PRUNE=0|0
+ab_nshold0|a.c|NS_HOLD=0|0
+ab_vkc0|a.c|VKC=0|0
+ab_gt2_0|a.c|GATE2=0|0
+ab_near0|a.c|MAP_NEAR=0|0
+ab_lv1|a.c|LEVELS=1 MAP_MODE=0|0
+ab_iter1g|a.c|ITER_UPD=1 GC_ROW=70e3|0
+rb_fb4|a.c|FB_PERIOD=4|0
+rb_ith2|a.c|ITER_TH=0.2|0
+rb_map3|a.c|MAP_TRY=3|0
+rb_prior2|a.c|PRIOR_EVERY=2|0
+rb_cool16|a.c|DET_COOL=16|0
+rb_det2|a.c|DET_PERIOD=2|0

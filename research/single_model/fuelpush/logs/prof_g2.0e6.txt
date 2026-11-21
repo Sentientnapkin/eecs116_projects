@@ -1,0 +1,13 @@
+flights 30 frames 36000 peak 2.20M p99 2.12M p95 1.91M median 1.37M mean 1.32M
+2.20M f1084 pred 1981k vis 1 klt 81 rows 22 nb 2 cells 1 units 5 map 0 prior 0 | klt 388 gH0P 238 pyr 211 gS 106 clone 70 null 65 prop 26
+2.19M f  52 pred 1990k vis 1 klt 75 rows 22 nb 2 cells 3 units 2 map 0 prior 0 | klt 351 gH0P 238 pyr 211 gS 106 det 70 null 65 clone 63
+2.19M f 256 pred 1999k vis 1 klt 20 rows 27 nb 3 cells 4 units 1 map 0 prior 0 | gH0P 260 pyr 211 gS 116 det 114 klt 109 null 78 clone 39
+2.18M f 376 pred 1987k vis 1 klt 64 rows 23 nb 3 cells 3 units 0 map 0 prior 0 | klt 346 pyr 211 gH0P 194 gS 91 null 65 det 55 clone 48
+2.18M f 508 pred 1994k vis 1 klt 72 rows 22 nb 2 cells 4 units 5 map 0 prior 0 | klt 392 gH0P 238 pyr 211 gS 106 det 102 null 65 clone 57
+2.18M f 268 pred 1997k vis 1 klt 88 rows 22 nb 2 cells 0 units 2 map 0 prior 0 | klt 474 gH0P 238 pyr 211 gS 106 clone 70 null 65 prop 26
+2.17M f 628 pred 1998k vis 1 klt 65 rows 22 nb 2 cells 6 units 5 map 0 prior 0 | klt 337 gH0P 238 pyr 211 det 142 gS 106 null 65 clone 59
+2.17M f 436 pred 1984k vis 1 klt 74 rows 22 nb 2 cells 3 units 6 map 0 prior 0 | klt 406 gH0P 238 pyr 211 gS 106 det 76 null 65 clone 64
+2.17M f1100 pred 1992k vis 1 klt 87 rows 22 nb 2 cells 0 units 1 map 0 prior 0 | klt 458 gH0P 238 pyr 211 gS 106 clone 72 null 65 prop 26
+2.17M f 836 pred 1990k vis 1 klt 75 rows 22 nb 2 cells 3 units 6 map 0 prior 0 | klt 348 gH0P 238 pyr 211 gS 106 null 65 det 63 clone 58
+2.17M f 504 pred 1999k vis 1 klt 73 rows 22 nb 2 cells 4 units 1 map 0 prior 0 | klt 394 gH0P 238 pyr 211 gS 106 det 97 null 65 clone 51
+2.17M f1192 pred 1996k vis 1 klt 57 rows 22 nb 2 cells 8 units 3 map 0 prior 0 | klt 327 gH0P 238 pyr 211 det 163 gS 106 null 65 clone 49

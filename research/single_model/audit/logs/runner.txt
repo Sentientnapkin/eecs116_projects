@@ -1,0 +1,56 @@
+17:23:35 start ab_iter1
+17:23:36 start ab_map0
+ab_iter1 n 711 mean 0.4171718591330618 median 0.273450238414835 peak 3719853
+17:29:43 done ab_iter1
+17:29:43 start ab_tcmon0
+ab_map0 n 711 mean 0.4507830338642327 median 0.34170585267791076 peak 4036720
+ab_tcmon0 n 711 mean 0.44804727851260884 median 0.2737024055220908 peak 4025316
+17:37:48 done ab_tcmon0
+17:37:48 start ab_net0
+ab_net0 n 711 mean 0.515566808597458 median 0.28876298099815983 peak 4027182
+17:41:49 done ab_net0
+17:41:49 start ab_hold0
+ab_hold0 n 711 mean 0.3785435719933424 median 0.27025204891412946 peak 4000578
+17:45:50 done ab_hold0
+17:45:50 start ab_gate0
+ab_gate0 n 711 mean 0.3660309832656476 median 0.2638714671583992 peak 4004267
+17:49:53 done ab_gate0
+17:49:53 start ab_prior0
+ab_prior0 n 711 mean 0.37614365083331325 median 0.26596969750184474 peak 4055587
+17:53:56 done ab_prior0
+17:53:56 start ab_fb0
+ab_fb0 n 711 mean 0.46257021212232935 median 0.3278868295204771 peak 4095034
+17:57:56 done ab_fb0
+17:57:56 start ab_lat0
+17:58:48 start ab_gate0_r1
+17:58:59 start ab_gate0_r2
+17:59:00 start ab_hold0_r1
+ab_lat0 n 711 mean 0.3751150766530184 median 0.25953658586309436 peak 4023000
+ab_gate0_r1 n 711 mean 0.3666790900419001 median 0.25869462883836014 peak 4009285
+ab_gate0_r2 n 711 mean 0.360461262566065 median 0.26534468917130677 peak 4104070
+18:07:28 done ab_gate0_r2
+18:07:28 start rf1
+18:07:36 orphans done; second stream
+18:07:36 start ig60
+rf1 n 711 mean 0.3835270437675404 median 0.2692349649135718 peak 4005748
+18:14:58 done rf1
+18:14:58 start ig75
+ig60 n 711 mean 0.3799018766395197 median 0.2763769522448785 peak 5517812
+18:21:14 done ig60
+18:21:14 start h1
+h1 n 711 mean 0.3835270437675404 median 0.2692349649135718 peak 4015369
+18:29:43 done h1
+18:29:43 start ab_lat0_r1
+ig75 n 711 mean 0.37621324856247396 median 0.26346922943412004 peak 4275615
+18:29:52 done ig75
+18:29:52 start ab_lat0_r2
+Terminated
+660/711 finished, 388.3s
+Terminated
+18:36:30 done ab_lat0_r2
+620/711 finished, 365.8s
+18:36:30 start hF
+Terminated
+711 episodes, 0 cached, workers=20 (no video)
+18:36:42 done hF
+18:36:42 start hFg

@@ -1,0 +1,1 @@
+/data/backups/rganapa/Sebastian/tmp/viobench-toolchain/wasi-sdk/share/cmake/../..//bin/clang --target=wasm32-wasip1 -DHARDEN=1 -DF_REUSE=1 -DGATE_MODE=0 -O3 -DNDEBUG -mexec-model=reactor -Wl,--initial-memory=67108864 -Wl,--strip-debug CMakeFiles/solution.dir/solution.c.obj -o solution.wasm  -lm 

@@ -1,0 +1,1 @@
+flights 60 frames 72000 peak 3.99M p99 3.67M p95 3.27M median 1.66M mean 1.84M

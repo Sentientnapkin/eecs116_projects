@@ -1,0 +1,9 @@
+{"fixture": "fast-ProcTHOR-Train-171-04", "frames": 700, "second_equals_first": true, "after_partial_equals_first": true, "fresh_process_equal": true, "first_pose_identity": true}
+{"fixture": "fast-106366104_174226329-00", "frames": 700, "second_equals_first": true, "after_partial_equals_first": true, "fresh_process_equal": true, "first_pose_identity": true}
+{"fixture": "fast-107734254_176000121-01", "frames": 700, "second_equals_first": true, "after_partial_equals_first": true, "fresh_process_equal": true, "first_pose_identity": true}
+{"fixture": "fastmid-ProcTHOR-Train-57-02", "frames": 700, "second_equals_first": true, "after_partial_equals_first": true, "fresh_process_equal": true, "first_pose_identity": true}
+{"fixture": "fastmid-ProcTHOR-Train-100-02", "frames": 700, "second_equals_first": true, "after_partial_equals_first": true, "fresh_process_equal": true, "first_pose_identity": true}
+{"fixture": "fastmid-ProcTHOR-Train-143-01", "frames": 700, "second_equals_first": true, "after_partial_equals_first": true, "fresh_process_equal": true, "first_pose_identity": true}
+{"fixture": "fastmid-108294897_176710602-01", "frames": 700, "second_equals_first": true, "after_partial_equals_first": true, "fresh_process_equal": true, "first_pose_identity": true}
+{"fixture": "fastmid-106366104_174226329-00", "frames": 700, "second_equals_first": true, "after_partial_equals_first": true, "fresh_process_equal": true, "first_pose_identity": true}
+RESET PASS
