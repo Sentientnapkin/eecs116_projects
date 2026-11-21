@@ -48,8 +48,10 @@ __attribute__((import_module("env"), import_name("mark"))) void mark(int id, int
 static int ph_cur = 0;
 static inline int ph_begin(int id) { int sv = ph_cur; ph_cur = id; mark(id, 0); return sv; }
 static inline void ph_end(int *sv) { ph_cur = *sv; mark(*sv, 0); }
+#define PM(id) do { ph_cur = id; mark(id, 0); } while (0)
 #define PH(id) int _ph __attribute__((cleanup(ph_end))) = ph_begin(id)
 #else
+#define PM(id)
 #define PH(id)
 #endif
 
@@ -14775,12 +14777,14 @@ static int feature_rows(const Obs *o_in, int *nrows) {
                 Hf[(2 * k + r2) * 3 + cc] = s_p;
             }
     }
+    PM(31);
     int nzc[6 * MAX_OBS], nnz = 0, seen[MAX_CLONES + 1] = {0};
     for (int k = 0; k < o.n; k++)
         if (!seen[ci[k]]) {
             seen[ci[k]] = 1;
             for (int q = 0; q < 6; q++) nzc[nnz++] = CORE + 6 * ci[k] + q;
         }
+    PM(32);
     for (int c = 0; c < 3; c++) { /* left null space of Hf */
         double norm = 0, v[2 * MAX_OBS];
         for (int i = c; i < m; i++) norm += Hf[i * 3 + c] * Hf[i * 3 + c];
@@ -14834,6 +14838,7 @@ static int feature_rows(const Obs *o_in, int *nrows) {
         s *= 2 / vn;
         for (int i = c; i < m; i++) rr[i] -= s * v[i];
     }
+    PM(33);
     int k0 = m - 3;
     const double *H0 = Hx + 3 * MAXD, *r0 = rr + 3;
     /* gate on r0^T (H0 P H0^T + s^2 I)^-1 r0, over the observing clones' columns only (H0 is zero elsewhere) */
@@ -14887,6 +14892,7 @@ static int feature_rows(const Obs *o_in, int *nrows) {
             }
         }
 #endif
+    PM(34);
         for (int a = 0; a < k0; a++) {
             v128_t acc[MAX_OBS + 1];
             const int nv = (a + 2) / 2; /* lanes 0..a (b <= a) */
@@ -14916,6 +14922,7 @@ static int feature_rows(const Obs *o_in, int *nrows) {
             Sm[a * k0 + b] = Sm[b * k0 + a] = s + (a == b ? sigma2 : 0);
         }
 #endif
+    PM(35);
     if (!cholesky(Sm, k0)) return 0;
     double y[2 * MAX_OBS], ry[2 * MAX_OBS];
     for (int a = 0; a < k0; a++) {
@@ -14928,12 +14935,14 @@ static int feature_rows(const Obs *o_in, int *nrows) {
     for (int a = 0; a < k0; a++) m2 += ry[a] * y[a];
     double gq = chi2_quantile(k0), hw = 1.0;
     if (m2 > gq) { if (INV_HUBER > 0 && m2 < INV_HUBER * gq) hw = sqrt(gq / m2); else return 0; }
+    PM(36);
     if (*nrows + k0 > MAX_ROWS) return 0;
     for (int a = 0; a < k0; a++) {
         for (int j = 0; j < D; j++) Hbig[(*nrows + a) * MAXD + j] = hw * H0[a * MAXD + j];
         rbig[*nrows + a] = hw * r0[a];
     }
     *nrows += k0;
+    PM(37);
 #if MAP_MODE
     if (o_in->tid >= 0 && o.n >= MAP_MIN_OBS) map_add(pf, o_in->px, o_in->py);
 #endif

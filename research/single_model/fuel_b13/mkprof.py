@@ -25,3 +25,24 @@ for i, l in enumerate(lines):
         out.append('    PH(%d);' % ids[m.group(1)]); done.add(m.group(1))
 print('instrumented', sorted(done), 'missing', sorted(set(ids)-done), file=sys.stderr)
 open(sys.argv[2], 'w').write('\n'.join(out))
+# --- fine section marks
+s = open(sys.argv[2]).read()
+def ins(anchor, mid, count=1):
+    global s
+    assert s.count(anchor) >= 1, anchor
+    s = s.replace(anchor, '    PM(%d);\n' % mid + anchor, 1)
+s = s.replace('#define PH(id) int _ph', '#define PM(id) do { ph_cur = id; mark(id, 0); } while (0)\n#define PH(id) int _ph', 1)
+s = s.replace('#define PH(id) int _ph', '#define PV(id,v) do { int _c = ph_cur; mark(id, (v)); mark(_c, 0); } while (0)\n#define PH(id) int _ph', 1)
+s = s.replace('#else\n#define PH(id)\n', '#else\n#define PM(id)\n#define PV(id,v)\n#define PH(id)\n', 1)
+ins('    int nzc[6 * MAX_OBS], nnz = 0, seen[MAX_CLONES + 1] = {0};', 31)
+ins('    for (int c = 0; c < 3; c++) { /* left null space of Hf */', 32)
+ins('    int k0 = m - 3;\n    const double *H0 = Hx + 3 * MAXD', 33)
+ins('        for (int a = 0; a < k0; a++) {\n            v128_t acc[MAX_OBS + 1];', 34)
+ins('    if (!cholesky(Sm, k0)) return 0;', 35)
+ins('    if (*nrows + k0 > MAX_ROWS) return 0;', 36)
+ins('#if MAP_MODE\n    if (o_in->tid >= 0 && o.n >= MAP_MIN_OBS) map_add', 37)
+open(sys.argv[2], 'w').write(s)
+s = open(sys.argv[2]).read()
+s = s.replace('    double noise = (PIXEL_STD / fx) * (PIXEL_STD / fx), dx[MAXD], dxn[MAXD]', '    PV(40, nbatch);\n    double noise = (PIXEL_STD / fx) * (PIXEL_STD / fx), dx[MAXD], dxn[MAXD]', 1)
+s = s.replace('    int nclone_cols = D - CORE;\n    if (nrows > nclone_cols) {', '    PV(41, nrows);\n    int nclone_cols = D - CORE;\n    if (nrows > nclone_cols) {', 1)
+open(sys.argv[2], 'w').write(s)

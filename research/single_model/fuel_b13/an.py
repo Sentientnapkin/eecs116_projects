@@ -1,7 +1,7 @@
 import sys, glob, numpy as np
 d = sys.argv[1]
 L = {0:'step other',1:'propagate',2:'imu_meas(updates)',3:'lc_step (net conv stages+misc)',4:'vision other',5:'pyramid',6:'track_all (klt)',7:'clone ops/record/zupt/remove',8:'map_relocalize',9:'detect',10:'write_state',
- 11:'build_rows other(QR)',12:'solve_dx (iter)',13:'update() EKF',14:'feature_rows other(jac,nullspace,gate)',15:'triangulate',20:'net prep',24:'-',25:'net head',26:'net apply',27:'gray128',28:'save/restore',29:'inject',30:'klt()'}
+ 11:'build_rows other(QR)',12:'solve_dx (iter)',13:'update() EKF',14:'feature_rows other(jac,nullspace,gate)',15:'triangulate',20:'net prep',24:'-',25:'net head',26:'net apply',27:'gray128',28:'save/restore',29:'inject',30:'klt()',31:'fr jac build',32:'fr nullspace',33:'fr gate H0P',34:'fr gate S',35:'fr chol+chi2',36:'fr copy rows',37:'fr map_add'}
 F=[np.load(f) for f in sorted(glob.glob(d+'/*.npz'))]
 S=np.concatenate([z['seg'] for z in F]); T=np.concatenate([z['tot'] for z in F])
 ids=[i for i in L if S[:,i].sum()>0]

@@ -2,5 +2,5 @@
 
 | build | set | n | >3 m (Wilson 95%) | >5 m | P(12 clean) class-cond. holdout-shrunk pm=.5 / .75 | proxy holdout pm=.5 / .75 | history-cond. |
 |--|--|--|--|--|--|--|--|
-| tc_pv25_r2 | fresh | 711 | 9/711 1.3% [0.7,2.4] | 4/711 0.6% [0.2,1.4] | proxy fresh: 0.76 / 0.81 |
-| tc_pv25_r2 | sel | 144 | 5/144 3.5% [1.5,7.9] | 3/144 2.1% [0.7,5.9] | proxy sel: 0.56 / 0.46 |
+| tc_b16r_r2 | fresh | 711 | 4/711 0.6% [0.2,1.4] | 1/711 0.1% [0.0,0.8] | proxy fresh: 0.81 / 0.90 |
+| tc_b16r_r2 | sel | 144 | 5/144 3.5% [1.5,7.9] | 1/144 0.7% [0.1,3.8] | proxy sel: 0.56 / 0.46 |

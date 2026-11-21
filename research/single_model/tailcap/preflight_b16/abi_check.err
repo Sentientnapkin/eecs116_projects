@@ -1,0 +1,16 @@
+Exception ignored in: <finalize object at 0x7fb33d39b4c0; dead>
+Traceback (most recent call last):
+  File "/home/rganapa/miniforge3/lib/python3.12/weakref.py", line 590, in __call__
+    return info.func(*info.args, **(info.kwargs or {}))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rganapa/miniforge3/lib/python3.12/tempfile.py", line 939, in _cleanup
+    cls._rmtree(name, ignore_errors=ignore_errors)
+  File "/home/rganapa/miniforge3/lib/python3.12/tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "/home/rganapa/miniforge3/lib/python3.12/shutil.py", line 759, in rmtree
+    _rmtree_safe_fd(stack, onexc)
+  File "/home/rganapa/miniforge3/lib/python3.12/shutil.py", line 703, in _rmtree_safe_fd
+    onexc(func, path, err)
+  File "/home/rganapa/miniforge3/lib/python3.12/shutil.py", line 662, in _rmtree_safe_fd
+    os.rmdir(name, dir_fd=dirfd)
+OSError: [Errno 39] Directory not empty: '/data/backups/rganapa/Sebastian/tmp/viobench-7kuelv03'
