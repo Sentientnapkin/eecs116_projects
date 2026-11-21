@@ -941,7 +941,9 @@ static double Hs[3 * MAXD]; /* Jacobian rows of the small updates */
 /* per frame: thrust model (frame-mean body x/y specific force = b_a,x/y), then the velocity prior */
 /* ---- learned startup net (learned_c) ---- */
 #define LC_SCALE 1.0
+#ifndef LC_SPREAD
 #define LC_SPREAD 3
+#endif
 /* ===================================================================================================================
  * Learned startup-velocity net (research/single_model/learned_c). Inference of train2.py's Net (nf=2, 64x48, width 1) in plain C.
  * Inputs: frame 0 and frame LC_K (=5), gyro-derotated into frame 0's orientation with the raw-gyro integral between them (own integration,
@@ -14175,7 +14177,7 @@ static float lc_a0[24 * 32 * LC_C0], lc_a1[12 * 16 * LC_C1], lc_a2[6 * 8 * LC_C2
 static float lc_vec[19], lc_out[12];
 static double lc_Rc[9], lc_Vi[3], lc_Rs[9], lc_Vs[3], lc_R5[9], lc_V5[3], lc_fm[2][3], lc_gm[2][3], lc_tprev, lc_Rf5[9], lc_vf5[3];
 static int lc_have_row, lc_frame, lc_next, lc_ready, lc_applied, lc_active;
-static const signed char lc_at_tab[4][6] = {{0, 0, 0, 0, 0, 0}, {0, 1, 2, 3, 3, 4}, {0, 1, 2, 3, 4, 5}, {0, 1, 1, 1, 1, 1}};
+static const signed char lc_at_tab[6][6] = {{0, 0, 0, 0, 0, 0}, {0, 1, 2, 3, 3, 4}, {0, 1, 2, 3, 4, 5}, {0, 1, 1, 1, 1, 1}, {1, 2, 2, 3, 3, 3}, {1, 2, 3, 3, 4, 4}};
 
 static void lc_exp(const double *w, double *r) { /* Rodrigues, same as prep.py exp_rot (first order below 1e-9) */
     double th = sqrt(w[0] * w[0] + w[1] * w[1] + w[2] * w[2]);
@@ -14296,13 +14298,15 @@ static void lc_stage_prep(void) {
 #define LC_CONV(NAME, CI, CO, IH, IW, WT, BT) \
 static void NAME(const float *in, float *out) { \
     const int OH = (IH) / 2, OW = (IW) / 2; \
+    const v128_t zero = wasm_f32x4_splat(0.0f); \
     for (int oy = 0; oy < OH; oy++) for (int ox = 0; ox < OW; ox++) { \
-        float acc[CO]; for (int c = 0; c < (CO); c++) acc[c] = (BT)[c]; \
+        v128_t acc[(CO) / 4]; for (int q = 0; q < (CO) / 4; q++) acc[q] = wasm_v128_load((BT) + 4 * q); \
         for (int ky = 0; ky < 3; ky++) { int iy = oy * 2 - 1 + ky; if (iy < 0 || iy >= (IH)) continue; \
             for (int kx = 0; kx < 3; kx++) { int ix = ox * 2 - 1 + kx; if (ix < 0 || ix >= (IW)) continue; \
                 const float *ip = in + (iy * (IW) + ix) * (CI); const float *wp = (WT) + (ky * 3 + kx) * (CI) * (CO); \
-                for (int ci = 0; ci < (CI); ci++) { float a = ip[ci]; const float *w = wp + ci * (CO); for (int c = 0; c < (CO); c++) acc[c] += a * w[c]; } } } \
-        float *op = out + (oy * OW + ox) * (CO); for (int c = 0; c < (CO); c++) op[c] = acc[c] > 0 ? acc[c] : 0; } }
+                for (int ci = 0; ci < (CI); ci++) { const v128_t a = wasm_f32x4_splat(ip[ci]); const float *w = wp + ci * (CO); \
+                    for (int q = 0; q < (CO) / 4; q++) acc[q] = wasm_f32x4_add(acc[q], wasm_f32x4_mul(a, wasm_v128_load(w + 4 * q))); } } } \
+        float *op = out + (oy * OW + ox) * (CO); for (int q = 0; q < (CO) / 4; q++) wasm_v128_store(op + 4 * q, wasm_v128_bitselect(acc[q], zero, wasm_f32x4_gt(acc[q], zero))); } }
 LC_CONV(lc_conv0, 5, LC_C0, LC_PH, LC_PW, LC_W0, LC_B0)
 LC_CONV(lc_conv1, LC_C0, LC_C1, 24, 32, LC_W1, LC_B1)
 LC_CONV(lc_conv2, LC_C1, LC_C2, 12, 16, LC_W2, LC_B2)
@@ -14633,7 +14637,10 @@ static void map_add(const double *pf, double px, double py) {
     mp_adds++;
 }
 static double Hm[2 * MAXD];
-static void map_relocalize(void) {
+#ifndef MAP_SPREAD
+#define MAP_SPREAD 0   /* approx arm: the MAP_TRY match attempts per clone cycle are spread over all frames of the cycle */
+#endif
+static void map_relocalize(int budget) {
     double Rwc[9], pwc[3];
     m3mul(R, R_bc, Rwc);
     { double t3[3]; m3vec(R, p_bc, t3); for (int i = 0; i < 3; i++) pwc[i] = pos[i] + t3[i]; }
@@ -14641,7 +14648,7 @@ static void map_relocalize(void) {
     const double cosang = cos(MAP_ANG * M_PI / 180.0);
     const uint8_t *I = pyr[map_img][1];
     int tries = 0;
-    for (int kk = 0; kk < MAP_N && tries < MAP_TRY; kk++) {
+    for (int kk = 0; kk < MAP_N && tries < budget; kk++) {
         MapPt *m = &mp[(mp_cursor + kk) % MAP_N];
         if (!m->valid || frame_no - m->born < MAP_AGE || frame_no - m->used < MAP_COOL) continue;
         double d[3], Pc[3];
@@ -14724,7 +14731,7 @@ static void map_relocalize(void) {
         double noise = (MAP_PIX / fx) * (MAP_PIX / fx) + (m->sig / Pc[2]) * (m->sig / Pc[2]);
         if (update(r2, Hm, 2, noise, MAP_GATE)) { mp_acc++; m->used = frame_no; }
     }
-    mp_cursor = (mp_cursor + MAP_TRY * 3 + 1) % MAP_N;
+    mp_cursor = (mp_cursor + budget * 3 + 1) % MAP_N;
     if (MAP_DBG && (frame_no % 200) == 0) fprintf(stderr, "MAP f=%d tries=%ld match=%ld acc=%ld\n", frame_no, mp_tries, mp_match, mp_acc);
 }
 #endif
@@ -15590,7 +15597,8 @@ static void vision(const uint8_t *frame) {
             msckf_update(batch, nb);
         }
 #if MAP_MODE
-        map_relocalize();
+        if (MAP_SPREAD == 0) map_relocalize(MAP_TRY);
+        else map_relocalize(MAP_TRY / clone_every + (0 < MAP_TRY % clone_every));
 #endif
     } else {
         int nb = 0, take = nlost < CAP_LOST ? nlost : CAP_LOST;
@@ -15606,6 +15614,9 @@ static void vision(const uint8_t *frame) {
             }
         }
         msckf_update(batch, nb);
+#if MAP_MODE
+        if (MAP_SPREAD) map_relocalize(MAP_TRY / clone_every + (frames_since_clone < MAP_TRY % clone_every));
+#endif
     }
     detect(cur);
     cur_pyr = cur;

@@ -5,7 +5,7 @@ H = Path(__file__).resolve().parent
 def load(p):
     d = json.load(open(p)); return {r['episode']: r for r in d if r['ate'] is not None}
 pre = sys.argv[1]; R = int(sys.argv[2]) if len(sys.argv) > 2 else 3
-base = [load(H.parent / 'bulk/tables' / n) for n in ['bk_xC', 'bk_xCr1', 'bk_xCr2'][:R]]
+base = [load(H.parent / 'bulk/tables' / n) for n in ['bk_xC.json', 'bk_xCr1.json', 'bk_xCr2.json'][:R]]
 cand = []
 for k in range(R):
     p = H / 'tables' / (pre + ('' if k == 0 else 'r%d' % k) + '.json')
