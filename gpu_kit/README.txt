@@ -10,3 +10,10 @@ GPU flight kit (EECS 116 viobench): makes varied, hidden-set-like test flights o
    then tell Claude where they are.
 
 No team token or solution code is needed on the GPU computer.
+
+Scoring on the lab machine (uses its 32 threads and its own flights, so nothing big has to come back):
+6. bash eval/run_variants.sh eval/batch.txt 8     scores each variant in eval/batch.txt on every flight group
+     (8 = how many at once; with 32 threads try 12 if memory allows: check with  free -g)
+     Takes roughly 30-60 min. Prints a table at the end.
+7. git add gpu_kit/eval/results && git commit -m "lab results" && git push     (small text files)
+
