@@ -1,0 +1,856 @@
+{
+ "flights": [
+  {
+   "id": "px2-M-ProcTHOR-Train-1-000",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-1",
+   "speed": "M",
+   "seconds": 60,
+   "crop_start_s": 10.3,
+   "seed": 995000,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.5,
+    "CRUISE_SPEED_MAX": 2.5,
+    "MAX_ACCELERATION": 3.0,
+    "MAX_JERK": 15.0,
+    "MAX_YAW_RATE": 1.5,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 5.0
+   }
+  },
+  {
+   "id": "px2-M-ProcTHOR-Train-119-001",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-119",
+   "speed": "M",
+   "seconds": 75,
+   "crop_start_s": 0.0,
+   "seed": 995001,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.5,
+    "CRUISE_SPEED_MAX": 2.5,
+    "MAX_ACCELERATION": 3.0,
+    "MAX_JERK": 15.0,
+    "MAX_YAW_RATE": 1.5,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 5.0
+   }
+  },
+  {
+   "id": "px2-K3-ProcTHOR-Train-134-002",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-134",
+   "speed": "K3",
+   "seconds": 75,
+   "crop_start_s": 10.8,
+   "seed": 995002,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 6.0,
+    "CRUISE_SPEED_MAX": 8.0,
+    "MAX_ACCELERATION": 10.0,
+    "MAX_JERK": 50.0,
+    "MAX_YAW_RATE": 2.5,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-K3-ProcTHOR-Train-163-003",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-163",
+   "speed": "K3",
+   "seconds": 90,
+   "crop_start_s": 0.0,
+   "seed": 995003,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 6.0,
+    "CRUISE_SPEED_MAX": 8.0,
+    "MAX_ACCELERATION": 10.0,
+    "MAX_JERK": 50.0,
+    "MAX_YAW_RATE": 2.5,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-K3-ProcTHOR-Train-176-004",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-176",
+   "speed": "K3",
+   "seconds": 60,
+   "crop_start_s": 0.0,
+   "seed": 995004,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 6.0,
+    "CRUISE_SPEED_MAX": 8.0,
+    "MAX_ACCELERATION": 10.0,
+    "MAX_JERK": 50.0,
+    "MAX_YAW_RATE": 2.5,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-K3-ProcTHOR-Train-186-005",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-186",
+   "speed": "K3",
+   "seconds": 60,
+   "crop_start_s": 0.0,
+   "seed": 995005,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 6.0,
+    "CRUISE_SPEED_MAX": 8.0,
+    "MAX_ACCELERATION": 10.0,
+    "MAX_JERK": 50.0,
+    "MAX_YAW_RATE": 2.5,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-M-ProcTHOR-Train-22-006",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-22",
+   "speed": "M",
+   "seconds": 60,
+   "crop_start_s": 21.0,
+   "seed": 995006,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.5,
+    "CRUISE_SPEED_MAX": 2.5,
+    "MAX_ACCELERATION": 3.0,
+    "MAX_JERK": 15.0,
+    "MAX_YAW_RATE": 1.5,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 5.0
+   }
+  },
+  {
+   "id": "px2-M-ProcTHOR-Train-43-007",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-43",
+   "speed": "M",
+   "seconds": 60,
+   "crop_start_s": 0.0,
+   "seed": 995007,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.5,
+    "CRUISE_SPEED_MAX": 2.5,
+    "MAX_ACCELERATION": 3.0,
+    "MAX_JERK": 15.0,
+    "MAX_YAW_RATE": 1.5,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 5.0
+   }
+  },
+  {
+   "id": "px2-K2-ProcTHOR-Train-69-008",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-69",
+   "speed": "K2",
+   "seconds": 60,
+   "crop_start_s": 19.5,
+   "seed": 995008,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 4.0,
+    "CRUISE_SPEED_MAX": 6.0,
+    "MAX_ACCELERATION": 8.0,
+    "MAX_JERK": 40.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-K-ProcTHOR-Train-90-009",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-90",
+   "speed": "K",
+   "seconds": 60,
+   "crop_start_s": 0.0,
+   "seed": 995009,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 3.0,
+    "CRUISE_SPEED_MAX": 4.5,
+    "MAX_ACCELERATION": 6.0,
+    "MAX_JERK": 30.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-M-ProcTHOR-Train-105-010",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-105",
+   "speed": "M",
+   "seconds": 75,
+   "crop_start_s": 17.8,
+   "seed": 995010,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.5,
+    "CRUISE_SPEED_MAX": 2.5,
+    "MAX_ACCELERATION": 3.0,
+    "MAX_JERK": 15.0,
+    "MAX_YAW_RATE": 1.5,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 5.0
+   }
+  },
+  {
+   "id": "px2-M-ProcTHOR-Train-125-011",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-125",
+   "speed": "M",
+   "seconds": 60,
+   "crop_start_s": 18.2,
+   "seed": 995011,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.5,
+    "CRUISE_SPEED_MAX": 2.5,
+    "MAX_ACCELERATION": 3.0,
+    "MAX_JERK": 15.0,
+    "MAX_YAW_RATE": 1.5,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 5.0
+   }
+  },
+  {
+   "id": "px2-D-ProcTHOR-Train-139-012",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-139",
+   "speed": "D",
+   "seconds": 60,
+   "crop_start_s": 0.0,
+   "seed": 995012,
+   "task_overrides": {}
+  },
+  {
+   "id": "px2-K2-ProcTHOR-Train-165-013",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-165",
+   "speed": "K2",
+   "seconds": 60,
+   "crop_start_s": 0.0,
+   "seed": 995013,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 4.0,
+    "CRUISE_SPEED_MAX": 6.0,
+    "MAX_ACCELERATION": 8.0,
+    "MAX_JERK": 40.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-K3-ProcTHOR-Train-18-014",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-18",
+   "speed": "K3",
+   "seconds": 60,
+   "crop_start_s": 0.0,
+   "seed": 995014,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 6.0,
+    "CRUISE_SPEED_MAX": 8.0,
+    "MAX_ACCELERATION": 10.0,
+    "MAX_JERK": 50.0,
+    "MAX_YAW_RATE": 2.5,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-K3-ProcTHOR-Train-194-015",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-194",
+   "speed": "K3",
+   "seconds": 60,
+   "crop_start_s": 0.0,
+   "seed": 995015,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 6.0,
+    "CRUISE_SPEED_MAX": 8.0,
+    "MAX_ACCELERATION": 10.0,
+    "MAX_JERK": 50.0,
+    "MAX_YAW_RATE": 2.5,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-D-ProcTHOR-Train-28-016",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-28",
+   "speed": "D",
+   "seconds": 90,
+   "crop_start_s": 0.0,
+   "seed": 995016,
+   "task_overrides": {}
+  },
+  {
+   "id": "px2-M-ProcTHOR-Train-46-017",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-46",
+   "speed": "M",
+   "seconds": 60,
+   "crop_start_s": 21.9,
+   "seed": 995017,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.5,
+    "CRUISE_SPEED_MAX": 2.5,
+    "MAX_ACCELERATION": 3.0,
+    "MAX_JERK": 15.0,
+    "MAX_YAW_RATE": 1.5,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 5.0
+   }
+  },
+  {
+   "id": "px2-K2-ProcTHOR-Train-8-018",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-8",
+   "speed": "K2",
+   "seconds": 75,
+   "crop_start_s": 20.7,
+   "seed": 995018,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 4.0,
+    "CRUISE_SPEED_MAX": 6.0,
+    "MAX_ACCELERATION": 8.0,
+    "MAX_JERK": 40.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-K-ProcTHOR-Train-93-019",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-93",
+   "speed": "K",
+   "seconds": 60,
+   "crop_start_s": 12.3,
+   "seed": 995019,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 3.0,
+    "CRUISE_SPEED_MAX": 4.5,
+    "MAX_ACCELERATION": 6.0,
+    "MAX_JERK": 30.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-K2-ProcTHOR-Train-109-020",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-109",
+   "speed": "K2",
+   "seconds": 75,
+   "crop_start_s": 17.6,
+   "seed": 995020,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 4.0,
+    "CRUISE_SPEED_MAX": 6.0,
+    "MAX_ACCELERATION": 8.0,
+    "MAX_JERK": 40.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-K-ProcTHOR-Train-129-021",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-129",
+   "speed": "K",
+   "seconds": 75,
+   "crop_start_s": 25.2,
+   "seed": 995021,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 3.0,
+    "CRUISE_SPEED_MAX": 4.5,
+    "MAX_ACCELERATION": 6.0,
+    "MAX_JERK": 30.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-M-ProcTHOR-Train-146-022",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-146",
+   "speed": "M",
+   "seconds": 60,
+   "crop_start_s": 0.0,
+   "seed": 995022,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.5,
+    "CRUISE_SPEED_MAX": 2.5,
+    "MAX_ACCELERATION": 3.0,
+    "MAX_JERK": 15.0,
+    "MAX_YAW_RATE": 1.5,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 5.0
+   }
+  },
+  {
+   "id": "px2-K2-ProcTHOR-Train-173-023",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-173",
+   "speed": "K2",
+   "seconds": 60,
+   "crop_start_s": 20.9,
+   "seed": 995023,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 4.0,
+    "CRUISE_SPEED_MAX": 6.0,
+    "MAX_ACCELERATION": 8.0,
+    "MAX_JERK": 40.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-K2-ProcTHOR-Train-182-024",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-182",
+   "speed": "K2",
+   "seconds": 90,
+   "crop_start_s": 0.0,
+   "seed": 995024,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 4.0,
+    "CRUISE_SPEED_MAX": 6.0,
+    "MAX_ACCELERATION": 8.0,
+    "MAX_JERK": 40.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-D-ProcTHOR-Train-196-025",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-196",
+   "speed": "D",
+   "seconds": 60,
+   "crop_start_s": 20.3,
+   "seed": 995025,
+   "task_overrides": {}
+  },
+  {
+   "id": "px2-M-ProcTHOR-Train-31-026",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-31",
+   "speed": "M",
+   "seconds": 60,
+   "crop_start_s": 0.0,
+   "seed": 995026,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.5,
+    "CRUISE_SPEED_MAX": 2.5,
+    "MAX_ACCELERATION": 3.0,
+    "MAX_JERK": 15.0,
+    "MAX_YAW_RATE": 1.5,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 5.0
+   }
+  },
+  {
+   "id": "px2-M-ProcTHOR-Train-66-027",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-66",
+   "speed": "M",
+   "seconds": 60,
+   "crop_start_s": 0.0,
+   "seed": 995027,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.5,
+    "CRUISE_SPEED_MAX": 2.5,
+    "MAX_ACCELERATION": 3.0,
+    "MAX_JERK": 15.0,
+    "MAX_YAW_RATE": 1.5,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 5.0
+   }
+  },
+  {
+   "id": "px2-K-ProcTHOR-Train-83-028",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-83",
+   "speed": "K",
+   "seconds": 60,
+   "crop_start_s": 29.8,
+   "seed": 995028,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 3.0,
+    "CRUISE_SPEED_MAX": 4.5,
+    "MAX_ACCELERATION": 6.0,
+    "MAX_JERK": 30.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-D-ProcTHOR-Train-99-029",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-99",
+   "speed": "D",
+   "seconds": 60,
+   "crop_start_s": 0.0,
+   "seed": 995029,
+   "task_overrides": {}
+  },
+  {
+   "id": "px2-K2-ProcTHOR-Train-117-030",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-117",
+   "speed": "K2",
+   "seconds": 60,
+   "crop_start_s": 26.4,
+   "seed": 995030,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 4.0,
+    "CRUISE_SPEED_MAX": 6.0,
+    "MAX_ACCELERATION": 8.0,
+    "MAX_JERK": 40.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-K2-ProcTHOR-Train-133-031",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-133",
+   "speed": "K2",
+   "seconds": 60,
+   "crop_start_s": 0.0,
+   "seed": 995031,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 4.0,
+    "CRUISE_SPEED_MAX": 6.0,
+    "MAX_ACCELERATION": 8.0,
+    "MAX_JERK": 40.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-K-ProcTHOR-Train-162-032",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-162",
+   "speed": "K",
+   "seconds": 75,
+   "crop_start_s": 3.3,
+   "seed": 995032,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 3.0,
+    "CRUISE_SPEED_MAX": 4.5,
+    "MAX_ACCELERATION": 6.0,
+    "MAX_JERK": 30.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-K3-ProcTHOR-Train-175-033",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-175",
+   "speed": "K3",
+   "seconds": 60,
+   "crop_start_s": 16.4,
+   "seed": 995033,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 6.0,
+    "CRUISE_SPEED_MAX": 8.0,
+    "MAX_ACCELERATION": 10.0,
+    "MAX_JERK": 50.0,
+    "MAX_YAW_RATE": 2.5,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-K-ProcTHOR-Train-185-034",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-185",
+   "speed": "K",
+   "seconds": 60,
+   "crop_start_s": 0.0,
+   "seed": 995034,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 3.0,
+    "CRUISE_SPEED_MAX": 4.5,
+    "MAX_ACCELERATION": 6.0,
+    "MAX_JERK": 30.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-K2-ProcTHOR-Train-20-035",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-20",
+   "speed": "K2",
+   "seconds": 75,
+   "crop_start_s": 4.7,
+   "seed": 995035,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 4.0,
+    "CRUISE_SPEED_MAX": 6.0,
+    "MAX_ACCELERATION": 8.0,
+    "MAX_JERK": 40.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-D-ProcTHOR-Train-42-036",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-42",
+   "speed": "D",
+   "seconds": 60,
+   "crop_start_s": 0.0,
+   "seed": 995036,
+   "task_overrides": {}
+  },
+  {
+   "id": "px2-D-ProcTHOR-Train-68-037",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-68",
+   "speed": "D",
+   "seconds": 75,
+   "crop_start_s": 5.5,
+   "seed": 995037,
+   "task_overrides": {}
+  },
+  {
+   "id": "px2-K-ProcTHOR-Train-9-038",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-9",
+   "speed": "K",
+   "seconds": 75,
+   "crop_start_s": 0.0,
+   "seed": 995038,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 3.0,
+    "CRUISE_SPEED_MAX": 4.5,
+    "MAX_ACCELERATION": 6.0,
+    "MAX_JERK": 30.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-K-ProcTHOR-Train-102-039",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-102",
+   "speed": "K",
+   "seconds": 60,
+   "crop_start_s": 27.0,
+   "seed": 995039,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 3.0,
+    "CRUISE_SPEED_MAX": 4.5,
+    "MAX_ACCELERATION": 6.0,
+    "MAX_JERK": 30.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-K-ProcTHOR-Train-120-040",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-120",
+   "speed": "K",
+   "seconds": 60,
+   "crop_start_s": 26.1,
+   "seed": 995040,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 3.0,
+    "CRUISE_SPEED_MAX": 4.5,
+    "MAX_ACCELERATION": 6.0,
+    "MAX_JERK": 30.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-K3-ProcTHOR-Train-135-041",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-135",
+   "speed": "K3",
+   "seconds": 90,
+   "crop_start_s": 27.3,
+   "seed": 995041,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 6.0,
+    "CRUISE_SPEED_MAX": 8.0,
+    "MAX_ACCELERATION": 10.0,
+    "MAX_JERK": 50.0,
+    "MAX_YAW_RATE": 2.5,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-K-ProcTHOR-Train-164-042",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-164",
+   "speed": "K",
+   "seconds": 75,
+   "crop_start_s": 26.6,
+   "seed": 995042,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 3.0,
+    "CRUISE_SPEED_MAX": 4.5,
+    "MAX_ACCELERATION": 6.0,
+    "MAX_JERK": 30.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-K-ProcTHOR-Train-179-043",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-179",
+   "speed": "K",
+   "seconds": 90,
+   "crop_start_s": 10.9,
+   "seed": 995043,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 3.0,
+    "CRUISE_SPEED_MAX": 4.5,
+    "MAX_ACCELERATION": 6.0,
+    "MAX_JERK": 30.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-M-ProcTHOR-Train-188-044",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-188",
+   "speed": "M",
+   "seconds": 60,
+   "crop_start_s": 17.3,
+   "seed": 995044,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.5,
+    "CRUISE_SPEED_MAX": 2.5,
+    "MAX_ACCELERATION": 3.0,
+    "MAX_JERK": 15.0,
+    "MAX_YAW_RATE": 1.5,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 5.0
+   }
+  },
+  {
+   "id": "px2-M-ProcTHOR-Train-23-045",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-23",
+   "speed": "M",
+   "seconds": 60,
+   "crop_start_s": 15.0,
+   "seed": 995045,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 1.5,
+    "CRUISE_SPEED_MAX": 2.5,
+    "MAX_ACCELERATION": 3.0,
+    "MAX_JERK": 15.0,
+    "MAX_YAW_RATE": 1.5,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 5.0
+   }
+  },
+  {
+   "id": "px2-K-ProcTHOR-Train-45-046",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-45",
+   "speed": "K",
+   "seconds": 75,
+   "crop_start_s": 14.1,
+   "seed": 995046,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 3.0,
+    "CRUISE_SPEED_MAX": 4.5,
+    "MAX_ACCELERATION": 6.0,
+    "MAX_JERK": 30.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-K2-ProcTHOR-Train-79-047",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-79",
+   "speed": "K2",
+   "seconds": 75,
+   "crop_start_s": 0.0,
+   "seed": 995047,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 4.0,
+    "CRUISE_SPEED_MAX": 6.0,
+    "MAX_ACCELERATION": 8.0,
+    "MAX_JERK": 40.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-K-ProcTHOR-Train-92-048",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-92",
+   "speed": "K",
+   "seconds": 60,
+   "crop_start_s": 0.0,
+   "seed": 995048,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 3.0,
+    "CRUISE_SPEED_MAX": 4.5,
+    "MAX_ACCELERATION": 6.0,
+    "MAX_JERK": 30.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  },
+  {
+   "id": "px2-K2-ProcTHOR-Train-108-049",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-108",
+   "speed": "K2",
+   "seconds": 60,
+   "crop_start_s": 0.0,
+   "seed": 995049,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 4.0,
+    "CRUISE_SPEED_MAX": 6.0,
+    "MAX_ACCELERATION": 8.0,
+    "MAX_JERK": 40.0,
+    "MAX_YAW_RATE": 2.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0
+   }
+  }
+ ]
+}
