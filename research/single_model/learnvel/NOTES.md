@@ -69,3 +69,26 @@ each flight (valid_starts = every stride-5 anchor), not only the start; training
 - RSOFT base (rs.c, 3 reps): pooled st2dev+st3 0.5940 (HM40 0.6545, -9.2%). On top of RSOFT: rsP10S2 -2.1% [-0.041,+0.016], rsP10B -1.8%
   (gains mostly overlap with RSOFT's). New net v700b (beta-NLL, +700 lv flights, w1, direct st2dev 0.240 vs b2 0.258; >2 m/s 0.55, scale 0.81)
   queued in-filter (qG: rsNP10B, rsN).
+- RSOFT arms pooled (3 reps, vs rs 0.5940): rsP10S3B (period 10, sigma x3, bg clamp 0.021) 0.5678 (-4.4%, CI [-0.049,-0.004]) |
+  rsNP10B (v700b net + P10 S2 + clamp) 0.5615 (-5.5%, CI [-0.071,+0.006]) | rsP10S2 -2.1% | rsP10B -1.8% (rsP6B identical: fires gated by net landing)
+  | rsB (clamp only) +0.6%.
+- COORDINATOR (2nd): new base GSLM = geomstarve/final/gs_lines_manhattan.c (wasm 180ffa2b). gl.c = patchlv(GSLM): off == 180ffa2b VERIFIED;
+  gln_v700b.c = gl.c with v700b net weights. Queues qH (gl, glP = P10S3B), qI (glNP = v700b+P10S3B, glN = v700b only).
+- rsN (v700b net, HM40 schedule, on RSOFT) +1.4% => the net alone does nothing; it pays only with periodic re-anchoring.
+- GSLM results (3 reps, st2dev / st3): gl 0.455 / 0.475 | glP (lcJ + P10S3B) ~0.440 / ~0.44 | glNP (v700b + P10S3B) 0.415 / 0.416 (~-11%) |
+  glN (v700b alone) ~neutral. => periodic re-anchor COMPOSES with GSLM (larger gain than on HM40/RSOFT). Confirm queues qJ (gl) / qK (glNP)
+  on st2conf, fconf, st1conf, st1dev, fdev.
+- CANDIDATE final/gslm_lvnet.c (= GSLM via patchlv + LV_NET switchable weights; 7 #defines: TC_GAP=9 TC_MAXANCH=400 LV_PERIOD=10
+  LV_PSCALE=3.0 LV_BGC=1 LV_BGMAX=0.021 LV_NET=1) -> final/gslm_lvnet.wasm sha 5e4d2a0d40333b3f5152d60de84a688abc5d0eec8c1c73fa402dc9907839d196
+  (== define-built glNP wasm; glx.c with no defines == GSLM 180ffa2b). PREFLIGHT (final/preflight): ABI ok, zero imports, poison/prefix/repeat
+  738/738 PASS (18 fixtures x 41 prefixes incl. 20/24/29-31/40/41/60-66/70/80/99-105 around periodic fires), reset 8/8 PASS.
+## FINAL (3 reps each, means over reps; base GSLM = gl.c no defines = 180ffa2b; arm glNP = final/gslm_lvnet.wasm 5e4d2a0d)
+| set | GSLM | glNP | d (scene-bootstrap 95% CI) | >3 m (sum 3 reps) | peak max |
+| st2dev 156 | 0.4553 | 0.4154 | -8.8% [-0.057,-0.022] | 5/5 | 7.09/6.84 M |
+| st3 234 (st2-dev scenes) | 0.4746 | 0.4156 | -12.4% [-0.133,-0.012] | 12/4 | 6.96/6.83 |
+| st2conf 84 | 0.3507 | 0.3334 | -4.9% [-0.036,-0.001] | 0/0 | 6.33/6.56 |
+| fresh f0-2 475 | 0.2658 | 0.2567 | -3.4% [-0.019,-0.000] | 3/1 | 6.94/6.96 |
+| fresh f3 107 | 0.3046 | 0.2701 | -11.3% [-0.068,+0.003] | 0/0 | 6.51/6.75 |
+| st1dev 244 | 0.1918 | 0.1773 | -7.6% [-0.028,-0.005] | 0/0 | 7.02/6.98 |
+| st1conf 156 | 0.2532 | 0.2459 | -2.9% [-0.018,+0.003] | 0/0 | 7.40/6.41 |
+No >10 m anywhere; filled 0; all completed. RECOMMENDED: final/gslm_lvnet.wasm sha256 5e4d2a0d40333b3f5152d60de84a688abc5d0eec8c1c73fa402dc9907839d196.

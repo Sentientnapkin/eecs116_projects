@@ -9,3 +9,4 @@ rsN st3 n 234 mean 0.5816 peak 4062486 filled 0
 rsN_r1 st2dev n 156 mean 0.5905 peak 4039032 filled 0
 rsN_r1 st3 n 234 mean 0.5922 peak 4032184 filled 0
 rsN_r2 st2dev n 156 mean 0.5987 peak 4054233 filled 0
+rsN_r2 st3 n 234 mean 0.6062 peak 4030212 filled 0

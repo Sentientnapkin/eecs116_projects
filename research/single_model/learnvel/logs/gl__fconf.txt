@@ -1,0 +1,9 @@
+107 episodes, 0 cached, workers=32 (no video)
+20/107 finished, 10.9s
+40/107 finished, 15.5s
+60/107 finished, 23.5s
+80/107 finished, 24.9s
+100/107 finished, 30.1s
+107/107 finished, 36.0s
+107
+gl fconf n 107 mean 0.3218 peak 6506733 filled 0

@@ -1,0 +1,12 @@
+gl st2dev n 156 mean 0.4441 peak 7089589 filled 0
+gl st3 n 234 mean 0.4740 peak 6535728 filled 0
+gl_r1 st2dev n 156 mean 0.4660 peak 7041755 filled 0
+gl_r1 st3 n 234 mean 0.4723 peak 6824840 filled 0
+gl_r2 st2dev n 156 mean 0.4556 peak 6676681 filled 0
+gl_r2 st3 n 234 mean 0.4773 peak 6964809 filled 0
+glP st2dev n 156 mean 0.4436 peak 7088446 filled 0
+glP st3 n 234 mean 0.4468 peak 6555551 filled 0
+glP_r1 st2dev n 156 mean 0.4397 peak 6511779 filled 0
+glP_r1 st3 n 234 mean 0.4319 peak 6555779 filled 0
+glP_r2 st2dev n 156 mean 0.4374 peak 6634301 filled 0
+glP_r2 st3 n 234 mean 0.4587 peak 6988507 filled 0

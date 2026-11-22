@@ -1,0 +1,16 @@
+244 episodes, 0 cached, workers=32 (no video)
+20/244 finished, 11.3s
+40/244 finished, 16.5s
+60/244 finished, 24.6s
+80/244 finished, 31.6s
+100/244 finished, 35.0s
+120/244 finished, 41.5s
+140/244 finished, 50.6s
+160/244 finished, 53.2s
+180/244 finished, 58.4s
+200/244 finished, 65.8s
+220/244 finished, 71.1s
+240/244 finished, 75.0s
+244/244 finished, 75.5s
+244
+gl_r2 st1dev n 244 mean 0.1889 peak 6665554 filled 0

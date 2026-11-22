@@ -1,0 +1,15 @@
+glNP st2conf n 84 mean 0.3360 peak 6259438 filled 0
+glNP fconf n 107 mean 0.2801 peak 6597412 filled 0
+glNP st1conf n 156 mean 0.2439 peak 6116601 filled 0
+glNP st1dev n 244 mean 0.1803 peak 6983863 filled 0
+glNP fdev n 475 mean 0.2513 peak 6749866 filled 0
+glNP_r1 st2conf n 84 mean 0.3406 peak 6563692 filled 0
+glNP_r1 fconf n 107 mean 0.2643 peak 5591113 filled 0
+glNP_r1 st1conf n 156 mean 0.2561 peak 6410345 filled 0
+glNP_r1 st1dev n 244 mean 0.1754 peak 6501431 filled 0
+glNP_r1 fdev n 475 mean 0.2628 peak 6902162 filled 0
+glNP_r2 st2conf n 84 mean 0.3235 peak 6016774 filled 0
+glNP_r2 fconf n 107 mean 0.2660 peak 6746269 filled 0
+glNP_r2 st1conf n 156 mean 0.2378 peak 6395778 filled 0
+glNP_r2 st1dev n 244 mean 0.1760 peak 6538571 filled 0
+glNP_r2 fdev n 475 mean 0.2560 peak 6958308 filled 0

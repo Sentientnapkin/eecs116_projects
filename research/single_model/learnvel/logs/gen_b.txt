@@ -9,3 +9,12 @@ batch 2: 100 flights on GPUs [0, 3, 4, 5, 6, 7], workers 24
 batch 2 generated 100/100; preprocessing
 batch 2 preprocessed 100, errors 0 []; cache rows total 900
 batch 3: 100 flights on GPUs [5, 6, 7], workers 24
+batch 3 generated 100/100; preprocessing
+batch 3 preprocessed 100, errors 0 []; cache rows total 1000
+batch 4: 100 flights on GPUs [5, 6, 7], workers 24
+batch 4 generated 100/100; preprocessing
+batch 4 preprocessed 100, errors 0 []; cache rows total 1100
+batch 5: 100 flights on GPUs [5, 6, 7], workers 24
+batch 5 generated 100/100; preprocessing
+batch 5 preprocessed 100, errors 0 []; cache rows total 1200
+DONE roster_b.json
