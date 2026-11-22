@@ -1,0 +1,6 @@
+57 episodes, 0 cached, workers=32 (no video)
+20/57 finished, 9.6s
+40/57 finished, 13.9s
+57/57 finished, 19.6s
+57
+GB6 probe n 57 mean 0.3640 peak 6060896 filled 0

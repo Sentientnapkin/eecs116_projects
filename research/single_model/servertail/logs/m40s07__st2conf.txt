@@ -1,0 +1,5 @@
+33 episodes, 0 cached, workers=32 (no video)
+20/33 finished, 15.3s
+33/33 finished, 15.4s
+33
+m40s07 st2conf n 33 mean 0.5325 peak 4018229 filled 0

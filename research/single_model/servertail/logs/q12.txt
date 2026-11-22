@@ -1,0 +1,4 @@
+hm40_r1 fresh_pool n 711 mean 0.3630 peak 4027937 filled 0
+hm40_r2 fresh_pool n 711 mean 0.3581 peak 4017174 filled 0
+C30m_r1 fresh_pool n 711 mean 0.3531 peak 3996100 filled 0
+C30m_r2 fresh_pool n 711 mean 0.3645 peak 3978242 filled 0

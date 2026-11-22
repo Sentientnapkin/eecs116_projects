@@ -1,0 +1,6 @@
+54 episodes, 0 cached, workers=32 (no video)
+20/54 finished, 12.2s
+40/54 finished, 17.8s
+54/54 finished, 21.9s
+54
+GB6 st2dev n 54 mean 0.9256 peak 5902651 filled 0

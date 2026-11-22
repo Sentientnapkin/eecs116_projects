@@ -1,0 +1,11 @@
+1945902e1089d45002a6f9ef16bcdb23479e63ea937beae5bcbbe49acd31816b  ../../results/single_model/st_sa0/solution.wasm
+m40 st2dev n 54 mean 1.0049 peak 3973286 filled 0
+m40 st2conf n 33 mean 0.5424 peak 4010277 filled 0
+s1 st2dev n 54 mean 0.9320 peak 3973286 filled 0
+s1 st2conf n 33 mean 0.4934 peak 4041852 filled 0
+g20 st2dev n 54 mean 0.8677 peak 3973286 filled 0
+g20 st2conf n 33 mean 0.4850 peak 3981829 filled 0
+g20 fresh_pool n 711 mean 0.3523 peak 4024281 filled 0
+m40s07 st2dev n 54 mean 0.9277 peak 3973286 filled 0
+m40s07 st2conf n 33 mean 0.5325 peak 4018229 filled 0
+m40s07 fresh_pool n 711 mean 0.3587 peak 4016822 filled 0

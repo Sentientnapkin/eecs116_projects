@@ -1,0 +1,15 @@
+221 episodes, 0 cached, workers=40 (no video)
+20/221 finished, 11.9s
+40/221 finished, 14.3s
+60/221 finished, 20.2s
+80/221 finished, 26.1s
+100/221 finished, 29.1s
+120/221 finished, 33.4s
+140/221 finished, 39.5s
+160/221 finished, 42.8s
+180/221 finished, 53.8s
+200/221 finished, 54.8s
+220/221 finished, 60.3s
+221/221 finished, 60.7s
+221
+C30 st1dev n 221 mean 0.2434 peak 3830217 filled 0

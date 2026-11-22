@@ -1,0 +1,6 @@
+57 episodes, 0 cached, workers=32 (no video)
+20/57 finished, 9.3s
+40/57 finished, 13.1s
+57/57 finished, 19.3s
+57
+hfg_r2 probe n 57 mean 0.4196 peak 3961366 filled 0

@@ -1,0 +1,2 @@
+GB6 fresh_pool n 711 mean 0.3556 peak 7718934 filled 0
+GB12 fresh_pool n 711 mean 0.3699 peak 10344895 filled 0

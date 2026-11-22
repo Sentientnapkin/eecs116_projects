@@ -1,0 +1,3 @@
+K30 probe n 57 mean 0.3819 peak 3795206 filled 0
+K30 fresh_pool n 711 mean 0.3710 peak 3899156 filled 0
+Z0 fresh_pool n 711 mean 0.3660 peak 4004652 filled 0

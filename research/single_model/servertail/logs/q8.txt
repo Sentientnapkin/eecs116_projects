@@ -1,0 +1,7 @@
+hm40 st2dev n 54 mean 0.8532 peak 3973286 filled 0
+hm40 st2conf n 33 mean 0.4905 peak 4041852 filled 0
+hm40 fresh_pool n 711 mean 0.3545 peak 4016822 filled 0
+hm200 st2dev n 54 mean 0.8532 peak 3973286 filled 0
+hm200 st2conf n 33 mean 0.4905 peak 4041852 filled 0
+Terminated
+240/711 finished, 127.5s

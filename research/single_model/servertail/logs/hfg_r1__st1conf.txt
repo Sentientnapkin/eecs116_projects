@@ -1,0 +1,11 @@
+141 episodes, 0 cached, workers=40 (no video)
+20/141 finished, 7.1s
+40/141 finished, 11.4s
+60/141 finished, 16.0s
+80/141 finished, 21.1s
+100/141 finished, 24.4s
+120/141 finished, 28.4s
+140/141 finished, 34.5s
+141/141 finished, 37.4s
+141
+hfg_r1 st1conf n 141 mean 0.2944 peak 3966032 filled 0

@@ -1,0 +1,3 @@
+hfg probe n 57 mean 0.4562 peak 4029857 filled 0
+b17x probe n 57 mean 0.4107 peak 15231282 filled 0
+GB6 probe n 57 mean 0.3640 peak 6060896 filled 0

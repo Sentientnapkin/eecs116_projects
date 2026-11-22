@@ -1,0 +1,8 @@
+hfg st2dev n 54 mean 1.1112 peak 3973286 filled 0
+hfg st2conf n 33 mean 0.5447 peak 4010277 filled 0
+C30 st2dev n 54 mean 1.1576 peak 3782990 filled 0
+C30 st2conf n 33 mean 0.5308 peak 3773549 filled 0
+b17x st2dev n 54 mean 0.9767 peak 15258370 filled 0
+b17x st2conf n 33 mean 0.4400 peak 14384531 filled 0
+GB6 st2dev n 54 mean 0.9256 peak 5902651 filled 0
+GB6 st2conf n 33 mean 0.4687 peak 5968837 filled 0

@@ -1,0 +1,5 @@
+Z0 probe n 57 mean 0.4562 peak 4017559 filled 0
+C34 probe n 57 mean 0.3766 peak 4078618 filled 0
+C34 fresh_pool n 711 mean 0.3543 peak 4219772 filled 0
+C30 probe n 57 mean 0.3704 peak 3963948 filled 0
+C30 fresh_pool n 711 mean 0.3608 peak 3979655 filled 0

@@ -1,0 +1,39 @@
+711 episodes, 0 cached, workers=32 (no video)
+20/711 finished, 19.4s
+40/711 finished, 36.5s
+60/711 finished, 39.7s
+80/711 finished, 47.6s
+100/711 finished, 57.6s
+120/711 finished, 65.1s
+140/711 finished, 74.5s
+160/711 finished, 79.8s
+180/711 finished, 86.1s
+200/711 finished, 94.2s
+220/711 finished, 110.8s
+240/711 finished, 111.9s
+260/711 finished, 126.0s
+280/711 finished, 126.7s
+300/711 finished, 142.6s
+320/711 finished, 148.6s
+340/711 finished, 158.3s
+360/711 finished, 170.8s
+380/711 finished, 179.2s
+400/711 finished, 199.7s
+420/711 finished, 200.8s
+440/711 finished, 216.1s
+460/711 finished, 218.4s
+480/711 finished, 231.8s
+500/711 finished, 241.1s
+520/711 finished, 247.5s
+540/711 finished, 258.8s
+560/711 finished, 269.9s
+580/711 finished, 281.6s
+600/711 finished, 287.9s
+620/711 finished, 295.4s
+640/711 finished, 304.3s
+660/711 finished, 315.0s
+680/711 finished, 318.1s
+700/711 finished, 329.8s
+711/711 finished, 333.4s
+711
+g20 fresh_pool n 711 mean 0.3523 peak 4024281 filled 0

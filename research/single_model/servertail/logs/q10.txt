@@ -1,0 +1,6 @@
+FileNotFoundError: [Errno 2] No such file or directory: '/data/backups/rganapa/results/single_model/st_C30m/solution.wasm'
+FileNotFoundError: [Errno 2] No such file or directory: '/data/backups/rganapa/results/single_model/st_C30m/solution.wasm'
+mpv20 st2dev n 54 mean 0.9360 peak 3957863 filled 0
+mpv20 st2conf n 33 mean 0.4960 peak 3941978 filled 0
+mfl10 st2dev n 54 mean 0.9575 peak 3973286 filled 0
+mfl10 st2conf n 33 mean 0.4789 peak 4041852 filled 0

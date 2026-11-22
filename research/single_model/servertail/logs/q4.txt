@@ -1,0 +1,10 @@
+hfg_r1 fresh_pool n 711 mean 0.3667 peak 4015567 filled 0
+hfg_r1 probe n 57 mean 0.4156 peak 3991232 filled 0
+hfg_r2 fresh_pool n 711 mean 0.3605 peak 4111025 filled 0
+hfg_r2 probe n 57 mean 0.4196 peak 3961366 filled 0
+C30_r1 fresh_pool n 711 mean 0.3627 peak 4004992 filled 0
+C30_r1 probe n 57 mean 0.3698 peak 3997285 filled 0
+C30_r2 fresh_pool n 711 mean 0.3635 peak 3981558 filled 0
+C30_r2 probe n 57 mean 0.3768 peak 3841519 filled 0
+C30m probe n 57 mean 0.3948 peak 3811025 filled 0
+C30m fresh_pool n 711 mean 0.3552 peak 3849560 filled 0
