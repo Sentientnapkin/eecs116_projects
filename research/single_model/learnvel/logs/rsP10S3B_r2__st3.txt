@@ -1,0 +1,15 @@
+234 episodes, 0 cached, workers=32 (no video)
+20/234 finished, 12.6s
+40/234 finished, 19.9s
+60/234 finished, 32.5s
+80/234 finished, 44.2s
+100/234 finished, 44.6s
+120/234 finished, 56.0s
+140/234 finished, 61.9s
+160/234 finished, 68.6s
+180/234 finished, 79.0s
+200/234 finished, 85.4s
+220/234 finished, 91.2s
+234/234 finished, 94.4s
+234
+rsP10S3B_r2 st3 n 234 mean 0.5606 peak 4037755 filled 0

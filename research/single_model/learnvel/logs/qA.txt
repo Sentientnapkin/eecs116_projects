@@ -8,3 +8,5 @@ P20S3 st2dev n 156 mean 0.6143 peak 4004572 filled 0
 P20S3 st3 n 234 mean 0.6541 peak 4028133 filled 0
 P20S3_r1 st2dev n 156 mean 0.6378 peak 3990751 filled 0
 P20S3_r1 st3 n 234 mean 0.6122 peak 3982999 filled 0
+P20S3_r2 st2dev n 156 mean 0.6307 peak 3967882 filled 0
+P20S3_r2 st3 n 234 mean 0.6386 peak 3983766 filled 0

@@ -61,3 +61,11 @@ each flight (valid_starts = every stride-5 anchor), not only the start; training
   rare catastrophes, and trusting it raises mean tilt error (1.4 -> 2.3 deg on 100-009). g64e80/g64s1 no better (st2 mean 2.56).
   => gravity net at 64x48 NOT useful; g128 (1.3 deg median) would cost ~40 M fuel/inference. DROPPED.
 - P20S2 on st3 (234 flights in st2-dev scenes), 3 reps: HM40 0.6506 -> 0.6222 (-4.4%), >3 m 20->12, >5 m 5->2 (summed over reps). Replicates st2dev -4.2%.
+- Pooled dev = st2dev+st3 (390 flights x 3 reps; pooled.py): HM40 0.6545 | P20S2 -4.3% | P10S2 (period 10, scale 2) -6.1% CI [-0.077,-0.010]
+  | PB (P20S2 + gyro-bias clamp 0.021) -5.5% | P30S2 ~neutral.
+- COORDINATOR: build on RSOFT (filtcons/final/hm40_rsoft1t0.c, wasm 7ef3a329...). patchlv.py ports the minimal switches (LV_PERIOD/PSCALE/PLIVE/BGC)
+  onto any base: rs.c (RSOFT) off == 7ef3a329 VERIFIED; lv2.c (HM40) off == 4920835f VERIFIED. Queues qE/qF: rs baseline + rsP10B/rsP6B/rsP10S2/rsP10S3B/rsB.
+  (filtcons: tc_used never incremented -> u20 counters 0; net sd sits at floor at speed.) NEVER use pkill/pgrep -f with a pattern that is in the same command line.
+- RSOFT base (rs.c, 3 reps): pooled st2dev+st3 0.5940 (HM40 0.6545, -9.2%). On top of RSOFT: rsP10S2 -2.1% [-0.041,+0.016], rsP10B -1.8%
+  (gains mostly overlap with RSOFT's). New net v700b (beta-NLL, +700 lv flights, w1, direct st2dev 0.240 vs b2 0.258; >2 m/s 0.55, scale 0.81)
+  queued in-filter (qG: rsNP10B, rsN).

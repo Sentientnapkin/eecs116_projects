@@ -1,0 +1,8 @@
+84 episodes, 0 cached, workers=28 (no video)
+20/84 finished, 11.9s
+40/84 finished, 23.9s
+60/84 finished, 32.2s
+80/84 finished, 36.7s
+84/84 finished, 44.2s
+84
+fin st2conf n 84 mean 0.3370 peak 6228342 filled 0

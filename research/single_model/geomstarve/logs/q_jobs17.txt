@@ -1,0 +1,9 @@
+lY3K st2dev n 156 mean 0.4949 peak 6562238 filled 0
+lY3K_r1 st2dev n 156 mean 0.4709 peak 6776290 filled 0
+lY3K st2conf n 84 mean 0.3953 peak 6326485 filled 0
+lY3K_r1 st2conf n 84 mean 0.3771 peak 6016601 filled 0
+lY3K_r2 st2dev n 156 mean 0.4544 peak 6510331 filled 0
+lY2K st2dev n 156 mean 0.4620 peak 6981415 filled 0
+lY3K_r2 st2conf n 84 mean 0.3732 peak 6418363 filled 0
+lY2K st2conf n 84 mean 0.3751 peak 5869773 filled 0
+DONE

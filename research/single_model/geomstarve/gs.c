@@ -15633,6 +15633,32 @@ static double chi2_quantile(int dof) { /* Wilson-Hilferty */
 
 /* feature position from its clone observations: linear (sum of ray-orthogonal projectors), then 3 Gauss-Newton steps
    on the reprojection error; rejected if the rays are ~parallel or a depth is outside [MIN_DEPTH, MAX_DEPTH] */
+#ifndef FC_RMAX_ON
+#define FC_RMAX_ON 0
+#endif
+#ifndef FC_RMAX_T0
+#define FC_RMAX_T0 0.0  /* s: RMAX check only after this time (startup clone poses are poor) */
+#endif
+#ifndef FC_RMAX_K
+#define FC_RMAX_K 3.0
+#endif
+#ifndef FC_RMAX
+#define FC_RMAX 1.0     /* px at solution resolution */
+#endif
+#if FC_RMAX_ON
+/* filtcons: rms reprojection residual (normalized units) of a triangulated feature under the current clone poses */
+static double fc_trirms(const Obs *o, const int *ci, const double *pf) {
+    double s2 = 0;
+    for (int k = 0; k < o->n; k++) {
+        double Rwc[9], pwc[3], dpt[3], pc[3];
+        camera_pose(&clones[ci[k]], Rwc, pwc);
+        for (int i = 0; i < 3; i++) dpt[i] = pf[i] - pwc[i];
+        m3tvec(Rwc, dpt, pc);
+        double ex = o->x[k] - pc[0] / pc[2], ey = o->y[k] - pc[1] / pc[2]; s2 += ex * ex + ey * ey;
+    }
+    return sqrt(s2 / (2 * o->n));
+}
+#endif
 static int triangulate(const Obs *o, const int *ci, double *pf) {
     double A[9] = {0}, b[3] = {0}, Rwc[MAX_OBS][9], pwc[MAX_OBS][3];
     for (int k = 0; k < o->n; k++) {
@@ -16483,7 +16509,7 @@ static Obs llost[2 * EDGE_N];
 static int nllost;
 static long l_spawn, l_rows, l_att, l_tri, l_rmax, l_gate, l_ok, l_kcol, l_vert, l_horiz, l_myaw;
 static double my_c, my_s, my_phi0; static int my_n, my_fixed;
-static void line_reset(void) { my_c = my_s = my_phi0 = 0; my_n = my_fixed = 0; memset(lines, 0, sizeof lines); nllost = 0; l_spawn = l_rows = l_att = l_tri = l_rmax = l_gate = l_ok = l_kcol = 0; }
+static void line_reset(void) { e_dcur = 0; my_c = my_s = my_phi0 = 0; my_n = my_fixed = 0; memset(lines, 0, sizeof lines); nllost = 0; l_spawn = l_rows = l_att = l_tri = l_rmax = l_gate = l_ok = l_kcol = 0; }
 static int line_alive(void) { int n = 0; for (int i = 0; i < EDGE_N; i++) if (lines[i].alive) for (int k = 0; k < EDGE_LS; k++) n += lines[i].sal[k]; return n; } /* tracked samples */
 static void line_kill(LineT *L) {
     L->alive = 0;
@@ -17025,6 +17051,24 @@ static int feature_rows(const Obs *o_in, int *nrows) {
     double pf[3];
     tc_att++;
     if (!triangulate(&o, ci, pf)) { tc_tri++; return 0; }
+#if FC_RMAX_ON
+#if FC_RMAX_ON == 2
+    { /* relative: reject if residual > K x median of the last 32 features' residuals (scale adapts when the state is off) */
+      static double ring[32]; static int nr; double rr_ = fc_trirms(&o, ci, pf) * fx;
+      if (nr >= 16 && last_t - t_start >= FC_RMAX_T0) {
+          double tmp[32]; int m_ = nr < 32 ? nr : 32; memcpy(tmp, ring, m_ * sizeof(double));
+          for (int a = 1; a < m_; a++) { double v = tmp[a]; int b = a - 1; while (b >= 0 && tmp[b] > v) { tmp[b + 1] = tmp[b]; b--; } tmp[b + 1] = v; }
+          double th = FC_RMAX_K * tmp[m_ / 2]; if (th < FC_RMAX) th = FC_RMAX;
+          if (rr_ > th) { tc_tri++; return 0; }
+      }
+      ring[nr & 31] = rr_; nr++; }
+#elif FC_RMAX_ON == 3
+    double fc_hw = 1.0;   /* soft: rows down-weighted by FC_RMAX / residual (noise sd scaled by residual / FC_RMAX) */
+    { double rr_ = fc_trirms(&o, ci, pf) * fx; if (last_t - t_start >= FC_RMAX_T0 && rr_ > FC_RMAX) fc_hw = FC_RMAX / rr_; }
+#else
+    if (last_t - t_start >= FC_RMAX_T0 && fc_trirms(&o, ci, pf) * fx > FC_RMAX) { tc_tri++; return 0; }
+#endif   /* filtcons: absolute track-consistency check (P-independent) */
+#endif
     int m = 2 * o.n;
     double RbcT[9];
     m3tmul(R_bc, I3, RbcT); /* R_bc^T */
@@ -17217,6 +17261,9 @@ static int feature_rows(const Obs *o_in, int *nrows) {
     if (m2 > gq) { if (INV_HUBER > 0 && m2 < INV_HUBER * gq) hw = sqrt(gq / m2); else { tc_gate++; if (GATE2) gflag[g_cur_b] = 0; return 0; } }
     if (GATE2) gflag[g_cur_b] = 1;
     }
+#if FC_RMAX_ON == 3
+    hw *= fc_hw;
+#endif
     if (*nrows + k0 > MAX_ROWS) return 0;
     for (int a = 0; a < k0; a++) {
         for (int j = 0; j < D; j++) Hbig[(*nrows + a) * MAXD + j] = hw * H0[a * MAXD + j];

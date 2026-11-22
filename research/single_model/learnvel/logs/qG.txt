@@ -1,0 +1,11 @@
+rsNP10B st2dev n 156 mean 0.5428 peak 4022837 filled 0
+rsNP10B st3 n 234 mean 0.5382 peak 4029565 filled 0
+rsNP10B_r1 st2dev n 156 mean 0.5683 peak 4054927 filled 0
+rsNP10B_r1 st3 n 234 mean 0.5763 peak 4034155 filled 0
+rsNP10B_r2 st2dev n 156 mean 0.6011 peak 3980457 filled 0
+rsNP10B_r2 st3 n 234 mean 0.5514 peak 4011298 filled 0
+rsN st2dev n 156 mean 0.6588 peak 4027947 filled 0
+rsN st3 n 234 mean 0.5816 peak 4062486 filled 0
+rsN_r1 st2dev n 156 mean 0.5905 peak 4039032 filled 0
+rsN_r1 st3 n 234 mean 0.5922 peak 4032184 filled 0
+rsN_r2 st2dev n 156 mean 0.5987 peak 4054233 filled 0

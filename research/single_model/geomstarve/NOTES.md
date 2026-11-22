@@ -123,3 +123,37 @@ Reps = PIXEL_STD=1.515 DETECT_MIN_SCORE=1010.0 (r1) / 1.485, 990.0 (r2) (atepush
   st1conf 0.2723 (0.3339). Confirms gains generalize (fresh -15..-20 %, st1 -18..-23 %).
 - lYpK fresh03 0.2939/0.2911/0.2907, st1dev 0.1976, st1conf 0.2815 (lYp5: 0.2975/0.3055/0.2845, 0.2027, 0.2723) ~ equal on fresh/st1.
 - kv1 fresh03 0.3579 (hm40 r0 f0-3 ~0.352): neutral on fresh; its gain is st2-only.
+- RSOFT (filtcons) PORTED into mk_gs.py (FC_RMAX_ON/FC_RMAX/FC_RMAX_T0/FC_RMAX_K, code copied from filtcons/fc.c):
+  gs.c + HM40 defines + FC_RMAX_ON=3 FC_RMAX=1.0 FC_RMAX_T0=0.0 builds sha 7ef3a329... = filtcons/final/hm40_rsoft1t0.wasm BYTE-IDENTICAL.
+  gs.c + HM40 defines still 4920835f (switch-off identity holds).
+- lY3K (lines PIX 0.3 RMAX 0.8 + Manhattan + KLT_VEL) st2dev r0/r1 0.4949/0.4709. jobs18: lY3KR (lY3K + RSOFT) x3 on st2.
+- *** lY3K 3 reps: st2dev 0.4949/0.4709/0.4544 = 0.4734 (-28.3 % vs hm40; -20.4 % vs RSOFT rsoft1t0 reps 0.5946), st2conf
+  0.3953/0.3771/0.3732 = 0.3819 (-25.4 % vs hm40; -15.2 % vs RSOFT 0.4506); >3 m dev 2/2/1, >5 m 1/0/1; peak 6.4-6.8 M. NEW BEST.
+  lY2K (PIX 0.2 RMAX 0.6) st2dev r0 0.4620.
+- *** lY3KR = lY3K + RSOFT (FINAL CANDIDATE) 3 reps: st2dev 0.4441/0.4660/0.4556 = 0.4553 (-31.1 % vs hm40, -23.4 % vs RSOFT
+  rsoft1t0 reps), st2conf 0.3370/0.3386/0.3765 = 0.3507 (-31.5 % / -22.2 %); >3 m dev 1/2/2, >5 m 0/0/0 (hm40 1/1/1); peak 6.1-7.1 M.
+  vs rsoft1t0 r0 paired: dev d -0.143 [-0.220,-0.076], conf -0.106 [-0.158,-0.055]. vs lY3K: -3.8 % / -8.2 %.
+- FINAL source final/gs_lines_manhattan.c (= 23 #defines + gs.c) builds sha 375a8f86... = bp.sh lY3KR build (the evaluated wasm,
+  results dirs lY3KR-375a8f86). Preflight running (final/preflight, logs/preflight.txt). jobs19: lY3KR fresh03 x3, st1 x2, hm40b_r1 st1.
+- lY3KR fresh03 r0/r1/r2 0.2722/0.2730/0.2737; st1dev 0.1939/0.1925 (hm40b 0.2629/0.2693), st1conf 0.2558/0.2570 (0.3339/0.3237).
+  Final table: tables/final_table.txt (ftab.py).
+- PREFLIGHT of 375a8f86: ABI ok, zero imports, poison/prefix/repeat 3x247 PASS, but RESET FAIL (re-init replay differed):
+  line_reset did not reset the spawn round-robin cursor e_dcur (EDGE_DMAX). FIX: line_reset sets e_dcur = 0 (single-run outputs
+  unchanged; first init has e_dcur = 0). New final wasm sha 180ffa2b739184985b733d31108f41dcd80328c528f729b1b4a4c9351b7301c8:
+  reset 8/8 PASS; rebuild byte-identical (gs_final2); gs.c + HM40 defines still 4920835f. Full preflight rerunning (final/preflight);
+  output-identity runs 'fin' on st2dev/st2conf vs lY3KR r0 running.
+- FINAL PREFLIGHT (180ffa2b...): ABI ok (5 steps), zero imports, poison/prefix/repeat 3 x 247 PASS, reset 8/8 PASS, rebuild
+  byte-identical, 0 filled frames in every run. Output identity new vs evaluated 375a8f86: estimate.tum identical 240/240 (st2).
+  final/SHA256SUMS: gs_lines_manhattan.c 46abcdee..., gs_lines_manhattan.wasm 180ffa2b...
+
+## FINAL SUMMARY (tables/final_table.txt; mean over reps; tails >3/>5/>10 summed over reps; peak = max frame fuel)
+| build | st2dev (156) | st2conf (84) | fresh dev f0-2 | fresh conf f3 | st1dev | st1conf | peak |
+| HM40 | 0.660 (9/3/1) | 0.512 | 0.357 | 0.374 | 0.266 | 0.329 | 4.0 M |
+| RSOFT (filtcons) | 0.595 | 0.451 | 0.321 | 0.379 | 0.237 | 0.317 | 4.0 M |
+| kv1 = HM40 + KLT_VEL 1 | 0.569 (3/2/0) | 0.459 | 0.355 | 0.371 | - | - | 4.0 M |
+| eB edgelets | 0.617 | 0.463 | 0.335 | 0.360 | - | - | 5.4 M |
+| lgVHY lines+Manhattan | 0.587 | 0.419 | 0.321 | 0.309 | 0.218 | 0.283 | 6.5-7.2 M |
+| lYp5 (PIX 0.5) | 0.539 | 0.407 | 0.295 | 0.301 | 0.203 | 0.272 | 7.0 M |
+| lY3K (PIX 0.3 + KLT_VEL) | 0.473 | 0.382 | - | - | - | - | 6.8 M |
+| **lY3KR = lY3K + RSOFT (FINAL)** | **0.455 (5/0/0)** | **0.351** | **0.266** | **0.305** | **0.193** | **0.256** | 6.3-7.1 M |
+Final vs HM40: st2dev -31 %, st2conf -32 %, fresh dev -25 %, fresh conf -19 %, st1 -27 % / -22 %; vs RSOFT: -23 % / -22 % / -17 % / -20 %.

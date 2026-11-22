@@ -1,0 +1,10 @@
+lY3KR fresh03 n 582 mean 0.2722 peak 6676330 filled 0
+lY3KR_r1 fresh03 n 582 mean 0.2730 peak 6943124 filled 0
+lY3KR st1dev n 244 mean 0.1939 peak 6471048 filled 0
+lY3KR st1conf n 156 mean 0.2558 peak 6444737 filled 0
+lY3KR_r2 fresh03 n 582 mean 0.2737 peak 6873520 filled 0
+lY3KR_r1 st1dev n 244 mean 0.1925 peak 7022215 filled 0
+hm40b_r1 st1dev n 244 mean 0.2693 peak 3992385 filled 0
+lY3KR_r1 st1conf n 156 mean 0.2570 peak 5796436 filled 0
+hm40b_r1 st1conf n 156 mean 0.3237 peak 4015844 filled 0
+DONE

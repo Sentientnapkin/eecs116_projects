@@ -10,6 +10,55 @@ def rep(old, new, start=0, uniq=True):
     if uniq and not start: assert s.find(old, i + 1) < 0, ('not unique', old[:80])
     s = s[:i] + new + s[i + len(old):]
     return i
+# ---- filtcons RSOFT port (FC_RMAX_ON / FC_RMAX / FC_RMAX_T0 / FC_RMAX_K; code copied from filtcons/fc.c; default off) ----
+rep('static int triangulate(const Obs *o, const int *ci, double *pf) {', """#ifndef FC_RMAX_ON
+#define FC_RMAX_ON 0
+#endif
+#ifndef FC_RMAX_T0
+#define FC_RMAX_T0 0.0  /* s: RMAX check only after this time (startup clone poses are poor) */
+#endif
+#ifndef FC_RMAX_K
+#define FC_RMAX_K 3.0
+#endif
+#ifndef FC_RMAX
+#define FC_RMAX 1.0     /* px at solution resolution */
+#endif
+#if FC_RMAX_ON
+/* filtcons: rms reprojection residual (normalized units) of a triangulated feature under the current clone poses */
+static double fc_trirms(const Obs *o, const int *ci, const double *pf) {
+    double s2 = 0;
+    for (int k = 0; k < o->n; k++) {
+        double Rwc[9], pwc[3], dpt[3], pc[3];
+        camera_pose(&clones[ci[k]], Rwc, pwc);
+        for (int i = 0; i < 3; i++) dpt[i] = pf[i] - pwc[i];
+        m3tvec(Rwc, dpt, pc);
+        double ex = o->x[k] - pc[0] / pc[2], ey = o->y[k] - pc[1] / pc[2]; s2 += ex * ex + ey * ey;
+    }
+    return sqrt(s2 / (2 * o->n));
+}
+#endif
+static int triangulate(const Obs *o, const int *ci, double *pf) {""")
+rep("    if (!triangulate(&o, ci, pf)) { tc_tri++; return 0; }\n", """    if (!triangulate(&o, ci, pf)) { tc_tri++; return 0; }
+#if FC_RMAX_ON
+#if FC_RMAX_ON == 2
+    { /* relative: reject if residual > K x median of the last 32 features' residuals (scale adapts when the state is off) */
+      static double ring[32]; static int nr; double rr_ = fc_trirms(&o, ci, pf) * fx;
+      if (nr >= 16 && last_t - t_start >= FC_RMAX_T0) {
+          double tmp[32]; int m_ = nr < 32 ? nr : 32; memcpy(tmp, ring, m_ * sizeof(double));
+          for (int a = 1; a < m_; a++) { double v = tmp[a]; int b = a - 1; while (b >= 0 && tmp[b] > v) { tmp[b + 1] = tmp[b]; b--; } tmp[b + 1] = v; }
+          double th = FC_RMAX_K * tmp[m_ / 2]; if (th < FC_RMAX) th = FC_RMAX;
+          if (rr_ > th) { tc_tri++; return 0; }
+      }
+      ring[nr & 31] = rr_; nr++; }
+#elif FC_RMAX_ON == 3
+    double fc_hw = 1.0;   /* soft: rows down-weighted by FC_RMAX / residual (noise sd scaled by residual / FC_RMAX) */
+    { double rr_ = fc_trirms(&o, ci, pf) * fx; if (last_t - t_start >= FC_RMAX_T0 && rr_ > FC_RMAX) fc_hw = FC_RMAX / rr_; }
+#else
+    if (last_t - t_start >= FC_RMAX_T0 && fc_trirms(&o, ci, pf) * fx > FC_RMAX) { tc_tri++; return 0; }
+#endif   /* filtcons: absolute track-consistency check (P-independent) */
+#endif
+""")
+rep("    if (*nrows + k0 > MAX_ROWS) return 0;\n", "#if FC_RMAX_ON == 3\n    hw *= fc_hw;\n#endif\n    if (*nrows + k0 > MAX_ROWS) return 0;\n")
 OBS = 'typedef struct { int n; int cid[MAX_OBS]; double x[MAX_OBS], y[MAX_OBS]; int tid; double px, py; } Obs;'
 rep(OBS, '#ifndef EDGE\n#define EDGE 0   /* atepush/geomstarve: edgelet (point-on-line) MSCKF features in vision-starved scenes */\n#endif\n#ifndef EDGE_DBG\n#define EDGE_DBG 0\n#endif\n#ifndef GS_DIAG\n#define GS_DIAG 0\n#endif\n'
     '#if EDGE\ntypedef struct { int n; int cid[MAX_OBS]; double x[MAX_OBS], y[MAX_OBS]; int tid; double px, py; float enx[MAX_OBS], eny[MAX_OBS], ehl[MAX_OBS]; int edge; } Obs;\n#else\n' + OBS + '\n#endif')

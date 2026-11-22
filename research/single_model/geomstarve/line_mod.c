@@ -74,7 +74,7 @@ static Obs llost[2 * EDGE_N];
 static int nllost;
 static long l_spawn, l_rows, l_att, l_tri, l_rmax, l_gate, l_ok, l_kcol, l_vert, l_horiz, l_myaw;
 static double my_c, my_s, my_phi0; static int my_n, my_fixed;
-static void line_reset(void) { my_c = my_s = my_phi0 = 0; my_n = my_fixed = 0; memset(lines, 0, sizeof lines); nllost = 0; l_spawn = l_rows = l_att = l_tri = l_rmax = l_gate = l_ok = l_kcol = 0; }
+static void line_reset(void) { e_dcur = 0; my_c = my_s = my_phi0 = 0; my_n = my_fixed = 0; memset(lines, 0, sizeof lines); nllost = 0; l_spawn = l_rows = l_att = l_tri = l_rmax = l_gate = l_ok = l_kcol = 0; }
 static int line_alive(void) { int n = 0; for (int i = 0; i < EDGE_N; i++) if (lines[i].alive) for (int k = 0; k < EDGE_LS; k++) n += lines[i].sal[k]; return n; } /* tracked samples */
 static void line_kill(LineT *L) {
     L->alive = 0;
