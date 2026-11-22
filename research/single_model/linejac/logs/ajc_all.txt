@@ -1,0 +1,21 @@
+ajc st2dev: reusing completed evaluation (156 flights, eb2799cb)
+ajc st3: reusing completed evaluation (234 flights, eb2799cb)
+ajc st2conf: reusing completed evaluation (84 flights, eb2799cb)
+ajc fdev: reusing completed evaluation (475 flights, eb2799cb)
+ajc fconf: reusing completed evaluation (107 flights, eb2799cb)
+ajc st1dev n 244 mean 0.1786 peak 4807325 filled 0
+ajc st1conf n 156 mean 0.2483 peak 4382490 filled 0
+ajc_r1 st2dev n 156 mean 0.4231 peak 4897766 filled 0
+ajc_r1 st3 n 234 mean 0.4171 peak 4783372 filled 0
+ajc_r1 st2conf n 84 mean 0.3295 peak 4703303 filled 0
+ajc_r1 fdev n 475 mean 0.2585 peak 5113192 filled 0
+ajc_r1 fconf n 107 mean 0.2629 peak 4424705 filled 0
+ajc_r1 st1dev n 244 mean 0.1762 peak 4589971 filled 0
+ajc_r1 st1conf n 156 mean 0.2542 peak 4373905 filled 0
+ajc_r2 st2dev n 156 mean 0.4000 peak 5051844 filled 0
+ajc_r2 st3 n 234 mean 0.4251 peak 4456728 filled 0
+ajc_r2 st2conf n 84 mean 0.3484 peak 4257039 filled 0
+ajc_r2 fdev n 475 mean 0.2534 peak 5020427 filled 0
+ajc_r2 fconf n 107 mean 0.2653 peak 4947558 filled 0
+ajc_r2 st1dev n 244 mean 0.1747 peak 4640867 filled 0
+ajc_r2 st1conf n 156 mean 0.2542 peak 4690559 filled 0

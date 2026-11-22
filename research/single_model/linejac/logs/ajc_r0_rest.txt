@@ -1,0 +1,4 @@
+ajc st3 n 234 mean 0.4218 peak 4433773 filled 0
+ajc st2conf n 84 mean 0.3536 peak 4605291 filled 0
+ajc fdev n 475 mean 0.2549 peak 4827922 filled 0
+ajc fconf n 107 mean 0.2755 peak 5040476 filled 0

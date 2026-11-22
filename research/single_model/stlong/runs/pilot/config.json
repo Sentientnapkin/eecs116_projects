@@ -1,0 +1,17 @@
+{
+ "name": "pilot",
+ "nf": 2,
+ "gap": 1,
+ "res": 64,
+ "width": 1.0,
+ "deep": false,
+ "hidden": 128,
+ "seed": 0,
+ "epochs": 60,
+ "steps": 400,
+ "bs": 256,
+ "lr": 0.002,
+ "teacher": "research/single_model/stlong/runs/teacher4_pilot",
+ "init": "",
+ "kd": 0.5
+}

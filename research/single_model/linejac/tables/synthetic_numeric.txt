@@ -1,0 +1,5 @@
+type 0 n=2980 relative max 9.91185828934e-10
+type 1 n=2957 relative max 2.5078801989e-08
+type 2 n=2996 relative max 9.26393279782e-10
+type 3 n=2993 relative max 2.08310533622e-08
+pose arbitrary extrinsics relative max 5.28519173043e-10

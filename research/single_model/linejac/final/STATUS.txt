@@ -1,0 +1,8 @@
+No recommended build under Task 1 gates.
+
+arithmetic: FAIL
+budget: FAIL
+
+Both preflights passed completely. Both source rebuilds match their evaluated wasm bytes.
+See ../NOTES.md for full results, tails, confidence intervals and SHA256 values.
+No holdout scoring was performed.

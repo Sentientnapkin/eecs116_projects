@@ -1,0 +1,4 @@
+12 episodes, 0 cached, workers=12 (no video)
+12/12 finished, 10.9s
+12
+check check12 n 12 mean 0.2378 peak 8698218 filled 0

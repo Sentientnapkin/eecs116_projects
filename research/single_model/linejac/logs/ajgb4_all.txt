@@ -1,0 +1,29 @@
+ajgb4 st2dev n 156 mean 0.4273 peak 4122079 filled 0
+ajgb4 st3 n 234 mean 0.4453 peak 4143750 filled 0
+ajgb4 st2conf n 84 mean 0.3453 peak 4203554 filled 0
+ajgb4 fdev n 475 mean 0.2569 peak 4305312 filled 0
+ajgb4 fconf n 107 mean 0.2890 peak 4144617 filled 0
+ajgb4 st1dev n 244 mean 0.1854 peak 4016819 filled 0
+ajgb4 st1conf n 156 mean 0.2545 peak 4040939 filled 0
+research/single_model/linejac/bp.sh: line 14: WORKERS: unbound variable
+ajgb4 st2dev: reusing completed evaluation (156 flights, b0e379fc)
+ajgb4 st3: reusing completed evaluation (234 flights, b0e379fc)
+ajgb4 st2conf: reusing completed evaluation (84 flights, b0e379fc)
+ajgb4 fdev: reusing completed evaluation (475 flights, b0e379fc)
+ajgb4 fconf: reusing completed evaluation (107 flights, b0e379fc)
+ajgb4 st1dev: reusing completed evaluation (244 flights, b0e379fc)
+ajgb4 st1conf: reusing completed evaluation (156 flights, b0e379fc)
+ajgb4_r1 st2dev n 156 mean 0.4260 peak 4109272 filled 0
+ajgb4_r1 st3 n 234 mean 0.4393 peak 4401136 filled 0
+ajgb4_r1 st2conf n 84 mean 0.3441 peak 3916395 filled 0
+ajgb4_r1 fdev n 475 mean 0.2607 peak 4196318 filled 0
+ajgb4_r1 fconf n 107 mean 0.2990 peak 4157087 filled 0
+ajgb4_r1 st1dev n 244 mean 0.1895 peak 4098624 filled 0
+ajgb4_r1 st1conf n 156 mean 0.2534 peak 4038800 filled 0
+ajgb4_r2 st2dev n 156 mean 0.4524 peak 4087516 filled 0
+ajgb4_r2 st3 n 234 mean 0.4606 peak 4121502 filled 0
+ajgb4_r2 st2conf n 84 mean 0.3575 peak 4131575 filled 0
+ajgb4_r2 fdev n 475 mean 0.2555 peak 4206291 filled 0
+ajgb4_r2 fconf n 107 mean 0.2931 peak 4381971 filled 0
+ajgb4_r2 st1dev n 244 mean 0.1873 peak 4024048 filled 0
+ajgb4_r2 st1conf n 156 mean 0.2536 peak 4189872 filled 0

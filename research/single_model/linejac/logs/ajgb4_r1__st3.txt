@@ -1,0 +1,15 @@
+234 episodes, 0 cached, workers=32 (no video)
+20/234 finished, 7.7s
+40/234 finished, 12.0s
+60/234 finished, 19.5s
+80/234 finished, 23.4s
+100/234 finished, 27.7s
+120/234 finished, 31.8s
+140/234 finished, 38.0s
+160/234 finished, 46.1s
+180/234 finished, 47.0s
+200/234 finished, 51.9s
+220/234 finished, 57.5s
+234/234 finished, 58.0s
+234
+ajgb4_r1 st3 n 234 mean 0.4393 peak 4401136 filled 0

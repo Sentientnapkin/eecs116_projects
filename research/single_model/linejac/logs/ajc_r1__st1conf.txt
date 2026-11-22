@@ -1,0 +1,11 @@
+156 episodes, 0 cached, workers=28 (no video)
+20/156 finished, 10.0s
+40/156 finished, 17.7s
+60/156 finished, 19.8s
+80/156 finished, 29.3s
+100/156 finished, 32.8s
+120/156 finished, 39.3s
+140/156 finished, 44.0s
+156/156 finished, 56.0s
+156
+ajc_r1 st1conf n 156 mean 0.2542 peak 4373905 filled 0

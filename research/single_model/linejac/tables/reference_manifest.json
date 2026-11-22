@@ -1,0 +1,107 @@
+{
+  "glNP/st2dev": {
+    "sha256": "5e4d2a0d40333b3f5152d60de84a688abc5d0eec8c1c73fa402dc9907839d196",
+    "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/single_model/lv_glNP/solution.wasm",
+    "name": "glNP"
+  },
+  "glNP/st3": {
+    "sha256": "5e4d2a0d40333b3f5152d60de84a688abc5d0eec8c1c73fa402dc9907839d196",
+    "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/single_model/lv_glNP/solution.wasm",
+    "name": "glNP"
+  },
+  "glNP/st2conf": {
+    "sha256": "5e4d2a0d40333b3f5152d60de84a688abc5d0eec8c1c73fa402dc9907839d196",
+    "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/single_model/lv_glNP/solution.wasm",
+    "name": "glNP"
+  },
+  "glNP/fdev": {
+    "sha256": "5e4d2a0d40333b3f5152d60de84a688abc5d0eec8c1c73fa402dc9907839d196",
+    "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/single_model/lv_glNP/solution.wasm",
+    "name": "glNP"
+  },
+  "glNP/fconf": {
+    "sha256": "5e4d2a0d40333b3f5152d60de84a688abc5d0eec8c1c73fa402dc9907839d196",
+    "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/single_model/lv_glNP/solution.wasm",
+    "name": "glNP"
+  },
+  "glNP/st1dev": {
+    "sha256": "5e4d2a0d40333b3f5152d60de84a688abc5d0eec8c1c73fa402dc9907839d196",
+    "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/single_model/lv_glNP/solution.wasm",
+    "name": "glNP"
+  },
+  "glNP/st1conf": {
+    "sha256": "5e4d2a0d40333b3f5152d60de84a688abc5d0eec8c1c73fa402dc9907839d196",
+    "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/single_model/lv_glNP/solution.wasm",
+    "name": "glNP"
+  },
+  "glNP_r1/st2dev": {
+    "sha256": "fff09c8040cdc2bd6c3cb10dd242e289426f70aa5e96103701d0d66a1860195f",
+    "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/single_model/lv_glNP_r1/solution.wasm",
+    "name": "glNP_r1"
+  },
+  "glNP_r1/st3": {
+    "sha256": "fff09c8040cdc2bd6c3cb10dd242e289426f70aa5e96103701d0d66a1860195f",
+    "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/single_model/lv_glNP_r1/solution.wasm",
+    "name": "glNP_r1"
+  },
+  "glNP_r1/st2conf": {
+    "sha256": "fff09c8040cdc2bd6c3cb10dd242e289426f70aa5e96103701d0d66a1860195f",
+    "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/single_model/lv_glNP_r1/solution.wasm",
+    "name": "glNP_r1"
+  },
+  "glNP_r1/fdev": {
+    "sha256": "fff09c8040cdc2bd6c3cb10dd242e289426f70aa5e96103701d0d66a1860195f",
+    "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/single_model/lv_glNP_r1/solution.wasm",
+    "name": "glNP_r1"
+  },
+  "glNP_r1/fconf": {
+    "sha256": "fff09c8040cdc2bd6c3cb10dd242e289426f70aa5e96103701d0d66a1860195f",
+    "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/single_model/lv_glNP_r1/solution.wasm",
+    "name": "glNP_r1"
+  },
+  "glNP_r1/st1dev": {
+    "sha256": "fff09c8040cdc2bd6c3cb10dd242e289426f70aa5e96103701d0d66a1860195f",
+    "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/single_model/lv_glNP_r1/solution.wasm",
+    "name": "glNP_r1"
+  },
+  "glNP_r1/st1conf": {
+    "sha256": "fff09c8040cdc2bd6c3cb10dd242e289426f70aa5e96103701d0d66a1860195f",
+    "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/single_model/lv_glNP_r1/solution.wasm",
+    "name": "glNP_r1"
+  },
+  "glNP_r2/st2dev": {
+    "sha256": "36b44e7117795910b7f53dc52c5d91baa7a397ca7635ca786bb54cf3477ec183",
+    "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/single_model/lv_glNP_r2/solution.wasm",
+    "name": "glNP_r2"
+  },
+  "glNP_r2/st3": {
+    "sha256": "36b44e7117795910b7f53dc52c5d91baa7a397ca7635ca786bb54cf3477ec183",
+    "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/single_model/lv_glNP_r2/solution.wasm",
+    "name": "glNP_r2"
+  },
+  "glNP_r2/st2conf": {
+    "sha256": "36b44e7117795910b7f53dc52c5d91baa7a397ca7635ca786bb54cf3477ec183",
+    "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/single_model/lv_glNP_r2/solution.wasm",
+    "name": "glNP_r2"
+  },
+  "glNP_r2/fdev": {
+    "sha256": "36b44e7117795910b7f53dc52c5d91baa7a397ca7635ca786bb54cf3477ec183",
+    "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/single_model/lv_glNP_r2/solution.wasm",
+    "name": "glNP_r2"
+  },
+  "glNP_r2/fconf": {
+    "sha256": "36b44e7117795910b7f53dc52c5d91baa7a397ca7635ca786bb54cf3477ec183",
+    "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/single_model/lv_glNP_r2/solution.wasm",
+    "name": "glNP_r2"
+  },
+  "glNP_r2/st1dev": {
+    "sha256": "36b44e7117795910b7f53dc52c5d91baa7a397ca7635ca786bb54cf3477ec183",
+    "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/single_model/lv_glNP_r2/solution.wasm",
+    "name": "glNP_r2"
+  },
+  "glNP_r2/st1conf": {
+    "sha256": "36b44e7117795910b7f53dc52c5d91baa7a397ca7635ca786bb54cf3477ec183",
+    "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/results/single_model/lv_glNP_r2/solution.wasm",
+    "name": "glNP_r2"
+  }
+}

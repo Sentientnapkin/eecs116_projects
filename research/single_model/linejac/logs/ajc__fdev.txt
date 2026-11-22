@@ -1,0 +1,27 @@
+475 episodes, 0 cached, workers=48 (no video)
+20/475 finished, 16.6s
+40/475 finished, 23.1s
+60/475 finished, 23.4s
+80/475 finished, 30.5s
+100/475 finished, 33.6s
+120/475 finished, 40.2s
+140/475 finished, 42.7s
+160/475 finished, 46.7s
+180/475 finished, 50.6s
+200/475 finished, 54.0s
+220/475 finished, 58.8s
+240/475 finished, 61.4s
+260/475 finished, 69.7s
+280/475 finished, 73.6s
+300/475 finished, 77.6s
+320/475 finished, 80.1s
+340/475 finished, 85.1s
+360/475 finished, 92.6s
+380/475 finished, 93.3s
+400/475 finished, 104.5s
+420/475 finished, 105.6s
+440/475 finished, 106.5s
+460/475 finished, 113.1s
+475/475 finished, 121.6s
+475
+ajc fdev n 475 mean 0.2549 peak 4827922 filled 0

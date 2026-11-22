@@ -1,0 +1,58 @@
+{
+  "name": "ajgb4",
+  "pass": false,
+  "sets": {
+    "st2dev": {
+      "complete": true,
+      "delta_percent": 4.772211181363062,
+      "within_2pct": false,
+      "CI_includes_zero": true,
+      "accuracy_pass": true,
+      "fuel_pass": true,
+      "no_new_gt5_pass": false,
+      "new_gt5": [
+        "st2Km-ProcTHOR-Train-100-009"
+      ]
+    },
+    "st3": {
+      "complete": true,
+      "delta_percent": 7.8921343902186525,
+      "within_2pct": false,
+      "CI_includes_zero": false,
+      "accuracy_pass": false,
+      "fuel_pass": true,
+      "no_new_gt5_pass": true,
+      "new_gt5": []
+    },
+    "st2conf": {
+      "complete": true,
+      "delta_percent": 4.6713146376922365,
+      "within_2pct": false,
+      "CI_includes_zero": true,
+      "accuracy_pass": true,
+      "fuel_pass": true,
+      "no_new_gt5_pass": true,
+      "new_gt5": []
+    },
+    "fdev": {
+      "complete": true,
+      "delta_percent": 0.4025538877220569,
+      "within_2pct": true,
+      "CI_includes_zero": true,
+      "accuracy_pass": true,
+      "fuel_pass": true,
+      "no_new_gt5_pass": true,
+      "new_gt5": []
+    },
+    "fconf": {
+      "complete": true,
+      "delta_percent": 8.710880547317167,
+      "within_2pct": false,
+      "CI_includes_zero": true,
+      "accuracy_pass": true,
+      "fuel_pass": true,
+      "no_new_gt5_pass": true,
+      "new_gt5": []
+    }
+  }
+}

@@ -1,0 +1,9 @@
+kind 0: n=63723, relative max=4.85e-07, p99=4.14e-09, absolute max=0.000476
+kind 1: n=11636, relative max=8.68e-09, p99=5.13e-09, absolute max=2.64e-08
+kind 2: n=56356, relative max=6.76e-08, p99=3.88e-09, absolute max=4.07e-07
+kind 3: n=37798, relative max=0.000565, p99=4.77e-09, absolute max=9.16e-09
+kind 4: n=3431, relative max=7.67e-09, p99=3.79e-09, absolute max=2.64e-08
+kind 5: n=2909, relative max=1.01e-08, p99=5.17e-09, absolute max=2.4e-08
+kind 6: n=1336, relative max=1.48e-08, p99=4.83e-09, absolute max=9.7e-09
+kind 7: n=12589, relative max=8.92e-09, p99=4.72e-09, absolute max=8.95e-09
+kind 8: n=20265, relative max=1.93e-08, p99=2.05e-09, absolute max=2.4e-08

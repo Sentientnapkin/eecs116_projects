@@ -1,0 +1,56 @@
+{
+  "name": "ajc",
+  "pass": false,
+  "sets": {
+    "st2dev": {
+      "complete": true,
+      "delta_percent": -1.629916422636979,
+      "within_2pct": true,
+      "CI_includes_zero": true,
+      "accuracy_pass": true,
+      "fuel_pass": false,
+      "no_new_gt5_pass": true,
+      "new_gt5": []
+    },
+    "st3": {
+      "complete": true,
+      "delta_percent": 1.3890214077688423,
+      "within_2pct": true,
+      "CI_includes_zero": true,
+      "accuracy_pass": true,
+      "fuel_pass": false,
+      "no_new_gt5_pass": true,
+      "new_gt5": []
+    },
+    "st2conf": {
+      "complete": true,
+      "delta_percent": 3.138007788622832,
+      "within_2pct": false,
+      "CI_includes_zero": true,
+      "accuracy_pass": true,
+      "fuel_pass": false,
+      "no_new_gt5_pass": true,
+      "new_gt5": []
+    },
+    "fdev": {
+      "complete": true,
+      "delta_percent": -0.42900907979841474,
+      "within_2pct": true,
+      "CI_includes_zero": true,
+      "accuracy_pass": true,
+      "fuel_pass": false,
+      "no_new_gt5_pass": true,
+      "new_gt5": []
+    },
+    "fconf": {
+      "complete": true,
+      "delta_percent": -0.8342299647781881,
+      "within_2pct": true,
+      "CI_includes_zero": true,
+      "accuracy_pass": true,
+      "fuel_pass": false,
+      "no_new_gt5_pass": true,
+      "new_gt5": []
+    }
+  }
+}

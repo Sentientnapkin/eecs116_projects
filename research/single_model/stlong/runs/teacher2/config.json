@@ -1,0 +1,17 @@
+{
+ "name": "teacher2",
+ "nf": 2,
+ "gap": 1,
+ "res": 128,
+ "width": 2.0,
+ "deep": true,
+ "hidden": 256,
+ "seed": 0,
+ "epochs": 120,
+ "steps": 400,
+ "bs": 128,
+ "lr": 0.002,
+ "teacher": "",
+ "init": "",
+ "kd": 0.5
+}

@@ -1,0 +1,2 @@
+/data/backups/rganapa/Sebastian/eecs116_projects/research/results/single_model/lj_ajc/solution.wasm
+eb2799cbdc8dd9fa2711cdeda3062447364b6dfd4b05e72e543edd3ffa1a8e6d  research/results/single_model/lj_ajc/solution.wasm

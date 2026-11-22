@@ -1,0 +1,30 @@
+{
+ "spec": "stlong c",
+ "flights": [
+  {
+   "id": "slcP2-ProcTHOR-Train-16-01",
+   "split": "bench",
+   "group": "train2",
+   "catalog": "procthor",
+   "scene": "ProcTHOR-Train-16",
+   "seed": 5300000,
+   "seconds": 60,
+   "regime": "benchmark",
+   "hold_seconds": 1.0,
+   "waypoints_per_second": 0.8,
+   "task_overrides": {
+    "CRUISE_SPEED_MIN": 4.0,
+    "CRUISE_SPEED_MAX": 6.0,
+    "MAX_ACCELERATION": 8.0,
+    "MAX_JERK": 40.0,
+    "MAX_YAW_RATE": 3.0,
+    "ROADMAP_SPACING": 1.0,
+    "CONNECTION_DISTANCE": 6.0,
+    "PHASE_ACCELERATION": 0.6,
+    "PHASE_JERK": 2.0,
+    "TRACKING_MARGIN": 0.4
+   },
+   "setting": "P2"
+  }
+ ]
+}
