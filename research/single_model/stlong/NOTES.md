@@ -1,6 +1,6 @@
 # STLONG periodic velocity training
 
-Status: resumed 2026-11-22; auditing data and implementing isolated pipeline. No final candidate or success claim yet.
+Status: initial teachers and pilots finished; expanded-data generation active (2956 eligible flights cached). Final training, comparisons, and preflight remain. No candidate has passed the goal yet.
 
 ## Constraints
 All task outputs here, generated data under Sebastian/gen or Sebastian/tmp. No commits, uploads, holdout scoring, sealed/fold-4 payload reads, private episodes, or Sim(3) selection. Train scenes exclude holdout and all st2/st3 scenes. Max 48 CPU evaluation workers and 4 GPUs. Training and generation use nohup; stop all task jobs before ending.
@@ -45,3 +45,18 @@ Teacher4 selected for high-speed accuracy. Selection used only st2dev/st3. Teach
 - Width1.5 C off-switch verification PASS with a random shape-only checkpoint: same GSLV sha5e4d2a0d...; width1.5 has172876 trainable parameters /3,559,008MACs (lcJ105292/1,794,144). Shape-only checkpoint is not trained or evaluated and is not a candidate. On-switch compilation also being checked before training.
 - Width1.5 C prototype compiles with all changes enabled; all changes disabled reproduces exact GSLV SHA (logs/wide_off.log). Prototype uses random weights solely for compile/off-switch checks, never evaluated or trained; not a candidate.
 - Automated wider-model r0 screens will overlap main lcJ training once wider models finish. Evaluation remains sequential48workers; direct inference uses freed GPU4. Includes each seed, disabled-switch identity, best raw model's sigma-only and predicted-speed calibration screens. Selection remains tuning pools only.
+- 2026-11-22 22:24:59 UTC: data cache milestone 144 new eligible flights, 2884 total; generation audit/exclusions unchanged.
+- 2026-11-22 22:26:14 UTC: data cache milestone 216 new eligible flights, 2956 total; generation audit/exclusions unchanged.
+- 2026-11-22 22:32:59 UTC: data cache milestone 288 new eligible flights, 3028 total; generation audit/exclusions unchanged.
+- 2026-11-22 22:33:01 UTC: Expanded-data training threshold reached: 3028 flights. Starting selected teacher continuation; estimate ~8min including loading, then three parallel100epoch students ~10min.
+- 2026-11-22 22:33:01 UTC: Launched teacher_final, GPU3, pid3517106.
+- 2026-11-22 22:33:01 UTC: Launched wide0, GPU1, pid3517107.
+- 2026-11-22 22:33:01 UTC: Launched wide1, GPU2, pid3517108.
+- 2026-11-22 22:33:01 UTC: Launched wide2, GPU4, pid3517109.
+- Startup coverage correction: long-context KD formerly sampled only windows ending at frame15 or later. Corrected final trainer to sample ALL valid2frame student windows, apply truth loss to all, and KD only when two additional past anchors exist; same final frame, no future data. Restarted just-started expanded stage (about10teacher/12wide epochs interrupted) to apply consistently. Cached3028flights untouched. Prior pilot results reflect old sampler and are rejected, not final evidence.
+- 2026-11-22 22:35:40 UTC: Expanded-data training threshold reached: 3028 flights. Starting selected teacher continuation; estimate ~8min including loading, then three parallel100epoch students ~10min.
+- 2026-11-22 22:35:40 UTC: Launched teacher_final, GPU3, pid3521036.
+- 2026-11-22 22:35:40 UTC: Launched wide0, GPU1, pid3521037.
+- 2026-11-22 22:35:40 UTC: Launched wide1, GPU2, pid3521038.
+- 2026-11-22 22:35:40 UTC: Launched wide2, GPU4, pid3521039.
+- Sampler invariant check PASS on2audited real flights: all4early student windows retained; KD windows stay within flight and end at exactly the student final timestamp.

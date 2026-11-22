@@ -1,0 +1,110 @@
+# STLEARN — long displacement teacher → student run
+
+Status: starting data preparation/generation; no results claimed.
+Instructions: reports/Instructions long student teacher training run.md.
+Resources: GPUs5–7 only (GPU5 reproduction, GPUs6/7 generation, then DDP5/6/7). stlong GPUs1–4/processes/output remain untouched. Generation16 workers, cache8; evaluation24 while stlong active, otherwise48. TMPDIR=Sebastian/tmp; long jobs setsid/nohup. All own processes must stop on finish or explicit stop.
+
+## Audit / decisions
+- Read stlong NOTES, STUDENT_TEACHER index, displacement README/NOTES/model/train/distill/cache/export/parity/eval code, periodic training evaluation protocol and GPU-kit styles/patch/calibration.
+- NVIDIA catalog checked (CLI unavailable; fetched live catalog). No extra skill installation needed for existing PyTorch CNN/DDP pipeline.
+- Metadata audit: 2,810 allowlisted existing flights (2,510 legacy caches incl read-only stlong snapshot, 300 HF parents), 2,674 train +136 validation. Removed374 reused evaluation flights. Excludes holdout scenes, all20 st2 scenes (stricter than st2conf-only), fold4, calibrated selection episode IDs and evaluation IDs/hashes before opening payloads. 5% scene-hash validation for expanded training.
+- Reproduction: original t2 slow-cache recipe has232 safe unique parents after mandatory exclusions; original617 cannot be exactly replayed while respecting these additional hard exclusions. Preserve original hash%12 reproduction split and report data mismatch explicitly; never claim an exact 0.320m reproduction. HF authentication works with existing credentials and separate cache_dir (setting a new HF_HOME hid existing credentials; corrected, no secrets printed).
+- Roster4,000 own flights: seeds9,100,000–9,103,999, checked against stlong/learnvel/learned_c rosters; all5 GPU-kit styles ported verbatim; half hover/half mid; scene mix weights low-texture rooms. Mid uses90s cropped at30s, yielding60s. Stop generation after >=5,000 TRAIN flights cached. Reject short/crashed/nonfinite flights.
+- Reuse caveat: legacy velocity caches have4Hz image/truth-velocity samples and mean-channel gray. Converted to DT fields with aligned IMU attitude and integrated world velocity; retain native times and source provenance. New generated/HF caches retain20Hz, weighted gray, full DT metadata. Training must use physical-time lags/noise for the expanded mix; reproduction uses original slow-cache recipe only.
+
+## Milestones
+- Cache milestone 32/2810: {'total': 32, 'roles': {'train': 30, 'val': 2}, 'kinds': {'hf': 32}, 'repro': 32}.
+- Cache milestone 64/2810: {'total': 64, 'roles': {'train': 58, 'val': 6}, 'kinds': {'hf': 64}, 'repro': 64}.
+- Cache milestone 96/2810: {'total': 96, 'roles': {'train': 88, 'val': 8}, 'kinds': {'hf': 96}, 'repro': 96}.
+- Cache milestone 128/2810: {'total': 128, 'roles': {'train': 120, 'val': 8}, 'kinds': {'hf': 128}, 'repro': 128}.
+- Cache milestone 160/2810: {'total': 160, 'roles': {'train': 149, 'val': 11}, 'kinds': {'hf': 160}, 'repro': 160}.
+- Cache milestone 192/2810: {'total': 192, 'roles': {'train': 181, 'val': 11}, 'kinds': {'hf': 192}, 'repro': 192}.
+- Cache milestone 224/2810: {'total': 225, 'roles': {'train': 214, 'val': 11}, 'kinds': {'hf': 225}, 'repro': 225}.
+- Cache milestone 256/2810: {'total': 256, 'roles': {'train': 244, 'val': 12}, 'kinds': {'hf': 256}, 'repro': 232}.
+- Starting t2 reproduction: GPU5,10,000 steps, original model/NLL/augmentation, safe-subset data, original hash%12 plus protected expanded-validation scenes.
+- Cache milestone 288/2810: {'total': 288, 'roles': {'train': 276, 'val': 12}, 'kinds': {'hf': 288}, 'repro': 232}.
+- Cache milestone 320/2810: {'total': 322, 'roles': {'train': 310, 'val': 12}, 'kinds': {'legacy': 26, 'hf': 296}, 'repro': 232}.
+- Cache milestone 352/2810: {'total': 359, 'roles': {'train': 344, 'val': 15}, 'kinds': {'legacy': 61, 'hf': 298}, 'repro': 232}.
+- Cache milestone 384/2810: {'total': 387, 'roles': {'train': 372, 'val': 15}, 'kinds': {'legacy': 89, 'hf': 298}, 'repro': 232}.
+- Cache milestone 416/2810: {'total': 424, 'roles': {'train': 405, 'val': 19}, 'kinds': {'legacy': 126, 'hf': 298}, 'repro': 232}.
+- Cache milestone 448/2810: {'total': 456, 'roles': {'train': 437, 'val': 19}, 'kinds': {'legacy': 158, 'hf': 298}, 'repro': 232}.
+- Cache milestone 480/2810: {'total': 487, 'roles': {'train': 465, 'val': 22}, 'kinds': {'legacy': 189, 'hf': 298}, 'repro': 232}.
+- Cache milestone 512/2810: {'total': 519, 'roles': {'train': 497, 'val': 22}, 'kinds': {'legacy': 221, 'hf': 298}, 'repro': 232}.
+- Cache milestone 544/2810: {'total': 552, 'roles': {'train': 521, 'val': 31}, 'kinds': {'legacy': 254, 'hf': 298}, 'repro': 232}.
+- Cache milestone 576/2810: {'total': 583, 'roles': {'train': 552, 'val': 31}, 'kinds': {'legacy': 285, 'hf': 298}, 'repro': 232}.
+- Cache milestone 608/2810: {'total': 616, 'roles': {'train': 580, 'val': 36}, 'kinds': {'legacy': 318, 'hf': 298}, 'repro': 232}.
+- Cache milestone 640/2810: {'total': 649, 'roles': {'train': 613, 'val': 36}, 'kinds': {'legacy': 349, 'hf': 300}, 'repro': 232}.
+- Cache milestone 672/2810: {'total': 687, 'roles': {'train': 651, 'val': 36}, 'kinds': {'legacy': 387, 'hf': 300}, 'repro': 232}.
+- Cache milestone 704/2810: {'total': 715, 'roles': {'train': 679, 'val': 36}, 'kinds': {'legacy': 415, 'hf': 300}, 'repro': 232}.
+- Cache milestone 736/2810: {'total': 745, 'roles': {'train': 708, 'val': 37}, 'kinds': {'legacy': 445, 'hf': 300}, 'repro': 232}.
+- Cache milestone 768/2810: {'total': 779, 'roles': {'train': 741, 'val': 38}, 'kinds': {'legacy': 479, 'hf': 300}, 'repro': 232}.
+- Cache milestone 800/2810: {'total': 813, 'roles': {'train': 772, 'val': 41}, 'kinds': {'legacy': 513, 'hf': 300}, 'repro': 232}.
+- Cache milestone 832/2810: {'total': 841, 'roles': {'train': 800, 'val': 41}, 'kinds': {'legacy': 541, 'hf': 300}, 'repro': 232}.
+- Cache milestone 864/2810: {'total': 874, 'roles': {'train': 833, 'val': 41}, 'kinds': {'legacy': 574, 'hf': 300}, 'repro': 232}.
+- Cache milestone 896/2810: {'total': 913, 'roles': {'train': 869, 'val': 44}, 'kinds': {'legacy': 613, 'hf': 300}, 'repro': 232}.
+- Cache milestone 928/2810: {'total': 938, 'roles': {'train': 888, 'val': 50}, 'kinds': {'legacy': 638, 'hf': 300}, 'repro': 232}.
+- Cache milestone 960/2810: {'total': 979, 'roles': {'train': 923, 'val': 56}, 'kinds': {'legacy': 679, 'hf': 300}, 'repro': 232}.
+- Cache milestone 992/2810: {'total': 1040, 'roles': {'train': 980, 'val': 60}, 'kinds': {'legacy': 740, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1024/2810: {'total': 1080, 'roles': {'train': 1020, 'val': 60}, 'kinds': {'legacy': 780, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1056/2810: {'total': 1114, 'roles': {'train': 1054, 'val': 60}, 'kinds': {'legacy': 814, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1088/2810: {'total': 1150, 'roles': {'train': 1087, 'val': 63}, 'kinds': {'legacy': 850, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1120/2810: {'total': 1180, 'roles': {'train': 1115, 'val': 65}, 'kinds': {'legacy': 880, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1152/2810: {'total': 1214, 'roles': {'train': 1149, 'val': 65}, 'kinds': {'legacy': 914, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1184/2810: {'total': 1249, 'roles': {'train': 1182, 'val': 67}, 'kinds': {'legacy': 949, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1216/2810: {'total': 1281, 'roles': {'train': 1214, 'val': 67}, 'kinds': {'legacy': 981, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1248/2810: {'total': 1313, 'roles': {'train': 1231, 'val': 82}, 'kinds': {'legacy': 1013, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1280/2810: {'total': 1348, 'roles': {'train': 1262, 'val': 86}, 'kinds': {'legacy': 1048, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1312/2810: {'total': 1385, 'roles': {'train': 1299, 'val': 86}, 'kinds': {'legacy': 1085, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1344/2810: {'total': 1414, 'roles': {'train': 1328, 'val': 86}, 'kinds': {'legacy': 1114, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1376/2810: {'total': 1439, 'roles': {'train': 1353, 'val': 86}, 'kinds': {'legacy': 1139, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1408/2810: {'total': 1466, 'roles': {'train': 1380, 'val': 86}, 'kinds': {'legacy': 1166, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1440/2810: {'total': 1491, 'roles': {'train': 1405, 'val': 86}, 'kinds': {'legacy': 1191, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1472/2810: {'total': 1522, 'roles': {'train': 1434, 'val': 88}, 'kinds': {'legacy': 1222, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1504/2810: {'total': 1558, 'roles': {'train': 1469, 'val': 89}, 'kinds': {'legacy': 1258, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1536/2810: {'total': 1596, 'roles': {'train': 1506, 'val': 90}, 'kinds': {'legacy': 1296, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1568/2810: {'total': 1622, 'roles': {'train': 1531, 'val': 91}, 'kinds': {'legacy': 1322, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1600/2810: {'total': 1646, 'roles': {'train': 1554, 'val': 92}, 'kinds': {'legacy': 1346, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1632/2810: {'total': 1701, 'roles': {'train': 1607, 'val': 94}, 'kinds': {'legacy': 1401, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1664/2810: {'total': 1763, 'roles': {'train': 1666, 'val': 97}, 'kinds': {'legacy': 1463, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1696/2810: {'total': 1801, 'roles': {'train': 1704, 'val': 97}, 'kinds': {'legacy': 1501, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1728/2810: {'total': 1841, 'roles': {'train': 1743, 'val': 98}, 'kinds': {'legacy': 1541, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1760/2810: {'total': 1875, 'roles': {'train': 1774, 'val': 101}, 'kinds': {'legacy': 1575, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1792/2810: {'total': 1903, 'roles': {'train': 1802, 'val': 101}, 'kinds': {'legacy': 1603, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1824/2810: {'total': 1935, 'roles': {'train': 1832, 'val': 103}, 'kinds': {'legacy': 1635, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1856/2810: {'total': 1965, 'roles': {'train': 1862, 'val': 103}, 'kinds': {'legacy': 1665, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1888/2810: {'total': 1998, 'roles': {'train': 1892, 'val': 106}, 'kinds': {'legacy': 1698, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1920/2810: {'total': 2049, 'roles': {'train': 1942, 'val': 107}, 'kinds': {'legacy': 1749, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1952/2810: {'total': 2090, 'roles': {'train': 1981, 'val': 109}, 'kinds': {'legacy': 1790, 'hf': 300}, 'repro': 232}.
+- Cache milestone 1984/2810: {'total': 2123, 'roles': {'train': 2012, 'val': 111}, 'kinds': {'legacy': 1823, 'hf': 300}, 'repro': 232}.
+- Cache milestone 2016/2810: {'total': 2165, 'roles': {'train': 2054, 'val': 111}, 'kinds': {'legacy': 1865, 'hf': 300}, 'repro': 232}.
+- Cache milestone 2048/2810: {'total': 2214, 'roles': {'train': 2099, 'val': 115}, 'kinds': {'legacy': 1914, 'hf': 300}, 'repro': 232}.
+- Cache milestone 2080/2810: {'total': 2253, 'roles': {'train': 2136, 'val': 117}, 'kinds': {'legacy': 1953, 'hf': 300}, 'repro': 232}.
+- Cache milestone 2112/2810: {'total': 2307, 'roles': {'train': 2190, 'val': 117}, 'kinds': {'legacy': 2007, 'hf': 300}, 'repro': 232}.
+- Cache milestone 2144/2810: {'total': 2353, 'roles': {'train': 2232, 'val': 121}, 'kinds': {'legacy': 2053, 'hf': 300}, 'repro': 232}.
+- Cache milestone 2176/2810: {'total': 2406, 'roles': {'train': 2285, 'val': 121}, 'kinds': {'legacy': 2106, 'hf': 300}, 'repro': 232}.
+- Cache milestone 2208/2810: {'total': 2455, 'roles': {'train': 2333, 'val': 122}, 'kinds': {'legacy': 2155, 'hf': 300}, 'repro': 232}.
+- Cache milestone 2240/2810: {'total': 2494, 'roles': {'train': 2368, 'val': 126}, 'kinds': {'legacy': 2194, 'hf': 300}, 'repro': 232}.
+- Cache milestone 2272/2810: {'total': 2539, 'roles': {'train': 2411, 'val': 128}, 'kinds': {'legacy': 2239, 'hf': 300}, 'repro': 232}.
+- Cache milestone 2304/2810: {'total': 2591, 'roles': {'train': 2461, 'val': 130}, 'kinds': {'legacy': 2291, 'hf': 300}, 'repro': 232}.
+- Cache milestone 2336/2810: {'total': 2642, 'roles': {'train': 2511, 'val': 131}, 'kinds': {'legacy': 2342, 'hf': 300}, 'repro': 232}.
+- Cache milestone 2368/2810: {'total': 2704, 'roles': {'train': 2571, 'val': 133}, 'kinds': {'legacy': 2404, 'hf': 300}, 'repro': 232}.
+- Cache milestone 2400/2810: {'total': 2810, 'roles': {'train': 2674, 'val': 136}, 'kinds': {'legacy': 2510, 'hf': 300}, 'repro': 232}.
+- Cache milestone 2432/2810: {'total': 2810, 'roles': {'train': 2674, 'val': 136}, 'kinds': {'legacy': 2510, 'hf': 300}, 'repro': 232}.
+- Cache milestone 2464/2810: {'total': 2810, 'roles': {'train': 2674, 'val': 136}, 'kinds': {'legacy': 2510, 'hf': 300}, 'repro': 232}.
+- Cache milestone 2496/2810: {'total': 2810, 'roles': {'train': 2674, 'val': 136}, 'kinds': {'legacy': 2510, 'hf': 300}, 'repro': 232}.
+- Cache milestone 2528/2810: {'total': 2810, 'roles': {'train': 2674, 'val': 136}, 'kinds': {'legacy': 2510, 'hf': 300}, 'repro': 232}.
+- Cache milestone 2560/2810: {'total': 2810, 'roles': {'train': 2674, 'val': 136}, 'kinds': {'legacy': 2510, 'hf': 300}, 'repro': 232}.
+- Cache milestone 2592/2810: {'total': 2810, 'roles': {'train': 2674, 'val': 136}, 'kinds': {'legacy': 2510, 'hf': 300}, 'repro': 232}.
+- Cache milestone 2624/2810: {'total': 2810, 'roles': {'train': 2674, 'val': 136}, 'kinds': {'legacy': 2510, 'hf': 300}, 'repro': 232}.
+- Cache milestone 2656/2810: {'total': 2810, 'roles': {'train': 2674, 'val': 136}, 'kinds': {'legacy': 2510, 'hf': 300}, 'repro': 232}.
+- Cache milestone 2688/2810: {'total': 2810, 'roles': {'train': 2674, 'val': 136}, 'kinds': {'legacy': 2510, 'hf': 300}, 'repro': 232}.
+- Cache milestone 2720/2810: {'total': 2810, 'roles': {'train': 2674, 'val': 136}, 'kinds': {'legacy': 2510, 'hf': 300}, 'repro': 232}.
+- Cache milestone 2752/2810: {'total': 2810, 'roles': {'train': 2674, 'val': 136}, 'kinds': {'legacy': 2510, 'hf': 300}, 'repro': 232}.
+- Cache milestone 2784/2810: {'total': 2810, 'roles': {'train': 2674, 'val': 136}, 'kinds': {'legacy': 2510, 'hf': 300}, 'repro': 232}.
+- Cache milestone 2810/2810: {'total': 2810, 'roles': {'train': 2674, 'val': 136}, 'kinds': {'legacy': 2510, 'hf': 300}, 'repro': 232}.
+- t2 reproduction finished; curves/checkpoints under final/repro_t2. Expanded teacher remains a separate training stage.
+- t2 reproduction COMPLETE:10,000steps,201train/31validation flights (232 safe subset), mean displacement error0.336250m, Laplace z1.0492; reference617-flight recipe reported0.320m. Data differs, so this is a safe-subset recipe check, not an exact replay. Checkpoints/curve in final/repro_t2. Harmless NFS multiprocessing-temp cleanup errors occurred after DONE/checkpoint save; no rerun required.
+- Expanded architectures: teacher992.4M MAC; nominal S100/S25/S6/S2 actual106.18/30.15/6.87/2.16M MAC. Shared wider/deeper3-frame trunk, multi-lag-conditioned teacher plus velocity head; student auxiliary velocity heads retained for offline comparison, displacement path exported for filtering. Training code supports AMP,bfloat16,DDP,EMA,cosine schedule,checkpoint/resume,KD mean+scale+feature hint. Smoke validation running before long launch.
+- teacher checkpoint step2, 0.00h: 1s error0.60632m, velocity0.63950m/s, Laplace z[0.48731436405020645, 0.5721188679998145, 1.219089459679547]; world1.
+- Wider teacher bootstrap started on GPU5 (PID3521235), in parallel with generation on6/7. This stage uses current2,674 training flights; only the later >=5,000-flight DDP stage will produce final teacher candidates. Main schedule:48h teacher then8h/student (3 GPUs), EMA/cosine/checkpoints. Bootstrap is transferred with a fresh48h main-stage clock after generation finishes. Student channels adjusted to multiples of4 for the SIMD C kernels; final measured MACs in tables/architecture.json. Shape-only C parity/fuel checks launched before long distillation; no random checkpoint is a candidate.
+- Generated/cache batch 0: 27 accepted own flights; total cache {'total': 2837, 'roles': {'train': 2698, 'val': 139}, 'kinds': {'legacy': 2510, 'hf': 300, 'raw': 27}, 'repro': 232}. Own zips deleted only after cache success.

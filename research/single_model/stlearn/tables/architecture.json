@@ -1,0 +1,27 @@
+[
+  {
+    "model": "teacher",
+    "macs": 992365440,
+    "parameters": 3960946
+  },
+  {
+    "model": "S100",
+    "macs": 106182144,
+    "parameters": 463218
+  },
+  {
+    "model": "S25",
+    "macs": 30145280,
+    "parameters": 131138
+  },
+  {
+    "model": "S6",
+    "macs": 6551424,
+    "parameters": 26586
+  },
+  {
+    "model": "S2",
+    "macs": 2306784,
+    "parameters": 15282
+  }
+]

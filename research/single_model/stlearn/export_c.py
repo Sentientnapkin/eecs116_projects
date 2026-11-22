@@ -7,7 +7,7 @@ from pathlib import Path
 import numpy as np
 import torch
 
-from model import Teacher, arch_of
+from models import load
 
 
 def fold(seq):
@@ -29,7 +29,7 @@ def main():
     ap.add_argument("--ckpt", required=True)
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
-    sd = torch.load(a.ckpt, map_location="cpu")["model"]; m = arch_of(sd); m.load_state_dict(sd); m.eval()
+    m, ck = load(a.ckpt); assert m.cfg["aux"] == 10; m.eval()
     out = []
     enc = [fold(l) for l in m.enc]
     out.append(f"#define DT_ENC_N {len(enc)}\n#define DT_ENC_C {enc[-1][2]}\n#define DT_FC {m.fc1.out_features}\n#define DT_H2C {m.head[-1][0].out_channels}\n")

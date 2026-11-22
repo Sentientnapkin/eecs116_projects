@@ -58,7 +58,7 @@ def main():
         teacher=model(ta).cuda();teacher.load_state_dict(torch.load(td/'best.pt',map_location='cuda',weights_only=True));teacher.eval();teacher.requires_grad_(False)
         cal=json.load(open(td/'result.json')).get('sigma_scale',1.0)
         # Student and teacher share final frame, despite different temporal windows.
-        span=(ta.nf-1)*ta.gap;st=D.valid_starts(ta.nf,ta.gap);cells=cell[st+span];cnt=torch.bincount(cells,minlength=10).float().clamp(min=1);w=cnt[cells].pow(-.5)
+        span=(ta.nf-1)*ta.gap  # All student windows retain truth supervision; KD uses past context where available.
     print('loaded anchors',len(st),'params/macs',T.count(net,a.nf,13+6*(a.nf-1),a.res),flush=True)
     opt=torch.optim.AdamW(net.parameters(),lr=a.lr,weight_decay=1e-4);sched=torch.optim.lr_scheduler.OneCycleLR(opt,max_lr=a.lr,total_steps=a.epochs*a.steps,pct_start=.1)
     best=1e9;log=[];t0=time.time()
@@ -67,19 +67,22 @@ def main():
         # Draw once per epoch: avoids repeated O(N) multinomial setup per batch.
         sampled=st[torch.multinomial(w,a.bs*a.steps,replacement=True)].view(a.steps,a.bs)
         for g in sampled:
-            sg=g if teacher is None else g+(ta.nf-1)*ta.gap-1
+            sg=g
             img,vec,y,_=T.build_batch(D,sg,a.nf,a.gap,a.res,True);fl=torch.rand(a.bs,device='cuda')<.5
             if fl.any(): img[fl],vec[fl],y[fl]=T.flip(img[fl],vec[fl],y[fl],a.nf)
             mu,lv=net(img,vec)
             loss=(T.nll(mu,lv,y)*torch.exp(lv.detach()).pow(.5)).sum(-1).mean() if ep>=1 else .5*(mu-y).square().sum(-1).mean()
             if teacher is not None:
-                with torch.no_grad():
-                    ti,tv,_,_=T.build_batch(D,g,ta.nf,ta.gap,ta.res,False)
-                    if fl.any(): ti[fl],tv[fl],_=T.flip(ti[fl],tv[fl],torch.zeros_like(y[fl]),ta.nf)
-                    mt,lt=teacher(ti,tv);lt=lt+2*np.log(cal)
-                # Soft velocity + calibrated sigma, with truth supervision on both heads.
-                soft_lv=torch.log(torch.exp(lt[:,1])+(mu[:,1].detach()-mt[:,1]).square()).clamp(-7,4)
-                kd=.5*((mu[:,1]-mt[:,1]).square()*torch.exp(-.5*lt[:,1])).mean()+.25*(lv[:,1]-soft_lv).square().mean();loss=loss+a.kd*kd
+                valid=D.pos[g] >= span-1
+                if valid.any():
+                    tg=g[valid]+1-span; tf=fl[valid]
+                    with torch.no_grad():
+                        ti,tv,_,_=T.build_batch(D,tg,ta.nf,ta.gap,ta.res,False)
+                        if tf.any(): ti[tf],tv[tf],_=T.flip(ti[tf],tv[tf],torch.zeros_like(y[valid][tf]),ta.nf)
+                        mt,lt=teacher(ti,tv);lt=lt+2*np.log(cal)
+                    smu,slv=mu[valid,1],lv[valid,1]
+                    soft_lv=torch.log(torch.exp(lt[:,1])+(smu.detach()-mt[:,1]).square()).clamp(-7,4)
+                    kd=.5*((smu-mt[:,1]).square()*torch.exp(-.5*lt[:,1])).mean()+.25*(slv-soft_lv).square().mean();loss=loss+a.kd*kd
             opt.zero_grad(set_to_none=True);loss.backward();torch.nn.utils.clip_grad_norm_(net.parameters(),5);opt.step();sched.step();total+=float(loss.detach())
         r2=evaluate(net,E,es,a);r3=evaluate(net,E3,es3,a)
         # Pooled tuning data only, high-speed error carries additional priority.

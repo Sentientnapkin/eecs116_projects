@@ -21,7 +21,7 @@ CX, CY = (W - 1) / 2, (H - 1) / 2
 
 
 def scene_val(scene):
-    return int(hashlib.sha256(str(scene).encode()).hexdigest()[:8], 16) % 12 == 0
+    return scene in globals().get("EXTRA_VAL",set()) or int(hashlib.sha256(str(scene).encode()).hexdigest()[:8], 16) % 12 == 0
 
 
 def exp_so3(w):
@@ -191,6 +191,8 @@ def evaluate(model, val, dev, bs=256):
 
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument("--steps",type=int,default=10000)
+    ap.add_argument("--records",default="")
     ap.add_argument("--data", default="C:/Users/alexa/vio_data")
     ap.add_argument("--out", required=True)
     ap.add_argument("--hours", type=float, default=2.0)
@@ -208,7 +210,9 @@ def main():
     a = ap.parse_args()
     out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
     data = Path(a.data); cache = data / "work/cache"
-    recs = json.load(open(data / "work/train_records.json"))
+    recs = json.load(open(a.records or data / "work/repro_records.json"))
+    global EXTRA_VAL
+    EXTRA_VAL={r["scene"] for r in recs if r.get("role")=="val"}
     tr = [r for r in recs if not scene_val(r["scene"])]; va = [r for r in recs if scene_val(r["scene"])]
     dev = "cuda"
     torch.backends.cudnn.benchmark = True
@@ -225,7 +229,7 @@ def main():
     t0 = time.time(); budget = a.hours * 3600; step = 0; best = 1e9; log = open(out / "log.jsonl", "a")
     run = 0.0
     for ims, Hs, aux, tgt in dl:
-        frac = min((time.time() - t0) / budget, 1.0)
+        frac = min(step / a.steps, 1.0)
         lr = a.lr * (min(1.0, step / 500)) * (0.5 * (1 + math.cos(math.pi * frac)) * 0.97 + 0.03)
         for g in opt.param_groups: g["lr"] = lr
         img, mask, aux, tgt = prepare(ims, Hs, aux, tgt, dev, True)
@@ -240,7 +244,7 @@ def main():
         step += 1
         if step % 200 == 0:
             print(f"step {step} loss {run:.4f} lr {lr:.2e} {(time.time()-t0)/60:.1f} min {step*a.bs/(time.time()-t0):.0f} samp/s", flush=True)
-        done = frac >= 1.0
+        done = step >= a.steps
         if step % a.eval_every == 0 or done:
             r = evaluate(model, val, dev); r.update(step=step, minutes=(time.time() - t0) / 60, train_loss=run)
             print("VAL", json.dumps(r), flush=True); log.write(json.dumps(r) + "\n"); log.flush()

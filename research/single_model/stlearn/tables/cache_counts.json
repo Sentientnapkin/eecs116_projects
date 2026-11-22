@@ -1,0 +1,13 @@
+{
+  "total": 2837,
+  "roles": {
+    "train": 2698,
+    "val": 139
+  },
+  "kinds": {
+    "legacy": 2510,
+    "hf": 300,
+    "raw": 27
+  },
+  "repro": 232
+}
