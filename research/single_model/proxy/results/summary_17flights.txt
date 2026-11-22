@@ -1,0 +1,8 @@
+proxy flights: 17
+b16:   all    n= 17 mean 0.275 median 0.220 p90 0.60 >3m  0 >5m  0 max 0.68 | sim3 0.185
+G:   all    n= 17 mean 0.543 median 0.358 p90 1.18 >3m  0 >5m  0 max 2.04 | sim3 0.272
+m7:   all    n= 17 mean 0.372 median 0.288 p90 0.66 >3m  0 >5m  0 max 0.94 | sim3 0.259
+m7_S2k3:   all    n= 17 mean 0.412 median 0.339 p90 0.72 >3m  0 >5m  0 max 1.06 | sim3 0.248
+m7_spdk3:   all    n= 17 mean 0.388 median 0.288 p90 0.78 >3m  0 >5m  0 max 0.90 | sim3 0.236
+b17:   all    n= 17 mean 0.256 median 0.211 p90 0.47 >3m  0 >5m  0 max 0.51 | sim3 0.168
+Sat Nov 21 12:47:40 PST 2026

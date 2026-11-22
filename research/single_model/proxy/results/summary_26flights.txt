@@ -1,0 +1,48 @@
+b16   all    n= 26 mean 0.366 median 0.238 p90 0.71 >3m  0 >5m  0 max 1.50 | sim3 0.226
+b16   M      n=  6 mean 0.504 median 0.294 p90 1.04 >3m  0 >5m  0 max 1.50
+b16   K      n=  7 mean 0.345 median 0.231 p90 0.71 >3m  0 >5m  0 max 0.74
+b16   K2     n=  7 mean 0.394 median 0.240 p90 0.85 >3m  0 >5m  0 max 1.20
+b16   K3     n=  6 mean 0.218 median 0.229 p90 0.27 >3m  0 >5m  0 max 0.31
+b16   static n= 14 mean 0.285 median 0.225 p90 0.53 >3m  0 >5m  0 max 0.74
+b16   mid    n= 12 mean 0.459 median 0.243 p90 1.15 >3m  0 >5m  0 max 1.50
+b16   peak fuel max 17.9 M
+G   all    n= 26 mean 0.876 median 0.393 p90 1.64 >3m  2 >5m  1 max 5.49 | sim3 0.395
+G   M      n=  6 mean 1.365 median 0.634 p90 3.11 >3m  1 >5m  1 max 5.49
+G   K      n=  7 mean 0.610 median 0.340 p90 1.27 >3m  0 >5m  0 max 2.04
+G   K2     n=  7 mean 1.211 median 0.448 p90 2.58 >3m  1 >5m  0 max 4.60
+G   K3     n=  6 mean 0.305 median 0.266 p90 0.43 >3m  0 >5m  0 max 0.48
+G   static n= 14 mean 0.397 median 0.357 p90 0.66 >3m  0 >5m  0 max 0.76
+G   mid    n= 12 mean 1.434 median 0.634 p90 4.34 >3m  2 >5m  1 max 5.49
+G   peak fuel max 21.8 M
+m7   all    n= 26 mean 0.498 median 0.321 p90 0.93 >3m  0 >5m  0 max 1.76 | sim3 0.281
+m7   M      n=  6 mean 0.704 median 0.572 p90 1.34 >3m  0 >5m  0 max 1.76
+m7   K      n=  7 mean 0.484 median 0.363 p90 0.92 >3m  0 >5m  0 max 0.94
+m7   K2     n=  7 mean 0.501 median 0.290 p90 0.92 >3m  0 >5m  0 max 1.62
+m7   K3     n=  6 mean 0.303 median 0.261 p90 0.42 >3m  0 >5m  0 max 0.49
+m7   static n= 14 mean 0.386 median 0.319 p90 0.75 >3m  0 >5m  0 max 0.90
+m7   mid    n= 12 mean 0.628 median 0.337 p90 1.55 >3m  0 >5m  0 max 1.76
+m7   peak fuel max 6.7 M
+m7_S2k3   all    n= 26 mean 0.471 median 0.374 p90 0.83 >3m  0 >5m  0 max 1.70 | sim3 0.252
+m7_S2k3   M      n=  6 mean 0.801 median 0.630 p90 1.38 >3m  0 >5m  0 max 1.70
+m7_S2k3   K      n=  7 mean 0.422 median 0.318 p90 0.83 >3m  0 >5m  0 max 0.84
+m7_S2k3   K2     n=  7 mean 0.338 median 0.323 p90 0.47 >3m  0 >5m  0 max 0.47
+m7_S2k3   K3     n=  6 mean 0.353 median 0.312 p90 0.52 >3m  0 >5m  0 max 0.64
+m7_S2k3   static n= 14 mean 0.423 median 0.389 p90 0.74 >3m  0 >5m  0 max 0.81
+m7_S2k3   mid    n= 12 mean 0.526 median 0.347 p90 1.04 >3m  0 >5m  0 max 1.70
+m7_S2k3   peak fuel max 6.7 M
+m7_spdk3   all    n= 26 mean 0.466 median 0.320 p90 0.90 >3m  0 >5m  0 max 1.40 | sim3 0.250
+m7_spdk3   M      n=  6 mean 0.599 median 0.515 p90 1.11 >3m  0 >5m  0 max 1.31
+m7_spdk3   K      n=  7 mean 0.451 median 0.363 p90 0.87 >3m  0 >5m  0 max 0.90
+m7_spdk3   K2     n=  7 mean 0.439 median 0.255 p90 0.82 >3m  0 >5m  0 max 1.40
+m7_spdk3   K3     n=  6 mean 0.380 median 0.311 p90 0.61 >3m  0 >5m  0 max 0.73
+m7_spdk3   static n= 14 mean 0.381 median 0.320 p90 0.67 >3m  0 >5m  0 max 0.90
+m7_spdk3   mid    n= 12 mean 0.564 median 0.309 p90 1.27 >3m  0 >5m  0 max 1.40
+m7_spdk3   peak fuel max 6.9 M
+b17   all    n= 26 mean 0.320 median 0.212 p90 0.52 >3m  0 >5m  0 max 1.61 | sim3 0.177
+b17   M      n=  6 mean 0.543 median 0.362 p90 1.07 >3m  0 >5m  0 max 1.61
+b17   K      n=  7 mean 0.291 median 0.211 p90 0.51 >3m  0 >5m  0 max 0.58
+b17   K2     n=  7 mean 0.233 median 0.162 p90 0.39 >3m  0 >5m  0 max 0.47
+b17   K3     n=  6 mean 0.231 median 0.214 p90 0.33 >3m  0 >5m  0 max 0.40
+b17   static n= 14 mean 0.286 median 0.212 p90 0.51 >3m  0 >5m  0 max 0.58
+b17   mid    n= 12 mean 0.359 median 0.198 p90 0.51 >3m  0 >5m  0 max 1.61
+b17   peak fuel max 417.4 M
