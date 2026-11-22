@@ -1,0 +1,1 @@
+./bp.sh lYn8 "EDGE=1 EDGE_LINE=1 EDGE_RMAX=1.5 EDGE_PIX=1.0 EDGE_N=32 EDGE_GX=10 EDGE_GY=8 EDGE_LIVE=100 EDGE_GSPREAD=1 EDGE_DEVERY=1 EDGE_DMAX=16 EDGE_GCDET=250000 GC_EDGE=20000 EDGE_VERT=1 EDGE_HORIZ=1 EDGE_MYAW=1 EDGE_MYN=8" /data/backups/rganapa/Sebastian/tmp/st_pools/st2dev /data/backups/rganapa/Sebastian/tmp/st_pools/st2conf

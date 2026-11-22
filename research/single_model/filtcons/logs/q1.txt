@@ -1,0 +1,16 @@
+qv03 st2dev n 156 mean 1.7155 peak 4036654 filled 0
+vp0 st2dev n 156 mean 0.6359 peak 3953318 filled 0
+qt01 st2dev n 156 mean 0.7474 peak 3998543 filled 0
+sch st2dev n 156 mean 0.6527 peak 4436685 filled 0
+qv01 st2dev n 156 mean 0.8123 peak 4007746 filled 0
+schu10 st2dev n 156 mean 0.6527 peak 4436870 filled 0
+resp12 st2dev n 156 mean 0.6920 peak 3999330 filled 0
+schu10b st2dev n 156 mean 0.7486 peak 4096054 filled 0
+qv03u st2dev n 156 mean 0.8401 peak 3998982 filled 0
+schs0 st2dev n 156 mean 0.7083 peak 4436685 filled 0
+hub3 st2dev n 156 mean 0.7075 peak 4029835 filled 0
+sch_r1 st2dev n 156 mean 0.6644 peak 4455014 filled 0
+sch_r1 st2conf n 84 mean 0.5479 peak 4447132 filled 0
+lat0 st2dev n 156 mean 0.6350 peak 3954894 filled 0
+run2 st2dev n 156 mean 0.6582 peak 4003424 filled 0
+run15 st2dev n 156 mean 0.6752 peak 3958315 filled 0

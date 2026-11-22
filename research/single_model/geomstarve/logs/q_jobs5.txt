@@ -1,0 +1,9 @@
+eBb8_r1 st2dev n 156 mean 0.6266 peak 10624388 filled 0
+eBb8_r1 st2conf n 84 mean 0.4917 peak 10427262 filled 0
+eBb8_r2 st2dev n 156 mean 0.5924 peak 10625434 filled 0
+eBb8_r2 st2conf n 84 mean 0.4794 peak 10893843 filled 0
+aud st2starve n 22 mean 1.7298 peak 4130807 filled 0
+eBds4 st2starve n 22 mean 2.0040 peak 5176653 filled 0
+eBdm st2starve n 22 mean 1.8064 peak 5141005 filled 0
+eB fresh03 n 582 mean 0.3395 peak 5284308 filled 0
+DONE

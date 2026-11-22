@@ -1,0 +1,14 @@
+lYc_r1 st2dev n 156 mean 0.6135 peak 6473087 filled 0
+lYc st2dev n 156 mean 0.4964 peak 5957202 filled 0
+lYc_r1 st2conf n 84 mean 0.4347 peak 5582521 filled 0
+lYc st2conf n 84 mean 0.4029 peak 6050146 filled 0
+lYp3 st2dev n 156 mean 0.4902 peak 6861653 filled 0
+lYc_r2 st2dev n 156 mean 0.5578 peak 5886288 filled 0
+lYp3 st2conf n 84 mean 0.4056 peak 6228191 filled 0
+lYc_r2 st2conf n 84 mean 0.4037 peak 5423854 filled 0
+lYp5_r1 fresh03 n 582 mean 0.3055 peak 6833530 filled 0
+lYp5 fresh03 n 582 mean 0.2975 peak 6377310 filled 0
+lYp5 st1dev n 244 mean 0.2027 peak 6132715 filled 0
+lYp5 st1conf n 156 mean 0.2723 peak 6116594 filled 0
+lYp5_r2 fresh03 n 582 mean 0.2845 peak 6953429 filled 0
+DONE

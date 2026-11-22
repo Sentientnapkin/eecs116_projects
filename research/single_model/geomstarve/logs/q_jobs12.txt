@@ -1,0 +1,7 @@
+hm40b st1dev n 244 mean 0.2629 peak 4034778 filled 0
+hm40b st1conf n 156 mean 0.3339 peak 4015649 filled 0
+lgVHY fresh03 n 582 mean 0.3100 peak 6309033 filled 0
+lgVHY st1dev n 244 mean 0.2181 peak 5775313 filled 0
+lgVHY_r1 fresh03 n 582 mean 0.3279 peak 7200338 filled 0
+lgVHY st1conf n 156 mean 0.2831 peak 5870752 filled 0
+DONE

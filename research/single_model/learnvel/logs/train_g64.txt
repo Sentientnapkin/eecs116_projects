@@ -1,0 +1,12 @@
+g64 train flights 989 474720 val 134 32160 st2dev 156 37440
+params/MACs (104620, 1572576)
+ep 0 train 0.038 val ang mean 4.74 med 3.57 | st2dev mean 6.16 med 4.98 p90 12.24 zrms 0.08
+ep 5 train -7.517 val ang mean 4.12 med 2.93 | st2dev mean 5.39 med 4.17 p90 11.23 zrms 1.04
+ep 10 train -8.927 val ang mean 2.64 med 1.96 | st2dev mean 3.57 med 2.73 p90 7.33 zrms 0.83
+ep 15 train -9.297 val ang mean 2.49 med 1.95 | st2dev mean 3.28 med 2.48 p90 6.61 zrms 0.86
+ep 20 train -9.448 val ang mean 2.03 med 1.44 | st2dev mean 2.86 med 2.06 p90 6.09 zrms 0.79
+ep 25 train -9.552 val ang mean 2.05 med 1.50 | st2dev mean 2.76 med 1.98 p90 5.80 zrms 0.82
+ep 30 train -9.622 val ang mean 1.88 med 1.32 | st2dev mean 2.57 med 1.81 p90 5.51 zrms 0.79
+ep 35 train -9.653 val ang mean 1.84 med 1.30 | st2dev mean 2.54 med 1.78 p90 5.41 zrms 0.75
+ep 39 train -9.665 val ang mean 1.83 med 1.29 | st2dev mean 2.53 med 1.78 p90 5.39 zrms 0.75
+DONE {"args": {"name": "g64", "res": 64, "width": 1.0, "epochs": 40, "steps": 400, "bs": 256, "lr": 0.003, "seed": 0}, "val_best": 1.8277519941329956, "st2_mean": 2.5320823192596436, "st2_med": 1.7801525592803955, "st2_p90": 5.394768238067627}

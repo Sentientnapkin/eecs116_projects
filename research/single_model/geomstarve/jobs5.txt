@@ -1,0 +1,6 @@
+./bp.sh eB "EDGE=1 EDGE_RMAX=1 EDGE_NS3=1 EDGE_PIX=0.5 EDGE_N=64 EDGE_GX=10 EDGE_GY=8 EDGE_LIVE=100" /data/backups/rganapa/Sebastian/tmp/gs_pools/fresh03
+REP=1 ./bp.sh eBb8_r1 "EDGE=1 EDGE_RMAX=1 EDGE_NS3=1 EDGE_PIX=0.5 EDGE_N=64 EDGE_GX=10 EDGE_GY=8 EDGE_LIVE=100 GOV_B=8e6" /data/backups/rganapa/Sebastian/tmp/st_pools/st2dev /data/backups/rganapa/Sebastian/tmp/st_pools/st2conf
+REP=2 ./bp.sh eBb8_r2 "EDGE=1 EDGE_RMAX=1 EDGE_NS3=1 EDGE_PIX=0.5 EDGE_N=64 EDGE_GX=10 EDGE_GY=8 EDGE_LIVE=100 GOV_B=8e6" /data/backups/rganapa/Sebastian/tmp/st_pools/st2dev /data/backups/rganapa/Sebastian/tmp/st_pools/st2conf
+W=22 ./bp.sh aud "AUD_STATS=1 GS_DIAG=1" /data/backups/rganapa/Sebastian/tmp/gs_pools/st2starve
+W=22 ./bp.sh eBds4 "EDGE=1 EDGE_RMAX=1 EDGE_NS3=1 EDGE_PIX=0.5 EDGE_N=64 EDGE_GX=10 EDGE_GY=8 EDGE_LIVE=100 EDGE_DSTR=4" /data/backups/rganapa/Sebastian/tmp/gs_pools/st2starve
+W=22 ./bp.sh eBdm "EDGE=1 EDGE_RMAX=1 EDGE_NS3=1 EDGE_PIX=0.5 EDGE_N=64 EDGE_GX=10 EDGE_GY=8 EDGE_LIVE=100 EDGE_DEVERY=1 EDGE_DMAX=12 EDGE_GCDET=150000" /data/backups/rganapa/Sebastian/tmp/gs_pools/st2starve

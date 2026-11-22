@@ -1,0 +1,8 @@
+lnB st2dev n 156 mean 0.6570 peak 4319413 filled 0
+lnB_r1 st2dev n 156 mean 0.6956 peak 4246504 filled 0
+lnB_r1 st2conf n 84 mean 0.4772 peak 4218817 filled 0
+lnB st2conf n 84 mean 0.4680 peak 3955976 filled 0
+lnB_r2 st2dev n 156 mean 0.6527 peak 4296406 filled 0
+lnB_r2 st2conf n 84 mean 0.4472 peak 4252945 filled 0
+lnB fresh03 n 582 mean 0.3410 peak 4384332 filled 0
+DONE

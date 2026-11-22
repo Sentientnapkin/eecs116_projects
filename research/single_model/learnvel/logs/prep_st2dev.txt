@@ -1,0 +1,9 @@
+0 ('st2Km-ProcTHOR-Train-142-003', 'ok')
+20 ('st2Km-ProcTHOR-Train-130-003', 'ok')
+40 ('st2Ks-ProcTHOR-Train-130-000', 'ok')
+60 ('st2P1m-ProcTHOR-Train-100-010', 'ok')
+80 ('st2P1s-104862573_172226682-001', 'ok')
+100 ('st2P1s-ProcTHOR-Train-64-007', 'ok')
+120 ('st2P4m-ProcTHOR-Train-142-005', 'ok')
+140 ('st2P4s-ProcTHOR-Train-100-008', 'ok')
+done 156

@@ -1,0 +1,4 @@
+rsoft1_r1 fresh03 n 582 mean 0.3474 peak 4039269 filled 0
+rsoft1_r2 fresh03 n 582 mean 0.3317 peak 4037594 filled 0
+rsoft1t0 st2dev n 156 mean 0.5867 peak 3991491 filled 0
+rsoft1t0 st2conf n 84 mean 0.4433 peak 4042083 filled 0

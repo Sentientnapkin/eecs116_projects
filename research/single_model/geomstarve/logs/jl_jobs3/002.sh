@@ -1,0 +1,1 @@
+./bp.sh eN96 "EDGE=1 EDGE_RMAX=1 EDGE_NS3=1 EDGE_PIX=0.5 EDGE_N=96 EDGE_GX=12 EDGE_GY=8 EDGE_LIVE=100" /data/backups/rganapa/Sebastian/tmp/st_pools/st2dev /data/backups/rganapa/Sebastian/tmp/st_pools/st2conf

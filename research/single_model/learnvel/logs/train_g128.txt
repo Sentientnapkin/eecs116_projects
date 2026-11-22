@@ -1,0 +1,12 @@
+g128 train flights 989 474720 val 134 32160 st2dev 156 37440
+params/MACs (156972, 6407904)
+ep 0 train 0.027 val ang mean 4.63 med 3.44 | st2dev mean 6.04 med 4.83 p90 12.16 zrms 0.08
+ep 5 train -7.646 val ang mean 4.17 med 3.09 | st2dev mean 5.59 med 4.42 p90 11.34 zrms 0.97
+ep 10 train -9.312 val ang mean 2.11 med 1.44 | st2dev mean 3.12 med 2.17 p90 6.75 zrms 0.85
+ep 15 train -9.619 val ang mean 1.69 med 1.19 | st2dev mean 2.47 med 1.67 p90 5.32 zrms 0.73
+ep 20 train -9.757 val ang mean 1.56 med 1.10 | st2dev mean 2.34 med 1.56 p90 5.08 zrms 0.72
+ep 25 train -9.856 val ang mean 1.45 med 1.01 | st2dev mean 2.26 med 1.47 p90 5.00 zrms 0.70
+ep 30 train -9.910 val ang mean 1.35 med 0.91 | st2dev mean 2.09 med 1.33 p90 4.64 zrms 0.71
+ep 35 train -9.942 val ang mean 1.31 med 0.88 | st2dev mean 2.04 med 1.29 p90 4.54 zrms 0.67
+ep 39 train -9.950 val ang mean 1.31 med 0.87 | st2dev mean 2.03 med 1.29 p90 4.51 zrms 0.67
+DONE {"args": {"name": "g128", "res": 128, "width": 1.0, "epochs": 40, "steps": 400, "bs": 256, "lr": 0.003, "seed": 0}, "val_best": 1.3052613735198975, "st2_mean": 2.0277726650238037, "st2_med": 1.2852703332901, "st2_p90": 4.486849308013916}

@@ -1,0 +1,1 @@
+hm40log st2dev n 156 mean 0.6308 peak 4004432 filled 0

@@ -1,0 +1,6 @@
+hm40 st3 n 234 mean 0.6798 peak 4032090 filled 0
+hm40_r1 st3 n 234 mean 0.6703 peak 4007405 filled 0
+hm40_r2 st3 n 234 mean 0.6018 peak 4019130 filled 0
+P20S2 st3 n 234 mean 0.6289 peak 4043091 filled 0
+P20S2_r1 st3 n 234 mean 0.6087 peak 4031094 filled 0
+P20S2_r2 st3 n 234 mean 0.6291 peak 4028287 filled 0

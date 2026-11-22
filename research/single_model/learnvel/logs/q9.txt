@@ -1,0 +1,9 @@
+TQ3 st2dev n 156 mean 0.6877 peak 3993346 filled 0
+TQ3_r1 st2dev n 156 mean 0.7839 peak 4034005 filled 0
+TQ3_r2 st2dev n 156 mean 0.6950 peak 4019096 filled 0
+TQ8 st2dev n 156 mean 0.8793 peak 3986420 filled 0
+TQ8_r1 st2dev n 156 mean 0.8627 peak 4026131 filled 0
+TQ8_r2 st2dev n 156 mean 0.8551 peak 3972589 filled 0
+TQ3n st2dev n 156 mean 0.7271 peak 4004059 filled 0
+TQ3n_r1 st2dev n 156 mean 0.7155 peak 4024751 filled 0
+TQ3n_r2 st2dev n 156 mean 0.7634 peak 3985073 filled 0

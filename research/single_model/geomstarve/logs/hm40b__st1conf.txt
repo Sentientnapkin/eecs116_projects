@@ -1,0 +1,11 @@
+156 episodes, 0 cached, workers=32 (no video)
+20/156 finished, 8.5s
+40/156 finished, 16.4s
+60/156 finished, 20.6s
+80/156 finished, 28.2s
+100/156 finished, 31.6s
+120/156 finished, 40.9s
+140/156 finished, 42.7s
+156/156 finished, 58.9s
+156
+hm40b st1conf n 156 mean 0.3339 peak 4015649 filled 0

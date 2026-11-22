@@ -1,0 +1,6 @@
+chi90 st2dev n 156 mean 0.6348 peak 3977927 filled 0
+chi99 st2dev n 156 mean 0.6510 peak 4002245 filled 0
+qt01u st2dev n 156 mean 0.6897 peak 4036684 filled 0
+qt03u st2dev n 156 mean 0.7609 peak 4003391 filled 0
+qb3u st2dev n 156 mean 0.6331 peak 4006826 filled 0
+md12 st2dev n 156 mean 0.6536 peak 3975626 filled 0

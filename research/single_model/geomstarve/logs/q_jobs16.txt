@@ -1,0 +1,7 @@
+lYpK_r1 fresh03 n 582 mean 0.2911 peak 7435007 filled 0
+lYpK fresh03 n 582 mean 0.2939 peak 6709289 filled 0
+lYpK st1dev n 244 mean 0.1976 peak 6006455 filled 0
+lYpK st1conf n 156 mean 0.2815 peak 5673279 filled 0
+lYpK_r2 fresh03 n 582 mean 0.2907 peak 6360894 filled 0
+kv1 fresh03 n 582 mean 0.3579 peak 4057279 filled 0
+DONE

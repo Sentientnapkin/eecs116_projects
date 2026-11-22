@@ -1,0 +1,9 @@
+eBg_r1 st2dev n 156 mean 0.7005 peak 4428259 filled 0
+eBg st2dev n 156 mean 0.6002 peak 4204424 filled 0
+eBg_r1 st2conf n 84 mean 0.4494 peak 4544371 filled 0
+eBg st2conf n 84 mean 0.4883 peak 4553880 filled 0
+eBg_r2 st2dev n 156 mean 0.6034 peak 4357821 filled 0
+eGs8g st2dev n 156 mean 0.6128 peak 4773271 filled 0
+eBg_r2 st2conf n 84 mean 0.4762 peak 4268424 filled 0
+eGs8g st2conf n 84 mean 0.4580 peak 4813376 filled 0
+DONE

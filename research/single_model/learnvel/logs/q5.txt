@@ -1,0 +1,6 @@
+P20_r1 st2dev n 156 mean 0.6320 peak 4015315 filled 0
+P20_r2 st2dev n 156 mean 0.6620 peak 4002268 filled 0
+P20S100_r1 st2dev n 156 mean 0.6983 peak 4021668 filled 0
+P20S100_r2 st2dev n 156 mean 0.6994 peak 3987330 filled 0
+P20S2_r1 st2dev n 156 mean 0.6220 peak 3976296 filled 0
+P20S2_r2 st2dev n 156 mean 0.6493 peak 3999144 filled 0

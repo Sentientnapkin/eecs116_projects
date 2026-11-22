@@ -1,0 +1,9 @@
+eL20 st2dev n 156 mean 0.6830 peak 5418574 filled 0
+eN96 st2dev n 156 mean 0.6373 peak 5449784 filled 0
+eL20 st2conf n 84 mean 0.4939 peak 5319158 filled 0
+eN96 st2conf n 84 mean 0.4494 peak 5219015 filled 0
+vp0 st2dev n 156 mean 0.6359 peak 3953318 filled 0
+eP1 st2dev n 156 mean 0.6268 peak 5382086 filled 0
+vp0 st2conf n 84 mean 0.4893 peak 3930044 filled 0
+eP1 st2conf n 84 mean 0.4868 peak 4928660 filled 0
+DONE

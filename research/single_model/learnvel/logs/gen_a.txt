@@ -1,0 +1,91 @@
+roster_a.json: todo 600/600
+batch 0: 100 flights on GPUs [0, 3, 4, 5, 6, 7], workers 32
+batch 0 generated 100/100; preprocessing
+batch 0 preprocessed 100, errors 0 []; cache rows total 100
+batch 1: 100 flights on GPUs [0, 3, 4, 6, 7], workers 32
+batch 1 generated 100/100; preprocessing
+Process ForkPoolWorker-21:
+Traceback (most recent call last):
+  File "/home/rganapa/miniforge3/lib/python3.12/multiprocessing/pool.py", line 131, in worker
+    put((job, i, result))
+  File "/home/rganapa/miniforge3/lib/python3.12/multiprocessing/queues.py", line 399, in put
+    self._writer.send_bytes(obj)
+  File "/home/rganapa/miniforge3/lib/python3.12/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/home/rganapa/miniforge3/lib/python3.12/multiprocessing/connection.py", line 427, in _send_bytes
+    self._send(header + buf)
+  File "/home/rganapa/miniforge3/lib/python3.12/multiprocessing/connection.py", line 384, in _send
+    n = write(self._handle, buf)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/rganapa/miniforge3/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/home/rganapa/miniforge3/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/rganapa/miniforge3/lib/python3.12/multiprocessing/pool.py", line 136, in worker
+    put((job, i, (False, wrapped)))
+  File "/home/rganapa/miniforge3/lib/python3.12/multiprocessing/queues.py", line 399, in put
+    self._writer.send_bytes(obj)
+  File "/home/rganapa/miniforge3/lib/python3.12/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/home/rganapa/miniforge3/lib/python3.12/multiprocessing/connection.py", line 427, in _send_bytes
+    self._send(header + buf)
+  File "/home/rganapa/miniforge3/lib/python3.12/multiprocessing/connection.py", line 384, in _send
+    n = write(self._handle, buf)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+Process ForkPoolWorker-26:
+Traceback (most recent call last):
+  File "/home/rganapa/miniforge3/lib/python3.12/multiprocessing/pool.py", line 131, in worker
+    put((job, i, result))
+  File "/home/rganapa/miniforge3/lib/python3.12/multiprocessing/queues.py", line 399, in put
+    self._writer.send_bytes(obj)
+  File "/home/rganapa/miniforge3/lib/python3.12/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/home/rganapa/miniforge3/lib/python3.12/multiprocessing/connection.py", line 427, in _send_bytes
+    self._send(header + buf)
+  File "/home/rganapa/miniforge3/lib/python3.12/multiprocessing/connection.py", line 384, in _send
+    n = write(self._handle, buf)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/rganapa/miniforge3/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/home/rganapa/miniforge3/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/rganapa/miniforge3/lib/python3.12/multiprocessing/pool.py", line 136, in worker
+    put((job, i, (False, wrapped)))
+  File "/home/rganapa/miniforge3/lib/python3.12/multiprocessing/queues.py", line 399, in put
+    self._writer.send_bytes(obj)
+  File "/home/rganapa/miniforge3/lib/python3.12/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/home/rganapa/miniforge3/lib/python3.12/multiprocessing/connection.py", line 427, in _send_bytes
+    self._send(header + buf)
+  File "/home/rganapa/miniforge3/lib/python3.12/multiprocessing/connection.py", line 384, in _send
+    n = write(self._handle, buf)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+roster_a.json: todo 500/600
+batch 0: 100 flights on GPUs [0, 3, 4, 5, 6, 7], workers 32
+batch 0 generated 100/100; preprocessing
+batch 0 preprocessed 100, errors 0 []; cache rows total 200
+batch 1: 100 flights on GPUs [0, 3, 4, 5, 6, 7], workers 32
+batch 1 generated 100/100; preprocessing
+batch 1 preprocessed 100, errors 0 []; cache rows total 300
+batch 2: 100 flights on GPUs [0, 3, 4, 5, 6, 7], workers 32
+batch 2 generated 100/100; preprocessing
+batch 2 preprocessed 100, errors 0 []; cache rows total 400
+batch 3: 100 flights on GPUs [0, 3, 4, 5, 6, 7], workers 32
+batch 3 generated 100/100; preprocessing
+batch 3 preprocessed 100, errors 0 []; cache rows total 500
+batch 4: 100 flights on GPUs [0, 3, 4, 5, 7], workers 32
+batch 4 generated 100/100; preprocessing
+batch 4 preprocessed 100, errors 0 []; cache rows total 600
+DONE roster_a.json

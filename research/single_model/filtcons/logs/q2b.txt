@@ -1,0 +1,8 @@
+rrel3 st2dev n 156 mean 0.7268 peak 4043913 filled 0
+rrel4t3 st2dev n 156 mean 0.6623 peak 4060632 filled 0
+resp06 st2dev n 156 mean 0.6648 peak 4010766 filled 0
+rsoft1_r2 st2dev n 156 mean 0.6369 peak 4045897 filled 0
+rsoft1_r2 st2conf n 84 mean 0.4920 peak 3957060 filled 0
+ZeroDivisionError: division by zero
+rsoft1f st1dev n 244 mean 0.2350 peak 3997669 filled 0
+rsoft1f st1conf n 156 mean 0.3278 peak 4040074 filled 0

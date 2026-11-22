@@ -1,0 +1,3 @@
+GR10 st2dev n 156 mean 0.6992 peak 3972525 filled 0
+GR10_r1 st2dev n 156 mean 0.7113 peak 4018873 filled 0
+GR10_r2 st2dev n 156 mean 0.6574 peak 4011398 filled 0

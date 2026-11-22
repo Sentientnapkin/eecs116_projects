@@ -1,0 +1,11 @@
+156 episodes, 0 cached, workers=24 (no video)
+20/156 finished, 10.8s
+40/156 finished, 21.2s
+60/156 finished, 29.3s
+80/156 finished, 36.1s
+100/156 finished, 44.8s
+120/156 finished, 56.3s
+140/156 finished, 68.5s
+156/156 finished, 71.9s
+156
+vp0 st2dev n 156 mean 0.6359 peak 3953318 filled 0

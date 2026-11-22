@@ -1,0 +1,20 @@
+g64e80 train flights 989 474720 val 134 32160 st2dev 156 37440
+params/MACs (104620, 1572576)
+ep 0 train 0.039 val ang mean 4.80 med 3.56 | st2dev mean 6.14 med 4.86 p90 12.51 zrms 0.08
+ep 5 train -6.608 val ang mean 6.99 med 6.56 | st2dev mean 8.23 med 7.63 p90 13.80 zrms 0.93
+ep 10 train -8.766 val ang mean 2.72 med 1.98 | st2dev mean 3.66 med 2.78 p90 7.58 zrms 1.43
+ep 15 train -9.241 val ang mean 2.22 med 1.65 | st2dev mean 3.01 med 2.21 p90 6.31 zrms 0.91
+ep 20 train -9.411 val ang mean 2.39 med 1.73 | st2dev mean 3.22 med 2.40 p90 6.72 zrms 0.94
+ep 25 train -9.503 val ang mean 1.93 med 1.38 | st2dev mean 2.61 med 1.82 p90 5.63 zrms 0.77
+ep 30 train -9.559 val ang mean 2.02 med 1.46 | st2dev mean 2.64 med 1.89 p90 5.55 zrms 0.76
+ep 35 train -9.608 val ang mean 2.00 med 1.43 | st2dev mean 2.69 med 1.93 p90 5.74 zrms 0.81
+ep 40 train -9.664 val ang mean 1.81 med 1.26 | st2dev mean 2.47 med 1.70 p90 5.40 zrms 0.76
+ep 45 train -9.698 val ang mean 1.84 med 1.30 | st2dev mean 2.48 med 1.74 p90 5.38 zrms 0.72
+ep 50 train -9.718 val ang mean 1.78 med 1.27 | st2dev mean 2.45 med 1.72 p90 5.30 zrms 0.74
+ep 55 train -9.744 val ang mean 1.77 med 1.24 | st2dev mean 2.37 med 1.64 p90 5.14 zrms 0.72
+ep 60 train -9.755 val ang mean 1.79 med 1.27 | st2dev mean 2.39 med 1.66 p90 5.15 zrms 0.73
+ep 65 train -9.772 val ang mean 1.71 med 1.20 | st2dev mean 2.35 med 1.60 p90 5.10 zrms 0.77
+ep 70 train -9.789 val ang mean 1.70 med 1.19 | st2dev mean 2.33 med 1.59 p90 5.08 zrms 0.73
+ep 75 train -9.782 val ang mean 1.69 med 1.18 | st2dev mean 2.32 med 1.58 p90 5.06 zrms 0.74
+ep 79 train -9.791 val ang mean 1.69 med 1.18 | st2dev mean 2.32 med 1.58 p90 5.06 zrms 0.75
+DONE {"args": {"name": "g64e80", "res": 64, "width": 1.0, "epochs": 80, "steps": 400, "bs": 256, "lr": 0.003, "seed": 0}, "val_best": 1.6857572793960571, "st2_mean": 2.320032835006714, "st2_med": 1.5787997245788574, "st2_p90": 5.058694839477539}

@@ -1,0 +1,2 @@
+Nb2 st2dev n 156 mean 0.7136 peak 4006404 filled 0
+Nb2w2 st2dev n 156 mean 0.6544 peak 10503141 filled 0

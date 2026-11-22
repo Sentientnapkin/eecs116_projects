@@ -1,0 +1,33 @@
+582 episodes, 0 cached, workers=32 (no video)
+20/582 finished, 26.6s
+40/582 finished, 43.2s
+60/582 finished, 63.7s
+80/582 finished, 71.4s
+100/582 finished, 85.5s
+120/582 finished, 102.5s
+140/582 finished, 104.6s
+160/582 finished, 119.7s
+180/582 finished, 133.8s
+200/582 finished, 134.5s
+220/582 finished, 152.6s
+240/582 finished, 153.2s
+260/582 finished, 167.9s
+280/582 finished, 176.8s
+300/582 finished, 185.7s
+320/582 finished, 196.4s
+340/582 finished, 204.0s
+360/582 finished, 214.2s
+380/582 finished, 225.3s
+400/582 finished, 241.4s
+420/582 finished, 247.0s
+440/582 finished, 262.2s
+460/582 finished, 278.1s
+480/582 finished, 279.0s
+500/582 finished, 297.4s
+520/582 finished, 298.3s
+540/582 finished, 316.1s
+560/582 finished, 323.9s
+580/582 finished, 331.6s
+582/582 finished, 332.6s
+582
+lYp5 fresh03 n 582 mean 0.2975 peak 6377310 filled 0

@@ -1,0 +1,10 @@
+rmx10 st2dev n 156 mean 0.7669 peak 3991783 filled 0
+rmx075 st2dev n 156 mean 0.9650 peak 4006387 filled 0
+rmx10t5 st2dev n 156 mean 0.7274 peak 4021227 filled 0
+rmx15t5 st2dev n 156 mean 0.6757 peak 4009732 filled 0
+rsoft1 st2dev n 156 mean 0.5959 peak 4028898 filled 0
+rsoft05 st2dev n 156 mean 0.7038 peak 3993703 filled 0
+rsoft1_r1 st2dev n 156 mean 0.6531 peak 4041787 filled 0
+rsoft1_r1 st2conf n 84 mean 0.4662 peak 4035507 filled 0
+rsoft1 st2conf n 84 mean 0.4767 peak 4023596 filled 0
+ZeroDivisionError: division by zero

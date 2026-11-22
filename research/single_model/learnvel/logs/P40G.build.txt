@@ -1,0 +1,25 @@
+[ 50%] Building C object CMakeFiles/solution.dir/solution.c.obj
+6_projects/research/results/single_model/lv_P40G/src/solution.c:15150:5: error: floating point literal in preprocessor expression
+ 15150 | #if LV_GATE > 0
+       |     ^
+<command line>:4:17: note: expanded from macro 'LV_GATE'
+    4 | #define LV_GATE 11.3
+      |                 ^
+/data/backups/rganapa/Sebastian/eecs116_projects/research/results/single_model/lv_P40G/src/solution.c:15508:26: warning: use of logical '&&' with constant operand [-Wconstant-logical-operand]
+ 15508 |     int startup = moving && PRIOR_MODE && !gate_released && tt < START_T + (INV_FADE > 0 ? INV_FADE : 0) && !LC_PRIOR_OFF;
+       |                          ^  ~~~~~~~~~~
+/data/backups/rganapa/Sebastian/eecs116_projects/research/results/single_model/lv_P40G/src/solution.c:15508:26: note: use '&' for a bitwise operation
+ 15508 |     int startup = moving && PRIOR_MODE && !gate_released && tt < START_T + (INV_FADE > 0 ? INV_FADE : 0) && !LC_PRIOR_OFF;
+       |                          ^~
+       |                          &
+/data/backups/rganapa/Sebastian/eecs116_projects/research/results/single_model/lv_P40G/src/solution.c:15508:26: note: remove constant to silence this warning
+ 15508 |     int startup = moving && PRIOR_MODE && !gate_released && tt < START_T + (INV_FADE > 0 ? INV_FADE : 0) && !LC_PRIOR_OFF;
+       |                          ^~~~~~~~~~~~~
+/data/backups/rganapa/Sebastian/eecs116_projects/research/results/single_model/lv_P40G/src/solution.c:17141:30: warning: 'memmove' will always overflow; destination buffer has size 23040, but size argument is 19200000 [-Wfortify-source]
+ 17141 |     if (nlost > LOST_KEEP) { memmove(lost, lost + nlost - LOST_KEEP, LOST_KEEP * sizeof(Obs)); nlost = LOST_KEEP; }
+       |                              ^
+2 warnings and 1 error generated.
+gmake[2]: *** [CMakeFiles/solution.dir/build.make:76: CMakeFiles/solution.dir/solution.c.obj] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:83: CMakeFiles/solution.dir/all] Error 2
+gmake: *** [Makefile:91: all] Error 2
+

@@ -1,0 +1,15 @@
+lYp5_r1 st2dev n 156 mean 0.5579 peak 7036527 filled 0
+lYp5_r2 st2dev n 156 mean 0.5207 peak 6832653 filled 0
+lYp5_r1 st2conf n 84 mean 0.4179 peak 6715560 filled 0
+lYp5_r2 st2conf n 84 mean 0.3941 peak 6080545 filled 0
+lYpK st2dev n 156 mean 0.4968 peak 6528342 filled 0
+lYpK_r1 st2dev n 156 mean 0.5256 peak 7445077 filled 0
+lYpK st2conf n 84 mean 0.3957 peak 6380085 filled 0
+lYpK_r1 st2conf n 84 mean 0.4496 peak 6521846 filled 0
+lYpK_r2 st2dev n 156 mean 0.4766 peak 6710111 filled 0
+kv1_r1 st2dev n 156 mean 0.5893 peak 3997866 filled 0
+lYpK_r2 st2conf n 84 mean 0.4040 peak 6594576 filled 0
+kv1_r1 st2conf n 84 mean 0.4594 peak 3950147 filled 0
+kv1_r2 st2dev n 156 mean 0.5403 peak 4002449 filled 0
+kv1_r2 st2conf n 84 mean 0.4555 peak 4018320 filled 0
+DONE

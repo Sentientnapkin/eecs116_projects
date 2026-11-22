@@ -1,0 +1,13 @@
+lgVHY st2dev n 156 mean 0.5581 peak 6512908 filled 0
+lgVH st2dev n 156 mean 0.5841 peak 5787096 filled 0
+lgVH st2conf n 84 mean 0.4464 peak 5792047 filled 0
+lgVHY st2conf n 84 mean 0.4104 peak 6115112 filled 0
+lgVHY_r1 st2dev n 156 mean 0.5876 peak 6506874 filled 0
+lgVHY_r2 st2dev n 156 mean 0.6150 peak 6284790 filled 0
+lgVHY_r2 st2conf n 84 mean 0.4267 peak 5542083 filled 0
+lgVHY_r1 st2conf n 84 mean 0.4187 peak 6348674 filled 0
+lgVH_r1 st2dev n 156 mean 0.6390 peak 6886674 filled 0
+lgV st2dev n 156 mean 0.6163 peak 5701571 filled 0
+lgVH_r1 st2conf n 84 mean 0.4761 peak 5757917 filled 0
+lgV st2conf n 84 mean 0.4727 peak 5284838 filled 0
+DONE

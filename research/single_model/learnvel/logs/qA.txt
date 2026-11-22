@@ -1,0 +1,10 @@
+P10S2 st2dev n 156 mean 0.6149 peak 4000955 filled 0
+P10S2 st3 n 234 mean 0.5991 peak 4039094 filled 0
+P10S2_r1 st2dev n 156 mean 0.6709 peak 3992378 filled 0
+P10S2_r1 st3 n 234 mean 0.5977 peak 4025301 filled 0
+P10S2_r2 st2dev n 156 mean 0.6559 peak 4033789 filled 0
+P10S2_r2 st3 n 234 mean 0.5825 peak 3995496 filled 0
+P20S3 st2dev n 156 mean 0.6143 peak 4004572 filled 0
+P20S3 st3 n 234 mean 0.6541 peak 4028133 filled 0
+P20S3_r1 st2dev n 156 mean 0.6378 peak 3990751 filled 0
+P20S3_r1 st3 n 234 mean 0.6122 peak 3982999 filled 0

@@ -1,0 +1,9 @@
+RS16 st2dev n 156 mean 0.6372 peak 4007162 filled 0
+RS16_r1 st2dev n 156 mean 0.6376 peak 3976296 filled 0
+RS16_r2 st2dev n 156 mean 0.6410 peak 3999144 filled 0
+RS9 st2dev n 156 mean 0.6691 peak 4007162 filled 0
+RS9_r1 st2dev n 156 mean 0.6619 peak 3973872 filled 0
+RS9_r2 st2dev n 156 mean 0.6820 peak 4005090 filled 0
+R16 st2dev n 156 mean 0.7123 peak 3973286 filled 0
+R16_r1 st2dev n 156 mean 0.6495 peak 4032870 filled 0
+R16_r2 st2dev n 156 mean 0.7791 peak 3985068 filled 0

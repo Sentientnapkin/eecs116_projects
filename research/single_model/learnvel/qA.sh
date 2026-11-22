@@ -1,0 +1,4 @@
+cd /data/backups/rganapa/Sebastian/eecs116_projects/research/single_model/learnvel
+S2=/data/backups/rganapa/Sebastian/tmp/st_pools/st2dev; S3=/data/backups/rganapa/Sebastian/tmp/lv_pools/st3
+R0=1 bash reps.sh P10S2 lv.c "TC_GAP=9 TC_MAXANCH=400 LV_PERIOD=10 LV_PSCALE=2.0" $S2 $S3
+R0=1 bash reps.sh P20S3 lv.c "TC_GAP=19 TC_MAXANCH=400 LV_PERIOD=20 LV_PSCALE=3.0" $S2 $S3

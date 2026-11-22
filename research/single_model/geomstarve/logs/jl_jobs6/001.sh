@@ -1,0 +1,1 @@
+./bp.sh eG20 "EDGE=1 EDGE_RMAX=1 EDGE_NS3=1 EDGE_PIX=0.5 EDGE_LIVE=100 EDGE_N=128 EDGE_GX=20 EDGE_GY=15" /data/backups/rganapa/Sebastian/tmp/st_pools/st2dev /data/backups/rganapa/Sebastian/tmp/st_pools/st2conf

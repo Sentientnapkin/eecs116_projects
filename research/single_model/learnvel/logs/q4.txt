@@ -1,0 +1,1 @@
+P20S100 st2dev n 156 mean 0.6545 peak 4010020 filled 0

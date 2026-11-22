@@ -1,0 +1,5 @@
+30 episodes, 0 cached, workers=16 (no video)
+20/30 finished, 20.1s
+30/30 finished, 30.9s
+30
+nlog6 st2bad n 30 mean 1.6429 peak 4158147 filled 0

@@ -1,0 +1,2 @@
+rsoft1t0s st1dev n 244 mean 0.2367 peak 4026047 filled 0
+rsoft1t0s st1conf n 156 mean 0.3166 peak 4017042 filled 0

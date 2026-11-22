@@ -1,0 +1,6 @@
+BGC st2dev n 156 mean 0.6418 peak 3973433 filled 0
+BGC_r1 st2dev n 156 mean 0.6546 peak 3974516 filled 0
+BGC_r2 st2dev n 156 mean 0.7014 peak 3985215 filled 0
+BGC2 st2dev n 156 mean 0.6260 peak 4005912 filled 0
+BGC2_r1 st2dev n 156 mean 0.6646 peak 3998754 filled 0
+BGC2_r2 st2dev n 156 mean 0.6429 peak 3983465 filled 0

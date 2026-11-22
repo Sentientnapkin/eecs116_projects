@@ -1,0 +1,2 @@
+nlog6 st2bad n 30 mean 1.6429 peak 4158147 filled 0
+nlog6 st2good n 30 mean 0.3845 peak 4199626 filled 0

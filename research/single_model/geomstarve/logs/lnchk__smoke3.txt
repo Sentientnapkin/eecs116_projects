@@ -1,0 +1,4 @@
+3 episodes, 0 cached, workers=3 (no video)
+3/3 finished, 7.0s
+3
+lnchk smoke3 n 3 mean 3.2282 peak 6420064 filled 0

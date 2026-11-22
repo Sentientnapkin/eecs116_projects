@@ -1,0 +1,9 @@
+eG20s8 st2dev n 156 mean 0.6038 peak 5645427 filled 0
+eG20 st2dev n 156 mean 0.6570 peak 5588345 filled 0
+eG20s8 st2conf n 84 mean 0.4721 peak 5616992 filled 0
+eG20 st2conf n 84 mean 0.4597 peak 5524540 filled 0
+ln32 st2dev n 156 mean 0.6145 peak 5660240 filled 0
+ln32p1 st2dev n 156 mean 0.5703 peak 5812118 filled 0
+ln32p1 st2conf n 84 mean 0.4493 peak 5771214 filled 0
+ln32 st2conf n 84 mean 0.4406 peak 5646616 filled 0
+DONE

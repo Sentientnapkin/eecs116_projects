@@ -1,0 +1,5 @@
+roster_b.json: todo 600/600
+batch 0: 100 flights on GPUs [0, 3, 4, 5, 6, 7], workers 24
+batch 0 generated 100/100; preprocessing
+batch 0 preprocessed 100, errors 0 []; cache rows total 700
+batch 1: 100 flights on GPUs [0, 3, 4, 5, 6, 7], workers 24
