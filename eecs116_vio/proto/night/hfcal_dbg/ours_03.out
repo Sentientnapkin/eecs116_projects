@@ -1,0 +1,4 @@
+sim-ProcTHOR-Train-131-0000    ATE  0.44 zeros  0.79 | path 1.51 far 1.23 flow 0.93 | rescaled  0.38 (x0.75) rotfix  0.40 | late  0.48 rot    5deg | accel scale 0.45
+sim-ProcTHOR-Train-135-0000    ATE  2.27 zeros  4.12 | path 0.78 far 0.82 flow 0.63 | rescaled  2.24 (x0.90) rotfix  1.93 | late  2.94 rot   29deg | accel scale 0.51
+
+MEAN ATE 1.36  zeros 2.45

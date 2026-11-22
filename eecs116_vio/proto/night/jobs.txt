@@ -1,0 +1,10 @@
+# group | extra simulate args | autopilot style | scenes (one flight each)
+match    | --hover 0               | agile2 | ProcTHOR-Train-112 ProcTHOR-Train-118 ProcTHOR-Train-123 ProcTHOR-Train-128 ProcTHOR-Train-137 ProcTHOR-Train-142
+hssd     | --hover 0               | agile2 | 103997478_171030525 108736611_177263226 105515175_173104107 107734080_175999881 102815859 106366353_174226695
+vfast    | --hover 0               | vfast  | ProcTHOR-Train-146 ProcTHOR-Train-155 ProcTHOR-Train-158 ProcTHOR-Train-163 ProcTHOR-Train-166
+jerky    | --hover 0               | jerky  | ProcTHOR-Train-175 ProcTHOR-Train-178 ProcTHOR-Train-182 ProcTHOR-Train-186 ProcTHOR-Train-189
+fov90    | --hover 0 --fov 90 --fov-range 5   | agile2 | ProcTHOR-Train-193 ProcTHOR-Train-197 ProcTHOR-Train-199
+fov150   | --hover 0 --fov 150 --fov-range 5  | agile2 | ProcTHOR-Train-104 ProcTHOR-Train-106 ProcTHOR-Train-115
+medium   | --hover 0               | medium | ProcTHOR-Train-125 ProcTHOR-Train-131 ProcTHOR-Train-135 ProcTHOR-Train-144
+hssd_vfast | --hover 0             | vfast  | 103997562_171030642 108294624_176710203 102816216
+hover    | --hover 3               | agile2 | ProcTHOR-Train-148 ProcTHOR-Train-153

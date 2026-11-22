@@ -1,0 +1,6 @@
+check: ok (5 steps) f2
+check: ok (5 steps) f3
+check: ok (5 steps) f4
+f2             hf   n=171 ATE mean 4.721 median 1.138 >3m 63 | fuel max   7,046,381 p90(ep max)   6,814,299 | incomplete/filled 0
+f3             hf   n=171 ATE mean 0.623 median 0.429 >3m  4 | fuel max   7,595,133 p90(ep max)   7,136,199 | incomplete/filled 0
+f4             hf   n=171 ATE mean 0.797 median 0.546 >3m  6 | fuel max   7,194,699 p90(ep max)   6,906,485 | incomplete/filled 0

@@ -1,0 +1,325 @@
+--- /tmp/b13x.c	2026-11-20 21:39:53.031434600 -0800
++++ /tmp/b13y.c	2026-11-20 21:39:53.055482400 -0800
+@@ -361,7 +361,9 @@
+ 
+ /* MSCKF */
+ #define CLONE_EVERY 4          /* frames between clones */
++#ifndef MAX_CLONES
+ #define MAX_CLONES 6           /* window ~ MAX_CLONES * CLONE_EVERY frames = 1.2 s */
++#endif
+ #define MIN_OBS 3              /* clone observations a feature needs */
+ #define MAX_OBS 8
+ #ifndef PIXEL_STD
+@@ -374,7 +376,9 @@
+ #define TRI_MIN_EIG 1e-6       /* ray matrix: smallest / largest eigenvalue below this = rays ~parallel (wide lens:
+                                   stricter values reject most tracks) */
+ #define CHI2_Z 1.645           /* per-feature gate: 95 % (Wilson-Hilferty approximation of the chi^2 quantile) */
++#ifndef MAX_UPDATE_FEATURES
+ #define MAX_UPDATE_FEATURES 20 /* ended tracks processed per in-between frame */
++#endif
+ 
+ /* vision ZUPT */
+ #define ZUPT_DISPARITY 0.4     /* px, median de-rotated disparity between consecutive clones */
+@@ -385,15 +389,27 @@
+ #define IMG_W 320
+ #define IMG_H 240
+ #define LEVELS 2               /* pyramid levels (2x2 means) */
++#ifndef KLT_R
+ #define KLT_R 4                /* 9 x 9 window */
++#endif
+ #define KLT_N ((2 * KLT_R + 1) * (2 * KLT_R + 1))
++#ifndef KLT_ITERS
+ #define KLT_ITERS 5            /* per level */
++#endif
++#ifndef KLT_EPS
+ #define KLT_EPS 0.03           /* px, stop on the finest level */
++#endif
++#ifndef KLT_EPS_COARSE
+ #define KLT_EPS_COARSE 0.1     /* px of the level, stop on coarser levels */
++#endif
+ #define KLT_MAX_ERR 25.0       /* mean |I - T| in gray levels above which a track is dropped */
+ #define KLT_MIN_EIG 2.0        /* min eigenvalue of the template gradient matrix, per pixel */
++#ifndef GRID_X
+ #define GRID_X 10              /* detection grid: one feature per cell */
++#endif
++#ifndef GRID_Y
+ #define GRID_Y 6
++#endif
+ #define CELL_W (IMG_W / GRID_X)
+ #define CELL_H (IMG_H / GRID_Y)
+ #define MAX_TRACKS (GRID_X * GRID_Y)
+@@ -433,6 +449,21 @@
+ typedef struct { int alive; double x, y; Obs obs; } Track;
+ static Track tracks[MAX_TRACKS];
+ #define MAX_BATCH (3 * MAX_TRACKS)
++#ifndef CAP_OLD
++#define CAP_OLD 1000     /* approx arm: max oldest-clone tracks taken per in-between frame */
++#endif
++#ifndef CAP_OLDC
++#define CAP_OLDC 1000    /* ... per clone frame */
++#endif
++#ifndef CAP_LOST
++#define CAP_LOST MAX_UPDATE_FEATURES /* max ended tracks per in-between frame */
++#endif
++#ifndef CAP_LOSTC
++#define CAP_LOSTC 1000   /* max ended tracks per clone frame (rest stays queued) */
++#endif
++#ifndef FB_PERIOD
++#define FB_PERIOD 2      /* forward-backward check on one of every FB_PERIOD frames per track */
++#endif
+ static Obs lost[2 * MAX_TRACKS]; /* ended tracks waiting for their update */
+ static int nlost;
+ static int detect_cursor;
+@@ -14707,6 +14738,10 @@
+  *   d/d dtheta_c = Jpi R_bc^T [R_c^T (p_f - p_c)]x,   d/d dp_c = -Jpi R_bc^T R_c^T,   d/d p_f = Jpi R_bc^T R_c^T.
+  * The feature position is removed by projecting onto the left null space of d/d p_f (3 Householder reflections on
+  * [Hf | Hx | r], keeping rows 3..2m-1), so the feature never enters the state. Gate: chi^2 at CHI2_Z. */
++#ifndef GATE2
++#define GATE2 0   /* approx arm: iteration passes after the first reuse the first pass chi2 decision (no gate recomputation) */
++#endif
++static unsigned char gflag[MAX_BATCH]; static int g_cur_b;
+ static int feature_rows(const Obs *o_in, int *nrows) {
+     Obs o = {0};
+     int ci[MAX_OBS];
+@@ -14813,6 +14848,9 @@
+     int k0 = m - 3;
+     const double *H0 = Hx + 3 * MAXD, *r0 = rr + 3;
+     /* gate on r0^T (H0 P H0^T + s^2 I)^-1 r0, over the observing clones' columns only (H0 is zero elsewhere) */
++    int sk = GATE2 && g_dx; double hw = 1.0;
++    if (sk && !gflag[g_cur_b]) return 0;
++    if (!sk) {
+     double sigma2 = (PIXEL_STD / fx) * (PIXEL_STD / fx);
+ #if F_GATE
+     {
+@@ -14902,8 +14940,10 @@
+     chol_solve(Sm, k0, y);
+     double m2 = 0;
+     for (int a = 0; a < k0; a++) m2 += ry[a] * y[a];
+-    double gq = chi2_quantile(k0), hw = 1.0;
+-    if (m2 > gq) { if (INV_HUBER > 0 && m2 < INV_HUBER * gq) hw = sqrt(gq / m2); else return 0; }
++    double gq = chi2_quantile(k0);
++    if (m2 > gq) { if (INV_HUBER > 0 && m2 < INV_HUBER * gq) hw = sqrt(gq / m2); else { if (GATE2) gflag[g_cur_b] = 0; return 0; } }
++    if (GATE2) gflag[g_cur_b] = 1;
++    }
+     if (*nrows + k0 > MAX_ROWS) return 0;
+     for (int a = 0; a < k0; a++) {
+         for (int j = 0; j < D; j++) Hbig[(*nrows + a) * MAXD + j] = hw * H0[a * MAXD + j];
+@@ -14920,7 +14960,7 @@
+    the clone columns is QR-compressed (Householder on [H | r]) over those columns only: same information, fewer rows */
+ static int build_rows(Obs *batch, int nbatch) {
+     int nrows = 0;
+-    for (int b = 0; b < nbatch; b++) feature_rows(&batch[b], &nrows);
++    for (int b = 0; b < nbatch; b++) { g_cur_b = b; if (!g_dx) gflag[b] = 0; feature_rows(&batch[b], &nrows); }
+     if (!nrows) return 0;
+     int nclone_cols = D - CORE;
+     if (nrows > nclone_cols) {
+@@ -14939,19 +14979,42 @@
+             if (vn < 1e-30) continue;
+ #if F_QR
+             {
+-                static double sj[MAXD];
+-                for (int j = c; j < D; j++) sj[j] = 0;
+-                for (int i = pr; i < nrows; i++) {
+-                    const double vi = v[i];
+-                    const double *row = Hbig + i * MAXD;
+-                    for (int j = c; j < D; j++) sj[j] += vi * row[j];
+-                }
++                /* Householder application to columns c..D-1: per column s = sum_i v_i H_ij (ascending i), s *= 2/vn, H_ij -= s v_i.
++                   Same per-element arithmetic as the scalar loops; column chunks of 6/2/1 keep the accumulators in registers. */
+                 const double f = 2 / vn;
+-                for (int j = c; j < D; j++) sj[j] *= f;
+-                for (int i = pr; i < nrows; i++) {
+-                    const double vi = v[i];
+-                    double *row = Hbig + i * MAXD;
+-                    for (int j = c; j < D; j++) row[j] -= sj[j] * vi;
++                const v128_t fv = wasm_f64x2_splat(f);
++                int j = c;
++                for (; j + 6 <= D; j += 6) {
++                    v128_t s0 = wasm_f64x2_splat(0), s1 = s0, s2 = s0;
++                    const double *rp = Hbig + pr * MAXD + j;
++                    for (int i = pr; i < nrows; i++, rp += MAXD) {
++                        const v128_t vi = wasm_f64x2_splat(v[i]);
++                        s0 = wasm_f64x2_add(s0, wasm_f64x2_mul(vi, wasm_v128_load(rp)));
++                        s1 = wasm_f64x2_add(s1, wasm_f64x2_mul(vi, wasm_v128_load(rp + 2)));
++                        s2 = wasm_f64x2_add(s2, wasm_f64x2_mul(vi, wasm_v128_load(rp + 4)));
++                    }
++                    s0 = wasm_f64x2_mul(s0, fv); s1 = wasm_f64x2_mul(s1, fv); s2 = wasm_f64x2_mul(s2, fv);
++                    double *wp = Hbig + pr * MAXD + j;
++                    for (int i = pr; i < nrows; i++, wp += MAXD) {
++                        const v128_t vi = wasm_f64x2_splat(v[i]);
++                        wasm_v128_store(wp, wasm_f64x2_sub(wasm_v128_load(wp), wasm_f64x2_mul(s0, vi)));
++                        wasm_v128_store(wp + 2, wasm_f64x2_sub(wasm_v128_load(wp + 2), wasm_f64x2_mul(s1, vi)));
++                        wasm_v128_store(wp + 4, wasm_f64x2_sub(wasm_v128_load(wp + 4), wasm_f64x2_mul(s2, vi)));
++                    }
++                }
++                for (; j + 2 <= D; j += 2) {
++                    v128_t s0 = wasm_f64x2_splat(0);
++                    const double *rp = Hbig + pr * MAXD + j;
++                    for (int i = pr; i < nrows; i++, rp += MAXD) s0 = wasm_f64x2_add(s0, wasm_f64x2_mul(wasm_f64x2_splat(v[i]), wasm_v128_load(rp)));
++                    s0 = wasm_f64x2_mul(s0, fv);
++                    double *wp = Hbig + pr * MAXD + j;
++                    for (int i = pr; i < nrows; i++, wp += MAXD) wasm_v128_store(wp, wasm_f64x2_sub(wasm_v128_load(wp), wasm_f64x2_mul(s0, wasm_f64x2_splat(v[i]))));
++                }
++                if (j < D) {
++                    double sj = 0;
++                    for (int i = pr; i < nrows; i++) sj += v[i] * Hbig[i * MAXD + j];
++                    sj *= f;
++                    for (int i = pr; i < nrows; i++) Hbig[i * MAXD + j] -= sj * v[i];
+                 }
+             }
+ #else
+@@ -14987,23 +15050,76 @@
+ }
+ /* dx = P H^T S^-1 r (no state or covariance change) */
+ static int solve_dx(const double *r, const double *H, int k, double noise, double *dx) {
+-    for (int a = 0; a < k; a++)
+-        for (int j = 0; j < D; j++) {
+-            double s = 0;
+-            for (int q = 0; q < D; q++) s += H[a * MAXD + q] * Pm[q * MAXD + j];
+-            HP[a * MAXD + j] = s;
++    int nz[MAXD], nnz = 0;
++    for (int i = 0; i < D; i++) {
++        int any = 0;
++        for (int a = 0; a < k && !any; a++) any = H[a * MAXD + i] != 0;
++        if (any) nz[nnz++] = i;
++    }
++    { /* HP = H P (same register-blocked kernel as update) */
++        const double *prow[MAXD];
++        for (int q = 0; q < nnz; q++) prow[q] = Pm + nz[q] * MAXD;
++        for (int a = 0; a < k; a += 2) {
++            const double *h0 = H + a * MAXD, *h1 = H + (a + 1 < k ? a + 1 : a) * MAXD;
++            double *o0 = HP + a * MAXD, *o1 = HP + (a + 1 < k ? a + 1 : a) * MAXD;
++            for (int j = 0; j < D; j += 6) {
++                v128_t a00 = wasm_f64x2_splat(0), a01 = a00, a02 = a00, a10 = a00, a11 = a00, a12 = a00;
++                for (int q = 0; q < nnz; q++) {
++                    const v128_t c0 = wasm_f64x2_splat(h0[nz[q]]), c1 = wasm_f64x2_splat(h1[nz[q]]);
++                    const double *pr = prow[q] + j;
++                    const v128_t p0 = wasm_v128_load(pr), p1 = wasm_v128_load(pr + 2), p2 = wasm_v128_load(pr + 4);
++                    a00 = wasm_f64x2_add(a00, wasm_f64x2_mul(c0, p0)); a01 = wasm_f64x2_add(a01, wasm_f64x2_mul(c0, p1)); a02 = wasm_f64x2_add(a02, wasm_f64x2_mul(c0, p2));
++                    a10 = wasm_f64x2_add(a10, wasm_f64x2_mul(c1, p0)); a11 = wasm_f64x2_add(a11, wasm_f64x2_mul(c1, p1)); a12 = wasm_f64x2_add(a12, wasm_f64x2_mul(c1, p2));
++                }
++                wasm_v128_store(o0 + j, a00); wasm_v128_store(o0 + j + 2, a01); wasm_v128_store(o0 + j + 4, a02);
++                wasm_v128_store(o1 + j, a10); wasm_v128_store(o1 + j + 2, a11); wasm_v128_store(o1 + j + 4, a12);
++            }
+         }
+-    for (int a = 0; a < k; a++)
+-        for (int b = 0; b <= a; b++) {
+-            double s = 0;
+-            for (int q = 0; q < D; q++) s += HP[a * MAXD + q] * H[b * MAXD + q];
+-            Sm[a * k + b] = Sm[b * k + a] = s + (a == b ? noise : 0);
++    }
++    {
++        static double HT[MAXD * (MAXK + 2)];
++        const int ld = k + (k & 1);
++        for (int q = 0; q < nnz; q++) {
++            for (int b2 = 0; b2 < k; b2++) HT[q * ld + b2] = H[b2 * MAXD + nz[q]];
++            if (k & 1) HT[q * ld + k] = 0;
+         }
++        for (int a = 0; a < k; a++) {
++            double hpc[MAXD];
++            for (int q = 0; q < nnz; q++) hpc[q] = HP[a * MAXD + nz[q]];
++            const int nv = (a + 2) / 2;
++            double tmp[MAXK + 4];
++            int bv = 0;
++            for (; bv + 2 <= nv; bv += 2) {
++                v128_t s0 = wasm_f64x2_splat(0), s1 = s0;
++                for (int q = 0; q < nnz; q++) {
++                    const v128_t c = wasm_f64x2_splat(hpc[q]);
++                    const double *ht = HT + q * ld + 2 * bv;
++                    s0 = wasm_f64x2_add(s0, wasm_f64x2_mul(c, wasm_v128_load(ht))); s1 = wasm_f64x2_add(s1, wasm_f64x2_mul(c, wasm_v128_load(ht + 2)));
++                }
++                wasm_v128_store(tmp + 2 * bv, s0); wasm_v128_store(tmp + 2 * bv + 2, s1);
++            }
++            if (bv < nv) {
++                v128_t s0 = wasm_f64x2_splat(0);
++                for (int q = 0; q < nnz; q++) s0 = wasm_f64x2_add(s0, wasm_f64x2_mul(wasm_f64x2_splat(hpc[q]), wasm_v128_load(HT + q * ld + 2 * bv)));
++                wasm_v128_store(tmp + 2 * bv, s0);
++            }
++            for (int b2 = 0; b2 <= a; b2++) Sm[a * k + b2] = Sm[b2 * k + a] = tmp[b2] + (a == b2 ? noise : 0);
++        }
++    }
+     if (!cholesky(Sm, k)) return 0;
+     double y[MAXK];
+     memcpy(y, r, k * sizeof(double));
+     chol_solve(Sm, k, y);
+-    for (int j = 0; j < D; j++) { double s = 0; for (int a = 0; a < k; a++) s += HP[a * MAXD + j] * y[a]; dx[j] = s; }
++    for (int j = 0; j < D; j += 6) {
++        v128_t s0 = wasm_f64x2_splat(0), s1 = s0, s2 = s0;
++        for (int a = 0; a < k; a++) {
++            const v128_t c = wasm_f64x2_splat(y[a]);
++            const double *hp = HP + a * MAXD + j;
++            s0 = wasm_f64x2_add(s0, wasm_f64x2_mul(wasm_v128_load(hp), c)); s1 = wasm_f64x2_add(s1, wasm_f64x2_mul(wasm_v128_load(hp + 2), c));
++            s2 = wasm_f64x2_add(s2, wasm_f64x2_mul(wasm_v128_load(hp + 4), c));
++        }
++        wasm_v128_store(dx + j, s0); wasm_v128_store(dx + j + 2, s1); wasm_v128_store(dx + j + 4, s2);
++    }
+     return 1;
+ }
+ /* iterated (Gauss-Newton, re-linearized) stacked update: x_i = x0 (+) dx_i, r_eff = r_i + H_i dx_i, dx_{i+1} = K_i r_eff, K from the prior P */
+@@ -15236,6 +15352,9 @@
+ 
+ /* top up the grid: in every cell without a live track, the best corner (stride 2) above DETECT_MIN_SCORE becomes a new
+    track. Only empty cells are scored, so the cost follows the number of lost tracks. */
++#ifndef DET_PERIOD
++#define DET_PERIOD 1
++#endif
+ static void detect(int which) {
+     int occupied[MAX_TRACKS] = {0}, free_slot[MAX_TRACKS], nfree = 0;
+     for (int i = 0; i < MAX_TRACKS; i++) {
+@@ -15246,6 +15365,7 @@
+     for (int k = 0; k < MAX_TRACKS && nfree > 0; k++) {
+         int cell = (detect_cursor + k) % MAX_TRACKS;
+         if (occupied[cell]) continue;
++        if (DET_PERIOD > 1 && ((cell + frame_no) % DET_PERIOD) != 0) continue; /* approx arm: each empty cell is rescored every DET_PERIOD frames */
+         int x0 = (cell % GRID_X) * CELL_W, y0 = (cell / GRID_X) * CELL_H;
+         double best = DETECT_MIN_SCORE;
+         int bx = -1, by = -1;
+@@ -15321,7 +15441,7 @@
+         if (rp[2] > 1e-3) { gx = fx * rp[0] / rp[2] + cx; gy = fy * rp[1] / rp[2] + cy; }
+         double nx, ny;
+         int ok = klt(prev, cur, t->x, t->y, gx, gy, &nx, &ny) && nx >= 0 && ny >= 0 && nx < IMG_W && ny < IMG_H;
+-        if (ok && ((frame_no + i) & 1)) { /* forward-backward check on alternate frames: back-track must return within 0.5 px */
++        if (ok && FB_PERIOD > 0 && ((frame_no + i) % FB_PERIOD) == FB_PERIOD - 1) { /* forward-backward check on alternate frames: back-track must return within 0.5 px */
+             double bx, by;
+             if (!klt(cur, prev, nx, ny, t->x, t->y, &bx, &by) || (bx - t->x) * (bx - t->x) + (by - t->y) * (by - t->y) > 0.25) ok = 0;
+         }
+@@ -15447,13 +15567,15 @@
+         record_observations();
+         vision_zupt();
+         int nb = 0;
+-        for (int i = 0; i < nlost && nb < MAX_BATCH; i++) batch[nb++] = lost[i];
+-        nlost = 0;
++        { int tk = nlost < CAP_LOSTC ? nlost : CAP_LOSTC;
++          for (int i = 0; i < tk && nb < MAX_BATCH; i++) batch[nb++] = lost[i];
++          memmove(lost, lost + tk, (nlost - tk) * sizeof(Obs)); nlost -= tk; }
+         if (nclones > MAX_CLONES) {
+             int oldest = clones[0].id;
+-            for (int i = 0; i < MAX_TRACKS && nb < MAX_BATCH; i++) {
++            int nold = 0;
++            for (int i = 0; i < MAX_TRACKS && nb < MAX_BATCH && nold < CAP_OLDC; i++) {
+                 Obs *o = &tracks[i].obs;
+-                if (tracks[i].alive && o->n >= min_obs && o->cid[0] == oldest) take_for_update(o, batch, &nb);
++                if (tracks[i].alive && o->n >= min_obs && o->cid[0] == oldest) { take_for_update(o, batch, &nb); nold++; }
+             }
+             msckf_update(batch, nb);
+             remove_oldest_clone();
+@@ -15471,15 +15593,16 @@
+         map_relocalize();
+ #endif
+     } else {
+-        int nb = 0, take = nlost < MAX_UPDATE_FEATURES ? nlost : MAX_UPDATE_FEATURES;
++        int nb = 0, take = nlost < CAP_LOST ? nlost : CAP_LOST;
+         for (int i = 0; i < take; i++) batch[nb++] = lost[i];
+         memmove(lost, lost + take, (nlost - take) * sizeof(Obs));
+         nlost -= take;
+         if (nclones == MAX_CLONES) { /* the next clone pushes clones[0] out */
+             int oldest = clones[0].id, phase = frames_since_clone - 1;
+-            for (int i = phase; i < MAX_TRACKS && nb < MAX_BATCH; i += clone_every - 1) {
++            int nold = 0;
++            for (int i = phase; i < MAX_TRACKS && nb < MAX_BATCH && nold < CAP_OLD; i += clone_every - 1) {
+                 Obs *o = &tracks[i].obs;
+-                if (tracks[i].alive && o->n >= min_obs && o->cid[0] == oldest) take_for_update(o, batch, &nb);
++                if (tracks[i].alive && o->n >= min_obs && o->cid[0] == oldest) { take_for_update(o, batch, &nb); nold++; }
+             }
+         }
+         msckf_update(batch, nb);

@@ -1,0 +1,13 @@
+native-campaign-103997586_1710 ATE  3.92 zeros  5.20 | path 0.76 far 0.42 flow 0.68 | rescaled  3.41 (x1.96) rotfix  3.40 | late  5.06 rot   15deg | accel scale 0.52
+native-campaign-106878858_1748 ATE  1.42 zeros  2.83 | path 0.75 far 0.60 flow 0.83 | rescaled  1.14 (x1.49) rotfix  1.30 | late  1.53 rot   11deg | accel scale 0.65
+native-campaign-ProcTHOR-Train ATE  2.79 zeros  4.92 | path 0.69 far 0.55 flow 0.81 | rescaled  1.66 (x1.93) rotfix  2.75 | late  3.31 rot   18deg | accel scale 0.67
+native-campaign-ProcTHOR-Train ATE  3.48 zeros  3.13 | path 0.49 far 1.21 flow 0.69 | rescaled  2.67 (x0.42) rotfix  2.52 | late  3.87 rot    8deg | accel scale 0.65
+native-campaign-ProcTHOR-Train ATE  2.32 zeros  2.15 | path 0.43 far 1.27 flow 0.46 | rescaled  1.84 (x0.44) rotfix  1.74 | late  2.76 rot    6deg | accel scale 0.33
+native-campaign-102344457-0000 ATE  2.11 zeros  4.34 | path 0.86 far 0.71 flow 0.84 | rescaled  1.73 (x1.44) rotfix  1.94 | late  2.20 rot   10deg | accel scale 0.67
+native-campaign-106366104_1742 ATE  2.31 zeros  5.74 | path 0.60 far 0.71 flow 0.76 | rescaled  2.05 (x1.25) rotfix  2.16 | late  2.72 rot   33deg | accel scale 0.46
+native-campaign-108294417_1767 ATE  1.95 zeros  2.82 | path 0.75 far 0.76 flow 0.70 | rescaled  1.94 (x1.14) rotfix  1.95 | late  2.20 rot   22deg | accel scale 0.48
+native-campaign-ProcTHOR-Train ATE  2.72 zeros  3.82 | path 0.65 far 0.71 flow 0.64 | rescaled  2.72 (x1.09) rotfix  2.31 | late  3.31 rot   19deg | accel scale 0.41
+native-campaign-ProcTHOR-Train ATE  1.92 zeros  2.42 | path 0.65 far 1.01 flow 0.69 | rescaled  1.72 (x0.66) rotfix  1.39 | late  1.79 rot    4deg | accel scale 0.37
+native-campaign-ProcTHOR-Train ATE  1.62 zeros  2.37 | path 0.83 far 0.99 flow 0.75 | rescaled  1.59 (x0.85) rotfix  1.33 | late  1.89 rot    6deg | accel scale 0.55
+
+MEAN ATE 2.42  zeros 3.61

@@ -1,0 +1,6 @@
+native-campaign-103997460_1710 ATE  2.11 zeros  3.64 | path 0.79 far 0.72 flow 0.74 | rescaled  1.98 (x1.32) rotfix  2.05 | late  2.52 rot   11deg | accel scale 0.62
+native-campaign-103997478_1710 ATE  3.25 zeros  4.09 | path 0.57 far 0.49 flow 0.47 | rescaled  3.08 (x1.64) rotfix  3.17 | late  3.56 rot    7deg | accel scale 0.45
+native-campaign-103997478_1710 ATE  3.29 zeros  5.73 | path 0.48 far 0.53 flow 0.37 | rescaled  2.55 (x1.68) rotfix  3.15 | late  3.58 rot    6deg | accel scale 0.36
+native-campaign-103997586_1710 ATE  3.93 zeros  5.20 | path 0.77 far 0.43 flow 0.68 | rescaled  3.52 (x1.85) rotfix  3.33 | late  5.08 rot   15deg | accel scale 0.52
+
+MEAN ATE 3.15  zeros 4.66

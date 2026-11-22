@@ -1,0 +1,12 @@
+# group | style (from styles.txt) | flights per scene | extra simulate args | scenes
+# Every flight draws its own top speed in 0.3-4 m/s; within a flight the drone speeds up and slows down smoothly.
+# --- ProcTHOR houses, default 1 s hover ---
+pt_gentle   | wide_gentle | 2 | --hover 1 | ProcTHOR-Train-2 ProcTHOR-Train-5 ProcTHOR-Train-11 ProcTHOR-Train-17 ProcTHOR-Train-23 ProcTHOR-Train-29 ProcTHOR-Train-36 ProcTHOR-Train-42
+pt_agile    | wide_agile  | 2 | --hover 1 | ProcTHOR-Train-48 ProcTHOR-Train-55 ProcTHOR-Train-61 ProcTHOR-Train-68 ProcTHOR-Train-74 ProcTHOR-Train-80 ProcTHOR-Train-84 ProcTHOR-Train-92
+pt_long     | wide_long   | 2 | --hover 1 | ProcTHOR-Train-98 ProcTHOR-Train-103 ProcTHOR-Train-107 ProcTHOR-Train-111 ProcTHOR-Train-114 ProcTHOR-Train-117
+# --- HSSD houses (crashed the laptop's CPU renderer) ---
+hssd_gentle | wide_gentle | 2 | --hover 1 | 108736611_177263226 105515175_173104107 107734080_175999881 102815859 106366353_174226695 108294816_176710461
+hssd_agile  | wide_agile  | 2 | --hover 1 | 108736722_177263382 108294465_176709960 106879044_174887172 105515286_173104287 103997940_171031257 108736872_177263607
+hssd_long   | wide_long   | 2 | --hover 1 | 103997478_171030528 107734119_175999938 106366323_174226647 105515505_173104584 108294846_176710506 106366134_174226362
+# --- starts already moving (no hover) ---
+mid_start   | wide_agile  | 1 | --hover 0 | ProcTHOR-Train-121 ProcTHOR-Train-126 ProcTHOR-Train-130 ProcTHOR-Train-134 102816786 104348253_171513237
