@@ -1,0 +1,9 @@
+h1             hf   n=171 ATE mean 1.364 median 1.009 >3m 15 | fuel max   4,624,751 p90(ep max)   4,296,588 | incomplete/filled 0
+422.10 s
+h1             pub  n= 10 ATE mean 0.985 median 0.935 >3m  0 | fuel max   3,682,856 p90(ep max)   3,681,380 | incomplete/filled 0
+h2             hf   n=171 ATE mean 1.219 median 0.882 >3m 12 | fuel max   4,758,328 p90(ep max)   4,367,509 | incomplete/filled 0
+401.46 s
+h2             pub  n= 10 ATE mean 0.930 median 0.936 >3m  0 | fuel max   3,680,438 p90(ep max)   3,678,962 | incomplete/filled 0
+l4             hf   n=171 ATE mean 1.396 median 1.116 >3m 12 | fuel max   4,831,259 p90(ep max)   4,528,303 | incomplete/filled 0
+397.70 s
+l4             pub  n= 10 ATE mean 1.099 median 1.189 >3m  0 | fuel max   3,767,880 p90(ep max)   3,754,605 | incomplete/filled 0

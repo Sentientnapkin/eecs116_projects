@@ -1,0 +1,5 @@
+native-campaign-106366371_1742 ATE  6.13 zeros 10.69 | path 0.60 far 0.46 flow 0.71 | rescaled  3.40 (x2.02) rotfix  5.95 | late  5.18 rot    3deg | accel scale 0.73
+native-campaign-106366410_1742 ATE  3.20 zeros  5.24 | path 0.76 far 0.66 flow 0.66 | rescaled  3.13 (x1.18) rotfix  3.08 | late  3.79 rot    4deg | accel scale 0.60
+native-campaign-106878858_1748 ATE  2.36 zeros  4.58 | path 0.74 far 0.65 flow 0.83 | rescaled  2.25 (x1.22) rotfix  2.21 | late  2.77 rot   17deg | accel scale 0.62
+
+MEAN ATE 3.90  zeros 6.83

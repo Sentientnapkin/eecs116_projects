@@ -1,0 +1,9 @@
+check: ok (5 steps) g1
+check: ok (5 steps) g2
+check: ok (5 steps) g5
+check: ok (5 steps) g6
+check: ok (5 steps) g4
+g1             hf   n=171 ATE mean 0.784 median 0.571 >3m  4 | fuel max   7,071,234 p90(ep max)   6,812,482 | incomplete/filled 0
+g2             hf   n=171 ATE mean 0.905 median 0.559 >3m  9 | fuel max   7,171,436 p90(ep max)   6,901,302 | incomplete/filled 0
+g5             hf   n=171 ATE mean 1.373 median 0.616 >3m 21 | fuel max   7,473,812 p90(ep max)   6,823,593 | incomplete/filled 0
+g6             hf   n=171 ATE mean 0.888 median 0.606 >3m  7 | fuel max   7,070,832 p90(ep max)   6,838,928 | incomplete/filled 0

@@ -1,0 +1,13 @@
+native-campaign-103997586_1710 ATE  1.18 zeros  5.20 | sim3  0.45 scale 1.03
+native-campaign-106878858_1748 ATE  1.16 zeros  2.83 | sim3  0.49 scale 0.97
+native-campaign-ProcTHOR-Train ATE  1.20 zeros  4.92 | sim3  0.78 scale 0.93
+native-campaign-ProcTHOR-Train ATE  1.28 zeros  3.13 | sim3  0.93 scale 1.00
+native-campaign-ProcTHOR-Train ATE  1.45 zeros  2.15 | sim3  0.89 scale 0.78
+native-campaign-102344457-0000 ATE  1.76 zeros  4.34 | sim3  0.73 scale 1.05
+native-campaign-106366104_1742 ATE  8.10 zeros  5.74 | sim3  3.30 scale 0.17
+native-campaign-108294417_1767 ATE  1.98 zeros  2.82 | sim3  0.60 scale 0.99
+native-campaign-ProcTHOR-Train ATE  4.35 zeros  3.82 | sim3  1.36 scale 0.86
+native-campaign-ProcTHOR-Train ATE  0.75 zeros  2.42 | sim3  0.48 scale 0.98
+native-campaign-ProcTHOR-Train ATE  0.61 zeros  2.37 | sim3  0.49 scale 0.98
+
+MEAN ATE 2.16  zeros 3.61

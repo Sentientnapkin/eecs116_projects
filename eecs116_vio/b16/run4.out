@@ -1,0 +1,6 @@
+q0             hf   n=171 ATE mean 0.562 median 0.348 >3m  7 | fuel max  15,493,417 p90(ep max)  13,172,002 | incomplete/filled 0
+455.69 s
+q0             pub  n= 10 ATE mean 1.589 median 1.583 >3m  1 | fuel max  13,155,466 p90(ep max)  12,921,174 | incomplete/filled 0
+m3             hf   n=171 ATE mean 0.654 median 0.472 >3m  5 | fuel max   8,121,170 p90(ep max)   7,136,620 | incomplete/filled 0
+427.22 s
+m3             pub  n= 10 ATE mean 1.372 median 1.208 >3m  1 | fuel max   7,273,724 p90(ep max)   7,264,972 | incomplete/filled 0

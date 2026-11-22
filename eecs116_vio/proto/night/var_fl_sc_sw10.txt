@@ -1,0 +1,74 @@
+flags: -DWINDOW_FRAMES=12 -DMIN_WINDOW_FRAMES=3 -DMIN_POINTS=6 -DSCALE_TAU=20 -DFLOW_LOST=1 -DSPEED_WEIGHT=1.0
+=== NIGHT
+sim-ProcTHOR-Train-112-0000    ATE  2.73 zeros  2.55 | path 0.83 far 1.08 flow 0.46 | rescaled  2.23 (x0.44) rotfix  2.17 | late  3.19 rot    5deg
+sim-ProcTHOR-Train-118-0000    ATE  1.72 zeros  1.61 | path 1.39 far 1.79 flow 0.95 | rescaled  0.59 (x0.48) rotfix  1.70 | late  1.97 rot    5deg
+sim-ProcTHOR-Train-123-0000    ATE  1.31 zeros  0.99 | path 1.63 far 1.93 flow 1.11 | rescaled  0.36 (x0.42) rotfix  1.29 | late  1.42 rot    2deg
+sim-ProcTHOR-Train-128-0000    ATE  3.64 zeros  1.61 | path 0.96 far 2.30 flow 0.69 | rescaled  1.19 (x0.24) rotfix  3.46 | late  4.62 rot   11deg
+sim-ProcTHOR-Train-137-0000    ATE  3.57 zeros  2.02 | path 0.93 far 1.87 flow 0.67 | rescaled  1.44 (x0.30) rotfix  3.47 | late  4.11 rot    6deg
+sim-ProcTHOR-Train-142-0000    ATE  1.40 zeros  1.93 | path 1.18 far 1.53 flow 0.71 | rescaled  0.76 (x0.60) rotfix  1.36 | late  1.60 rot   10deg
+sim-ProcTHOR-Train-180-0000    ATE  2.25 zeros  2.31 | path 0.96 far 1.31 flow 0.55 | rescaled  1.55 (x0.51) rotfix  2.22 | late  2.39 rot    6deg
+sim-ProcTHOR-Train-184-0000    ATE  1.24 zeros  2.34 | path 1.38 far 1.17 flow 0.91 | rescaled  0.57 (x0.67) rotfix  1.23 | late  1.51 rot    8deg
+sim-ProcTHOR-Train-191-0000    ATE  0.87 zeros  1.45 | path 1.19 far 1.03 flow 0.75 | rescaled  0.86 (x0.92) rotfix  0.84 | late  0.99 rot   12deg
+sim-ProcTHOR-Train-125-0000    ATE  2.20 zeros  4.27 | path 0.81 far 0.72 flow 0.49 | rescaled  2.18 (x1.08) rotfix  1.63 | late  2.54 rot   14deg
+sim-ProcTHOR-Train-131-0000    ATE  0.37 zeros  0.79 | path 1.58 far 1.52 flow 0.93 | rescaled  0.31 (x0.78) rotfix  0.36 | late  0.26 rot    5deg
+sim-ProcTHOR-Train-135-0000    ATE  2.85 zeros  4.12 | path 0.91 far 1.01 flow 0.63 | rescaled  2.39 (x0.68) rotfix  2.57 | late  3.95 rot   29deg
+sim-ProcTHOR-Train-144-0000    ATE  1.19 zeros  2.24 | path 1.26 far 1.20 flow 0.82 | rescaled  0.99 (x0.75) rotfix  1.16 | late  1.50 rot   11deg
+sim-ProcTHOR-Train-175-0000    ATE  1.95 zeros  2.30 | path 1.05 far 0.92 flow 0.66 | rescaled  1.90 (x0.74) rotfix  1.41 | late  2.39 rot   10deg
+sim-ProcTHOR-Train-178-0000    ATE  1.26 zeros  4.00 | path 1.23 far 1.17 flow 0.76 | rescaled  1.21 (x0.92) rotfix  1.16 | late  1.34 rot   17deg
+sim-ProcTHOR-Train-182-0000    ATE  1.43 zeros  4.10 | path 0.97 far 0.94 flow 0.58 | rescaled  1.43 (x0.99) rotfix  1.25 | late  1.85 rot   15deg
+sim-ProcTHOR-Train-186-0000    ATE  1.45 zeros  5.91 | path 1.16 far 1.04 flow 0.78 | rescaled  1.43 (x0.96) rotfix  1.14 | late  1.72 rot    4deg
+sim-ProcTHOR-Train-189-0000    ATE  0.99 zeros  2.53 | path 1.28 far 1.17 flow 0.78 | rescaled  0.85 (x0.83) rotfix  0.88 | late  1.24 rot    8deg
+sim-ProcTHOR-Train-160-0000    ATE  2.05 zeros  3.93 | path 1.03 far 1.01 flow 0.68 | rescaled  2.05 (x0.96) rotfix  1.45 | late  2.63 rot   17deg
+sim-ProcTHOR-Train-168-0000    ATE  1.32 zeros  2.58 | path 1.02 far 0.88 flow 0.69 | rescaled  1.29 (x1.14) rotfix  1.32 | late  1.65 rot    5deg
+sim-ProcTHOR-Train-172-0000    ATE  2.39 zeros  3.22 | path 1.12 far 1.19 flow 0.69 | rescaled  1.79 (x0.63) rotfix  2.00 | late  2.65 rot   12deg
+sim-ProcTHOR-Train-146-0000    ATE  1.68 zeros  1.63 | path 1.03 far 1.58 flow 0.71 | rescaled  1.30 (x0.48) rotfix  1.54 | late  1.65 rot   10deg
+sim-ProcTHOR-Train-155-0000    ATE  1.47 zeros  1.62 | path 1.00 far 1.13 flow 0.62 | rescaled  1.14 (x0.55) rotfix  0.93 | late  1.75 rot    4deg
+sim-ProcTHOR-Train-158-0000    ATE  1.99 zeros  3.31 | path 1.22 far 1.33 flow 0.87 | rescaled  1.34 (x0.67) rotfix  1.90 | late  2.37 rot   23deg
+sim-ProcTHOR-Train-163-0000    ATE  0.80 zeros  2.39 | path 1.23 far 1.03 flow 0.82 | rescaled  0.78 (x0.92) rotfix  0.70 | late  0.98 rot    5deg
+sim-ProcTHOR-Train-166-0000    ATE  1.20 zeros  1.43 | path 1.38 far 1.31 flow 0.76 | rescaled  1.15 (x0.72) rotfix  1.02 | late  1.46 rot    3deg
+sim-ProcTHOR-Train-193-0000    ATE  3.44 zeros  3.54 | path 0.93 far 1.04 flow 0.84 | rescaled  3.11 (x0.53) rotfix  2.85 | late  4.45 rot   21deg
+sim-ProcTHOR-Train-197-0000    ATE  1.62 zeros  1.68 | path 0.98 far 0.86 flow 0.63 | rescaled  1.40 (x0.53) rotfix  1.24 | late  1.53 rot    6deg
+sim-ProcTHOR-Train-199-0000    ATE  3.14 zeros  3.59 | path 0.84 far 1.06 flow 0.59 | rescaled  2.90 (x0.64) rotfix  2.89 | late  3.59 rot   10deg
+sim-ProcTHOR-Train-104-0000    ATE  0.92 zeros  1.20 | path 1.62 far 1.73 flow 0.92 | rescaled  0.39 (x0.58) rotfix  0.90 | late  0.96 rot    7deg
+sim-ProcTHOR-Train-106-0000    ATE  1.00 zeros  1.84 | path 1.27 far 1.65 flow 0.81 | rescaled  0.66 (x0.70) rotfix  0.94 | late  0.88 rot   15deg
+sim-ProcTHOR-Train-115-0000    ATE  1.00 zeros  1.79 | path 1.42 far 1.34 flow 0.92 | rescaled  0.72 (x0.70) rotfix  0.82 | late  1.06 rot    4deg
+sim-ProcTHOR-Train-148-0000    ATE  2.40 zeros  2.95 | path 1.22 far 0.80 flow 0.78 | rescaled  2.38 (x0.85) rotfix  2.28 | late  3.18 rot    4deg
+sim-ProcTHOR-Train-153-0000    ATE  1.68 zeros  1.78 | path 1.26 far 1.34 flow 0.86 | rescaled  1.27 (x0.53) rotfix  1.39 | late  2.12 rot   13deg
+sim-108294624_176710203-0000   ATE  0.70 zeros  1.96 | path 1.29 far 1.15 flow 0.89 | rescaled  0.70 (x1.04) rotfix  0.55 | late  0.88 rot    2deg
+
+MEAN ATE 1.75  zeros 2.50
+=== AGILE2
+sim-ProcTHOR-Train-109-0000    ATE  0.71 zeros  3.09 | path 1.10 far 0.97 flow 0.71 | rescaled  0.70 (x1.05) rotfix  0.69 | late  0.88 rot   11deg
+sim-ProcTHOR-Train-133-0000    ATE  1.06 zeros  2.82 | path 1.08 far 1.10 flow 0.81 | rescaled  1.05 (x0.96) rotfix  1.02 | late  1.17 rot   10deg
+sim-ProcTHOR-Train-151-0000    ATE  1.90 zeros  2.75 | path 0.79 far 0.91 flow 0.48 | rescaled  1.69 (x0.71) rotfix  1.48 | late  2.34 rot   11deg
+sim-ProcTHOR-Train-170-0000    ATE  1.88 zeros  5.38 | path 1.13 far 1.21 flow 0.73 | rescaled  1.58 (x0.83) rotfix  1.64 | late  2.50 rot    4deg
+sim-ProcTHOR-Train-27-0000     ATE  0.68 zeros  1.06 | path 1.60 far 1.91 flow 0.98 | rescaled  0.31 (x0.63) rotfix  0.65 | late  0.58 rot    4deg
+sim-ProcTHOR-Train-52-0000     ATE  1.00 zeros  1.24 | path 1.30 far 1.16 flow 0.85 | rescaled  0.82 (x0.62) rotfix  0.86 | late  1.13 rot   16deg
+sim-ProcTHOR-Train-71-0000     ATE  1.74 zeros  2.29 | path 0.94 far 1.33 flow 0.64 | rescaled  1.26 (x0.61) rotfix  1.68 | late  2.04 rot    9deg
+sim-ProcTHOR-Train-9-0000      ATE  2.28 zeros  3.13 | path 0.80 far 0.81 flow 0.41 | rescaled  2.15 (x1.50) rotfix  2.28 | late  2.28 rot    4deg
+
+MEAN ATE 1.41  zeros 2.72
+=== TUNE
+sim-ProcTHOR-Train-3-0000      ATE  0.82 zeros  3.36 | path 0.94 far 0.94 flow 0.73 | rescaled  0.80 (x1.05) rotfix  0.60 | late  1.11 rot    3deg
+sim-ProcTHOR-Train-12-0000     ATE  0.75 zeros  2.72 | path 1.66 far 1.30 flow 1.10 | rescaled  0.11 (x0.79) rotfix  0.74 | late  0.93 rot    8deg
+sim-ProcTHOR-Train-31-0000     ATE  0.47 zeros  2.20 | path 1.47 far 1.23 flow 1.19 | rescaled  0.21 (x0.84) rotfix  0.45 | late  0.59 rot    7deg
+sim-ProcTHOR-Train-58-0000     ATE  1.37 zeros  1.99 | path 0.75 far 0.70 flow 0.73 | rescaled  1.14 (x1.85) rotfix  1.32 | late  1.26 rot   23deg
+sim-ProcTHOR-Train-90-0000     ATE  0.69 zeros  3.80 | path 1.06 far 0.99 flow 0.95 | rescaled  0.67 (x1.04) rotfix  0.50 | late  0.78 rot    8deg
+sim-ProcTHOR-Train-1-0006      ATE  0.72 zeros  5.63 | path 1.32 far 1.09 flow 0.97 | rescaled  0.45 (x0.91) rotfix  0.70 | late  0.63 rot    3deg
+sim-ProcTHOR-Train-20-0000     ATE  2.13 zeros  2.18 | path 1.27 far 0.76 flow 0.75 | rescaled  1.92 (x0.53) rotfix  1.94 | late  2.54 rot    2deg
+sim-ProcTHOR-Train-44-0000     ATE  1.05 zeros  2.39 | path 1.38 far 0.87 flow 0.72 | rescaled  1.04 (x0.93) rotfix  0.72 | late  1.45 rot    9deg
+sim-ProcTHOR-Train-77-0000     ATE  0.49 zeros  2.74 | path 1.49 far 0.97 flow 0.87 | rescaled  0.46 (x0.95) rotfix  0.39 | late  0.52 rot    4deg
+sim-ProcTHOR-Train-101-0000    ATE  0.95 zeros  2.30 | path 1.28 far 1.10 flow 0.79 | rescaled  0.87 (x0.84) rotfix  0.92 | late  1.31 rot   12deg
+
+MEAN ATE 0.94  zeros 2.93
+=== HELDOUT
+sim-ProcTHOR-Train-120-0000    ATE  0.63 zeros  2.50 | path 1.29 far 1.05 flow 0.83 | rescaled  0.55 (x0.89) rotfix  0.60 | late  0.86 rot   11deg
+sim-ProcTHOR-Train-140-0000    ATE  0.58 zeros  1.65 | path 1.30 far 0.93 flow 1.01 | rescaled  0.49 (x0.84) rotfix  0.57 | late  0.64 rot    3deg
+sim-ProcTHOR-Train-15-0000     ATE  1.58 zeros  3.29 | path 1.21 far 1.30 flow 0.89 | rescaled  1.24 (x0.76) rotfix  1.42 | late  2.12 rot    3deg
+sim-ProcTHOR-Train-33-0000     ATE  0.70 zeros  1.85 | path 1.42 far 1.13 flow 1.06 | rescaled  0.59 (x0.82) rotfix  0.64 | late  0.97 rot    5deg
+sim-ProcTHOR-Train-66-0000     ATE  0.79 zeros  2.76 | path 1.50 far 1.12 flow 0.94 | rescaled  0.76 (x1.08) rotfix  0.72 | late  0.91 rot    8deg
+sim-ProcTHOR-Train-95-0000     ATE  0.72 zeros  2.28 | path 1.44 far 1.07 flow 1.02 | rescaled  0.67 (x0.89) rotfix  0.52 | late  0.94 rot    2deg
+sim-ProcTHOR-Train-25-0000     ATE  1.01 zeros  1.53 | path 1.53 far 1.48 flow 0.94 | rescaled  0.53 (x0.62) rotfix  0.97 | late  1.18 rot   10deg
+sim-ProcTHOR-Train-88-0000     ATE  0.83 zeros  2.79 | path 1.52 far 1.18 flow 0.86 | rescaled  0.71 (x0.86) rotfix  0.53 | late  1.01 rot   12deg
+
+MEAN ATE 0.85  zeros 2.33

@@ -1,0 +1,175 @@
+=================== fov150 ===================
+sim-ProcTHOR-Train-104-0000      60s  speed p50 0.32 p90 0.62 max 0.91 m/s | turn rate p90 0.66 rad/s | still   8% | path  20.2 m, max from start 2.0 m
+sim-ProcTHOR-Train-106-0000      60s  speed p50 0.37 p90 0.80 max 1.33 m/s | turn rate p90 0.66 rad/s | still   6% | path  23.4 m, max from start 3.0 m
+sim-ProcTHOR-Train-115-0000      60s  speed p50 0.46 p90 0.82 max 1.15 m/s | turn rate p90 0.66 rad/s | still   6% | path  26.9 m, max from start 3.2 m
+sim-ProcTHOR-Train-104-0000           60s  zeros=  1.20m/  94deg  v3=  0.91m/  10deg [44/45 win, dir ok 37/40]
+sim-ProcTHOR-Train-104-0000+15s       45s  zeros=  1.29m/ 102deg  v3=  1.27m/   9deg [33/34 win, dir ok 31/32]
+sim-ProcTHOR-Train-106-0000           60s  zeros=  1.84m/ 117deg  v3=  6.09m/  28deg [28/29 win, dir ok 26/27]
+sim-ProcTHOR-Train-106-0000+15s       45s  zeros=  1.77m/ 104deg  v3=  4.49m/   5deg [22/22 win, dir ok 21/22]
+sim-ProcTHOR-Train-115-0000           60s  zeros=  1.79m/  96deg  v3=  0.65m/  12deg [54/55 win, dir ok 50/51]
+sim-ProcTHOR-Train-115-0000+15s       45s  zeros=  1.74m/  98deg  v3=  0.89m/  18deg [38/39 win, dir ok 38/39]
+
+MEAN over 6 episodes (unaligned ATE, the graded number; rotation RMSE)
+  zeros              ATE   1.61 m   rotation error 101.6 deg
+  v3                 ATE   2.38 m   rotation error  13.7 deg
+=================== fov90 ===================
+sim-ProcTHOR-Train-193-0000      60s  speed p50 0.55 p90 1.12 max 1.90 m/s | turn rate p90 0.64 rad/s | still   6% | path  36.5 m, max from start 5.3 m
+sim-ProcTHOR-Train-197-0000      60s  speed p50 0.52 p90 0.94 max 1.31 m/s | turn rate p90 0.66 rad/s | still   6% | path  31.1 m, max from start 3.2 m
+sim-ProcTHOR-Train-199-0000      60s  speed p50 0.66 p90 1.15 max 1.59 m/s | turn rate p90 0.64 rad/s | still   4% | path  40.2 m, max from start 5.6 m
+sim-ProcTHOR-Train-193-0000           60s  zeros=  3.54m/ 103deg  v3=  2.28m/  23deg [19/20 win, dir ok 17/17]
+sim-ProcTHOR-Train-193-0000+15s       45s  zeros=  2.37m/ 110deg  v3=  2.52m/  24deg [12/12 win, dir ok 12/12]
+sim-ProcTHOR-Train-197-0000           60s  zeros=  1.68m/ 103deg  v3=  2.77m/   7deg [23/23 win, dir ok 21/21]
+sim-ProcTHOR-Train-197-0000+15s       45s  zeros=  2.72m/ 110deg  v3=  3.46m/  23deg [13/13 win, dir ok 13/13]
+sim-ProcTHOR-Train-199-0000           60s  zeros=  3.59m/  94deg  v3=  1.97m/   7deg [42/42 win, dir ok 39/39]
+sim-ProcTHOR-Train-199-0000+15s       45s  zeros=  5.86m/ 103deg  v3=  2.14m/   5deg [29/30 win, dir ok 29/29]
+
+MEAN over 6 episodes (unaligned ATE, the graded number; rotation RMSE)
+  zeros              ATE   3.29 m   rotation error 103.7 deg
+  v3                 ATE   2.52 m   rotation error  15.0 deg
+=================== hover ===================
+sim-ProcTHOR-Train-148-0000      60s  speed p50 0.40 p90 0.88 max 1.26 m/s | turn rate p90 0.66 rad/s | still  10% | path  26.6 m, max from start 5.6 m
+sim-ProcTHOR-Train-153-0000      60s  speed p50 0.47 p90 0.78 max 1.34 m/s | turn rate p90 0.66 rad/s | still  11% | path  27.0 m, max from start 3.2 m
+sim-ProcTHOR-Train-148-0000           60s  zeros=  2.95m/ 107deg  v3=  2.78m/   3deg [43/45 win, dir ok 40/40]
+sim-ProcTHOR-Train-148-0000+15s       45s  zeros=  2.87m/ 100deg  v3=  2.63m/   7deg [30/33 win, dir ok 33/33]
+sim-ProcTHOR-Train-153-0000           60s  zeros=  1.78m/  95deg  v3=  1.63m/  23deg [45/46 win, dir ok 39/40]
+sim-ProcTHOR-Train-153-0000+15s       45s  zeros=  1.90m/ 109deg  v3=  1.02m/   8deg [32/33 win, dir ok 33/33]
+
+MEAN over 4 episodes (unaligned ATE, the graded number; rotation RMSE)
+  zeros              ATE   2.37 m   rotation error 102.8 deg
+  v3                 ATE   2.02 m   rotation error  10.3 deg
+=================== hssd ===================
+Traceback (most recent call last):
+  File "/mnt/c/Users/alexa/Projects/eecs116_vio/proto/flight_stats.py", line 6, in <module>
+    for e in episodes(sys.argv[1:]):
+  File "/home/alexa/viobench/viobench/tools/datasets/sources.py", line 111, in _read
+    yield from stored_episodes([source], frames=frames)
+  File "/home/alexa/viobench/viobench/tools/datasets/storage.py", line 318, in episodes
+    raise FileNotFoundError(f"no episodes under {root}")
+FileNotFoundError: no episodes under /home/alexa/data/night/hssd
+Traceback (most recent call last):
+  File "/mnt/c/Users/alexa/Projects/eecs116_vio/proto/run.py", line 187, in <module>
+    main()
+  File "/mnt/c/Users/alexa/Projects/eecs116_vio/proto/run.py", line 160, in main
+    all_episodes = [cropped(e, c) for e in episodes(args.sources) for c in args.crops]
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/alexa/viobench/viobench/tools/datasets/sources.py", line 111, in _read
+    yield from stored_episodes([source], frames=frames)
+  File "/home/alexa/viobench/viobench/tools/datasets/storage.py", line 318, in episodes
+    raise FileNotFoundError(f"no episodes under {root}")
+FileNotFoundError: no episodes under /home/alexa/data/night/hssd
+=================== hssd_vfast ===================
+sim-108294624_176710203-0000     60s  speed p50 0.49 p90 0.94 max 1.56 m/s | turn rate p90 0.66 rad/s | still   7% | path  30.8 m, max from start 3.4 m
+sim-108294624_176710203-0000          60s  zeros=  1.96m/ 101deg  v3=  1.62m/   5deg [48/50 win, dir ok 46/46]
+sim-108294624_176710203-0000+15s      45s  zeros=  1.20m/  64deg  v3=  1.52m/  18deg [30/36 win, dir ok 34/34]
+
+MEAN over 2 episodes (unaligned ATE, the graded number; rotation RMSE)
+  zeros              ATE   1.58 m   rotation error  82.8 deg
+  v3                 ATE   1.57 m   rotation error  11.5 deg
+=================== jerky ===================
+sim-ProcTHOR-Train-175-0000      60s  speed p50 0.63 p90 1.18 max 1.71 m/s | turn rate p90 0.64 rad/s | still   2% | path  40.1 m, max from start 3.8 m
+sim-ProcTHOR-Train-178-0000      60s  speed p50 0.57 p90 1.32 max 2.03 m/s | turn rate p90 0.66 rad/s | still   9% | path  38.7 m, max from start 6.6 m
+sim-ProcTHOR-Train-182-0000      60s  speed p50 0.65 p90 1.51 max 1.84 m/s | turn rate p90 0.66 rad/s | still   5% | path  44.3 m, max from start 6.8 m
+sim-ProcTHOR-Train-186-0000      60s  speed p50 0.67 p90 1.71 max 2.39 m/s | turn rate p90 0.66 rad/s | still   4% | path  47.6 m, max from start 9.0 m
+sim-ProcTHOR-Train-189-0000      60s  speed p50 0.56 p90 1.07 max 1.80 m/s | turn rate p90 0.66 rad/s | still   4% | path  35.6 m, max from start 4.2 m
+sim-ProcTHOR-Train-175-0000           60s  zeros=  2.30m/ 104deg  v3=  1.62m/   3deg [50/51 win, dir ok 50/51]
+sim-ProcTHOR-Train-175-0000+15s       45s  zeros=  2.68m/ 107deg  v3=  0.88m/   6deg [40/40 win, dir ok 40/40]
+sim-ProcTHOR-Train-178-0000           60s  zeros=  4.00m/  91deg  v3=  2.68m/   3deg [30/31 win, dir ok 25/26]
+sim-ProcTHOR-Train-178-0000+15s       45s  zeros=  3.76m/ 104deg  v3=  2.63m/   8deg [24/25 win, dir ok 21/21]
+sim-ProcTHOR-Train-182-0000           60s  zeros=  4.10m/ 104deg  v3=  2.86m/  18deg [48/49 win, dir ok 45/46]
+sim-ProcTHOR-Train-182-0000+15s       45s  zeros=  2.75m/ 111deg  v3=  1.55m/  18deg [33/35 win, dir ok 35/35]
+sim-ProcTHOR-Train-186-0000           60s  zeros=  5.91m/  92deg  v3=  2.77m/   4deg [47/47 win, dir ok 45/46]
+sim-ProcTHOR-Train-186-0000+15s       45s  zeros=  3.95m/ 109deg  v3=  2.72m/   6deg [36/36 win, dir ok 34/34]
+sim-ProcTHOR-Train-189-0000           60s  zeros=  2.53m/  95deg  v3=  1.00m/  13deg [55/55 win, dir ok 52/52]
+sim-ProcTHOR-Train-189-0000+15s       45s  zeros=  1.72m/ 104deg  v3=  1.40m/  23deg [42/42 win, dir ok 40/41]
+
+MEAN over 10 episodes (unaligned ATE, the graded number; rotation RMSE)
+  zeros              ATE   3.37 m   rotation error 102.2 deg
+  v3                 ATE   2.01 m   rotation error  10.1 deg
+=================== jerky_wide ===================
+sim-ProcTHOR-Train-160-0000      60s  speed p50 0.69 p90 1.58 max 2.41 m/s | turn rate p90 0.66 rad/s | still   3% | path  47.4 m, max from start 7.0 m
+sim-ProcTHOR-Train-168-0000      60s  speed p50 0.55 p90 0.89 max 1.16 m/s | turn rate p90 0.64 rad/s | still   4% | path  32.5 m, max from start 3.9 m
+sim-ProcTHOR-Train-172-0000      60s  speed p50 0.62 p90 1.21 max 1.53 m/s | turn rate p90 0.66 rad/s | still   5% | path  39.3 m, max from start 6.1 m
+sim-ProcTHOR-Train-160-0000           60s  zeros=  3.93m/  97deg  v3=  2.51m/  19deg [40/43 win, dir ok 39/41]
+sim-ProcTHOR-Train-160-0000+15s       45s  zeros=  5.26m/ 111deg  v3=  3.72m/  15deg [29/31 win, dir ok 29/30]
+sim-ProcTHOR-Train-168-0000           60s  zeros=  2.58m/ 106deg  v3=  1.29m/   5deg [35/36 win, dir ok 33/34]
+sim-ProcTHOR-Train-168-0000+15s       45s  zeros=  3.48m/ 102deg  v3=  2.73m/   5deg [25/25 win, dir ok 25/25]
+sim-ProcTHOR-Train-172-0000           60s  zeros=  3.22m/  99deg  v3=  2.10m/  18deg [45/46 win, dir ok 42/43]
+sim-ProcTHOR-Train-172-0000+15s       45s  zeros=  2.86m/ 109deg  v3=  1.72m/  15deg [34/35 win, dir ok 32/33]
+
+MEAN over 6 episodes (unaligned ATE, the graded number; rotation RMSE)
+  zeros              ATE   3.55 m   rotation error 103.9 deg
+  v3                 ATE   2.34 m   rotation error  12.9 deg
+=================== match ===================
+sim-ProcTHOR-Train-112-0000      60s  speed p50 0.53 p90 0.96 max 1.59 m/s | turn rate p90 0.66 rad/s | still   4% | path  33.4 m, max from start 4.0 m
+sim-ProcTHOR-Train-118-0000      60s  speed p50 0.42 p90 0.74 max 1.22 m/s | turn rate p90 0.66 rad/s | still   8% | path  25.0 m, max from start 2.8 m
+sim-ProcTHOR-Train-123-0000      60s  speed p50 0.25 p90 0.51 max 0.83 m/s | turn rate p90 0.66 rad/s | still  12% | path  16.4 m, max from start 1.7 m
+sim-ProcTHOR-Train-128-0000      60s  speed p50 0.43 p90 0.78 max 1.12 m/s | turn rate p90 0.66 rad/s | still   7% | path  25.9 m, max from start 2.7 m
+sim-ProcTHOR-Train-137-0000      60s  speed p50 0.50 p90 1.04 max 1.48 m/s | turn rate p90 0.66 rad/s | still   5% | path  31.7 m, max from start 3.5 m
+sim-ProcTHOR-Train-142-0000      60s  speed p50 0.48 p90 0.83 max 1.36 m/s | turn rate p90 0.66 rad/s | still   5% | path  29.3 m, max from start 3.2 m
+sim-ProcTHOR-Train-112-0000           60s  zeros=  2.55m/ 104deg  v3=  1.59m/   5deg [38/38 win, dir ok 35/36]
+sim-ProcTHOR-Train-112-0000+15s       45s  zeros=  2.47m/ 105deg  v3=  1.40m/  10deg [26/28 win, dir ok 28/28]
+sim-ProcTHOR-Train-118-0000           60s  zeros=  1.61m/ 103deg  v3=  1.31m/   5deg [48/49 win, dir ok 45/45]
+sim-ProcTHOR-Train-118-0000+15s       45s  zeros=  1.19m/ 107deg  v3=  1.38m/   5deg [37/38 win, dir ok 37/37]
+sim-ProcTHOR-Train-123-0000           60s  zeros=  0.99m/  99deg  v3=  0.76m/   8deg [56/56 win, dir ok 48/50]
+sim-ProcTHOR-Train-123-0000+15s       45s  zeros=  0.59m/  65deg  v3=  0.35m/  16deg [41/41 win, dir ok 37/37]
+sim-ProcTHOR-Train-128-0000           60s  zeros=  1.61m/  97deg  v3=  3.57m/   5deg [19/25 win, dir ok 16/21]
+sim-ProcTHOR-Train-128-0000+15s       45s  zeros=  1.76m/ 102deg  v3=  1.81m/   4deg [16/20 win, dir ok 15/19]
+sim-ProcTHOR-Train-137-0000           60s  zeros=  2.02m/ 101deg  v3=  1.95m/  14deg [25/28 win, dir ok 24/26]
+sim-ProcTHOR-Train-137-0000+15s       45s  zeros=  2.00m/  95deg  v3=  2.45m/  14deg [17/18 win, dir ok 17/18]
+sim-ProcTHOR-Train-142-0000           60s  zeros=  1.93m/  91deg  v3=  1.45m/  23deg [46/49 win, dir ok 47/47]
+sim-ProcTHOR-Train-142-0000+15s       45s  zeros=  1.88m/ 103deg  v3=  0.98m/  17deg [36/37 win, dir ok 35/36]
+
+MEAN over 12 episodes (unaligned ATE, the graded number; rotation RMSE)
+  zeros              ATE   1.72 m   rotation error  97.7 deg
+  v3                 ATE   1.58 m   rotation error  10.5 deg
+=================== match2 ===================
+sim-ProcTHOR-Train-180-0000      60s  speed p50 0.61 p90 1.06 max 1.45 m/s | turn rate p90 0.64 rad/s | still   5% | path  36.8 m, max from start 3.9 m
+sim-ProcTHOR-Train-184-0000      60s  speed p50 0.46 p90 0.86 max 1.27 m/s | turn rate p90 0.66 rad/s | still   9% | path  27.6 m, max from start 5.2 m
+sim-ProcTHOR-Train-191-0000      60s  speed p50 0.42 p90 0.77 max 0.96 m/s | turn rate p90 0.66 rad/s | still   5% | path  26.3 m, max from start 2.1 m
+sim-ProcTHOR-Train-180-0000           60s  zeros=  2.31m/ 113deg  v3=  1.57m/  15deg [33/35 win, dir ok 31/31]
+sim-ProcTHOR-Train-180-0000+15s       45s  zeros=  2.55m/  97deg  v3=  1.69m/  11deg [25/27 win, dir ok 25/25]
+sim-ProcTHOR-Train-184-0000           60s  zeros=  2.34m/  96deg  v3=  1.05m/  16deg [50/51 win, dir ok 44/44]
+sim-ProcTHOR-Train-184-0000+15s       45s  zeros=  1.52m/ 112deg  v3=  1.25m/   5deg [36/36 win, dir ok 32/32]
+sim-ProcTHOR-Train-191-0000           60s  zeros=  1.45m/  96deg  v3=  1.54m/  25deg [44/50 win, dir ok 42/48]
+sim-ProcTHOR-Train-191-0000+15s       45s  zeros=  1.71m/ 108deg  v3=  1.10m/  11deg [35/38 win, dir ok 34/38]
+
+MEAN over 6 episodes (unaligned ATE, the graded number; rotation RMSE)
+  zeros              ATE   1.98 m   rotation error 103.7 deg
+  v3                 ATE   1.37 m   rotation error  13.8 deg
+=================== medium ===================
+sim-ProcTHOR-Train-125-0000      60s  speed p50 0.49 p90 0.86 max 0.98 m/s | turn rate p90 0.64 rad/s | still  11% | path  28.9 m, max from start 6.7 m
+sim-ProcTHOR-Train-131-0000      60s  speed p50 0.26 p90 0.46 max 0.65 m/s | turn rate p90 0.66 rad/s | still  12% | path  15.7 m, max from start 1.4 m
+sim-ProcTHOR-Train-135-0000      60s  speed p50 0.52 p90 0.98 max 1.13 m/s | turn rate p90 0.58 rad/s | still   6% | path  33.0 m, max from start 6.7 m
+sim-ProcTHOR-Train-144-0000      60s  speed p50 0.38 p90 0.69 max 0.92 m/s | turn rate p90 0.66 rad/s | still  13% | path  21.5 m, max from start 5.0 m
+sim-ProcTHOR-Train-125-0000           60s  zeros=  4.27m/  89deg  v3=  2.53m/   6deg [46/56 win, dir ok 38/51]
+sim-ProcTHOR-Train-125-0000+15s       45s  zeros=  4.31m/ 103deg  v3=  1.64m/   4deg [33/41 win, dir ok 28/38]
+sim-ProcTHOR-Train-131-0000           60s  zeros=  0.79m/ 103deg  v3=  0.83m/  12deg [47/49 win, dir ok 44/44]
+sim-ProcTHOR-Train-131-0000+15s       45s  zeros=  0.90m/ 101deg  v3=  1.08m/  16deg [36/38 win, dir ok 35/35]
+sim-ProcTHOR-Train-135-0000           60s  zeros=  4.12m/ 113deg  v3=  1.84m/  22deg [42/43 win, dir ok 40/40]
+sim-ProcTHOR-Train-135-0000+15s       45s  zeros=  5.26m/ 106deg  v3=  2.83m/  61deg [25/29 win, dir ok 24/28]
+sim-ProcTHOR-Train-144-0000           60s  zeros=  2.24m/ 105deg  v3=  0.75m/  13deg [43/45 win, dir ok 37/39]
+sim-ProcTHOR-Train-144-0000+15s       45s  zeros=  4.12m/ 120deg  v3=  1.21m/   8deg [30/32 win, dir ok 27/29]
+
+MEAN over 8 episodes (unaligned ATE, the graded number; rotation RMSE)
+  zeros              ATE   3.25 m   rotation error 104.9 deg
+  v3                 ATE   1.59 m   rotation error  17.8 deg
+=================== vfast ===================
+sim-ProcTHOR-Train-146-0000      60s  speed p50 0.49 p90 1.08 max 2.14 m/s | turn rate p90 0.67 rad/s | still   7% | path  32.9 m, max from start 2.8 m
+sim-ProcTHOR-Train-155-0000      60s  speed p50 0.38 p90 0.78 max 1.27 m/s | turn rate p90 0.66 rad/s | still   8% | path  24.5 m, max from start 2.8 m
+sim-ProcTHOR-Train-158-0000      60s  speed p50 0.67 p90 1.13 max 2.35 m/s | turn rate p90 0.66 rad/s | still   4% | path  42.1 m, max from start 5.5 m
+sim-ProcTHOR-Train-163-0000      60s  speed p50 0.49 p90 1.05 max 1.86 m/s | turn rate p90 0.66 rad/s | still   5% | path  34.8 m, max from start 4.9 m
+sim-ProcTHOR-Train-166-0000      60s  speed p50 0.31 p90 0.76 max 1.24 m/s | turn rate p90 0.66 rad/s | still  10% | path  21.7 m, max from start 2.6 m
+sim-ProcTHOR-Train-146-0000           60s  zeros=  1.63m/ 101deg  v3=  2.36m/  10deg [49/49 win, dir ok 44/44]
+sim-ProcTHOR-Train-146-0000+15s       45s  zeros=  3.26m/ 102deg  v3=  2.72m/  19deg [38/38 win, dir ok 37/37]
+sim-ProcTHOR-Train-155-0000           60s  zeros=  1.62m/  99deg  v3=  3.07m/   4deg [28/35 win, dir ok 26/29]
+sim-ProcTHOR-Train-155-0000+15s       45s  zeros=  0.90m/ 103deg  v3=  2.39m/   9deg [21/25 win, dir ok 19/20]
+sim-ProcTHOR-Train-158-0000           60s  zeros=  3.31m/ 105deg  v3=  2.57m/  41deg [35/35 win, dir ok 34/34]
+sim-ProcTHOR-Train-158-0000+15s       45s  zeros=  2.35m/ 112deg  v3=  2.13m/  17deg [27/27 win, dir ok 27/27]
+sim-ProcTHOR-Train-163-0000           60s  zeros=  2.39m/ 113deg  v3=  1.34m/  19deg [48/49 win, dir ok 47/48]
+sim-ProcTHOR-Train-163-0000+15s       45s  zeros=  2.75m/ 100deg  v3=  0.71m/  12deg [36/37 win, dir ok 36/37]
+sim-ProcTHOR-Train-166-0000           60s  zeros=  1.43m/  96deg  v3=  3.03m/  10deg [30/31 win, dir ok 25/26]
+sim-ProcTHOR-Train-166-0000+15s       45s  zeros=  0.83m/  94deg  v3=  2.16m/  15deg [23/24 win, dir ok 20/21]
+
+MEAN over 10 episodes (unaligned ATE, the graded number; rotation RMSE)
+  zeros              ATE   2.05 m   rotation error 102.5 deg
+  v3                 ATE   2.25 m   rotation error  15.7 deg
