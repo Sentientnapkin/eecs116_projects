@@ -1,0 +1,1874 @@
+[
+ {
+  "hash": "30755ac25f178027de87c789fc84479dddf293f1",
+  "frames": 1200,
+  "completed": true,
+  "checks": {
+   "median": true,
+   "p95": true,
+   "p99": true,
+   "max": true,
+   "max_magic": true,
+   "init": true,
+   "total": true,
+   "sim3_scale_1": true
+  },
+  "camera": {
+   "fx_320": 134.21,
+   "hfov_deg": 100.019,
+   "T_cam_imu_default": true,
+   "centred_square": true
+  },
+  "start_1s": {
+   "gyro_rms": 0.09185840576722491,
+   "accel_dev_rms": 0.4181045022514187
+  },
+  "imu_noise": {
+   "gyro_sigma": 0.07009009212314696,
+   "accel_sigma": 0.2849886518576704
+  },
+  "dark_frames_first_half": "0",
+  "image": {
+   "Y_mean": 101.19047619047619,
+   "chroma_g": 0.324516129032258,
+   "chroma_b": 0.2832258064516129,
+   "grad2_mean": 224.57034546050275,
+   "Y_top": 85.0,
+   "Y_bottom": 68.0
+  },
+  "blur_ratio_x_by_px_speed": [
+   0.4322580645161291,
+   null,
+   null
+  ],
+  "blur_ratio_y_by_px_speed": [
+   0.4467741935483871,
+   null,
+   null
+  ],
+  "dynamics": {
+   "jerk_rms": 2.6044024141864637,
+   "gyro_rms": 0.1410817395451059,
+   "yaw_rms": 0.038094176693889856,
+   "accel_xy_rms": 0.12638288556086194
+  },
+  "payloads": [
+   105725,
+   187619,
+   5854105,
+   27262994,
+   62914842,
+   18121753
+  ],
+  "path": {
+   "distance": 26.59905896399374,
+   "mean_speed": 0.44368738889063786,
+   "rms_dist_from_start": 3.8173835902931192,
+   "final_dist_from_start": 4.286925632174031,
+   "rms_spread": 1.80037863015014,
+   "centroid_dist_from_start": 3.3661631367980207,
+   "rms_1s_displacement": 0.5057920058987181
+  },
+  "start_forward_speed": 0.0015389500122070313,
+  "gyro_bias_cam_y": -0.0175883040625,
+  "gyro_drift": {
+   "rot_rmse_deg": 40.697019973363375,
+   "rot_max_deg": 72.31696128267592,
+   "rpe_rot_deg_per_s": 1.3325210179549287
+  }
+ },
+ {
+  "hash": "500bc1fdb426fabd63317942060484b2e0fba0d7",
+  "frames": 1200,
+  "completed": true,
+  "checks": {
+   "median": true,
+   "p95": true,
+   "p99": true,
+   "max": true,
+   "max_magic": true,
+   "init": true,
+   "total": true,
+   "sim3_scale_1": true
+  },
+  "camera": {
+   "fx_320": 181.84,
+   "hfov_deg": 82.689,
+   "T_cam_imu_default": true,
+   "centred_square": true
+  },
+  "start_1s": {
+   "gyro_rms": 2.0,
+   "accel_dev_rms": 1.4301128875730529
+  },
+  "imu_noise": {
+   "gyro_sigma": 0.07009009212314696,
+   "accel_sigma": 0.2849886518576704
+  },
+  "dark_frames_first_half": "0",
+  "image": {
+   "Y_mean": 93.09523809523809,
+   "chroma_g": 0.324516129032258,
+   "chroma_b": 0.2832258064516129,
+   "grad2_mean": 96.9000293060366,
+   "Y_top": 102.0,
+   "Y_bottom": 85.0
+  },
+  "blur_ratio_x_by_px_speed": [
+   0.37419354838709684,
+   0.3306451612903226,
+   null
+  ],
+  "blur_ratio_y_by_px_speed": [
+   0.3887096774193549,
+   0.3451612903225807,
+   0.31612903225806455
+  ],
+  "dynamics": {
+   "jerk_rms": 6.280126636306931,
+   "gyro_rms": 1.5190555234453271,
+   "yaw_rms": 0.3364750481580889,
+   "accel_xy_rms": 0.1962539573845916
+  },
+  "payloads": [
+   110488,
+   187967,
+   5133207,
+   27300558,
+   96479450,
+   22600116
+  ],
+  "path": {
+   "distance": 68.97006482314971,
+   "mean_speed": 1.150459796883231,
+   "rms_dist_from_start": 3.134283870316093,
+   "final_dist_from_start": 1.41825634163511,
+   "rms_spread": 2.988347814735404,
+   "centroid_dist_from_start": 0.9452580165699529,
+   "rms_1s_displacement": 1.1750734496504716
+  },
+  "start_forward_speed": -0.20494116748046876,
+  "gyro_bias_cam_y": -0.019805065520833335,
+  "gyro_drift": {
+   "rot_rmse_deg": 37.962118974174125,
+   "rot_max_deg": 64.72553833019117,
+   "rpe_rot_deg_per_s": 1.4715663024782408
+  }
+ },
+ {
+  "hash": "92c12d5a6a048ed0e8b7dd47ef42428acf666c0f",
+  "frames": 1200,
+  "completed": true,
+  "checks": {
+   "median": true,
+   "p95": true,
+   "p99": true,
+   "max": true,
+   "max_magic": true,
+   "init": true,
+   "total": true,
+   "sim3_scale_1": true
+  },
+  "camera": {
+   "fx_320": 188.86,
+   "hfov_deg": 80.542,
+   "T_cam_imu_default": true,
+   "centred_square": true
+  },
+  "start_1s": {
+   "gyro_rms": 0.5962413159261352,
+   "accel_dev_rms": 0.6837841577631959
+  },
+  "imu_noise": {
+   "gyro_sigma": 0.07009009212314696,
+   "accel_sigma": 0.2849886518576704
+  },
+  "dark_frames_first_half": "3-20",
+  "image": {
+   "Y_mean": 72.85714285714285,
+   "chroma_g": 0.3141935483870968,
+   "chroma_b": 0.25225806451612903,
+   "grad2_mean": 192.74520783845406,
+   "Y_top": 85.0,
+   "Y_bottom": 68.0
+  },
+  "blur_ratio_x_by_px_speed": [
+   0.4322580645161291,
+   0.4322580645161291,
+   null
+  ],
+  "blur_ratio_y_by_px_speed": [
+   0.4758064516129033,
+   0.417741935483871,
+   0.35967741935483877
+  ],
+  "dynamics": {
+   "jerk_rms": 3.2454368816123864,
+   "gyro_rms": 0.6299605249474365,
+   "yaw_rms": 0.2050838390019095,
+   "accel_xy_rms": 0.2340294356134012
+  },
+  "payloads": [
+   111190,
+   712052,
+   5716818,
+   27313172,
+   71320858,
+   18151530
+  ],
+  "path": {
+   "distance": 41.05026348201423,
+   "mean_speed": 0.6847416760969847,
+   "rms_dist_from_start": 4.955166792000709,
+   "final_dist_from_start": 7.065093287460519,
+   "rms_spread": 2.7808645720836664,
+   "centroid_dist_from_start": 4.1012766510291065,
+   "rms_1s_displacement": 0.8040143524299047
+  },
+  "start_forward_speed": 0.06486352612304687,
+  "gyro_bias_cam_y": -0.019785003333333332,
+  "gyro_drift": {
+   "rot_rmse_deg": 39.99253658942807,
+   "rot_max_deg": 68.46140951919244,
+   "rpe_rot_deg_per_s": 1.7576740459243974
+  }
+ },
+ {
+  "hash": "9d8c612ee5ad775f77f54efbbf542f5b61ac3578",
+  "frames": 1200,
+  "completed": true,
+  "checks": {
+   "median": true,
+   "p95": true,
+   "p99": true,
+   "max": true,
+   "max_magic": true,
+   "init": true,
+   "total": true,
+   "sim3_scale_1": true
+  },
+  "camera": {
+   "fx_320": 101.57,
+   "hfov_deg": 115.184,
+   "T_cam_imu_default": true,
+   "centred_square": true
+  },
+  "start_1s": {
+   "gyro_rms": 1.6049626039207099,
+   "accel_dev_rms": 0.8744523110597486
+  },
+  "imu_noise": {
+   "gyro_sigma": 0.07009009212314696,
+   "accel_sigma": 0.2849886518576704
+  },
+  "dark_frames_first_half": "0",
+  "image": {
+   "Y_mean": 80.95238095238095,
+   "chroma_g": 0.324516129032258,
+   "chroma_b": 0.2729032258064516,
+   "grad2_mean": 153.2605438113748,
+   "Y_top": 85.0,
+   "Y_bottom": 68.0
+  },
+  "blur_ratio_x_by_px_speed": [
+   0.417741935483871,
+   0.3306451612903226,
+   null
+  ],
+  "blur_ratio_y_by_px_speed": [
+   0.4322580645161291,
+   0.3887096774193549,
+   0.3306451612903226
+  ],
+  "dynamics": {
+   "jerk_rms": 5.039684199579492,
+   "gyro_rms": 1.1665290395761168,
+   "yaw_rms": 0.3364750481580889,
+   "accel_xy_rms": 0.13801118920922653
+  },
+  "payloads": [
+   102461,
+   187837,
+   5524372,
+   27304849,
+   88090890,
+   18127281
+  ],
+  "path": {
+   "distance": 65.36902391524063,
+   "mean_speed": 1.0903923922475502,
+   "rms_dist_from_start": 4.382618008822007,
+   "final_dist_from_start": 1.2223367076384923,
+   "rms_spread": 2.81557632862457,
+   "centroid_dist_from_start": 3.358551852947928,
+   "rms_1s_displacement": 1.109602479846001
+  },
+  "start_forward_speed": -0.7848112458496094,
+  "gyro_bias_cam_y": -0.02387004729166667,
+  "gyro_drift": {
+   "rot_rmse_deg": 41.32319443944946,
+   "rot_max_deg": 76.84778913837584,
+   "rpe_rot_deg_per_s": 1.4547958970369916
+  }
+ },
+ {
+  "hash": "d6337f1033b1abc6324d3e1f1926937826bdb31c",
+  "frames": 1200,
+  "completed": true,
+  "checks": {
+   "median": true,
+   "p95": true,
+   "p99": true,
+   "max": true,
+   "max_magic": true,
+   "init": true,
+   "total": true,
+   "sim3_scale_1": true
+  },
+  "camera": {
+   "fx_320": 106.81,
+   "hfov_deg": 112.549,
+   "T_cam_imu_default": true,
+   "centred_square": true
+  },
+  "start_1s": {
+   "gyro_rms": 1.2879524799919744,
+   "accel_dev_rms": 0.6837841577631959
+  },
+  "imu_noise": {
+   "gyro_sigma": 0.07009009212314696,
+   "accel_sigma": 0.2849886518576704
+  },
+  "dark_frames_first_half": "0",
+  "image": {
+   "Y_mean": 80.95238095238095,
+   "chroma_g": 0.324516129032258,
+   "chroma_b": 0.2625806451612903,
+   "grad2_mean": 165.43019100989397,
+   "Y_top": 85.0,
+   "Y_bottom": 68.0
+  },
+  "blur_ratio_x_by_px_speed": [
+   0.4322580645161291,
+   0.3887096774193549,
+   null
+  ],
+  "blur_ratio_y_by_px_speed": [
+   0.46129032258064523,
+   0.417741935483871,
+   0.35967741935483877
+  ],
+  "dynamics": {
+   "jerk_rms": 5.625820382873448,
+   "gyro_rms": 1.273859662916678,
+   "yaw_rms": 0.45286183213195347,
+   "accel_xy_rms": 0.16457594613328022
+  },
+  "payloads": [
+   102985,
+   187771,
+   5587860,
+   27313171,
+   92289306,
+   18135666
+  ],
+  "path": {
+   "distance": 54.24256826427667,
+   "mean_speed": 0.9047968017393939,
+   "rms_dist_from_start": 5.306574415188298,
+   "final_dist_from_start": 3.4260569083095818,
+   "rms_spread": 3.257782036501033,
+   "centroid_dist_from_start": 4.188864789723131,
+   "rms_1s_displacement": 0.9605624105318975
+  },
+  "start_forward_speed": 0.772850606628418,
+  "gyro_bias_cam_y": 0.019449019270833333,
+  "gyro_drift": {
+   "rot_rmse_deg": 38.18271178092841,
+   "rot_max_deg": 67.16693827818375,
+   "rpe_rot_deg_per_s": 1.486357159418575
+  }
+ },
+ {
+  "hash": "9affc13d7522343cfe4edd888c427bcc47fc3f2e",
+  "frames": 1200,
+  "completed": true,
+  "checks": {
+   "median": true,
+   "p95": true,
+   "p99": true,
+   "max": true,
+   "max_magic": true,
+   "init": true,
+   "total": true,
+   "sim3_scale_1": true
+  },
+  "camera": {
+   "fx_320": 158.91,
+   "hfov_deg": 90.392,
+   "T_cam_imu_default": true,
+   "centred_square": true
+  },
+  "start_1s": {
+   "gyro_rms": 0.7429971445684741,
+   "accel_dev_rms": 0.6837841577631959
+  },
+  "imu_noise": {
+   "gyro_sigma": 0.07009009212314696,
+   "accel_sigma": 0.2849886518576704
+  },
+  "dark_frames_first_half": "0",
+  "image": {
+   "Y_mean": 80.95238095238095,
+   "chroma_g": 0.3141935483870968,
+   "chroma_b": 0.25225806451612903,
+   "grad2_mean": 153.2605438113748,
+   "Y_top": 85.0,
+   "Y_bottom": 68.0
+  },
+  "blur_ratio_x_by_px_speed": [
+   0.40322580645161293,
+   0.3306451612903226,
+   null
+  ],
+  "blur_ratio_y_by_px_speed": [
+   0.4322580645161291,
+   0.3451612903225807,
+   0.31612903225806455
+  ],
+  "dynamics": {
+   "jerk_rms": 4.044252337947582,
+   "gyro_rms": 0.8958132070696184,
+   "yaw_rms": 0.25,
+   "accel_xy_rms": 0.27907603731117026
+  },
+  "payloads": [
+   108195,
+   187766,
+   5520212,
+   27300561,
+   79702266,
+   18159854
+  ],
+  "path": {
+   "distance": 49.01395923446202,
+   "mean_speed": 0.8175806377725109,
+   "rms_dist_from_start": 3.9378539202915377,
+   "final_dist_from_start": 1.5516681601979347,
+   "rms_spread": 3.0557546446861656,
+   "centroid_dist_from_start": 2.4837586535399043,
+   "rms_1s_displacement": 0.9278133354965913
+  },
+  "start_forward_speed": -0.4794416011352539,
+  "gyro_bias_cam_y": 0.008040681666666667,
+  "gyro_drift": {
+   "rot_rmse_deg": 20.883925200392532,
+   "rot_max_deg": 35.74965533069539,
+   "rpe_rot_deg_per_s": 0.956994548124586
+  }
+ },
+ {
+  "hash": "bffcea9dd7953a3c5f921535603a22192dfcaf70",
+  "frames": 1200,
+  "completed": true,
+  "checks": {
+   "median": true,
+   "p95": true,
+   "p99": true,
+   "max": true,
+   "max_magic": true,
+   "init": true,
+   "total": true,
+   "sim3_scale_1": true
+  },
+  "camera": {
+   "fx_320": 134.21,
+   "hfov_deg": 100.019,
+   "T_cam_imu_default": true,
+   "centred_square": true
+  },
+  "start_1s": {
+   "gyro_rms": 0.9258747122872907,
+   "accel_dev_rms": 0.8744523110597486
+  },
+  "imu_noise": {
+   "gyro_sigma": 0.07009009212314696,
+   "accel_sigma": 0.2849886518576704
+  },
+  "dark_frames_first_half": "0",
+  "image": {
+   "Y_mean": 89.04761904761904,
+   "chroma_g": 0.324516129032258,
+   "chroma_b": 0.324516129032258,
+   "grad2_mean": 66.13050871132616,
+   "Y_top": 85.0,
+   "Y_bottom": 85.0
+  },
+  "blur_ratio_x_by_px_speed": [
+   0.40322580645161293,
+   0.3016129032258065,
+   null
+  ],
+  "blur_ratio_y_by_px_speed": [
+   0.3887096774193549,
+   0.3306451612903226,
+   0.3016129032258065
+  ],
+  "dynamics": {
+   "jerk_rms": 5.625820382873448,
+   "gyro_rms": 1.3910656192458297,
+   "yaw_rms": 0.37149857228423705,
+   "accel_xy_rms": 0.13801118920922653
+  },
+  "payloads": [
+   105725,
+   187832,
+   4813718,
+   27296398,
+   92283130,
+   22321651
+  ],
+  "path": {
+   "distance": 75.56169358888583,
+   "mean_speed": 1.26041190306732,
+   "rms_dist_from_start": 5.731048406261643,
+   "final_dist_from_start": 9.025876732913146,
+   "rms_spread": 3.5208565776039116,
+   "centroid_dist_from_start": 4.522000087887814,
+   "rms_1s_displacement": 1.2761783272032627
+  },
+  "start_forward_speed": -0.23247415509033204,
+  "gyro_bias_cam_y": -0.016913670104166667,
+  "gyro_drift": {
+   "rot_rmse_deg": 32.043401341493635,
+   "rot_max_deg": 55.30167515382649,
+   "rpe_rot_deg_per_s": 1.1354928177775099
+  }
+ },
+ {
+  "hash": "3cc7fd3d0baee5564b98681ea2e250eef44d475d",
+  "frames": 1200,
+  "completed": true,
+  "checks": {
+   "median": true,
+   "p95": true,
+   "p99": true,
+   "max": true,
+   "max_magic": true,
+   "init": true,
+   "total": true,
+   "sim3_scale_1": true
+  },
+  "camera": {
+   "fx_320": 181.84,
+   "hfov_deg": 82.689,
+   "T_cam_imu_default": true,
+   "centred_square": true
+  },
+  "start_1s": {
+   "gyro_rms": 1.6049626039207099,
+   "accel_dev_rms": 0.5346898492855335
+  },
+  "imu_noise": {
+   "gyro_sigma": 0.07009009212314696,
+   "accel_sigma": 0.2849886518576704
+  },
+  "dark_frames_first_half": "0",
+  "image": {
+   "Y_mean": 93.09523809523809,
+   "chroma_g": 0.324516129032258,
+   "chroma_b": 0.324516129032258,
+   "grad2_mean": 56.758779169572385,
+   "Y_top": 85.0,
+   "Y_bottom": 85.0
+  },
+  "blur_ratio_x_by_px_speed": [
+   0.3887096774193549,
+   0.31612903225806455,
+   null
+  ],
+  "blur_ratio_y_by_px_speed": [
+   0.37419354838709684,
+   0.3306451612903226,
+   0.31612903225806455
+  ],
+  "dynamics": {
+   "jerk_rms": 5.625820382873448,
+   "gyro_rms": 1.273859662916678,
+   "yaw_rms": 0.3364750481580889,
+   "accel_xy_rms": 0.1962539573845916
+  },
+  "payloads": [
+   110488,
+   187709,
+   4682647,
+   27300493,
+   92284138,
+   22337970
+  ],
+  "path": {
+   "distance": 76.78619651698402,
+   "mean_speed": 1.28083730637171,
+   "rms_dist_from_start": 5.46186691434325,
+   "final_dist_from_start": 6.341254663875134,
+   "rms_spread": 3.5856910965725453,
+   "centroid_dist_from_start": 4.120049702364988,
+   "rms_1s_displacement": 1.330334945808623
+  },
+  "start_forward_speed": 2.7512693364868164,
+  "gyro_bias_cam_y": -0.017892789479166667,
+  "gyro_drift": {
+   "rot_rmse_deg": 40.75429193829139,
+   "rot_max_deg": 68.55148727047238,
+   "rpe_rot_deg_per_s": 1.5745059812091873
+  }
+ },
+ {
+  "hash": "f794e77752be1200e8cb3c2d815d4d44ef1584ab",
+  "frames": 1200,
+  "completed": true,
+  "checks": {
+   "median": true,
+   "p95": true,
+   "p99": true,
+   "max": true,
+   "max_magic": true,
+   "init": true,
+   "total": true,
+   "sim3_scale_1": true
+  },
+  "camera": {
+   "fx_320": 188.86,
+   "hfov_deg": 80.542,
+   "T_cam_imu_default": true,
+   "centred_square": true
+  },
+  "start_1s": {
+   "gyro_rms": 1.1537648416548782,
+   "accel_dev_rms": 0.8744523110597486
+  },
+  "imu_noise": {
+   "gyro_sigma": 0.07009009212314696,
+   "accel_sigma": 0.2849886518576704
+  },
+  "dark_frames_first_half": "0",
+  "image": {
+   "Y_mean": 89.04761904761904,
+   "chroma_g": 0.324516129032258,
+   "chroma_b": 0.33483870967741935,
+   "grad2_mean": 66.13050871132616,
+   "Y_top": 85.0,
+   "Y_bottom": 68.0
+  },
+  "blur_ratio_x_by_px_speed": [
+   0.37419354838709684,
+   0.3451612903225807,
+   null
+  ],
+  "blur_ratio_y_by_px_speed": [
+   0.37419354838709684,
+   0.3306451612903226,
+   0.2870967741935484
+  ],
+  "dynamics": {
+   "jerk_rms": 4.044252337947582,
+   "gyro_rms": 0.9782356643334579,
+   "yaw_rms": 0.30475341355111885,
+   "accel_xy_rms": 0.2340294356134012
+  },
+  "payloads": [
+   111190,
+   187834,
+   4815766,
+   27292301,
+   79703258,
+   18151791
+  ],
+  "path": {
+   "distance": 67.70018373938673,
+   "mean_speed": 1.1292774602066178,
+   "rms_dist_from_start": 6.830552102689337,
+   "final_dist_from_start": 8.882462463634015,
+   "rms_spread": 2.7455377886218275,
+   "centroid_dist_from_start": 6.254475539867695,
+   "rms_1s_displacement": 1.1886564490108629
+  },
+  "start_forward_speed": 1.393002108154297,
+  "gyro_bias_cam_y": -0.00241548125,
+  "gyro_drift": {
+   "rot_rmse_deg": 30.528760874824272,
+   "rot_max_deg": 42.993919545452805,
+   "rpe_rot_deg_per_s": 1.2983256082271533
+  }
+ },
+ {
+  "hash": "7519dd967783dbfb7d424b535d4b66243bf31596",
+  "frames": 1200,
+  "completed": true,
+  "checks": {
+   "median": true,
+   "p95": true,
+   "p99": true,
+   "max": true,
+   "max_magic": true,
+   "init": true,
+   "total": true,
+   "sim3_scale_1": true
+  },
+  "camera": {
+   "fx_320": 101.57,
+   "hfov_deg": 115.184,
+   "T_cam_imu_default": true,
+   "centred_square": true
+  },
+  "start_1s": {
+   "gyro_rms": 0.7429971445684741,
+   "accel_dev_rms": 0.32693976711264316
+  },
+  "imu_noise": {
+   "gyro_sigma": 0.07009009212314696,
+   "accel_sigma": 0.2849886518576704
+  },
+  "dark_frames_first_half": "0",
+  "image": {
+   "Y_mean": 80.95238095238095,
+   "chroma_g": 0.324516129032258,
+   "chroma_b": 0.324516129032258,
+   "grad2_mean": 71.38159904456894,
+   "Y_top": 85.0,
+   "Y_bottom": 85.0
+  },
+  "blur_ratio_x_by_px_speed": [
+   0.3887096774193549,
+   null,
+   null
+  ],
+  "blur_ratio_y_by_px_speed": [
+   0.3887096774193549,
+   0.31612903225806455,
+   null
+  ],
+  "dynamics": {
+   "jerk_rms": 2.907305221259214,
+   "gyro_rms": 0.528276478097568,
+   "yaw_rms": 0.125,
+   "accel_xy_rms": 0.12638288556086194
+  },
+  "payloads": [
+   102461,
+   187574,
+   4879252,
+   27263566,
+   67109098,
+   22316840
+  ],
+  "path": {
+   "distance": 50.58733838430203,
+   "mean_speed": 0.8438254943169646,
+   "rms_dist_from_start": 6.255332704452392,
+   "final_dist_from_start": 0.6480004365330528,
+   "rms_spread": 3.1684848839787705,
+   "centroid_dist_from_start": 5.393504499246265,
+   "rms_1s_displacement": 0.9003742066419183
+  },
+  "start_forward_speed": -1.0053031197509765,
+  "gyro_bias_cam_y": -0.016496890416666667,
+  "gyro_drift": {
+   "rot_rmse_deg": 32.17047637732494,
+   "rot_max_deg": 55.28925419365459,
+   "rpe_rot_deg_per_s": 1.1575338270615
+  }
+ },
+ {
+  "hash": "e5cc48d7b6d89ce490af00431200a2781fd9c5fb",
+  "frames": 1200,
+  "completed": true,
+  "checks": {
+   "median": true,
+   "p95": true,
+   "p99": true,
+   "max": true,
+   "max_magic": true,
+   "init": true,
+   "total": true,
+   "sim3_scale_1": true
+  },
+  "camera": {
+   "fx_320": 113.42,
+   "hfov_deg": 109.336,
+   "T_cam_imu_default": true,
+   "centred_square": true
+  },
+  "start_1s": {
+   "gyro_rms": 1.0335577830070277,
+   "accel_dev_rms": 0.6837841577631959
+  },
+  "imu_noise": {
+   "gyro_sigma": 0.07009009212314696,
+   "accel_sigma": 0.2849886518576704
+  },
+  "dark_frames_first_half": "0",
+  "image": {
+   "Y_mean": 89.04761904761904,
+   "chroma_g": 0.324516129032258,
+   "chroma_b": 0.324516129032258,
+   "grad2_mean": 35.88612716705124,
+   "Y_top": 85.0,
+   "Y_bottom": 102.0
+  },
+  "blur_ratio_x_by_px_speed": [
+   0.35967741935483877,
+   0.3306451612903226,
+   null
+  ],
+  "blur_ratio_y_by_px_speed": [
+   0.3887096774193549,
+   0.3306451612903226,
+   0.31612903225806455
+  ],
+  "dynamics": {
+   "jerk_rms": 6.280126636306931,
+   "gyro_rms": 1.5190555234453271,
+   "yaw_rms": 0.30475341355111885,
+   "accel_xy_rms": 0.1797183371806272
+  },
+  "payloads": [
+   103646,
+   187769,
+   4289430,
+   27300494,
+   96479434,
+   26528116
+  ],
+  "path": {
+   "distance": 62.80097604830437,
+   "mean_speed": 1.047555897386228,
+   "rms_dist_from_start": 4.637559315459089,
+   "final_dist_from_start": 5.5500807918866615,
+   "rms_spread": 1.7830974565038058,
+   "centroid_dist_from_start": 4.281065272220342,
+   "rms_1s_displacement": 1.0381514279821298
+  },
+  "start_forward_speed": 0.8911533604736328,
+  "gyro_bias_cam_y": 0.0024468605208333334,
+  "gyro_drift": {
+   "rot_rmse_deg": 33.26683135888818,
+   "rot_max_deg": 52.340837326750524,
+   "rpe_rot_deg_per_s": 1.3252702040273598
+  }
+ },
+ {
+  "hash": "293ef2a9a0d0f14f0bec5ec1f3823a5a17b91627",
+  "frames": 1200,
+  "completed": true,
+  "checks": {
+   "median": true,
+   "p95": true,
+   "p99": true,
+   "max": true,
+   "max_magic": true,
+   "init": true,
+   "total": true,
+   "sim3_scale_1": true
+  },
+  "camera": {
+   "fx_320": 89.96,
+   "hfov_deg": 121.306,
+   "T_cam_imu_default": true,
+   "centred_square": true
+  },
+  "start_1s": {
+   "gyro_rms": 2.0,
+   "accel_dev_rms": 2.338861531195375
+  },
+  "imu_noise": {
+   "gyro_sigma": 0.07009009212314696,
+   "accel_sigma": 0.2849886518576704
+  },
+  "dark_frames_first_half": "0",
+  "image": {
+   "Y_mean": 85.0,
+   "chroma_g": 0.324516129032258,
+   "chroma_b": 0.3141935483870968,
+   "grad2_mean": 48.71517058613716,
+   "Y_top": 85.0,
+   "Y_bottom": 102.0
+  },
+  "blur_ratio_x_by_px_speed": [
+   0.37419354838709684,
+   0.3016129032258065,
+   null
+  ],
+  "blur_ratio_y_by_px_speed": [
+   0.37419354838709684,
+   0.3306451612903226,
+   0.31612903225806455
+  ],
+  "dynamics": {
+   "jerk_rms": 5.625820382873448,
+   "gyro_rms": 1.3910656192458297,
+   "yaw_rms": 0.276022378418453,
+   "accel_xy_rms": 0.2143109957132682
+  },
+  "payloads": [
+   101300,
+   188095,
+   4549525,
+   27300493,
+   92283098,
+   26536243
+  ],
+  "path": {
+   "distance": 70.20923116771382,
+   "mean_speed": 1.1711297942904726,
+   "rms_dist_from_start": 3.6503418716623663,
+   "final_dist_from_start": 4.5635572121098855,
+   "rms_spread": 3.5755856923121905,
+   "centroid_dist_from_start": 0.7349712490593495,
+   "rms_1s_displacement": 1.20242730128097
+  },
+  "start_forward_speed": -0.015215446105957032,
+  "gyro_bias_cam_y": -0.007717963229166667,
+  "gyro_drift": {
+   "rot_rmse_deg": 16.35288385706471,
+   "rot_max_deg": 21.680665440616636,
+   "rpe_rot_deg_per_s": 0.7830947396025432
+  }
+ },
+ {
+  "hash": "5672eb24b81b929174743ef11fee342e38026c04",
+  "frames": 1200,
+  "completed": true,
+  "checks": {
+   "median": true,
+   "p95": true,
+   "p99": true,
+   "max": true,
+   "max_magic": true,
+   "init": true,
+   "total": true,
+   "sim3_scale_1": true
+  },
+  "camera": {
+   "fx_320": 134.21,
+   "hfov_deg": 100.019,
+   "T_cam_imu_default": true,
+   "centred_square": true
+  },
+  "start_1s": {
+   "gyro_rms": 0.12778107010151943,
+   "accel_dev_rms": 0.32693976711264316
+  },
+  "imu_noise": {
+   "gyro_sigma": 0.07009009212314696,
+   "accel_sigma": 0.2849886518576704
+  },
+  "dark_frames_first_half": "0",
+  "image": {
+   "Y_mean": 129.52380952380952,
+   "chroma_g": 0.33483870967741935,
+   "chroma_b": 0.324516129032258,
+   "grad2_mean": 104.59437216072452,
+   "Y_top": 119.0,
+   "Y_bottom": 136.0
+  },
+  "blur_ratio_x_by_px_speed": [
+   0.4322580645161291,
+   0.31612903225806455,
+   null
+  ],
+  "blur_ratio_y_by_px_speed": [
+   0.417741935483871,
+   0.3306451612903226,
+   null
+  ],
+  "dynamics": {
+   "jerk_rms": 2.907305221259214,
+   "gyro_rms": 0.37149857228423705,
+   "yaw_rms": 0.25,
+   "accel_xy_rms": 0.12638288556086194
+  },
+  "payloads": [
+   105725,
+   187558,
+   5207008,
+   27263632,
+   67118362,
+   35424484
+  ],
+  "path": {
+   "distance": 77.9474469080505,
+   "mean_speed": 1.3002076214854128,
+   "rms_dist_from_start": 8.634176911774642,
+   "final_dist_from_start": 17.49822995195284,
+   "rms_spread": 8.031275426774993,
+   "centroid_dist_from_start": 3.1697990414381847,
+   "rms_1s_displacement": 1.3616662072062313
+  },
+  "start_forward_speed": 0.002004104431152344,
+  "gyro_bias_cam_y": -0.013502115416666667,
+  "gyro_drift": {
+   "rot_rmse_deg": 30.184324623042418,
+   "rot_max_deg": 52.59631942257605,
+   "rpe_rot_deg_per_s": 1.127323542048732
+  }
+ },
+ {
+  "hash": "f141220807fd9276019c226bad9cfe3978e04173",
+  "frames": 1200,
+  "completed": true,
+  "checks": {
+   "median": true,
+   "p95": true,
+   "p99": true,
+   "max": true,
+   "max_magic": true,
+   "init": true,
+   "total": true,
+   "sim3_scale_1": true
+  },
+  "camera": {
+   "fx_320": 181.84,
+   "hfov_deg": 82.689,
+   "T_cam_imu_default": true,
+   "centred_square": true
+  },
+  "start_1s": {
+   "gyro_rms": 0.14264253874925165,
+   "accel_dev_rms": 0.32693976711264316
+  },
+  "imu_noise": {
+   "gyro_sigma": 0.07009009212314696,
+   "accel_sigma": 0.2849886518576704
+  },
+  "dark_frames_first_half": "0",
+  "image": {
+   "Y_mean": 129.52380952380952,
+   "chroma_g": 0.33483870967741935,
+   "chroma_b": 0.3141935483870968,
+   "grad2_mean": 89.77171032760955,
+   "Y_top": 119.0,
+   "Y_bottom": 136.0
+  },
+  "blur_ratio_x_by_px_speed": [
+   0.3887096774193549,
+   0.3016129032258065,
+   null
+  ],
+  "blur_ratio_y_by_px_speed": [
+   0.417741935483871,
+   0.3306451612903226,
+   null
+  ],
+  "dynamics": {
+   "jerk_rms": 2.6044024141864637,
+   "gyro_rms": 0.3401975000435943,
+   "yaw_rms": 0.276022378418453,
+   "accel_xy_rms": 0.1797183371806272
+  },
+  "payloads": [
+   110488,
+   187559,
+   5073888,
+   27263632,
+   62922986,
+   35440931
+  ],
+  "path": {
+   "distance": 59.17193253482658,
+   "mean_speed": 0.9870213934082833,
+   "rms_dist_from_start": 9.672322474522833,
+   "final_dist_from_start": 10.107939608153917,
+   "rms_spread": 4.9424416151932204,
+   "centroid_dist_from_start": 8.314210301138992,
+   "rms_1s_displacement": 1.0731589812606654
+  },
+  "start_forward_speed": 0.00184605029296875,
+  "gyro_bias_cam_y": -0.015999411875,
+  "gyro_drift": {
+   "rot_rmse_deg": 36.49440435723066,
+   "rot_max_deg": 61.08274751888362,
+   "rpe_rot_deg_per_s": 1.4895800898412563
+  }
+ },
+ {
+  "hash": "72bef50e78e672e42c2291784a8857f7fb3e32f6",
+  "frames": 1200,
+  "completed": true,
+  "checks": {
+   "median": true,
+   "p95": true,
+   "p99": true,
+   "max": true,
+   "max_magic": true,
+   "init": true,
+   "total": true,
+   "sim3_scale_1": true
+  },
+  "camera": {
+   "fx_320": 188.86,
+   "hfov_deg": 80.542,
+   "T_cam_imu_default": true,
+   "centred_square": true
+  },
+  "start_1s": {
+   "gyro_rms": 0.7429971445684741,
+   "accel_dev_rms": 0.4181045022514187
+  },
+  "imu_noise": {
+   "gyro_sigma": 0.07009009212314696,
+   "accel_sigma": 0.2849886518576704
+  },
+  "dark_frames_first_half": "0",
+  "image": {
+   "Y_mean": 125.47619047619047,
+   "chroma_g": 0.33483870967741935,
+   "chroma_b": 0.33483870967741935,
+   "grad2_mean": 112.89968399436403,
+   "Y_top": 119.0,
+   "Y_bottom": 136.0
+  },
+  "blur_ratio_x_by_px_speed": [
+   0.46129032258064523,
+   0.4322580645161291,
+   null
+  ],
+  "blur_ratio_y_by_px_speed": [
+   0.4322580645161291,
+   0.417741935483871,
+   0.37419354838709684
+  ],
+  "dynamics": {
+   "jerk_rms": 5.039684199579492,
+   "gyro_rms": 0.9782356643334579,
+   "yaw_rms": 0.30475341355111885,
+   "accel_xy_rms": 0.2340294356134012
+  },
+  "payloads": [
+   111190,
+   187638,
+   5274591,
+   27317265,
+   88098106,
+   35453295
+  ],
+  "path": {
+   "distance": 97.45909247634586,
+   "mean_speed": 1.625672935385252,
+   "rms_dist_from_start": 10.65396289060083,
+   "final_dist_from_start": 9.447811969096788,
+   "rms_spread": 9.009901802792395,
+   "centroid_dist_from_start": 5.685824019290251,
+   "rms_1s_displacement": 1.6792271598592456
+  },
+  "start_forward_speed": 0.002644736328125,
+  "gyro_bias_cam_y": -0.015273663125,
+  "gyro_drift": {
+   "rot_rmse_deg": 36.45518781603124,
+   "rot_max_deg": 66.95623292311855,
+   "rpe_rot_deg_per_s": 1.5656923898659612
+  }
+ },
+ {
+  "hash": "c31ed49113cd798c29ed8e84eaeb293c90955ac6",
+  "frames": 1200,
+  "completed": true,
+  "checks": {
+   "median": true,
+   "p95": true,
+   "p99": true,
+   "max": true,
+   "max_magic": true,
+   "init": true,
+   "total": true,
+   "sim3_scale_1": true
+  },
+  "camera": {
+   "fx_320": 101.57,
+   "hfov_deg": 115.184,
+   "T_cam_imu_default": true,
+   "centred_square": true
+  },
+  "start_1s": {
+   "gyro_rms": 0.8294107953587385,
+   "accel_dev_rms": 0.4181045022514187
+  },
+  "imu_noise": {
+   "gyro_sigma": 0.07009009212314696,
+   "accel_sigma": 0.2698512397514017
+  },
+  "dark_frames_first_half": "0",
+  "image": {
+   "Y_mean": 129.52380952380952,
+   "chroma_g": 0.33483870967741935,
+   "chroma_b": 0.324516129032258,
+   "grad2_mean": 104.59437216072452,
+   "Y_top": 119.0,
+   "Y_bottom": 153.0
+  },
+  "blur_ratio_x_by_px_speed": [
+   0.4322580645161291,
+   0.35967741935483877,
+   null
+  ],
+  "blur_ratio_y_by_px_speed": [
+   0.417741935483871,
+   0.3451612903225807,
+   0.2870967741935484
+  ],
+  "dynamics": {
+   "jerk_rms": 4.044252337947582,
+   "gyro_rms": 0.7512169847523573,
+   "yaw_rms": 0.276022378418453,
+   "accel_xy_rms": 0.12638288556086194
+  },
+  "payloads": [
+   102461,
+   187639,
+   5207008,
+   27030224,
+   79704346,
+   39618860
+  ],
+  "path": {
+   "distance": 93.98627237671069,
+   "mean_speed": 1.567744326550637,
+   "rms_dist_from_start": 14.330721133918692,
+   "final_dist_from_start": 9.911002369010372,
+   "rms_spread": 8.449246360191095,
+   "centroid_dist_from_start": 11.574964542621345,
+   "rms_1s_displacement": 1.5942906141341904
+  },
+  "start_forward_speed": -0.41372631646728514,
+  "gyro_bias_cam_y": -0.018940901458333333,
+  "gyro_drift": {
+   "rot_rmse_deg": 37.5876478062667,
+   "rot_max_deg": 69.31558532838253,
+   "rpe_rot_deg_per_s": 1.3277114559273735
+  }
+ },
+ {
+  "hash": "34c68d36d10c489b33a201037242df5469cf0321",
+  "frames": 1200,
+  "completed": true,
+  "checks": {
+   "median": true,
+   "p95": true,
+   "p99": true,
+   "max": true,
+   "max_magic": true,
+   "init": true,
+   "total": true,
+   "sim3_scale_1": true
+  },
+  "camera": {
+   "fx_320": 95.33,
+   "hfov_deg": 118.426,
+   "T_cam_imu_default": true,
+   "centred_square": true
+  },
+  "start_1s": {
+   "gyro_rms": 0.38396524076037203,
+   "accel_dev_rms": 0.19990955777914604
+  },
+  "imu_noise": {
+   "gyro_sigma": 0.07009009212314696,
+   "accel_sigma": 0.2849886518576704
+  },
+  "dark_frames_first_half": "0",
+  "image": {
+   "Y_mean": 125.47619047619047,
+   "chroma_g": 0.33483870967741935,
+   "chroma_b": 0.324516129032258,
+   "grad2_mean": 96.9000293060366,
+   "Y_top": 119.0,
+   "Y_bottom": 136.0
+  },
+  "blur_ratio_x_by_px_speed": [
+   0.4322580645161291,
+   0.3451612903225807,
+   null
+  ],
+  "blur_ratio_y_by_px_speed": [
+   0.4322580645161291,
+   0.3887096774193549,
+   null
+  ],
+  "dynamics": {
+   "jerk_rms": 3.2454368816123864,
+   "gyro_rms": 0.48376588926194586,
+   "yaw_rms": 0.30475341355111885,
+   "accel_xy_rms": 0.25556214020303886
+  },
+  "payloads": [
+   101837,
+   187440,
+   5141471,
+   27263889,
+   71314714,
+   35457383
+  ],
+  "path": {
+   "distance": 74.44585681775769,
+   "mean_speed": 1.2417991128900363,
+   "rms_dist_from_start": 11.495302405299464,
+   "final_dist_from_start": 23.087091520133665,
+   "rms_spread": 7.818111731379683,
+   "centroid_dist_from_start": 8.427283449899322,
+   "rms_1s_displacement": 1.3548848467725476
+  },
+  "start_forward_speed": -0.10275593493652344,
+  "gyro_bias_cam_y": 0.0064081309375,
+  "gyro_drift": {
+   "rot_rmse_deg": 19.85074700343975,
+   "rot_max_deg": 36.15604315516213,
+   "rpe_rot_deg_per_s": 1.4369077561571684
+  }
+ },
+ {
+  "hash": "6fd93fa326fdb4c10159a25f7e5c2647b7857249",
+  "frames": 1200,
+  "completed": true,
+  "checks": {
+   "median": true,
+   "p95": true,
+   "p99": true,
+   "max": true,
+   "max_magic": true,
+   "init": true,
+   "total": true,
+   "sim3_scale_1": true
+  },
+  "camera": {
+   "fx_320": 88.38,
+   "hfov_deg": 122.17,
+   "T_cam_imu_default": true,
+   "centred_square": true
+  },
+  "start_1s": {
+   "gyro_rms": 0.12778107010151943,
+   "accel_dev_rms": 0.32693976711264316
+  },
+  "imu_noise": {
+   "gyro_sigma": 0.07009009212314696,
+   "accel_sigma": 0.2698512397514017
+  },
+  "dark_frames_first_half": "0",
+  "image": {
+   "Y_mean": 129.52380952380952,
+   "chroma_g": 0.33483870967741935,
+   "chroma_b": 0.324516129032258,
+   "grad2_mean": 77.04965199045759,
+   "Y_top": 119.0,
+   "Y_bottom": 153.0
+  },
+  "blur_ratio_x_by_px_speed": [
+   0.417741935483871,
+   null,
+   null
+  ],
+  "blur_ratio_y_by_px_speed": [
+   0.40322580645161293,
+   0.3451612903225807,
+   null
+  ],
+  "dynamics": {
+   "jerk_rms": 4.044252337947582,
+   "gyro_rms": 0.6879222674576144,
+   "yaw_rms": 0.25,
+   "accel_xy_rms": 0.1962539573845916
+  },
+  "payloads": [
+   101142,
+   187558,
+   4944864,
+   27001551,
+   79692042,
+   39639275
+  ],
+  "path": {
+   "distance": 85.00276299167741,
+   "mean_speed": 1.4178942951072129,
+   "rms_dist_from_start": 15.644887591643915,
+   "final_dist_from_start": 20.391098556445623,
+   "rms_spread": 11.278496286556608,
+   "centroid_dist_from_start": 10.842418054534816,
+   "rms_1s_displacement": 1.4798394132323127
+  },
+  "start_forward_speed": 0.0019174009399414063,
+  "gyro_bias_cam_y": 0.0016291966666666666,
+  "gyro_drift": {
+   "rot_rmse_deg": 10.94146909984241,
+   "rot_max_deg": 18.201800335806805,
+   "rpe_rot_deg_per_s": 0.8982666416042153
+  }
+ },
+ {
+  "hash": "dc4e9bfa15c8299535b47df63d64f8e52d0ca9ef",
+  "frames": 1200,
+  "completed": true,
+  "checks": {
+   "median": true,
+   "p95": true,
+   "p99": true,
+   "max": true,
+   "max_magic": true,
+   "init": true,
+   "total": true,
+   "sim3_scale_1": true
+  },
+  "camera": {
+   "fx_320": 134.21,
+   "hfov_deg": 100.019,
+   "T_cam_imu_default": true,
+   "centred_square": true
+  },
+  "start_1s": {
+   "gyro_rms": 0.534120845407201,
+   "accel_dev_rms": 0.25565285890031697
+  },
+  "imu_noise": {
+   "gyro_sigma": 0.07009009212314696,
+   "accel_sigma": 0.2849886518576704
+  },
+  "dark_frames_first_half": "0",
+  "image": {
+   "Y_mean": 109.28571428571428,
+   "chroma_g": 0.3554838709677419,
+   "chroma_b": 0.2935483870967742,
+   "grad2_mean": 355.188471207622,
+   "Y_top": 119.0,
+   "Y_bottom": 119.0
+  },
+  "blur_ratio_x_by_px_speed": [
+   0.46129032258064523,
+   0.3451612903225807,
+   null
+  ],
+  "blur_ratio_y_by_px_speed": [
+   0.5048387096774194,
+   0.40322580645161293,
+   null
+  ],
+  "dynamics": {
+   "jerk_rms": 2.907305221259214,
+   "gyro_rms": 0.48376588926194586,
+   "yaw_rms": 0.30475341355111885,
+   "accel_xy_rms": 0.12638288556086194
+  },
+  "payloads": [
+   105725,
+   187507,
+   6249563,
+   27263958,
+   67120442,
+   31230311
+  ],
+  "path": {
+   "distance": 70.17385980006634,
+   "mean_speed": 1.1705397798176205,
+   "rms_dist_from_start": 6.7945708600870045,
+   "final_dist_from_start": 10.149682726144192,
+   "rms_spread": 4.747134261140152,
+   "centroid_dist_from_start": 4.861163387446753,
+   "rms_1s_displacement": 1.253437242443784
+  },
+  "start_forward_speed": 0.028216192321777345,
+  "gyro_bias_cam_y": -0.01817743875,
+  "gyro_drift": {
+   "rot_rmse_deg": 40.145372501842274,
+   "rot_max_deg": 67.31247900511465,
+   "rpe_rot_deg_per_s": 1.4577042017629382
+  }
+ },
+ {
+  "hash": "616b85ed75c0a92c5b4829a3ac2905369eb9706e",
+  "frames": 1200,
+  "completed": true,
+  "checks": {
+   "median": true,
+   "p95": true,
+   "p99": true,
+   "max": true,
+   "max_magic": true,
+   "init": true,
+   "total": true,
+   "sim3_scale_1": true
+  },
+  "camera": {
+   "fx_320": 181.84,
+   "hfov_deg": 82.689,
+   "T_cam_imu_default": true,
+   "centred_square": true
+  },
+  "start_1s": {
+   "gyro_rms": 0.8294107953587385,
+   "accel_dev_rms": 0.8744523110597486
+  },
+  "imu_noise": {
+   "gyro_sigma": 0.07009009212314696,
+   "accel_sigma": 0.2849886518576704
+  },
+  "dark_frames_first_half": "0",
+  "image": {
+   "Y_mean": 109.28571428571428,
+   "chroma_g": 0.36580645161290326,
+   "chroma_b": 0.2935483870967742,
+   "grad2_mean": 304.85269800137837,
+   "Y_top": 119.0,
+   "Y_bottom": 119.0
+  },
+  "blur_ratio_x_by_px_speed": [
+   0.4467741935483871,
+   0.35967741935483877,
+   null
+  ],
+  "blur_ratio_y_by_px_speed": [
+   0.5048387096774194,
+   0.40322580645161293,
+   0.3451612903225807
+  ],
+  "dynamics": {
+   "jerk_rms": 4.514615665443388,
+   "gyro_rms": 1.068241690814402,
+   "yaw_rms": 0.3364750481580889,
+   "accel_xy_rms": 0.1962539573845916
+  },
+  "payloads": [
+   110488,
+   187831,
+   6118555,
+   27309014,
+   83898666,
+   31250864
+  ],
+  "path": {
+   "distance": 77.37260123785086,
+   "mean_speed": 1.2906188696889216,
+   "rms_dist_from_start": 12.40914313129051,
+   "final_dist_from_start": 13.338821986828862,
+   "rms_spread": 7.324387618287299,
+   "centroid_dist_from_start": 10.016994522806437,
+   "rms_1s_displacement": 1.4275621420988764
+  },
+  "start_forward_speed": -1.7278258663330077,
+  "gyro_bias_cam_y": -0.010895485833333333,
+  "gyro_drift": {
+   "rot_rmse_deg": 28.026777841810844,
+   "rot_max_deg": 42.339270676453566,
+   "rpe_rot_deg_per_s": 1.1939330816073117
+  }
+ },
+ {
+  "hash": "4fb55ea93a6f22ca59d0bb3db2ffb00beefbd66f",
+  "frames": 1200,
+  "completed": true,
+  "checks": {
+   "median": true,
+   "p95": true,
+   "p99": true,
+   "max": true,
+   "max_magic": true,
+   "init": true,
+   "total": true,
+   "sim3_scale_1": true
+  },
+  "camera": {
+   "fx_320": 188.86,
+   "hfov_deg": 80.542,
+   "T_cam_imu_default": true,
+   "centred_square": true
+  },
+  "start_1s": {
+   "gyro_rms": 0.19842513149602486,
+   "accel_dev_rms": 0.4181045022514187
+  },
+  "imu_noise": {
+   "gyro_sigma": 0.07009009212314696,
+   "accel_sigma": 0.2849886518576704
+  },
+  "dark_frames_first_half": "0",
+  "image": {
+   "Y_mean": 105.23809523809523,
+   "chroma_g": 0.36580645161290326,
+   "chroma_b": 0.2935483870967742,
+   "grad2_mean": 762.6107986012216,
+   "Y_top": 102.0,
+   "Y_bottom": 119.0
+  },
+  "blur_ratio_x_by_px_speed": [
+   0.5193548387096775,
+   0.5193548387096775,
+   null
+  ],
+  "blur_ratio_y_by_px_speed": [
+   0.5919354838709678,
+   0.6064516129032258,
+   0.6064516129032258
+  ],
+  "dynamics": {
+   "jerk_rms": 3.6228946570556255,
+   "gyro_rms": 0.528276478097568,
+   "yaw_rms": 0.276022378418453,
+   "accel_xy_rms": 0.2340294356134012
+  },
+  "payloads": [
+   111190,
+   187626,
+   6904986,
+   27383644,
+   75521402,
+   30996776
+  ],
+  "path": {
+   "distance": 77.68471575658121,
+   "mean_speed": 1.2958251168737485,
+   "rms_dist_from_start": 7.425456778237131,
+   "final_dist_from_start": 12.641732896389284,
+   "rms_spread": 6.364194364884768,
+   "centroid_dist_from_start": 3.8254984579054168,
+   "rms_1s_displacement": 1.386873610008229
+  },
+  "start_forward_speed": 0.9401160785522461,
+  "gyro_bias_cam_y": -0.014737961770833334,
+  "gyro_drift": {
+   "rot_rmse_deg": 31.08248389142246,
+   "rot_max_deg": 46.66085894838574,
+   "rpe_rot_deg_per_s": 1.7003627530969856
+  }
+ },
+ {
+  "hash": "9f250c4f6691d11aed2f6a011a64b97b2d7cdb1d",
+  "frames": 1200,
+  "completed": true,
+  "checks": {
+   "median": true,
+   "p95": true,
+   "p99": true,
+   "max": true,
+   "max_magic": true,
+   "init": true,
+   "total": true,
+   "sim3_scale_1": true
+  },
+  "camera": {
+   "fx_320": 101.57,
+   "hfov_deg": 115.184,
+   "T_cam_imu_default": true,
+   "centred_square": true
+  },
+  "start_1s": {
+   "gyro_rms": 0.534120845407201,
+   "accel_dev_rms": 0.6837841577631959
+  },
+  "imu_noise": {
+   "gyro_sigma": 0.07009009212314696,
+   "accel_sigma": 0.2849886518576704
+  },
+  "dark_frames_first_half": "0",
+  "image": {
+   "Y_mean": 121.42857142857142,
+   "chroma_g": 0.3554838709677419,
+   "chroma_b": 0.30387096774193545,
+   "grad2_mean": 654.5368961107747,
+   "Y_top": 153.0,
+   "Y_bottom": 119.0
+  },
+  "blur_ratio_x_by_px_speed": [
+   0.5193548387096775,
+   null,
+   null
+  ],
+  "blur_ratio_y_by_px_speed": [
+   0.5774193548387098,
+   0.4903225806451613,
+   null
+  ],
+  "dynamics": {
+   "jerk_rms": 2.907305221259214,
+   "gyro_rms": 0.37149857228423705,
+   "yaw_rms": 0.16823752407904444,
+   "accel_xy_rms": 0.12638288556086194
+  },
+  "payloads": [
+   102461,
+   187763,
+   6775902,
+   27264347,
+   67109242,
+   31754212
+  ],
+  "path": {
+   "distance": 56.34039486701916,
+   "mean_speed": 0.9397897392330135,
+   "rms_dist_from_start": 5.483903768480221,
+   "final_dist_from_start": 8.663923820696537,
+   "rms_spread": 3.7874831387840127,
+   "centroid_dist_from_start": 3.965875945535662,
+   "rms_1s_displacement": 1.1038768416942564
+  },
+  "start_forward_speed": 0.9436688431396484,
+  "gyro_bias_cam_y": -0.020971183020833332,
+  "gyro_drift": {
+   "rot_rmse_deg": 46.72550219581814,
+   "rot_max_deg": 80.48499487277915,
+   "rpe_rot_deg_per_s": 1.5379084610650884
+  }
+ },
+ {
+  "hash": "1411ebe11cf348657ea4371fd58d2681d01a4d5b",
+  "frames": 1200,
+  "completed": true,
+  "checks": {
+   "median": true,
+   "p95": true,
+   "p99": true,
+   "max": true,
+   "max_magic": true,
+   "init": true,
+   "total": true,
+   "sim3_scale_1": true
+  },
+  "camera": {
+   "fx_320": 67.51,
+   "hfov_deg": 134.247,
+   "T_cam_imu_default": true,
+   "centred_square": true
+  },
+  "start_1s": {
+   "gyro_rms": 0.17775185340866487,
+   "accel_dev_rms": 0.25565285890031697
+  },
+  "imu_noise": {
+   "gyro_sigma": 0.07009009212314696,
+   "accel_sigma": 0.2849886518576704
+  },
+  "dark_frames_first_half": "0",
+  "image": {
+   "Y_mean": 121.42857142857142,
+   "chroma_g": 0.3554838709677419,
+   "chroma_b": 0.2935483870967742,
+   "grad2_mean": 383.39219720312735,
+   "Y_top": 136.0,
+   "Y_bottom": 136.0
+  },
+  "blur_ratio_x_by_px_speed": [
+   0.4467741935483871,
+   null,
+   null
+  ],
+  "blur_ratio_y_by_px_speed": [
+   0.5193548387096775,
+   0.37419354838709684,
+   null
+  ],
+  "dynamics": {
+   "jerk_rms": 3.2454368816123864,
+   "gyro_rms": 0.4056796102015484,
+   "yaw_rms": 0.25,
+   "accel_xy_rms": 0.2340294356134012
+  },
+  "payloads": [
+   99055,
+   187497,
+   6315102,
+   27263831,
+   71303466,
+   35715301
+  ],
+  "path": {
+   "distance": 77.72143994135105,
+   "mean_speed": 1.296437697103437,
+   "rms_dist_from_start": 12.794964813880568,
+   "final_dist_from_start": 19.947651709034425,
+   "rms_spread": 8.7789477522368,
+   "centroid_dist_from_start": 9.308125533744066,
+   "rms_1s_displacement": 1.3279055661132317
+  },
+  "start_forward_speed": 1.4207315346679688,
+  "gyro_bias_cam_y": 0.0116524959375,
+  "gyro_drift": {
+   "rot_rmse_deg": 25.20990856702909,
+   "rot_max_deg": 40.054065794865316,
+   "rpe_rot_deg_per_s": 1.1145788606163007
+  }
+ },
+ {
+  "hash": "ea5ede02321a9d1f92df38efc8abf9b85420ed40",
+  "frames": 1200,
+  "completed": true,
+  "checks": {
+   "median": true,
+   "p95": true,
+   "p99": true,
+   "max": true,
+   "max_magic": true,
+   "init": true,
+   "total": true,
+   "sim3_scale_1": true
+  },
+  "camera": {
+   "fx_320": 127.27,
+   "hfov_deg": 103.0,
+   "T_cam_imu_default": true,
+   "centred_square": true
+  },
+  "start_1s": {
+   "gyro_rms": 0.30812492631290467,
+   "accel_dev_rms": 0.6837841577631959
+  },
+  "imu_noise": {
+   "gyro_sigma": 0.07009009212314696,
+   "accel_sigma": 0.2849886518576704
+  },
+  "dark_frames_first_half": "0",
+  "image": {
+   "Y_mean": 117.38095238095238,
+   "chroma_g": 0.36580645161290326,
+   "chroma_b": 0.2935483870967742,
+   "grad2_mean": 482.16590451686636,
+   "Y_top": 136.0,
+   "Y_bottom": 136.0
+  },
+  "blur_ratio_x_by_px_speed": [
+   0.4467741935483871,
+   0.31612903225806455,
+   null
+  ],
+  "blur_ratio_y_by_px_speed": [
+   0.5193548387096775,
+   0.35967741935483877,
+   null
+  ],
+  "dynamics": {
+   "jerk_rms": 2.907305221259214,
+   "gyro_rms": 0.2612480300206307,
+   "yaw_rms": 0.16823752407904444,
+   "accel_xy_rms": 0.2143109957132682
+  },
+  "payloads": [
+   105031,
+   187758,
+   6511773,
+   27263767,
+   67118378,
+   35710944
+  ],
+  "path": {
+   "distance": 70.87327013234523,
+   "mean_speed": 1.1822063408231065,
+   "rms_dist_from_start": 7.8296344843729235,
+   "final_dist_from_start": 12.393232433900803,
+   "rms_spread": 7.507278046354261,
+   "centroid_dist_from_start": 2.2235000547805264,
+   "rms_1s_displacement": 1.2355784940831374
+  },
+  "start_forward_speed": -0.6609539919433594,
+  "gyro_bias_cam_y": -0.01485523375,
+  "gyro_drift": {
+   "rot_rmse_deg": 35.221493880412936,
+   "rot_max_deg": 58.91161742547758,
+   "rpe_rot_deg_per_s": 1.222025510229561
+  }
+ }
+]

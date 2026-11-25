@@ -1,0 +1,416 @@
+{
+ "evaluation_hashes": [
+  "30755ac25f178027de87c789fc84479dddf293f1",
+  "500bc1fdb426fabd63317942060484b2e0fba0d7",
+  "92c12d5a6a048ed0e8b7dd47ef42428acf666c0f",
+  "9d8c612ee5ad775f77f54efbbf542f5b61ac3578",
+  "d6337f1033b1abc6324d3e1f1926937826bdb31c",
+  "9affc13d7522343cfe4edd888c427bcc47fc3f2e",
+  "bffcea9dd7953a3c5f921535603a22192dfcaf70",
+  "3cc7fd3d0baee5564b98681ea2e250eef44d475d",
+  "f794e77752be1200e8cb3c2d815d4d44ef1584ab",
+  "7519dd967783dbfb7d424b535d4b66243bf31596",
+  "e5cc48d7b6d89ce490af00431200a2781fd9c5fb",
+  "293ef2a9a0d0f14f0bec5ec1f3823a5a17b91627",
+  "5672eb24b81b929174743ef11fee342e38026c04",
+  "f141220807fd9276019c226bad9cfe3978e04173",
+  "72bef50e78e672e42c2291784a8857f7fb3e32f6",
+  "c31ed49113cd798c29ed8e84eaeb293c90955ac6",
+  "34c68d36d10c489b33a201037242df5469cf0321",
+  "6fd93fa326fdb4c10159a25f7e5c2647b7857249",
+  "dc4e9bfa15c8299535b47df63d64f8e52d0ca9ef",
+  "616b85ed75c0a92c5b4829a3ac2905369eb9706e",
+  "4fb55ea93a6f22ca59d0bb3db2ffb00beefbd66f",
+  "9f250c4f6691d11aed2f6a011a64b97b2d7cdb1d",
+  "1411ebe11cf348657ea4371fd58d2681d01a4d5b",
+  "ea5ede02321a9d1f92df38efc8abf9b85420ed40"
+ ],
+ "fuel_floor": 1,
+ "error_floor": 0.001,
+ "fuel_reference": 24000000000.0,
+ "points": [
+  {
+   "id": "8f1d898887f73209",
+   "label": "cpp_minimal",
+   "team_name": "baseline",
+   "team_type": "participant",
+   "own": false,
+   "is_baseline": true,
+   "fuel_per_frame_max": 113,
+   "ate_rmse_mean": 7.55290121482869
+  },
+  {
+   "id": "3f5a84af0d5e7ccc",
+   "label": "vins_mono",
+   "team_name": "baseline",
+   "team_type": "participant",
+   "own": false,
+   "is_baseline": true,
+   "fuel_per_frame_max": 6258556260,
+   "ate_rmse_mean": 1.0983379665990287
+  },
+  {
+   "id": "c2548ee48164bf06",
+   "label": "tiny_cnn",
+   "team_name": "baseline",
+   "team_type": "participant",
+   "own": false,
+   "is_baseline": true,
+   "fuel_per_frame_max": 14684708,
+   "ate_rmse_mean": 9.103597537529291
+  },
+  {
+   "id": "04248fc0ca811d46",
+   "label": "orbslam3",
+   "team_name": "baseline",
+   "team_type": "participant",
+   "own": false,
+   "is_baseline": true,
+   "fuel_per_frame_max": 4567472975,
+   "ate_rmse_mean": 82.81428972202592
+  },
+  {
+   "id": "a57c653df69c24cf",
+   "label": "openvins",
+   "team_name": "baseline",
+   "team_type": "participant",
+   "own": false,
+   "is_baseline": true,
+   "fuel_per_frame_max": 5294401993,
+   "ate_rmse_mean": 0.9123194791100347
+  },
+  {
+   "id": "bb8524dd1d4341e7",
+   "label": "python_minimal",
+   "team_name": "baseline",
+   "team_type": "participant",
+   "own": false,
+   "is_baseline": true,
+   "fuel_per_frame_max": 213768,
+   "ate_rmse_mean": 7.55290121482869
+  },
+  {
+   "id": "c76ad368ab4b9942",
+   "label": "klt_imu",
+   "team_name": "baseline",
+   "team_type": "participant",
+   "own": false,
+   "is_baseline": true,
+   "fuel_per_frame_max": 602009526,
+   "ate_rmse_mean": 84.8170504026045
+  },
+  {
+   "id": "df1728f2e1e0235c",
+   "label": "Keyframe KLT Traditional",
+   "team_name": "Avengers",
+   "team_type": "participant",
+   "own": true,
+   "is_baseline": true,
+   "fuel_per_frame_max": 197780493,
+   "ate_rmse_mean": 56.653375864168275
+  },
+  {
+   "id": "0c0c389002d2c435",
+   "label": "ClassicalS4",
+   "team_name": "goats of 116",
+   "team_type": "participant",
+   "own": false,
+   "is_baseline": true,
+   "fuel_per_frame_max": 311,
+   "ate_rmse_mean": 22.68734978769284
+  },
+  {
+   "id": "58f7a8a611ad4eca",
+   "label": "Run 11, gyro heading + speed prior, low-fuel cpp",
+   "team_name": "Bayesically Lost",
+   "team_type": "participant",
+   "own": false,
+   "is_baseline": true,
+   "fuel_per_frame_max": 81,
+   "ate_rmse_mean": 8.794648194271003
+  },
+  {
+   "id": "19b59f3f69ac1b19",
+   "label": "EKF + CNN 1-s relative pose",
+   "team_name": "Quadrotor lovers",
+   "team_type": "participant",
+   "own": false,
+   "is_baseline": true,
+   "fuel_per_frame_max": 118119364,
+   "ate_rmse_mean": 8.747730675627835
+  },
+  {
+   "id": "6d5e8396a323f45b",
+   "label": "6d5e8396a323f45b",
+   "team_name": "Tae-Leo",
+   "team_type": "participant",
+   "own": false,
+   "is_baseline": true,
+   "fuel_per_frame_max": 13725,
+   "ate_rmse_mean": 11.611285751526992
+  },
+  {
+   "id": "851b5f5f4ed72197",
+   "label": "attempt4",
+   "team_name": "Team Robot",
+   "team_type": "participant",
+   "own": false,
+   "is_baseline": true,
+   "fuel_per_frame_max": 2285376,
+   "ate_rmse_mean": 35.57695015430517
+  },
+  {
+   "id": "18332d7d9c17fd17",
+   "label": "optimized vionet",
+   "team_name": "Servus - 2 and a Half German",
+   "team_type": "participant",
+   "own": false,
+   "is_baseline": true,
+   "fuel_per_frame_max": 20453530,
+   "ate_rmse_mean": 9.255925832266763
+  },
+  {
+   "id": "c63b24285ef2b7bf",
+   "label": "arch-kf_flow_fast",
+   "team_name": "Accelerometer? I Hardly Know Her!",
+   "team_type": "participant",
+   "own": false,
+   "is_baseline": true,
+   "fuel_per_frame_max": 29962247,
+   "ate_rmse_mean": 7.872666702164138
+  },
+  {
+   "id": "ddaf4187cda5e090",
+   "label": "sarveshan_initial_round",
+   "team_name": "No GPS No Problem",
+   "team_type": "participant",
+   "own": false,
+   "is_baseline": true,
+   "fuel_per_frame_max": 4201,
+   "ate_rmse_mean": 8.28895401155338
+  },
+  {
+   "id": "8ae99b3f1e2323f9",
+   "label": "trained translation model over classical approaches",
+   "team_name": "Bayesed Bots",
+   "team_type": "participant",
+   "own": false,
+   "is_baseline": true,
+   "fuel_per_frame_max": 97251,
+   "ate_rmse_mean": 12.757295439199027
+  },
+  {
+   "id": "00d2b47409514bbb",
+   "label": "Learned-speed-1 scale-0.5",
+   "team_name": "modulo",
+   "team_type": "participant",
+   "own": false,
+   "is_baseline": true,
+   "fuel_per_frame_max": 26948353,
+   "ate_rmse_mean": 6.5376450226350755
+  },
+  {
+   "id": "e2f4d8869c0e87dc",
+   "label": "dead_reckoning",
+   "team_name": "baseline",
+   "team_type": "participant",
+   "own": false,
+   "is_baseline": true,
+   "fuel_per_frame_max": 5286664,
+   "ate_rmse_mean": 12.927477608139654
+  },
+  {
+   "id": "3ebb8c0950c52583",
+   "label": "SSM w/ Corrected Warp",
+   "team_name": "Avengers",
+   "team_type": "participant",
+   "own": true,
+   "is_baseline": false,
+   "fuel_per_frame_max": 25904544,
+   "ate_rmse_mean": 8.3671995963599
+  },
+  {
+   "id": "faf84e8c06e79aee",
+   "label": "Expanded SSM",
+   "team_name": "Avengers",
+   "team_type": "participant",
+   "own": true,
+   "is_baseline": false,
+   "fuel_per_frame_max": 25901271,
+   "ate_rmse_mean": 8.246314765890267
+  },
+  {
+   "id": "97d7228a5eca5a05",
+   "label": "Exponential Moving Average",
+   "team_name": "Avengers",
+   "team_type": "participant",
+   "own": true,
+   "is_baseline": false,
+   "fuel_per_frame_max": 25571689,
+   "ate_rmse_mean": 8.048755247638416
+  },
+  {
+   "id": "6870b490959d0710",
+   "label": "b-d0-ssm-x3-c++",
+   "team_name": "Avengers",
+   "team_type": "participant",
+   "own": true,
+   "is_baseline": false,
+   "fuel_per_frame_max": 1074756987,
+   "ate_rmse_mean": 7.632180568159072
+  },
+  {
+   "id": "67b8a4d97b9f161b",
+   "label": "camera direction + blended speed",
+   "team_name": "Avengers",
+   "team_type": "participant",
+   "own": true,
+   "is_baseline": false,
+   "fuel_per_frame_max": 15372959,
+   "ate_rmse_mean": 5.66943687354765
+  },
+  {
+   "id": "5674e74f2668d012",
+   "label": "gp + msckf",
+   "team_name": "Avengers",
+   "team_type": "participant",
+   "own": true,
+   "is_baseline": false,
+   "fuel_per_frame_max": 20510024,
+   "ate_rmse_mean": 2.0666115381792
+  },
+  {
+   "id": "59022b14e9003c79",
+   "label": "GP + MSCKF w/ Startup Velo Gate",
+   "team_name": "Avengers",
+   "team_type": "participant",
+   "own": true,
+   "is_baseline": false,
+   "fuel_per_frame_max": 20512587,
+   "ate_rmse_mean": 1.8359648796290304
+  },
+  {
+   "id": "7ed7d12441fda0e9",
+   "label": "low fuel try",
+   "team_name": "Avengers",
+   "team_type": "participant",
+   "own": true,
+   "is_baseline": false,
+   "fuel_per_frame_max": 4669838,
+   "ate_rmse_mean": 5.124319753773505
+  },
+  {
+   "id": "7a36ac4d8939c543",
+   "label": "GP MSCKF Startup & Drift Fixes",
+   "team_name": "Avengers",
+   "team_type": "participant",
+   "own": true,
+   "is_baseline": false,
+   "fuel_per_frame_max": 19434365,
+   "ate_rmse_mean": 1.1549536419375477
+  },
+  {
+   "id": "5977fe125ff0b4cd",
+   "label": "5977fe125ff0b4cd",
+   "team_name": "Avengers",
+   "team_type": "participant",
+   "own": true,
+   "is_baseline": false,
+   "fuel_per_frame_max": 7676247,
+   "ate_rmse_mean": 1.6024345061193632
+  },
+  {
+   "id": "a16af7a14468a650",
+   "label": "lowfuel experiment",
+   "team_name": "Avengers",
+   "team_type": "participant",
+   "own": true,
+   "is_baseline": false,
+   "fuel_per_frame_max": 2600073,
+   "ate_rmse_mean": 15.236678514074994
+  },
+  {
+   "id": "9cf6355f3141edd0",
+   "label": "9cf6355f3141edd0",
+   "team_name": "Avengers",
+   "team_type": "participant",
+   "own": true,
+   "is_baseline": false,
+   "fuel_per_frame_max": 418823213,
+   "ate_rmse_mean": 1.7900159243797484
+  },
+  {
+   "id": "dd91b3f4872fbd2d",
+   "label": "GP MSCKF filtered gate off",
+   "team_name": "Avengers",
+   "team_type": "participant",
+   "own": true,
+   "is_baseline": false,
+   "fuel_per_frame_max": 3994501,
+   "ate_rmse_mean": 1.5981265908060676
+  },
+  {
+   "id": "c90dc9062be107ac",
+   "label": "student",
+   "team_name": "Avengers",
+   "team_type": "participant",
+   "own": true,
+   "is_baseline": false,
+   "fuel_per_frame_max": 7979502,
+   "ate_rmse_mean": 1.3953077504702638
+  },
+  {
+   "id": "41e08d67acd6a988",
+   "label": "GP + MSCKF w/ GSLV",
+   "team_name": "Avengers",
+   "team_type": "participant",
+   "own": true,
+   "is_baseline": false,
+   "fuel_per_frame_max": 4393770,
+   "ate_rmse_mean": 1.1782347562680695
+  },
+  {
+   "id": "fbd48a479fe639a2",
+   "label": "low fuel mlp",
+   "team_name": "Avengers",
+   "team_type": "participant",
+   "own": true,
+   "is_baseline": false,
+   "fuel_per_frame_max": 2261,
+   "ate_rmse_mean": 12.194885706908712
+  },
+  {
+   "id": "049eb610e7b78afc",
+   "label": "tuned on the 19 worst flights",
+   "team_name": "Avengers",
+   "team_type": "participant",
+   "own": true,
+   "is_baseline": false,
+   "fuel_per_frame_max": 2261,
+   "ate_rmse_mean": 9.984773288892656
+  }
+ ],
+ "baseline_frontier": [
+  "58f7a8a611ad4eca",
+  "8f1d898887f73209",
+  "00d2b47409514bbb",
+  "a57c653df69c24cf"
+ ],
+ "frontier": [
+  "58f7a8a611ad4eca",
+  "8f1d898887f73209",
+  "dd91b3f4872fbd2d",
+  "41e08d67acd6a988",
+  "7a36ac4d8939c543",
+  "a57c653df69c24cf"
+ ],
+ "best_submission_id": "41e08d67acd6a988",
+ "best_frontier": [
+  "58f7a8a611ad4eca",
+  "8f1d898887f73209",
+  "41e08d67acd6a988",
+  "a57c653df69c24cf"
+ ],
+ "error_reference": 10.553577833125203,
+ "claimed_area": 12.418186454370277
+}
