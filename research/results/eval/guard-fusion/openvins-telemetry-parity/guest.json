@@ -1,0 +1,9 @@
+{
+ "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/guard_fusion/vio/artifacts/openvins_telemetry.wasm",
+ "sha256": "3e52c1d67b14fb34c74e50a5df9cd7ac6a0320f74c6ddbb28ad7381c20ae2849",
+ "evaluator_src": "/dev/shm/sebastian-vio/viobench",
+ "archives": [
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fast-104862639_172226823-01.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fast-ProcTHOR-Train-167-01.zip"
+ ]
+}

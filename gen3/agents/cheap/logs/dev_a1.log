@@ -1,0 +1,6 @@
+12 episodes, 0 cached, workers=12 (no video)
+12/12 finished, 22.1s
+cg_a1 smoke n 12 / 12 mean ATE 3.714 median 2.230 >3m 5
+  setting_class {'forest': '8.229 (n=4)', 'room': '0.229 (n=5)', 'warehouse': '3.501 (n=3)'}
+  regime {'benchmark': '2.997 (n=5)', 'free-yaw': '4.226 (n=7)'}
+  start {'hover': '1.017 (n=5)', 'mid-flight': '5.640 (n=7)'}

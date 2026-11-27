@@ -1,0 +1,3 @@
+70c99b24989ee42fa39d4fe5ae505201b24ada99: ok Sim(3) ATE 0.119 m  RPE 0.093 m/1 s  ATE 0.192 m  rot 1.4 deg  vel 0.145 m/s  filled 0  fuel/frame max 2,917,297 (p95 2,525,222)  wall/frame 0.3 ms
+report: /tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-ro-9300244/report-solution/report.json
+summary: 1/1 episodes completed, raw ATE mean 0.192 m, fuel/frame max 2,917,297 (mean 2,088,205, median 2,162,584, p95 2,525,222, p99 2,675,036)

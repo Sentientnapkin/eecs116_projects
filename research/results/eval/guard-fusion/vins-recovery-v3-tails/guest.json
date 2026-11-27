@@ -1,0 +1,9 @@
+{
+ "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/guard_fusion/vio/artifacts/vins_recovery_v3.wasm",
+ "sha256": "b5bc5211e42b87737272d320e42e47d01f1735db4e6b965f86795d05fc93a4d9",
+ "evaluator_src": "/dev/shm/sebastian-vio/viobench",
+ "archives": [
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fastmid-104348361_171513414-02.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fastmid-108294897_176710602-00.zip"
+ ]
+}

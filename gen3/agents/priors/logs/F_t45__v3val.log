@@ -1,0 +1,27 @@
+430 episodes, 0 cached, workers=20 (no video)
+20/430 finished, 17.6s
+40/430 finished, 34.9s
+60/430 finished, 52.0s
+80/430 finished, 68.8s
+100/430 finished, 85.9s
+120/430 finished, 102.8s
+140/430 finished, 112.9s
+160/430 finished, 124.8s
+180/430 finished, 131.6s
+200/430 finished, 139.8s
+220/430 finished, 150.6s
+240/430 finished, 161.9s
+260/430 finished, 170.6s
+280/430 finished, 178.5s
+300/430 finished, 186.9s
+320/430 finished, 198.0s
+340/430 finished, 208.6s
+360/430 finished, 219.7s
+380/430 finished, 230.0s
+400/430 finished, 241.7s
+420/430 finished, 252.4s
+430/430 finished, 256.6s
+pr_F_t45 v3val n 430 / 430 mean ATE 0.948 median 0.776 >3m 10
+  setting_class {'forest': '1.261 (n=112)', 'room': '0.451 (n=209)', 'warehouse': '1.579 (n=109)'}
+  regime {'benchmark': '0.770 (n=146)', 'free-yaw': '1.040 (n=284)'}
+  start {'hover': '0.801 (n=80)', 'mid-flight': '0.982 (n=350)'}

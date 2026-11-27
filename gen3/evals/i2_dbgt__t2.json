@@ -1,0 +1,16 @@
+[
+{
+"id": "s3v3va-fo-9300452",
+"ate": 0.428356936582424,
+"err": null,
+"peak": 3460257,
+"setting_class": "forest",
+"regime": "free-yaw",
+"motion_style": "EH",
+"start": "mid-flight",
+"start_fwd_speed": 0.13590982436877785,
+"fov_deg": 108.06356,
+"exposure_s": 0.04,
+"scene_variant": "official"
+}
+]

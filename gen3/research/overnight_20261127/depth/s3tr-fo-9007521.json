@@ -1,0 +1,21 @@
+{
+  "id": "s3tr-fo-9007521",
+  "scene": "/data/backups/rganapa/Sebastian/gen3/scenes/forest-016.glb",
+  "n": 20,
+  "rgb_shape": [
+    20,
+    120,
+    160,
+    3
+  ],
+  "depth_shape": [
+    20,
+    120,
+    160
+  ],
+  "valid_fraction": 0.9209192708333334,
+  "scene_load_s": 4.904189825057983,
+  "exposure_s": null,
+  "label_timing": "sharp mid-exposure render",
+  "depth_units": "meters; optical-axis z; inf invalid"
+}

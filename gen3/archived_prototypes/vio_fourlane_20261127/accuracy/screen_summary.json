@@ -1,0 +1,34 @@
+{
+  "results": {
+    "baseline": {
+      "experiment": "baseline",
+      "batch": "screen",
+      "wasm_sha256": "1a169f28916acd813f86a7b526efb8e8b646b3dda73e48cba51b12845c69b1b8",
+      "n": 18,
+      "mean_ate": 0.43485038359560874,
+      "median_ate": 0.41317314052431087,
+      "max_peak_fuel": 4030586
+    },
+    "da025": {
+      "experiment": "da025",
+      "batch": "screen",
+      "wasm_sha256": "2906d431dd8c967ca3898fad6028d200f96cee1eea225edb84de7fcad241875a",
+      "n": 18,
+      "mean_ate": 0.44669133326719834,
+      "median_ate": 0.43102321797224247,
+      "max_peak_fuel": 4026513
+    },
+    "da040": {
+      "experiment": "da040",
+      "batch": "screen",
+      "wasm_sha256": "3aca93ddd10c0bd3953f0ec19f6f1f0e03443859f04db971271f30131b420148",
+      "n": 18,
+      "mean_ate": 0.4141718371879309,
+      "median_ate": 0.37019418120975023,
+      "max_peak_fuel": 3810545
+    }
+  },
+  "passed": [
+    "da040"
+  ]
+}

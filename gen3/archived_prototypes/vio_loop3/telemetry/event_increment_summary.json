@@ -1,0 +1,1623 @@
+{
+  "n": 9,
+  "bad_ids": [
+    "s3v3va-wa-9300423",
+    "s3v3va-ro-9300224",
+    "s3v3va-wa-9300313",
+    "s3v3va-ro-9300016",
+    "s3v3va-ro-9300242"
+  ],
+  "good_ids": [
+    "s3v3va-ro-9300284",
+    "s3v3va-ro-9300157",
+    "s3v3va-ro-9300201",
+    "s3v3va-ro-9300231"
+  ],
+  "definition": "error increment = norm of consecutive position-error vector difference after established +37.5 ms timestamp alignment; event frame and +1/+2 frame associations. Per-flight Q90 normalization. Descriptive association, not causation. Covdiagonal is frame-native diag(Pm) instrument proxy; no covariance propagation/camera-origin transform, so not NEES/NIS. Event definitions use S counters (gate>0 or att>tri, map_match, map_accept, KLT fail), T anchor count increase, and live-track decrease.",
+  "groups": {
+    "bad": {
+      "flights": 5,
+      "median_error_increment_q90": 0.05500520551187983,
+      "events": {
+        "anchor": {
+          "0": {
+            "flights_with_events": 5,
+            "total_event_frames": 410,
+            "median_within_flight_q90_ratio": 0.2068525978825009,
+            "non_event_median_within_flight_q90_ratio": 0.23201276025539172
+          },
+          "1": {
+            "flights_with_events": 5,
+            "total_event_frames": 410,
+            "median_within_flight_q90_ratio": 0.24952580211747774,
+            "non_event_median_within_flight_q90_ratio": 0.23420960801890783
+          },
+          "2": {
+            "flights_with_events": 5,
+            "total_event_frames": 410,
+            "median_within_flight_q90_ratio": 0.22290961567146694,
+            "non_event_median_within_flight_q90_ratio": 0.232468673845452
+          }
+        },
+        "gate_or_tri_rej": {
+          "0": {
+            "flights_with_events": 5,
+            "total_event_frames": 3517,
+            "median_within_flight_q90_ratio": 0.22416609885245029,
+            "non_event_median_within_flight_q90_ratio": 0.22214685319312275
+          },
+          "1": {
+            "flights_with_events": 5,
+            "total_event_frames": 3514,
+            "median_within_flight_q90_ratio": 0.27940016294552883,
+            "non_event_median_within_flight_q90_ratio": 0.18941854701800118
+          },
+          "2": {
+            "flights_with_events": 5,
+            "total_event_frames": 3512,
+            "median_within_flight_q90_ratio": 0.224971444525809,
+            "non_event_median_within_flight_q90_ratio": 0.23838453882212068
+          }
+        },
+        "map_match": {
+          "0": {
+            "flights_with_events": 4,
+            "total_event_frames": 85,
+            "median_within_flight_q90_ratio": 0.24240665232365757,
+            "non_event_median_within_flight_q90_ratio": 0.23487965902639185
+          },
+          "1": {
+            "flights_with_events": 4,
+            "total_event_frames": 85,
+            "median_within_flight_q90_ratio": 0.9801167445117529,
+            "non_event_median_within_flight_q90_ratio": 0.23487965902639185
+          },
+          "2": {
+            "flights_with_events": 4,
+            "total_event_frames": 85,
+            "median_within_flight_q90_ratio": 0.2692525913359712,
+            "non_event_median_within_flight_q90_ratio": 0.24159789909841947
+          }
+        },
+        "map_accept": {
+          "0": {
+            "flights_with_events": 4,
+            "total_event_frames": 85,
+            "median_within_flight_q90_ratio": 0.24240665232365757,
+            "non_event_median_within_flight_q90_ratio": 0.23487965902639185
+          },
+          "1": {
+            "flights_with_events": 4,
+            "total_event_frames": 85,
+            "median_within_flight_q90_ratio": 0.9801167445117529,
+            "non_event_median_within_flight_q90_ratio": 0.23487965902639185
+          },
+          "2": {
+            "flights_with_events": 4,
+            "total_event_frames": 85,
+            "median_within_flight_q90_ratio": 0.2692525913359712,
+            "non_event_median_within_flight_q90_ratio": 0.24159789909841947
+          }
+        },
+        "klt_fail": {
+          "0": {
+            "flights_with_events": 5,
+            "total_event_frames": 2502,
+            "median_within_flight_q90_ratio": 0.257683449046342,
+            "non_event_median_within_flight_q90_ratio": 0.23070452726483376
+          },
+          "1": {
+            "flights_with_events": 5,
+            "total_event_frames": 2500,
+            "median_within_flight_q90_ratio": 0.265809342875928,
+            "non_event_median_within_flight_q90_ratio": 0.22522149425417268
+          },
+          "2": {
+            "flights_with_events": 5,
+            "total_event_frames": 2498,
+            "median_within_flight_q90_ratio": 0.232468673845452,
+            "non_event_median_within_flight_q90_ratio": 0.25515615507956996
+          }
+        },
+        "track_drop": {
+          "0": {
+            "flights_with_events": 5,
+            "total_event_frames": 1560,
+            "median_within_flight_q90_ratio": 0.25219411654686025,
+            "non_event_median_within_flight_q90_ratio": 0.23236914549330415
+          },
+          "1": {
+            "flights_with_events": 5,
+            "total_event_frames": 1560,
+            "median_within_flight_q90_ratio": 0.26858927506806257,
+            "non_event_median_within_flight_q90_ratio": 0.23165637501747935
+          },
+          "2": {
+            "flights_with_events": 5,
+            "total_event_frames": 1558,
+            "median_within_flight_q90_ratio": 0.21385008544613313,
+            "non_event_median_within_flight_q90_ratio": 0.24352347764472113
+          }
+        }
+      }
+    },
+    "good": {
+      "flights": 4,
+      "median_error_increment_q90": 0.022035087467182142,
+      "events": {
+        "anchor": {
+          "0": {
+            "flights_with_events": 4,
+            "total_event_frames": 378,
+            "median_within_flight_q90_ratio": 0.26020064811839005,
+            "non_event_median_within_flight_q90_ratio": 0.25619370339376335
+          },
+          "1": {
+            "flights_with_events": 4,
+            "total_event_frames": 378,
+            "median_within_flight_q90_ratio": 0.2181261424742998,
+            "non_event_median_within_flight_q90_ratio": 0.26474751199363006
+          },
+          "2": {
+            "flights_with_events": 4,
+            "total_event_frames": 378,
+            "median_within_flight_q90_ratio": 0.2513629209480187,
+            "non_event_median_within_flight_q90_ratio": 0.257419166539573
+          }
+        },
+        "gate_or_tri_rej": {
+          "0": {
+            "flights_with_events": 4,
+            "total_event_frames": 3243,
+            "median_within_flight_q90_ratio": 0.2791337379668568,
+            "non_event_median_within_flight_q90_ratio": 0.22414658565132217
+          },
+          "1": {
+            "flights_with_events": 4,
+            "total_event_frames": 3241,
+            "median_within_flight_q90_ratio": 0.35109622329960727,
+            "non_event_median_within_flight_q90_ratio": 0.17277410667609822
+          },
+          "2": {
+            "flights_with_events": 4,
+            "total_event_frames": 3239,
+            "median_within_flight_q90_ratio": 0.26849850726410507,
+            "non_event_median_within_flight_q90_ratio": 0.2403411999962774
+          }
+        },
+        "map_match": {
+          "0": {
+            "flights_with_events": 4,
+            "total_event_frames": 254,
+            "median_within_flight_q90_ratio": 0.2735050151676686,
+            "non_event_median_within_flight_q90_ratio": 0.2567478910010561
+          },
+          "1": {
+            "flights_with_events": 4,
+            "total_event_frames": 254,
+            "median_within_flight_q90_ratio": 0.4945103376627319,
+            "non_event_median_within_flight_q90_ratio": 0.24802074760606502
+          },
+          "2": {
+            "flights_with_events": 4,
+            "total_event_frames": 254,
+            "median_within_flight_q90_ratio": 0.3014228929265048,
+            "non_event_median_within_flight_q90_ratio": 0.2561061614890961
+          }
+        },
+        "map_accept": {
+          "0": {
+            "flights_with_events": 4,
+            "total_event_frames": 254,
+            "median_within_flight_q90_ratio": 0.2735050151676686,
+            "non_event_median_within_flight_q90_ratio": 0.2567478910010561
+          },
+          "1": {
+            "flights_with_events": 4,
+            "total_event_frames": 254,
+            "median_within_flight_q90_ratio": 0.4945103376627319,
+            "non_event_median_within_flight_q90_ratio": 0.24802074760606502
+          },
+          "2": {
+            "flights_with_events": 4,
+            "total_event_frames": 254,
+            "median_within_flight_q90_ratio": 0.3014228929265048,
+            "non_event_median_within_flight_q90_ratio": 0.2561061614890961
+          }
+        },
+        "klt_fail": {
+          "0": {
+            "flights_with_events": 4,
+            "total_event_frames": 2661,
+            "median_within_flight_q90_ratio": 0.26476243034539015,
+            "non_event_median_within_flight_q90_ratio": 0.24843297927810168
+          },
+          "1": {
+            "flights_with_events": 4,
+            "total_event_frames": 2660,
+            "median_within_flight_q90_ratio": 0.2791261652967504,
+            "non_event_median_within_flight_q90_ratio": 0.23412135818531765
+          },
+          "2": {
+            "flights_with_events": 4,
+            "total_event_frames": 2659,
+            "median_within_flight_q90_ratio": 0.2591630137932447,
+            "non_event_median_within_flight_q90_ratio": 0.24841900823023666
+          }
+        },
+        "track_drop": {
+          "0": {
+            "flights_with_events": 4,
+            "total_event_frames": 1731,
+            "median_within_flight_q90_ratio": 0.2559068025782696,
+            "non_event_median_within_flight_q90_ratio": 0.2617883096126902
+          },
+          "1": {
+            "flights_with_events": 4,
+            "total_event_frames": 1730,
+            "median_within_flight_q90_ratio": 0.2817544988325401,
+            "non_event_median_within_flight_q90_ratio": 0.2501946966258035
+          },
+          "2": {
+            "flights_with_events": 4,
+            "total_event_frames": 1729,
+            "median_within_flight_q90_ratio": 0.26920324781968097,
+            "non_event_median_within_flight_q90_ratio": 0.2509880764257075
+          }
+        }
+      }
+    }
+  },
+  "flights": [
+    {
+      "id": "s3v3va-wa-9300423",
+      "group": "bad",
+      "error_increment_q90": 0.0424665227555838,
+      "events": {
+        "anchor": {
+          "0": {
+            "n": 51,
+            "median": 0.010935313913662115,
+            "q90_normalized_median": 0.25750433998564815,
+            "above_flight_q90": 3,
+            "non_event_q90_normalized_median": 0.3150578785881465
+          },
+          "1": {
+            "n": 51,
+            "median": 0.01059649315372717,
+            "q90_normalized_median": 0.24952580211747774,
+            "above_flight_q90": 4,
+            "non_event_q90_normalized_median": 0.31423005019829015
+          },
+          "2": {
+            "n": 51,
+            "median": 0.011858229482859675,
+            "q90_normalized_median": 0.27923711934480133,
+            "above_flight_q90": 8,
+            "non_event_q90_normalized_median": 0.3129803658778028
+          }
+        },
+        "gate_or_tri_rej": {
+          "0": {
+            "n": 1075,
+            "median": 0.01414516205362401,
+            "q90_normalized_median": 0.33308971716466007,
+            "above_flight_q90": 112,
+            "non_event_q90_normalized_median": 0.19804218788430475
+          },
+          "1": {
+            "n": 1074,
+            "median": 0.01462878233344294,
+            "q90_normalized_median": 0.34447798840604255,
+            "above_flight_q90": 118,
+            "non_event_q90_normalized_median": 0.1498902590806766
+          },
+          "2": {
+            "n": 1073,
+            "median": 0.013852549751079954,
+            "q90_normalized_median": 0.32619929422543836,
+            "above_flight_q90": 108,
+            "non_event_q90_normalized_median": 0.2210969392615424
+          }
+        },
+        "map_match": {
+          "0": {
+            "n": 4,
+            "median": 0.005736568763534092,
+            "q90_normalized_median": 0.13508449459238586,
+            "above_flight_q90": 1,
+            "non_event_q90_normalized_median": 0.310799425597057
+          },
+          "1": {
+            "n": 4,
+            "median": 0.09065679621163822,
+            "q90_normalized_median": 2.1347826553498077,
+            "above_flight_q90": 4,
+            "non_event_q90_normalized_median": 0.3096521496822878
+          },
+          "2": {
+            "n": 4,
+            "median": 0.022000607439484267,
+            "q90_normalized_median": 0.5180694347429581,
+            "above_flight_q90": 0,
+            "non_event_q90_normalized_median": 0.31009748497719897
+          }
+        },
+        "map_accept": {
+          "0": {
+            "n": 4,
+            "median": 0.005736568763534092,
+            "q90_normalized_median": 0.13508449459238586,
+            "above_flight_q90": 1,
+            "non_event_q90_normalized_median": 0.310799425597057
+          },
+          "1": {
+            "n": 4,
+            "median": 0.09065679621163822,
+            "q90_normalized_median": 2.1347826553498077,
+            "above_flight_q90": 4,
+            "non_event_q90_normalized_median": 0.3096521496822878
+          },
+          "2": {
+            "n": 4,
+            "median": 0.022000607439484267,
+            "q90_normalized_median": 0.5180694347429581,
+            "above_flight_q90": 0,
+            "non_event_q90_normalized_median": 0.31009748497719897
+          }
+        },
+        "klt_fail": {
+          "0": {
+            "n": 616,
+            "median": 0.012024960074696198,
+            "q90_normalized_median": 0.2831632847338571,
+            "above_flight_q90": 46,
+            "non_event_q90_normalized_median": 0.3466598844512842
+          },
+          "1": {
+            "n": 615,
+            "median": 0.012031921016639368,
+            "q90_normalized_median": 0.2833272007197087,
+            "above_flight_q90": 54,
+            "non_event_q90_normalized_median": 0.3453152341862825
+          },
+          "2": {
+            "n": 614,
+            "median": 0.011378569605294825,
+            "q90_normalized_median": 0.26794210749922276,
+            "above_flight_q90": 50,
+            "non_event_q90_normalized_median": 0.35643734710073993
+          }
+        },
+        "track_drop": {
+          "0": {
+            "n": 302,
+            "median": 0.013301176547047367,
+            "q90_normalized_median": 0.3132155798015846,
+            "above_flight_q90": 25,
+            "non_event_q90_normalized_median": 0.31009748497719897
+          },
+          "1": {
+            "n": 302,
+            "median": 0.014139485850587769,
+            "q90_normalized_median": 0.33295605415982893,
+            "above_flight_q90": 28,
+            "non_event_q90_normalized_median": 0.30500805316486335
+          },
+          "2": {
+            "n": 302,
+            "median": 0.0129770368970779,
+            "q90_normalized_median": 0.30558275213083197,
+            "above_flight_q90": 29,
+            "non_event_q90_normalized_median": 0.310799425597057
+          }
+        }
+      },
+      "covdiag_proxy_median": {
+        "TH": 0.00023150999999999998,
+        "V": 0.015114,
+        "BG": 1.2051e-05
+      }
+    },
+    {
+      "id": "s3v3va-ro-9300224",
+      "group": "bad",
+      "error_increment_q90": 0.05500520551187983,
+      "events": {
+        "anchor": {
+          "0": {
+            "n": 106,
+            "median": 0.0113779696571932,
+            "q90_normalized_median": 0.2068525978825009,
+            "above_flight_q90": 10,
+            "non_event_q90_normalized_median": 0.21914391453621276
+          },
+          "1": {
+            "n": 106,
+            "median": 0.0143161962830948,
+            "q90_normalized_median": 0.2602698444605,
+            "above_flight_q90": 12,
+            "non_event_q90_normalized_median": 0.21664738719610654
+          },
+          "2": {
+            "n": 106,
+            "median": 0.01005138301046039,
+            "q90_normalized_median": 0.18273512328373226,
+            "above_flight_q90": 5,
+            "non_event_q90_normalized_median": 0.2217060562119784
+          }
+        },
+        "gate_or_tri_rej": {
+          "0": {
+            "n": 451,
+            "median": 0.012330302336175398,
+            "q90_normalized_median": 0.22416609885245029,
+            "above_flight_q90": 49,
+            "non_event_q90_normalized_median": 0.21261931270231726
+          },
+          "1": {
+            "n": 450,
+            "median": 0.015055053153360136,
+            "q90_normalized_median": 0.27370233441103314,
+            "above_flight_q90": 72,
+            "non_event_q90_normalized_median": 0.18941854701800118
+          },
+          "2": {
+            "n": 450,
+            "median": 0.012374600540446597,
+            "q90_normalized_median": 0.224971444525809,
+            "above_flight_q90": 46,
+            "non_event_q90_normalized_median": 0.20849760999963887
+          }
+        },
+        "map_match": {
+          "0": {
+            "n": 24,
+            "median": 0.00960815373573438,
+            "q90_normalized_median": 0.17467717184802162,
+            "above_flight_q90": 2,
+            "non_event_q90_normalized_median": 0.2204683098541756
+          },
+          "1": {
+            "n": 24,
+            "median": 0.047690533548093744,
+            "q90_normalized_median": 0.8670185504132643,
+            "above_flight_q90": 10,
+            "non_event_q90_normalized_median": 0.21211648519170556
+          },
+          "2": {
+            "n": 24,
+            "median": 0.016159147885388317,
+            "q90_normalized_median": 0.29377488430432863,
+            "above_flight_q90": 0,
+            "non_event_q90_normalized_median": 0.216949311703458
+          }
+        },
+        "map_accept": {
+          "0": {
+            "n": 24,
+            "median": 0.00960815373573438,
+            "q90_normalized_median": 0.17467717184802162,
+            "above_flight_q90": 2,
+            "non_event_q90_normalized_median": 0.2204683098541756
+          },
+          "1": {
+            "n": 24,
+            "median": 0.047690533548093744,
+            "q90_normalized_median": 0.8670185504132643,
+            "above_flight_q90": 10,
+            "non_event_q90_normalized_median": 0.21211648519170556
+          },
+          "2": {
+            "n": 24,
+            "median": 0.016159147885388317,
+            "q90_normalized_median": 0.29377488430432863,
+            "above_flight_q90": 0,
+            "non_event_q90_normalized_median": 0.216949311703458
+          }
+        },
+        "klt_fail": {
+          "0": {
+            "n": 558,
+            "median": 0.011381196520488374,
+            "q90_normalized_median": 0.20691126257187245,
+            "above_flight_q90": 54,
+            "non_event_q90_normalized_median": 0.23070452726483376
+          },
+          "1": {
+            "n": 557,
+            "median": 0.011738761017761482,
+            "q90_normalized_median": 0.21341181999994865,
+            "above_flight_q90": 61,
+            "non_event_q90_normalized_median": 0.22155150995068548
+          },
+          "2": {
+            "n": 556,
+            "median": 0.011131944722865123,
+            "q90_normalized_median": 0.2023798405854676,
+            "above_flight_q90": 48,
+            "non_event_q90_normalized_median": 0.25515615507956996
+          }
+        },
+        "track_drop": {
+          "0": {
+            "n": 327,
+            "median": 0.011590463424953111,
+            "q90_normalized_median": 0.21071575530155676,
+            "above_flight_q90": 30,
+            "non_event_q90_normalized_median": 0.22186060247327127
+          },
+          "1": {
+            "n": 327,
+            "median": 0.011221703345687745,
+            "q90_normalized_median": 0.20401166110113197,
+            "above_flight_q90": 35,
+            "non_event_q90_normalized_median": 0.22675778212467038
+          },
+          "2": {
+            "n": 326,
+            "median": 0.010322462451999,
+            "q90_normalized_median": 0.18766337396502575,
+            "above_flight_q90": 23,
+            "non_event_q90_normalized_median": 0.2366367263490698
+          }
+        }
+      },
+      "covdiag_proxy_median": {
+        "TH": 0.00052664,
+        "V": 0.0239216,
+        "BG": 1.3681999999999999e-05
+      }
+    },
+    {
+      "id": "s3v3va-wa-9300313",
+      "group": "bad",
+      "error_increment_q90": 0.053086426333122286,
+      "events": {
+        "anchor": {
+          "0": {
+            "n": 37,
+            "median": 0.010081434798445161,
+            "q90_normalized_median": 0.18990607382729469,
+            "above_flight_q90": 2,
+            "non_event_q90_normalized_median": 0.27226953700391926
+          },
+          "1": {
+            "n": 37,
+            "median": 0.008030308318071262,
+            "q90_normalized_median": 0.1512685798000477,
+            "above_flight_q90": 1,
+            "non_event_q90_normalized_median": 0.27226953700391926
+          },
+          "2": {
+            "n": 37,
+            "median": 0.01045300303952372,
+            "q90_normalized_median": 0.19690538168702768,
+            "above_flight_q90": 2,
+            "non_event_q90_normalized_median": 0.27226953700391926
+          }
+        },
+        "gate_or_tri_rej": {
+          "0": {
+            "n": 1091,
+            "median": 0.014424589358568402,
+            "q90_normalized_median": 0.2717189751680167,
+            "above_flight_q90": 113,
+            "non_event_q90_normalized_median": 0.24076408438727664
+          },
+          "1": {
+            "n": 1090,
+            "median": 0.014832356167670178,
+            "q90_normalized_median": 0.27940016294552883,
+            "above_flight_q90": 117,
+            "non_event_q90_normalized_median": 0.14619365890117125
+          },
+          "2": {
+            "n": 1089,
+            "median": 0.014256162250418581,
+            "q90_normalized_median": 0.26854627887286725,
+            "above_flight_q90": 110,
+            "non_event_q90_normalized_median": 0.2526627869813923
+          }
+        },
+        "map_match": {
+          "0": {
+            "n": 0,
+            "median": null,
+            "q90_normalized_median": null,
+            "above_flight_q90": 0,
+            "non_event_q90_normalized_median": 0.26816814345153805
+          },
+          "1": {
+            "n": 0,
+            "median": null,
+            "q90_normalized_median": null,
+            "above_flight_q90": 0,
+            "non_event_q90_normalized_median": 0.26816814345153805
+          },
+          "2": {
+            "n": 0,
+            "median": null,
+            "q90_normalized_median": null,
+            "above_flight_q90": 0,
+            "non_event_q90_normalized_median": 0.26816814345153805
+          }
+        },
+        "map_accept": {
+          "0": {
+            "n": 0,
+            "median": null,
+            "q90_normalized_median": null,
+            "above_flight_q90": 0,
+            "non_event_q90_normalized_median": 0.26816814345153805
+          },
+          "1": {
+            "n": 0,
+            "median": null,
+            "q90_normalized_median": null,
+            "above_flight_q90": 0,
+            "non_event_q90_normalized_median": 0.26816814345153805
+          },
+          "2": {
+            "n": 0,
+            "median": null,
+            "q90_normalized_median": null,
+            "above_flight_q90": 0,
+            "non_event_q90_normalized_median": 0.26816814345153805
+          }
+        },
+        "klt_fail": {
+          "0": {
+            "n": 624,
+            "median": 0.013679493435063503,
+            "q90_normalized_median": 0.257683449046342,
+            "above_flight_q90": 59,
+            "non_event_q90_normalized_median": 0.2739747810811145
+          },
+          "1": {
+            "n": 624,
+            "median": 0.014110868099238595,
+            "q90_normalized_median": 0.265809342875928,
+            "above_flight_q90": 64,
+            "non_event_q90_normalized_median": 0.2730926921039505
+          },
+          "2": {
+            "n": 624,
+            "median": 0.014511286251248132,
+            "q90_normalized_median": 0.2733521024788607,
+            "above_flight_q90": 62,
+            "non_event_q90_normalized_median": 0.257683449046342
+          }
+        },
+        "track_drop": {
+          "0": {
+            "n": 382,
+            "median": 0.013637226523710733,
+            "q90_normalized_median": 0.25688725848931443,
+            "above_flight_q90": 38,
+            "non_event_q90_normalized_median": 0.27011086947832746
+          },
+          "1": {
+            "n": 382,
+            "median": 0.01447964804556039,
+            "q90_normalized_median": 0.27275612705024155,
+            "above_flight_q90": 36,
+            "non_event_q90_normalized_median": 0.265809342875928
+          },
+          "2": {
+            "n": 381,
+            "median": 0.01323794307489692,
+            "q90_normalized_median": 0.24936587352532624,
+            "above_flight_q90": 40,
+            "non_event_q90_normalized_median": 0.27226953700391926
+          }
+        }
+      },
+      "covdiag_proxy_median": {
+        "TH": 0.00018223000000000002,
+        "V": 0.02269,
+        "BG": 1.1129e-05
+      }
+    },
+    {
+      "id": "s3v3va-ro-9300016",
+      "group": "bad",
+      "error_increment_q90": 0.06356274093925207,
+      "events": {
+        "anchor": {
+          "0": {
+            "n": 112,
+            "median": 0.012982777924193417,
+            "q90_normalized_median": 0.20425138583311356,
+            "above_flight_q90": 8,
+            "non_event_q90_normalized_median": 0.221076382909111
+          },
+          "1": {
+            "n": 112,
+            "median": 0.014318848009042158,
+            "q90_normalized_median": 0.22527109116843955,
+            "above_flight_q90": 5,
+            "non_event_q90_normalized_median": 0.21712368985329514
+          },
+          "2": {
+            "n": 112,
+            "median": 0.014168746153793698,
+            "q90_normalized_median": 0.22290961567146694,
+            "above_flight_q90": 10,
+            "non_event_q90_normalized_median": 0.21777789820041407
+          }
+        },
+        "gate_or_tri_rej": {
+          "0": {
+            "n": 376,
+            "median": 0.01311224773924358,
+            "q90_normalized_median": 0.2062882680244259,
+            "above_flight_q90": 51,
+            "non_event_q90_normalized_median": 0.22214685319312275
+          },
+          "1": {
+            "n": 376,
+            "median": 0.019845557611665864,
+            "q90_normalized_median": 0.3122199785347926,
+            "above_flight_q90": 74,
+            "non_event_q90_normalized_median": 0.2030804945995476
+          },
+          "2": {
+            "n": 376,
+            "median": 0.011886233131887981,
+            "q90_normalized_median": 0.18700000906581174,
+            "above_flight_q90": 45,
+            "non_event_q90_normalized_median": 0.23838453882212068
+          }
+        },
+        "map_match": {
+          "0": {
+            "n": 21,
+            "median": 0.04519848480535203,
+            "q90_normalized_median": 0.7110845778118496,
+            "above_flight_q90": 6,
+            "non_event_q90_normalized_median": 0.2154129460847466
+          },
+          "1": {
+            "n": 21,
+            "median": 0.06948773793380315,
+            "q90_normalized_median": 1.0932149386102417,
+            "above_flight_q90": 13,
+            "non_event_q90_normalized_median": 0.21481769031254008
+          },
+          "2": {
+            "n": 21,
+            "median": 0.015555728555126495,
+            "q90_normalized_median": 0.2447302983676137,
+            "above_flight_q90": 5,
+            "non_event_q90_normalized_median": 0.21838448258782098
+          }
+        },
+        "map_accept": {
+          "0": {
+            "n": 21,
+            "median": 0.04519848480535203,
+            "q90_normalized_median": 0.7110845778118496,
+            "above_flight_q90": 6,
+            "non_event_q90_normalized_median": 0.2154129460847466
+          },
+          "1": {
+            "n": 21,
+            "median": 0.06948773793380315,
+            "q90_normalized_median": 1.0932149386102417,
+            "above_flight_q90": 13,
+            "non_event_q90_normalized_median": 0.21481769031254008
+          },
+          "2": {
+            "n": 21,
+            "median": 0.015555728555126495,
+            "q90_normalized_median": 0.2447302983676137,
+            "above_flight_q90": 5,
+            "non_event_q90_normalized_median": 0.21838448258782098
+          }
+        },
+        "klt_fail": {
+          "0": {
+            "n": 264,
+            "median": 0.012996812987339307,
+            "q90_normalized_median": 0.2044721922825916,
+            "above_flight_q90": 37,
+            "non_event_q90_normalized_median": 0.221076382909111
+          },
+          "1": {
+            "n": 264,
+            "median": 0.01488863180598936,
+            "q90_normalized_median": 0.2342352073869606,
+            "above_flight_q90": 44,
+            "non_event_q90_normalized_median": 0.21688892874459312
+          },
+          "2": {
+            "n": 264,
+            "median": 0.012955690852731766,
+            "q90_normalized_median": 0.20382523883156214,
+            "above_flight_q90": 38,
+            "non_event_q90_normalized_median": 0.22030186829938914
+          }
+        },
+        "track_drop": {
+          "0": {
+            "n": 200,
+            "median": 0.012036057332988074,
+            "q90_normalized_median": 0.18935711637248503,
+            "above_flight_q90": 27,
+            "non_event_q90_normalized_median": 0.2255630714949307
+          },
+          "1": {
+            "n": 200,
+            "median": 0.015714514260969502,
+            "q90_normalized_median": 0.2472283924317882,
+            "above_flight_q90": 29,
+            "non_event_q90_normalized_median": 0.21643460682117638
+          },
+          "2": {
+            "n": 200,
+            "median": 0.01214330755722888,
+            "q90_normalized_median": 0.1910444291386747,
+            "above_flight_q90": 23,
+            "non_event_q90_normalized_median": 0.22214685319312275
+          }
+        }
+      },
+      "covdiag_proxy_median": {
+        "TH": 0.00026927,
+        "V": 0.042733,
+        "BG": 1.2165999999999998e-05
+      }
+    },
+    {
+      "id": "s3v3va-ro-9300242",
+      "group": "bad",
+      "error_increment_q90": 0.07369577885504257,
+      "events": {
+        "anchor": {
+          "0": {
+            "n": 104,
+            "median": 0.020950233429220373,
+            "q90_normalized_median": 0.2842799649411246,
+            "above_flight_q90": 8,
+            "non_event_q90_normalized_median": 0.23201276025539172
+          },
+          "1": {
+            "n": 104,
+            "median": 0.021804933105195094,
+            "q90_normalized_median": 0.2958776397232297,
+            "above_flight_q90": 6,
+            "non_event_q90_normalized_median": 0.23420960801890783
+          },
+          "2": {
+            "n": 104,
+            "median": 0.022692595193139427,
+            "q90_normalized_median": 0.3079225913030256,
+            "above_flight_q90": 9,
+            "non_event_q90_normalized_median": 0.232468673845452
+          }
+        },
+        "gate_or_tri_rej": {
+          "0": {
+            "n": 524,
+            "median": 0.015665883625370775,
+            "q90_normalized_median": 0.21257504661406873,
+            "above_flight_q90": 56,
+            "non_event_q90_normalized_median": 0.2529812355334853
+          },
+          "1": {
+            "n": 524,
+            "median": 0.017746872240065298,
+            "q90_normalized_median": 0.24081260169558522,
+            "above_flight_q90": 71,
+            "non_event_q90_normalized_median": 0.23201276025539172
+          },
+          "2": {
+            "n": 524,
+            "median": 0.013804585588087137,
+            "q90_normalized_median": 0.18731853849106272,
+            "above_flight_q90": 54,
+            "non_event_q90_normalized_median": 0.3001716029651766
+          }
+        },
+        "map_match": {
+          "0": {
+            "n": 36,
+            "median": 0.02285572385773485,
+            "q90_normalized_median": 0.31013613279929353,
+            "above_flight_q90": 5,
+            "non_event_q90_normalized_median": 0.23487965902639185
+          },
+          "1": {
+            "n": 36,
+            "median": 0.02940991203486493,
+            "q90_normalized_median": 0.3990718666901311,
+            "above_flight_q90": 9,
+            "non_event_q90_normalized_median": 0.23487965902639185
+          },
+          "2": {
+            "n": 36,
+            "median": 0.009405249423802223,
+            "q90_normalized_median": 0.12762263415794917,
+            "above_flight_q90": 1,
+            "non_event_q90_normalized_median": 0.24159789909841947
+          }
+        },
+        "map_accept": {
+          "0": {
+            "n": 36,
+            "median": 0.02285572385773485,
+            "q90_normalized_median": 0.31013613279929353,
+            "above_flight_q90": 5,
+            "non_event_q90_normalized_median": 0.23487965902639185
+          },
+          "1": {
+            "n": 36,
+            "median": 0.02940991203486493,
+            "q90_normalized_median": 0.3990718666901311,
+            "above_flight_q90": 9,
+            "non_event_q90_normalized_median": 0.23487965902639185
+          },
+          "2": {
+            "n": 36,
+            "median": 0.009405249423802223,
+            "q90_normalized_median": 0.12762263415794917,
+            "above_flight_q90": 1,
+            "non_event_q90_normalized_median": 0.24159789909841947
+          }
+        },
+        "klt_fail": {
+          "0": {
+            "n": 440,
+            "median": 0.01981793753781614,
+            "q90_normalized_median": 0.26891550433027434,
+            "above_flight_q90": 56,
+            "non_event_q90_normalized_median": 0.2224909865012354
+          },
+          "1": {
+            "n": 440,
+            "median": 0.0197990375847637,
+            "q90_normalized_median": 0.268659045231177,
+            "above_flight_q90": 56,
+            "non_event_q90_normalized_median": 0.22522149425417268
+          },
+          "2": {
+            "n": 440,
+            "median": 0.01713195997843945,
+            "q90_normalized_median": 0.232468673845452,
+            "above_flight_q90": 48,
+            "non_event_q90_normalized_median": 0.24024334123357322
+          }
+        },
+        "track_drop": {
+          "0": {
+            "n": 349,
+            "median": 0.018585641841580243,
+            "q90_normalized_median": 0.25219411654686025,
+            "above_flight_q90": 42,
+            "non_event_q90_normalized_median": 0.23236914549330415
+          },
+          "1": {
+            "n": 349,
+            "median": 0.01979389581825214,
+            "q90_normalized_median": 0.26858927506806257,
+            "above_flight_q90": 42,
+            "non_event_q90_normalized_median": 0.23165637501747935
+          },
+          "2": {
+            "n": 349,
+            "median": 0.015759848605170185,
+            "q90_normalized_median": 0.21385008544613313,
+            "above_flight_q90": 36,
+            "non_event_q90_normalized_median": 0.24352347764472113
+          }
+        }
+      },
+      "covdiag_proxy_median": {
+        "TH": 0.00164103,
+        "V": 0.019285399999999998,
+        "BG": 1.4358e-05
+      }
+    },
+    {
+      "id": "s3v3va-ro-9300284",
+      "group": "good",
+      "error_increment_q90": 0.026065510805146734,
+      "events": {
+        "anchor": {
+          "0": {
+            "n": 99,
+            "median": 0.005489532914934014,
+            "q90_normalized_median": 0.21060523064255793,
+            "above_flight_q90": 7,
+            "non_event_q90_normalized_median": 0.23808485908487764
+          },
+          "1": {
+            "n": 99,
+            "median": 0.006211352379192476,
+            "q90_normalized_median": 0.2382977423932172,
+            "above_flight_q90": 9,
+            "non_event_q90_normalized_median": 0.23344682806539793
+          },
+          "2": {
+            "n": 99,
+            "median": 0.006072435146515952,
+            "q90_normalized_median": 0.23296820046653094,
+            "above_flight_q90": 13,
+            "non_event_q90_normalized_median": 0.23416970593121497
+          }
+        },
+        "gate_or_tri_rej": {
+          "0": {
+            "n": 841,
+            "median": 0.006683296410693716,
+            "q90_normalized_median": 0.2564038150126747,
+            "above_flight_q90": 86,
+            "non_event_q90_normalized_median": 0.1745730968537647
+          },
+          "1": {
+            "n": 840,
+            "median": 0.008304607078470382,
+            "q90_normalized_median": 0.31860519214649746,
+            "above_flight_q90": 101,
+            "non_event_q90_normalized_median": 0.1278594405229607
+          },
+          "2": {
+            "n": 839,
+            "median": 0.006323063967493647,
+            "q90_normalized_median": 0.24258354324079212,
+            "above_flight_q90": 69,
+            "non_event_q90_normalized_median": 0.20351434323336035
+          }
+        },
+        "map_match": {
+          "0": {
+            "n": 49,
+            "median": 0.005915689264521088,
+            "q90_normalized_median": 0.22695466468100112,
+            "above_flight_q90": 2,
+            "non_event_q90_normalized_median": 0.23460327929147845
+          },
+          "1": {
+            "n": 49,
+            "median": 0.011730908655843836,
+            "q90_normalized_median": 0.45005481548159504,
+            "above_flight_q90": 6,
+            "non_event_q90_normalized_median": 0.2261715519520536
+          },
+          "2": {
+            "n": 49,
+            "median": 0.006271769144810232,
+            "q90_normalized_median": 0.2406156239060486,
+            "above_flight_q90": 4,
+            "non_event_q90_normalized_median": 0.23401200400060232
+          }
+        },
+        "map_accept": {
+          "0": {
+            "n": 49,
+            "median": 0.005915689264521088,
+            "q90_normalized_median": 0.22695466468100112,
+            "above_flight_q90": 2,
+            "non_event_q90_normalized_median": 0.23460327929147845
+          },
+          "1": {
+            "n": 49,
+            "median": 0.011730908655843836,
+            "q90_normalized_median": 0.45005481548159504,
+            "above_flight_q90": 6,
+            "non_event_q90_normalized_median": 0.2261715519520536
+          },
+          "2": {
+            "n": 49,
+            "median": 0.006271769144810232,
+            "q90_normalized_median": 0.2406156239060486,
+            "above_flight_q90": 4,
+            "non_event_q90_normalized_median": 0.23401200400060232
+          }
+        },
+        "klt_fail": {
+          "0": {
+            "n": 527,
+            "median": 0.006503037828258692,
+            "q90_normalized_median": 0.24948821747144287,
+            "above_flight_q90": 55,
+            "non_event_q90_normalized_median": 0.2214833708764026
+          },
+          "1": {
+            "n": 527,
+            "median": 0.007472301690631931,
+            "q90_normalized_median": 0.28667390201908094,
+            "above_flight_q90": 62,
+            "non_event_q90_normalized_median": 0.20829819027766974
+          },
+          "2": {
+            "n": 527,
+            "median": 0.006271769144810232,
+            "q90_normalized_median": 0.2406156239060486,
+            "above_flight_q90": 51,
+            "non_event_q90_normalized_median": 0.22695466468100112
+          }
+        },
+        "track_drop": {
+          "0": {
+            "n": 423,
+            "median": 0.006525619294628647,
+            "q90_normalized_median": 0.25035455255072686,
+            "above_flight_q90": 41,
+            "non_event_q90_normalized_median": 0.2237965434005977
+          },
+          "1": {
+            "n": 422,
+            "median": 0.007677219628135099,
+            "q90_normalized_median": 0.2945355525746767,
+            "above_flight_q90": 44,
+            "non_event_q90_normalized_median": 0.20801089869155848
+          },
+          "2": {
+            "n": 421,
+            "median": 0.006750871473186583,
+            "q90_normalized_median": 0.25899632367279746,
+            "above_flight_q90": 40,
+            "non_event_q90_normalized_median": 0.2214833708764026
+          }
+        }
+      },
+      "covdiag_proxy_median": {
+        "TH": 0.00032119,
+        "V": 0.006601200000000001,
+        "BG": 1.1396e-05
+      }
+    },
+    {
+      "id": "s3v3va-ro-9300157",
+      "group": "good",
+      "error_increment_q90": 0.0183417899004832,
+      "events": {
+        "anchor": {
+          "0": {
+            "n": 81,
+            "median": 0.004666860257681506,
+            "q90_normalized_median": 0.2544386498265669,
+            "above_flight_q90": 8,
+            "non_event_q90_normalized_median": 0.25281104590932285
+          },
+          "1": {
+            "n": 81,
+            "median": 0.0031903419388497854,
+            "q90_normalized_median": 0.17393841910520078,
+            "above_flight_q90": 6,
+            "non_event_q90_normalized_median": 0.2635323775770469
+          },
+          "2": {
+            "n": 81,
+            "median": 0.004576358114357296,
+            "q90_normalized_median": 0.24950444526881949,
+            "above_flight_q90": 9,
+            "non_event_q90_normalized_median": 0.2544386498265669
+          }
+        },
+        "gate_or_tri_rej": {
+          "0": {
+            "n": 798,
+            "median": 0.005032690992394727,
+            "q90_normalized_median": 0.27438385346798383,
+            "above_flight_q90": 81,
+            "non_event_q90_normalized_median": 0.22827362148764355
+          },
+          "1": {
+            "n": 797,
+            "median": 0.00630592876038087,
+            "q90_normalized_median": 0.3438011663308141,
+            "above_flight_q90": 110,
+            "non_event_q90_normalized_median": 0.16881151410228826
+          },
+          "2": {
+            "n": 797,
+            "median": 0.0049210637082909015,
+            "q90_normalized_median": 0.26829789976829144,
+            "above_flight_q90": 73,
+            "non_event_q90_normalized_median": 0.23947185409399707
+          }
+        },
+        "map_match": {
+          "0": {
+            "n": 32,
+            "median": 0.0058703882733541594,
+            "q90_normalized_median": 0.3200553656543361,
+            "above_flight_q90": 3,
+            "non_event_q90_normalized_median": 0.2510778294847421
+          },
+          "1": {
+            "n": 32,
+            "median": 0.014760877401612651,
+            "q90_normalized_median": 0.8047675544044798,
+            "above_flight_q90": 11,
+            "non_event_q90_normalized_median": 0.24881664550776736
+          },
+          "2": {
+            "n": 32,
+            "median": 0.006247687007132237,
+            "q90_normalized_median": 0.3406258081152509,
+            "above_flight_q90": 4,
+            "non_event_q90_normalized_median": 0.25263303019053374
+          }
+        },
+        "map_accept": {
+          "0": {
+            "n": 32,
+            "median": 0.0058703882733541594,
+            "q90_normalized_median": 0.3200553656543361,
+            "above_flight_q90": 3,
+            "non_event_q90_normalized_median": 0.2510778294847421
+          },
+          "1": {
+            "n": 32,
+            "median": 0.014760877401612651,
+            "q90_normalized_median": 0.8047675544044798,
+            "above_flight_q90": 11,
+            "non_event_q90_normalized_median": 0.24881664550776736
+          },
+          "2": {
+            "n": 32,
+            "median": 0.006247687007132237,
+            "q90_normalized_median": 0.3406258081152509,
+            "above_flight_q90": 4,
+            "non_event_q90_normalized_median": 0.25263303019053374
+          }
+        },
+        "klt_fail": {
+          "0": {
+            "n": 667,
+            "median": 0.004833655501493004,
+            "q90_normalized_median": 0.2635323775770469,
+            "above_flight_q90": 58,
+            "non_event_q90_normalized_median": 0.24878283731785464
+          },
+          "1": {
+            "n": 666,
+            "median": 0.00498123447841539,
+            "q90_normalized_median": 0.2715784285744198,
+            "above_flight_q90": 60,
+            "non_event_q90_normalized_median": 0.23949000573634416
+          },
+          "2": {
+            "n": 666,
+            "median": 0.00461810081900773,
+            "q90_normalized_median": 0.25178027030426675,
+            "above_flight_q90": 52,
+            "non_event_q90_normalized_median": 0.25597093319974096
+          }
+        },
+        "track_drop": {
+          "0": {
+            "n": 415,
+            "median": 0.004504231370135981,
+            "q90_normalized_median": 0.24557207309507567,
+            "above_flight_q90": 33,
+            "non_event_q90_normalized_median": 0.26400319025663105
+          },
+          "1": {
+            "n": 415,
+            "median": 0.004774908847619583,
+            "q90_normalized_median": 0.26032949202486455,
+            "above_flight_q90": 35,
+            "non_event_q90_normalized_median": 0.25281104590932285
+          },
+          "2": {
+            "n": 415,
+            "median": 0.004619604760123423,
+            "q90_normalized_median": 0.2518622656342674,
+            "above_flight_q90": 37,
+            "non_event_q90_normalized_median": 0.2547513031470523
+          }
+        }
+      },
+      "covdiag_proxy_median": {
+        "TH": 0.00027330999999999997,
+        "V": 0.0065153,
+        "BG": 1.1671e-05
+      }
+    },
+    {
+      "id": "s3v3va-ro-9300201",
+      "group": "good",
+      "error_increment_q90": 0.019902968629058257,
+      "events": {
+        "anchor": {
+          "0": {
+            "n": 88,
+            "median": 0.005595448308245871,
+            "q90_normalized_median": 0.28113636777161666,
+            "above_flight_q90": 12,
+            "non_event_q90_normalized_median": 0.3014013408860868
+          },
+          "1": {
+            "n": 88,
+            "median": 0.005788048116587508,
+            "q90_normalized_median": 0.290813306520364,
+            "above_flight_q90": 14,
+            "non_event_q90_normalized_median": 0.30010646400089536
+          },
+          "2": {
+            "n": 88,
+            "median": 0.007353236887031066,
+            "q90_normalized_median": 0.3694542771019278,
+            "above_flight_q90": 9,
+            "non_event_q90_normalized_median": 0.29317372428543786
+          }
+        },
+        "gate_or_tri_rej": {
+          "0": {
+            "n": 922,
+            "median": 0.006294229732600072,
+            "q90_normalized_median": 0.3162457746836078,
+            "above_flight_q90": 89,
+            "non_event_q90_normalized_median": 0.23994276109026397
+          },
+          "1": {
+            "n": 922,
+            "median": 0.007295727653334359,
+            "q90_normalized_median": 0.3665647969058558,
+            "above_flight_q90": 111,
+            "non_event_q90_normalized_median": 0.17673669924990817
+          },
+          "2": {
+            "n": 921,
+            "median": 0.006211363781952953,
+            "q90_normalized_median": 0.3120822776600464,
+            "above_flight_q90": 85,
+            "non_event_q90_normalized_median": 0.2465855144843206
+          }
+        },
+        "map_match": {
+          "0": {
+            "n": 96,
+            "median": 0.007666356387280528,
+            "q90_normalized_median": 0.3851865784528082,
+            "above_flight_q90": 15,
+            "non_event_q90_normalized_median": 0.2956283229768663
+          },
+          "1": {
+            "n": 96,
+            "median": 0.01072702060060593,
+            "q90_normalized_median": 0.5389658598438688,
+            "above_flight_q90": 27,
+            "non_event_q90_normalized_median": 0.2780018144041034
+          },
+          "2": {
+            "n": 96,
+            "median": 0.006598818588021444,
+            "q90_normalized_median": 0.33154946435413635,
+            "above_flight_q90": 12,
+            "non_event_q90_normalized_median": 0.29732846570438526
+          }
+        },
+        "map_accept": {
+          "0": {
+            "n": 96,
+            "median": 0.007666356387280528,
+            "q90_normalized_median": 0.3851865784528082,
+            "above_flight_q90": 15,
+            "non_event_q90_normalized_median": 0.2956283229768663
+          },
+          "1": {
+            "n": 96,
+            "median": 0.01072702060060593,
+            "q90_normalized_median": 0.5389658598438688,
+            "above_flight_q90": 27,
+            "non_event_q90_normalized_median": 0.2780018144041034
+          },
+          "2": {
+            "n": 96,
+            "median": 0.006598818588021444,
+            "q90_normalized_median": 0.33154946435413635,
+            "above_flight_q90": 12,
+            "non_event_q90_normalized_median": 0.29732846570438526
+          }
+        },
+        "klt_fail": {
+          "0": {
+            "n": 723,
+            "median": 0.00637785691777839,
+            "q90_normalized_median": 0.32044751899305834,
+            "above_flight_q90": 71,
+            "non_event_q90_normalized_median": 0.26979748100458456
+          },
+          "1": {
+            "n": 723,
+            "median": 0.006889356883418726,
+            "q90_normalized_median": 0.34614720104418456,
+            "above_flight_q90": 74,
+            "non_event_q90_normalized_median": 0.22875271063429112
+          },
+          "2": {
+            "n": 722,
+            "median": 0.006347430538633058,
+            "q90_normalized_median": 0.3189187832696392,
+            "above_flight_q90": 62,
+            "non_event_q90_normalized_median": 0.25862509338328105
+          }
+        },
+        "track_drop": {
+          "0": {
+            "n": 434,
+            "median": 0.006573917350878115,
+            "q90_normalized_median": 0.33029833254523755,
+            "above_flight_q90": 37,
+            "non_event_q90_normalized_median": 0.28410211019298176
+          },
+          "1": {
+            "n": 434,
+            "median": 0.0071186662898734526,
+            "q90_normalized_median": 0.3576685680687969,
+            "above_flight_q90": 40,
+            "non_event_q90_normalized_median": 0.2673348644804001
+          },
+          "2": {
+            "n": 434,
+            "median": 0.006672310142903918,
+            "q90_normalized_median": 0.3352419564769032,
+            "above_flight_q90": 35,
+            "non_event_q90_normalized_median": 0.2771131042188671
+          }
+        }
+      },
+      "covdiag_proxy_median": {
+        "TH": 0.00026494,
+        "V": 0.0057316,
+        "BG": 1.1540000000000001e-05
+      }
+    },
+    {
+      "id": "s3v3va-ro-9300231",
+      "group": "good",
+      "error_increment_q90": 0.024167206305306027,
+      "events": {
+        "anchor": {
+          "0": {
+            "n": 110,
+            "median": 0.006427574145300782,
+            "q90_normalized_median": 0.2659626464102132,
+            "above_flight_q90": 18,
+            "non_event_q90_normalized_median": 0.2595763608782039
+          },
+          "1": {
+            "n": 110,
+            "median": 0.004784008269008407,
+            "q90_normalized_median": 0.19795454255538236,
+            "above_flight_q90": 7,
+            "non_event_q90_normalized_median": 0.2659626464102132
+          },
+          "2": {
+            "n": 110,
+            "median": 0.006119653733207698,
+            "q90_normalized_median": 0.2532213966272179,
+            "above_flight_q90": 11,
+            "non_event_q90_normalized_median": 0.260399683252579
+          }
+        },
+        "gate_or_tri_rej": {
+          "0": {
+            "n": 682,
+            "median": 0.006860674070826902,
+            "q90_normalized_median": 0.28388362246572985,
+            "above_flight_q90": 69,
+            "non_event_q90_normalized_median": 0.22001954981500083
+          },
+          "1": {
+            "n": 682,
+            "median": 0.008661316008269186,
+            "q90_normalized_median": 0.35839128026840045,
+            "above_flight_q90": 103,
+            "non_event_q90_normalized_median": 0.1769063706440064
+          },
+          "2": {
+            "n": 682,
+            "median": 0.0064937069404560534,
+            "q90_normalized_median": 0.26869911475991864,
+            "above_flight_q90": 55,
+            "non_event_q90_normalized_median": 0.2412105458985577
+          }
+        },
+        "map_match": {
+          "0": {
+            "n": 77,
+            "median": 0.005481647469435993,
+            "q90_normalized_median": 0.22682172693798167,
+            "above_flight_q90": 6,
+            "non_event_q90_normalized_median": 0.2624179525173701
+          },
+          "1": {
+            "n": 77,
+            "median": 0.009070182297284167,
+            "q90_normalized_median": 0.3753095075491934,
+            "above_flight_q90": 10,
+            "non_event_q90_normalized_median": 0.24722484970436268
+          },
+          "2": {
+            "n": 77,
+            "median": 0.0065564741715339,
+            "q90_normalized_median": 0.2712963214988732,
+            "above_flight_q90": 5,
+            "non_event_q90_normalized_median": 0.25957929278765846
+          }
+        },
+        "map_accept": {
+          "0": {
+            "n": 77,
+            "median": 0.005481647469435993,
+            "q90_normalized_median": 0.22682172693798167,
+            "above_flight_q90": 6,
+            "non_event_q90_normalized_median": 0.2624179525173701
+          },
+          "1": {
+            "n": 77,
+            "median": 0.009070182297284167,
+            "q90_normalized_median": 0.3753095075491934,
+            "above_flight_q90": 10,
+            "non_event_q90_normalized_median": 0.24722484970436268
+          },
+          "2": {
+            "n": 77,
+            "median": 0.0065564741715339,
+            "q90_normalized_median": 0.2712963214988732,
+            "above_flight_q90": 5,
+            "non_event_q90_normalized_median": 0.25957929278765846
+          }
+        },
+        "klt_fail": {
+          "0": {
+            "n": 744,
+            "median": 0.006428295215070226,
+            "q90_normalized_median": 0.26599248311373347,
+            "above_flight_q90": 75,
+            "non_event_q90_normalized_median": 0.24808312123834872
+          },
+          "1": {
+            "n": 744,
+            "median": 0.006278736465212281,
+            "q90_normalized_median": 0.259803983377001,
+            "above_flight_q90": 81,
+            "non_event_q90_normalized_median": 0.26093848228192845
+          },
+          "2": {
+            "n": 744,
+            "median": 0.006441666306043502,
+            "q90_normalized_median": 0.2665457572822227,
+            "above_flight_q90": 76,
+            "non_event_q90_normalized_median": 0.24086708326073233
+          }
+        },
+        "track_drop": {
+          "0": {
+            "n": 459,
+            "median": 0.0063187348647145295,
+            "q90_normalized_median": 0.26145905260581237,
+            "above_flight_q90": 57,
+            "non_event_q90_normalized_median": 0.2595734289687493
+          },
+          "1": {
+            "n": 459,
+            "median": 0.006500336738148685,
+            "q90_normalized_median": 0.26897344509040355,
+            "above_flight_q90": 57,
+            "non_event_q90_normalized_median": 0.24757834734228415
+          },
+          "2": {
+            "n": 459,
+            "median": 0.006752563269716997,
+            "q90_normalized_median": 0.2794101719665644,
+            "above_flight_q90": 49,
+            "non_event_q90_normalized_median": 0.24722484970436268
+          }
+        }
+      },
+      "covdiag_proxy_median": {
+        "TH": 0.00015539999999999998,
+        "V": 0.0061541,
+        "BG": 1.0965000000000001e-05
+      }
+    }
+  ]
+}

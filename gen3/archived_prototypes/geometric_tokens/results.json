@@ -1,0 +1,86 @@
+{
+  "inputs": "48 sparse derotated LK tokens (5 features each) + 19D IMU preintegration/intrinsics; targets next vb in m/s",
+  "split": "50 train flights phases0+2, 20 held-out validation flights phase0; capped 16k/4k anchors",
+  "results": [
+    {
+      "model": "deepsets",
+      "seed": 17,
+      "params": 31044,
+      "train_anchors": 16000,
+      "val_anchors": 4000,
+      "epochs": 10,
+      "steps_per_epoch": 100,
+      "batch": 256,
+      "val": {
+        "n": 4000,
+        "vector_norm_error_mps": 0.7018513679504395,
+        "speed_abs_error_mps": 0.4692622423171997,
+        "direction_deg_moving": 30.0280704498291,
+        "nll_diag": -0.6502988934516907,
+        "uncertainty_z_rms": 1.243408441543579,
+        "predicted_std_median": 0.38929709792137146
+      },
+      "seconds": 2.64
+    },
+    {
+      "model": "deepsets",
+      "seed": 29,
+      "params": 31044,
+      "train_anchors": 16000,
+      "val_anchors": 4000,
+      "epochs": 10,
+      "steps_per_epoch": 100,
+      "batch": 256,
+      "val": {
+        "n": 4000,
+        "vector_norm_error_mps": 0.7121472358703613,
+        "speed_abs_error_mps": 0.46512162685394287,
+        "direction_deg_moving": 31.25240135192871,
+        "nll_diag": -0.549224853515625,
+        "uncertainty_z_rms": 1.2790820598602295,
+        "predicted_std_median": 0.3823504149913788
+      },
+      "seconds": 2.09
+    },
+    {
+      "model": "attention",
+      "seed": 17,
+      "params": 93828,
+      "train_anchors": 16000,
+      "val_anchors": 4000,
+      "epochs": 10,
+      "steps_per_epoch": 100,
+      "batch": 256,
+      "val": {
+        "n": 4000,
+        "vector_norm_error_mps": 0.6332865357398987,
+        "speed_abs_error_mps": 0.4104593098163605,
+        "direction_deg_moving": 26.333415985107422,
+        "nll_diag": -0.3603321611881256,
+        "uncertainty_z_rms": 1.543362021446228,
+        "predicted_std_median": 0.28394168615341187
+      },
+      "seconds": 4.93
+    },
+    {
+      "model": "attention",
+      "seed": 29,
+      "params": 93828,
+      "train_anchors": 16000,
+      "val_anchors": 4000,
+      "epochs": 10,
+      "steps_per_epoch": 100,
+      "batch": 256,
+      "val": {
+        "n": 4000,
+        "vector_norm_error_mps": 0.6355810761451721,
+        "speed_abs_error_mps": 0.42267635464668274,
+        "direction_deg_moving": 27.11210823059082,
+        "nll_diag": 0.2952919006347656,
+        "uncertainty_z_rms": 1.7269521951675415,
+        "predicted_std_median": 0.2653350532054901
+      },
+      "seconds": 4.47
+    }
+  ]
+}

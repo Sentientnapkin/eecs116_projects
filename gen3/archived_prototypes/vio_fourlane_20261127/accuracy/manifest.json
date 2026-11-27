@@ -1,0 +1,61 @@
+{
+  "baseline_sha256": "1a169f28916acd813f86a7b526efb8e8b646b3dda73e48cba51b12845c69b1b8",
+  "source_sha256": "b09f81004e37646f32df6f5ba9f0e802ee2a1b9a9caa6b94caf2164c0a37a777",
+  "screen": [
+    "s3v3va-fo-9300452.zip",
+    "s3v3va-fo-9300456.zip",
+    "s3v3va-fo-9300457.zip",
+    "s3v3va-fo-9300459.zip",
+    "s3v3va-fo-9300468.zip",
+    "s3v3va-fo-9300480.zip",
+    "s3v3va-ro-9300005.zip",
+    "s3v3va-ro-9300009.zip",
+    "s3v3va-ro-9300014.zip",
+    "s3v3va-ro-9300024.zip",
+    "s3v3va-ro-9300028.zip",
+    "s3v3va-ro-9300032.zip",
+    "s3v3va-wa-9300300.zip",
+    "s3v3va-wa-9300303.zip",
+    "s3v3va-wa-9300305.zip",
+    "s3v3va-wa-9300320.zip",
+    "s3v3va-wa-9300324.zip",
+    "s3v3va-wa-9300347.zip"
+  ],
+  "confirm": [
+    "s3v3va-fo-9300460.zip",
+    "s3v3va-fo-9300463.zip",
+    "s3v3va-fo-9300465.zip",
+    "s3v3va-fo-9300489.zip",
+    "s3v3va-fo-9300504.zip",
+    "s3v3va-fo-9300507.zip",
+    "s3v3va-ro-9300016.zip",
+    "s3v3va-ro-9300017.zip",
+    "s3v3va-ro-9300021.zip",
+    "s3v3va-ro-9300035.zip",
+    "s3v3va-ro-9300060.zip",
+    "s3v3va-ro-9300074.zip",
+    "s3v3va-wa-9300306.zip",
+    "s3v3va-wa-9300309.zip",
+    "s3v3va-wa-9300313.zip",
+    "s3v3va-wa-9300351.zip",
+    "s3v3va-wa-9300363.zip",
+    "s3v3va-wa-9300372.zip"
+  ],
+  "experiments": [
+    [
+      "baseline",
+      null
+    ],
+    [
+      "da025",
+      "AN_DA=0.25"
+    ],
+    [
+      "da040",
+      "AN_DA=0.4"
+    ]
+  ],
+  "budget_seconds": 3600,
+  "workers": 4,
+  "datasets": "gen3 frozen v3val only"
+}

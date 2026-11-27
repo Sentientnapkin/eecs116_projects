@@ -1,0 +1,23 @@
+358 episodes, 0 cached, workers=14 (no video)
+20/358 finished, 40.7s
+40/358 finished, 62.8s
+60/358 finished, 103.8s
+80/358 finished, 128.8s
+100/358 finished, 150.7s
+120/358 finished, 171.8s
+140/358 finished, 190.2s
+160/358 finished, 206.9s
+180/358 finished, 227.7s
+200/358 finished, 245.7s
+220/358 finished, 262.0s
+240/358 finished, 282.3s
+260/358 finished, 302.7s
+280/358 finished, 325.9s
+300/358 finished, 345.3s
+320/358 finished, 364.8s
+340/358 finished, 387.8s
+358/358 finished, 406.2s
+nv2_S80ps2_r1 v3val n 358 / 358 mean ATE 0.904 median 0.728 >3m 9
+  setting_class {'forest': '0.926 (n=95)', 'room': '0.459 (n=143)', 'warehouse': '1.416 (n=120)'}
+  regime {'benchmark': '0.684 (n=121)', 'free-yaw': '1.015 (n=237)'}
+  start {'hover': '0.981 (n=120)', 'mid-flight': '0.865 (n=238)'}

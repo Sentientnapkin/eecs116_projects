@@ -1,0 +1,67 @@
+152 episodes, 0 cached, workers=6 (no video)
+20/152 finished, 80.5s
+40/152 finished, 151.1s
+60/152 finished, 199.9s
+80/152 finished, 244.4s
+100/152 finished, 286.0s
+120/152 finished, 331.7s
+140/152 finished, 387.7s
+152/152 finished, 417.5s
+net_s3ft2_iso v3val n 152 / 152 mean ATE 0.951 median 0.782 >3m 1
+  setting_class {'forest': '1.287 (n=44)', 'room': '0.449 (n=71)', 'warehouse': '1.515 (n=37)'}
+  regime {'benchmark': '0.735 (n=50)', 'free-yaw': '1.057 (n=102)'}
+  start {'hover': '0.802 (n=29)', 'mid-flight': '0.986 (n=123)'}
+430 episodes, 0 cached, workers=6 (no video)
+20/430 finished, 76.7s
+40/430 finished, 132.7s
+60/430 finished, 188.4s
+80/430 finished, 256.9s
+100/430 finished, 315.4s
+120/430 finished, 361.3s
+140/430 finished, 395.7s
+160/430 finished, 430.2s
+180/430 finished, 460.9s
+200/430 finished, 497.6s
+220/430 finished, 529.5s
+240/430 finished, 571.1s
+260/430 finished, 606.4s
+280/430 finished, 642.0s
+300/430 finished, 676.3s
+320/430 finished, 711.4s
+340/430 finished, 755.0s
+360/430 finished, 796.3s
+380/430 finished, 838.6s
+400/430 finished, 880.2s
+420/430 finished, 926.2s
+430/430 finished, 950.2s
+net_s3ft2_nost v3val n 430 / 430 mean ATE 1.134 median 0.830 >3m 22
+  setting_class {'forest': '1.440 (n=112)', 'room': '0.558 (n=209)', 'warehouse': '1.926 (n=109)'}
+  regime {'benchmark': '0.860 (n=146)', 'free-yaw': '1.275 (n=284)'}
+  start {'hover': '0.806 (n=80)', 'mid-flight': '1.210 (n=350)'}
+430 episodes, 0 cached, workers=6 (no video)
+20/430 finished, 79.0s
+40/430 finished, 140.1s
+60/430 finished, 199.6s
+80/430 finished, 268.2s
+100/430 finished, 356.3s
+120/430 finished, 432.8s
+140/430 finished, 483.3s
+160/430 finished, 540.3s
+180/430 finished, 591.4s
+200/430 finished, 639.2s
+220/430 finished, 686.0s
+240/430 finished, 737.4s
+260/430 finished, 787.4s
+280/430 finished, 820.6s
+300/430 finished, 847.3s
+320/430 finished, 880.8s
+340/430 finished, 923.0s
+360/430 finished, 970.7s
+380/430 finished, 1014.7s
+400/430 finished, 1059.7s
+420/430 finished, 1110.6s
+430/430 finished, 1127.6s
+net_s3ft2_nostiso v3val n 430 / 430 mean ATE 1.597 median 1.046 >3m 69
+  setting_class {'forest': '2.033 (n=112)', 'room': '0.768 (n=209)', 'warehouse': '2.738 (n=109)'}
+  regime {'benchmark': '1.373 (n=146)', 'free-yaw': '1.712 (n=284)'}
+  start {'hover': '0.806 (n=80)', 'mid-flight': '1.777 (n=350)'}

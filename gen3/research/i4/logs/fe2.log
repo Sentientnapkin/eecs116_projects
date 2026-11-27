@@ -1,0 +1,26 @@
+done s3v3va-fo-9300485
+done s3v3va-fo-9300460
+done s3v3va-fo-9300467
+done s3v3va-fo-9300479
+done s3v3va-fo-9300489
+done s3v3va-fo-9300472
+ANA FAIL s3v3va-fo-9300495 napa/Sebastian/gen3/research/i4/tools/flight.py", line 57, in c_tracks
+    return out, np.array(S)
+                ^^^^^^^^^^^
+ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (688,) + inhomogeneous part.
+
+done s3v3va-fo-9300495
+done s3v3va-fo-9300510
+done s3v3va-fo-9300530
+done s3v3va-fo-9300529
+done s3v3va-fo-9300570
+done s3v3va-fo-9300522
+done s3v3va-fo-9300578
+done s3v3va-fo-9300584
+done s3v3va-fo-h9500101
+done s3v3va-fo-h9500106
+done s3v3va-fo-h9500110
+done s3v3va-fo-h9500131
+done s3v3va-ro-9300024
+done s3v3va-ro-9300035
+done s3v3va-ro-9300105

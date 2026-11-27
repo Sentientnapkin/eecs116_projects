@@ -1,0 +1,3 @@
+199afc8799516264dec09a55abc11b86608b09b1: ok Sim(3) ATE 1.555 m  RPE 0.412 m/1 s  ATE 6.050 m  rot 28.0 deg  vel 1.645 m/s  filled 0  fuel/frame max 183,053 (p95 176,549)  wall/frame 0.1 ms
+report: /data/backups/rganapa/Sebastian/gen3/research/n3/runs/n3_r_vm3/v3val/n3_r_vm3-fe75d910/s3v3va-wa-h9500027/report-solution/report.json
+summary: 1/1 episodes completed, raw ATE mean 6.050 m, fuel/frame max 183,053 (mean 131,979, median 124,368, p95 176,549, p99 181,088)

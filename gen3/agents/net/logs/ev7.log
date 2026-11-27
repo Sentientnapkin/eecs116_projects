@@ -1,0 +1,54 @@
+430 episodes, 0 cached, workers=7 (no video)
+20/430 finished, 61.3s
+40/430 finished, 120.1s
+60/430 finished, 178.6s
+80/430 finished, 236.1s
+100/430 finished, 287.0s
+120/430 finished, 326.7s
+140/430 finished, 354.5s
+160/430 finished, 387.7s
+180/430 finished, 415.4s
+200/430 finished, 448.4s
+220/430 finished, 477.9s
+240/430 finished, 513.7s
+260/430 finished, 545.5s
+280/430 finished, 577.5s
+300/430 finished, 610.8s
+320/430 finished, 644.1s
+340/430 finished, 680.5s
+360/430 finished, 715.5s
+380/430 finished, 751.5s
+400/430 finished, 783.0s
+420/430 finished, 823.6s
+430/430 finished, 841.5s
+net_lcoff v3val n 430 / 430 mean ATE 1.109 median 0.831 >3m 17
+  setting_class {'forest': '1.337 (n=112)', 'room': '0.582 (n=209)', 'warehouse': '1.885 (n=109)'}
+  regime {'benchmark': '0.857 (n=146)', 'free-yaw': '1.238 (n=284)'}
+  start {'hover': '0.797 (n=80)', 'mid-flight': '1.180 (n=350)'}
+430 episodes, 152 cached, workers=7 (no video)
+20/430 finished, 37.7s
+40/430 finished, 76.0s
+60/430 finished, 115.3s
+80/430 finished, 137.9s
+100/430 finished, 169.3s
+120/430 finished, 197.4s
+140/430 finished, 219.2s
+160/430 finished, 243.5s
+180/430 finished, 261.2s
+200/430 finished, 287.1s
+220/430 finished, 304.3s
+240/430 finished, 324.7s
+260/430 finished, 341.8s
+280/430 finished, 361.3s
+300/430 finished, 382.8s
+320/430 finished, 398.3s
+340/430 finished, 417.8s
+360/430 finished, 442.3s
+380/430 finished, 466.1s
+400/430 finished, 491.1s
+420/430 finished, 516.2s
+430/430 finished, 534.4s
+net_s3ft2_iso v3val n 430 / 430 mean ATE 0.904 median 0.759 >3m 6
+  setting_class {'forest': '1.209 (n=112)', 'room': '0.454 (n=209)', 'warehouse': '1.454 (n=109)'}
+  regime {'benchmark': '0.749 (n=146)', 'free-yaw': '0.984 (n=284)'}
+  start {'hover': '0.801 (n=80)', 'mid-flight': '0.928 (n=350)'}

@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "/tmp/vio_loop2/accuracy/run_accuracy.py", line 122, in <module>
+    try:main()
+        ^^^^^^
+  File "/tmp/vio_loop2/accuracy/run_accuracy.py", line 75, in main
+    res=evalone(name,build(name,flags),'screen24'); ss=stats(res,baseline);screens[name]={'result':res,'paired':ss}
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/vio_loop2/accuracy/run_accuracy.py", line 43, in evalone
+    from research.single_model.run_variant import run_guest_fast
+  File "/data/backups/rganapa/Sebastian/eecs116_projects/research/single_model/run_variant.py", line 12, in <module>
+    import numpy as np
+ModuleNotFoundError: No module named 'numpy'
+24 episodes, 0 cached, workers=4 (no video)
+20/24 finished, 14.6s
+24/24 finished, 17.3s
+24 episodes, 0 cached, workers=4 (no video)
+20/24 finished, 14.5s
+24/24 finished, 17.1s
+24 episodes, 0 cached, workers=4 (no video)
+20/24 finished, 14.8s
+24/24 finished, 17.1s
+24 episodes, 0 cached, workers=4 (no video)
+20/24 finished, 14.6s
+24/24 finished, 17.1s

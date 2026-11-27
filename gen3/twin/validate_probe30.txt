@@ -1,0 +1,24 @@
+n=30  probe vs python: median |rel err|, p90 |rel err|, corr ; probe vs metadata likewise
+hfov        n=30 py:  0.000  0.000 r=1.000      meta:  0.000  0.000 r=1.000
+start_fwd   n=30 py:  0.000  0.001 r=1.000      meta:  0.003  0.019 r=1.000
+start_gyro  n=30 py:  0.026  0.051 r=0.999      meta: -
+start_acc   n=30 py:  0.058  0.103 r=0.990      meta: -
+distance    n=30 py:  0.000  0.000 r=1.000      meta:  0.000  0.001 r=1.000
+mean_speed  n=30 py:  0.000  0.000 r=1.000      meta:  0.000  0.000 r=1.000
+rms_dist    n=30 py:  0.000  0.000 r=1.000      meta:  0.000  0.000 r=1.000
+spread      n=30 py:  0.000  0.000 r=1.000      meta:  0.000  0.000 r=1.000
+rms1s       n=30 py:  0.000  0.000 r=1.000      meta: -
+gyro_rms    n=30 py:  0.018  0.035 r=0.999      meta:  0.033  0.064 r=0.999
+yaw_rms     n=30 py:  0.022  0.048 r=0.998      meta:  0.035  0.119 r=0.998
+jerk        n=30 py:  0.030  0.051 r=0.991      meta:  0.741  0.817 r=0.991
+accxy       n=30 py:  0.017  0.038 r=0.995      meta: -
+Y           n=30 py:  0.013  0.020 r=1.000      meta:  0.014  0.038 r=0.999
+chroma_g    n=30 py:  0.002  0.011 r=0.995      meta: -
+chroma_b    n=30 py:  0.006  0.014 r=0.993      meta: -
+grad2       n=30 py:  0.033  0.063 r=0.999      meta: -
+Ytop        n=30 py:  0.043  0.089 r=0.993      meta: -
+Ybot        n=30 py:  0.043  0.086 r=0.990      meta: -
+blurx0      n=30 py:  0.013  0.023 r=0.983      meta: -
+blurx1      n=18 py:  0.010  0.049 r=0.993      meta: -
+blury0      n=30 py:  0.008  0.019 r=0.997      meta: -
+blury1      n=19 py:  0.015  0.063 r=0.975      meta: -

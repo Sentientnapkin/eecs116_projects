@@ -1,0 +1,44 @@
+[
+{
+"id": "s3v3va-ro-9300282",
+"ate": 0.6548412117605912,
+"err": null,
+"peak": 1318316,
+"setting_class": "room",
+"regime": "free-yaw",
+"motion_style": "DE",
+"start": "mid-flight",
+"start_fwd_speed": -0.7561109154868592,
+"fov_deg": 109.915489,
+"exposure_s": 0.01,
+"scene_variant": null
+},
+{
+"id": "s3v3va-wa-9300309",
+"ate": 2.0804763788067353,
+"err": null,
+"peak": 1358626,
+"setting_class": "warehouse",
+"regime": "free-yaw",
+"motion_style": "E",
+"start": "mid-flight",
+"start_fwd_speed": -1.2884651915589471,
+"fov_deg": 111.696526,
+"exposure_s": 0.01,
+"scene_variant": "warehouse-021"
+},
+{
+"id": "s3va-fo-9010516",
+"ate": 11.864113539742446,
+"err": null,
+"peak": 1360157,
+"setting_class": "forest",
+"regime": "benchmark",
+"motion_style": "C",
+"start": "mid-flight",
+"start_fwd_speed": 1.8080588506969215,
+"fov_deg": 90.8541946,
+"exposure_s": 0.03,
+"scene_variant": "official"
+}
+]

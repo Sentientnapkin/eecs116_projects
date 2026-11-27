@@ -1,0 +1,21 @@
+{
+  "id": "s3tr-wa-9005453",
+  "scene": "/data/backups/rganapa/Sebastian/gen3/scenes/warehouse-020.glb",
+  "n": 20,
+  "rgb_shape": [
+    20,
+    120,
+    160,
+    3
+  ],
+  "depth_shape": [
+    20,
+    120,
+    160
+  ],
+  "valid_fraction": 1.0,
+  "scene_load_s": 2.1414453983306885,
+  "exposure_s": null,
+  "label_timing": "sharp mid-exposure render",
+  "depth_units": "meters; optical-axis z; inf invalid"
+}

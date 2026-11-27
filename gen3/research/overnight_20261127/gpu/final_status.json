@@ -1,0 +1,11 @@
+{
+  "completed": true,
+  "results": [
+    "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed4_small/ctx2/ctx2/result.json",
+    "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed4_small/ctx5/ctx5/result.json",
+    "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed5_large/ctx2/ctx2/result.json",
+    "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed5_large/ctx5/ctx5/result.json"
+  ],
+  "missing": [],
+  "checked_utc": "2026-11-27T10:48:43.818778+00:00"
+}

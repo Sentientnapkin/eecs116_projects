@@ -1,0 +1,108 @@
+Traceback (most recent call last):
+  File "/data/backups/rganapa/Sebastian/gen3/research/i5/depth_queue.py", line 3, in <module>
+    from huggingface_hub import hf_hub_download
+ModuleNotFoundError: No module named 'huggingface_hub'
+VAL_SELECTED [('s3v3va-fo-9300452', '/data/backups/rganapa/Sebastian/gen3/out/keep/s3v3va-fo-9300452.zip', 'val', 'Forest'), ('s3v3va-fo-9300457', '/data/backups/rganapa/Sebastian/gen3/out/keep/s3v3va-fo-9300457.zip', 'val', 'forest-021'), ('s3v3va-fo-9300463', '/data/backups/rganapa/Sebastian/gen3/out/keep/s3v3va-fo-9300463.zip', 'val', 'forest-022'), ('s3v3va-ro-9300005', '/data/backups/rganapa/Sebastian/gen3/out/keep/s3v3va-ro-9300005.zip', 'val', 'ProcTHOR-Train-49'), ('s3v3va-ro-9300009', '/data/backups/rganapa/Sebastian/gen3/out/keep/s3v3va-ro-9300009.zip', 'val', 'ProcTHOR-Train-50'), ('s3v3va-ro-9300014', '/data/backups/rganapa/Sebastian/gen3/out/keep/s3v3va-ro-9300014.zip', 'val', '106366248_174226527'), ('s3v3va-ro-9300016', '/data/backups/rganapa/Sebastian/gen3/out/keep/s3v3va-ro-9300016.zip', 'val', '102816729'), ('s3v3va-wa-9300300', '/data/backups/rganapa/Sebastian/gen3/out/keep/s3v3va-wa-9300300.zip', 'val', 'Warehouse'), ('s3v3va-wa-9300305', '/data/backups/rganapa/Sebastian/gen3/out/keep/s3v3va-wa-9300305.zip', 'val', 'warehouse-021'), ('s3v3va-wa-9300313', '/data/backups/rganapa/Sebastian/gen3/out/keep/s3v3va-wa-9300313.zip', 'val', 'warehouse-022')]
+Traceback (most recent call last):
+  File "/data/backups/rganapa/Sebastian/gen3/research/i5/depth_queue.py", line 33, in <module>
+    dst=OUT/id+'.npz'
+        ~~~~~~^~~~~~~
+TypeError: unsupported operand type(s) for +: 'PosixPath' and 'str'
+VAL_SELECTED [('s3v3va-fo-9300452', '/data/backups/rganapa/Sebastian/gen3/out/keep/s3v3va-fo-9300452.zip', 'val', 'Forest'), ('s3v3va-fo-9300457', '/data/backups/rganapa/Sebastian/gen3/out/keep/s3v3va-fo-9300457.zip', 'val', 'forest-021'), ('s3v3va-fo-9300463', '/data/backups/rganapa/Sebastian/gen3/out/keep/s3v3va-fo-9300463.zip', 'val', 'forest-022'), ('s3v3va-ro-9300005', '/data/backups/rganapa/Sebastian/gen3/out/keep/s3v3va-ro-9300005.zip', 'val', 'ProcTHOR-Train-49'), ('s3v3va-ro-9300009', '/data/backups/rganapa/Sebastian/gen3/out/keep/s3v3va-ro-9300009.zip', 'val', 'ProcTHOR-Train-50'), ('s3v3va-ro-9300014', '/data/backups/rganapa/Sebastian/gen3/out/keep/s3v3va-ro-9300014.zip', 'val', '106366248_174226527'), ('s3v3va-ro-9300016', '/data/backups/rganapa/Sebastian/gen3/out/keep/s3v3va-ro-9300016.zip', 'val', '102816729'), ('s3v3va-wa-9300300', '/data/backups/rganapa/Sebastian/gen3/out/keep/s3v3va-wa-9300300.zip', 'val', 'Warehouse'), ('s3v3va-wa-9300305', '/data/backups/rganapa/Sebastian/gen3/out/keep/s3v3va-wa-9300305.zip', 'val', 'warehouse-021'), ('s3v3va-wa-9300313', '/data/backups/rganapa/Sebastian/gen3/out/keep/s3v3va-wa-9300313.zip', 'val', 'warehouse-022')]
+#rl_tools::hyperlux::datasets: Loaded assembly with 795 part(s)
+hyperlux: compiling renderer configuration (OPTIX)...
+#rl_tools::hyperlux: backend=optix
+render stats (20, 120, 160, 3) (20, 120, 160) rgb finite 1.0 depth finite 0.9526536458333333 positive 1.0 depth minmax 0.7606525 inf
+OK s3v3va-fo-9300457 /data/backups/rganapa/Sebastian/gen3/scenes/forest-021.glb (20, 120, 160) 0.9526536458333333
+QUEUE_PROGRESS s3v3va-fo-9300457 val forest-021
+#rl_tools::hyperlux::datasets: Loaded assembly with 781 part(s)
+#rl_tools::hyperlux: backend=optix
+render stats (20, 120, 160, 3) (20, 120, 160) rgb finite 1.0 depth finite 0.930796875 positive 1.0 depth minmax 0.3706633 inf
+OK s3v3va-fo-9300463 /data/backups/rganapa/Sebastian/gen3/scenes/forest-022.glb (20, 120, 160) 0.930796875
+QUEUE_PROGRESS s3v3va-fo-9300463 val forest-022
+#rl_tools::hyperlux::datasets: Loaded assembly with 42 part(s)
+#rl_tools::hyperlux: backend=optix
+render stats (20, 120, 160, 3) (20, 120, 160) rgb finite 1.0 depth finite 1.0 positive 1.0 depth minmax 0.26618248 5.38337
+OK s3v3va-ro-9300005 conta:03d081472d66dbc7b6816ec4cc7c3f38b2f11820 (20, 120, 160) 1.0
+QUEUE_PROGRESS s3v3va-ro-9300005 val ProcTHOR-Train-49
+#rl_tools::hyperlux::datasets: Loaded assembly with 104 part(s)
+#rl_tools::hyperlux::datasets: Scene file has no lights: adding 3 directional fill lights
+#rl_tools::hyperlux: backend=optix
+render stats (20, 120, 160, 3) (20, 120, 160) rgb finite 1.0 depth finite 1.0 positive 1.0 depth minmax 0.44820717 6.6986666
+OK s3v3va-ro-9300009 conta:430387557f4575f9c400e7a010aaa632e8a03dd9 (20, 120, 160) 1.0
+QUEUE_PROGRESS s3v3va-ro-9300009 val ProcTHOR-Train-50
+#rl_tools::hyperlux::datasets: Loaded assembly with 236 part(s)
+#rl_tools::hyperlux: backend=optix
+render stats (20, 120, 160, 3) (20, 120, 160) rgb finite 1.0 depth finite 1.0 positive 1.0 depth minmax 0.5675311 6.012889
+OK s3v3va-ro-9300014 conta:f18c926e1d4190c74af388cbb65b1fb1bcfc0476 (20, 120, 160) 1.0
+QUEUE_PROGRESS s3v3va-ro-9300014 val 106366248_174226527
+#rl_tools::hyperlux::datasets: Loaded assembly with 361 part(s)
+#rl_tools::hyperlux: backend=optix
+render stats (20, 120, 160, 3) (20, 120, 160) rgb finite 1.0 depth finite 0.9987317708333333 positive 1.0 depth minmax 0.41658014 inf
+OK s3v3va-ro-9300016 conta:a5dc7ac1e5e158afc3cd0e430597d729f0351e62 (20, 120, 160) 0.9987317708333333
+QUEUE_PROGRESS s3v3va-ro-9300016 val 102816729
+#rl_tools::hyperlux::datasets: Loaded assembly with 272 part(s)
+#rl_tools::hyperlux: backend=optix
+render stats (20, 120, 160, 3) (20, 120, 160) rgb finite 1.0 depth finite 1.0 positive 1.0 depth minmax 1.242892 30.388046
+OK s3v3va-wa-9300300 conta:77d055df9fe567fd73201bd925647a65851b0642 (20, 120, 160) 1.0
+QUEUE_PROGRESS s3v3va-wa-9300300 val Warehouse
+#rl_tools::hyperlux::datasets: Loaded assembly with 208 part(s)
+#rl_tools::hyperlux: backend=optix
+render stats (20, 120, 160, 3) (20, 120, 160) rgb finite 1.0 depth finite 1.0 positive 1.0 depth minmax 0.38698834 35.02035
+OK s3v3va-wa-9300305 /data/backups/rganapa/Sebastian/gen3/scenes/warehouse-021.glb (20, 120, 160) 1.0
+QUEUE_PROGRESS s3v3va-wa-9300305 val warehouse-021
+#rl_tools::hyperlux::datasets: Loaded assembly with 244 part(s)
+#rl_tools::hyperlux: backend=optix
+render stats (20, 120, 160, 3) (20, 120, 160) rgb finite 1.0 depth finite 1.0 positive 1.0 depth minmax 0.74921477 31.906563
+OK s3v3va-wa-9300313 /data/backups/rganapa/Sebastian/gen3/scenes/warehouse-022.glb (20, 120, 160) 1.0
+QUEUE_PROGRESS s3v3va-wa-9300313 val warehouse-022
+#rl_tools::hyperlux::datasets: Loaded assembly with 731 part(s)
+#rl_tools::hyperlux: backend=optix
+render stats (20, 120, 160, 3) (20, 120, 160) rgb finite 1.0 depth finite 0.9209192708333334 positive 1.0 depth minmax 0.67637175 inf
+OK s3tr-fo-9007521 /data/backups/rganapa/Sebastian/gen3/scenes/forest-016.glb (20, 120, 160) 0.9209192708333334
+QUEUE_PROGRESS s3tr-fo-9007521 train /data/backups/rganapa/Sebastian/gen3/scenes/forest-016.glb train_download_bytes 3471716180
+#rl_tools::hyperlux::datasets: Loaded assembly with 786 part(s)
+#rl_tools::hyperlux: backend=optix
+render stats (20, 120, 160, 3) (20, 120, 160) rgb finite 1.0 depth finite 0.9543203125 positive 1.0 depth minmax 0.5513461 inf
+OK s3tr-fo-9007525 /data/backups/rganapa/Sebastian/gen3/scenes/forest-010.glb (20, 120, 160) 0.9543203125
+QUEUE_PROGRESS s3tr-fo-9007525 train /data/backups/rganapa/Sebastian/gen3/scenes/forest-010.glb train_download_bytes 3471716180
+#rl_tools::hyperlux::datasets: Loaded assembly with 785 part(s)
+#rl_tools::hyperlux: backend=optix
+render stats (20, 120, 160, 3) (20, 120, 160) rgb finite 1.0 depth finite 0.9700390625 positive 1.0 depth minmax 0.7108851 inf
+OK s3tr-fo-9007575 /data/backups/rganapa/Sebastian/gen3/scenes/forest-015.glb (20, 120, 160) 0.9700390625
+QUEUE_PROGRESS s3tr-fo-9007575 train /data/backups/rganapa/Sebastian/gen3/scenes/forest-015.glb train_download_bytes 3471716180
+#rl_tools::hyperlux::datasets: Loaded assembly with 137 part(s)
+#rl_tools::hyperlux: backend=optix
+render stats (20, 120, 160, 3) (20, 120, 160) rgb finite 1.0 depth finite 0.9984739583333333 positive 1.0 depth minmax 0.35587737 inf
+OK s3tr-ro-9000117 conta:61690d486181da10a63111a18d0931d1d977434b (20, 120, 160) 0.9984739583333333
+QUEUE_PROGRESS s3tr-ro-9000117 train 104348160_171513093 train_download_bytes 3471716180
+#rl_tools::hyperlux::datasets: Loaded assembly with 157 part(s)
+#rl_tools::hyperlux: backend=optix
+render stats (20, 120, 160, 3) (20, 120, 160) rgb finite 1.0 depth finite 1.0 positive 1.0 depth minmax 0.51880205 9.977485
+OK s3tr-ro-9000133 conta:139ad5ef084ee00e5e7ae9ae8071bef9593a010a (20, 120, 160) 1.0
+QUEUE_PROGRESS s3tr-ro-9000133 train 104862639_172226823 train_download_bytes 3471716180
+#rl_tools::hyperlux::datasets: Loaded assembly with 240 part(s)
+#rl_tools::hyperlux: backend=optix
+render stats (20, 120, 160, 3) (20, 120, 160) rgb finite 1.0 depth finite 1.0 positive 1.0 depth minmax 0.39665648 8.512912
+OK s3tr-ro-9000150 conta:8eb5910d46c730499266dc4d34fee8fa82564532 (20, 120, 160) 1.0
+QUEUE_PROGRESS s3tr-ro-9000150 train 107734338_176000244 train_download_bytes 3471716180
+#rl_tools::hyperlux::datasets: Loaded assembly with 132 part(s)
+#rl_tools::hyperlux: backend=optix
+render stats (20, 120, 160, 3) (20, 120, 160) rgb finite 1.0 depth finite 0.9999947916666667 positive 1.0 depth minmax 0.24151053 inf
+OK s3tr-ro-9000183 conta:10741cc13ae34278a351a70819e171add0714708 (20, 120, 160) 0.9999947916666667
+QUEUE_PROGRESS s3tr-ro-9000183 train ProcTHOR-Train-59 train_download_bytes 3471716180
+#rl_tools::hyperlux::datasets: Loaded assembly with 210 part(s)
+#rl_tools::hyperlux: backend=optix
+render stats (20, 120, 160, 3) (20, 120, 160) rgb finite 1.0 depth finite 1.0 positive 1.0 depth minmax 0.6953279 38.639637
+OK s3tr-wa-9005281 /data/backups/rganapa/Sebastian/gen3/scenes/warehouse-005.glb (20, 120, 160) 1.0
+QUEUE_PROGRESS s3tr-wa-9005281 train /data/backups/rganapa/Sebastian/gen3/scenes/warehouse-005.glb train_download_bytes 3471716180
+#rl_tools::hyperlux::datasets: Loaded assembly with 200 part(s)
+#rl_tools::hyperlux: backend=optix
+render stats (20, 120, 160, 3) (20, 120, 160) rgb finite 1.0 depth finite 1.0 positive 1.0 depth minmax 0.65331596 37.51693
+OK s3tr-wa-9005429 /data/backups/rganapa/Sebastian/gen3/scenes/warehouse-019.glb (20, 120, 160) 1.0
+QUEUE_PROGRESS s3tr-wa-9005429 train /data/backups/rganapa/Sebastian/gen3/scenes/warehouse-019.glb train_download_bytes 3471716180
+#rl_tools::hyperlux::datasets: Loaded assembly with 238 part(s)
+#rl_tools::hyperlux: backend=optix
+render stats (20, 120, 160, 3) (20, 120, 160) rgb finite 1.0 depth finite 1.0 positive 1.0 depth minmax 0.5906166 34.689293
+OK s3tr-wa-9005453 /data/backups/rganapa/Sebastian/gen3/scenes/warehouse-020.glb (20, 120, 160) 1.0
+QUEUE_PROGRESS s3tr-wa-9005453 train /data/backups/rganapa/Sebastian/gen3/scenes/warehouse-020.glb train_download_bytes 3471716180

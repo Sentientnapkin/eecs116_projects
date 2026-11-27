@@ -1,0 +1,972 @@
+{
+  "timestamp_utc": "2026-11-27T16:00:00.000155+00:00",
+  "label": "scheduled_1600UTC",
+  "delivery": "local progress report; proactive chat scheduling unavailable",
+  "cutoff_utc": "2026-11-27T16:00:00+00:00",
+  "jobs": {
+    "gpu": {
+      "active_processes": [],
+      "artifacts": []
+    },
+    "classical": {
+      "active_processes": [],
+      "artifacts": [
+        {
+          "path": "/tmp/vio_overnight/classical/queue.error.json",
+          "bytes": 106,
+          "mtime": 1795773431.0008621
+        },
+        {
+          "path": "/tmp/vio_overnight/classical/shared_manifest.json",
+          "bytes": 3483,
+          "mtime": 1795773342.0292363
+        },
+        {
+          "path": "/tmp/vio_overnight/classical/confirm48_control_g30_c8.json",
+          "bytes": 30769,
+          "mtime": 1795773641.113283
+        },
+        {
+          "path": "/tmp/vio_overnight/classical/confirm48_baseline.json",
+          "bytes": 30551,
+          "mtime": 1795773342.0292363
+        },
+        {
+          "path": "/tmp/vio_overnight/classical/identity.json",
+          "bytes": 638,
+          "mtime": 1795773477.781003
+        },
+        {
+          "path": "/tmp/vio_overnight/classical/zero_control.json",
+          "bytes": 187,
+          "mtime": 1795773477.781003
+        },
+        {
+          "path": "/tmp/vio_overnight/classical/confirm_capacity_g30_c12_o14.json",
+          "bytes": 68782,
+          "mtime": 1795773699.3613162
+        },
+        {
+          "path": "/tmp/vio_overnight/classical/screen24_control_g100_c8.json",
+          "bytes": 15532,
+          "mtime": 1795773539.2931442
+        },
+        {
+          "path": "/tmp/vio_overnight/classical/confirm48_capacity_g30_c12_o14.json",
+          "bytes": 30879,
+          "mtime": 1795773678.949308
+        },
+        {
+          "path": "/tmp/vio_overnight/classical/screen_summary.json",
+          "bytes": 71467,
+          "mtime": 1795773558.389179
+        },
+        {
+          "path": "/tmp/vio_overnight/classical/screen24_capacity_g100_c20_o22.json",
+          "bytes": 15614,
+          "mtime": 1795773558.3251789
+        },
+        {
+          "path": "/tmp/vio_overnight/classical/screen24_baseline.json",
+          "bytes": 15369,
+          "mtime": 1795773342.0292363
+        },
+        {
+          "path": "/tmp/vio_overnight/classical/screen24_capacity_g30_c12_o14.json",
+          "bytes": 15607,
+          "mtime": 1795773513.3610904
+        },
+        {
+          "path": "/tmp/vio_overnight/classical/queue.done.json",
+          "bytes": 81,
+          "mtime": 1795773558.389179
+        },
+        {
+          "path": "/tmp/vio_overnight/classical/final_report.json",
+          "bytes": 2298,
+          "mtime": 1795773731.1013217
+        },
+        {
+          "path": "/tmp/vio_overnight/classical/screen24_control_g30_c8.json",
+          "bytes": 15531,
+          "mtime": 1795773495.5210485
+        }
+      ]
+    },
+    "prior_review": {
+      "active_processes": [],
+      "artifacts": [
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/result.json",
+          "bytes": 17984,
+          "mtime": 1795773051.7187483
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle1/summary.json",
+          "bytes": 8869,
+          "mtime": 1795773356.869158
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/scores.json",
+          "bytes": 30810,
+          "mtime": 1795773051.34675
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/guest.json",
+          "bytes": 3480,
+          "mtime": 1795772983.2670965
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-wa-h9500035/report/report.json",
+          "bytes": 2400,
+          "mtime": 1795773046.2267764
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-fo-9300495/report/report.json",
+          "bytes": 2416,
+          "mtime": 1795772990.0590622
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-wa-9300380/report/report.json",
+          "bytes": 2406,
+          "mtime": 1795773038.6228151
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-fo-9300553/report/report.json",
+          "bytes": 2363,
+          "mtime": 1795772997.399025
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-ro-9300097/report/report.json",
+          "bytes": 2390,
+          "mtime": 1795773014.6469374
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-fo-h9500103/report/report.json",
+          "bytes": 2391,
+          "mtime": 1795773008.5349684
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-ro-9300148/report/report.json",
+          "bytes": 2393,
+          "mtime": 1795773018.7309165
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-ro-9300166/report/report.json",
+          "bytes": 2402,
+          "mtime": 1795773022.5148973
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-fo-9300535/report/report.json",
+          "bytes": 2408,
+          "mtime": 1795772997.7150233
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-fo-9300488/report/report.json",
+          "bytes": 2396,
+          "mtime": 1795772990.095062
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-fo-9300522/report/report.json",
+          "bytes": 2364,
+          "mtime": 1795772993.859043
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-wa-h9500075/report/report.json",
+          "bytes": 2415,
+          "mtime": 1795773050.6027539
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-ro-9300168/report/report.json",
+          "bytes": 2382,
+          "mtime": 1795773024.0948892
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-wa-9300314/report/report.json",
+          "bytes": 2375,
+          "mtime": 1795773033.8188396
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-wa-h9500023/report/report.json",
+          "bytes": 2396,
+          "mtime": 1795773043.8547883
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-wa-9300405/report/report.json",
+          "bytes": 2397,
+          "mtime": 1795773040.774804
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-ro-9300136/report/report.json",
+          "bytes": 2392,
+          "mtime": 1795773016.9149258
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-fo-h9500119/report/report.json",
+          "bytes": 2389,
+          "mtime": 1795773008.5309684
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-wa-h9500065/report/report.json",
+          "bytes": 2396,
+          "mtime": 1795773048.622764
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-ro-9300224/report/report.json",
+          "bytes": 2413,
+          "mtime": 1795773025.9828796
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-wa-9300433/report/report.json",
+          "bytes": 2379,
+          "mtime": 1795773041.4908004
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-fo-h9500140/report/report.json",
+          "bytes": 2377,
+          "mtime": 1795773012.3029492
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-ro-9300277/report/report.json",
+          "bytes": 2396,
+          "mtime": 1795773032.0988483
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-fo-h9500135/report/report.json",
+          "bytes": 2390,
+          "mtime": 1795773012.1869497
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-fo-9300556/report/report.json",
+          "bytes": 2402,
+          "mtime": 1795773001.1830058
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-fo-h9500101/report/report.json",
+          "bytes": 2379,
+          "mtime": 1795773005.058986
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-ro-9300243/report/report.json",
+          "bytes": 2402,
+          "mtime": 1795773027.4308722
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-ro-9300105/report/report.json",
+          "bytes": 2389,
+          "mtime": 1795773016.854926
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-wa-9300387/report/report.json",
+          "bytes": 2390,
+          "mtime": 1795773039.0588129
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-ro-9300138/report/report.json",
+          "bytes": 2399,
+          "mtime": 1795773019.8749108
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-wa-9300337/report/report.json",
+          "bytes": 2386,
+          "mtime": 1795773036.686825
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-ro-9300244/report/report.json",
+          "bytes": 2412,
+          "mtime": 1795773029.418862
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-ro-9300082/report/report.json",
+          "bytes": 2441,
+          "mtime": 1795773014.4029386
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-wa-9300329/report/report.json",
+          "bytes": 2409,
+          "mtime": 1795773036.290827
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-wa-9300318/report/report.json",
+          "bytes": 2397,
+          "mtime": 1795773034.3908367
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-ro-9300264/report/report.json",
+          "bytes": 2373,
+          "mtime": 1795773031.4748516
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-ro-9300161/report/report.json",
+          "bytes": 2398,
+          "mtime": 1795773021.1269042
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-wa-h9500008/report/report.json",
+          "bytes": 2381,
+          "mtime": 1795773043.2107918
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-wa-h9500084/report/report.json",
+          "bytes": 2356,
+          "mtime": 1795773050.990752
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-ro-9300262/report/report.json",
+          "bytes": 2362,
+          "mtime": 1795773029.1588633
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-fo-9300477/report/report.json",
+          "bytes": 2400,
+          "mtime": 1795772986.4150805
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-fo-9300585/report/report.json",
+          "bytes": 2408,
+          "mtime": 1795773001.4270046
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-fo-9300532/report/report.json",
+          "bytes": 2376,
+          "mtime": 1795772993.9310424
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-fo-9300467/report/report.json",
+          "bytes": 2379,
+          "mtime": 1795772986.4750803
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-wa-h9500026/report/report.json",
+          "bytes": 2361,
+          "mtime": 1795773045.686779
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-ro-9300201/report/report.json",
+          "bytes": 2399,
+          "mtime": 1795773025.0068846
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-wa-h9500061/report/report.json",
+          "bytes": 2396,
+          "mtime": 1795773048.2067661
+        },
+        {
+          "path": "/tmp/vio_research_loop/reviews/cycle2/eval/gov27_0_confirm48-2608945c/s3v3va-fo-9300596/report/report.json",
+          "bytes": 2400,
+          "mtime": 1795773004.8309872
+        }
+      ]
+    },
+    "context_replication": {
+      "active_processes": [],
+      "artifacts": []
+    },
+    "depth": {
+      "active_processes": [],
+      "artifacts": []
+    },
+    "gpu_results": {
+      "active_processes": [],
+      "artifacts": [
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/manifest.json",
+          "bytes": 770,
+          "mtime": 1795774412.952784
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/final_status.json",
+          "bytes": 553,
+          "mtime": 1795777568.405127
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/conditional_teacher_decision.json",
+          "bytes": 320,
+          "mtime": 1795777584.788455
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed5_large/ctx5/status.json",
+          "bytes": 121,
+          "mtime": 1795777564.09927
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed5_large/ctx5/manifest.json",
+          "bytes": 1030,
+          "mtime": 1795775497.5438888
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed5_large/ctx5/queue.done",
+          "bytes": 27,
+          "mtime": 1795776514.9913847
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed5_large/ctx5/temporal_error_correlation.json",
+          "bytes": 646783,
+          "mtime": 1795777564.078438
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed5_large/ctx2/status.json",
+          "bytes": 121,
+          "mtime": 1795776471.118919
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed5_large/ctx2/manifest.json",
+          "bytes": 1030,
+          "mtime": 1795774925.6623504
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed5_large/ctx2/queue.done",
+          "bytes": 27,
+          "mtime": 1795775422.0564504
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed5_large/ctx2/temporal_error_correlation.json",
+          "bytes": 647056,
+          "mtime": 1795776471.090752
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed5_large/ctx5/ctx5/result.json",
+          "bytes": 755,
+          "mtime": 1795776514.9913847
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed5_large/ctx2/ctx2/result.json",
+          "bytes": 752,
+          "mtime": 1795775422.0564504
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed6_wide/ctx5/manifest.json",
+          "bytes": 1030,
+          "mtime": 1795777624.4050238
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed6_wide/ctx5/queue.done",
+          "bytes": 27,
+          "mtime": 1795779621.1377375
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed6_wide/ctx2/manifest.json",
+          "bytes": 1030,
+          "mtime": 1795776603.0028539
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed6_wide/ctx2/queue.done",
+          "bytes": 27,
+          "mtime": 1795777566.9854517
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed6_wide/ctx5/ctx5/result.json",
+          "bytes": 942,
+          "mtime": 1795779621.7817388
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed6_wide/ctx2/ctx2/result.json",
+          "bytes": 940,
+          "mtime": 1795777567.8774447
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed4_small/ctx5/status.json",
+          "bytes": 121,
+          "mtime": 1795775909.907224
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed4_small/ctx5/manifest.json",
+          "bytes": 1027,
+          "mtime": 1795773897.137229
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed4_small/ctx5/queue.done",
+          "bytes": 27,
+          "mtime": 1795774862.1865828
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed4_small/ctx5/temporal_error_correlation.json",
+          "bytes": 646757,
+          "mtime": 1795775909.88635
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed4_small/ctx2/status.json",
+          "bytes": 121,
+          "mtime": 1795774920.116804
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed4_small/ctx2/manifest.json",
+          "bytes": 1027,
+          "mtime": 1795773405.0969024
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed4_small/ctx2/queue.done",
+          "bytes": 27,
+          "mtime": 1795773872.5812542
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed4_small/ctx2/temporal_error_correlation.json",
+          "bytes": 646888,
+          "mtime": 1795774920.095216
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed4_small/ctx5/ctx5/result.json",
+          "bytes": 754,
+          "mtime": 1795774862.1865828
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed4_small/ctx2/ctx2/result.json",
+          "bytes": 754,
+          "mtime": 1795773872.5812542
+        }
+      ]
+    },
+    "classical_results": {
+      "active_processes": [],
+      "artifacts": [
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/classical/zero_control.json",
+          "bytes": 187,
+          "mtime": 1795774755.276352
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/classical/identity.json",
+          "bytes": 638,
+          "mtime": 1795774755.274921
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/classical/queue.done.json",
+          "bytes": 81,
+          "mtime": 1795774755.282341
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/classical/final_report.json",
+          "bytes": 2298,
+          "mtime": 1795774775.637408
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/classical/screen_summary.json",
+          "bytes": 71467,
+          "mtime": 1795774755.277963
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/classical/confirm_capacity_g30_c12_o14.json",
+          "bytes": 68782,
+          "mtime": 1795774755.279968
+        }
+      ]
+    },
+    "depth_results": {
+      "active_processes": [],
+      "artifacts": [
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/depth/smoke.json",
+          "bytes": 417,
+          "mtime": 1795774923.311449
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/depth/s3tr-fo-9007521.json",
+          "bytes": 418,
+          "mtime": 1795775460.789938
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/depth/s3tr-fo-9007575.json",
+          "bytes": 413,
+          "mtime": 1795775471.296796
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/depth/s3v3va-fo-9300457.json",
+          "bytes": 420,
+          "mtime": 1795775413.396374
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/depth/s3v3va-wa-9300300.json",
+          "bytes": 392,
+          "mtime": 1795775441.711871
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/depth/s3v3va-fo-9300452.json",
+          "bytes": 409,
+          "mtime": 1795775351.888245
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/depth/s3tr-fo-9007525.json",
+          "bytes": 412,
+          "mtime": 1795775466.189676
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/depth/s3tr-wa-9005281.json",
+          "bytes": 407,
+          "mtime": 1795775494.878941
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/depth/s3v3va-fo-9300463.json",
+          "bytes": 413,
+          "mtime": 1795775418.49311
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/depth/s3tr-ro-9000150.json",
+          "bytes": 391,
+          "mtime": 1795775489.208307
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/depth/s3v3va-wa-9300313.json",
+          "bytes": 408,
+          "mtime": 1795775446.157276
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/depth/depth_metrics.json",
+          "bytes": 3145,
+          "mtime": 1795775579.149923
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/depth/s3tr-wa-9005453.json",
+          "bytes": 407,
+          "mtime": 1795775500.512443
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/depth/s3v3va-ro-9300009.json",
+          "bytes": 394,
+          "mtime": 1795775423.733958
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/depth/s3v3va-ro-9300005.json",
+          "bytes": 393,
+          "mtime": 1795775421.048703
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/depth/batch_report.json",
+          "bytes": 342,
+          "mtime": 1795775553.536403
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/depth/s3tr-ro-9000183.json",
+          "bytes": 407,
+          "mtime": 1795775492.293003
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/depth/s3v3va-ro-9300016.json",
+          "bytes": 408,
+          "mtime": 1795775439.119003
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/depth/s3v3va-ro-9300014.json",
+          "bytes": 393,
+          "mtime": 1795775430.752561
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/depth/s3v3va-wa-9300305.json",
+          "bytes": 409,
+          "mtime": 1795775443.954512
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/depth/s3tr-wa-9005429.json",
+          "bytes": 407,
+          "mtime": 1795775497.714653
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/depth/s3tr-ro-9000117.json",
+          "bytes": 406,
+          "mtime": 1795775475.644437
+        },
+        {
+          "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/depth/s3tr-ro-9000133.json",
+          "bytes": 391,
+          "mtime": 1795775482.431798
+        }
+      ]
+    }
+  },
+  "learned_validation": [
+    {
+      "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed5_large/ctx5/ctx5/result.json",
+      "metrics": {
+        "all": 0.2797335684299469,
+        "median": 0.23977239429950714,
+        "p90": 0.5093823671340942,
+        "fast_err": 0.3396470248699188,
+        "speed_abs_err": 0.18176428973674774,
+        "speed_bias": -0.015002732165157795,
+        "dir_deg_gt1": 7.3644537925720215,
+        "zrms": 1.0087393522262573,
+        "params": 108124,
+        "K": 5,
+        "variant": "ctx5"
+      }
+    },
+    {
+      "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed5_large/ctx2/ctx2/result.json",
+      "metrics": {
+        "all": 0.28795483708381653,
+        "median": 0.2423131912946701,
+        "p90": 0.5335277318954468,
+        "fast_err": 0.3587867319583893,
+        "speed_abs_err": 0.1876193732023239,
+        "speed_bias": -0.018074247986078262,
+        "dir_deg_gt1": 7.731368064880371,
+        "zrms": 1.004099726676941,
+        "params": 105436,
+        "K": 2,
+        "variant": "ctx2"
+      }
+    },
+    {
+      "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed6_wide/ctx5/ctx5/result.json",
+      "metrics": {
+        "all": 0.23750042915344238,
+        "median": 0.20139817893505096,
+        "p90": 0.4359742999076843,
+        "fast_err": 0.29138559103012085,
+        "speed_abs_err": 0.15349577367305756,
+        "speed_bias": -0.012022173032164574,
+        "dir_deg_gt1": 6.248351573944092,
+        "zrms": 1.0589392185211182,
+        "params": 256396,
+        "K": 5,
+        "variant": "ctx5"
+      }
+    },
+    {
+      "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed6_wide/ctx2/ctx2/result.json",
+      "metrics": {
+        "all": 0.24865314364433289,
+        "median": 0.20554731786251068,
+        "p90": 0.4646836221218109,
+        "fast_err": 0.3125567138195038,
+        "speed_abs_err": 0.1629420965909958,
+        "speed_bias": -0.023859122768044472,
+        "dir_deg_gt1": 6.57912540435791,
+        "zrms": 1.049489974975586,
+        "params": 252844,
+        "K": 2,
+        "variant": "ctx2"
+      }
+    },
+    {
+      "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed4_small/ctx5/ctx5/result.json",
+      "metrics": {
+        "all": 0.2978624105453491,
+        "median": 0.25523310899734497,
+        "p90": 0.5442687273025513,
+        "fast_err": 0.3610554337501526,
+        "speed_abs_err": 0.19344724714756012,
+        "speed_bias": -0.014961362816393375,
+        "dir_deg_gt1": 7.886966228485107,
+        "zrms": 1.156528353691101,
+        "params": 108124,
+        "K": 5,
+        "variant": "ctx5"
+      }
+    },
+    {
+      "path": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed4_small/ctx2/ctx2/result.json",
+      "metrics": {
+        "all": 0.3068029582500458,
+        "median": 0.25733157992362976,
+        "p90": 0.5714088082313538,
+        "fast_err": 0.38501784205436707,
+        "speed_abs_err": 0.2010771930217743,
+        "speed_bias": -0.014565556310117245,
+        "dir_deg_gt1": 8.221796989440918,
+        "zrms": 1.1252846717834473,
+        "params": 105436,
+        "K": 2,
+        "variant": "ctx2"
+      }
+    },
+    {
+      "path": "/dev/shm/vio_overnight/gpu/seed6_wide/ctx5/ctx5/result.json",
+      "metrics": {
+        "all": 0.23750042915344238,
+        "median": 0.20139817893505096,
+        "p90": 0.4359742999076843,
+        "fast_err": 0.29138559103012085,
+        "speed_abs_err": 0.15349577367305756,
+        "speed_bias": -0.012022173032164574,
+        "dir_deg_gt1": 6.248351573944092,
+        "zrms": 1.0589392185211182,
+        "params": 256396,
+        "K": 5,
+        "variant": "ctx5"
+      }
+    },
+    {
+      "path": "/dev/shm/vio_overnight/gpu/seed6_wide/ctx2/ctx2/result.json",
+      "metrics": {
+        "all": 0.24865314364433289,
+        "median": 0.20554731786251068,
+        "p90": 0.4646836221218109,
+        "fast_err": 0.3125567138195038,
+        "speed_abs_err": 0.1629420965909958,
+        "speed_bias": -0.023859122768044472,
+        "dir_deg_gt1": 6.57912540435791,
+        "zrms": 1.049489974975586,
+        "params": 252844,
+        "K": 2,
+        "variant": "ctx2"
+      }
+    },
+    {
+      "path": "/dev/shm/vio_overnight/gpu/seed5_large/ctx5/ctx5/result.json",
+      "metrics": {
+        "all": 0.2797335684299469,
+        "median": 0.23977239429950714,
+        "p90": 0.5093823671340942,
+        "fast_err": 0.3396470248699188,
+        "speed_abs_err": 0.18176428973674774,
+        "speed_bias": -0.015002732165157795,
+        "dir_deg_gt1": 7.3644537925720215,
+        "zrms": 1.0087393522262573,
+        "params": 108124,
+        "K": 5,
+        "variant": "ctx5"
+      }
+    },
+    {
+      "path": "/dev/shm/vio_overnight/gpu/seed5_large/ctx2/ctx2/result.json",
+      "metrics": {
+        "all": 0.28795483708381653,
+        "median": 0.2423131912946701,
+        "p90": 0.5335277318954468,
+        "fast_err": 0.3587867319583893,
+        "speed_abs_err": 0.1876193732023239,
+        "speed_bias": -0.018074247986078262,
+        "dir_deg_gt1": 7.731368064880371,
+        "zrms": 1.004099726676941,
+        "params": 105436,
+        "K": 2,
+        "variant": "ctx2"
+      }
+    },
+    {
+      "path": "/dev/shm/vio_overnight/gpu/seed4_small/ctx5/ctx5/result.json",
+      "metrics": {
+        "all": 0.2978624105453491,
+        "median": 0.25523310899734497,
+        "p90": 0.5442687273025513,
+        "fast_err": 0.3610554337501526,
+        "speed_abs_err": 0.19344724714756012,
+        "speed_bias": -0.014961362816393375,
+        "dir_deg_gt1": 7.886966228485107,
+        "zrms": 1.156528353691101,
+        "params": 108124,
+        "K": 5,
+        "variant": "ctx5"
+      }
+    },
+    {
+      "path": "/dev/shm/vio_overnight/gpu/seed4_small/ctx2/ctx2/result.json",
+      "metrics": {
+        "all": 0.3068029582500458,
+        "median": 0.25733157992362976,
+        "p90": 0.5714088082313538,
+        "fast_err": 0.38501784205436707,
+        "speed_abs_err": 0.2010771930217743,
+        "speed_bias": -0.014565556310117245,
+        "dir_deg_gt1": 8.221796989440918,
+        "zrms": 1.1252846717834473,
+        "params": 105436,
+        "K": 2,
+        "variant": "ctx2"
+      }
+    },
+    {
+      "path": "/dev/shm/vio_loop3/context_replication/seed2/ctx5/ctx5/result.json",
+      "metrics": {
+        "all": 0.3174601197242737,
+        "median": 0.2728659510612488,
+        "p90": 0.5746651291847229,
+        "fast_err": 0.38190287351608276,
+        "speed_abs_err": 0.20611189305782318,
+        "speed_bias": -0.017410289496183395,
+        "dir_deg_gt1": 8.415556907653809,
+        "zrms": 1.0862590074539185,
+        "params": 108124,
+        "K": 5,
+        "variant": "ctx5"
+      }
+    },
+    {
+      "path": "/dev/shm/vio_loop3/context_replication/seed2/ctx2/ctx2/result.json",
+      "metrics": {
+        "all": 0.33070704340934753,
+        "median": 0.2794174253940582,
+        "p90": 0.6115472912788391,
+        "fast_err": 0.41177743673324585,
+        "speed_abs_err": 0.21585020422935486,
+        "speed_bias": -0.023782702162861824,
+        "dir_deg_gt1": 8.957554817199707,
+        "zrms": 1.0724955797195435,
+        "params": 105436,
+        "K": 2,
+        "variant": "ctx2"
+      }
+    },
+    {
+      "path": "/dev/shm/vio_loop3/context_replication/seed1/ctx5/ctx5/result.json",
+      "metrics": {
+        "all": 0.32551300525665283,
+        "median": 0.28004541993141174,
+        "p90": 0.5898468494415283,
+        "fast_err": 0.39133208990097046,
+        "speed_abs_err": 0.2100730538368225,
+        "speed_bias": -0.015428627841174603,
+        "dir_deg_gt1": 8.696645736694336,
+        "zrms": 1.0820035934448242,
+        "params": 108124,
+        "K": 5,
+        "variant": "ctx5"
+      }
+    },
+    {
+      "path": "/dev/shm/vio_loop3/context_replication/seed1/ctx2/ctx2/result.json",
+      "metrics": {
+        "all": 0.3311828374862671,
+        "median": 0.2802473306655884,
+        "p90": 0.6120948195457458,
+        "fast_err": 0.41556867957115173,
+        "speed_abs_err": 0.21810317039489746,
+        "speed_bias": -0.03990352153778076,
+        "dir_deg_gt1": 8.968155860900879,
+        "zrms": 1.0813850164413452,
+        "params": 105436,
+        "K": 2,
+        "variant": "ctx2"
+      }
+    },
+    {
+      "path": "/dev/shm/vio_research_loop/reviews/cycle1_seed3/ctx5/ctx5/result.json",
+      "metrics": {
+        "all": 0.3252643048763275,
+        "median": 0.2793533504009247,
+        "p90": 0.5883030891418457,
+        "fast_err": 0.3894995450973511,
+        "speed_abs_err": 0.2101457417011261,
+        "speed_bias": -0.010491371154785156,
+        "dir_deg_gt1": 8.640332221984863,
+        "zrms": 1.0819607973098755,
+        "params": 108124,
+        "K": 5,
+        "variant": "ctx5"
+      }
+    },
+    {
+      "path": "/dev/shm/vio_research_loop/reviews/cycle1_seed3/ctx2/ctx2/result.json",
+      "metrics": {
+        "all": 0.33307695388793945,
+        "median": 0.2805379331111908,
+        "p90": 0.617671012878418,
+        "fast_err": 0.4159732758998871,
+        "speed_abs_err": 0.21941304206848145,
+        "speed_bias": -0.034211449325084686,
+        "dir_deg_gt1": 8.973876953125,
+        "zrms": 1.0765446424484253,
+        "params": 105436,
+        "K": 2,
+        "variant": "ctx2"
+      }
+    }
+  ],
+  "constraints": {
+    "luna_review_only": "brief setup/review; compute in scripts",
+    "best_artifact_unchanged": true,
+    "no_hidden_submissions": true,
+    "local_dataset_cap_bytes": 600000000000
+  },
+  "caveat": "Read each experiment manifest for matched baseline and sample count. Validation error is not downstream ATE or measured WASM fuel."
+}

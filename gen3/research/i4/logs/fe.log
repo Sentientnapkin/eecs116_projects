@@ -1,0 +1,205 @@
+ANA FAIL s3v3va-fo-9300489 /backups/rganapa/Sebastian/gen3/research/i4/tools/flight.py", line 46, in c_tracks
+    a = l.split(); tr[(int(a[2]), int(a[3]))].append((int(a[1]), float(a[4]), float(a[5])))
+                                                                                    ~^^^
+IndexError: list index out of range
+
+done s3v3va-fo-9300489
+ANA FAIL s3v3va-fo-9300485 cks(se)
+            ^^^^^^^^^^^^
+  File "/data/backups/rganapa/Sebastian/gen3/research/i4/tools/flight.py", line 46, in c_tracks
+    a = l.split(); tr[(int(a[2]), int(a[3]))].append((int(a[1]), float(a[4]), float(a[5])))
+                                      ~^^^
+IndexError: list index out of range
+
+done s3v3va-fo-9300485
+ANA FAIL s3v3va-fo-9300472 , S = c_tracks(se)
+            ^^^^^^^^^^^^
+  File "/data/backups/rganapa/Sebastian/gen3/research/i4/tools/flight.py", line 46, in c_tracks
+    a = l.split(); tr[(int(a[2]), int(a[3]))].append((int(a[1]), float(a[4]), float(a[5])))
+                           ~^^^
+IndexError: list index out of range
+
+done s3v3va-fo-9300472
+ANA FAIL s3v3va-fo-9300467 , S = c_tracks(se)
+            ^^^^^^^^^^^^
+  File "/data/backups/rganapa/Sebastian/gen3/research/i4/tools/flight.py", line 46, in c_tracks
+    a = l.split(); tr[(int(a[2]), int(a[3]))].append((int(a[1]), float(a[4]), float(a[5])))
+                           ~^^^
+IndexError: list index out of range
+
+done s3v3va-fo-9300467
+ANA FAIL s3v3va-fo-9300460   File "/data/backups/rganapa/Sebastian/gen3/research/i4/tools/flight.py", line 46, in c_tracks
+    a = l.split(); tr[(int(a[2]), int(a[3]))].append((int(a[1]), float(a[4]), float(a[5])))
+                                                                       ~^^^
+IndexError: list index out of range
+
+done s3v3va-fo-9300460
+ANA FAIL s3v3va-fo-9300479 /backups/rganapa/Sebastian/gen3/research/i4/tools/flight.py", line 46, in c_tracks
+    a = l.split(); tr[(int(a[2]), int(a[3]))].append((int(a[1]), float(a[4]), float(a[5])))
+                                                                                    ~^^^
+IndexError: list index out of range
+
+done s3v3va-fo-9300479
+done s3v3va-fo-9300527
+ANA FAIL s3v3va-fo-9300510 , S = c_tracks(se)
+            ^^^^^^^^^^^^
+  File "/data/backups/rganapa/Sebastian/gen3/research/i4/tools/flight.py", line 46, in c_tracks
+    a = l.split(); tr[(int(a[2]), int(a[3]))].append((int(a[1]), float(a[4]), float(a[5])))
+                           ~^^^
+IndexError: list index out of range
+
+done s3v3va-fo-9300510
+done s3v3va-fo-9300492
+ANA FAIL s3v3va-fo-9300495 napa/Sebastian/gen3/research/i4/tools/flight.py", line 57, in c_tracks
+    return out, np.array(S)
+                ^^^^^^^^^^^
+ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (688,) + inhomogeneous part.
+
+done s3v3va-fo-9300495
+ANA FAIL s3v3va-fo-9300529 , S = c_tracks(se)
+            ^^^^^^^^^^^^
+  File "/data/backups/rganapa/Sebastian/gen3/research/i4/tools/flight.py", line 46, in c_tracks
+    a = l.split(); tr[(int(a[2]), int(a[3]))].append((int(a[1]), float(a[4]), float(a[5])))
+                           ~^^^
+IndexError: list index out of range
+
+done s3v3va-fo-9300529
+ANA FAIL s3v3va-fo-9300522 /backups/rganapa/Sebastian/gen3/research/i4/tools/flight.py", line 46, in c_tracks
+    a = l.split(); tr[(int(a[2]), int(a[3]))].append((int(a[1]), float(a[4]), float(a[5])))
+                                                                                    ~^^^
+IndexError: list index out of range
+
+done s3v3va-fo-9300522
+ANA FAIL s3v3va-fo-9300570   File "/data/backups/rganapa/Sebastian/gen3/research/i4/tools/flight.py", line 46, in c_tracks
+    a = l.split(); tr[(int(a[2]), int(a[3]))].append((int(a[1]), float(a[4]), float(a[5])))
+                                                                       ~^^^
+IndexError: list index out of range
+
+done s3v3va-fo-9300570
+ANA FAIL s3v3va-fo-9300578 , S = c_tracks(se)
+            ^^^^^^^^^^^^
+  File "/data/backups/rganapa/Sebastian/gen3/research/i4/tools/flight.py", line 46, in c_tracks
+    a = l.split(); tr[(int(a[2]), int(a[3]))].append((int(a[1]), float(a[4]), float(a[5])))
+                           ~^^^
+IndexError: list index out of range
+
+done s3v3va-fo-9300578
+ANA FAIL s3v3va-fo-9300530 , S = c_tracks(se)
+            ^^^^^^^^^^^^
+  File "/data/backups/rganapa/Sebastian/gen3/research/i4/tools/flight.py", line 46, in c_tracks
+    a = l.split(); tr[(int(a[2]), int(a[3]))].append((int(a[1]), float(a[4]), float(a[5])))
+                           ~^^^
+IndexError: list index out of range
+
+done s3v3va-fo-9300530
+ANA FAIL s3v3va-fo-9300584 cks(se)
+            ^^^^^^^^^^^^
+  File "/data/backups/rganapa/Sebastian/gen3/research/i4/tools/flight.py", line 46, in c_tracks
+    a = l.split(); tr[(int(a[2]), int(a[3]))].append((int(a[1]), float(a[4]), float(a[5])))
+                                      ~^^^
+IndexError: list index out of range
+
+done s3v3va-fo-9300584
+done s3v3va-fo-9300555
+ANA FAIL s3v3va-fo-h9500101 /backups/rganapa/Sebastian/gen3/research/i4/tools/flight.py", line 46, in c_tracks
+    a = l.split(); tr[(int(a[2]), int(a[3]))].append((int(a[1]), float(a[4]), float(a[5])))
+                                                                                    ~^^^
+IndexError: list index out of range
+
+done s3v3va-fo-h9500101
+ANA FAIL s3v3va-ro-9300024 /backups/rganapa/Sebastian/gen3/research/i4/tools/flight.py", line 46, in c_tracks
+    a = l.split(); tr[(int(a[2]), int(a[3]))].append((int(a[1]), float(a[4]), float(a[5])))
+                                                                                    ~^^^
+IndexError: list index out of range
+
+done s3v3va-ro-9300024
+ANA FAIL s3v3va-fo-h9500106 /backups/rganapa/Sebastian/gen3/research/i4/tools/flight.py", line 46, in c_tracks
+    a = l.split(); tr[(int(a[2]), int(a[3]))].append((int(a[1]), float(a[4]), float(a[5])))
+                                                                                    ~^^^
+IndexError: list index out of range
+
+done s3v3va-fo-h9500106
+ANA FAIL s3v3va-fo-h9500110 /backups/rganapa/Sebastian/gen3/research/i4/tools/flight.py", line 46, in c_tracks
+    a = l.split(); tr[(int(a[2]), int(a[3]))].append((int(a[1]), float(a[4]), float(a[5])))
+                                                                                    ~^^^
+IndexError: list index out of range
+
+done s3v3va-fo-h9500110
+ANA FAIL s3v3va-fo-h9500131 /backups/rganapa/Sebastian/gen3/research/i4/tools/flight.py", line 46, in c_tracks
+    a = l.split(); tr[(int(a[2]), int(a[3]))].append((int(a[1]), float(a[4]), float(a[5])))
+                                                                                    ~^^^
+IndexError: list index out of range
+
+done s3v3va-fo-h9500131
+done s3v3va-ro-9300016
+done s3v3va-ro-9300061
+done s3v3va-ro-9300067
+done s3v3va-ro-9300090
+done s3v3va-ro-9300082
+done s3v3va-ro-9300065
+ANA FAIL s3v3va-ro-9300035 cks(se)
+            ^^^^^^^^^^^^
+  File "/data/backups/rganapa/Sebastian/gen3/research/i4/tools/flight.py", line 46, in c_tracks
+    a = l.split(); tr[(int(a[2]), int(a[3]))].append((int(a[1]), float(a[4]), float(a[5])))
+                                      ~^^^
+IndexError: list index out of range
+
+done s3v3va-ro-9300035
+done s3v3va-ro-9300096
+done s3v3va-ro-9300074
+done s3v3va-ro-9300098
+done s3v3va-ro-9300129
+ANA FAIL s3v3va-ro-9300105 , S = c_tracks(se)
+            ^^^^^^^^^^^^
+  File "/data/backups/rganapa/Sebastian/gen3/research/i4/tools/flight.py", line 46, in c_tracks
+    a = l.split(); tr[(int(a[2]), int(a[3]))].append((int(a[1]), float(a[4]), float(a[5])))
+                           ~^^^
+IndexError: list index out of range
+
+done s3v3va-ro-9300105
+done s3v3va-ro-9300138
+done s3v3va-ro-9300179
+done s3v3va-ro-9300192
+done s3v3va-ro-9300180
+done s3v3va-ro-9300206
+done s3v3va-ro-9300219
+done s3v3va-ro-9300238
+done s3v3va-ro-9300234
+done s3v3va-ro-9300230
+done s3v3va-ro-9300246
+done s3v3va-ro-9300242
+done s3v3va-ro-9300268
+done s3v3va-ro-9300276
+done s3v3va-ro-9300285
+done s3v3va-ro-9300244
+done s3v3va-ro-9300257
+done s3v3va-ro-9300291
+done s3v3va-wa-9300300
+done s3v3va-ro-9300297
+done s3v3va-wa-9300324
+done s3v3va-ro-9300298
+done s3v3va-wa-9300314
+done s3v3va-wa-9300325
+done s3v3va-wa-9300329
+done s3v3va-wa-9300334
+done s3v3va-wa-9300342
+done s3v3va-wa-9300350
+done s3v3va-wa-9300353
+done s3v3va-wa-9300365
+done s3v3va-wa-9300384
+done s3v3va-wa-9300407
+done s3v3va-wa-9300432
+done s3v3va-wa-9300447
+done s3v3va-wa-9300448
+done s3v3va-wa-h9500006
+done s3v3va-wa-h9500013
+done s3v3va-wa-h9500015
+done s3v3va-wa-h9500019
+done s3v3va-wa-h9500021
+done s3v3va-wa-h9500022
+done s3v3va-wa-h9500042
+done s3v3va-wa-h9500050
+done s3v3va-wa-h9500026
+done s3v3va-wa-h9500061
+done s3v3va-wa-h9500070
+done s3v3va-wa-h9500094

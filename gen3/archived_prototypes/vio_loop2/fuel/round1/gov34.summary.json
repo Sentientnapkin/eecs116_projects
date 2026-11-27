@@ -1,0 +1,223 @@
+{
+  "id": "gov34",
+  "wasm_sha256": "24f2cc73600dd0387f2d9fdb783187263ad6b26ed0e4299f8c22b7b1d35ac457",
+  "flags": "PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 AB_ZUPT=0 ITER_UPD=1 INV_LAT=0 INV_VZ=0 EDGE=0 SN=1 NS_GCOST=1 MAX_CLONES=8 MAX_OBS=10 AN_ACE=1 AN_DTH=4.0 AN_CEF=6 EDGE=1 EDGE_MYTH=10.0 GOV_B=3.4e6",
+  "n": 24,
+  "mean_ate": 0.5349744740324857,
+  "base_mean_ate": 0.5246153050346729,
+  "paired_delta": 0.010359168997812845,
+  "peak_max": 3584234,
+  "base_peak_max": 3849899,
+  "paired_peak_delta_max": 138931,
+  "per_class": {
+    "fo": {
+      "n": 8,
+      "ate_delta": 0.058479059873782574,
+      "peak_max": 3584234
+    },
+    "ro": {
+      "n": 8,
+      "ate_delta": -0.03374970035128344,
+      "peak_max": 3543802
+    },
+    "wa": {
+      "n": 8,
+      "ate_delta": 0.006348147470939397,
+      "peak_max": 3432550
+    }
+  },
+  "records": [
+    {
+      "id": "s3v3va-fo-9300479",
+      "ate": 0.46530216866584173,
+      "base_ate": 0.5490510843277588,
+      "peak": 3468858,
+      "base_peak": 3505674,
+      "failure": null
+    },
+    {
+      "id": "s3v3va-fo-9300485",
+      "ate": 0.381733813250651,
+      "base_ate": 0.66645399564257,
+      "peak": 3372099,
+      "base_peak": 3476124,
+      "failure": null
+    },
+    {
+      "id": "s3v3va-fo-9300549",
+      "ate": 0.6128033585251028,
+      "base_ate": 0.5698419379654877,
+      "peak": 3225884,
+      "base_peak": 3453496,
+      "failure": null
+    },
+    {
+      "id": "s3v3va-fo-9300587",
+      "ate": 0.8089105667754676,
+      "base_ate": 0.721450338707732,
+      "peak": 3117146,
+      "base_peak": 3333390,
+      "failure": null
+    },
+    {
+      "id": "s3v3va-fo-9300591",
+      "ate": 0.5729112853523114,
+      "base_ate": 0.5177393852346811,
+      "peak": 3200083,
+      "base_peak": 3433086,
+      "failure": null
+    },
+    {
+      "id": "s3v3va-fo-h9500106",
+      "ate": 0.46186821961434305,
+      "base_ate": 0.3621399290176817,
+      "peak": 3206549,
+      "base_peak": 3629540,
+      "failure": null
+    },
+    {
+      "id": "s3v3va-fo-h9500134",
+      "ate": 0.766358924450295,
+      "base_ate": 0.4627838648449136,
+      "peak": 3584234,
+      "base_peak": 3445303,
+      "failure": null
+    },
+    {
+      "id": "s3v3va-fo-h9500147",
+      "ate": 0.8653206987463409,
+      "base_ate": 0.6179160206492679,
+      "peak": 3567106,
+      "base_peak": 3697973,
+      "failure": null
+    },
+    {
+      "id": "s3v3va-ro-9300065",
+      "ate": 0.1829235875236642,
+      "base_ate": 0.17765562679792735,
+      "peak": 3543802,
+      "base_peak": 3763883,
+      "failure": null
+    },
+    {
+      "id": "s3v3va-ro-9300090",
+      "ate": 0.8163617258904544,
+      "base_ate": 1.0518568799198014,
+      "peak": 3356858,
+      "base_peak": 3444200,
+      "failure": null
+    },
+    {
+      "id": "s3v3va-ro-9300091",
+      "ate": 0.3356265338713577,
+      "base_ate": 0.22949604294984394,
+      "peak": 3292663,
+      "base_peak": 3421274,
+      "failure": null
+    },
+    {
+      "id": "s3v3va-ro-9300095",
+      "ate": 0.1205507474162611,
+      "base_ate": 0.2062319826118402,
+      "peak": 3470771,
+      "base_peak": 3587150,
+      "failure": null
+    },
+    {
+      "id": "s3v3va-ro-9300098",
+      "ate": 0.9587570757478325,
+      "base_ate": 0.9980507742644672,
+      "peak": 3208853,
+      "base_peak": 3849899,
+      "failure": null
+    },
+    {
+      "id": "s3v3va-ro-9300116",
+      "ate": 0.1553367895528325,
+      "base_ate": 0.13446024594952033,
+      "peak": 3366828,
+      "base_peak": 3847124,
+      "failure": null
+    },
+    {
+      "id": "s3v3va-ro-9300172",
+      "ate": 0.20533819525465244,
+      "base_ate": 0.23392844584074948,
+      "peak": 3361323,
+      "base_peak": 3418590,
+      "failure": null
+    },
+    {
+      "id": "s3v3va-ro-9300234",
+      "ate": 0.6595986897120856,
+      "base_ate": 0.6728109494452581,
+      "peak": 3330191,
+      "base_peak": 3657305,
+      "failure": null
+    },
+    {
+      "id": "s3v3va-wa-9300316",
+      "ate": 0.3031137063374343,
+      "base_ate": 0.5388703923171632,
+      "peak": 3195803,
+      "base_peak": 3424757,
+      "failure": null
+    },
+    {
+      "id": "s3v3va-wa-9300323",
+      "ate": 0.36970341592697953,
+      "base_ate": 0.41694989667743365,
+      "peak": 3420573,
+      "base_peak": 3681281,
+      "failure": null
+    },
+    {
+      "id": "s3v3va-wa-9300338",
+      "ate": 0.4856737850168357,
+      "base_ate": 0.44331262683134154,
+      "peak": 3432550,
+      "base_peak": 3636174,
+      "failure": null
+    },
+    {
+      "id": "s3v3va-wa-9300365",
+      "ate": 0.512749372310979,
+      "base_ate": 0.4749546846981596,
+      "peak": 3323416,
+      "base_peak": 3751968,
+      "failure": null
+    },
+    {
+      "id": "s3v3va-wa-9300427",
+      "ate": 0.32099314099129167,
+      "base_ate": 0.34417340529783963,
+      "peak": 3212642,
+      "base_peak": 3416877,
+      "failure": null
+    },
+    {
+      "id": "s3v3va-wa-h9500011",
+      "ate": 1.1005244571087773,
+      "base_ate": 1.2075917962586546,
+      "peak": 3314667,
+      "base_peak": 3445507,
+      "failure": null
+    },
+    {
+      "id": "s3v3va-wa-h9500028",
+      "ate": 0.9922473064561588,
+      "base_ate": 0.5695770670153658,
+      "peak": 3411442,
+      "base_peak": 3537233,
+      "failure": null
+    },
+    {
+      "id": "s3v3va-wa-h9500056",
+      "ate": 0.3846798122817067,
+      "base_ate": 0.42346994756668976,
+      "peak": 3352742,
+      "base_peak": 3423303,
+      "failure": null
+    }
+  ]
+}

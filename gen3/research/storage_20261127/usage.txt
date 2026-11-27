@@ -1,0 +1,12 @@
+166875537408	/data/backups/rganapa/Sebastian/gen
+211814899712	/data/backups/rganapa/Sebastian/gen3/out
+60522790912	/data/backups/rganapa/Sebastian/gen3/agents/net/cache
+50086543360	/data/backups/rganapa/Sebastian/gen3/twin/zips
+19881205760	/data/backups/rganapa/Sebastian/gen3/pilot
+1432707072	/data/backups/rganapa/Sebastian/gen3/scenes
+52148051968	/data/backups/rganapa/Sebastian/eecs116_projects/research/data
+9762381824	/data/backups/rganapa/Sebastian/gen3/research
+5572026368	/data/backups/rganapa/Sebastian/tmp/stlearn_hf
+1062813696	/dev/shm/vio_fourlane_20261127
+285179904	/tmp/vio-research-20261126
+579444137984	total

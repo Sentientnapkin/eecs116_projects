@@ -1,0 +1,47 @@
+CACHE train flights 50 available 23800 selected 16000 shape (16000, 48, 5) file_mb 6.796428
+CACHE val flights 20 available 4760 selected 4000 shape (4000, 48, 5) file_mb 1.624796
+SMOKE_CACHE_OK 5.2 sec; target median speed 1.2211244106292725
+EPOCH deepsets 17 {"epoch": 1, "train_nll": 0.3801384066883475}
+EPOCH deepsets 17 {"epoch": 2, "train_nll": -0.3881270946376026}
+EPOCH deepsets 17 {"epoch": 3, "train_nll": -0.7889798107743263}
+EPOCH deepsets 17 {"epoch": 4, "train_nll": -0.9905443626642227}
+EPOCH deepsets 17 {"epoch": 5, "train_nll": -1.1391223740577698}
+EPOCH deepsets 17 {"epoch": 6, "train_nll": -1.2557169407606126}
+EPOCH deepsets 17 {"epoch": 7, "train_nll": -1.365162582397461}
+EPOCH deepsets 17 {"epoch": 8, "train_nll": -1.4418341648578643}
+EPOCH deepsets 17 {"epoch": 9, "train_nll": -1.5091788065433502}
+EPOCH deepsets 17 {"epoch": 10, "train_nll": -1.6067458009719848}
+RESULT {"model": "deepsets", "seed": 17, "params": 31044, "train_anchors": 16000, "val_anchors": 4000, "epochs": 10, "steps_per_epoch": 100, "batch": 256, "val": {"n": 4000, "vector_norm_error_mps": 0.7018513679504395, "speed_abs_error_mps": 0.4692622423171997, "direction_deg_moving": 30.0280704498291, "nll_diag": -0.6502988934516907, "uncertainty_z_rms": 1.243408441543579, "predicted_std_median": 0.38929709792137146}, "seconds": 2.64}
+EPOCH deepsets 29 {"epoch": 1, "train_nll": 0.368360334597528}
+EPOCH deepsets 29 {"epoch": 2, "train_nll": -0.2962816129252315}
+EPOCH deepsets 29 {"epoch": 3, "train_nll": -0.6980962693691254}
+EPOCH deepsets 29 {"epoch": 4, "train_nll": -0.9208329844474793}
+EPOCH deepsets 29 {"epoch": 5, "train_nll": -1.0866068142652512}
+EPOCH deepsets 29 {"epoch": 6, "train_nll": -1.212682790160179}
+EPOCH deepsets 29 {"epoch": 7, "train_nll": -1.3172404861450195}
+EPOCH deepsets 29 {"epoch": 8, "train_nll": -1.3952353763580323}
+EPOCH deepsets 29 {"epoch": 9, "train_nll": -1.4697568690776825}
+EPOCH deepsets 29 {"epoch": 10, "train_nll": -1.5465317273139954}
+RESULT {"model": "deepsets", "seed": 29, "params": 31044, "train_anchors": 16000, "val_anchors": 4000, "epochs": 10, "steps_per_epoch": 100, "batch": 256, "val": {"n": 4000, "vector_norm_error_mps": 0.7121472358703613, "speed_abs_error_mps": 0.46512162685394287, "direction_deg_moving": 31.25240135192871, "nll_diag": -0.549224853515625, "uncertainty_z_rms": 1.2790820598602295, "predicted_std_median": 0.3823504149913788}, "seconds": 2.09}
+EPOCH attention 17 {"epoch": 1, "train_nll": -0.29452935717999934}
+EPOCH attention 17 {"epoch": 2, "train_nll": -1.110722154378891}
+EPOCH attention 17 {"epoch": 3, "train_nll": -1.5047752797603606}
+EPOCH attention 17 {"epoch": 4, "train_nll": -1.658384426832199}
+EPOCH attention 17 {"epoch": 5, "train_nll": -1.8908742928504945}
+EPOCH attention 17 {"epoch": 6, "train_nll": -2.0423359262943266}
+EPOCH attention 17 {"epoch": 7, "train_nll": -2.167884463071823}
+EPOCH attention 17 {"epoch": 8, "train_nll": -2.248723908662796}
+EPOCH attention 17 {"epoch": 9, "train_nll": -2.358123441934586}
+EPOCH attention 17 {"epoch": 10, "train_nll": -2.481839244365692}
+RESULT {"model": "attention", "seed": 17, "params": 93828, "train_anchors": 16000, "val_anchors": 4000, "epochs": 10, "steps_per_epoch": 100, "batch": 256, "val": {"n": 4000, "vector_norm_error_mps": 0.6332865357398987, "speed_abs_error_mps": 0.4104593098163605, "direction_deg_moving": 26.333415985107422, "nll_diag": -0.3603321611881256, "uncertainty_z_rms": 1.543362021446228, "predicted_std_median": 0.28394168615341187}, "seconds": 4.93}
+EPOCH attention 29 {"epoch": 1, "train_nll": -0.3751990939304233}
+EPOCH attention 29 {"epoch": 2, "train_nll": -1.1568614554405212}
+EPOCH attention 29 {"epoch": 3, "train_nll": -1.469895260334015}
+EPOCH attention 29 {"epoch": 4, "train_nll": -1.698525253534317}
+EPOCH attention 29 {"epoch": 5, "train_nll": -1.9263350093364715}
+EPOCH attention 29 {"epoch": 6, "train_nll": -2.0750459742546083}
+EPOCH attention 29 {"epoch": 7, "train_nll": -2.2074634194374085}
+EPOCH attention 29 {"epoch": 8, "train_nll": -2.347087725400925}
+EPOCH attention 29 {"epoch": 9, "train_nll": -2.4668212187290193}
+EPOCH attention 29 {"epoch": 10, "train_nll": -2.5046116304397583}
+RESULT {"model": "attention", "seed": 29, "params": 93828, "train_anchors": 16000, "val_anchors": 4000, "epochs": 10, "steps_per_epoch": 100, "batch": 256, "val": {"n": 4000, "vector_norm_error_mps": 0.6355810761451721, "speed_abs_error_mps": 0.42267635464668274, "direction_deg_moving": 27.11210823059082, "nll_diag": 0.2952919006347656, "uncertainty_z_rms": 1.7269521951675415, "predicted_std_median": 0.2653350532054901}, "seconds": 4.47}

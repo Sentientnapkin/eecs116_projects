@@ -1,0 +1,12 @@
+cmake_minimum_required(VERSION 3.20)
+project(gp_msckf_c1_exact C)
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release)
+endif()
+set(VIOBENCH_NATIVE_DIR "" CACHE PATH "")
+include(${VIOBENCH_NATIVE_DIR}/viobench_reactor.cmake)
+viobench_solution(solution solution.c)
+target_link_libraries(solution PRIVATE m)
+# -O3 unconditionally (appended after the recipe's -O2, so it wins); no -ffast-math: results stay bit-identical
+target_compile_options(solution PRIVATE -O3)
+target_link_options(solution PRIVATE -Wl,--initial-memory=1073741824 -Wl,--max-memory=2147483648)

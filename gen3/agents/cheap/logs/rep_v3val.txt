@@ -1,0 +1,17 @@
+pool v3val, flights in common 358
+net_auto_727_sp10    raw 0.906 sw 0.845 med 0.716 >3m   9 | ro 0.489 wa 1.381 fo 0.934 | d_goats -2.645 [-3.011,-2.300] | peak 4.80M p95 3.02M | est pts vs best +0.00
+cg_goats             raw 3.551 sw 3.087 med 2.092 >3m 160 | ro 0.682 wa 5.119 fo 5.888 | d_goats +0.000 [+0.000,+0.000] | peak 0.42M p95 0.37M | est pts vs best -1.93
+cg_bP                raw 3.535 sw 3.033 med 2.118 >3m 162 | ro 0.610 wa 4.893 fo 6.223 | d_goats -0.015 [-0.219,+0.182] | peak 0.49M p95 0.42M | est pts vs best -1.95
+cg_bD                raw 3.490 sw 3.050 med 1.957 >3m 148 | ro 0.643 wa 4.913 fo 5.979 | d_goats -0.060 [-0.300,+0.174] | peak 0.48M p95 0.37M | est pts vs best -1.96
+cg_bZ                raw 3.575 sw 3.125 med 2.313 >3m 164 | ro 0.681 wa 5.416 fo 5.605 | d_goats +0.024 [-0.136,+0.190] | peak 0.44M p95 0.37M | est pts vs best -1.98
+cg_bG                raw 3.547 sw 3.109 med 2.160 >3m 156 | ro 0.727 wa 5.076 fo 5.861 | d_goats -0.003 [-0.219,+0.208] | peak 0.43M p95 0.37M | est pts vs best -1.95
+cg_bL                raw 3.441 sw 3.003 med 2.132 >3m 154 | ro 0.744 wa 4.709 fo 5.899 | d_goats -0.110 [-0.342,+0.125] | peak 0.54M p95 0.45M | est pts vs best -1.97
+cg_bAll              raw 3.432 sw 3.029 med 2.353 >3m 158 | ro 0.621 wa 5.052 fo 5.619 | d_goats -0.119 [-0.358,+0.110] | peak 0.62M p95 0.51M | est pts vs best -2.05
+cg_aN3               raw 3.618 sw 3.203 med 2.500 >3m 162 | ro 0.746 wa 4.893 fo 6.330 | d_goats +0.067 [-0.152,+0.285] | peak 0.92M p95 0.75M | est pts vs best -2.33
+cg_aN6               raw 3.559 sw 3.097 med 2.818 >3m 173 | ro 0.824 wa 4.792 fo 6.120 | d_goats +0.009 [-0.229,+0.238] | peak 1.24M p95 1.14M | est pts vs best -2.37
+cg_aN10              raw 3.562 sw 3.108 med 3.106 >3m 185 | ro 0.773 wa 5.011 fo 5.930 | d_goats +0.011 [-0.213,+0.236] | peak 1.54M p95 1.42M | est pts vs best -2.47
+cg_aX6b              raw 3.499 sw 3.150 med 2.551 >3m 166 | ro 0.811 wa 4.756 fo 5.959 | d_goats -0.051 [-0.259,+0.152] | peak 1.23M p95 1.07M | est pts vs best -2.41
+cg_aS6               raw 3.433 sw 2.987 med 2.764 >3m 171 | ro 0.803 wa 4.729 fo 5.754 | d_goats -0.118 [-0.342,+0.130] | peak 1.48M p95 1.38M | est pts vs best -2.37
+cg_aA6               raw 3.870 sw 3.332 med 3.327 >3m 195 | ro 0.781 wa 5.522 fo 6.434 | d_goats +0.319 [+0.058,+0.575] | peak 1.21M p95 1.12M | est pts vs best -2.53
+cg_aC6               raw 4.104 sw 3.547 med 3.534 >3m 192 | ro 0.841 wa 5.920 fo 6.723 | d_goats +0.554 [+0.295,+0.815] | peak 0.97M p95 0.87M | est pts vs best -2.57
+cg_cAll6             raw 3.340 sw 2.922 med 2.829 >3m 171 | ro 0.663 wa 4.575 fo 5.809 | d_goats -0.211 [-0.444,+0.015] | peak 1.42M p95 1.21M | est pts vs best -2.30

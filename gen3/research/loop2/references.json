@@ -1,0 +1,9 @@
+{
+  "verified_primary_sources": [
+    "https://arxiv.org/abs/2406.09414",
+    "https://arxiv.org/abs/2502.20110",
+    "https://arxiv.org/abs/2204.09171",
+    "https://arxiv.org/abs/2208.04726"
+  ],
+  "note": "These papers motivate experiments; their published accuracy is not evidence of accuracy or WASM cost on our simulator."
+}

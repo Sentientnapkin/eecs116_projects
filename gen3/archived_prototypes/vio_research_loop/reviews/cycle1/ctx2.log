@@ -1,0 +1,31 @@
+/tmp/vio_loop3/context_replication/context_train.py:116: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  print('smoke',K,'shapes',tuple(x.shape),tuple(v.shape),tuple(y.shape),'loss',float(loss),flush=True)
+smoke 2 shapes (2, 6, 48, 64) (2, 19) (2, 2, 3) loss 4.2349853515625
+start ctx2 parameters 105436 cin 6 nvec 19 anchors 343144 176764
+ctx2 {"epoch": 0, "train_loss": 0.6181414972990751, "val": null, "seconds": 4.296823050826788, "total_elapsed": 5.694251902401447}
+ctx2 {"epoch": 1, "train_loss": -0.4458995531219989, "val": null, "seconds": 4.388093430548906, "total_elapsed": 10.08250579610467}
+ctx2 {"epoch": 2, "train_loss": -0.5316493619978427, "val": null, "seconds": 4.402855005115271, "total_elapsed": 14.485536344349384}
+ctx2 {"epoch": 3, "train_loss": -0.5591574258357287, "val": null, "seconds": 4.407724939286709, "total_elapsed": 18.893415059894323}
+ctx2 {"epoch": 4, "train_loss": -0.5700065288692713, "val": {"n": 176764, "all": 0.7170994281768799, "median": 0.6230992078781128, "p90": 1.2919578552246094, "fast_gt1_5": 69298, "fast_err": 0.9781796336174011, "speed_abs_err": 0.4181552529335022, "speed_bias": -0.30432167649269104, "dir_deg_gt1": 27.25986099243164, "zrms": 2.0302724838256836, "tail_gt1": 36603, "tail_gt2": 3009}, "seconds": 9.689004182815552, "total_elapsed": 28.582574293017387}
+ctx2 {"epoch": 5, "train_loss": -0.5739449448883533, "val": null, "seconds": 4.538429494947195, "total_elapsed": 33.12118209898472}
+ctx2 {"epoch": 6, "train_loss": -0.5804487150907517, "val": null, "seconds": 4.454457983374596, "total_elapsed": 37.57587230205536}
+ctx2 {"epoch": 7, "train_loss": -0.5819350639730692, "val": null, "seconds": 4.405121497809887, "total_elapsed": 41.98114440217614}
+ctx2 {"epoch": 8, "train_loss": -0.5860485548526049, "val": null, "seconds": 4.442932523787022, "total_elapsed": 46.42422744259238}
+ctx2 {"epoch": 9, "train_loss": -0.5868224453181028, "val": null, "seconds": 4.47484440729022, "total_elapsed": 50.89923023805022}
+ctx2 {"epoch": 10, "train_loss": -0.5877569728344679, "val": null, "seconds": 4.4968002289533615, "total_elapsed": 55.39618157967925}
+ctx2 {"epoch": 11, "train_loss": -0.5887153395265341, "val": null, "seconds": 4.519989985972643, "total_elapsed": 59.91632481664419}
+ctx2 {"epoch": 12, "train_loss": -0.5903566193580627, "val": {"n": 176764, "all": 0.378703236579895, "median": 0.32420292496681213, "p90": 0.6956668496131897, "fast_gt1_5": 69298, "fast_err": 0.4649428129196167, "speed_abs_err": 0.2453356236219406, "speed_bias": 0.02265406772494316, "dir_deg_gt1": 10.310741424560547, "zrms": 1.0906546115875244, "tail_gt1": 4906, "tail_gt2": 138}, "seconds": 9.898052591830492, "total_elapsed": 69.8145348019898}
+ctx2 {"epoch": 13, "train_loss": -0.589947057813406, "val": null, "seconds": 4.577980671077967, "total_elapsed": 74.39279496669769}
+ctx2 {"epoch": 14, "train_loss": -0.5924427303671836, "val": null, "seconds": 4.527979865670204, "total_elapsed": 78.92093638703227}
+ctx2 {"epoch": 15, "train_loss": -0.590825072452426, "val": null, "seconds": 4.540409218519926, "total_elapsed": 83.461511105299}
+ctx2 {"epoch": 16, "train_loss": -0.5920042845606804, "val": null, "seconds": 4.541980434209108, "total_elapsed": 88.00364686176181}
+ctx2 {"epoch": 17, "train_loss": -0.5908201152086258, "val": null, "seconds": 4.5483556389808655, "total_elapsed": 92.55215302109718}
+ctx2 {"epoch": 18, "train_loss": -0.5919911926984787, "val": null, "seconds": 4.549431752413511, "total_elapsed": 97.1017404422164}
+ctx2 {"epoch": 19, "train_loss": -0.5915050821751356, "val": null, "seconds": 4.509339399635792, "total_elapsed": 101.61127027496696}
+ctx2 {"epoch": 20, "train_loss": -0.591172032058239, "val": null, "seconds": 4.488966338336468, "total_elapsed": 106.10043041035533}
+ctx2 {"epoch": 21, "train_loss": -0.590491448789835, "val": null, "seconds": 4.504153273999691, "total_elapsed": 110.60474229604006}
+ctx2 {"epoch": 22, "train_loss": -0.5905555188655853, "val": null, "seconds": 4.5278403759002686, "total_elapsed": 115.13274138793349}
+ctx2 {"epoch": 23, "train_loss": -0.5907683645188808, "val": null, "seconds": 4.54780936986208, "total_elapsed": 119.68071988224983}
+ctx2 {"epoch": 24, "train_loss": -0.5923094744980335, "val": {"n": 176764, "all": 0.33307695388793945, "median": 0.2805379331111908, "p90": 0.617671012878418, "fast_gt1_5": 69298, "fast_err": 0.4159732758998871, "speed_abs_err": 0.21941304206848145, "speed_bias": -0.034211449325084686, "dir_deg_gt1": 8.973876953125, "zrms": 1.0765446424484253, "tail_gt1": 3389, "tail_gt2": 109}, "seconds": 9.874277744442225, "total_elapsed": 129.55513912439346}
+DONE ctx2 {"n": 176764, "all": 0.33307695388793945, "median": 0.2805379331111908, "p90": 0.617671012878418, "fast_gt1_5": 69298, "fast_err": 0.4159732758998871, "speed_abs_err": 0.21941304206848145, "speed_bias": -0.034211449325084686, "dir_deg_gt1": 8.973876953125, "zrms": 1.0765446424484253, "tail_gt1": 3389, "tail_gt2": 109, "variant": "ctx2", "K": 2, "cin": 6, "nvec": 19, "params": 105436, "prep_latency_ms_batch1": 2.2195722558535635, "network_latency_ms_batch1": 0.2893669120967388, "validation_anchor_rule": "pos>=3", "val_episode_count": 749, "checkpoint": "/dev/shm/vio_research_loop/reviews/cycle1_seed3/ctx2/ctx2/model.pt", "model_sha256": "476da287fbccedfc852733896dea22a249552c1b6c6cd6f8883138f2b305033b"}

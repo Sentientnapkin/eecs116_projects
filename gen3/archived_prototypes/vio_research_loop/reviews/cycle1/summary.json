@@ -1,0 +1,306 @@
+{
+  "experiment": "matched same-recipe context K2 vs K5, seed 3 added to existing seeds 1/2",
+  "cycle1_run_directory": "/dev/shm/vio_research_loop/reviews/cycle1_seed3",
+  "recipe": {
+    "epochs": 25,
+    "steps_per_epoch": 400,
+    "batch": 256,
+    "lr": 0.004,
+    "seed": 3,
+    "GPU": "physical 7",
+    "training": "existing train727 cache, phases 0+2",
+    "validation": "existing val749 cache, phase 0; common pos>=3 anchors; target g+1; n=749 val episodes",
+    "input": "K causal frames through b=g+1, warped into g; all K-1 IMU intervals; no GT input",
+    "active_parameters": {
+      "K": [
+        2,
+        5
+      ],
+      "cin": [
+        6,
+        12
+      ],
+      "nvec": [
+        19,
+        76
+      ]
+    },
+    "params": {
+      "K2": 105436,
+      "K5": 108124
+    }
+  },
+  "hashes": {
+    "context_train.py": "bd957bcb0362e04da523976b6af1259fafc2c87300957ad94d750aa1d7278a82",
+    "i6lib.py": "be0596e4a498856d455cc77174d1a9f157e6669fd5963aa3476fbbdae928d431",
+    "train727.txt": "22ef5c31a569953d2facfcd959a6b712e100a5a02c3210a561dee72f6f0c9e96",
+    "val749.txt": "3b946cec663234f32da0a0f87a819d988e910606f288d6b97333a7d03b17db5c"
+  },
+  "per_seed": [
+    {
+      "seed": 1,
+      "K": 2,
+      "all": 0.3311828374862671,
+      "median": 0.2802473306655884,
+      "p90": 0.6120948195457458,
+      "fast_err": 0.41556867957115173,
+      "speed_abs_err": 0.21810317039489746,
+      "speed_bias": -0.03990352153778076,
+      "dir_deg_gt1": 8.968155860900879,
+      "val_episode_count": 749,
+      "params": 105436,
+      "prep_latency_ms_batch1": 2.3474761401303113,
+      "network_latency_ms_batch1": 0.3094138652086258,
+      "model_sha256": "7c2a5e2b83b8c4580178687768c701757141866a6a6d792a0c3f6dbdc3e3636e"
+    },
+    {
+      "seed": 1,
+      "K": 5,
+      "all": 0.32551300525665283,
+      "median": 0.28004541993141174,
+      "p90": 0.5898468494415283,
+      "fast_err": 0.39133208990097046,
+      "speed_abs_err": 0.2100730538368225,
+      "speed_bias": -0.015428627841174603,
+      "dir_deg_gt1": 8.696645736694336,
+      "val_episode_count": 749,
+      "params": 108124,
+      "prep_latency_ms_batch1": 5.456539889564738,
+      "network_latency_ms_batch1": 0.2971530295908451,
+      "model_sha256": "1b57cefc5cf11975b8d9bcdef26910dfe1c9d0257495225e4aeb40d0f138c350"
+    },
+    {
+      "seed": 2,
+      "K": 2,
+      "all": 0.33070704340934753,
+      "median": 0.2794174253940582,
+      "p90": 0.6115472912788391,
+      "fast_err": 0.41177743673324585,
+      "speed_abs_err": 0.21585020422935486,
+      "speed_bias": -0.023782702162861824,
+      "dir_deg_gt1": 8.957554817199707,
+      "val_episode_count": 749,
+      "params": 105436,
+      "prep_latency_ms_batch1": 2.2077863686718047,
+      "network_latency_ms_batch1": 0.29202287644147873,
+      "model_sha256": "4bf3991b281758b454ace497edc09d742cdffe43339e035797d921ea0c5d0dfd"
+    },
+    {
+      "seed": 2,
+      "K": 5,
+      "all": 0.3174601197242737,
+      "median": 0.2728659510612488,
+      "p90": 0.5746651291847229,
+      "fast_err": 0.38190287351608276,
+      "speed_abs_err": 0.20611189305782318,
+      "speed_bias": -0.017410289496183395,
+      "dir_deg_gt1": 8.415556907653809,
+      "val_episode_count": 749,
+      "params": 108124,
+      "prep_latency_ms_batch1": 5.23425976280123,
+      "network_latency_ms_batch1": 0.28994205221533775,
+      "model_sha256": "8cc2e0bcd306357972060e7053d2f8ff3c6089bc59b9a14116e91fd6ef390c83"
+    },
+    {
+      "seed": 3,
+      "K": 2,
+      "all": 0.33307695388793945,
+      "median": 0.2805379331111908,
+      "p90": 0.617671012878418,
+      "fast_err": 0.4159732758998871,
+      "speed_abs_err": 0.21941304206848145,
+      "speed_bias": -0.034211449325084686,
+      "dir_deg_gt1": 8.973876953125,
+      "val_episode_count": 749,
+      "params": 105436,
+      "prep_latency_ms_batch1": 2.2195722558535635,
+      "network_latency_ms_batch1": 0.2893669120967388,
+      "model_sha256": "476da287fbccedfc852733896dea22a249552c1b6c6cd6f8883138f2b305033b"
+    },
+    {
+      "seed": 3,
+      "K": 5,
+      "all": 0.3252643048763275,
+      "median": 0.2793533504009247,
+      "p90": 0.5883030891418457,
+      "fast_err": 0.3894995450973511,
+      "speed_abs_err": 0.2101457417011261,
+      "speed_bias": -0.010491371154785156,
+      "dir_deg_gt1": 8.640332221984863,
+      "val_episode_count": 749,
+      "params": 108124,
+      "prep_latency_ms_batch1": 5.216981749981642,
+      "network_latency_ms_batch1": 0.2886657044291496,
+      "model_sha256": "4da812e05cbff09c9e0587276ebd2f2341c42cf7d295a9f4a2771b1f61ce3be2"
+    }
+  ],
+  "means_by_K": {
+    "2": {
+      "all": {
+        "mean": 0.331655611594518,
+        "values": [
+          0.3311828374862671,
+          0.33070704340934753,
+          0.33307695388793945
+        ]
+      },
+      "median": {
+        "mean": 0.2800675630569458,
+        "values": [
+          0.2802473306655884,
+          0.2794174253940582,
+          0.2805379331111908
+        ]
+      },
+      "p90": {
+        "mean": 0.6137710412343343,
+        "values": [
+          0.6120948195457458,
+          0.6115472912788391,
+          0.617671012878418
+        ]
+      },
+      "fast_err": {
+        "mean": 0.4144397974014282,
+        "values": [
+          0.41556867957115173,
+          0.41177743673324585,
+          0.4159732758998871
+        ]
+      },
+      "speed_abs_err": {
+        "mean": 0.2177888055642446,
+        "values": [
+          0.21810317039489746,
+          0.21585020422935486,
+          0.21941304206848145
+        ]
+      },
+      "dir_deg_gt1": {
+        "mean": 8.96652921040853,
+        "values": [
+          8.968155860900879,
+          8.957554817199707,
+          8.973876953125
+        ]
+      },
+      "prep_latency_ms_batch1": {
+        "mean": 2.2582782548852265,
+        "values": [
+          2.3474761401303113,
+          2.2077863686718047,
+          2.2195722558535635
+        ]
+      },
+      "network_latency_ms_batch1": {
+        "mean": 0.2969345512489478,
+        "values": [
+          0.3094138652086258,
+          0.29202287644147873,
+          0.2893669120967388
+        ]
+      }
+    },
+    "5": {
+      "all": {
+        "mean": 0.32274580995241803,
+        "values": [
+          0.32551300525665283,
+          0.3174601197242737,
+          0.3252643048763275
+        ]
+      },
+      "median": {
+        "mean": 0.27742157379786175,
+        "values": [
+          0.28004541993141174,
+          0.2728659510612488,
+          0.2793533504009247
+        ]
+      },
+      "p90": {
+        "mean": 0.5842716892560323,
+        "values": [
+          0.5898468494415283,
+          0.5746651291847229,
+          0.5883030891418457
+        ]
+      },
+      "fast_err": {
+        "mean": 0.38757816950480145,
+        "values": [
+          0.39133208990097046,
+          0.38190287351608276,
+          0.3894995450973511
+        ]
+      },
+      "speed_abs_err": {
+        "mean": 0.2087768961985906,
+        "values": [
+          0.2100730538368225,
+          0.20611189305782318,
+          0.2101457417011261
+        ]
+      },
+      "dir_deg_gt1": {
+        "mean": 8.58417828877767,
+        "values": [
+          8.696645736694336,
+          8.415556907653809,
+          8.640332221984863
+        ]
+      },
+      "prep_latency_ms_batch1": {
+        "mean": 5.302593800782536,
+        "values": [
+          5.456539889564738,
+          5.23425976280123,
+          5.216981749981642
+        ]
+      },
+      "network_latency_ms_batch1": {
+        "mean": 0.2919202620784442,
+        "values": [
+          0.2971530295908451,
+          0.28994205221533775,
+          0.2886657044291496
+        ]
+      }
+    }
+  },
+  "paired_deltas": {
+    "all": {
+      "paired_K5_minus_K2": [
+        -0.005669832229614258,
+        -0.013246923685073853,
+        -0.007812649011611938
+      ],
+      "mean": -0.008909801642100016
+    },
+    "fast_err": {
+      "paired_K5_minus_K2": [
+        -0.024236589670181274,
+        -0.029874563217163086,
+        -0.02647373080253601
+      ],
+      "mean": -0.02686162789662679
+    },
+    "p90": {
+      "paired_K5_minus_K2": [
+        -0.02224797010421753,
+        -0.03688216209411621,
+        -0.029367923736572266
+      ],
+      "mean": -0.029499351978302002
+    },
+    "speed_abs_err": {
+      "paired_K5_minus_K2": [
+        -0.008030116558074951,
+        -0.009738311171531677,
+        -0.009267300367355347
+      ],
+      "mean": -0.009011909365653992
+    }
+  },
+  "interpretation": "K5 beats K2 on all-error, fast-error, p90 and speed absolute error in all three seeds; one extra seed confirms the short 25-epoch recipe. Validation-only oracle result, not production or deployment evidence. K5 increases feature preparation latency (~2.3x, ~5.2 vs 2.2 ms batch 1) while neural inference is unchanged (~0.289 ms). Treat as promising replication, with longer matched training and production runtime/test gates still outstanding."
+}

@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "matched_k2": 0.28795483708381653,
+  "matched_k5": 0.2797335684299469,
+  "gate": "at least 1% vector-error improvement, improved fast error, no >10% increase in >1m/s errors",
+  "capacity_channels": [
+    32,
+    48,
+    64,
+    96
+  ],
+  "seed": 6,
+  "epochs": 200,
+  "arms": [
+    2,
+    5
+  ]
+}

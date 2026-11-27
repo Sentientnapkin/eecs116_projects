@@ -1,0 +1,16 @@
+210 episodes, 0 cached, workers=20 (no video)
+20/210 finished, 16.4s
+40/210 finished, 33.0s
+60/210 finished, 49.1s
+80/210 finished, 60.3s
+100/210 finished, 68.3s
+120/210 finished, 77.5s
+140/210 finished, 87.1s
+160/210 finished, 97.1s
+180/210 finished, 108.0s
+200/210 finished, 118.4s
+210/210 finished, 122.1s
+pr_F_sp20 v1val n 210 / 210 mean ATE 0.680 median 0.530 >3m 4
+  setting_class {'forest': '0.823 (n=55)', 'room': '0.435 (n=104)', 'warehouse': '1.024 (n=51)'}
+  regime {'benchmark': '0.693 (n=189)', 'independent-yaw': '0.562 (n=21)'}
+  start {'hover': '0.545 (n=48)', 'mid-flight': '0.720 (n=162)'}

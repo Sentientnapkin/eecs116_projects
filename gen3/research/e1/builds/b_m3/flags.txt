@@ -1,0 +1,1 @@
+MODE=3 VDAMP=0.5

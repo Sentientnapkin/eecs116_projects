@@ -1,0 +1,11 @@
+{
+  "name": "sched_charge_prof",
+  "off": false,
+  "profile": true,
+  "sync": false,
+  "cap": 4600000,
+  "pixel": 1.515,
+  "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/single_model/ensemble2/build/sched_charge_prof/solution.wasm",
+  "sha256": "42756106951473e957089f99899d9caa324605902d54029a74d62f2447ade806",
+  "base_sha256": "ee31d769c5230e43429690a560d82df508bf18755fd4f1038e11807ee91a9813"
+}

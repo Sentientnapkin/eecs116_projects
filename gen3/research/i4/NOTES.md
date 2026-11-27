@@ -1,0 +1,6 @@
+- 2026-11-26 22:24:11 phase1 screen done (results.tsv)
+- 2026-11-26 22:47:42 phase2 replicates done (g0 combo nonet_g0 ctl c12 c20)
+- 2026-11-26 22:53:28 phase3 v1val done
+- 2026-11-26 22:54:59 phase1 screen done (results.tsv)
+- 2026-11-26 22:55:02 phase2 replicates done (g0 combo nonet_g0 ctl c12 c20)
+- 2026-11-26 22:55:03 phase3 v1val done

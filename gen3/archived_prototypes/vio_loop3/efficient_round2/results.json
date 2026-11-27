@@ -1,0 +1,1342 @@
+{
+  "state": "complete",
+  "screen24_panels": 24,
+  "complete_record_count": {
+    "gov21_0": 24,
+    "gov27_4": 24,
+    "gov21_4": 24,
+    "gov27_0": 24
+  },
+  "full_current_reference": {
+    "sha256": "1a169f28916acd813f86a7b526efb8e8b646b3dda73e48cba51b12845c69b1b8",
+    "mean_ate": 0.5246153050346729,
+    "median_ate": 0.49634703496642035,
+    "max_peak_fuel": 3849899
+  },
+  "arms": {
+    "gov21_0": {
+      "n": 24,
+      "mean_ate": 2.320681151678577,
+      "median_ate": 0.6986689017229943,
+      "paired_vs_full_current": {
+        "mean": 1.796065846643904,
+        "median": 0.09650562315631253,
+        "p95": 11.16800235796117,
+        "worst": 18.15450432772047
+      },
+      "actual_peak_fuel": {
+        "max": 2300753,
+        "p95": 2285747.25
+      },
+      "per_scene_delta_vs_full_current": {
+        "fo": 0.006057934185834148,
+        "ro": 0.04508313810191509,
+        "wa": 5.337056467643962
+      },
+      "per_flight": [
+        {
+          "episode": "s3v3va-fo-9300479",
+          "ate": 0.3677573089262568,
+          "base_ate": 0.5490510843277588,
+          "peak_fuel": 2185547,
+          "base_peak_fuel": 3505674,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-fo-9300485",
+          "ate": 0.4718434770360525,
+          "base_ate": 0.66645399564257,
+          "peak_fuel": 2255348,
+          "base_peak_fuel": 3476124,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-fo-9300549",
+          "ate": 0.6145365279083974,
+          "base_ate": 0.5698419379654877,
+          "peak_fuel": 2192491,
+          "base_peak_fuel": 3453496,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-fo-9300587",
+          "ate": 0.9074790995276398,
+          "base_ate": 0.721450338707732,
+          "peak_fuel": 2159034,
+          "base_peak_fuel": 3333390,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-fo-9300591",
+          "ate": 0.5017250727995701,
+          "base_ate": 0.5177393852346811,
+          "peak_fuel": 2060899,
+          "base_peak_fuel": 3433086,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-fo-h9500106",
+          "ate": 0.4183047599583173,
+          "base_ate": 0.3621399290176817,
+          "peak_fuel": 2017415,
+          "base_peak_fuel": 3629540,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-fo-h9500134",
+          "ate": 0.6401622306320984,
+          "base_ate": 0.4627838648449136,
+          "peak_fuel": 2098958,
+          "base_peak_fuel": 3445303,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-fo-h9500147",
+          "ate": 0.5940315530884336,
+          "base_ate": 0.6179160206492679,
+          "peak_fuel": 2098974,
+          "base_peak_fuel": 3697973,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300065",
+          "ate": 0.280895090983672,
+          "base_ate": 0.17765562679792735,
+          "peak_fuel": 2135550,
+          "base_peak_fuel": 3763883,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300090",
+          "ate": 0.9302806350340779,
+          "base_ate": 1.0518568799198014,
+          "peak_fuel": 2096137,
+          "base_peak_fuel": 3444200,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300091",
+          "ate": 0.562625490179501,
+          "base_ate": 0.22949604294984394,
+          "peak_fuel": 2125396,
+          "base_peak_fuel": 3421274,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300095",
+          "ate": 0.184638092474797,
+          "base_ate": 0.2062319826118402,
+          "peak_fuel": 2271548,
+          "base_peak_fuel": 3587150,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300098",
+          "ate": 0.9024581407284159,
+          "base_ate": 0.9980507742644672,
+          "peak_fuel": 2170402,
+          "base_peak_fuel": 3849899,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300116",
+          "ate": 0.1895934197486024,
+          "base_ate": 0.13446024594952033,
+          "peak_fuel": 2300753,
+          "base_peak_fuel": 3847124,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300172",
+          "ate": 0.25208245187352396,
+          "base_ate": 0.23392844584074948,
+          "peak_fuel": 2288253,
+          "base_peak_fuel": 3418590,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300234",
+          "ate": 0.7625827315721385,
+          "base_ate": 0.6728109494452581,
+          "peak_fuel": 2262964,
+          "base_peak_fuel": 3657305,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-9300316",
+          "ate": 3.5613705714377897,
+          "base_ate": 0.5388703923171632,
+          "peak_fuel": 2075544,
+          "base_peak_fuel": 3424757,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-9300323",
+          "ate": 1.1903647029899251,
+          "base_ate": 0.41694989667743365,
+          "peak_fuel": 2229369,
+          "base_peak_fuel": 3681281,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-9300338",
+          "ate": 1.1626149088554871,
+          "base_ate": 0.44331262683134154,
+          "peak_fuel": 2027498,
+          "base_peak_fuel": 3636174,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-9300365",
+          "ate": 12.486670624187365,
+          "base_ate": 0.4749546846981596,
+          "peak_fuel": 2052606,
+          "base_peak_fuel": 3751968,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-9300427",
+          "ate": 18.49867773301831,
+          "base_ate": 0.34417340529783963,
+          "peak_fuel": 1910022,
+          "base_peak_fuel": 3416877,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-h9500011",
+          "ate": 7.594550525561033,
+          "base_ate": 1.2075917962586546,
+          "peak_fuel": 2059975,
+          "base_peak_fuel": 3445507,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-h9500028",
+          "ate": 0.7571755728138904,
+          "base_ate": 0.5695770670153658,
+          "peak_fuel": 2211115,
+          "base_peak_fuel": 3537233,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-h9500056",
+          "ate": 1.8639269189505456,
+          "base_ate": 0.42346994756668976,
+          "peak_fuel": 2185887,
+          "base_peak_fuel": 3423303,
+          "failure": null
+        }
+      ]
+    },
+    "gov27_4": {
+      "n": 24,
+      "mean_ate": 0.5728440993929959,
+      "median_ate": 0.4892412696624452,
+      "paired_vs_full_current": {
+        "mean": 0.04822879435832303,
+        "median": 0.040041284172481914,
+        "p95": 0.31384583964239027,
+        "worst": 0.48974634826803
+      },
+      "actual_peak_fuel": {
+        "max": 2913719,
+        "p95": 2833000.0
+      },
+      "per_scene_delta_vs_full_current": {
+        "fo": -0.023139406391629716,
+        "ro": 0.043782141880196634,
+        "wa": 0.12404364758640217
+      },
+      "per_flight": [
+        {
+          "episode": "s3v3va-fo-9300479",
+          "ate": 0.7261350768714635,
+          "base_ate": 0.5490510843277588,
+          "peak_fuel": 2748072,
+          "base_peak_fuel": 3505674,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-fo-9300485",
+          "ate": 0.4715164973380654,
+          "base_ate": 0.66645399564257,
+          "peak_fuel": 2663757,
+          "base_peak_fuel": 3476124,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-fo-9300549",
+          "ate": 0.7583637831913635,
+          "base_ate": 0.5698419379654877,
+          "peak_fuel": 2677592,
+          "base_peak_fuel": 3453496,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-fo-9300587",
+          "ate": 0.6144465883468123,
+          "base_ate": 0.721450338707732,
+          "peak_fuel": 2671112,
+          "base_peak_fuel": 3333390,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-fo-9300591",
+          "ate": 0.4323748816778158,
+          "base_ate": 0.5177393852346811,
+          "peak_fuel": 2641668,
+          "base_peak_fuel": 3433086,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-fo-h9500106",
+          "ate": 0.3050924249930853,
+          "base_ate": 0.3621399290176817,
+          "peak_fuel": 2614387,
+          "base_peak_fuel": 3629540,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-fo-h9500134",
+          "ate": 0.46736601085162416,
+          "base_ate": 0.4627838648449136,
+          "peak_fuel": 2844892,
+          "base_peak_fuel": 3445303,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-fo-h9500147",
+          "ate": 0.506966041986825,
+          "base_ate": 0.6179160206492679,
+          "peak_fuel": 2661267,
+          "base_peak_fuel": 3697973,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300065",
+          "ate": 0.19717321504507992,
+          "base_ate": 0.17765562679792735,
+          "peak_fuel": 2721392,
+          "base_peak_fuel": 3763883,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300090",
+          "ate": 1.1344845652644227,
+          "base_ate": 1.0518568799198014,
+          "peak_fuel": 2587636,
+          "base_peak_fuel": 3444200,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300091",
+          "ate": 0.2900610230476552,
+          "base_ate": 0.22949604294984394,
+          "peak_fuel": 2666799,
+          "base_peak_fuel": 3421274,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300095",
+          "ate": 0.11794230234603628,
+          "base_ate": 0.2062319826118402,
+          "peak_fuel": 2648538,
+          "base_peak_fuel": 3587150,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300098",
+          "ate": 0.9549913605669291,
+          "base_ate": 0.9980507742644672,
+          "peak_fuel": 2655206,
+          "base_peak_fuel": 3849899,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300116",
+          "ate": 0.23899452989586056,
+          "base_ate": 0.13446024594952033,
+          "peak_fuel": 2913719,
+          "base_peak_fuel": 3847124,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300172",
+          "ate": 0.3383684482558722,
+          "base_ate": 0.23392844584074948,
+          "peak_fuel": 2720385,
+          "base_peak_fuel": 3418590,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300234",
+          "ate": 0.7827326383991251,
+          "base_ate": 0.6728109494452581,
+          "peak_fuel": 2765612,
+          "base_peak_fuel": 3657305,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-9300316",
+          "ate": 0.4072071722665914,
+          "base_ate": 0.5388703923171632,
+          "peak_fuel": 2572812,
+          "base_peak_fuel": 3424757,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-9300323",
+          "ate": 0.4114160966857505,
+          "base_ate": 0.41694989667743365,
+          "peak_fuel": 2685472,
+          "base_peak_fuel": 3681281,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-9300338",
+          "ate": 0.9330589750993715,
+          "base_ate": 0.44331262683134154,
+          "peak_fuel": 2625552,
+          "base_peak_fuel": 3636174,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-9300365",
+          "ate": 0.5677591844469376,
+          "base_ate": 0.4749546846981596,
+          "peak_fuel": 2400114,
+          "base_peak_fuel": 3751968,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-9300427",
+          "ate": 0.4687871886432086,
+          "base_ate": 0.34417340529783963,
+          "peak_fuel": 2302359,
+          "base_peak_fuel": 3416877,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-h9500011",
+          "ate": 1.1725875251133406,
+          "base_ate": 1.2075917962586546,
+          "peak_fuel": 2283477,
+          "base_peak_fuel": 3445507,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-h9500028",
+          "ate": 0.6910010688749054,
+          "base_ate": 0.5695770670153658,
+          "peak_fuel": 2660999,
+          "base_peak_fuel": 3537233,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-h9500056",
+          "ate": 0.7594317862237594,
+          "base_ate": 0.42346994756668976,
+          "peak_fuel": 2621008,
+          "base_peak_fuel": 3423303,
+          "failure": null
+        }
+      ]
+    },
+    "gov21_4": {
+      "n": 24,
+      "mean_ate": 2.334231983633998,
+      "median_ate": 0.5764740108433888,
+      "paired_vs_full_current": {
+        "mean": 1.809616678599325,
+        "median": 0.1248180113635872,
+        "p95": 11.023282809562932,
+        "worst": 18.078984784228663
+      },
+      "actual_peak_fuel": {
+        "max": 2319507,
+        "p95": 2220276.15
+      },
+      "per_scene_delta_vs_full_current": {
+        "fo": -0.05644175883047832,
+        "ro": 0.11053039111271733,
+        "wa": 5.374761403515737
+      },
+      "per_flight": [
+        {
+          "episode": "s3v3va-fo-9300479",
+          "ate": 0.532629478400693,
+          "base_ate": 0.5490510843277588,
+          "peak_fuel": 2184750,
+          "base_peak_fuel": 3505674,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-fo-9300485",
+          "ate": 0.4930289945549446,
+          "base_ate": 0.66645399564257,
+          "peak_fuel": 2037625,
+          "base_peak_fuel": 3476124,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-fo-9300549",
+          "ate": 0.48851683530054724,
+          "base_ate": 0.5698419379654877,
+          "peak_fuel": 2098809,
+          "base_peak_fuel": 3453496,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-fo-9300587",
+          "ate": 0.4614544282597361,
+          "base_ate": 0.721450338707732,
+          "peak_fuel": 2022681,
+          "base_peak_fuel": 3333390,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-fo-9300591",
+          "ate": 0.5734203497844391,
+          "base_ate": 0.5177393852346811,
+          "peak_fuel": 2082645,
+          "base_peak_fuel": 3433086,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-fo-h9500106",
+          "ate": 0.4156987065926999,
+          "base_ate": 0.3621399290176817,
+          "peak_fuel": 2183437,
+          "base_peak_fuel": 3629540,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-fo-h9500134",
+          "ate": 0.5795276719023386,
+          "base_ate": 0.4627838648449136,
+          "peak_fuel": 2150778,
+          "base_peak_fuel": 3445303,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-fo-h9500147",
+          "ate": 0.47156602095086775,
+          "base_ate": 0.6179160206492679,
+          "peak_fuel": 2038492,
+          "base_peak_fuel": 3697973,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300065",
+          "ate": 0.20569201032820886,
+          "base_ate": 0.17765562679792735,
+          "peak_fuel": 2225016,
+          "base_peak_fuel": 3763883,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300090",
+          "ate": 1.1847490955895508,
+          "base_ate": 1.0518568799198014,
+          "peak_fuel": 2184140,
+          "base_peak_fuel": 3444200,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300091",
+          "ate": 0.49854446158680327,
+          "base_ate": 0.22949604294984394,
+          "peak_fuel": 2019814,
+          "base_peak_fuel": 3421274,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300095",
+          "ate": 0.31707527388053003,
+          "base_ate": 0.2062319826118402,
+          "peak_fuel": 2056436,
+          "base_peak_fuel": 3587150,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300098",
+          "ate": 1.18668082770082,
+          "base_ate": 0.9980507742644672,
+          "peak_fuel": 2033814,
+          "base_peak_fuel": 3849899,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300116",
+          "ate": 0.19055808845228536,
+          "base_ate": 0.13446024594952033,
+          "peak_fuel": 2115734,
+          "base_peak_fuel": 3847124,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300172",
+          "ate": 0.3978029165250698,
+          "base_ate": 0.23392844584074948,
+          "peak_fuel": 2193417,
+          "base_peak_fuel": 3418590,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300234",
+          "ate": 0.6076314026178784,
+          "base_ate": 0.6728109494452581,
+          "peak_fuel": 2319507,
+          "base_peak_fuel": 3657305,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-9300316",
+          "ate": 3.702673025209047,
+          "base_ate": 0.5388703923171632,
+          "peak_fuel": 1970198,
+          "base_peak_fuel": 3424757,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-9300323",
+          "ate": 1.2463667371484493,
+          "base_ate": 0.41694989667743365,
+          "peak_fuel": 2018391,
+          "base_peak_fuel": 3681281,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-9300338",
+          "ate": 1.1401525917373014,
+          "base_ate": 0.44331262683134154,
+          "peak_fuel": 2026700,
+          "base_peak_fuel": 3636174,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-9300365",
+          "ate": 12.274155681292292,
+          "base_ate": 0.4749546846981596,
+          "peak_fuel": 2006758,
+          "base_peak_fuel": 3751968,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-9300427",
+          "ate": 18.423158189526504,
+          "base_ate": 0.34417340529783963,
+          "peak_fuel": 1958941,
+          "base_peak_fuel": 3416877,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-h9500011",
+          "ate": 7.834004879311525,
+          "base_ate": 1.2075917962586546,
+          "peak_fuel": 2001438,
+          "base_peak_fuel": 3445507,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-h9500028",
+          "ate": 1.0925385223826478,
+          "base_ate": 0.5695770670153658,
+          "peak_fuel": 2013694,
+          "base_peak_fuel": 3537233,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-h9500056",
+          "ate": 1.7039414181807737,
+          "base_ate": 0.42346994756668976,
+          "peak_fuel": 2011101,
+          "base_peak_fuel": 3423303,
+          "failure": null
+        }
+      ]
+    },
+    "gov27_0": {
+      "n": 24,
+      "mean_ate": 0.5575557220715899,
+      "median_ate": 0.5400089906357766,
+      "paired_vs_full_current": {
+        "mean": 0.03294041703691703,
+        "median": 0.035493946188824316,
+        "p95": 0.2720479973522298,
+        "worst": 0.6259513899314194
+      },
+      "actual_peak_fuel": {
+        "max": 2904371,
+        "p95": 2887805.5
+      },
+      "per_scene_delta_vs_full_current": {
+        "fo": -0.024867187734631792,
+        "ro": -0.00877870427105763,
+        "wa": 0.1324671431164405
+      },
+      "per_flight": [
+        {
+          "episode": "s3v3va-fo-9300479",
+          "ate": 0.554448272848616,
+          "base_ate": 0.5490510843277588,
+          "peak_fuel": 2758468,
+          "base_peak_fuel": 3505674,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-fo-9300485",
+          "ate": 0.40808741518550945,
+          "base_ate": 0.66645399564257,
+          "peak_fuel": 2810820,
+          "base_peak_fuel": 3476124,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-fo-9300549",
+          "ate": 0.6879444916417278,
+          "base_ate": 0.5698419379654877,
+          "peak_fuel": 2747265,
+          "base_peak_fuel": 3453496,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-fo-9300587",
+          "ate": 0.6586835388667797,
+          "base_ate": 0.721450338707732,
+          "peak_fuel": 2668055,
+          "base_peak_fuel": 3333390,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-fo-9300591",
+          "ate": 0.3938223584380206,
+          "base_ate": 0.5177393852346811,
+          "peak_fuel": 2687995,
+          "base_peak_fuel": 3433086,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-fo-h9500106",
+          "ate": 0.3947077492637371,
+          "base_ate": 0.3621399290176817,
+          "peak_fuel": 2729051,
+          "base_peak_fuel": 3629540,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-fo-h9500134",
+          "ate": 0.4628023035850931,
+          "base_ate": 0.4627838648449136,
+          "peak_fuel": 2904371,
+          "base_peak_fuel": 3445303,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-fo-h9500147",
+          "ate": 0.7079429246835548,
+          "base_ate": 0.6179160206492679,
+          "peak_fuel": 2708773,
+          "base_peak_fuel": 3697973,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300065",
+          "ate": 0.26306052326112883,
+          "base_ate": 0.17765562679792735,
+          "peak_fuel": 2839700,
+          "base_peak_fuel": 3763883,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300090",
+          "ate": 0.9051767566669865,
+          "base_ate": 1.0518568799198014,
+          "peak_fuel": 2685987,
+          "base_peak_fuel": 3444200,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300091",
+          "ate": 0.36653928909392824,
+          "base_ate": 0.22949604294984394,
+          "peak_fuel": 2616590,
+          "base_peak_fuel": 3421274,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300095",
+          "ate": 0.24465205474343346,
+          "base_ate": 0.2062319826118402,
+          "peak_fuel": 2747570,
+          "base_peak_fuel": 3587150,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300098",
+          "ate": 0.7425736035701856,
+          "base_ate": 0.9980507742644672,
+          "peak_fuel": 2800871,
+          "base_peak_fuel": 3849899,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300116",
+          "ate": 0.1587232802062924,
+          "base_ate": 0.13446024594952033,
+          "peak_fuel": 2890165,
+          "base_peak_fuel": 3847124,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300172",
+          "ate": 0.2895256150700863,
+          "base_ate": 0.23392844584074948,
+          "peak_fuel": 2734308,
+          "base_peak_fuel": 3418590,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-ro-9300234",
+          "ate": 0.6640101909989056,
+          "base_ate": 0.6728109494452581,
+          "peak_fuel": 2774750,
+          "base_peak_fuel": 3657305,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-9300316",
+          "ate": 0.4802285143743243,
+          "base_ate": 0.5388703923171632,
+          "peak_fuel": 2587864,
+          "base_peak_fuel": 3424757,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-9300323",
+          "ate": 0.5592956704052209,
+          "base_ate": 0.41694989667743365,
+          "peak_fuel": 2744194,
+          "base_peak_fuel": 3681281,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-9300338",
+          "ate": 1.069264016762761,
+          "base_ate": 0.44331262683134154,
+          "peak_fuel": 2814029,
+          "base_peak_fuel": 3636174,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-9300365",
+          "ate": 0.5951147041728818,
+          "base_ate": 0.4749546846981596,
+          "peak_fuel": 2769403,
+          "base_peak_fuel": 3751968,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-9300427",
+          "ate": 0.525569708422937,
+          "base_ate": 0.34417340529783963,
+          "peak_fuel": 2634899,
+          "base_peak_fuel": 3416877,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-h9500011",
+          "ate": 0.9120872268092478,
+          "base_ate": 1.2075917962586546,
+          "peak_fuel": 2638316,
+          "base_peak_fuel": 3445507,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-h9500028",
+          "ate": 0.8576224221723839,
+          "base_ate": 0.5695770670153658,
+          "peak_fuel": 2675761,
+          "base_peak_fuel": 3537233,
+          "failure": null
+        },
+        {
+          "episode": "s3v3va-wa-h9500056",
+          "ate": 0.4794546984744152,
+          "base_ate": 0.42346994756668976,
+          "peak_fuel": 2874435,
+          "base_peak_fuel": 3423303,
+          "failure": null
+        }
+      ]
+    }
+  },
+  "budget_factorial": {
+    "2100000": {
+      "n": 24,
+      "dec4_minus_dec0_mean_ate": 0.013550831955421302,
+      "dec4_minus_dec0_median_ate": -0.000820692330967196,
+      "dec4_minus_dec0_p95_ate": 0.2544684605554729,
+      "dec4_minus_dec0_worst_ate": 0.33536294956875745,
+      "dec0_minus_dec4_mean_peak_fuel": 63223.708333333336,
+      "dec0_minus_dec4_peak_fuel_max": 217723,
+      "per_scene_ate_delta_mean": {
+        "fo": -0.06249969301631247,
+        "ro": 0.06544725301080223,
+        "wa": 0.037704935871774134
+      },
+      "per_flight": [
+        {
+          "episode": "s3v3va-fo-9300479",
+          "dec4_minus_dec0_ate": 0.16487216947443617,
+          "dec0_minus_dec4_peak_fuel": 797,
+          "dec0_ate": 0.3677573089262568,
+          "dec4_ate": 0.532629478400693,
+          "dec0_peak_fuel": 2185547,
+          "dec4_peak_fuel": 2184750
+        },
+        {
+          "episode": "s3v3va-fo-9300485",
+          "dec4_minus_dec0_ate": 0.021185517518892083,
+          "dec0_minus_dec4_peak_fuel": 217723,
+          "dec0_ate": 0.4718434770360525,
+          "dec4_ate": 0.4930289945549446,
+          "dec0_peak_fuel": 2255348,
+          "dec4_peak_fuel": 2037625
+        },
+        {
+          "episode": "s3v3va-fo-9300549",
+          "dec4_minus_dec0_ate": -0.12601969260785018,
+          "dec0_minus_dec4_peak_fuel": 93682,
+          "dec0_ate": 0.6145365279083974,
+          "dec4_ate": 0.48851683530054724,
+          "dec0_peak_fuel": 2192491,
+          "dec4_peak_fuel": 2098809
+        },
+        {
+          "episode": "s3v3va-fo-9300587",
+          "dec4_minus_dec0_ate": -0.44602467126790374,
+          "dec0_minus_dec4_peak_fuel": 136353,
+          "dec0_ate": 0.9074790995276398,
+          "dec4_ate": 0.4614544282597361,
+          "dec0_peak_fuel": 2159034,
+          "dec4_peak_fuel": 2022681
+        },
+        {
+          "episode": "s3v3va-fo-9300591",
+          "dec4_minus_dec0_ate": 0.071695276984869,
+          "dec0_minus_dec4_peak_fuel": -21746,
+          "dec0_ate": 0.5017250727995701,
+          "dec4_ate": 0.5734203497844391,
+          "dec0_peak_fuel": 2060899,
+          "dec4_peak_fuel": 2082645
+        },
+        {
+          "episode": "s3v3va-fo-h9500106",
+          "dec4_minus_dec0_ate": -0.0026060533656173668,
+          "dec0_minus_dec4_peak_fuel": -166022,
+          "dec0_ate": 0.4183047599583173,
+          "dec4_ate": 0.4156987065926999,
+          "dec0_peak_fuel": 2017415,
+          "dec4_peak_fuel": 2183437
+        },
+        {
+          "episode": "s3v3va-fo-h9500134",
+          "dec4_minus_dec0_ate": -0.06063455872975987,
+          "dec0_minus_dec4_peak_fuel": -51820,
+          "dec0_ate": 0.6401622306320984,
+          "dec4_ate": 0.5795276719023386,
+          "dec0_peak_fuel": 2098958,
+          "dec4_peak_fuel": 2150778
+        },
+        {
+          "episode": "s3v3va-fo-h9500147",
+          "dec4_minus_dec0_ate": -0.12246553213756584,
+          "dec0_minus_dec4_peak_fuel": 60482,
+          "dec0_ate": 0.5940315530884336,
+          "dec4_ate": 0.47156602095086775,
+          "dec0_peak_fuel": 2098974,
+          "dec4_peak_fuel": 2038492
+        },
+        {
+          "episode": "s3v3va-ro-9300065",
+          "dec4_minus_dec0_ate": -0.07520308065546313,
+          "dec0_minus_dec4_peak_fuel": -89466,
+          "dec0_ate": 0.280895090983672,
+          "dec4_ate": 0.20569201032820886,
+          "dec0_peak_fuel": 2135550,
+          "dec4_peak_fuel": 2225016
+        },
+        {
+          "episode": "s3v3va-ro-9300090",
+          "dec4_minus_dec0_ate": 0.2544684605554729,
+          "dec0_minus_dec4_peak_fuel": -88003,
+          "dec0_ate": 0.9302806350340779,
+          "dec4_ate": 1.1847490955895508,
+          "dec0_peak_fuel": 2096137,
+          "dec4_peak_fuel": 2184140
+        },
+        {
+          "episode": "s3v3va-ro-9300091",
+          "dec4_minus_dec0_ate": -0.06408102859269776,
+          "dec0_minus_dec4_peak_fuel": 105582,
+          "dec0_ate": 0.562625490179501,
+          "dec4_ate": 0.49854446158680327,
+          "dec0_peak_fuel": 2125396,
+          "dec4_peak_fuel": 2019814
+        },
+        {
+          "episode": "s3v3va-ro-9300095",
+          "dec4_minus_dec0_ate": 0.13243718140573302,
+          "dec0_minus_dec4_peak_fuel": 215112,
+          "dec0_ate": 0.184638092474797,
+          "dec4_ate": 0.31707527388053003,
+          "dec0_peak_fuel": 2271548,
+          "dec4_peak_fuel": 2056436
+        },
+        {
+          "episode": "s3v3va-ro-9300098",
+          "dec4_minus_dec0_ate": 0.28422268697240416,
+          "dec0_minus_dec4_peak_fuel": 136588,
+          "dec0_ate": 0.9024581407284159,
+          "dec4_ate": 1.18668082770082,
+          "dec0_peak_fuel": 2170402,
+          "dec4_peak_fuel": 2033814
+        },
+        {
+          "episode": "s3v3va-ro-9300116",
+          "dec4_minus_dec0_ate": 0.0009646687036829749,
+          "dec0_minus_dec4_peak_fuel": 185019,
+          "dec0_ate": 0.1895934197486024,
+          "dec4_ate": 0.19055808845228536,
+          "dec0_peak_fuel": 2300753,
+          "dec4_peak_fuel": 2115734
+        },
+        {
+          "episode": "s3v3va-ro-9300172",
+          "dec4_minus_dec0_ate": 0.14572046465154587,
+          "dec0_minus_dec4_peak_fuel": 94836,
+          "dec0_ate": 0.25208245187352396,
+          "dec4_ate": 0.3978029165250698,
+          "dec0_peak_fuel": 2288253,
+          "dec4_peak_fuel": 2193417
+        },
+        {
+          "episode": "s3v3va-ro-9300234",
+          "dec4_minus_dec0_ate": -0.15495132895426011,
+          "dec0_minus_dec4_peak_fuel": -56543,
+          "dec0_ate": 0.7625827315721385,
+          "dec4_ate": 0.6076314026178784,
+          "dec0_peak_fuel": 2262964,
+          "dec4_peak_fuel": 2319507
+        },
+        {
+          "episode": "s3v3va-wa-9300316",
+          "dec4_minus_dec0_ate": 0.1413024537712575,
+          "dec0_minus_dec4_peak_fuel": 105346,
+          "dec0_ate": 3.5613705714377897,
+          "dec4_ate": 3.702673025209047,
+          "dec0_peak_fuel": 2075544,
+          "dec4_peak_fuel": 1970198
+        },
+        {
+          "episode": "s3v3va-wa-9300323",
+          "dec4_minus_dec0_ate": 0.05600203415852412,
+          "dec0_minus_dec4_peak_fuel": 210978,
+          "dec0_ate": 1.1903647029899251,
+          "dec4_ate": 1.2463667371484493,
+          "dec0_peak_fuel": 2229369,
+          "dec4_peak_fuel": 2018391
+        },
+        {
+          "episode": "s3v3va-wa-9300338",
+          "dec4_minus_dec0_ate": -0.022462317118185693,
+          "dec0_minus_dec4_peak_fuel": 798,
+          "dec0_ate": 1.1626149088554871,
+          "dec4_ate": 1.1401525917373014,
+          "dec0_peak_fuel": 2027498,
+          "dec4_peak_fuel": 2026700
+        },
+        {
+          "episode": "s3v3va-wa-9300365",
+          "dec4_minus_dec0_ate": -0.21251494289507278,
+          "dec0_minus_dec4_peak_fuel": 45848,
+          "dec0_ate": 12.486670624187365,
+          "dec4_ate": 12.274155681292292,
+          "dec0_peak_fuel": 2052606,
+          "dec4_peak_fuel": 2006758
+        },
+        {
+          "episode": "s3v3va-wa-9300427",
+          "dec4_minus_dec0_ate": -0.0755195434918079,
+          "dec0_minus_dec4_peak_fuel": -48919,
+          "dec0_ate": 18.49867773301831,
+          "dec4_ate": 18.423158189526504,
+          "dec0_peak_fuel": 1910022,
+          "dec4_peak_fuel": 1958941
+        },
+        {
+          "episode": "s3v3va-wa-h9500011",
+          "dec4_minus_dec0_ate": 0.2394543537504923,
+          "dec0_minus_dec4_peak_fuel": 58537,
+          "dec0_ate": 7.594550525561033,
+          "dec4_ate": 7.834004879311525,
+          "dec0_peak_fuel": 2059975,
+          "dec4_peak_fuel": 2001438
+        },
+        {
+          "episode": "s3v3va-wa-h9500028",
+          "dec4_minus_dec0_ate": 0.33536294956875745,
+          "dec0_minus_dec4_peak_fuel": 197421,
+          "dec0_ate": 0.7571755728138904,
+          "dec4_ate": 1.0925385223826478,
+          "dec0_peak_fuel": 2211115,
+          "dec4_peak_fuel": 2013694
+        },
+        {
+          "episode": "s3v3va-wa-h9500056",
+          "dec4_minus_dec0_ate": -0.15998550076977192,
+          "dec0_minus_dec4_peak_fuel": 174786,
+          "dec0_ate": 1.8639269189505456,
+          "dec4_ate": 1.7039414181807737,
+          "dec0_peak_fuel": 2185887,
+          "dec4_peak_fuel": 2011101
+        }
+      ]
+    },
+    "2700000": {
+      "n": 24,
+      "dec4_minus_dec0_mean_ate": 0.015288377321406,
+      "dec4_minus_dec0_median_ate": -0.01139590622970657,
+      "dec4_minus_dec0_p95_ate": 0.22930780859743616,
+      "dec4_minus_dec0_worst_ate": 0.2799770877493442,
+      "dec0_minus_dec4_mean_peak_fuel": 103742.20833333333,
+      "dec0_minus_dec4_peak_fuel_max": 369289,
+      "per_scene_ate_delta_mean": {
+        "fo": 0.0017277813430020758,
+        "ro": 0.05256084615125427,
+        "wa": -0.008423495530038343
+      },
+      "per_flight": [
+        {
+          "episode": "s3v3va-fo-9300479",
+          "dec4_minus_dec0_ate": 0.17168680402284753,
+          "dec0_minus_dec4_peak_fuel": 10396,
+          "dec0_ate": 0.554448272848616,
+          "dec4_ate": 0.7261350768714635,
+          "dec0_peak_fuel": 2758468,
+          "dec4_peak_fuel": 2748072
+        },
+        {
+          "episode": "s3v3va-fo-9300485",
+          "dec4_minus_dec0_ate": 0.06342908215255594,
+          "dec0_minus_dec4_peak_fuel": 147063,
+          "dec0_ate": 0.40808741518550945,
+          "dec4_ate": 0.4715164973380654,
+          "dec0_peak_fuel": 2810820,
+          "dec4_peak_fuel": 2663757
+        },
+        {
+          "episode": "s3v3va-fo-9300549",
+          "dec4_minus_dec0_ate": 0.07041929154963578,
+          "dec0_minus_dec4_peak_fuel": 69673,
+          "dec0_ate": 0.6879444916417278,
+          "dec4_ate": 0.7583637831913635,
+          "dec0_peak_fuel": 2747265,
+          "dec4_peak_fuel": 2677592
+        },
+        {
+          "episode": "s3v3va-fo-9300587",
+          "dec4_minus_dec0_ate": -0.044236950519967344,
+          "dec0_minus_dec4_peak_fuel": -3057,
+          "dec0_ate": 0.6586835388667797,
+          "dec4_ate": 0.6144465883468123,
+          "dec0_peak_fuel": 2668055,
+          "dec4_peak_fuel": 2671112
+        },
+        {
+          "episode": "s3v3va-fo-9300591",
+          "dec4_minus_dec0_ate": 0.03855252323979519,
+          "dec0_minus_dec4_peak_fuel": 46327,
+          "dec0_ate": 0.3938223584380206,
+          "dec4_ate": 0.4323748816778158,
+          "dec0_peak_fuel": 2687995,
+          "dec4_peak_fuel": 2641668
+        },
+        {
+          "episode": "s3v3va-fo-h9500106",
+          "dec4_minus_dec0_ate": -0.08961532427065177,
+          "dec0_minus_dec4_peak_fuel": 114664,
+          "dec0_ate": 0.3947077492637371,
+          "dec4_ate": 0.3050924249930853,
+          "dec0_peak_fuel": 2729051,
+          "dec4_peak_fuel": 2614387
+        },
+        {
+          "episode": "s3v3va-fo-h9500134",
+          "dec4_minus_dec0_ate": 0.004563707266531047,
+          "dec0_minus_dec4_peak_fuel": 59479,
+          "dec0_ate": 0.4628023035850931,
+          "dec4_ate": 0.46736601085162416,
+          "dec0_peak_fuel": 2904371,
+          "dec4_peak_fuel": 2844892
+        },
+        {
+          "episode": "s3v3va-fo-h9500147",
+          "dec4_minus_dec0_ate": -0.20097688269672975,
+          "dec0_minus_dec4_peak_fuel": 47506,
+          "dec0_ate": 0.7079429246835548,
+          "dec4_ate": 0.506966041986825,
+          "dec0_peak_fuel": 2708773,
+          "dec4_peak_fuel": 2661267
+        },
+        {
+          "episode": "s3v3va-ro-9300065",
+          "dec4_minus_dec0_ate": -0.0658873082160489,
+          "dec0_minus_dec4_peak_fuel": 118308,
+          "dec0_ate": 0.26306052326112883,
+          "dec4_ate": 0.19717321504507992,
+          "dec0_peak_fuel": 2839700,
+          "dec4_peak_fuel": 2721392
+        },
+        {
+          "episode": "s3v3va-ro-9300090",
+          "dec4_minus_dec0_ate": 0.22930780859743616,
+          "dec0_minus_dec4_peak_fuel": 98351,
+          "dec0_ate": 0.9051767566669865,
+          "dec4_ate": 1.1344845652644227,
+          "dec0_peak_fuel": 2685987,
+          "dec4_peak_fuel": 2587636
+        },
+        {
+          "episode": "s3v3va-ro-9300091",
+          "dec4_minus_dec0_ate": -0.07647826604627306,
+          "dec0_minus_dec4_peak_fuel": -50209,
+          "dec0_ate": 0.36653928909392824,
+          "dec4_ate": 0.2900610230476552,
+          "dec0_peak_fuel": 2616590,
+          "dec4_peak_fuel": 2666799
+        },
+        {
+          "episode": "s3v3va-ro-9300095",
+          "dec4_minus_dec0_ate": -0.12670975239739718,
+          "dec0_minus_dec4_peak_fuel": 99032,
+          "dec0_ate": 0.24465205474343346,
+          "dec4_ate": 0.11794230234603628,
+          "dec0_peak_fuel": 2747570,
+          "dec4_peak_fuel": 2648538
+        },
+        {
+          "episode": "s3v3va-ro-9300098",
+          "dec4_minus_dec0_ate": 0.21241775699674348,
+          "dec0_minus_dec4_peak_fuel": 145665,
+          "dec0_ate": 0.7425736035701856,
+          "dec4_ate": 0.9549913605669291,
+          "dec0_peak_fuel": 2800871,
+          "dec4_peak_fuel": 2655206
+        },
+        {
+          "episode": "s3v3va-ro-9300116",
+          "dec4_minus_dec0_ate": 0.08027124968956817,
+          "dec0_minus_dec4_peak_fuel": -23554,
+          "dec0_ate": 0.1587232802062924,
+          "dec4_ate": 0.23899452989586056,
+          "dec0_peak_fuel": 2890165,
+          "dec4_peak_fuel": 2913719
+        },
+        {
+          "episode": "s3v3va-ro-9300172",
+          "dec4_minus_dec0_ate": 0.04884283318578592,
+          "dec0_minus_dec4_peak_fuel": 13923,
+          "dec0_ate": 0.2895256150700863,
+          "dec4_ate": 0.3383684482558722,
+          "dec0_peak_fuel": 2734308,
+          "dec4_peak_fuel": 2720385
+        },
+        {
+          "episode": "s3v3va-ro-9300234",
+          "dec4_minus_dec0_ate": 0.11872244740021953,
+          "dec0_minus_dec4_peak_fuel": 9138,
+          "dec0_ate": 0.6640101909989056,
+          "dec4_ate": 0.7827326383991251,
+          "dec0_peak_fuel": 2774750,
+          "dec4_peak_fuel": 2765612
+        },
+        {
+          "episode": "s3v3va-wa-9300316",
+          "dec4_minus_dec0_ate": -0.07302134210773287,
+          "dec0_minus_dec4_peak_fuel": 15052,
+          "dec0_ate": 0.4802285143743243,
+          "dec4_ate": 0.4072071722665914,
+          "dec0_peak_fuel": 2587864,
+          "dec4_peak_fuel": 2572812
+        },
+        {
+          "episode": "s3v3va-wa-9300323",
+          "dec4_minus_dec0_ate": -0.14787957371947036,
+          "dec0_minus_dec4_peak_fuel": 58722,
+          "dec0_ate": 0.5592956704052209,
+          "dec4_ate": 0.4114160966857505,
+          "dec0_peak_fuel": 2744194,
+          "dec4_peak_fuel": 2685472
+        },
+        {
+          "episode": "s3v3va-wa-9300338",
+          "dec4_minus_dec0_ate": -0.13620504166338943,
+          "dec0_minus_dec4_peak_fuel": 188477,
+          "dec0_ate": 1.069264016762761,
+          "dec4_ate": 0.9330589750993715,
+          "dec0_peak_fuel": 2814029,
+          "dec4_peak_fuel": 2625552
+        },
+        {
+          "episode": "s3v3va-wa-9300365",
+          "dec4_minus_dec0_ate": -0.02735551972594419,
+          "dec0_minus_dec4_peak_fuel": 369289,
+          "dec0_ate": 0.5951147041728818,
+          "dec4_ate": 0.5677591844469376,
+          "dec0_peak_fuel": 2769403,
+          "dec4_peak_fuel": 2400114
+        },
+        {
+          "episode": "s3v3va-wa-9300427",
+          "dec4_minus_dec0_ate": -0.056782519779728424,
+          "dec0_minus_dec4_peak_fuel": 332540,
+          "dec0_ate": 0.525569708422937,
+          "dec4_ate": 0.4687871886432086,
+          "dec0_peak_fuel": 2634899,
+          "dec4_peak_fuel": 2302359
+        },
+        {
+          "episode": "s3v3va-wa-h9500011",
+          "dec4_minus_dec0_ate": 0.2605002983040928,
+          "dec0_minus_dec4_peak_fuel": 354839,
+          "dec0_ate": 0.9120872268092478,
+          "dec4_ate": 1.1725875251133406,
+          "dec0_peak_fuel": 2638316,
+          "dec4_peak_fuel": 2283477
+        },
+        {
+          "episode": "s3v3va-wa-h9500028",
+          "dec4_minus_dec0_ate": -0.1666213532974785,
+          "dec0_minus_dec4_peak_fuel": 14762,
+          "dec0_ate": 0.8576224221723839,
+          "dec4_ate": 0.6910010688749054,
+          "dec0_peak_fuel": 2675761,
+          "dec4_peak_fuel": 2660999
+        },
+        {
+          "episode": "s3v3va-wa-h9500056",
+          "dec4_minus_dec0_ate": 0.2799770877493442,
+          "dec0_minus_dec4_peak_fuel": 253427,
+          "dec0_ate": 0.4794546984744152,
+          "dec4_ate": 0.7594317862237594,
+          "dec0_peak_fuel": 2874435,
+          "dec4_peak_fuel": 2621008
+        }
+      ]
+    }
+  },
+  "confirmation": "not run: no DEC4 arm produced lower max peak fuel than its same-budget DEC0 control, and ATE did not improve",
+  "review_needed": "Check low-budget absolute ATE regression versus full-current reference before considering any further budget/decimation work; no promotion or validation confirmation warranted."
+}

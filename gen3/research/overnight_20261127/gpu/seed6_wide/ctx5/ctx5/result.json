@@ -1,0 +1,33 @@
+{
+  "n": 176764,
+  "all": 0.23750042915344238,
+  "median": 0.20139817893505096,
+  "p90": 0.4359742999076843,
+  "fast_gt1_5": 69298,
+  "fast_err": 0.29138559103012085,
+  "speed_abs_err": 0.15349577367305756,
+  "speed_bias": -0.012022173032164574,
+  "dir_deg_gt1": 6.248351573944092,
+  "zrms": 1.0589392185211182,
+  "tail_gt1": 781,
+  "tail_gt2": 9,
+  "variant": "ctx5",
+  "K": 5,
+  "cin": 12,
+  "nvec": 76,
+  "params": 256396,
+  "prep_latency_ms_batch1": 5.172960023628548,
+  "network_latency_ms_batch1": 0.30738700181245804,
+  "validation_anchor_rule": "pos>=3",
+  "val_episode_count": 749,
+  "checkpoint": "/dev/shm/vio_overnight/gpu/seed6_wide/ctx5/ctx5/model.pt",
+  "model_sha256": "cb804b9b5a4023ae33507a0831504879e3d638cfbc5f5fcc561d22a32c1cda71",
+  "architecture_channels": [
+    32,
+    48,
+    64,
+    96
+  ],
+  "epochs": 200,
+  "purpose": "Matched capacity-by-context teacher diagnostic; no downstream ATE or WASM inference claim"
+}

@@ -1,0 +1,27 @@
+{
+  "gpu": "physical 7 (CUDA_VISIBLE_DEVICES=7)",
+  "train_cache": "existing agents/net/cache/train (trainall1.txt), phases 0+2",
+  "validation_cache": "existing agents/net/cache/val (val749 list), phase 0",
+  "common_anchor_rule": "pos>=3 and pos+1<len for every K; target is b=g+1",
+  "input_context": "K consecutive frames ending at b, each past frame gyro-warped into g; all K-1 IMU interval features through b; only IMU integrations, no GT input",
+  "replication_of": "pilot ctx2/ctx5; pilot seed known 20261127 for sampling but set after model initialization",
+  "recipe": {
+    "epochs": 100,
+    "steps_per_epoch": 400,
+    "train_list": "trainall1.txt",
+    "batch": 256,
+    "lr": 0.004,
+    "loss": "i6 abl.py MSE epoch0, beta-NLL thereafter",
+    "seed": 5,
+    "seed_status": "explicit; set before smoke, model initialization, sampling, and training"
+  },
+  "arms": [
+    5
+  ],
+  "n_train_anchors": 1353696,
+  "n_val_anchors": 176764,
+  "limits": {
+    "wall_seconds": 7200,
+    "output_cap_bytes": 4000000000
+  }
+}

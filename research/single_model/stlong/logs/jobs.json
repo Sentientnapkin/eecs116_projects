@@ -13,12 +13,17 @@
  "teacher2_direct": 3178258,
  "pilot_mm": 3184226,
  "teacher4_direct": 3184228,
- "next_stage": 3383894,
+ "next_stage": 3521034,
  "switch_generation": 3189576,
  "pilot_screen": 3189923,
  "generation_multi": 3231666,
  "pilot_mm_screen": 3281478,
  "wide_screen": 3383476,
  "lcj_screen": 3399517,
- "finalists": 3449202
+ "finalists": 3449202,
+ "progress_notes": 3482683,
+ "teacher_final": 3521036,
+ "wide0": 3521037,
+ "wide1": 3521038,
+ "wide2": 3521039
 }

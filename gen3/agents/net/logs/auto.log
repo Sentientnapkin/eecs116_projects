@@ -1,0 +1,115 @@
+2026-11-26 03:53 round auto_727 new=727 old_share=0.3 init=/data/backups/rganapa/Sebastian/gen3/agents/net/runs/ft2
+v3val 749 v1val 210
+DONE auto_727 best_ep 55 {"n": 179011, "all": 0.3426753580570221, "fast": 0.4316878616809845, "zrms": 1.0399869680404663, "scale_gt1": 0.9372243285179138, "fwd": 0.33926042914390564, "side": 0.4024791717529297, "back": 0.3672826886177063, "class": {"forest": 0.33, "room": 0.3611, "warehouse": 0.3308}, "regime": {"benchmark": 0.2777, "free-yaw": 0.376}, "blur": {"15-35": 0.3526, "<15ms": 0.3403, ">
+floats 105172 bytes 420688
+wrote src/g_auto_727.c
+/data/backups/rganapa/Sebastian/gen3/agents/net/builds/g_auto_727/solution.wasm fe498755ecb6fea5456df3476d088ac80223b69a992707c963b25055bd334497
+/data/backups/rganapa/Sebastian/gen3/agents/net/builds/g_auto_727_iso/solution.wasm 994c274aae079b44821ca6c5843572d4369fd89e125affaea4fbaef919c656a3
+gslvlj__v3val.json                       mean 1.524  server-weighted 1.390  median 1.194  >3m 55  peak 5.13M  {'room': 0.706, 'warehouse': 2.259, 'forest': 2.335} {'hover': 0.92, 'mid-flight': 1.662}
+net_lcoff__v3val.json                    mean 1.109  server-weighted 1.033  median 0.831  >3m 17  peak 5.08M  {'room': 0.582, 'warehouse': 1.885, 'forest': 1.337} {'hover': 0.797, 'mid-flight': 1.18}  d=-0.415 [-0.520,-0.310]
+net_auto_727__v3val.json                 mean 0.916  server-weighted 0.871  median 0.771  >3m 9  peak 4.76M  {'room': 0.448, 'warehouse': 1.492, 'forest': 1.226} {'hover': 0.752, 'mid-flight': 0.953}  d=-0.608 [-0.704,-0.519]
+net_auto_727_iso__v3val.json             mean 0.887  server-weighted 0.844  median 0.705  >3m 8  peak 5.09M  {'room': 0.438, 'warehouse': 1.475, 'forest': 1.153} {'hover': 0.752, 'mid-flight': 0.918}  d=-0.637 [-0.737,-0.541]
+net_s3ft2_iso__v3val.json                mean 0.904  server-weighted 0.879  median 0.759  >3m 6  peak 4.71M  {'room': 0.454, 'warehouse': 1.454, 'forest': 1.209} {'hover': 0.801, 'mid-flight': 0.928}  d=-0.619 [-0.721,-0.525]
+2026-11-26 05:54 autotrain2 took over from 491320
+floats 105172 bytes 420688
+wrote src/g_auto_727.c
+/data/backups/rganapa/Sebastian/gen3/agents/net/builds/g_auto_727_sp10/solution.wasm 9a468ce9d6114e9f67c4eb3719a04c5032e76f1bfa6dc20450732d910b69bf7c
+gslvlj__v3val.json                       mean 1.517  server-weighted 1.438  median 1.196  >3m 89  peak 5.13M  {'room': 0.692, 'warehouse': 2.05, 'forest': 2.086} {'hover': 1.233, 'mid-flight': 1.661}
+pr_F_sp10__v3val.json                    mean 0.927  server-weighted 0.857  median 0.772  >3m 17  peak 4.79M  {'room': 0.494, 'warehouse': 1.411, 'forest': 0.967} {'hover': 1.031, 'mid-flight': 0.874}  d=-0.591 [-0.674,-0.500]
+net_auto_727_iso__v3val.json             mean 0.989  server-weighted 0.903  median 0.813  >3m 17  peak 5.31M  {'room': 0.439, 'warehouse': 1.56, 'forest': 1.095} {'hover': 1.136, 'mid-flight': 0.914}  d=-0.529 [-0.605,-0.453]
+net_auto_727_sp10__v3val.json            mean 0.914  server-weighted 0.843  median 0.716  >3m 19  peak 5.06M  {'room': 0.47, 'warehouse': 1.411, 'forest': 0.957} {'hover': 1.012, 'mid-flight': 0.865}  d=-0.603 [-0.689,-0.519]
+2026-11-26 07:00 judge net_auto_727_sp10 vs pr_F_sp10: v3val d=-0.0124 [-0.0581,+0.0311] n=749 ; v1val d=-0.0019 [-0.0383,+0.0336] n=210
+2026-11-26 07:00 PROMOTED net_auto_727_sp10 (sha 9a468ce9)
+2026-11-26 07:00 round auto_2414 new=2414 old_share=0.15 init=/data/backups/rganapa/Sebastian/gen3/agents/net/runs/auto_727
+v3val 749 v1val 210
+DONE auto_2414 best_ep 59 {"n": 179011, "all": 0.32379502058029175, "fast": 0.4067332446575165, "zrms": 0.9936599731445312, "scale_gt1": 0.9455386400222778, "fwd": 0.324634313583374, "side": 0.3771822452545166, "back": 0.3426218330860138, "class": {"forest": 0.3139, "room": 0.3411, "warehouse": 0.311}, "regime": {"benchmark": 0.27, "free-yaw": 0.3514}, "blur": {"15-35": 0.3324, "<15ms": 0.3216, ">
+floats 105172 bytes 420688
+wrote src/g_auto_2414.c
+/data/backups/rganapa/Sebastian/gen3/agents/net/builds/g_auto_2414_sp10/solution.wasm 6df68b73bd23619d146cf9b1fe932962938ae00ee1e57d58d5ad5446941d7cf4
+/data/backups/rganapa/Sebastian/gen3/agents/net/builds/g_auto_2414_iso/solution.wasm 2b3a2563a5cdadda8fbf1fb3cddd90f1433d8f8410fdd88e661d866dab9c1aec
+gslvlj__v3val.json                       mean 1.572  server-weighted 1.502  median 1.245  >3m 47  peak 4.76M  {'room': 0.75, 'warehouse': 2.036, 'forest': 2.225} {'hover': 1.304, 'mid-flight': 1.708}
+net_auto_727_sp10__v3val.json            mean 0.906  server-weighted 0.845  median 0.716  >3m 9  peak 4.80M  {'room': 0.489, 'warehouse': 1.381, 'forest': 0.934} {'hover': 1.043, 'mid-flight': 0.837}  d=-0.666 [-0.787,-0.548]
+net_auto_2414_iso__v3val.json            mean 1.020  server-weighted 0.921  median 0.819  >3m 9  peak 4.57M  {'room': 0.436, 'warehouse': 1.634, 'forest': 1.121} {'hover': 1.141, 'mid-flight': 0.958}  d=-0.553 [-0.659,-0.449]
+net_auto_2414_sp10__v3val.json           mean 0.950  server-weighted 0.855  median 0.760  >3m 9  peak 5.06M  {'room': 0.464, 'warehouse': 1.503, 'forest': 0.985} {'hover': 1.044, 'mid-flight': 0.903}  d=-0.622 [-0.743,-0.493]
+2026-11-26 08:06 judge net_auto_2414_sp10 vs net_auto_727_sp10: v3val d=+0.0412 [-0.0298,+0.1298] n=368 ; v1val d=-0.0038 [-0.0450,+0.0380] n=120
+2026-11-26 08:36 round auto_3169 new=3169 old_share=0.15 init=/data/backups/rganapa/Sebastian/gen3/agents/net/runs/auto_2414
+v3val 358 v1val 120
+DONE auto_3169 best_ep 57 {"n": 179011, "all": 0.31621360778808594, "fast": 0.3973032236099243, "zrms": 0.9932265281677246, "scale_gt1": 0.947293221950531, "fwd": 0.31656065583229065, "side": 0.368686318397522, "back": 0.3356146216392517, "class": {"forest": 0.3054, "room": 0.3349, "warehouse": 0.3025}, "regime": {"benchmark": 0.264, "free-yaw": 0.343}, "blur": {"15-35": 0.3246, "<15ms": 0.3135, "
+floats 105172 bytes 420688
+wrote src/g_auto_3169.c
+/data/backups/rganapa/Sebastian/gen3/agents/net/builds/g_auto_3169_sp10/solution.wasm a1cac2aa9e438403c272710d8118624c342cc9add4aaed24c71ae14f88671a1f
+/data/backups/rganapa/Sebastian/gen3/agents/net/builds/g_auto_3169_iso/solution.wasm bc4b0dcc9700f2fd6814595a6b7e1ec23cc94e6edbbdc2ff1100d6b4999ae06f
+gslvlj__v3val.json                       mean 1.572  server-weighted 1.502  median 1.245  >3m 47  peak 4.76M  {'room': 0.75, 'warehouse': 2.036, 'forest': 2.225} {'hover': 1.304, 'mid-flight': 1.708}
+net_auto_727_sp10__v3val.json            mean 0.906  server-weighted 0.845  median 0.716  >3m 9  peak 4.80M  {'room': 0.489, 'warehouse': 1.381, 'forest': 0.934} {'hover': 1.043, 'mid-flight': 0.837}  d=-0.666 [-0.787,-0.548]
+net_auto_3169_iso__v3val.json            mean 0.995  server-weighted 0.899  median 0.840  >3m 6  peak 5.05M  {'room': 0.425, 'warehouse': 1.594, 'forest': 1.095} {'hover': 1.195, 'mid-flight': 0.894}  d=-0.578 [-0.693,-0.468]
+net_auto_3169_sp10__v3val.json           mean 0.915  server-weighted 0.838  median 0.725  >3m 10  peak 4.83M  {'room': 0.464, 'warehouse': 1.422, 'forest': 0.953} {'hover': 1.006, 'mid-flight': 0.869}  d=-0.658 [-0.775,-0.535]
+2026-11-26 09:32 judge net_auto_3169_sp10 vs net_auto_727_sp10: v3val d=+0.0088 [-0.0463,+0.0772] n=358 ; v1val d=+0.0086 [-0.0322,+0.0509] n=120
+2026-11-26 10:02 round auto_3924 new=3924 old_share=0.15 init=/data/backups/rganapa/Sebastian/gen3/agents/net/runs/auto_3169
+v3val 358 v1val 120
+DONE auto_3924 best_ep 59 {"n": 179011, "all": 0.31170734763145447, "fast": 0.39549145102500916, "zrms": 1.00297212600708, "scale_gt1": 0.9366532564163208, "fwd": 0.312692791223526, "side": 0.3644912838935852, "back": 0.3314041197299957, "class": {"forest": 0.3019, "room": 0.329, "warehouse": 0.2989}, "regime": {"benchmark": 0.2599, "free-yaw": 0.3383}, "blur": {"15-35": 0.32, "<15ms": 0.309, ">35
+floats 105172 bytes 420688
+wrote src/g_auto_3924.c
+/data/backups/rganapa/Sebastian/gen3/agents/net/builds/g_auto_3924_sp10/solution.wasm 320f61d82a3205ba95a743f2d0321b783c78508be4bcf711cbff859bf5082959
+/data/backups/rganapa/Sebastian/gen3/agents/net/builds/g_auto_3924_iso/solution.wasm 8284727116af0ceecf0a2f8187811b7c7320e7f72066906a50419221518282fd
+gslvlj__v3val.json                       mean 1.572  server-weighted 1.502  median 1.245  >3m 47  peak 4.76M  {'room': 0.75, 'warehouse': 2.036, 'forest': 2.225} {'hover': 1.304, 'mid-flight': 1.708}
+net_auto_727_sp10__v3val.json            mean 0.906  server-weighted 0.845  median 0.716  >3m 9  peak 4.80M  {'room': 0.489, 'warehouse': 1.381, 'forest': 0.934} {'hover': 1.043, 'mid-flight': 0.837}  d=-0.666 [-0.787,-0.548]
+net_auto_3924_iso__v3val.json            mean 0.994  server-weighted 0.889  median 0.837  >3m 11  peak 5.05M  {'room': 0.422, 'warehouse': 1.589, 'forest': 1.102} {'hover': 1.156, 'mid-flight': 0.912}  d=-0.579 [-0.692,-0.465]
+net_auto_3924_sp10__v3val.json           mean 0.923  server-weighted 0.834  median 0.729  >3m 7  peak 4.92M  {'room': 0.453, 'warehouse': 1.46, 'forest': 0.954} {'hover': 0.986, 'mid-flight': 0.892}  d=-0.649 [-0.768,-0.524]
+2026-11-26 11:21 judge net_auto_3924_sp10 vs net_auto_727_sp10: v3val d=+0.0174 [-0.0407,+0.0871] n=358 ; v1val d=-0.0063 [-0.0490,+0.0357] n=120
+2026-11-26 11:51 round auto_4774 new=4774 old_share=0.1 init=/data/backups/rganapa/Sebastian/gen3/agents/net/runs/auto_3924
+v3val 358 v1val 120
+DONE auto_4774 best_ep 58 {"n": 179011, "all": 0.30741363763809204, "fast": 0.38882648944854736, "zrms": 0.9924869537353516, "scale_gt1": 0.9426560401916504, "fwd": 0.30910825729370117, "side": 0.35872146487236023, "back": 0.3260613977909088, "class": {"forest": 0.2982, "room": 0.3257, "warehouse": 0.293}, "regime": {"benchmark": 0.2576, "free-yaw": 0.333}, "blur": {"15-35": 0.3155, "<15ms": 0.304
+floats 105172 bytes 420688
+wrote src/g_auto_4774.c
+/data/backups/rganapa/Sebastian/gen3/agents/net/builds/g_auto_4774_sp10/solution.wasm c565907dca8ba2bc468ee6e7993f2ce544e86e89be6d9d3b805d96b7ba86f5e0
+/data/backups/rganapa/Sebastian/gen3/agents/net/builds/g_auto_4774_iso/solution.wasm f428da4ca2bd0b37f6c3ab130b64d2d929649b21b76556f2efae453629a14df7
+gslvlj__v3val.json                       mean 1.572  server-weighted 1.502  median 1.245  >3m 47  peak 4.76M  {'room': 0.75, 'warehouse': 2.036, 'forest': 2.225} {'hover': 1.304, 'mid-flight': 1.708}
+net_auto_727_sp10__v3val.json            mean 0.906  server-weighted 0.845  median 0.716  >3m 9  peak 4.80M  {'room': 0.489, 'warehouse': 1.381, 'forest': 0.934} {'hover': 1.043, 'mid-flight': 0.837}  d=-0.666 [-0.787,-0.548]
+net_auto_4774_iso__v3val.json            mean 1.001  server-weighted 0.904  median 0.811  >3m 9  peak 4.64M  {'room': 0.423, 'warehouse': 1.606, 'forest': 1.107} {'hover': 1.149, 'mid-flight': 0.927}  d=-0.571 [-0.681,-0.463]
+net_auto_4774_sp10__v3val.json           mean 0.906  server-weighted 0.823  median 0.731  >3m 6  peak 5.15M  {'room': 0.459, 'warehouse': 1.402, 'forest': 0.953} {'hover': 0.977, 'mid-flight': 0.87}  d=-0.666 [-0.786,-0.541]
+2026-11-26 13:03 judge net_auto_4774_sp10 vs net_auto_727_sp10: v3val d=+0.0003 [-0.0633,+0.0734] n=358 ; v1val d=+0.0068 [-0.0409,+0.0594] n=120
+2026-11-26 13:04 autotrain3 took over from 2792665 (netv2 recipe, direct-error promotion)
+2026-11-26 13:04 PROMOTED nv2_A160ft direct=0.2984767556190491 (sha c0bb8940)
+2026-11-26 13:04 round at3_5453 new=5453 init=/data/backups/rganapa/Sebastian/gen3/agents/netv2/runs/A160ft (lv4)
+v3val 358 v1val 120
+DONE at3_5453 best_ep 58 {"n": 179011, "all": 0.29626694321632385, "fast": 0.3720415234565735, "zrms": 0.9858717322349548, "scale_gt1": 0.9551822543144226, "fwd": 0.298001766204834, "side": 0.3455696105957031, "back": 0.3102399408817291, "class": {"forest": 0.2862, "room": 0.3174, "warehouse": 0.279
+floats 105172 bytes 420688
+wrote src/g_at3_5453.c
+/data/backups/rganapa/Sebastian/gen3/agents/net/builds/g_at3_5453_sp10/solution.wasm d323c44199c0db482aaaa9b1e2d84055eb86f0fbe398c416f7e78acdb4a6716e
+2026-11-26 14:02 judge net_at3_5453_sp10 (direct 0.29626694321632385) vs nv2_A160ft (direct 0.2984767556190491): v3val d=-0.0029 [-0.0517,+0.0555] n=358 ; v1val d=+0.0114 [-0.0183,+0.0427] n=120
+2026-11-26 14:02 PROMOTED net_at3_5453_sp10 direct=0.29626694321632385 (sha d323c441)
+2026-11-26 14:32 round at3_6313 new=6313 init=/data/backups/rganapa/Sebastian/gen3/agents/netv2/runs/at3_5453 (lv4)
+v3val 358 v1val 120
+DONE at3_6313 best_ep 58 {"n": 179011, "all": 0.29462990164756775, "fast": 0.36978867650032043, "zrms": 0.9867383241653442, "scale_gt1": 0.9550710916519165, "fwd": 0.29648885130882263, "side": 0.34357357025146484, "back": 0.308194637298584, "class": {"forest": 0.2848, "room": 0.3154, "warehouse": 0.
+floats 105172 bytes 420688
+wrote src/g_at3_6313.c
+/data/backups/rganapa/Sebastian/gen3/agents/net/builds/g_at3_6313_sp10/solution.wasm 76b4fa54b2da62796f11504f633b3fc537ddd7aeffe344e34f85f8328a613ef2
+2026-11-26 15:10 judge net_at3_6313_sp10 (direct 0.29462990164756775) vs net_at3_5453_sp10 (direct 0.29626694321632385): v3val d=+0.0160 [-0.0381,+0.0598] n=358 ; v1val d=+0.0369 [-0.0035,+0.0779] n=120
+2026-11-26 15:40 round at3_6891 new=6891 init=/data/backups/rganapa/Sebastian/gen3/agents/netv2/runs/at3_6313 (lv4)
+v3val 358 v1val 120
+DONE at3_6891 best_ep 53 {"n": 179011, "all": 0.29379624128341675, "fast": 0.3692457377910614, "zrms": 0.9858832955360413, "scale_gt1": 0.9543277621269226, "fwd": 0.2950962483882904, "side": 0.3432806432247162, "back": 0.3081596791744232, "class": {"forest": 0.2839, "room": 0.3147, "warehouse": 0.27
+floats 105172 bytes 420688
+wrote src/g_at3_6891.c
+/data/backups/rganapa/Sebastian/gen3/agents/net/builds/g_at3_6891_sp10/solution.wasm 836cc1b49268b10684166668a43eb4902efb782bcdbdef77440c8d19e71e5d3b
+2026-11-26 16:10 judge net_at3_6891_sp10 (direct 0.29379624128341675) vs net_at3_5453_sp10 (direct 0.29626694321632385): v3val d=+0.0447 [+0.0085,+0.0859] n=358 ; v1val d=+0.0161 [-0.0208,+0.0526] n=120
+2026-11-26 17:10 round at3_7739 new=7739 init=/data/backups/rganapa/Sebastian/gen3/agents/netv2/runs/at3_6891 (lv4)
+v3val 358 v1val 120
+DONE at3_7739 best_ep 58 {"n": 179011, "all": 0.29296621680259705, "fast": 0.3687620460987091, "zrms": 0.9861359596252441, "scale_gt1": 0.9518564343452454, "fwd": 0.2943769693374634, "side": 0.34213700890541077, "back": 0.3072124719619751, "class": {"forest": 0.2826, "room": 0.3138, "warehouse": 0.2
+floats 105172 bytes 420688
+wrote src/g_at3_7739.c
+/data/backups/rganapa/Sebastian/gen3/agents/net/builds/g_at3_7739_sp10/solution.wasm 683d1dd3cfa79c5cb204e9ef893f5b9e33f173d7d28ae072f8b1ae568a7cf215
+2026-11-26 17:30 judge net_at3_7739_sp10 (direct 0.29296621680259705) vs net_at3_5453_sp10 (direct 0.29626694321632385): v3val d=+0.0293 [-0.0472,+0.1266] n=358 ; v1val d=+0.0079 [-0.0239,+0.0393] n=120
+2026-11-26 19:30 round at3_8314 new=8314 init=/data/backups/rganapa/Sebastian/gen3/agents/netv2/runs/at3_7739 (lv4)
+v3val 358 v1val 120
+DONE at3_8314 best_ep 54 {"n": 179011, "all": 0.2920098602771759, "fast": 0.36675405502319336, "zrms": 0.9894834160804749, "scale_gt1": 0.9541478753089905, "fwd": 0.293195515871048, "side": 0.34071096777915955, "back": 0.3062870502471924, "class": {"forest": 0.2816, "room": 0.3133, "warehouse": 0.27
+floats 105172 bytes 420688
+wrote src/g_at3_8314.c
+/data/backups/rganapa/Sebastian/gen3/agents/net/builds/g_at3_8314_sp10/solution.wasm 9d074a51ef1a902be7cfa46581a3f9f82a9e8c16e22197c566fa9d63035f880c
+2026-11-26 20:04 judge net_at3_8314_sp10 (direct 0.2920098602771759) vs net_at3_5453_sp10 (direct 0.29626694321632385): v3val d=+0.0278 [-0.0088,+0.0690] n=358 ; v1val d=-0.0076 [-0.0390,+0.0229] n=120
+2026-11-26 23:34 round at3_9263 new=9263 init=/data/backups/rganapa/Sebastian/gen3/agents/netv2/runs/at3_8314 (lv4)
+v3val 358 v1val 120
+DONE at3_9263 best_ep 54 {"n": 179011, "all": 0.29133403301239014, "fast": 0.3667179048061371, "zrms": 0.9849696159362793, "scale_gt1": 0.9547946453094482, "fwd": 0.2929545044898987, "side": 0.34052208065986633, "back": 0.30423614382743835, "class": {"forest": 0.2808, "room": 0.3125, "warehouse": 0.
+floats 105172 bytes 420688
+wrote src/g_at3_9263.c
+/data/backups/rganapa/Sebastian/gen3/agents/net/builds/g_at3_9263_sp10/solution.wasm 710d87cc316c122edb13bd32b50df512e8abcac1e740fdb2cfcad577e9f106f7
+2026-11-26 23:57 judge net_at3_9263_sp10 (direct 0.29133403301239014) vs net_at3_5453_sp10 (direct 0.29626694321632385): v3val d=+0.0235 [-0.0097,+0.0571] n=358 ; v1val d=+0.0352 [+0.0008,+0.0749] n=120

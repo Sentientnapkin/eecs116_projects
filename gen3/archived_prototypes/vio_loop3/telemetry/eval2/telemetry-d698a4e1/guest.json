@@ -1,0 +1,20 @@
+{
+  "name": "telemetry",
+  "wasm": "/data/backups/rganapa/Sebastian/gen3/agents/anchors/builds/telemetry_snace6e1/solution.wasm",
+  "sha256": "d698a4e1cb1711eaeef7fe2db16b004362da0bb96bd756fef823b36fc2592929",
+  "archives": [
+    "/tmp/vio_loop3/telemetry/pool/s3v3va-ro-9300016.zip",
+    "/tmp/vio_loop3/telemetry/pool/s3v3va-ro-9300157.zip",
+    "/tmp/vio_loop3/telemetry/pool/s3v3va-ro-9300201.zip",
+    "/tmp/vio_loop3/telemetry/pool/s3v3va-ro-9300224.zip",
+    "/tmp/vio_loop3/telemetry/pool/s3v3va-ro-9300231.zip",
+    "/tmp/vio_loop3/telemetry/pool/s3v3va-ro-9300242.zip",
+    "/tmp/vio_loop3/telemetry/pool/s3v3va-ro-9300284.zip",
+    "/tmp/vio_loop3/telemetry/pool/s3v3va-wa-9300313.zip",
+    "/tmp/vio_loop3/telemetry/pool/s3v3va-wa-9300423.zip"
+  ],
+  "evaluator_src": "/dev/shm/sebastian-vio/viobench",
+  "shared_cache": "/dev/shm/sebastian-vio/guard-cache/d698a4e1cb1711eaeef7fe2db16b004362da0bb96bd756fef823b36fc2592929",
+  "compile_lock": "/dev/shm/sebastian-vio/guard-cache/d698a4e1cb1711eaeef7fe2db16b004362da0bb96bd756fef823b36fc2592929/compile.lock",
+  "video": false
+}

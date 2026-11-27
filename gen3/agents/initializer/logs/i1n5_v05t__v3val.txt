@@ -1,0 +1,13 @@
+152 episodes, 0 cached, workers=10 (no video)
+20/152 finished, 31.5s
+40/152 finished, 65.9s
+60/152 finished, 92.1s
+80/152 finished, 111.9s
+100/152 finished, 132.0s
+120/152 finished, 155.7s
+140/152 finished, 180.5s
+152/152 finished, 192.7s
+ini_i1n5_v05t v3val n 152 / 152 mean ATE 1.336 median 0.930 >3m 19
+  setting_class {'forest': '1.727 (n=44)', 'room': '0.462 (n=71)', 'warehouse': '2.548 (n=37)'}
+  regime {'benchmark': '1.312 (n=50)', 'free-yaw': '1.348 (n=102)'}
+  start {'hover': '0.900 (n=29)', 'mid-flight': '1.439 (n=123)'}

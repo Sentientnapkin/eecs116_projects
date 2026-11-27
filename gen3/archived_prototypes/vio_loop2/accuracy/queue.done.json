@@ -1,0 +1,16 @@
+{
+  "same_source_control": {
+    "target_sha256": "1a169f28916acd813f86a7b526efb8e8b646b3dda73e48cba51b12845c69b1b8",
+    "rebuilt_sha256": "1a169f28916acd813f86a7b526efb8e8b646b3dda73e48cba51b12845c69b1b8",
+    "byte_equal": true
+  },
+  "screen_candidates": [
+    "tri_tight",
+    "gate_tight",
+    "depth25",
+    "obs12"
+  ],
+  "confirmed": [],
+  "expanded": [],
+  "elapsed_seconds": 82.78014831244946
+}

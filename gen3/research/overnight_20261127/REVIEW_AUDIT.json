@@ -1,0 +1,96 @@
+{
+  "cached_anchor_spacing_seconds": 0.25,
+  "previous_analysis_issue": "analyze_errors.py treated anchor-position increments as 20 Hz frames; actual cached anchors are five camera frames apart. Existing labeled lags were 5x too long. Error-magnitude correlation also differs from signed/vector persistence.",
+  "definition": "Body-frame velocity residuals. Raw persistence includes per-flight bias; demeaned correlation removes each flight mean. Correlated windows are not independent samples.",
+  "models": {
+    "K2": {
+      "source": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed6_wide/ctx2/ctx2_val_predictions.npz",
+      "lags_seconds": {
+        "0.25": {
+          "lag_anchor_steps": 1,
+          "flights": 749,
+          "mean_flight_raw_vector_persistence": 0.4994565872500411,
+          "mean_flight_demeaned_vector_correlation": 0.46218418298091185,
+          "pooled_raw_vector_persistence": 0.5186639673636011
+        },
+        "0.5": {
+          "lag_anchor_steps": 2,
+          "flights": 749,
+          "mean_flight_raw_vector_persistence": 0.31261344715015177,
+          "mean_flight_demeaned_vector_correlation": 0.26199270197014185,
+          "pooled_raw_vector_persistence": 0.3257325080458802
+        },
+        "1": {
+          "lag_anchor_steps": 4,
+          "flights": 749,
+          "mean_flight_raw_vector_persistence": 0.16770984642365314,
+          "mean_flight_demeaned_vector_correlation": 0.10562434703633275,
+          "pooled_raw_vector_persistence": 0.16940430048547803
+        },
+        "2": {
+          "lag_anchor_steps": 8,
+          "flights": 749,
+          "mean_flight_raw_vector_persistence": 0.08989005662695873,
+          "mean_flight_demeaned_vector_correlation": 0.020859363050113024,
+          "pooled_raw_vector_persistence": 0.07134328093462579
+        },
+        "5": {
+          "lag_anchor_steps": 20,
+          "flights": 749,
+          "mean_flight_raw_vector_persistence": 0.05608241424546848,
+          "mean_flight_demeaned_vector_correlation": -0.01674755447752467,
+          "pooled_raw_vector_persistence": 0.037449351863057714
+        }
+      }
+    },
+    "K5": {
+      "source": "/data/backups/rganapa/Sebastian/gen3/research/overnight_20261127/gpu/seed6_wide/ctx5/ctx5_val_predictions.npz",
+      "lags_seconds": {
+        "0.25": {
+          "lag_anchor_steps": 1,
+          "flights": 749,
+          "mean_flight_raw_vector_persistence": 0.5696569067291417,
+          "mean_flight_demeaned_vector_correlation": 0.5330149343440782,
+          "pooled_raw_vector_persistence": 0.5758242471448505
+        },
+        "0.5": {
+          "lag_anchor_steps": 2,
+          "flights": 749,
+          "mean_flight_raw_vector_persistence": 0.35910631176065755,
+          "mean_flight_demeaned_vector_correlation": 0.3035017170148328,
+          "pooled_raw_vector_persistence": 0.36663221430045134
+        },
+        "1": {
+          "lag_anchor_steps": 4,
+          "flights": 749,
+          "mean_flight_raw_vector_persistence": 0.18943065976776352,
+          "mean_flight_demeaned_vector_correlation": 0.11787572523433394,
+          "pooled_raw_vector_persistence": 0.18923096036972864
+        },
+        "2": {
+          "lag_anchor_steps": 8,
+          "flights": 749,
+          "mean_flight_raw_vector_persistence": 0.0911060586059311,
+          "mean_flight_demeaned_vector_correlation": 0.00920985473757553,
+          "pooled_raw_vector_persistence": 0.0771375670461385
+        },
+        "5": {
+          "lag_anchor_steps": 20,
+          "flights": 749,
+          "mean_flight_raw_vector_persistence": 0.06735614654867603,
+          "mean_flight_demeaned_vector_correlation": -0.01783783662371898,
+          "pooled_raw_vector_persistence": 0.05104028422107552
+        }
+      }
+    }
+  },
+  "oracle_pool_limitations": {
+    "screen24_overlap_with_larger48": 24,
+    "larger48_scenes": {
+      "forest": 32,
+      "room": 16,
+      "warehouse": 0
+    },
+    "not_independent_confirmation": true
+  }
+}

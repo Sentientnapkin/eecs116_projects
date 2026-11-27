@@ -1,0 +1,17 @@
+{
+ "name": "wide1",
+ "nf": 2,
+ "gap": 1,
+ "res": 64,
+ "width": 1.5,
+ "deep": false,
+ "hidden": 128,
+ "seed": 1,
+ "epochs": 90,
+ "steps": 400,
+ "bs": 256,
+ "lr": 0.002,
+ "teacher": "/data/backups/rganapa/Sebastian/eecs116_projects/research/single_model/stlong/runs/teacher4",
+ "init": "",
+ "kd": 0.5
+}

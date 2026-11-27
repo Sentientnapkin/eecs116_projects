@@ -1,0 +1,74 @@
+{
+  "source_sha256": "b1981fd57e8e87c15e2a8ab999bf8ce950d05a0259f4e52db4eb9be6382b3a68",
+  "old_zpe_reference": "/data/backups/rganapa/Sebastian/gen3/scratch_up/gslv_s3_A160ft_Ze0.wasm",
+  "pool_episodes": [
+    "s3v3va-fo-9300457.zip",
+    "s3v3va-fo-9300522.zip",
+    "s3v3va-fo-9300535.zip",
+    "s3v3va-fo-9300585.zip",
+    "s3v3va-fo-9300460.zip",
+    "s3v3va-fo-9300463.zip",
+    "s3v3va-fo-9300467.zip",
+    "s3v3va-fo-9300477.zip",
+    "s3v3va-ro-9300032.zip",
+    "s3v3va-ro-9300060.zip",
+    "s3v3va-ro-9300090.zip",
+    "s3v3va-ro-9300149.zip",
+    "s3v3va-ro-9300005.zip",
+    "s3v3va-ro-9300014.zip",
+    "s3v3va-ro-9300017.zip",
+    "s3v3va-ro-9300021.zip",
+    "s3v3va-wa-9300324.zip",
+    "s3v3va-wa-9300347.zip",
+    "s3v3va-wa-9300351.zip",
+    "s3v3va-wa-9300423.zip",
+    "s3v3va-wa-9300305.zip",
+    "s3v3va-wa-9300314.zip",
+    "s3v3va-wa-9300329.zip",
+    "s3v3va-wa-9300337.zip"
+  ],
+  "n": 24,
+  "strata": "4 episodes each in room/warehouse/forest x hover/mid-flight",
+  "depth_semantics": "independent zero-mean Gaussian fractional noise on GT-pose triangulated feature depth; OR_DEP_ON hook, not renderer depth or exact correspondences",
+  "sigma_fraction": [
+    0.1,
+    0.2
+  ],
+  "covariance": "independent per landmark or one shared episode-scale Gaussian OR_SCALE; distinct controls",
+  "experiments": [
+    [
+      "baseline",
+      null
+    ],
+    [
+      "orcontrol",
+      ""
+    ],
+    [
+      "independent10",
+      "OR_DEP=0.1"
+    ],
+    [
+      "independent20",
+      "OR_DEP=0.2"
+    ],
+    [
+      "shared10",
+      "OR_SCALE=0.1"
+    ],
+    [
+      "shared20",
+      "OR_SCALE=0.2"
+    ],
+    [
+      "sharedcov10",
+      "OR_DEP=0.1 OR_NT=2"
+    ],
+    [
+      "sharedcov20",
+      "OR_DEP=0.2 OR_NT=2"
+    ]
+  ],
+  "deadline_seconds": 3600,
+  "workers": 4
+}

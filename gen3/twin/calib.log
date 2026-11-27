@@ -1,0 +1,55 @@
+## Calibration: build means (m, mean unaligned ATE). ratio = local / server
+build       server |  twin24 ratio | twin120 ratio | v3v120raw ratio | v3v120cw ratio
+gslvlj       1.178 |   1.433  1.22 |   1.469  1.25 |   1.774  1.51   |   1.614  1.37
+F_sp10       0.664 |   0.726  1.09 |   0.918  1.38 |   0.968  1.46   |   0.873  1.31
+auto727      0.586 |   0.830  1.42 |   0.927  1.58 |   0.916  1.56   |   0.826  1.41
+b16          1.155 |   1.616  1.40 |   1.584  1.37 |   1.922  1.66   |   1.747  1.51
+m7           1.602 |   1.790  1.12 |   1.897  1.18 |   2.509  1.57   |   2.295  1.43
+gate         1.836 |   1.849  1.01 |   2.084  1.14 |   2.165  1.18   |   2.041  1.11
+v4d          5.124 |   5.597  1.09 |   5.628  1.10 |   7.592  1.48   |   6.734  1.31
+cv2          5.669 |   6.454  1.14 |   6.292  1.11 |   8.321  1.47   |   7.527  1.33
+snace6e1     0.444 |   0.538  1.21 |   0.594  1.34 |   0.555  1.25   |   0.532  1.20
+
+predictor quality across builds (only builds with all sets): Spearman rank corr, Pearson r of log means, and leave-one-build-out
+RMS log error after a constant log offset fitted on the other builds (i.e. how well the set predicts a NEW build's server mean).
+  twin24        n=9 spearman +0.967  r(log) +0.993  LOO rms log err 0.122 (x1.13)  with slope 0.121 (x1.13)
+  twin120       n=9 spearman +0.967  r(log) +0.997  LOO rms log err 0.130 (x1.14)  with slope 0.088 (x1.09)
+  v3val120_raw  n=9 spearman +0.967  r(log) +0.993  LOO rms log err 0.117 (x1.12)  with slope 0.124 (x1.13)
+  v3val120_cw   n=9 spearman +0.967  r(log) +0.995  LOO rms log err 0.099 (x1.10)  with slope 0.105 (x1.11)
+  top builds twin24: gslvlj > auto727 > F_sp10, twin120: gslvlj > auto727 > F_sp10, v3val120_raw: gslvlj > F_sp10 > auto727, v3val120_cw: gslvlj > F_sp10 > auto727, server: gslvlj > F_sp10 > auto727
+
+## Per-episode (GSLV-linejac eb2799cb, the only build with server per-episode ATE)
+ep cls   server | twin24 | twin120(mean of 5) | v3val120 class mean
+ 1 room    0.19 |   0.70 |   1.22 |   0.81
+ 2 room    0.28 |   1.02 |   0.74 |   0.81
+ 3 room    0.29 |   0.14 |   0.29 |   0.81
+ 4 room    0.52 |   0.48 |   0.94 |   0.81
+ 5 room    0.46 |   0.13 |   0.80 |   0.81
+ 6 room    0.43 |   0.27 |   0.26 |   0.81
+ 7 room    0.58 |   1.45 |   1.54 |   0.81
+ 8 room    3.04 |   0.68 |   2.09 |   0.81
+ 9 room    0.31 |   1.64 |   1.09 |   0.81
+10 room    1.11 |   0.23 |   1.74 |   0.81
+11 room    0.19 |   1.07 |   0.65 |   0.81
+12 room    0.80 |   0.33 |   0.49 |   0.81
+13 ware    0.52 |   0.76 |   0.88 |   2.40
+14 ware    0.59 |   1.14 |   1.35 |   2.40
+15 ware    0.66 |   1.35 |   0.84 |   2.40
+16 ware    2.19 |   2.27 |   1.96 |   2.40
+17 ware    0.80 |   2.14 |   2.67 |   2.40
+18 ware    2.00 |   1.07 |   0.92 |   2.40
+19 fore    1.01 |   1.43 |   1.32 |   2.43
+20 fore    6.20 |   3.63 |   2.80 |   2.43
+21 fore    2.38 |   5.55 |   2.89 |   2.43
+22 fore    0.97 |   1.50 |   1.07 |   2.43
+23 fore    1.63 |   4.09 |   3.45 |   2.43
+24 fore    1.13 |   1.33 |   3.25 |   2.43
+  twin24               pearson(log) +0.476  spearman +0.482  mean log ratio +0.199  rms log err 0.967  rms log err after offset 0.946
+  twin120              pearson(log) +0.637  spearman +0.709  mean log ratio +0.418  rms log err 0.803  rms log err after offset 0.685
+  v3val120 class mean  pearson(log) +0.563  spearman +0.730  mean log ratio +0.583  rms log err 0.929  rms log err after offset 0.723
+  twin24 within-class spearman: room -0.27, warehouse +0.66, forest +0.60
+  twin120 within-class spearman: room +0.43, warehouse +0.49, forest +0.49
+calibration used by eval.sh: server ~= twin120 x 0.762 (geo-mean over ['gslvlj', 'F_sp10', 'auto727', 'b16', 'm7', 'gate', 'snace6e1'])
+## Per-episode snace6e1 (server 0.444)
+  twin24: pearson(log) +0.494 spearman +0.353 mean log ratio +0.174 rms after offset 0.587; mean 0.538
+  twin120: pearson(log) +0.242 spearman +0.155 mean log ratio +0.387 rms after offset 0.612; mean 0.594

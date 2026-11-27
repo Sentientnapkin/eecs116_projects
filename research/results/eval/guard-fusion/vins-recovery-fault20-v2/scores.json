@@ -1,0 +1,55 @@
+{
+ "guest": {
+  "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/guard_fusion/vio/artifacts/vins_recovery_fault20_v2.wasm",
+  "sha256": "d2bf4be8b92f053e213dee9bac5b1c2ad0bfb5ea8092d79785f788afd430fe1b",
+  "evaluator_src": "/dev/shm/sebastian-vio/viobench",
+  "archives": [
+   "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fast-106366104_174226329-01.zip",
+   "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fast-ProcTHOR-Train-159-00.zip"
+  ]
+ },
+ "rows": [
+  {
+   "episode": "fast-106366104_174226329-01",
+   "frames": 1200,
+   "frames_attempted": 1200,
+   "completed": true,
+   "failure": null,
+   "peak_fuel_per_frame": 2306260193,
+   "median_fuel_per_frame": 503328449.0,
+   "p95_fuel_per_frame": 827948355.9999998,
+   "scene": "106366104_174226329",
+   "duration_s": 59.949999999999996,
+   "ate_30s": 1.8958847861349033,
+   "filled_30s": 0,
+   "ate_60s": 4.2468396964016355,
+   "filled_60s": 0,
+   "ate_full": 4.2468396964016355,
+   "filled_full": 0,
+   "initialized_at_s": 0.945,
+   "full_vio_at_s": null,
+   "ate_reported_full": 4.246839696402802
+  },
+  {
+   "episode": "fast-ProcTHOR-Train-159-00",
+   "frames": 1200,
+   "frames_attempted": 1200,
+   "completed": true,
+   "failure": null,
+   "peak_fuel_per_frame": 2691989645,
+   "median_fuel_per_frame": 713744938.5,
+   "p95_fuel_per_frame": 1428369336.3,
+   "scene": "ProcTHOR-Train-159",
+   "duration_s": 59.949999999999996,
+   "ate_30s": 3.7849647316285577,
+   "filled_30s": 0,
+   "ate_60s": 5.629695506569555,
+   "filled_60s": 0,
+   "ate_full": 5.629695506569555,
+   "filled_full": 0,
+   "initialized_at_s": 0.945,
+   "full_vio_at_s": null,
+   "ate_reported_full": 5.629695506587177
+  }
+ ]
+}

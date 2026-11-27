@@ -1,0 +1,35 @@
+{
+  "source": "eecs116_vio/stage3/comparison.json",
+  "fuel_reference": 24000000000.0,
+  "error_reference": 10.553577833125203,
+  "baseline_area": 10.431930394417153,
+  "named": {
+    "A hypothetical": {
+      "fuel": 1000000.0,
+      "ate": 0.5,
+      "score_percent": 10.579941165584264
+    },
+    "C hypothetical": {
+      "fuel": 100000000.0,
+      "ate": 0.15,
+      "score_percent": 7.9986962417500305
+    },
+    "D hypothetical": {
+      "fuel": 1000000000.0,
+      "ate": 0.05,
+      "score_percent": 5.650242819336214
+    },
+    "Recorded server approximate": {
+      "fuel": 4100000.0,
+      "ate": 0.586,
+      "score_percent": 8.228044325354512
+    },
+    "Saved GSLV exact": {
+      "fuel": 4393770,
+      "ate": 1.1782347562680695,
+      "score_percent": 5.608250789680413
+    }
+  },
+  "union_area_hypothetical_percent": 15.136740996293776,
+  "actual_team_credit_if_all_targets_achieved": 10.579941165584264
+}

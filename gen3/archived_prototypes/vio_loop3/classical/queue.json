@@ -1,0 +1,5 @@
+{
+  "status": "model-review-needed",
+  "candidates": [],
+  "reason": "trajectory timing separates early from late divergence but does not identify a causal control surface; do not blind-sweep initialization, covariance, anchors, or track management."
+}

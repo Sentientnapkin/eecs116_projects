@@ -1,0 +1,16 @@
+[
+{
+"id": "s3v3va-ro-9300107",
+"ate": 0.9473205728658918,
+"err": null,
+"peak": 1234598,
+"setting_class": "room",
+"regime": "benchmark",
+"motion_style": "G5",
+"start": "mid-flight",
+"start_fwd_speed": 0.018720343174257567,
+"fov_deg": 129.516754,
+"exposure_s": 0.025,
+"scene_variant": null
+}
+]

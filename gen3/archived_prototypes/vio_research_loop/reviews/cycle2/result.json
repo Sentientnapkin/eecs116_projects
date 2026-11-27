@@ -1,0 +1,639 @@
+{
+  "id": "gov27_0_confirm48",
+  "n": 48,
+  "episodes": 48,
+  "scene_count": 20,
+  "wasm_sha256": "2608945c0ed985eeb02938ab131072672c4022b02ddca13286d01d680c9969fb",
+  "source_sha256": "b09f81004e37646f32df6f5ba9f0e802ee2a1b9a9caa6b94caf2164c0a37a777",
+  "baseline_sha256": "1a169f28916acd813f86a7b526efb8e8b646b3dda73e48cba51b12845c69b1b8",
+  "flags": "PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 AB_ZUPT=0 ITER_UPD=1 INV_LAT=0 INV_VZ=0 EDGE=0 SN=1 NS_GCOST=1 MAX_CLONES=8 MAX_OBS=10 AN_ACE=1 AN_DTH=4.0 AN_CEF=6 EDGE=1 EDGE_MYTH=10.0 EDGE=1 EDGE_MYTH=10.0 GOV_B=2700000.0 R5_DEC=0",
+  "active_parameters": {
+    "GOV_B": 2700000,
+    "R5_DEC": 0
+  },
+  "workers": 2,
+  "validation": "shared disjoint confirm48; exact 48 episode match; no row removal",
+  "mean_ate": 0.6562768117031449,
+  "median_ate": 0.5831243983884578,
+  "mean_delta_vs_full_current": 0.07503279788619181,
+  "median_delta_vs_full_current": 0.02763010264917333,
+  "p95_delta_vs_full_current": 0.6423047988336373,
+  "worst_delta_vs_full_current": 1.1545899971725748,
+  "paired_bootstrap_flight_mean_delta_95ci": [
+    -0.00891543881984407,
+    0.165903412008533
+  ],
+  "paired_bootstrap_scene_cluster_mean_delta_95ci": [
+    0.002013616430262199,
+    0.14410540661057208
+  ],
+  "max_fuel": 2930641,
+  "p95_fuel": 2844167.0,
+  "full_current_max_fuel": 3966292,
+  "fuel_reduction_fraction": 0.2611131505194272,
+  "per_scene": {
+    "102816852": {
+      "n": 1,
+      "mean_delta": 0.03219930215481284,
+      "median_delta": 0.03219930215481284,
+      "max_delta": 0.03219930215481284
+    },
+    "104862681_172226874": {
+      "n": 1,
+      "mean_delta": 0.05644890318695833,
+      "median_delta": 0.05644890318695833,
+      "max_delta": 0.05644890318695833
+    },
+    "106366248_174226527": {
+      "n": 1,
+      "mean_delta": 0.045457353896448005,
+      "median_delta": 0.045457353896448005,
+      "max_delta": 0.045457353896448005
+    },
+    "106366302_174226617": {
+      "n": 1,
+      "mean_delta": -0.018166058433577825,
+      "median_delta": -0.018166058433577825,
+      "max_delta": -0.018166058433577825
+    },
+    "107734056_175999839": {
+      "n": 1,
+      "mean_delta": 0.0068980620221134326,
+      "median_delta": 0.0068980620221134326,
+      "max_delta": 0.0068980620221134326
+    },
+    "108294897_176710602": {
+      "n": 1,
+      "mean_delta": 0.15275587879875235,
+      "median_delta": 0.15275587879875235,
+      "max_delta": 0.15275587879875235
+    },
+    "108736656_177263304": {
+      "n": 3,
+      "mean_delta": -0.004810887637857521,
+      "median_delta": 0.03072957439262264,
+      "max_delta": 0.12272964973307907
+    },
+    "Forest": {
+      "n": 6,
+      "mean_delta": 0.07326167963007559,
+      "median_delta": 0.061635768971427696,
+      "max_delta": 0.6497219641363289
+    },
+    "ProcTHOR-Train-137": {
+      "n": 1,
+      "mean_delta": 0.21814124971011029,
+      "median_delta": 0.21814124971011029,
+      "max_delta": 0.21814124971011029
+    },
+    "ProcTHOR-Train-149": {
+      "n": 1,
+      "mean_delta": -0.06131896941606513,
+      "median_delta": -0.06131896941606513,
+      "max_delta": -0.06131896941606513
+    },
+    "ProcTHOR-Train-160": {
+      "n": 1,
+      "mean_delta": 0.08552775410153937,
+      "median_delta": 0.08552775410153937,
+      "max_delta": 0.08552775410153937
+    },
+    "ProcTHOR-Train-50": {
+      "n": 1,
+      "mean_delta": 0.02453063090572402,
+      "median_delta": 0.02453063090572402,
+      "max_delta": 0.02453063090572402
+    },
+    "ProcTHOR-Train-63": {
+      "n": 1,
+      "mean_delta": 0.07727809878678032,
+      "median_delta": 0.07727809878678032,
+      "max_delta": 0.07727809878678032
+    },
+    "ProcTHOR-Train-72": {
+      "n": 1,
+      "mean_delta": -0.2028123580843828,
+      "median_delta": -0.2028123580843828,
+      "max_delta": -0.2028123580843828
+    },
+    "ProcTHOR-Train-77": {
+      "n": 1,
+      "mean_delta": -0.019217420374861627,
+      "median_delta": -0.019217420374861627,
+      "max_delta": -0.019217420374861627
+    },
+    "Warehouse": {
+      "n": 6,
+      "mean_delta": 0.27439422956347165,
+      "median_delta": 0.0854305531988363,
+      "max_delta": 1.1545899971725748
+    },
+    "forest-021": {
+      "n": 4,
+      "mean_delta": -0.1165337417160949,
+      "median_delta": -0.10194590005395487,
+      "max_delta": -0.032532555843854505
+    },
+    "forest-022": {
+      "n": 6,
+      "mean_delta": 0.005629983200534576,
+      "median_delta": -0.08530698297440392,
+      "max_delta": 0.4701864710513564
+    },
+    "warehouse-021": {
+      "n": 6,
+      "mean_delta": 0.08974276889757708,
+      "median_delta": 0.06323460666949746,
+      "max_delta": 0.41384037671963414
+    },
+    "warehouse-022": {
+      "n": 4,
+      "mean_delta": 0.2565618833277135,
+      "median_delta": 0.16803829321055988,
+      "max_delta": 0.628530063271496
+    }
+  },
+  "records": [
+    {
+      "episode": "s3v3va-fo-9300467",
+      "scene": "forest-021",
+      "ate": 0.5518969285162508,
+      "base_ate": 0.712384649189602,
+      "delta": -0.16048772067335115,
+      "peak_fuel": 2751666,
+      "base_peak_fuel": 3398418,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-fo-9300477",
+      "scene": "forest-022",
+      "ate": 0.681219361498102,
+      "base_ate": 0.8023003031080215,
+      "delta": -0.12108094160991945,
+      "peak_fuel": 2760767,
+      "base_peak_fuel": 3418875,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-fo-9300488",
+      "scene": "Forest",
+      "ate": 1.6028668979849654,
+      "base_ate": 0.9531449338486365,
+      "delta": 0.6497219641363289,
+      "peak_fuel": 2716257,
+      "base_peak_fuel": 3500680,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-fo-9300495",
+      "scene": "forest-021",
+      "ate": 0.525455639164497,
+      "base_ate": 0.5579881950083515,
+      "delta": -0.032532555843854505,
+      "peak_fuel": 2832675,
+      "base_peak_fuel": 3478526,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-fo-9300522",
+      "scene": "Forest",
+      "ate": 0.6197096226478311,
+      "base_ate": 0.61601826179323,
+      "delta": 0.003691360854601089,
+      "peak_fuel": 2793668,
+      "base_peak_fuel": 3451015,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-fo-9300532",
+      "scene": "Forest",
+      "ate": 0.7673804244955466,
+      "base_ate": 0.6478002474072923,
+      "delta": 0.1195801770882543,
+      "peak_fuel": 2735694,
+      "base_peak_fuel": 3412376,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-fo-9300535",
+      "scene": "forest-022",
+      "ate": 0.4158392479725662,
+      "base_ate": 0.5736494052325377,
+      "delta": -0.1578101572599715,
+      "peak_fuel": 2677877,
+      "base_peak_fuel": 3448463,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-fo-9300553",
+      "scene": "forest-022",
+      "ate": 0.9610417997201953,
+      "base_ate": 0.4908553286688389,
+      "delta": 0.4701864710513564,
+      "peak_fuel": 2715686,
+      "base_peak_fuel": 3585904,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-fo-9300556",
+      "scene": "Forest",
+      "ate": 0.6366179885864437,
+      "base_ate": 1.1606129561235687,
+      "delta": -0.523994967537125,
+      "peak_fuel": 2725765,
+      "base_peak_fuel": 3615950,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-fo-9300585",
+      "scene": "forest-021",
+      "ate": 0.531071180339793,
+      "base_ate": 0.5744752597743515,
+      "delta": -0.043404079434558596,
+      "peak_fuel": 2678003,
+      "base_peak_fuel": 3433624,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-fo-9300596",
+      "scene": "Forest",
+      "ate": 0.3694469958610694,
+      "base_ate": 0.5909679040665622,
+      "delta": -0.2215209082054928,
+      "peak_fuel": 2733125,
+      "base_peak_fuel": 3509139,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-fo-h9500101",
+      "scene": "forest-021",
+      "ate": 0.618635784788412,
+      "base_ate": 0.8483463957010273,
+      "delta": -0.22971061091261535,
+      "peak_fuel": 2741809,
+      "base_peak_fuel": 3432596,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-fo-h9500103",
+      "scene": "forest-022",
+      "ate": 0.35553942165434765,
+      "base_ate": 0.5558606908235576,
+      "delta": -0.20032126916920995,
+      "peak_fuel": 2652072,
+      "base_peak_fuel": 3490318,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-fo-h9500119",
+      "scene": "forest-022",
+      "ate": 0.5084676260793698,
+      "base_ate": 0.5580006504182582,
+      "delta": -0.0495330243388884,
+      "peak_fuel": 2780316,
+      "base_peak_fuel": 3438463,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-fo-h9500135",
+      "scene": "forest-022",
+      "ate": 0.6017467926572355,
+      "base_ate": 0.5094079721273952,
+      "delta": 0.09233882052984033,
+      "peak_fuel": 2711445,
+      "base_peak_fuel": 3521306,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-fo-h9500140",
+      "scene": "Forest",
+      "ate": 0.7980661540366996,
+      "base_ate": 0.38597370259281244,
+      "delta": 0.4120924514438871,
+      "peak_fuel": 2730478,
+      "base_peak_fuel": 3472534,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-ro-9300082",
+      "scene": "ProcTHOR-Train-50",
+      "ate": 0.23370562436223202,
+      "base_ate": 0.209174993456508,
+      "delta": 0.02453063090572402,
+      "peak_fuel": 2675827,
+      "base_peak_fuel": 3742440,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-ro-9300097",
+      "scene": "ProcTHOR-Train-77",
+      "ate": 0.32818805014517205,
+      "base_ate": 0.3474054705200337,
+      "delta": -0.019217420374861627,
+      "peak_fuel": 2708670,
+      "base_peak_fuel": 3289565,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-ro-9300105",
+      "scene": "108294897_176710602",
+      "ate": 0.3937778302371034,
+      "base_ate": 0.24102195143835103,
+      "delta": 0.15275587879875235,
+      "peak_fuel": 2796099,
+      "base_peak_fuel": 3521920,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-ro-9300136",
+      "scene": "108736656_177263304",
+      "ate": 0.18119824421495656,
+      "base_ate": 0.15046866982233392,
+      "delta": 0.03072957439262264,
+      "peak_fuel": 2721745,
+      "base_peak_fuel": 3671561,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-ro-9300138",
+      "scene": "106366248_174226527",
+      "ate": 0.2229806458285924,
+      "base_ate": 0.1775232919321444,
+      "delta": 0.045457353896448005,
+      "peak_fuel": 2723112,
+      "base_peak_fuel": 3644987,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-ro-9300148",
+      "scene": "ProcTHOR-Train-160",
+      "ate": 0.29252125984673594,
+      "base_ate": 0.20699350574519657,
+      "delta": 0.08552775410153937,
+      "peak_fuel": 2655934,
+      "base_peak_fuel": 3844417,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-ro-9300161",
+      "scene": "108736656_177263304",
+      "ate": 0.2789602327802479,
+      "base_ate": 0.15623058304716883,
+      "delta": 0.12272964973307907,
+      "peak_fuel": 2763893,
+      "base_peak_fuel": 3846896,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-ro-9300166",
+      "scene": "106366302_174226617",
+      "ate": 0.16653453101709448,
+      "base_ate": 0.1847005894506723,
+      "delta": -0.018166058433577825,
+      "peak_fuel": 2666362,
+      "base_peak_fuel": 3578464,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-ro-9300168",
+      "scene": "ProcTHOR-Train-63",
+      "ate": 0.49730346109744317,
+      "base_ate": 0.42002536231066284,
+      "delta": 0.07727809878678032,
+      "peak_fuel": 2850355,
+      "base_peak_fuel": 3645585,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-ro-9300201",
+      "scene": "102816852",
+      "ate": 0.14588594694368479,
+      "base_ate": 0.11368664478887194,
+      "delta": 0.03219930215481284,
+      "peak_fuel": 2756699,
+      "base_peak_fuel": 3481171,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-ro-9300224",
+      "scene": "ProcTHOR-Train-72",
+      "ate": 1.6021075552725252,
+      "base_ate": 1.804919913356908,
+      "delta": -0.2028123580843828,
+      "peak_fuel": 2670711,
+      "base_peak_fuel": 3569617,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-ro-9300243",
+      "scene": "107734056_175999839",
+      "ate": 0.18518219698546987,
+      "base_ate": 0.17828413496335643,
+      "delta": 0.0068980620221134326,
+      "peak_fuel": 2930641,
+      "base_peak_fuel": 3351647,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-ro-9300244",
+      "scene": "ProcTHOR-Train-149",
+      "ate": 0.19237163143541713,
+      "base_ate": 0.25369060085148226,
+      "delta": -0.06131896941606513,
+      "peak_fuel": 2917297,
+      "base_peak_fuel": 3800999,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-ro-9300262",
+      "scene": "ProcTHOR-Train-137",
+      "ate": 0.7199285348600409,
+      "base_ate": 0.5017872851499307,
+      "delta": 0.21814124971011029,
+      "peak_fuel": 2746995,
+      "base_peak_fuel": 3675271,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-ro-9300264",
+      "scene": "108736656_177263304",
+      "ate": 0.7423243647868031,
+      "base_ate": 0.9102162518260773,
+      "delta": -0.16789188703927427,
+      "peak_fuel": 2756797,
+      "base_peak_fuel": 3578648,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-ro-9300277",
+      "scene": "104862681_172226874",
+      "ate": 0.4951509427959808,
+      "base_ate": 0.4387020396090225,
+      "delta": 0.05644890318695833,
+      "peak_fuel": 2702850,
+      "base_peak_fuel": 3567777,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-wa-9300314",
+      "scene": "Warehouse",
+      "ate": 1.33053048882508,
+      "base_ate": 0.36679825962277285,
+      "delta": 0.9637322292023072,
+      "peak_fuel": 2680615,
+      "base_peak_fuel": 3588236,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-wa-9300318",
+      "scene": "Warehouse",
+      "ate": 1.475535056569454,
+      "base_ate": 0.3209450593968791,
+      "delta": 1.1545899971725748,
+      "peak_fuel": 2825180,
+      "base_peak_fuel": 3499862,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-wa-9300329",
+      "scene": "warehouse-021",
+      "ate": 0.8708112116775889,
+      "base_ate": 0.5351654329513248,
+      "delta": 0.3356457787262641,
+      "peak_fuel": 2616332,
+      "base_peak_fuel": 3470167,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-wa-9300337",
+      "scene": "warehouse-021",
+      "ate": 0.5702849755766021,
+      "base_ate": 0.3910127912588777,
+      "delta": 0.17927218431772435,
+      "peak_fuel": 2636914,
+      "base_peak_fuel": 3399198,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-wa-9300380",
+      "scene": "Warehouse",
+      "ate": 0.8294467946658766,
+      "base_ate": 1.3885159288488258,
+      "delta": -0.5590691341829492,
+      "peak_fuel": 2680333,
+      "base_peak_fuel": 3374004,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-wa-9300387",
+      "scene": "warehouse-021",
+      "ate": 0.5959638212003135,
+      "base_ate": 0.648766792179043,
+      "delta": -0.052802970978729435,
+      "peak_fuel": 2691719,
+      "base_peak_fuel": 3281449,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-wa-9300405",
+      "scene": "warehouse-021",
+      "ate": 0.437858619920209,
+      "base_ate": 0.6487071170892718,
+      "delta": -0.21084849716906273,
+      "peak_fuel": 2717212,
+      "base_peak_fuel": 3723201,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-wa-9300433",
+      "scene": "warehouse-022",
+      "ate": 0.8868395815548061,
+      "base_ate": 0.8251986979365679,
+      "delta": 0.061640883618238274,
+      "peak_fuel": 2701386,
+      "base_peak_fuel": 3369320,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-wa-h9500008",
+      "scene": "Warehouse",
+      "ate": 0.5970537680891006,
+      "base_ate": 0.5904450458320551,
+      "delta": 0.006608722257045452,
+      "peak_fuel": 2590732,
+      "base_peak_fuel": 3565906,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-wa-h9500023",
+      "scene": "warehouse-022",
+      "ate": 0.9177840448223451,
+      "base_ate": 0.28925398155084914,
+      "delta": 0.628530063271496,
+      "peak_fuel": 2597451,
+      "base_peak_fuel": 3392405,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-wa-h9500026",
+      "scene": "Warehouse",
+      "ate": 1.542257883315685,
+      "base_ate": 1.3780054991750579,
+      "delta": 0.16425238414062715,
+      "peak_fuel": 2721403,
+      "base_peak_fuel": 3380700,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-wa-h9500035",
+      "scene": "warehouse-022",
+      "ate": 1.4036611512005621,
+      "base_ate": 1.2113622125953971,
+      "delta": 0.192298938605165,
+      "peak_fuel": 2781419,
+      "base_peak_fuel": 3753162,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-wa-h9500061",
+      "scene": "warehouse-021",
+      "ate": 1.1313444450599883,
+      "base_ate": 0.7175040683403542,
+      "delta": 0.41384037671963414,
+      "peak_fuel": 2762181,
+      "base_peak_fuel": 3324813,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-wa-h9500065",
+      "scene": "warehouse-021",
+      "ate": 0.4769701394661362,
+      "base_ate": 0.6036203976965041,
+      "delta": -0.1266502582303679,
+      "peak_fuel": 2649175,
+      "base_peak_fuel": 3966292,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-wa-h9500075",
+      "scene": "warehouse-022",
+      "ate": 0.5032751141007231,
+      "base_ate": 0.35949746628476836,
+      "delta": 0.14377764781595476,
+      "peak_fuel": 2731760,
+      "base_peak_fuel": 3406406,
+      "failure": null
+    },
+    {
+      "episode": "s3v3va-wa-h9500084",
+      "scene": "Warehouse",
+      "ate": 0.7085469470936588,
+      "base_ate": 0.7922957683024343,
+      "delta": -0.08374882120877547,
+      "peak_fuel": 2779123,
+      "base_peak_fuel": 3346157,
+      "failure": null
+    }
+  ],
+  "finished_utc": "2026-11-27T09:50:51Z"
+}

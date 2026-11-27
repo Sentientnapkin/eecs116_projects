@@ -1,0 +1,57 @@
+featurize r1: 0 todo
+stage feat1 done: 1748 featurized
+candidates 9729 shortlist 1718 local 478 remote 1240
+featurize r2: 0 todo
+featurize r3: 0 todo
+stage feat2 done (re-indexed after generation): 1748 featurized rows; candidates 9729 shortlist 1718 local 478 remote 1240
+stage match done: twin24.txt twin120.txt coverage.txt (mean d: twin24 0.885  twin120 1.168)
+stage pools done: twin24 24 twin120 120 v3val120 120 ; zips 46G
+seeded 13 for tw_gslvlj twin120
+eval tw_gslvlj twin120: tw_gslvlj twin120 n 120 / 120 mean ATE 1.469 median 1.050 >3m 17
+seeded 24 for tw_gslvlj twin24
+eval tw_gslvlj twin24: tw_gslvlj twin24 n 24 / 24 mean ATE 1.433 median 1.107 >3m 3
+seeded 120 for tw_gslvlj v3val120
+eval tw_gslvlj v3val120: tw_gslvlj v3val120 n 120 / 120 mean ATE 1.774 median 1.401 >3m 21
+seeded 13 for tw_F_sp10 twin120
+eval tw_F_sp10 twin120: tw_F_sp10 twin120 n 120 / 120 mean ATE 0.918 median 0.687 >3m 4
+seeded 24 for tw_F_sp10 twin24
+eval tw_F_sp10 twin24: tw_F_sp10 twin24 n 24 / 24 mean ATE 0.726 median 0.602 >3m 0
+seeded 120 for tw_F_sp10 v3val120
+eval tw_F_sp10 v3val120: tw_F_sp10 v3val120 n 120 / 120 mean ATE 0.968 median 0.799 >3m 3
+seeded 13 for tw_auto727 twin120
+eval tw_auto727 twin120: tw_auto727 twin120 n 120 / 120 mean ATE 0.927 median 0.658 >3m 5
+seeded 24 for tw_auto727 twin24
+eval tw_auto727 twin24: tw_auto727 twin24 n 24 / 24 mean ATE 0.830 median 0.634 >3m 0
+seeded 120 for tw_auto727 v3val120
+eval tw_auto727 v3val120: tw_auto727 v3val120 n 120 / 120 mean ATE 0.916 median 0.755 >3m 3
+seeded 0 for tw_b16 twin120
+eval tw_b16 twin120: tw_b16 twin120 n 120 / 120 mean ATE 1.584 median 1.081 >3m 14
+seeded 24 for tw_b16 twin24
+eval tw_b16 twin24: tw_b16 twin24 n 24 / 24 mean ATE 1.616 median 1.177 >3m 3
+seeded 2 for tw_b16 v3val120
+eval tw_b16 v3val120: tw_b16 v3val120 n 120 / 120 mean ATE 1.922 median 1.342 >3m 24
+seeded 0 for tw_m7 twin120
+eval tw_m7 twin120: tw_m7 twin120 n 120 / 120 mean ATE 1.897 median 1.484 >3m 25
+seeded 24 for tw_m7 twin24
+eval tw_m7 twin24: tw_m7 twin24 n 24 / 24 mean ATE 1.790 median 1.510 >3m 5
+seeded 2 for tw_m7 v3val120
+eval tw_m7 v3val120: tw_m7 v3val120 n 120 / 120 mean ATE 2.509 median 1.896 >3m 35
+seeded 0 for tw_gate twin120
+eval tw_gate twin120: tw_gate twin120 n 120 / 120 mean ATE 2.084 median 1.151 >3m 24
+seeded 24 for tw_gate twin24
+eval tw_gate twin24: tw_gate twin24 n 24 / 24 mean ATE 1.849 median 1.282 >3m 4
+seeded 2 for tw_gate v3val120
+eval tw_gate v3val120: tw_gate v3val120 n 120 / 120 mean ATE 2.165 median 1.394 >3m 20
+seeded 0 for tw_v4d twin120
+eval tw_v4d twin120: tw_v4d twin120 n 120 / 120 mean ATE 5.628 median 4.618 >3m 89
+seeded 24 for tw_v4d twin24
+eval tw_v4d twin24: tw_v4d twin24 n 24 / 24 mean ATE 5.597 median 4.976 >3m 17
+seeded 2 for tw_v4d v3val120
+eval tw_v4d v3val120: tw_v4d v3val120 n 120 / 120 mean ATE 7.592 median 7.028 >3m 87
+seeded 0 for tw_cv2 twin120
+eval tw_cv2 twin120: tw_cv2 twin120 n 120 / 120 mean ATE 6.292 median 5.308 >3m 107
+seeded 24 for tw_cv2 twin24
+eval tw_cv2 twin24: tw_cv2 twin24 n 24 / 24 mean ATE 6.454 median 6.297 >3m 21
+seeded 2 for tw_cv2 v3val120
+eval tw_cv2 v3val120: tw_cv2 v3val120 n 120 / 120 mean ATE 8.321 median 7.330 >3m 106
+stage calib done: see calib.txt, reweight.txt

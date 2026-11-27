@@ -1,0 +1,1 @@
+n 358 mean raw 0.655 | yaw-fixed 0.632 | scale-fixed 0.592 | both 0.567 | median yaw 0.1 deg |abs| 0.8, median scale 1.000 (|ln k| 0.019) | horiz 0.479 vert 0.413 | path 76.2 m

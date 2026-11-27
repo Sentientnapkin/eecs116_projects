@@ -1,0 +1,195 @@
+q3_v0 done 120 0.885 176s
+q3_v0_1s done 120 0.657 171s
+q3_vel_05s done 120 0.216 175s
+q3_vel_every_frame done 120 0.178 175s
+q3_spd_05s done 120 0.803 168s
+q3_dir_05s done 120 0.678 176s
+q3_vz_05s done 120 0.660 171s
+q3_spd_v0 done 120 0.655 168s
+q3_dir_v0 done 120 0.655 167s
+q3_grav_init done 120 0.613 164s
+q3_grav_1s done 120 0.608 171s
+q3_grav_all done 120 0.451 170s
+q3_v0_grav done 120 0.665 175s
+q3_ba_init done 120 0.758 166s
+q3_bg_init done 120 0.762 174s
+q3_b_init done 120 0.790 165s
+q3_b_all done 120 0.526 173s
+q3_rot_rel done 120 0.536 168s
+q3_rot_all done 120 0.431 171s
+q3_dep_all done 120 0.383 173s
+q3_cor_all done 120 0.603 148s
+q3_cor_dep done 120 0.294 169s
+q3_rt_05s done 120 0.204 170s
+q3_dz_05s done 120 0.637 166s
+q3_alt_05s done 120 0.628 170s
+q3_pos_05s done 120 0.060 163s
+q3_all done 120 0.038 169s
+q4_vel_0.05 done 120 0.284 166s
+q4_vel_0.1 done 120 0.397 174s
+q4_vel_0.2 done 120 0.483 162s
+q4_vel_0.5 done 120 0.585 175s
+q4_vel_1 done 120 0.626 172s
+q4_velcorr_0.05 done 120 0.521 170s
+q4_velcorr_0.2 done 120 0.743 170s
+q4_velcorr_0.5 done 120 0.692 167s
+q4_velbias_0.05 done 120 1.345 161s
+q4_velbias_0.2 done 120 1.580 169s
+q4_velbias_0.5 done 120 1.159 161s
+q4_velout_0.05 done 120 0.584 160s
+q4_velout_0.2 done 120 0.823 167s
+q4_velscale_0.1 done 120 0.638 158s
+q4_velscale_0.2 done 120 1.088 175s
+q4_velscale_0.4 done 120 2.115 170s
+q4_velfreq_1 done 120 0.237 170s
+q4_velfreq_2 done 120 0.275 166s
+q4_velfreq_5 done 120 0.342 179s
+q4_velfreq_20 done 120 0.443 170s
+Traceback (most recent call last):
+  File "/data/backups/rganapa/Sebastian/gen3/research/i3/tools/run_one.py", line 30, in <module>
+    json.dump(dict(name=name, flags=flags, pool=pool, flights=ev), open(out, 'w'))
+                                                                   ^^^^^^^^^^^^^^
+OSError: [Errno 28] No space left on device: '/data/backups/rganapa/Sebastian/gen3/research/i3/ana/q4_velfreq_40.json'
+BUILD FAIL q4_velfreq_10  py", line 11, in <module>
+    w.mkdir(parents=True);shutil.copy(SRC,w/'solution.c');shutil.copy(CM,w/'CMakeLists.txt')
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rganapa/miniforge3/lib/python3.12/pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "/home/rganapa/miniforge3/lib/python3.12/pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+OSError: [Errno 28] No space left on device: '/data/backups/rganapa/Sebastian/gen3/research/i3/builds/q4_velfreq_10'
+
+BUILD FAIL q4_velinit  mk.py", line 11, in <module>
+    w.mkdir(parents=True);shutil.copy(SRC,w/'solution.c');shutil.copy(CM,w/'CMakeLists.txt')
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rganapa/miniforge3/lib/python3.12/pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "/home/rganapa/miniforge3/lib/python3.12/pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+OSError: [Errno 28] No space left on device: '/data/backups/rganapa/Sebastian/gen3/research/i3/builds/q4_velinit'
+
+BUILD FAIL q4_vellat_1  k.py", line 11, in <module>
+    w.mkdir(parents=True);shutil.copy(SRC,w/'solution.c');shutil.copy(CM,w/'CMakeLists.txt')
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rganapa/miniforge3/lib/python3.12/pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "/home/rganapa/miniforge3/lib/python3.12/pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+OSError: [Errno 28] No space left on device: '/data/backups/rganapa/Sebastian/gen3/research/i3/builds/q4_vellat_1'
+
+BUILD FAIL q4_vellat_2  k.py", line 11, in <module>
+    w.mkdir(parents=True);shutil.copy(SRC,w/'solution.c');shutil.copy(CM,w/'CMakeLists.txt')
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rganapa/miniforge3/lib/python3.12/pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "/home/rganapa/miniforge3/lib/python3.12/pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+OSError: [Errno 28] No space left on device: '/data/backups/rganapa/Sebastian/gen3/research/i3/builds/q4_vellat_2'
+
+BUILD FAIL q4_vellat_4  k.py", line 11, in <module>
+    w.mkdir(parents=True);shutil.copy(SRC,w/'solution.c');shutil.copy(CM,w/'CMakeLists.txt')
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rganapa/miniforge3/lib/python3.12/pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "/home/rganapa/miniforge3/lib/python3.12/pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+OSError: [Errno 28] No space left on device: '/data/backups/rganapa/Sebastian/gen3/research/i3/builds/q4_vellat_4'
+
+BUILD FAIL q4_vellat_8  k.py", line 11, in <module>
+    w.mkdir(parents=True);shutil.copy(SRC,w/'solution.c');shutil.copy(CM,w/'CMakeLists.txt')
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rganapa/miniforge3/lib/python3.12/pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "/home/rganapa/miniforge3/lib/python3.12/pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+OSError: [Errno 28] No space left on device: '/data/backups/rganapa/Sebastian/gen3/research/i3/builds/q4_vellat_8'
+
+BUILD FAIL q4_vellat_16  .py", line 11, in <module>
+    w.mkdir(parents=True);shutil.copy(SRC,w/'solution.c');shutil.copy(CM,w/'CMakeLists.txt')
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rganapa/miniforge3/lib/python3.12/pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "/home/rganapa/miniforge3/lib/python3.12/pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+OSError: [Errno 28] No space left on device: '/data/backups/rganapa/Sebastian/gen3/research/i3/builds/q4_vellat_16'
+
+BUILD FAIL q4_dep_0.02  k.py", line 11, in <module>
+    w.mkdir(parents=True);shutil.copy(SRC,w/'solution.c');shutil.copy(CM,w/'CMakeLists.txt')
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rganapa/miniforge3/lib/python3.12/pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "/home/rganapa/miniforge3/lib/python3.12/pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+OSError: [Errno 28] No space left on device: '/data/backups/rganapa/Sebastian/gen3/research/i3/builds/q4_dep_0.02'
+
+BUILD FAIL q4_dep_0.05  k.py", line 11, in <module>
+    w.mkdir(parents=True);shutil.copy(SRC,w/'solution.c');shutil.copy(CM,w/'CMakeLists.txt')
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rganapa/miniforge3/lib/python3.12/pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "/home/rganapa/miniforge3/lib/python3.12/pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+OSError: [Errno 28] No space left on device: '/data/backups/rganapa/Sebastian/gen3/research/i3/builds/q4_dep_0.05'
+
+BUILD FAIL q4_dep_0.1  mk.py", line 11, in <module>
+    w.mkdir(parents=True);shutil.copy(SRC,w/'solution.c');shutil.copy(CM,w/'CMakeLists.txt')
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rganapa/miniforge3/lib/python3.12/pathlib.py", line 1315, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "/home/rganapa/miniforge3/lib/python3.12/pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+OSError: [Errno 28] No space left on device: '/data/backups/rganapa/Sebastian/gen3/research/i3/builds/q4_dep_0.1'
+
+q4_velfreq_40 done 120 0.544 86s
+q4_velfreq_10 done 120 0.397 158s
+q4_velinit done 120 0.659 156s
+q4_vellat_1 done 120 0.398 158s
+q4_vellat_2 done 120 0.398 158s
+q4_vellat_4 done 120 0.457 158s
+q4_vellat_8 done 120 0.665 158s
+q4_vellat_16 done 120 1.046 157s
+q4_dep_0.02 done 120 0.385 157s
+q4_dep_0.05 done 120 0.460 156s
+q4_dep_0.1 done 120 0.497 160s
+q4_dep_0.2 done 120 0.607 158s
+q4_dep_0.4 done 120 0.675 157s
+q4_depbias_0.1 done 120 0.898 161s
+q4_depbias_0.2 done 120 1.309 157s
+q4_depscale_0.2 done 120 1.600 161s
+q4_depout_0.1 done 120 0.521 157s
+q4_grav_0.1 done 120 0.457 157s
+q4_grav_0.3 done 120 0.456 213s
+q4_grav_1 done 120 0.509 238s
+q4_grav_2 done 120 0.562 240s
+q4_grav_5 done 120 0.624 171s
+q4_gravinit_0.5 done 120 0.603 164s
+q4_gravinit_2 done 120 0.629 164s
+q4_cor_0.1 done 120 0.582 158s
+q4_cor_0.25 done 120 0.615 162s
+q4_cor_0.5 done 120 0.666 160s
+q4_cor_1 done 120 0.851 162s
+q4_cor_2 done 120 2.197 159s
+q4_rt_0.01 done 120 0.204 233s
+q4_rt_0.03 done 120 0.264 163s
+q4_rt_0.1 done 120 0.404 161s
+q4_rt_0.2 done 120 0.499 159s
+q4_rtfreq_5 done 120 0.276 159s
+q4_rtfreq_20 done 120 0.381 158s
+q4_rtfreq_40 done 120 0.457 157s
+q4_dz_0.02 done 120 0.629 158s
+q4_dz_0.05 done 120 0.653 158s
+q4_dz_0.1 done 120 0.650 158s
+q4_dz_0.25 done 120 0.682 158s
+q4_dz_0.5 done 120 0.643 160s
+q4_alt_0.02 done 120 0.581 214s
+q4_alt_0.1 done 120 0.616 165s
+q4_alt_0.5 done 120 0.628 158s
+q4_vz_0.05 done 120 0.653 159s
+q4_vz_0.2 done 120 0.667 166s
+q12_vel_tinycov done 120 0.269 166s
+q12_vel_overconf done 120 1.920 165s
+q12_vel_underconf done 120 0.426 164s
+q12_vel_lat8_overconf done 120 0.699 162s
+q12_rot_relcov done 120 0.644 162s
+q12_pos_all done 120 0.069 161s
+q12_pos_gate done 120 0.143 162s

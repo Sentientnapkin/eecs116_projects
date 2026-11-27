@@ -1,0 +1,18 @@
+# i6 NOTES (learned-model diagnostics + architecture review). Pipeline: run_i6.sh (src/diag.py, src/abl.py), outputs out/
+- diag done 21:52 -> out/diag.json
+- abl all (('img2', 'imu')): val err 0.3487 fast 0.4351 speed|e| 0.227 dir 11.1 deg train 0.3195 (4 min)
+- abl imu_only ((None, 'imu')): val err 1.0616 fast 1.3268 speed|e| 0.725 dir 55.9 deg train 0.9793 (2 min)
+- abl img_only (('img2', None)): val err 0.4004 fast 0.5099 speed|e| 0.260 dir 12.9 deg train 0.3729 (3 min)
+- abl single_img (('img1', 'imu')): val err 1.0796 fast 1.3538 speed|e| 0.702 dir 57.2 deg train 0.9429 (4 min)
+- abl raw2 (('raw2', 'imu')): val err 0.5810 fast 0.7128 speed|e| 0.366 dir 21.9 deg train 0.5324 (3 min)
+- abl flow_derot (('flowder', 'imu')): val err 0.4228 fast 0.5253 speed|e| 0.276 dir 13.8 deg train 0.3914 (8 min)
+- abl flow_raw (('flowraw', 'imu')): val err 0.6200 fast 0.7578 speed|e| 0.392 dir 23.8 deg train 0.5743 (7 min)
+- abl tracks_imu (('tracks', 'imu')): val err 0.4879 fast 0.6405 speed|e| 0.329 dir 16.4 deg train 0.4449 (7 min)
+- abl seq3 (('img3', 'imu2')): val err 0.3384 fast 0.4038 speed|e| 0.220 dir 10.7 deg train 0.3126 (5 min)
+- abl orient_only ((None, 'orient')): val err 1.1831 fast 1.6573 speed|e| 0.861 dir 67.4 deg train 1.1123 (2 min)
+- abl no_intr (('img2', 'imu_nofx')): val err 0.3616 fast 0.4544 speed|e| 0.234 dir 11.5 deg train 0.3310 (4 min)
+- abl rays (('img2r', 'imu')): val err 0.3477 fast 0.4349 speed|e| 0.228 dir 11.0 deg train 0.3194 (4 min)
+- abl flow_derot_noimu (('flowder', None)): val err 0.4833 fast 0.6103 speed|e| 0.316 dir 15.8 deg train 0.4528 (7 min)
+- abl all_s1 (('img2', 'imu')): val err 0.3455 fast 0.4320 speed|e| 0.227 dir 10.9 deg train 0.3176 (3 min)
+- pipeline finished 22:56
+- REPORT.md written

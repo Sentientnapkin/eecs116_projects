@@ -1,0 +1,4854 @@
+{
+  "spec": {
+    "declared_at": "2026-11-20T03:05:42.783728+00:00",
+    "max_speed": 6.0,
+    "max_accel": 12.0,
+    "arms": [
+      "physical",
+      "physical_n2",
+      "origin_n2"
+    ],
+    "tuned": false,
+    "metric": "mean_unaligned_ate_m"
+  },
+  "summary": {
+    "openvins": {
+      "n": 171,
+      "mean": 28.52902364613281,
+      "median": 0.5842883995858927,
+      "over_10m": 17
+    },
+    "openvins_physical": {
+      "n": 171,
+      "mean": 2.9835022716102353,
+      "median": 1.43712448716133,
+      "over_10m": 9
+    },
+    "openvins_physical_n2": {
+      "n": 171,
+      "mean": 2.6909443075794055,
+      "median": 1.7893979774908066,
+      "over_10m": 6
+    },
+    "openvins_origin_n2": {
+      "n": 171,
+      "mean": 2.6242153354807973,
+      "median": 1.6730054799961982,
+      "over_10m": 5
+    },
+    "vins": {
+      "n": 171,
+      "mean": 5.506440113371417,
+      "median": 0.6214150322153585,
+      "over_10m": 10
+    },
+    "vins_physical": {
+      "n": 171,
+      "mean": 2.705883014499024,
+      "median": 2.177064993449048,
+      "over_10m": 3
+    },
+    "vins_physical_n2": {
+      "n": 171,
+      "mean": 2.422422579122572,
+      "median": 2.0142033550588003,
+      "over_10m": 3
+    },
+    "vins_origin_n2": {
+      "n": 171,
+      "mean": 2.098729180361855,
+      "median": 1.6348562737888175,
+      "over_10m": 3
+    }
+  },
+  "rows": [
+    {
+      "episode": "fast-102344193-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "102344193",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.34238428682951466,
+        "openvins_physical": 0.3423842868294615,
+        "openvins_physical_n2": 0.3423842868294615,
+        "openvins_origin_n2": 0.340767598012857,
+        "vins": 0.5011063965139624,
+        "vins_physical": 5.303449507815259,
+        "vins_physical_n2": 4.680678378510492,
+        "vins_origin_n2": 3.5255036244419187
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 41,
+        "vins_physical_n2": 41,
+        "vins_origin_n2": 40
+      }
+    },
+    {
+      "episode": "fast-102344457-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "102344457",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.2859832282629669,
+        "openvins_physical": 0.28598322826299716,
+        "openvins_physical_n2": 0.28598322826299716,
+        "openvins_origin_n2": 0.1803309523240671,
+        "vins": 0.2540049675290517,
+        "vins_physical": 0.2540049675290931,
+        "vins_physical_n2": 0.2540049675290931,
+        "vins_origin_n2": 0.30194485313720604
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-102344469-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "102344469",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.8587692211419155,
+        "openvins_physical": 0.8587692211419494,
+        "openvins_physical_n2": 0.8587692211419494,
+        "openvins_origin_n2": 0.7467305128723035,
+        "vins": 0.8380422968299213,
+        "vins_physical": 1.3366256209270018,
+        "vins_physical_n2": 1.3772483896020224,
+        "vins_origin_n2": 0.34263421789794163
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-103997445_171030492-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "103997445_171030492",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 71.3771950305593,
+        "openvins_physical": 3.3929769023193193,
+        "openvins_physical_n2": 3.4782335749671014,
+        "openvins_origin_n2": 3.6017148795776652,
+        "vins": 0.8360009262809043,
+        "vins_physical": 1.3834855732830438,
+        "vins_physical_n2": 1.0337683042167243,
+        "vins_origin_n2": 0.6127998978304139
+      },
+      "guard_frames": {
+        "openvins_physical": 136,
+        "openvins_physical_n2": 134,
+        "openvins_origin_n2": 133,
+        "vins_physical": 16,
+        "vins_physical_n2": 16,
+        "vins_origin_n2": 15
+      }
+    },
+    {
+      "episode": "fast-103997460_171030507-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "103997460_171030507",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.6844068990997543,
+        "openvins_physical": 0.6844068990997088,
+        "openvins_physical_n2": 0.6844068990997088,
+        "openvins_origin_n2": 0.6911170208828159,
+        "vins": 0.901165524483631,
+        "vins_physical": 0.9011655244836256,
+        "vins_physical_n2": 0.9011655244836256,
+        "vins_origin_n2": 0.9015891709670889
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-103997460_171030507-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "103997460_171030507",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.785806075461898,
+        "openvins_physical": 0.5566345988959986,
+        "openvins_physical_n2": 3.5718676799897136,
+        "openvins_origin_n2": 3.5038699522512124,
+        "vins": 0.19883851592590548,
+        "vins_physical": 0.19883851592586305,
+        "vins_physical_n2": 0.19883851592586305,
+        "vins_origin_n2": 0.23178172172143888
+      },
+      "guard_frames": {
+        "openvins_physical": 21,
+        "openvins_physical_n2": 352,
+        "openvins_origin_n2": 352,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-103997478_171030525-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "103997478_171030525",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.30926914074582296,
+        "openvins_physical": 0.30926914074576456,
+        "openvins_physical_n2": 0.30926914074576456,
+        "openvins_origin_n2": 0.3316224920050722,
+        "vins": 0.5645236377745475,
+        "vins_physical": 3.7191426663357623,
+        "vins_physical_n2": 3.188243413601101,
+        "vins_origin_n2": 2.5110519267214415
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 18,
+        "vins_physical_n2": 18,
+        "vins_origin_n2": 17
+      }
+    },
+    {
+      "episode": "fast-103997478_171030525-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "103997478_171030525",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.22561725220743462,
+        "openvins_physical": 0.22561725220751896,
+        "openvins_physical_n2": 0.22561725220751896,
+        "openvins_origin_n2": 0.23720012779775035,
+        "vins": 0.4505223473619984,
+        "vins_physical": 0.45052234736191504,
+        "vins_physical_n2": 0.45052234736191504,
+        "vins_origin_n2": 0.44515461443418486
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-103997586_171030666-00",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "103997586_171030666",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.38256060505518213,
+        "openvins_physical": 0.38256060505533357,
+        "openvins_physical_n2": 0.38256060505533357,
+        "openvins_origin_n2": 0.300691606964826,
+        "vins": 0.23754036007881488,
+        "vins_physical": 2.515141458117209,
+        "vins_physical_n2": 2.1110908092243386,
+        "vins_origin_n2": 1.4227132356417036
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 17,
+        "vins_physical_n2": 17,
+        "vins_origin_n2": 16
+      }
+    },
+    {
+      "episode": "fast-103997643_171030747-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "103997643_171030747",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.23459264642790448,
+        "openvins_physical": 0.23459264642792843,
+        "openvins_physical_n2": 0.23459264642792843,
+        "openvins_origin_n2": 0.26753052895459145,
+        "vins": 0.46416364347172245,
+        "vins_physical": 2.556988638322942,
+        "vins_physical_n2": 2.199222803134096,
+        "vins_origin_n2": 1.8052606878956825
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 14,
+        "vins_physical_n2": 14,
+        "vins_origin_n2": 13
+      }
+    },
+    {
+      "episode": "fast-104348202_171513150-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "104348202_171513150",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.3304088338499509,
+        "openvins_physical": 0.330408833849969,
+        "openvins_physical_n2": 0.330408833849969,
+        "openvins_origin_n2": 0.3069604309027629,
+        "vins": 0.12323794375763703,
+        "vins_physical": 0.12323794375771789,
+        "vins_physical_n2": 0.12323794375771789,
+        "vins_origin_n2": 0.12021364828886458
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-104348361_171513414-01",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "104348361_171513414",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.32314741554521004,
+        "openvins_physical": 0.3231474155452207,
+        "openvins_physical_n2": 0.3231474155452207,
+        "openvins_origin_n2": 0.3638279483618174,
+        "vins": 0.48017296548447314,
+        "vins_physical": 0.4801729654844201,
+        "vins_physical_n2": 0.4801729654844201,
+        "vins_origin_n2": 0.5726533902048054
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-104862573_172226682-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "104862573_172226682",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.3584878607450374,
+        "openvins_physical": 0.33552300915034144,
+        "openvins_physical_n2": 0.30265895628703615,
+        "openvins_origin_n2": 0.3286986626309922,
+        "vins": 0.39745495210799087,
+        "vins_physical": 2.793694996993078,
+        "vins_physical_n2": 2.4235056925556178,
+        "vins_origin_n2": 1.6658533640248163
+      },
+      "guard_frames": {
+        "openvins_physical": 11,
+        "openvins_physical_n2": 3,
+        "openvins_origin_n2": 3,
+        "vins_physical": 17,
+        "vins_physical_n2": 17,
+        "vins_origin_n2": 16
+      }
+    },
+    {
+      "episode": "fast-104862639_172226823-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "104862639_172226823",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.31143847657563406,
+        "openvins_physical": 0.31143847657568646,
+        "openvins_physical_n2": 0.31143847657568646,
+        "openvins_origin_n2": 0.2656000185982984,
+        "vins": 0.268623699702608,
+        "vins_physical": 0.2686236997026473,
+        "vins_physical_n2": 0.2686236997026473,
+        "vins_origin_n2": 0.24016153115780553
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-104862639_172226823-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "104862639_172226823",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.11793946108009172,
+        "openvins_physical": 0.11793946108008839,
+        "openvins_physical_n2": 0.11793946108008839,
+        "openvins_origin_n2": 0.12229820421315601,
+        "vins": 0.34892765677728776,
+        "vins_physical": 0.3489276567773191,
+        "vins_physical_n2": 0.3489276567773191,
+        "vins_origin_n2": 0.27034316236615413
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-105515184_173104128-00",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "105515184_173104128",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.5034044902904333,
+        "openvins_physical": 0.5034044902904831,
+        "openvins_physical_n2": 0.5034044902904831,
+        "openvins_origin_n2": 0.4647514331299736,
+        "vins": 0.32544997954194493,
+        "vins_physical": 2.7323774800242955,
+        "vins_physical_n2": 2.3405843240514943,
+        "vins_origin_n2": 1.7559002162976816
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 13,
+        "vins_physical_n2": 13,
+        "vins_origin_n2": 12
+      }
+    },
+    {
+      "episode": "fast-105515490_173104566-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "105515490_173104566",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.4466133048870857,
+        "openvins_physical": 0.4466133048870878,
+        "openvins_physical_n2": 0.4466133048870878,
+        "openvins_origin_n2": 0.39750736423599614,
+        "vins": 0.5575899252565146,
+        "vins_physical": 3.4625895463300393,
+        "vins_physical_n2": 2.9877925608704796,
+        "vins_origin_n2": 2.296022902757518
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 18,
+        "vins_physical_n2": 18,
+        "vins_origin_n2": 17
+      }
+    },
+    {
+      "episode": "fast-106366104_174226329-00",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "106366104_174226329",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 6.5198265123728785,
+        "openvins_physical": 6.5198265123728785,
+        "openvins_physical_n2": 6.5198265123728785,
+        "openvins_origin_n2": 6.3030023878957016,
+        "vins": 1.3265856904053845,
+        "vins_physical": 1.3265856904055324,
+        "vins_physical_n2": 1.3265856904055324,
+        "vins_origin_n2": 1.5180262241595088
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-106366104_174226329-01",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "106366104_174226329",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.19484053205144686,
+        "openvins_physical": 0.19484053205140242,
+        "openvins_physical_n2": 0.19484053205140242,
+        "openvins_origin_n2": 0.2743691328642915,
+        "vins": 0.16407985835607514,
+        "vins_physical": 0.16407985835613634,
+        "vins_physical_n2": 0.16407985835613634,
+        "vins_origin_n2": 0.16965335423987188
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-106366173_174226431-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "106366173_174226431",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.3046876079422339,
+        "openvins_physical": 0.304687607942171,
+        "openvins_physical_n2": 0.304687607942171,
+        "openvins_origin_n2": 0.22839512341312568,
+        "vins": 0.33210346790388534,
+        "vins_physical": 1.7527125439867905,
+        "vins_physical_n2": 1.7445738941399227,
+        "vins_origin_n2": 1.2038814852997284
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-106366371_174226743-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "106366371_174226743",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 4.84418980211767,
+        "openvins_physical": 7.5346375465889155,
+        "openvins_physical_n2": 4.928478057614919,
+        "openvins_origin_n2": 5.5248931041517135,
+        "vins": 0.41614145445172546,
+        "vins_physical": 0.41614145445174083,
+        "vins_physical_n2": 0.41614145445174083,
+        "vins_origin_n2": 0.49680984802920686
+      },
+      "guard_frames": {
+        "openvins_physical": 358,
+        "openvins_physical_n2": 358,
+        "openvins_origin_n2": 357,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-106366371_174226743-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "106366371_174226743",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.8523165968444506,
+        "openvins_physical": 13.75439087573481,
+        "openvins_physical_n2": 11.03579687012944,
+        "openvins_origin_n2": 10.814879546013692,
+        "vins": 0.5048996017217249,
+        "vins_physical": 13.488889065434211,
+        "vins_physical_n2": 11.491595607748597,
+        "vins_origin_n2": 10.711977933123947
+      },
+      "guard_frames": {
+        "openvins_physical": 177,
+        "openvins_physical_n2": 177,
+        "openvins_origin_n2": 176,
+        "vins_physical": 153,
+        "vins_physical_n2": 153,
+        "vins_origin_n2": 152
+      }
+    },
+    {
+      "episode": "fast-106366410_174226806-02",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "106366410_174226806",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.4109962361004335,
+        "openvins_physical": 0.5605426021995319,
+        "openvins_physical_n2": 1.7445904363107925,
+        "openvins_origin_n2": 1.8221613914683312,
+        "vins": 0.43782896426603746,
+        "vins_physical": 3.756732392866718,
+        "vins_physical_n2": 3.1566224266383127,
+        "vins_origin_n2": 2.5084947995375235
+      },
+      "guard_frames": {
+        "openvins_physical": 14,
+        "openvins_physical_n2": 124,
+        "openvins_origin_n2": 124,
+        "vins_physical": 24,
+        "vins_physical_n2": 24,
+        "vins_origin_n2": 23
+      }
+    },
+    {
+      "episode": "fast-106878858_174886965-00",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "106878858_174886965",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.5400459711659101,
+        "openvins_physical": 0.5400459711659308,
+        "openvins_physical_n2": 0.5400459711659308,
+        "openvins_origin_n2": 0.6257286816677539,
+        "vins": 0.6430749832388096,
+        "vins_physical": 0.6430749832388144,
+        "vins_physical_n2": 0.6430749832388144,
+        "vins_origin_n2": 0.54110238631724
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-106878858_174886965-02",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "106878858_174886965",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.22978168234285898,
+        "openvins_physical": 0.229781682342845,
+        "openvins_physical_n2": 0.229781682342845,
+        "openvins_origin_n2": 0.2927995164698092,
+        "vins": 0.2287887098005227,
+        "vins_physical": 0.22878870980050695,
+        "vins_physical_n2": 0.22878870980050695,
+        "vins_origin_n2": 0.23309296847890063
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-106879044_174887172-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "106879044_174887172",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.46724566942712903,
+        "openvins_physical": 0.46724566942717344,
+        "openvins_physical_n2": 0.46724566942717344,
+        "openvins_origin_n2": 0.49980004811718326,
+        "vins": 0.4042389712964717,
+        "vins_physical": 2.425021045652095,
+        "vins_physical_n2": 2.1673656789256057,
+        "vins_origin_n2": 1.2602490370807906
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 13,
+        "vins_physical_n2": 13,
+        "vins_origin_n2": 12
+      }
+    },
+    {
+      "episode": "fast-107734146_175999971-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "107734146_175999971",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.44111899457674164,
+        "openvins_physical": 0.44111899457649645,
+        "openvins_physical_n2": 0.44111899457649645,
+        "openvins_origin_n2": 0.3641744233627784,
+        "vins": 0.2815409029259989,
+        "vins_physical": 0.2815409029260033,
+        "vins_physical_n2": 0.2815409029260033,
+        "vins_origin_n2": 0.32110006023309373
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-107734158_175999998-00",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "107734158_175999998",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.27309309106111623,
+        "openvins_physical": 0.2730930910611718,
+        "openvins_physical_n2": 0.2730930910611718,
+        "openvins_origin_n2": 0.3198805465371637,
+        "vins": 0.17323676233907961,
+        "vins_physical": 0.17323676233915894,
+        "vins_physical_n2": 0.17323676233915894,
+        "vins_origin_n2": 0.1769909851434935
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-107734158_175999998-02",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "107734158_175999998",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.24673092109847258,
+        "openvins_physical": 0.24673092109846545,
+        "openvins_physical_n2": 0.24673092109846545,
+        "openvins_origin_n2": 0.28046429145851176,
+        "vins": 0.6145406158061506,
+        "vins_physical": 0.6145406158061186,
+        "vins_physical_n2": 0.6145406158061186,
+        "vins_origin_n2": 0.6476291455847457
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-107734176_176000019-01",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "107734176_176000019",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.26663823668153264,
+        "openvins_physical": 0.2666382366816486,
+        "openvins_physical_n2": 0.2666382366816486,
+        "openvins_origin_n2": 0.2455084820829201,
+        "vins": 0.2897825572804065,
+        "vins_physical": 3.1402980948408246,
+        "vins_physical_n2": 2.272693017659129,
+        "vins_origin_n2": 1.3035415922296418
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 43,
+        "vins_physical_n2": 43,
+        "vins_origin_n2": 42
+      }
+    },
+    {
+      "episode": "fast-107734254_176000121-01",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "107734254_176000121",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.48744509810061826,
+        "openvins_physical": 0.4874450981007033,
+        "openvins_physical_n2": 0.4874450981007033,
+        "openvins_origin_n2": 0.5201961092447278,
+        "vins": 0.44946364462005817,
+        "vins_physical": 0.44946364462022,
+        "vins_physical_n2": 0.44946364462022,
+        "vins_origin_n2": 0.4354820735325582
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-107734338_176000244-02",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "107734338_176000244",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.3118019996838431,
+        "openvins_physical": 0.3118019996839202,
+        "openvins_physical_n2": 0.3118019996839202,
+        "openvins_origin_n2": 0.30789131297244277,
+        "vins": 0.24761053668673555,
+        "vins_physical": 2.3093620716027634,
+        "vins_physical_n2": 1.9081138165980176,
+        "vins_origin_n2": 1.116756633405406
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 24,
+        "vins_physical_n2": 24,
+        "vins_origin_n2": 23
+      }
+    },
+    {
+      "episode": "fast-108294417_176709879-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "108294417_176709879",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.4411570193354835,
+        "openvins_physical": 0.4411570193355255,
+        "openvins_physical_n2": 0.4411570193355255,
+        "openvins_origin_n2": 0.4553913045037104,
+        "vins": 0.42360585589188143,
+        "vins_physical": 0.4236058558919742,
+        "vins_physical_n2": 0.4236058558919742,
+        "vins_origin_n2": 0.41052404398184555
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-108294417_176709879-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "108294417_176709879",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.2722324915684926,
+        "openvins_physical": 0.27223249156854296,
+        "openvins_physical_n2": 0.27223249156854296,
+        "openvins_origin_n2": 0.24149368025003956,
+        "vins": 0.14816475041582589,
+        "vins_physical": 0.1481647504158938,
+        "vins_physical_n2": 0.1481647504158938,
+        "vins_origin_n2": 0.12148290452529838
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-108294897_176710602-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "108294897_176710602",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.7383014096020757,
+        "openvins_physical": 0.7383014096021123,
+        "openvins_physical_n2": 0.7383014096021123,
+        "openvins_origin_n2": 0.7479600990523717,
+        "vins": 0.2922664853109929,
+        "vins_physical": 0.29226648531107885,
+        "vins_physical_n2": 0.29226648531107885,
+        "vins_origin_n2": 0.29889644869743986
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-108736884_177263634-00",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "108736884_177263634",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.2609932504340435,
+        "openvins_physical": 0.26099325043408733,
+        "openvins_physical_n2": 0.26099325043408733,
+        "openvins_origin_n2": 0.38653795266132895,
+        "vins": 0.25581747255062154,
+        "vins_physical": 0.2558174725506155,
+        "vins_physical_n2": 0.2558174725506155,
+        "vins_origin_n2": 0.32615422949249256
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-108736884_177263634-01",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "108736884_177263634",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.6839179053758988,
+        "openvins_physical": 0.6839179053758867,
+        "openvins_physical_n2": 0.6839179053758867,
+        "openvins_origin_n2": 0.5738719112325469,
+        "vins": 0.5923405030551101,
+        "vins_physical": 5.676146418869451,
+        "vins_physical_n2": 4.538855288633417,
+        "vins_origin_n2": 3.619865151611756
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 50,
+        "vins_physical_n2": 50,
+        "vins_origin_n2": 49
+      }
+    },
+    {
+      "episode": "fast-108736884_177263634-02",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "108736884_177263634",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.2739512932251774,
+        "openvins_physical": 0.27395129322526995,
+        "openvins_physical_n2": 0.27395129322526995,
+        "openvins_origin_n2": 0.3240791975003506,
+        "vins": 0.3366697652737138,
+        "vins_physical": 0.3366697652738292,
+        "vins_physical_n2": 0.3366697652738292,
+        "vins_origin_n2": 0.40494851910648927
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-106-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-106",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.8008872830981294,
+        "openvins_physical": 1.9560013052492105,
+        "openvins_physical_n2": 3.8532123254416115,
+        "openvins_origin_n2": 3.8966280406106866,
+        "vins": 1.4348745678733559,
+        "vins_physical": 1.434874567873408,
+        "vins_physical_n2": 1.434874567873408,
+        "vins_origin_n2": 1.3856878306044786
+      },
+      "guard_frames": {
+        "openvins_physical": 117,
+        "openvins_physical_n2": 1037,
+        "openvins_origin_n2": 1037,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-107-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-107",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.25053888303110206,
+        "openvins_physical": 0.3493839464810661,
+        "openvins_physical_n2": 2.7401015915478486,
+        "openvins_origin_n2": 2.8083094903685857,
+        "vins": 0.30471898269815323,
+        "vins_physical": 0.3047189826981042,
+        "vins_physical_n2": 0.3047189826981042,
+        "vins_origin_n2": 0.4195034790784165
+      },
+      "guard_frames": {
+        "openvins_physical": 7,
+        "openvins_physical_n2": 195,
+        "openvins_origin_n2": 195,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-107-02",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-107",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.2730517473491979,
+        "openvins_physical": 0.2730517473492541,
+        "openvins_physical_n2": 0.2730517473492541,
+        "openvins_origin_n2": 0.3803672008152476,
+        "vins": 0.82149875300925,
+        "vins_physical": 5.242729348802186,
+        "vins_physical_n2": 4.661344070132167,
+        "vins_origin_n2": 3.501806479709428
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 45,
+        "vins_physical_n2": 45,
+        "vins_origin_n2": 44
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-142-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-142",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.3058984025268783,
+        "openvins_physical": 0.3058984025269205,
+        "openvins_physical_n2": 0.3058984025269205,
+        "openvins_origin_n2": 0.3076487395141916,
+        "vins": 0.5355145697458241,
+        "vins_physical": 0.5355145697458921,
+        "vins_physical_n2": 0.5355145697458921,
+        "vins_origin_n2": 0.6199557492256433
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-143-02",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-143",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.1791639652000803,
+        "openvins_physical": 0.24150706919278028,
+        "openvins_physical_n2": 0.3996761072263169,
+        "openvins_origin_n2": 0.3808889798785801,
+        "vins": 0.222376881709111,
+        "vins_physical": 0.22237688170912032,
+        "vins_physical_n2": 0.22237688170912032,
+        "vins_origin_n2": 0.19693137168638455
+      },
+      "guard_frames": {
+        "openvins_physical": 5,
+        "openvins_physical_n2": 25,
+        "openvins_origin_n2": 25,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-151-07",
+      "tags": {
+        "group": "clean",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-151",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 1.8423942021021456,
+        "openvins_physical": 4.451485368581552,
+        "openvins_physical_n2": 3.862386173901042,
+        "openvins_origin_n2": 3.928279269644455,
+        "vins": 0.37911028293403043,
+        "vins_physical": 4.618345863229372,
+        "vins_physical_n2": 4.082789688369008,
+        "vins_origin_n2": 3.4991366502792767
+      },
+      "guard_frames": {
+        "openvins_physical": 141,
+        "openvins_physical_n2": 726,
+        "openvins_origin_n2": 726,
+        "vins_physical": 19,
+        "vins_physical_n2": 19,
+        "vins_origin_n2": 18
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-151-09",
+      "tags": {
+        "group": "clean",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-151",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.4047665303604896,
+        "openvins_physical": 2.934060206144812,
+        "openvins_physical_n2": 4.577381424766761,
+        "openvins_origin_n2": 4.550949612260108,
+        "vins": 0.28015887934332806,
+        "vins_physical": 0.28015887934333056,
+        "vins_physical_n2": 0.28015887934333056,
+        "vins_origin_n2": 0.3378386639650203
+      },
+      "guard_frames": {
+        "openvins_physical": 66,
+        "openvins_physical_n2": 204,
+        "openvins_origin_n2": 204,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-151-11",
+      "tags": {
+        "group": "clean",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-151",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 4.019577539946989,
+        "openvins_physical": 5.468278416499977,
+        "openvins_physical_n2": 4.531817348631701,
+        "openvins_origin_n2": 3.9804180849030795,
+        "vins": 0.6551865793008863,
+        "vins_physical": 2.8353419841679117,
+        "vins_physical_n2": 2.8767092037481534,
+        "vins_origin_n2": 1.92654822992548
+      },
+      "guard_frames": {
+        "openvins_physical": 92,
+        "openvins_physical_n2": 92,
+        "openvins_origin_n2": 91,
+        "vins_physical": 6,
+        "vins_physical_n2": 6,
+        "vins_origin_n2": 5
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-158-07",
+      "tags": {
+        "group": "clean",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-158",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.5019084317019386,
+        "openvins_physical": 1.423507114954055,
+        "openvins_physical_n2": 2.292073048403699,
+        "openvins_origin_n2": 2.376857854461908,
+        "vins": 0.7520810827416896,
+        "vins_physical": 0.7520810827417984,
+        "vins_physical_n2": 0.7520810827417984,
+        "vins_origin_n2": 0.8848081363393111
+      },
+      "guard_frames": {
+        "openvins_physical": 35,
+        "openvins_physical_n2": 292,
+        "openvins_origin_n2": 292,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-159-00",
+      "tags": {
+        "group": "clean",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-159",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.2902249203912798,
+        "openvins_physical": 0.29022492039127235,
+        "openvins_physical_n2": 0.29022492039127235,
+        "openvins_origin_n2": 0.22822884602865945,
+        "vins": 0.19222494857079067,
+        "vins_physical": 0.1922249485708745,
+        "vins_physical_n2": 0.1922249485708745,
+        "vins_origin_n2": 0.18023499850994856
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-160-00",
+      "tags": {
+        "group": "clean",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-160",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.4865831322783434,
+        "openvins_physical": 1.445386296218782,
+        "openvins_physical_n2": 1.585612024398918,
+        "openvins_origin_n2": 1.6730054799961982,
+        "vins": 0.6507581797589498,
+        "vins_physical": 4.009241474183226,
+        "vins_physical_n2": 3.6037004257725505,
+        "vins_origin_n2": 2.8573933200134642
+      },
+      "guard_frames": {
+        "openvins_physical": 30,
+        "openvins_physical_n2": 237,
+        "openvins_origin_n2": 237,
+        "vins_physical": 24,
+        "vins_physical_n2": 24,
+        "vins_origin_n2": 23
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-160-02",
+      "tags": {
+        "group": "clean",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-160",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 1.4371244871612106,
+        "openvins_physical": 1.43712448716133,
+        "openvins_physical_n2": 1.43712448716133,
+        "openvins_origin_n2": 1.4708715400318453,
+        "vins": 0.6323168157222798,
+        "vins_physical": 5.225872220182667,
+        "vins_physical_n2": 4.535199884665904,
+        "vins_origin_n2": 3.8120394777018265
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 27,
+        "vins_physical_n2": 27,
+        "vins_origin_n2": 26
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-160-09",
+      "tags": {
+        "group": "clean",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-160",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.46413546500331065,
+        "openvins_physical": 0.4641354650034112,
+        "openvins_physical_n2": 0.4641354650034112,
+        "openvins_origin_n2": 0.6494541155467448,
+        "vins": 0.6372553117426102,
+        "vins_physical": 3.252087895804356,
+        "vins_physical_n2": 2.7967619172711715,
+        "vins_origin_n2": 2.0542888898525153
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 19,
+        "vins_physical_n2": 19,
+        "vins_origin_n2": 18
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-160-10",
+      "tags": {
+        "group": "clean",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-160",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 1.0354398744011255,
+        "openvins_physical": 3.37206314715257,
+        "openvins_physical_n2": 3.3894100530855065,
+        "openvins_origin_n2": 3.376682334593292,
+        "vins": 0.7540183489046731,
+        "vins_physical": 3.181671690436754,
+        "vins_physical_n2": 2.446322444326535,
+        "vins_origin_n2": 2.366222243441134
+      },
+      "guard_frames": {
+        "openvins_physical": 74,
+        "openvins_physical_n2": 1046,
+        "openvins_origin_n2": 1046,
+        "vins_physical": 30,
+        "vins_physical_n2": 30,
+        "vins_origin_n2": 29
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-167-00",
+      "tags": {
+        "group": "dev",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-167",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 18.05564560134807,
+        "openvins_physical": 11.514039444125823,
+        "openvins_physical_n2": 8.190098592979956,
+        "openvins_origin_n2": 7.937364927332419,
+        "vins": 0.6369333667780738,
+        "vins_physical": 0.6369333667781071,
+        "vins_physical_n2": 0.6369333667781071,
+        "vins_origin_n2": 0.5457115488378509
+      },
+      "guard_frames": {
+        "openvins_physical": 580,
+        "openvins_physical_n2": 580,
+        "openvins_origin_n2": 579,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-167-01",
+      "tags": {
+        "group": "dev",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-167",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 2168.274045310236,
+        "openvins_physical": 3.3817391427540477,
+        "openvins_physical_n2": 2.6221827669558673,
+        "openvins_origin_n2": 2.5250450653984586,
+        "vins": 1.3773349389644014,
+        "vins_physical": 1.377334938964521,
+        "vins_physical_n2": 1.377334938964521,
+        "vins_origin_n2": 1.467448355666593
+      },
+      "guard_frames": {
+        "openvins_physical": 1128,
+        "openvins_physical_n2": 1128,
+        "openvins_origin_n2": 1127,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-167-02",
+      "tags": {
+        "group": "dev",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-167",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 3.503146390070993,
+        "openvins_physical": 7.67208528900142,
+        "openvins_physical_n2": 3.6015180481284115,
+        "openvins_origin_n2": 3.5806017884537438,
+        "vins": 1.194528725457102,
+        "vins_physical": 8.438797527083214,
+        "vins_physical_n2": 7.277152858293808,
+        "vins_origin_n2": 6.8205149347507215
+      },
+      "guard_frames": {
+        "openvins_physical": 252,
+        "openvins_physical_n2": 790,
+        "openvins_origin_n2": 790,
+        "vins_physical": 121,
+        "vins_physical_n2": 165,
+        "vins_origin_n2": 164
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-167-03",
+      "tags": {
+        "group": "dev",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-167",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 1.006176479671632,
+        "openvins_physical": 2.2972047549797248,
+        "openvins_physical_n2": 3.318903347412319,
+        "openvins_origin_n2": 3.329784933837999,
+        "vins": 0.7413372847886252,
+        "vins_physical": 5.132476549396436,
+        "vins_physical_n2": 4.5502990958591285,
+        "vins_origin_n2": 4.039036665694827
+      },
+      "guard_frames": {
+        "openvins_physical": 66,
+        "openvins_physical_n2": 1010,
+        "openvins_origin_n2": 1010,
+        "vins_physical": 28,
+        "vins_physical_n2": 28,
+        "vins_origin_n2": 27
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-167-05",
+      "tags": {
+        "group": "dev",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-167",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 19.074248156019372,
+        "openvins_physical": 32.45355719009213,
+        "openvins_physical_n2": 25.37671574672778,
+        "openvins_origin_n2": 25.42340102280698,
+        "vins": 1.5032276514479666,
+        "vins_physical": 1.5032276514479956,
+        "vins_physical_n2": 1.5032276514479956,
+        "vins_origin_n2": 1.5275379727035052
+      },
+      "guard_frames": {
+        "openvins_physical": 513,
+        "openvins_physical_n2": 781,
+        "openvins_origin_n2": 781,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-168-02",
+      "tags": {
+        "group": "dev",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-168",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 1.360281010676695,
+        "openvins_physical": 3.8899651818511587,
+        "openvins_physical_n2": 4.9690337148272645,
+        "openvins_origin_n2": 4.9673151131159345,
+        "vins": 0.718648910350274,
+        "vins_physical": 0.7186489103502988,
+        "vins_physical_n2": 0.7186489103502988,
+        "vins_origin_n2": 0.6904704050690191
+      },
+      "guard_frames": {
+        "openvins_physical": 52,
+        "openvins_physical_n2": 775,
+        "openvins_origin_n2": 775,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-170-01",
+      "tags": {
+        "group": "dev",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-170",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.6898036794323548,
+        "openvins_physical": 2.3650346425322084,
+        "openvins_physical_n2": 2.955433435280447,
+        "openvins_origin_n2": 3.0211828212666916,
+        "vins": 0.3758335505777867,
+        "vins_physical": 1.8081218829180141,
+        "vins_physical_n2": 1.8663673136027015,
+        "vins_origin_n2": 0.9813582175605765
+      },
+      "guard_frames": {
+        "openvins_physical": 96,
+        "openvins_physical_n2": 1132,
+        "openvins_origin_n2": 1132,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-170-03",
+      "tags": {
+        "group": "dev",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-170",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.3413794001828563,
+        "openvins_physical": 0.3413794001828249,
+        "openvins_physical_n2": 0.3413794001828249,
+        "openvins_origin_n2": 0.3007956258338143,
+        "vins": 0.5608654880527147,
+        "vins_physical": 5.7918974202163245,
+        "vins_physical_n2": 4.99358850509353,
+        "vins_origin_n2": 4.359870408229332
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 30,
+        "vins_physical_n2": 30,
+        "vins_origin_n2": 29
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-170-04",
+      "tags": {
+        "group": "dev",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-170",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.7453637102507142,
+        "openvins_physical": 0.7453637102507676,
+        "openvins_physical_n2": 0.7453637102507676,
+        "openvins_origin_n2": 0.8079416711127906,
+        "vins": 0.682368152402506,
+        "vins_physical": 0.6823681524025936,
+        "vins_physical_n2": 0.6823681524025936,
+        "vins_origin_n2": 0.6885223174054442
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-171-02",
+      "tags": {
+        "group": "dev",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-171",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.8014166096012801,
+        "openvins_physical": 0.8014166096013494,
+        "openvins_physical_n2": 0.8014166096013494,
+        "openvins_origin_n2": 0.7862900135762871,
+        "vins": 0.4927429754063223,
+        "vins_physical": 4.049904490901855,
+        "vins_physical_n2": 3.593407744434162,
+        "vins_origin_n2": 2.7025186554334053
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 38,
+        "vins_physical_n2": 38,
+        "vins_origin_n2": 37
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-171-04",
+      "tags": {
+        "group": "dev",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-171",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.26023974652639253,
+        "openvins_physical": 0.554506063407102,
+        "openvins_physical_n2": 3.4094790915112987,
+        "openvins_origin_n2": 3.4243912963815775,
+        "vins": 0.5188506886035111,
+        "vins_physical": 3.9255621404619907,
+        "vins_physical_n2": 3.34766612446149,
+        "vins_origin_n2": 2.5340201820329504
+      },
+      "guard_frames": {
+        "openvins_physical": 13,
+        "openvins_physical_n2": 433,
+        "openvins_origin_n2": 433,
+        "vins_physical": 22,
+        "vins_physical_n2": 22,
+        "vins_origin_n2": 21
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-191-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-191",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.8217546850940114,
+        "openvins_physical": 0.821754685094045,
+        "openvins_physical_n2": 0.821754685094045,
+        "openvins_origin_n2": 0.7963714662188024,
+        "vins": 0.5087180781444245,
+        "vins_physical": 3.6644744377599032,
+        "vins_physical_n2": 2.7228940582383676,
+        "vins_origin_n2": 2.143712068223368
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 68,
+        "vins_physical_n2": 68,
+        "vins_origin_n2": 67
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-191-02",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-191",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.6920081960519098,
+        "openvins_physical": 0.9714948968793865,
+        "openvins_physical_n2": 1.0283666301236722,
+        "openvins_origin_n2": 1.0317196783431442,
+        "vins": 0.3658127057711707,
+        "vins_physical": 1.193580611048882,
+        "vins_physical_n2": 1.2066116253832138,
+        "vins_origin_n2": 0.7375357198794179
+      },
+      "guard_frames": {
+        "openvins_physical": 18,
+        "openvins_physical_n2": 549,
+        "openvins_origin_n2": 549,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-3-02",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-3",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.44065226441384797,
+        "openvins_physical": 0.44065226441387273,
+        "openvins_physical_n2": 0.44065226441387273,
+        "openvins_origin_n2": 0.4052820617085181,
+        "vins": 0.3237710527714335,
+        "vins_physical": 0.32377105277152785,
+        "vins_physical_n2": 0.32377105277152785,
+        "vins_origin_n2": 0.37134142268043313
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-5-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-5",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.629178705589387,
+        "openvins_physical": 0.6291787055894559,
+        "openvins_physical_n2": 0.6291787055894559,
+        "openvins_origin_n2": 0.5520755641630017,
+        "vins": 0.8368887250803059,
+        "vins_physical": 5.253162825517849,
+        "vins_physical_n2": 4.530651280678455,
+        "vins_origin_n2": 4.01131064654329
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 27,
+        "vins_physical_n2": 27,
+        "vins_origin_n2": 26
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-5-02",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-5",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.32894668220465867,
+        "openvins_physical": 0.3289466822045762,
+        "openvins_physical_n2": 0.3289466822045762,
+        "openvins_origin_n2": 0.31153818863105737,
+        "vins": 0.3338318378899039,
+        "vins_physical": 0.3338318378898469,
+        "vins_physical_n2": 0.3338318378898469,
+        "vins_origin_n2": 0.3049763815499323
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-57-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-57",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 3.0865232901290476,
+        "openvins_physical": 8.815777388342056,
+        "openvins_physical_n2": 7.2867956261538485,
+        "openvins_origin_n2": 7.228047630724945,
+        "vins": 3.7338074293504553,
+        "vins_physical": 5.452890510831644,
+        "vins_physical_n2": 3.9163063879005167,
+        "vins_origin_n2": 3.891729233631875
+      },
+      "guard_frames": {
+        "openvins_physical": 189,
+        "openvins_physical_n2": 461,
+        "openvins_origin_n2": 461,
+        "vins_physical": 61,
+        "vins_physical_n2": 348,
+        "vins_origin_n2": 348
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-59-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-59",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.2484362347635464,
+        "openvins_physical": 0.24843623476360066,
+        "openvins_physical_n2": 0.24843623476360066,
+        "openvins_origin_n2": 0.19946842135227544,
+        "vins": 0.21993080637189263,
+        "vins_physical": 0.2199308063719311,
+        "vins_physical_n2": 0.2199308063719311,
+        "vins_origin_n2": 0.20281885673757277
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-59-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-59",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.4471299473674299,
+        "openvins_physical": 0.44712994736738587,
+        "openvins_physical_n2": 0.44712994736738587,
+        "openvins_origin_n2": 0.4047355164244535,
+        "vins": 0.29465176344494093,
+        "vins_physical": 0.29465176344492666,
+        "vins_physical_n2": 0.29465176344492666,
+        "vins_origin_n2": 0.2770235119068926
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-6-02",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-6",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.20065906031617983,
+        "openvins_physical": 0.20065906031611977,
+        "openvins_physical_n2": 0.20065906031611977,
+        "openvins_origin_n2": 0.1852210976870486,
+        "vins": 0.2154185278190632,
+        "vins_physical": 0.21541852781905105,
+        "vins_physical_n2": 0.21541852781905105,
+        "vins_origin_n2": 0.22832273807662776
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-63-02",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-63",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 251.9172367640034,
+        "openvins_physical": 15.741643272981703,
+        "openvins_physical_n2": 13.586916724220298,
+        "openvins_origin_n2": 13.770013996978799,
+        "vins": 225.59022030929796,
+        "vins_physical": 2.181427880705163,
+        "vins_physical_n2": 2.205590702554131,
+        "vins_origin_n2": 2.1189656111911606
+      },
+      "guard_frames": {
+        "openvins_physical": 764,
+        "openvins_physical_n2": 766,
+        "openvins_origin_n2": 766,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-64-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-64",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.7775366362854171,
+        "openvins_physical": 0.7775366362854571,
+        "openvins_physical_n2": 0.7775366362854571,
+        "openvins_origin_n2": 0.7784394834550197,
+        "vins": 0.7040007019286688,
+        "vins_physical": 4.829192516824678,
+        "vins_physical_n2": 4.168959963487399,
+        "vins_origin_n2": 3.2931789159424736
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 41,
+        "vins_physical_n2": 41,
+        "vins_origin_n2": 40
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-64-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-64",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 2.0974455656123387,
+        "openvins_physical": 2.0974455656123387,
+        "openvins_physical_n2": 2.0974455656123387,
+        "openvins_origin_n2": 1.8646503460036385,
+        "vins": 151.6168302392255,
+        "vins_physical": 2.2215012732157127,
+        "vins_physical_n2": 1.98559617966601,
+        "vins_origin_n2": 1.6348562737888175
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 61,
+        "vins_physical_n2": 61,
+        "vins_origin_n2": 60
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-65-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-65",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 4.015862785241692,
+        "openvins_physical": 14.504206203910343,
+        "openvins_physical_n2": 13.695737038844491,
+        "openvins_origin_n2": 13.776194176126701,
+        "vins": 0.6830116186270973,
+        "vins_physical": 5.970150431481173,
+        "vins_physical_n2": 4.75765646455968,
+        "vins_origin_n2": 3.8034317661281762
+      },
+      "guard_frames": {
+        "openvins_physical": 202,
+        "openvins_physical_n2": 942,
+        "openvins_origin_n2": 942,
+        "vins_physical": 53,
+        "vins_physical_n2": 53,
+        "vins_origin_n2": 52
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-65-02",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-65",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.5772185328376321,
+        "openvins_physical": 1.0706897187082867,
+        "openvins_physical_n2": 3.459096345111967,
+        "openvins_origin_n2": 3.534324956886256,
+        "vins": 0.7286926069365096,
+        "vins_physical": 0.7888051617196662,
+        "vins_physical_n2": 0.7318977106086565,
+        "vins_origin_n2": 0.5572241199912016
+      },
+      "guard_frames": {
+        "openvins_physical": 23,
+        "openvins_physical_n2": 294,
+        "openvins_origin_n2": 294,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-71-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-71",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.23068344764401696,
+        "openvins_physical": 0.23068344764399903,
+        "openvins_physical_n2": 0.23068344764399903,
+        "openvins_origin_n2": 0.23199970083663893,
+        "vins": 0.3988133726269847,
+        "vins_physical": 0.39881337262693395,
+        "vins_physical_n2": 0.39881337262693395,
+        "vins_origin_n2": 0.37468910593770427
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-74-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-74",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.9614202881270516,
+        "openvins_physical": 0.9555885401911225,
+        "openvins_physical_n2": 3.126777002029517,
+        "openvins_origin_n2": 3.1962582941167645,
+        "vins": 0.806096131141151,
+        "vins_physical": 0.8060961311412753,
+        "vins_physical_n2": 0.8060961311412753,
+        "vins_origin_n2": 0.8951786608348279
+      },
+      "guard_frames": {
+        "openvins_physical": 1,
+        "openvins_physical_n2": 397,
+        "openvins_origin_n2": 397,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-78-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-78",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.415219988742645,
+        "openvins_physical": 0.4152199887426684,
+        "openvins_physical_n2": 0.4152199887426684,
+        "openvins_origin_n2": 0.3818674112073564,
+        "vins": 0.23866758264404137,
+        "vins_physical": 0.2386675826440573,
+        "vins_physical_n2": 0.2386675826440573,
+        "vins_origin_n2": 0.25808128000317226
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-82-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-82",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.3047495560987117,
+        "openvins_physical": 0.30474955609873505,
+        "openvins_physical_n2": 0.30474955609873505,
+        "openvins_origin_n2": 0.2641497207090021,
+        "vins": 0.41835638557610866,
+        "vins_physical": 0.418356385576091,
+        "vins_physical_n2": 0.418356385576091,
+        "vins_origin_n2": 0.4082761761502111
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-91-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-91",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 63.81734094823208,
+        "openvins_physical": 2.2219696563958102,
+        "openvins_physical_n2": 2.4299760510740427,
+        "openvins_origin_n2": 2.1074853827355535,
+        "vins": 0.619815024704256,
+        "vins_physical": 1.6671254359716317,
+        "vins_physical_n2": 1.678282634366983,
+        "vins_origin_n2": 0.9593256289445755
+      },
+      "guard_frames": {
+        "openvins_physical": 123,
+        "openvins_physical_n2": 123,
+        "openvins_origin_n2": 122,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-91-02",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-91",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.2354742531227568,
+        "openvins_physical": 0.23547425312275658,
+        "openvins_physical_n2": 0.23547425312275658,
+        "openvins_origin_n2": 0.2380702397836789,
+        "vins": 0.4041654034227426,
+        "vins_physical": 0.40416540342277024,
+        "vins_physical_n2": 0.40416540342277024,
+        "vins_origin_n2": 0.4344260440032798
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-97-02",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-97",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.3020182560937003,
+        "openvins_physical": 0.3587555688548835,
+        "openvins_physical_n2": 1.7179809224894487,
+        "openvins_origin_n2": 1.6081752548218764,
+        "vins": 0.8560398564651056,
+        "vins_physical": 0.8560398564650814,
+        "vins_physical_n2": 0.8560398564650814,
+        "vins_origin_n2": 0.7847318676459101
+      },
+      "guard_frames": {
+        "openvins_physical": 6,
+        "openvins_physical_n2": 75,
+        "openvins_origin_n2": 75,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fast-ProcTHOR-Train-98-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-98",
+        "start_type": "static",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.5550016447546707,
+        "openvins_physical": 1.2941671184928671,
+        "openvins_physical_n2": 1.25923889370381,
+        "openvins_origin_n2": 1.2492629534584982,
+        "vins": 0.49041340161389135,
+        "vins_physical": 1.132167127432186,
+        "vins_physical_n2": 1.15376450190809,
+        "vins_origin_n2": 0.6446096843474172
+      },
+      "guard_frames": {
+        "openvins_physical": 43,
+        "openvins_physical_n2": 264,
+        "openvins_origin_n2": 264,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-102344280-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "102344280",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.4058798132857396,
+        "openvins_physical": 2.7275515316592496,
+        "openvins_physical_n2": 2.064879420615253,
+        "openvins_origin_n2": 1.647954153307502,
+        "vins": 0.5108674766091611,
+        "vins_physical": 2.470955273239219,
+        "vins_physical_n2": 2.1444063627000225,
+        "vins_origin_n2": 1.4111314802170156
+      },
+      "guard_frames": {
+        "openvins_physical": 44,
+        "openvins_physical_n2": 44,
+        "openvins_origin_n2": 43,
+        "vins_physical": 13,
+        "vins_physical_n2": 13,
+        "vins_origin_n2": 12
+      }
+    },
+    {
+      "episode": "fastmid-102344280-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "102344280",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.7207765949188594,
+        "openvins_physical": 4.10737456424483,
+        "openvins_physical_n2": 3.22826528602703,
+        "openvins_origin_n2": 3.0286918275654724,
+        "vins": 11.798305138001304,
+        "vins_physical": 4.466284284539139,
+        "vins_physical_n2": 4.114926081728521,
+        "vins_origin_n2": 3.080338191309409
+      },
+      "guard_frames": {
+        "openvins_physical": 37,
+        "openvins_physical_n2": 37,
+        "openvins_origin_n2": 36,
+        "vins_physical": 103,
+        "vins_physical_n2": 103,
+        "vins_origin_n2": 102
+      }
+    },
+    {
+      "episode": "fastmid-102344328-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "102344328",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.2705529167131759,
+        "openvins_physical": 1.3206303495286535,
+        "openvins_physical_n2": 0.9961354865233477,
+        "openvins_origin_n2": 0.8791452321954881,
+        "vins": 0.32790010278650744,
+        "vins_physical": 2.0287920643851862,
+        "vins_physical_n2": 1.8778251131933688,
+        "vins_origin_n2": 1.47729933419689
+      },
+      "guard_frames": {
+        "openvins_physical": 16,
+        "openvins_physical_n2": 16,
+        "openvins_origin_n2": 15,
+        "vins_physical": 4,
+        "vins_physical_n2": 4,
+        "vins_origin_n2": 3
+      }
+    },
+    {
+      "episode": "fastmid-102344457-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "102344457",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.42048962442386106,
+        "openvins_physical": 0.4204896244237887,
+        "openvins_physical_n2": 0.4204896244237887,
+        "openvins_origin_n2": 0.6154282937777853,
+        "vins": 0.6723380135215388,
+        "vins_physical": 1.0459794261546818,
+        "vins_physical_n2": 0.9825776182658116,
+        "vins_origin_n2": 0.7382798649507268
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-102344457-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "102344457",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.8776114044729537,
+        "openvins_physical": 3.4241308379295132,
+        "openvins_physical_n2": 2.55454968335252,
+        "openvins_origin_n2": 2.2888776830145776,
+        "vins": 0.3310629580523772,
+        "vins_physical": 2.6808276097635795,
+        "vins_physical_n2": 2.141390973679679,
+        "vins_origin_n2": 1.710806739372162
+      },
+      "guard_frames": {
+        "openvins_physical": 43,
+        "openvins_physical_n2": 43,
+        "openvins_origin_n2": 42,
+        "vins_physical": 23,
+        "vins_physical_n2": 23,
+        "vins_origin_n2": 22
+      }
+    },
+    {
+      "episode": "fastmid-102815859-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "102815859",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 21.91349687675156,
+        "openvins_physical": 1.5399109044498032,
+        "openvins_physical_n2": 1.4833487807976695,
+        "openvins_origin_n2": 1.71196746225653,
+        "vins": 1.542491946905064,
+        "vins_physical": 1.8519223356187193,
+        "vins_physical_n2": 1.8173582997922455,
+        "vins_origin_n2": 2.1428301620367285
+      },
+      "guard_frames": {
+        "openvins_physical": 94,
+        "openvins_physical_n2": 94,
+        "openvins_origin_n2": 93,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-103997445_171030492-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "103997445_171030492",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 3.611799507635816,
+        "openvins_physical": 9.593925090655006,
+        "openvins_physical_n2": 8.35861217134139,
+        "openvins_origin_n2": 8.178553407205841,
+        "vins": 0.7158092454926435,
+        "vins_physical": 3.055519781914954,
+        "vins_physical_n2": 2.93487666157485,
+        "vins_origin_n2": 2.3065882821199994
+      },
+      "guard_frames": {
+        "openvins_physical": 167,
+        "openvins_physical_n2": 1062,
+        "openvins_origin_n2": 1061,
+        "vins_physical": 6,
+        "vins_physical_n2": 6,
+        "vins_origin_n2": 5
+      }
+    },
+    {
+      "episode": "fastmid-103997460_171030507-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "103997460_171030507",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.5509555870134734,
+        "openvins_physical": 1.0703935175241042,
+        "openvins_physical_n2": 0.8673166263885256,
+        "openvins_origin_n2": 0.7382109221644516,
+        "vins": 0.3283265435410922,
+        "vins_physical": 1.3484614882184636,
+        "vins_physical_n2": 1.1420413791366335,
+        "vins_origin_n2": 1.0502875613198388
+      },
+      "guard_frames": {
+        "openvins_physical": 12,
+        "openvins_physical_n2": 12,
+        "openvins_origin_n2": 11,
+        "vins_physical": 19,
+        "vins_physical_n2": 19,
+        "vins_origin_n2": 18
+      }
+    },
+    {
+      "episode": "fastmid-103997460_171030507-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "103997460_171030507",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.3321743874707269,
+        "openvins_physical": 7.612712865557276,
+        "openvins_physical_n2": 6.129908250249509,
+        "openvins_origin_n2": 6.084655947605853,
+        "vins": 0.6866600821590491,
+        "vins_physical": 5.751410036448255,
+        "vins_physical_n2": 5.394740233638382,
+        "vins_origin_n2": 4.881888388663987
+      },
+      "guard_frames": {
+        "openvins_physical": 118,
+        "openvins_physical_n2": 118,
+        "openvins_origin_n2": 117,
+        "vins_physical": 21,
+        "vins_physical_n2": 21,
+        "vins_origin_n2": 20
+      }
+    },
+    {
+      "episode": "fastmid-103997478_171030525-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "103997478_171030525",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.32250758761976434,
+        "openvins_physical": 5.765782998784424,
+        "openvins_physical_n2": 4.26458647251591,
+        "openvins_origin_n2": 4.20390023098546,
+        "vins": 0.3604921604742139,
+        "vins_physical": 5.850029678100216,
+        "vins_physical_n2": 4.630181778374019,
+        "vins_origin_n2": 4.36595847005715
+      },
+      "guard_frames": {
+        "openvins_physical": 85,
+        "openvins_physical_n2": 85,
+        "openvins_origin_n2": 84,
+        "vins_physical": 73,
+        "vins_physical_n2": 73,
+        "vins_origin_n2": 72
+      }
+    },
+    {
+      "episode": "fastmid-103997586_171030666-02",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "103997586_171030666",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.4211766268364391,
+        "openvins_physical": 1.7415904314699748,
+        "openvins_physical_n2": 1.5964177513252717,
+        "openvins_origin_n2": 1.6532593752591722,
+        "vins": 0.4214856971394509,
+        "vins_physical": 2.1877585428797737,
+        "vins_physical_n2": 2.2139130938578773,
+        "vins_origin_n2": 2.1596347468520785
+      },
+      "guard_frames": {
+        "openvins_physical": 19,
+        "openvins_physical_n2": 19,
+        "openvins_origin_n2": 18,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-103997643_171030747-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "103997643_171030747",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 14.926621857509948,
+        "openvins_physical": 19.50717316802671,
+        "openvins_physical_n2": 15.355588051868738,
+        "openvins_origin_n2": 15.3645107989978,
+        "vins": 8.615097898180467,
+        "vins_physical": 2.4227470928935424,
+        "vins_physical_n2": 2.4428943132260934,
+        "vins_origin_n2": 1.7885218847542916
+      },
+      "guard_frames": {
+        "openvins_physical": 321,
+        "openvins_physical_n2": 1051,
+        "openvins_origin_n2": 1050,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-104348361_171513414-02",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "104348361_171513414",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 9.679879646499423,
+        "openvins_physical": 9.41310900367096,
+        "openvins_physical_n2": 10.040453947502867,
+        "openvins_origin_n2": 9.632484522428511,
+        "vins": 44.60286079244972,
+        "vins_physical": 7.421354410953556,
+        "vins_physical_n2": 3.897219728535793,
+        "vins_origin_n2": 3.8168041385412788
+      },
+      "guard_frames": {
+        "openvins_physical": 385,
+        "openvins_physical_n2": 1072,
+        "openvins_origin_n2": 1071,
+        "vins_physical": 1157,
+        "vins_physical_n2": 1157,
+        "vins_origin_n2": 1156
+      }
+    },
+    {
+      "episode": "fastmid-104862501_172226556-00",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "104862501_172226556",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.7498557061174556,
+        "openvins_physical": 3.059837122564088,
+        "openvins_physical_n2": 2.314699822270164,
+        "openvins_origin_n2": 2.2940325764781115,
+        "vins": 0.43030535728674857,
+        "vins_physical": 2.3107357414083056,
+        "vins_physical_n2": 2.153405113552753,
+        "vins_origin_n2": 2.124624054470795
+      },
+      "guard_frames": {
+        "openvins_physical": 61,
+        "openvins_physical_n2": 61,
+        "openvins_origin_n2": 60,
+        "vins_physical": 17,
+        "vins_physical_n2": 17,
+        "vins_origin_n2": 16
+      }
+    },
+    {
+      "episode": "fastmid-104862501_172226556-01",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "104862501_172226556",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.532342646525663,
+        "openvins_physical": 0.9263560639967587,
+        "openvins_physical_n2": 2.9315811975688764,
+        "openvins_origin_n2": 3.0907898845873936,
+        "vins": 0.3362611077310527,
+        "vins_physical": 6.169842627147878,
+        "vins_physical_n2": 5.568516089054085,
+        "vins_origin_n2": 5.550343371514393
+      },
+      "guard_frames": {
+        "openvins_physical": 21,
+        "openvins_physical_n2": 392,
+        "openvins_origin_n2": 391,
+        "vins_physical": 55,
+        "vins_physical_n2": 55,
+        "vins_origin_n2": 54
+      }
+    },
+    {
+      "episode": "fastmid-104862639_172226823-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "104862639_172226823",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.8069914959133756,
+        "openvins_physical": 1.2397681723592224,
+        "openvins_physical_n2": 1.2280009300964834,
+        "openvins_origin_n2": 1.20822475029588,
+        "vins": 0.5947703199935478,
+        "vins_physical": 1.0654835580804913,
+        "vins_physical_n2": 1.0718738014033584,
+        "vins_origin_n2": 0.9900398834878332
+      },
+      "guard_frames": {
+        "openvins_physical": 18,
+        "openvins_physical_n2": 18,
+        "openvins_origin_n2": 17,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-105515184_173104128-02",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "105515184_173104128",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.6420280879823321,
+        "openvins_physical": 3.4117000237287005,
+        "openvins_physical_n2": 2.609567571947963,
+        "openvins_origin_n2": 2.4824764467496827,
+        "vins": 0.744245882215403,
+        "vins_physical": 2.218639733301368,
+        "vins_physical_n2": 2.1748388085257235,
+        "vins_origin_n2": 1.3458315186463237
+      },
+      "guard_frames": {
+        "openvins_physical": 53,
+        "openvins_physical_n2": 53,
+        "openvins_origin_n2": 52,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-105515301_173104305-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "105515301_173104305",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.24965781516194507,
+        "openvins_physical": 0.24965781516193783,
+        "openvins_physical_n2": 0.24965781516193783,
+        "openvins_origin_n2": 0.4453970010549794,
+        "vins": 0.851303589541497,
+        "vins_physical": 1.628801559649684,
+        "vins_physical_n2": 1.2407007936241177,
+        "vins_origin_n2": 1.3553991756368031
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 18,
+        "vins_physical_n2": 18,
+        "vins_origin_n2": 17
+      }
+    },
+    {
+      "episode": "fastmid-106366104_174226329-00",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "106366104_174226329",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 3.526611185573679,
+        "openvins_physical": 3.526611185573679,
+        "openvins_physical_n2": 3.526611185573679,
+        "openvins_origin_n2": 3.896683258620128,
+        "vins": 0.805927041888944,
+        "vins_physical": 4.755774615108876,
+        "vins_physical_n2": 4.618366982121341,
+        "vins_origin_n2": 4.559810195438612
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 20,
+        "vins_physical_n2": 20,
+        "vins_origin_n2": 19
+      }
+    },
+    {
+      "episode": "fastmid-106366104_174226329-01",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "106366104_174226329",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 5.73748525670969,
+        "openvins_physical": 5.73748525670969,
+        "openvins_physical_n2": 5.73748525670969,
+        "openvins_origin_n2": 5.047327667724988,
+        "vins": 37.0057799560275,
+        "vins_physical": 9.84271198616994,
+        "vins_physical_n2": 7.963790020119094,
+        "vins_origin_n2": 7.596035897066794
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 46,
+        "vins_physical_n2": 888,
+        "vins_origin_n2": 887
+      }
+    },
+    {
+      "episode": "fastmid-106366104_174226329-02",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "106366104_174226329",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 4.843364501812701,
+        "openvins_physical": 4.843364501812701,
+        "openvins_physical_n2": 4.843364501812701,
+        "openvins_origin_n2": 5.003044929566345,
+        "vins": 28.56707209793879,
+        "vins_physical": 21.41560128077477,
+        "vins_physical_n2": 15.273722327253857,
+        "vins_origin_n2": 15.315713198057086
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 106,
+        "vins_physical_n2": 1045,
+        "vins_origin_n2": 1045
+      }
+    },
+    {
+      "episode": "fastmid-106366173_174226431-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "106366173_174226431",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.6001502400871627,
+        "openvins_physical": 4.143387860162478,
+        "openvins_physical_n2": 3.5263147418279104,
+        "openvins_origin_n2": 3.3722711071156004,
+        "vins": 0.2825420675978276,
+        "vins_physical": 2.0370528549384295,
+        "vins_physical_n2": 1.9137253488769241,
+        "vins_origin_n2": 1.3311878088799356
+      },
+      "guard_frames": {
+        "openvins_physical": 71,
+        "openvins_physical_n2": 71,
+        "openvins_origin_n2": 70,
+        "vins_physical": 8,
+        "vins_physical_n2": 8,
+        "vins_origin_n2": 7
+      }
+    },
+    {
+      "episode": "fastmid-106366371_174226743-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "106366371_174226743",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.3910488219803786,
+        "openvins_physical": 0.5464722049415683,
+        "openvins_physical_n2": 0.612381900120908,
+        "openvins_origin_n2": 0.6370620210449407,
+        "vins": 0.30238165535644407,
+        "vins_physical": 1.1093063915664507,
+        "vins_physical_n2": 1.1064053086027907,
+        "vins_origin_n2": 0.9264124782199699
+      },
+      "guard_frames": {
+        "openvins_physical": 10,
+        "openvins_physical_n2": 10,
+        "openvins_origin_n2": 9,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-106366371_174226743-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "106366371_174226743",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.8696420398083128,
+        "openvins_physical": 2.89560883575996,
+        "openvins_physical_n2": 2.2438034559243776,
+        "openvins_origin_n2": 2.020583340942934,
+        "vins": 0.7034459334233534,
+        "vins_physical": 1.5650754006445209,
+        "vins_physical_n2": 1.5937469599300018,
+        "vins_origin_n2": 1.3958347353839136
+      },
+      "guard_frames": {
+        "openvins_physical": 73,
+        "openvins_physical_n2": 73,
+        "openvins_origin_n2": 72,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-106366410_174226806-01",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "106366410_174226806",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.41306635651899837,
+        "openvins_physical": 0.4224335933404211,
+        "openvins_physical_n2": 0.43498442595779563,
+        "openvins_origin_n2": 0.6336794711385425,
+        "vins": 0.3148850165826857,
+        "vins_physical": 1.023343465594435,
+        "vins_physical_n2": 1.021325713237486,
+        "vins_origin_n2": 0.9421286012807575
+      },
+      "guard_frames": {
+        "openvins_physical": 6,
+        "openvins_physical_n2": 6,
+        "openvins_origin_n2": 5,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-106366410_174226806-02",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "106366410_174226806",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.8475930949914936,
+        "openvins_physical": 1.0305704611696354,
+        "openvins_physical_n2": 2.9823372048961705,
+        "openvins_origin_n2": 2.940013719569714,
+        "vins": 1.1252142581728959,
+        "vins_physical": 2.826324966032063,
+        "vins_physical_n2": 2.521545427913446,
+        "vins_origin_n2": 2.134615601773519
+      },
+      "guard_frames": {
+        "openvins_physical": 44,
+        "openvins_physical_n2": 167,
+        "openvins_origin_n2": 166,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-106878858_174886965-00",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "106878858_174886965",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.26146616738253897,
+        "openvins_physical": 2.497920634702133,
+        "openvins_physical_n2": 1.7893979774908066,
+        "openvins_origin_n2": 1.5273580294243392,
+        "vins": 0.6996488440772067,
+        "vins_physical": 2.5447452240592305,
+        "vins_physical_n2": 2.493774983033918,
+        "vins_origin_n2": 1.668812109214864
+      },
+      "guard_frames": {
+        "openvins_physical": 39,
+        "openvins_physical_n2": 39,
+        "openvins_origin_n2": 38,
+        "vins_physical": 13,
+        "vins_physical_n2": 13,
+        "vins_origin_n2": 12
+      }
+    },
+    {
+      "episode": "fastmid-106878858_174886965-02",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "106878858_174886965",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.6484209560001143,
+        "openvins_physical": 6.440419044550023,
+        "openvins_physical_n2": 5.70301704346593,
+        "openvins_origin_n2": 5.845572686340228,
+        "vins": 0.5419114809825606,
+        "vins_physical": 1.8225847053954058,
+        "vins_physical_n2": 1.842381734585105,
+        "vins_origin_n2": 1.867339234125095
+      },
+      "guard_frames": {
+        "openvins_physical": 45,
+        "openvins_physical_n2": 45,
+        "openvins_origin_n2": 44,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-106879044_174887172-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "106879044_174887172",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 1.6805927528515754,
+        "openvins_physical": 1.4270001238714591,
+        "openvins_physical_n2": 1.3193413156667526,
+        "openvins_origin_n2": 0.9819553579035242,
+        "vins": 0.9172994385804426,
+        "vins_physical": 1.419176712161221,
+        "vins_physical_n2": 1.4429272027035231,
+        "vins_origin_n2": 0.878556634723652
+      },
+      "guard_frames": {
+        "openvins_physical": 49,
+        "openvins_physical_n2": 49,
+        "openvins_origin_n2": 48,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-107734146_175999971-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "107734146_175999971",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.28945649999695516,
+        "openvins_physical": 0.28945649999704826,
+        "openvins_physical_n2": 0.28945649999704826,
+        "openvins_origin_n2": 0.2984066309677469,
+        "vins": 0.42034794711675544,
+        "vins_physical": 2.319427256060468,
+        "vins_physical_n2": 2.2698318956883963,
+        "vins_origin_n2": 2.235724238042442
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 14,
+        "vins_physical_n2": 14,
+        "vins_origin_n2": 13
+      }
+    },
+    {
+      "episode": "fastmid-107734146_175999971-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "107734146_175999971",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.896094760549595,
+        "openvins_physical": 7.355933130049453,
+        "openvins_physical_n2": 7.119743237787584,
+        "openvins_origin_n2": 6.7762539000028195,
+        "vins": 6.267193523708967,
+        "vins_physical": 8.324792315384688,
+        "vins_physical_n2": 7.51371577545124,
+        "vins_origin_n2": 7.0568136390950675
+      },
+      "guard_frames": {
+        "openvins_physical": 64,
+        "openvins_physical_n2": 64,
+        "openvins_origin_n2": 63,
+        "vins_physical": 52,
+        "vins_physical_n2": 55,
+        "vins_origin_n2": 54
+      }
+    },
+    {
+      "episode": "fastmid-107734158_175999998-01",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "107734158_175999998",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.24839537853039353,
+        "openvins_physical": 1.2726587774213878,
+        "openvins_physical_n2": 1.1055545718780497,
+        "openvins_origin_n2": 1.087402389510369,
+        "vins": 0.25685848312078835,
+        "vins_physical": 1.2455711089323223,
+        "vins_physical_n2": 1.237408679372138,
+        "vins_origin_n2": 1.121263800768319
+      },
+      "guard_frames": {
+        "openvins_physical": 19,
+        "openvins_physical_n2": 19,
+        "openvins_origin_n2": 18,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-107734176_176000019-00",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "107734176_176000019",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.5842883995858927,
+        "openvins_physical": 1.0172618327772063,
+        "openvins_physical_n2": 0.6574654498558765,
+        "openvins_origin_n2": 0.5566965200405306,
+        "vins": 0.5642895060229787,
+        "vins_physical": 0.9167602032289982,
+        "vins_physical_n2": 0.9510554170420498,
+        "vins_origin_n2": 0.6434979002021116
+      },
+      "guard_frames": {
+        "openvins_physical": 15,
+        "openvins_physical_n2": 3,
+        "openvins_origin_n2": 3,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-107734254_176000121-00",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "107734254_176000121",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.31425118854903605,
+        "openvins_physical": 1.0269376429677388,
+        "openvins_physical_n2": 1.1376214548749521,
+        "openvins_origin_n2": 1.16618396943164,
+        "vins": 0.2437820307258521,
+        "vins_physical": 1.1440579928597099,
+        "vins_physical_n2": 1.1797930535517884,
+        "vins_origin_n2": 1.2614382403237063
+      },
+      "guard_frames": {
+        "openvins_physical": 19,
+        "openvins_physical_n2": 19,
+        "openvins_origin_n2": 18,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-107734254_176000121-02",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "107734254_176000121",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.6535110353483381,
+        "openvins_physical": 2.0418268060974913,
+        "openvins_physical_n2": 1.6020922364174286,
+        "openvins_origin_n2": 1.3458187856690154,
+        "vins": 0.7062860714471316,
+        "vins_physical": 1.553745562074991,
+        "vins_physical_n2": 1.6181726863502055,
+        "vins_origin_n2": 0.9516007427398092
+      },
+      "guard_frames": {
+        "openvins_physical": 23,
+        "openvins_physical_n2": 23,
+        "openvins_origin_n2": 22,
+        "vins_physical": 3,
+        "vins_physical_n2": 3,
+        "vins_origin_n2": 2
+      }
+    },
+    {
+      "episode": "fastmid-108294417_176709879-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "108294417_176709879",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.423758130693288,
+        "openvins_physical": 2.1059078191975726,
+        "openvins_physical_n2": 1.6443018025443779,
+        "openvins_origin_n2": 1.4457935187559219,
+        "vins": 0.3230729098421023,
+        "vins_physical": 2.671840403211679,
+        "vins_physical_n2": 2.4494834980754687,
+        "vins_origin_n2": 2.0504050344327576
+      },
+      "guard_frames": {
+        "openvins_physical": 24,
+        "openvins_physical_n2": 24,
+        "openvins_origin_n2": 23,
+        "vins_physical": 13,
+        "vins_physical_n2": 13,
+        "vins_origin_n2": 12
+      }
+    },
+    {
+      "episode": "fastmid-108294897_176710602-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "108294897_176710602",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.4724115305626107,
+        "openvins_physical": 7.508992629562357,
+        "openvins_physical_n2": 5.8573877987716525,
+        "openvins_origin_n2": 5.253921677818402,
+        "vins": 98.61706048895441,
+        "vins_physical": 8.400069247211249,
+        "vins_physical_n2": 12.553452310813551,
+        "vins_origin_n2": 11.870603507068875
+      },
+      "guard_frames": {
+        "openvins_physical": 101,
+        "openvins_physical_n2": 101,
+        "openvins_origin_n2": 100,
+        "vins_physical": 938,
+        "vins_physical_n2": 938,
+        "vins_origin_n2": 938
+      }
+    },
+    {
+      "episode": "fastmid-108294897_176710602-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "hssd-train",
+        "scene": "108294897_176710602",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 1.833336673852428,
+        "openvins_physical": 10.366985106982893,
+        "openvins_physical_n2": 8.230862938419287,
+        "openvins_origin_n2": 7.687089241589636,
+        "vins": 6.215932955212301,
+        "vins_physical": 5.975847438594962,
+        "vins_physical_n2": 5.944853830590871,
+        "vins_origin_n2": 4.8008923923608045
+      },
+      "guard_frames": {
+        "openvins_physical": 144,
+        "openvins_physical_n2": 144,
+        "openvins_origin_n2": 143,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-108736884_177263634-00",
+      "tags": {
+        "group": "dev",
+        "catalog": "hssd-val",
+        "scene": "108736884_177263634",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.6718181454175446,
+        "openvins_physical": 0.5854016705106819,
+        "openvins_physical_n2": 0.5049414145681062,
+        "openvins_origin_n2": 0.6309450964483829,
+        "vins": 0.327290619348782,
+        "vins_physical": 4.5417722392936755,
+        "vins_physical_n2": 4.016415430751958,
+        "vins_origin_n2": 3.722267944595466
+      },
+      "guard_frames": {
+        "openvins_physical": 5,
+        "openvins_physical_n2": 5,
+        "openvins_origin_n2": 4,
+        "vins_physical": 38,
+        "vins_physical_n2": 38,
+        "vins_origin_n2": 37
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-0-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-0",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 59.576776423676435,
+        "openvins_physical": 5.7275139338561845,
+        "openvins_physical_n2": 5.734368240344686,
+        "openvins_origin_n2": 5.581694671494466,
+        "vins": 59.51489094249653,
+        "vins_physical": 3.754206064905177,
+        "vins_physical_n2": 2.357066097338968,
+        "vins_origin_n2": 2.0599394902911805
+      },
+      "guard_frames": {
+        "openvins_physical": 328,
+        "openvins_physical_n2": 317,
+        "openvins_origin_n2": 316,
+        "vins_physical": 93,
+        "vins_physical_n2": 372,
+        "vins_origin_n2": 371
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-100-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-100",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.35201933241842437,
+        "openvins_physical": 0.3520193324183983,
+        "openvins_physical_n2": 0.3520193324183983,
+        "openvins_origin_n2": 0.3066995449873252,
+        "vins": 0.2601099782815188,
+        "vins_physical": 1.3447296222025003,
+        "vins_physical_n2": 1.0944780721324918,
+        "vins_origin_n2": 0.8702088647527852
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 13,
+        "vins_physical_n2": 13,
+        "vins_origin_n2": 12
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-100-02",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-100",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 3.9227916746675175,
+        "openvins_physical": 3.9227916746675175,
+        "openvins_physical_n2": 3.9227916746675175,
+        "openvins_origin_n2": 3.6697222382488324,
+        "vins": 3.9227916746675175,
+        "vins_physical": 3.9227916746675175,
+        "vins_physical_n2": 3.9227916746675175,
+        "vins_origin_n2": 3.6697222382488324
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-101-02",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-101",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.1542898734592784,
+        "openvins_physical": 1.6705915553117683,
+        "openvins_physical_n2": 1.384957285623047,
+        "openvins_origin_n2": 1.3524433041912065,
+        "vins": 0.28376973141488915,
+        "vins_physical": 1.9988916469051605,
+        "vins_physical_n2": 1.775163835757612,
+        "vins_origin_n2": 1.7413732440503622
+      },
+      "guard_frames": {
+        "openvins_physical": 32,
+        "openvins_physical_n2": 32,
+        "openvins_origin_n2": 31,
+        "vins_physical": 20,
+        "vins_physical_n2": 20,
+        "vins_origin_n2": 19
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-107-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-107",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.4782101906924017,
+        "openvins_physical": 0.47821019069236,
+        "openvins_physical_n2": 0.47821019069236,
+        "openvins_origin_n2": 0.5468512104493384,
+        "vins": 0.6281840429030507,
+        "vins_physical": 0.8175041314163138,
+        "vins_physical_n2": 0.8232983588362969,
+        "vins_origin_n2": 0.9770622594435022
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 17,
+        "vins_physical_n2": 17,
+        "vins_origin_n2": 16
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-107-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-107",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.3698403159614766,
+        "openvins_physical": 3.635846468599023,
+        "openvins_physical_n2": 2.882496329948002,
+        "openvins_origin_n2": 2.8700297093024862,
+        "vins": 0.6773702972580975,
+        "vins_physical": 2.907953034321303,
+        "vins_physical_n2": 2.4898407685842088,
+        "vins_origin_n2": 2.1255854686755487
+      },
+      "guard_frames": {
+        "openvins_physical": 75,
+        "openvins_physical_n2": 75,
+        "openvins_origin_n2": 74,
+        "vins_physical": 16,
+        "vins_physical_n2": 16,
+        "vins_origin_n2": 15
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-107-02",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-107",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.44157698146258306,
+        "openvins_physical": 6.121680373985497,
+        "openvins_physical_n2": 4.717792567752415,
+        "openvins_origin_n2": 4.6965232392472975,
+        "vins": 1.2156408133934353,
+        "vins_physical": 6.475712631704075,
+        "vins_physical_n2": 5.168755336690425,
+        "vins_origin_n2": 5.048472834881459
+      },
+      "guard_frames": {
+        "openvins_physical": 101,
+        "openvins_physical_n2": 101,
+        "openvins_origin_n2": 100,
+        "vins_physical": 87,
+        "vins_physical_n2": 87,
+        "vins_origin_n2": 86
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-123-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-123",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.3962053451816777,
+        "openvins_physical": 2.5354722897267656,
+        "openvins_physical_n2": 2.064145466620195,
+        "openvins_origin_n2": 1.6980070007611892,
+        "vins": 1.0034768099748586,
+        "vins_physical": 1.967312170163009,
+        "vins_physical_n2": 2.021767979426885,
+        "vins_origin_n2": 1.4212644587326606
+      },
+      "guard_frames": {
+        "openvins_physical": 29,
+        "openvins_physical_n2": 29,
+        "openvins_origin_n2": 28,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-141-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-141",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 8.951297225844053,
+        "openvins_physical": 2.409181216528237,
+        "openvins_physical_n2": 1.9148362668586127,
+        "openvins_origin_n2": 1.092284110701315,
+        "vins": 1.1713295694633887,
+        "vins_physical": 1.5604573911131017,
+        "vins_physical_n2": 1.4921205715313512,
+        "vins_origin_n2": 0.9487074832660922
+      },
+      "guard_frames": {
+        "openvins_physical": 109,
+        "openvins_physical_n2": 109,
+        "openvins_origin_n2": 108,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-143-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-143",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 2.5999729390905104,
+        "openvins_physical": 5.360487529553402,
+        "openvins_physical_n2": 3.5544245088176587,
+        "openvins_origin_n2": 3.4638398763613334,
+        "vins": 1.1320718286555373,
+        "vins_physical": 2.4315249078376637,
+        "vins_physical_n2": 2.3972620977955708,
+        "vins_origin_n2": 2.2211083458763814
+      },
+      "guard_frames": {
+        "openvins_physical": 122,
+        "openvins_physical_n2": 122,
+        "openvins_origin_n2": 121,
+        "vins_physical": 19,
+        "vins_physical_n2": 19,
+        "vins_origin_n2": 18
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-143-02",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-143",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.7708223282387942,
+        "openvins_physical": 2.4707700786576057,
+        "openvins_physical_n2": 2.0452458403927682,
+        "openvins_origin_n2": 2.1529734158245692,
+        "vins": 0.5229128529749616,
+        "vins_physical": 2.2736120156827138,
+        "vins_physical_n2": 2.210442072219905,
+        "vins_origin_n2": 2.077113671642109
+      },
+      "guard_frames": {
+        "openvins_physical": 22,
+        "openvins_physical_n2": 22,
+        "openvins_origin_n2": 21,
+        "vins_physical": 3,
+        "vins_physical_n2": 3,
+        "vins_origin_n2": 2
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-151-00",
+      "tags": {
+        "group": "clean",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-151",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 2.8585322440213146,
+        "openvins_physical": 10.647754070613793,
+        "openvins_physical_n2": 4.696854492653026,
+        "openvins_origin_n2": 4.80932685789844,
+        "vins": 1.3958339482497986,
+        "vins_physical": 5.0452949363191815,
+        "vins_physical_n2": 4.450793751098183,
+        "vins_origin_n2": 4.217590605054202
+      },
+      "guard_frames": {
+        "openvins_physical": 355,
+        "openvins_physical_n2": 1127,
+        "openvins_origin_n2": 1126,
+        "vins_physical": 41,
+        "vins_physical_n2": 41,
+        "vins_origin_n2": 40
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-151-07",
+      "tags": {
+        "group": "clean",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-151",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 533.2491637784981,
+        "openvins_physical": 3.8248612430369344,
+        "openvins_physical_n2": 3.4943993536768128,
+        "openvins_origin_n2": 2.836154840702015,
+        "vins": 0.8736941902279615,
+        "vins_physical": 3.483979528333098,
+        "vins_physical_n2": 3.093125716975629,
+        "vins_origin_n2": 2.080009230220204
+      },
+      "guard_frames": {
+        "openvins_physical": 815,
+        "openvins_physical_n2": 815,
+        "openvins_origin_n2": 814,
+        "vins_physical": 25,
+        "vins_physical_n2": 25,
+        "vins_origin_n2": 24
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-151-08",
+      "tags": {
+        "group": "clean",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-151",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 62.38235757244681,
+        "openvins_physical": 2.0214443131129145,
+        "openvins_physical_n2": 2.4163620581181346,
+        "openvins_origin_n2": 3.671571883235834,
+        "vins": 0.2873585110381576,
+        "vins_physical": 2.5782686463513276,
+        "vins_physical_n2": 2.0622730476304065,
+        "vins_origin_n2": 1.7307380658651768
+      },
+      "guard_frames": {
+        "openvins_physical": 212,
+        "openvins_physical_n2": 212,
+        "openvins_origin_n2": 211,
+        "vins_physical": 26,
+        "vins_physical_n2": 26,
+        "vins_origin_n2": 25
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-151-10",
+      "tags": {
+        "group": "clean",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-151",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 82.04248864293967,
+        "openvins_physical": 2.4021802923876225,
+        "openvins_physical_n2": 2.1072767329254978,
+        "openvins_origin_n2": 2.1405826885312345,
+        "vins": 0.568581781830229,
+        "vins_physical": 0.5685817818302642,
+        "vins_physical_n2": 0.5685817818302642,
+        "vins_origin_n2": 0.5919433920320559
+      },
+      "guard_frames": {
+        "openvins_physical": 173,
+        "openvins_physical_n2": 173,
+        "openvins_origin_n2": 172,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-154-09",
+      "tags": {
+        "group": "clean",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-154",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 4.356841945417592,
+        "openvins_physical": 3.1702443238773,
+        "openvins_physical_n2": 3.013502208022863,
+        "openvins_origin_n2": 2.917115570303976,
+        "vins": 1.9986517103314003,
+        "vins_physical": 3.5640247376253495,
+        "vins_physical_n2": 3.3616587526368717,
+        "vins_origin_n2": 3.1612209793385513
+      },
+      "guard_frames": {
+        "openvins_physical": 48,
+        "openvins_physical_n2": 48,
+        "openvins_origin_n2": 47,
+        "vins_physical": 15,
+        "vins_physical_n2": 15,
+        "vins_origin_n2": 14
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-158-03",
+      "tags": {
+        "group": "clean",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-158",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 2.4343262311944134,
+        "openvins_physical": 4.929008206360902,
+        "openvins_physical_n2": 3.97829518307261,
+        "openvins_origin_n2": 4.64530985888705,
+        "vins": 0.5075731577673027,
+        "vins_physical": 2.6956362692397557,
+        "vins_physical_n2": 2.57127623376264,
+        "vins_origin_n2": 2.089576532841219
+      },
+      "guard_frames": {
+        "openvins_physical": 153,
+        "openvins_physical_n2": 156,
+        "openvins_origin_n2": 155,
+        "vins_physical": 19,
+        "vins_physical_n2": 19,
+        "vins_origin_n2": 18
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-158-05",
+      "tags": {
+        "group": "clean",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-158",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 1.18334719882701,
+        "openvins_physical": 4.460870757581173,
+        "openvins_physical_n2": 2.153457347069206,
+        "openvins_origin_n2": 2.112423645184845,
+        "vins": 5.507360011574427,
+        "vins_physical": 5.854859076903017,
+        "vins_physical_n2": 7.22234455222533,
+        "vins_origin_n2": 6.701752904913665
+      },
+      "guard_frames": {
+        "openvins_physical": 83,
+        "openvins_physical_n2": 1145,
+        "openvins_origin_n2": 1144,
+        "vins_physical": 3,
+        "vins_physical_n2": 930,
+        "vins_origin_n2": 930
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-158-07",
+      "tags": {
+        "group": "clean",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-158",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 3.955075156666115,
+        "openvins_physical": 6.582676513834759,
+        "openvins_physical_n2": 6.377568796706876,
+        "openvins_origin_n2": 5.1401540040444385,
+        "vins": 6.491493453381391,
+        "vins_physical": 3.9937603221721516,
+        "vins_physical_n2": 3.9733536864244208,
+        "vins_origin_n2": 3.034517945789289
+      },
+      "guard_frames": {
+        "openvins_physical": 80,
+        "openvins_physical_n2": 80,
+        "openvins_origin_n2": 79,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-160-04",
+      "tags": {
+        "group": "clean",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-160",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 2.562632941679624,
+        "openvins_physical": 5.888439385377537,
+        "openvins_physical_n2": 5.604295541953114,
+        "openvins_origin_n2": 5.399695112196317,
+        "vins": 1.0222774916696247,
+        "vins_physical": 1.9814041379373002,
+        "vins_physical_n2": 1.9546007391090665,
+        "vins_origin_n2": 1.484878945365506
+      },
+      "guard_frames": {
+        "openvins_physical": 159,
+        "openvins_physical_n2": 359,
+        "openvins_origin_n2": 358,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-167-02",
+      "tags": {
+        "group": "dev",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-167",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 48.51766850731848,
+        "openvins_physical": 4.009254813262048,
+        "openvins_physical_n2": 4.15026209037108,
+        "openvins_origin_n2": 4.183593327613469,
+        "vins": 116.28324755514257,
+        "vins_physical": 12.44744515046178,
+        "vins_physical_n2": 6.286906111886589,
+        "vins_origin_n2": 6.194069637120294
+      },
+      "guard_frames": {
+        "openvins_physical": 152,
+        "openvins_physical_n2": 152,
+        "openvins_origin_n2": 151,
+        "vins_physical": 270,
+        "vins_physical_n2": 1127,
+        "vins_origin_n2": 1127
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-167-04",
+      "tags": {
+        "group": "dev",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-167",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 194.19121045617675,
+        "openvins_physical": 3.7027485363496226,
+        "openvins_physical_n2": 3.722443779700258,
+        "openvins_origin_n2": 4.305666185532452,
+        "vins": 3.1721573535913574,
+        "vins_physical": 4.087777671167223,
+        "vins_physical_n2": 3.9964747536028753,
+        "vins_origin_n2": 3.613760116539189
+      },
+      "guard_frames": {
+        "openvins_physical": 184,
+        "openvins_physical_n2": 184,
+        "openvins_origin_n2": 183,
+        "vins_physical": 105,
+        "vins_physical_n2": 105,
+        "vins_origin_n2": 104
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-169-02",
+      "tags": {
+        "group": "dev",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-169",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.8773333138845893,
+        "openvins_physical": 5.188127581687041,
+        "openvins_physical_n2": 4.605885707690809,
+        "openvins_origin_n2": 4.189596193734094,
+        "vins": 1.9400498694311454,
+        "vins_physical": 2.565135069010701,
+        "vins_physical_n2": 2.563268097980459,
+        "vins_origin_n2": 1.8694860807039428
+      },
+      "guard_frames": {
+        "openvins_physical": 74,
+        "openvins_physical_n2": 74,
+        "openvins_origin_n2": 73,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-170-03",
+      "tags": {
+        "group": "dev",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-170",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.6136029126647452,
+        "openvins_physical": 0.6136029126647476,
+        "openvins_physical_n2": 0.6136029126647476,
+        "openvins_origin_n2": 0.587892416170298,
+        "vins": 0.670296942327981,
+        "vins_physical": 2.7940652618267157,
+        "vins_physical_n2": 2.2721319092150534,
+        "vins_origin_n2": 2.3202473752946955
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 30,
+        "vins_physical_n2": 30,
+        "vins_origin_n2": 29
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-170-05",
+      "tags": {
+        "group": "dev",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-170",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.4182337498193515,
+        "openvins_physical": 4.1728899842532226,
+        "openvins_physical_n2": 3.5492953828456075,
+        "openvins_origin_n2": 3.530872822164836,
+        "vins": 0.4848755864537661,
+        "vins_physical": 4.598632567544713,
+        "vins_physical_n2": 4.076839952827409,
+        "vins_origin_n2": 3.9927673068003426
+      },
+      "guard_frames": {
+        "openvins_physical": 37,
+        "openvins_physical_n2": 37,
+        "openvins_origin_n2": 36,
+        "vins_physical": 20,
+        "vins_physical_n2": 20,
+        "vins_origin_n2": 19
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-177-00",
+      "tags": {
+        "group": "clean",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-177",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 4.517919686878715,
+        "openvins_physical": 1.6704104780899667,
+        "openvins_physical_n2": 1.9144854053937839,
+        "openvins_origin_n2": 1.7221047093935506,
+        "vins": 13.138439918043874,
+        "vins_physical": 2.720750635319015,
+        "vins_physical_n2": 2.703943927245388,
+        "vins_origin_n2": 2.584269893870009
+      },
+      "guard_frames": {
+        "openvins_physical": 84,
+        "openvins_physical_n2": 84,
+        "openvins_origin_n2": 83,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-177-07",
+      "tags": {
+        "group": "clean",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-177",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.5084216240979538,
+        "openvins_physical": 0.7941751217613984,
+        "openvins_physical_n2": 0.7766504999165068,
+        "openvins_origin_n2": 0.7625905631147909,
+        "vins": 1.2821819270959305,
+        "vins_physical": 1.5373178760825883,
+        "vins_physical_n2": 1.4309870255559483,
+        "vins_origin_n2": 1.0905178755742648
+      },
+      "guard_frames": {
+        "openvins_physical": 9,
+        "openvins_physical_n2": 9,
+        "openvins_origin_n2": 8,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-178-01",
+      "tags": {
+        "group": "clean",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-178",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 1.584665207804615,
+        "openvins_physical": 4.247603472651199,
+        "openvins_physical_n2": 3.6696486176313425,
+        "openvins_origin_n2": 3.0989367301983126,
+        "vins": 5.690794894661722,
+        "vins_physical": 5.12766695154404,
+        "vins_physical_n2": 5.0781063246965585,
+        "vins_origin_n2": 4.181690893950928
+      },
+      "guard_frames": {
+        "openvins_physical": 36,
+        "openvins_physical_n2": 36,
+        "openvins_origin_n2": 35,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-191-02",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-191",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 2.075978466972432,
+        "openvins_physical": 7.608361249779469,
+        "openvins_physical_n2": 7.113162625515623,
+        "openvins_origin_n2": 7.086367908896863,
+        "vins": 0.8690156124821481,
+        "vins_physical": 1.259719457632171,
+        "vins_physical_n2": 1.3425905678275356,
+        "vins_origin_n2": 0.9824269708032638
+      },
+      "guard_frames": {
+        "openvins_physical": 205,
+        "openvins_physical_n2": 551,
+        "openvins_origin_n2": 550,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-3-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-3",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 3.276320659837502,
+        "openvins_physical": 3.3399177310840718,
+        "openvins_physical_n2": 3.3358872420369083,
+        "openvins_origin_n2": 2.483251751802423,
+        "vins": 4.216321127299539,
+        "vins_physical": 2.177064993449048,
+        "vins_physical_n2": 2.154384307111769,
+        "vins_origin_n2": 1.8674146538294705
+      },
+      "guard_frames": {
+        "openvins_physical": 5,
+        "openvins_physical_n2": 6,
+        "openvins_origin_n2": 5,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-5-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-5",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.9735803974845113,
+        "openvins_physical": 4.829194609119786,
+        "openvins_physical_n2": 4.16224129352591,
+        "openvins_origin_n2": 3.7804511174765905,
+        "vins": 2.8783748411866563,
+        "vins_physical": 3.8526944177557625,
+        "vins_physical_n2": 3.810639615494476,
+        "vins_origin_n2": 3.0694724919420944
+      },
+      "guard_frames": {
+        "openvins_physical": 50,
+        "openvins_physical_n2": 50,
+        "openvins_origin_n2": 49,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-5-02",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-5",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.46990924927333255,
+        "openvins_physical": 0.4699092492734279,
+        "openvins_physical_n2": 0.4699092492734279,
+        "openvins_origin_n2": 0.4009617455678801,
+        "vins": 1.1159385819699992,
+        "vins_physical": 1.1159385819701257,
+        "vins_physical_n2": 1.1159385819701257,
+        "vins_origin_n2": 0.9332429368530885
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-57-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-57",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 16.896369634415542,
+        "openvins_physical": 3.317550708976701,
+        "openvins_physical_n2": 3.837798012845958,
+        "openvins_origin_n2": 3.1838758775333837,
+        "vins": 1.1629173658804424,
+        "vins_physical": 4.184889064501987,
+        "vins_physical_n2": 4.203114084626236,
+        "vins_origin_n2": 3.335728605252441
+      },
+      "guard_frames": {
+        "openvins_physical": 180,
+        "openvins_physical_n2": 180,
+        "openvins_origin_n2": 179,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-57-02",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-57",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 2.833111310842795,
+        "openvins_physical": 3.752962152527179,
+        "openvins_physical_n2": 4.8420163132091645,
+        "openvins_origin_n2": 4.953504076550787,
+        "vins": 2.490570432696563,
+        "vins_physical": 3.2564205632648147,
+        "vins_physical_n2": 3.9817026025833875,
+        "vins_origin_n2": 3.5141328671412286
+      },
+      "guard_frames": {
+        "openvins_physical": 141,
+        "openvins_physical_n2": 606,
+        "openvins_origin_n2": 605,
+        "vins_physical": 46,
+        "vins_physical_n2": 1052,
+        "vins_origin_n2": 1051
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-59-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-59",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.2892857319273045,
+        "openvins_physical": 0.7352228798813568,
+        "openvins_physical_n2": 0.608480627222247,
+        "openvins_origin_n2": 0.757041880982716,
+        "vins": 0.7663354311884945,
+        "vins_physical": 1.7298221583835003,
+        "vins_physical_n2": 1.7274661978563897,
+        "vins_origin_n2": 1.8560927550203905
+      },
+      "guard_frames": {
+        "openvins_physical": 12,
+        "openvins_physical_n2": 12,
+        "openvins_origin_n2": 11,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-65-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-65",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 2.887693917551826,
+        "openvins_physical": 10.145806106691717,
+        "openvins_physical_n2": 3.5404720529031515,
+        "openvins_origin_n2": 2.9871778768957897,
+        "vins": 1.9430956947677045,
+        "vins_physical": 2.5502527811875204,
+        "vins_physical_n2": 2.4644803062347593,
+        "vins_origin_n2": 1.8903040489094034
+      },
+      "guard_frames": {
+        "openvins_physical": 225,
+        "openvins_physical_n2": 1074,
+        "openvins_origin_n2": 1073,
+        "vins_physical": 5,
+        "vins_physical_n2": 5,
+        "vins_origin_n2": 4
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-65-02",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-65",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 31.63043912732657,
+        "openvins_physical": 2.5718420248055915,
+        "openvins_physical_n2": 2.1453758604594477,
+        "openvins_origin_n2": 2.29375294313696,
+        "vins": 0.8565389224658276,
+        "vins_physical": 2.166999844625567,
+        "vins_physical_n2": 2.0142033550588003,
+        "vins_origin_n2": 1.4176826922244676
+      },
+      "guard_frames": {
+        "openvins_physical": 243,
+        "openvins_physical_n2": 595,
+        "openvins_origin_n2": 594,
+        "vins_physical": 8,
+        "vins_physical_n2": 8,
+        "vins_origin_n2": 7
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-71-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-71",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.40912565408875634,
+        "openvins_physical": 3.4431973000240648,
+        "openvins_physical_n2": 2.454769108184971,
+        "openvins_origin_n2": 2.510386235869606,
+        "vins": 1.8890473874958162,
+        "vins_physical": 1.889047387495921,
+        "vins_physical_n2": 1.889047387495921,
+        "vins_origin_n2": 1.6648257788853278
+      },
+      "guard_frames": {
+        "openvins_physical": 97,
+        "openvins_physical_n2": 97,
+        "openvins_origin_n2": 96,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-71-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-71",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.5046985021963437,
+        "openvins_physical": 2.710153454623782,
+        "openvins_physical_n2": 2.1571542588650687,
+        "openvins_origin_n2": 1.7809449609559707,
+        "vins": 1.9721332840317836,
+        "vins_physical": 2.3406144100661113,
+        "vins_physical_n2": 2.292941152134443,
+        "vins_origin_n2": 1.7738641658914618
+      },
+      "guard_frames": {
+        "openvins_physical": 35,
+        "openvins_physical_n2": 35,
+        "openvins_origin_n2": 34,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-71-02",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-71",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.3992497411939406,
+        "openvins_physical": 0.39924974119396156,
+        "openvins_physical_n2": 0.39924974119396156,
+        "openvins_origin_n2": 0.2988485021797734,
+        "vins": 0.3166166539176444,
+        "vins_physical": 5.491558044736099,
+        "vins_physical_n2": 4.973279107964063,
+        "vins_origin_n2": 4.269175348730115
+      },
+      "guard_frames": {
+        "openvins_physical": 0,
+        "openvins_physical_n2": 0,
+        "openvins_origin_n2": 0,
+        "vins_physical": 59,
+        "vins_physical_n2": 59,
+        "vins_origin_n2": 58
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-72-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-72",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 1.7154591056726132,
+        "openvins_physical": 7.845623544144978,
+        "openvins_physical_n2": 6.769806206234444,
+        "openvins_origin_n2": 6.295401274691855,
+        "vins": 1.1050450843461155,
+        "vins_physical": 4.971339419701496,
+        "vins_physical_n2": 4.245870375162502,
+        "vins_origin_n2": 3.6449702128087726
+      },
+      "guard_frames": {
+        "openvins_physical": 158,
+        "openvins_physical_n2": 442,
+        "openvins_origin_n2": 441,
+        "vins_physical": 30,
+        "vins_physical_n2": 30,
+        "vins_origin_n2": 29
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-72-02",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-72",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 1047.0947926292274,
+        "openvins_physical": 4.515451549931126,
+        "openvins_physical_n2": 2.962401549433122,
+        "openvins_origin_n2": 3.1116456617107273,
+        "vins": 1.4092699826810027,
+        "vins_physical": 2.074678265730118,
+        "vins_physical_n2": 1.6898582515066842,
+        "vins_origin_n2": 1.3603802647902137
+      },
+      "guard_frames": {
+        "openvins_physical": 1123,
+        "openvins_physical_n2": 1123,
+        "openvins_origin_n2": 1122,
+        "vins_physical": 41,
+        "vins_physical_n2": 41,
+        "vins_origin_n2": 40
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-82-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-82",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.47720820353902205,
+        "openvins_physical": 5.416764069588935,
+        "openvins_physical_n2": 4.972681089564427,
+        "openvins_origin_n2": 4.638393629645671,
+        "vins": 1.4501898952752355,
+        "vins_physical": 4.035694194643213,
+        "vins_physical_n2": 3.9931730870534574,
+        "vins_origin_n2": 3.169446235563289
+      },
+      "guard_frames": {
+        "openvins_physical": 63,
+        "openvins_physical_n2": 63,
+        "openvins_origin_n2": 62,
+        "vins_physical": 2,
+        "vins_physical_n2": 2,
+        "vins_origin_n2": 1
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-91-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-91",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.36235359576149023,
+        "openvins_physical": 4.8966029098838755,
+        "openvins_physical_n2": 3.678125702352211,
+        "openvins_origin_n2": 3.1395782338563243,
+        "vins": 1.4373396857091199,
+        "vins_physical": 1.4373396857090999,
+        "vins_physical_n2": 1.4373396857090999,
+        "vins_origin_n2": 1.8031970144312293
+      },
+      "guard_frames": {
+        "openvins_physical": 129,
+        "openvins_physical_n2": 129,
+        "openvins_origin_n2": 128,
+        "vins_physical": 0,
+        "vins_physical_n2": 0,
+        "vins_origin_n2": 0
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-97-00",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-97",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.9800607130495852,
+        "openvins_physical": 6.021122008201243,
+        "openvins_physical_n2": 6.244494764978704,
+        "openvins_origin_n2": 5.855197774269067,
+        "vins": 0.29285444965108237,
+        "vins_physical": 3.5679727014945914,
+        "vins_physical_n2": 3.0487407661522585,
+        "vins_origin_n2": 2.664450016138956
+      },
+      "guard_frames": {
+        "openvins_physical": 57,
+        "openvins_physical_n2": 57,
+        "openvins_origin_n2": 56,
+        "vins_physical": 23,
+        "vins_physical_n2": 23,
+        "vins_origin_n2": 22
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-97-02",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-97",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.6064263898316365,
+        "openvins_physical": 1.860271465880867,
+        "openvins_physical_n2": 1.5762565362256113,
+        "openvins_origin_n2": 1.1351075143282734,
+        "vins": 0.6214150322153585,
+        "vins_physical": 2.5449260290130877,
+        "vins_physical_n2": 2.335971747490171,
+        "vins_origin_n2": 1.8492178331893663
+      },
+      "guard_frames": {
+        "openvins_physical": 15,
+        "openvins_physical_n2": 15,
+        "openvins_origin_n2": 14,
+        "vins_physical": 10,
+        "vins_physical_n2": 10,
+        "vins_origin_n2": 9
+      }
+    },
+    {
+      "episode": "fastmid-ProcTHOR-Train-98-01",
+      "tags": {
+        "group": "seen",
+        "catalog": "procthor",
+        "scene": "ProcTHOR-Train-98",
+        "start_type": "mid",
+        "source_pool": "raw-fast"
+      },
+      "ate": {
+        "openvins": 0.22652011666500774,
+        "openvins_physical": 1.0884901383152281,
+        "openvins_physical_n2": 0.948742874923293,
+        "openvins_origin_n2": 1.0289004480541466,
+        "vins": 0.32914966852577165,
+        "vins_physical": 1.3797389064869432,
+        "vins_physical_n2": 1.3831343742139421,
+        "vins_origin_n2": 1.5061147389444118
+      },
+      "guard_frames": {
+        "openvins_physical": 19,
+        "openvins_physical_n2": 19,
+        "openvins_origin_n2": 18,
+        "vins_physical": 1,
+        "vins_physical_n2": 1,
+        "vins_origin_n2": 0
+      }
+    }
+  ]
+}

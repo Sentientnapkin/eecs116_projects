@@ -1,0 +1,26 @@
+{
+  "protocol_version": 1,
+  "state": "complete",
+  "objective": "Test low-budget interaction between GOV_B and R5 observation decimation on complete verified screen24, with exact current flags and full-current reference.",
+  "source_sha256": "b09f81004e37646f32df6f5ba9f0e802ee2a1b9a9caa6b94caf2164c0a37a777",
+  "full_current_reference_sha256": "1a169f28916acd813f86a7b526efb8e8b646b3dda73e48cba51b12845c69b1b8",
+  "inputs": "/tmp/vio_loop2/shared/inputs.ready",
+  "arms": [
+    "gov21_0",
+    "gov21_4",
+    "gov27_0",
+    "gov27_4"
+  ],
+  "budget_fuel_controls": "At each GOV_B, DEC0 arm is paired budget control for its DEC4 treatment",
+  "full_reference": "shared screen24_baseline.json at full current GOV_B",
+  "workers": 4,
+  "gpu": false,
+  "wall_timeout_seconds": 7200,
+  "task_output": "/tmp/vio_loop3/efficient_round2",
+  "bulk_output": "/dev/shm/vio_loop3/efficient_round2",
+  "bulk_limit_bytes": 1000000000,
+  "conditional_confirmation": "Only if complete screen shows raw paired mean ATE no worse than its same-budget DEC0 control and lower max peak fuel; confirm48 then separately evaluate Pareto relative to full current.",
+  "confirmation_decision": "not run: no DEC4 arm produced lower max peak fuel than its same-budget DEC0 control, and ATE did not improve",
+  "review_needed": "Check low-budget absolute ATE regression versus full-current reference before considering any further budget/decimation work; no promotion or validation confirmation warranted.",
+  "results": "results.json"
+}

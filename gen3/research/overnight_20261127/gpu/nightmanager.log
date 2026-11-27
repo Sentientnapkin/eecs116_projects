@@ -1,0 +1,9 @@
+{"utc": "2026-11-27T09:56:08.433311+00:00", "message": "start seed4_small K2, seed=4, list=train727.txt, remaining=21831s"}
+{"utc": "2026-11-27T10:04:35.585857+00:00", "message": "{\"stage\": \"seed4_small\", \"seed\": 4, \"K\": 2, \"returncode\": 0, \"complete\": true, \"remaining_seconds\": 21324}"}
+{"utc": "2026-11-27T10:04:35.588437+00:00", "message": "start seed4_small K5, seed=4, list=train727.txt, remaining=21324s"}
+{"utc": "2026-11-27T10:21:05.357821+00:00", "message": "{\"stage\": \"seed4_small\", \"seed\": 4, \"K\": 5, \"returncode\": 0, \"complete\": true, \"remaining_seconds\": 20334}"}
+{"utc": "2026-11-27T10:21:05.360314+00:00", "message": "start seed5_large K2, seed=5, list=trainall1.txt, remaining=20334s"}
+{"utc": "2026-11-27T10:30:26.559241+00:00", "message": "{\"stage\": \"seed5_large\", \"seed\": 5, \"K\": 2, \"returncode\": 0, \"complete\": true, \"remaining_seconds\": 19773}"}
+{"utc": "2026-11-27T10:30:26.560942+00:00", "message": "start seed5_large K5, seed=5, list=trainall1.txt, remaining=19773s"}
+{"utc": "2026-11-27T10:48:39.514377+00:00", "message": "{\"stage\": \"seed5_large\", \"seed\": 5, \"K\": 5, \"returncode\": 0, \"complete\": true, \"remaining_seconds\": 18680}"}
+{"utc": "2026-11-27T10:48:39.515227+00:00", "message": "cutoff/incomplete queue; no completion marker"}

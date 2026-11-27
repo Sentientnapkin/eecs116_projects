@@ -1,5 +1,5 @@
 """Resumable AMP/DDP+EMA teacher or truth/KD/scale/hint student training."""
-import argparse,copy,json,math,os,time,random
+import argparse,copy,json,math,os,time,random,resource
 from pathlib import Path
 import numpy as np
 import torch
@@ -28,6 +28,7 @@ def evaluate(m,val,dev):
 
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--name',required=True,choices=CONFIGS);ap.add_argument('--out',required=True);ap.add_argument('--hours',type=float,required=True);ap.add_argument('--reset-clock',action='store_true');ap.add_argument('--reset-best',action='store_true');ap.add_argument('--teacher');ap.add_argument('--resume');ap.add_argument('--seed',type=int,default=7301);ap.add_argument('--bs',type=int,default=64);ap.add_argument('--workers',type=int,default=4);ap.add_argument('--eval-every',type=int,default=2000);ap.add_argument('--max-steps',type=int,default=10000000);a=ap.parse_args()
+ soft,hard=resource.getrlimit(resource.RLIMIT_NOFILE);resource.setrlimit(resource.RLIMIT_NOFILE,(min(65536,hard),hard))
  rank=int(os.environ.get('RANK',0));local=int(os.environ.get('LOCAL_RANK',0));world=int(os.environ.get('WORLD_SIZE',1));dev=f'cuda:{local}';torch.cuda.set_device(local);torch.set_num_threads(1)
  if world>1:torch.distributed.init_process_group('nccl')
  torch.manual_seed(a.seed+rank);np.random.seed(a.seed+rank);random.seed(a.seed+rank);torch.backends.cudnn.benchmark=True
@@ -67,7 +68,7 @@ def main():
   with torch.no_grad():
    for p,q in zip(ema.parameters(),raw.parameters()):p.lerp_(q.detach(),.001)
    for p,q in zip(ema.buffers(),raw.buffers()):p.copy_(q)
-  smooth=float(loss) if smooth is None else .98*smooth+.02*float(loss)
+  smooth=float(loss.detach()) if smooth is None else .98*smooth+.02*float(loss.detach())
   done=age>=a.hours*3600 or step>=a.max_steps
   if rank==0 and step%200==0:print(f'step {step} loss {smooth:.5f} lr {lr:.3g} hours {age/3600:.4f}',flush=True)
   if step%a.eval_every==0 or done:

@@ -1,0 +1,27 @@
+{
+  "cutoff_utc": "2026-11-27T16:00:00Z",
+  "cutoff_pacific": "2026-11-27 08:00 PST",
+  "report_utc": [
+    "12:00",
+    "14:00",
+    "16:00"
+  ],
+  "report_pacific": [
+    "04:00",
+    "06:00",
+    "08:00"
+  ],
+  "report_delivery": "local files only; no supported proactive chat scheduler",
+  "model_policy": "Luna for bounded setup/reviews; detached scripts perform compute",
+  "gpu_curriculum": "matched 100-epoch K2/K5 on 727 then 2868 train flights; conditional 200-epoch wider K2/K5 pair only if larger-data K5 clears predefined validation gate and >=4h remains",
+  "classical": "matched current-source causal MSCKF capacity screen and independent confirmation; no confirmed gain, now completed",
+  "supervision": "bounded multiclass metric-depth dataset pilot on GPU5 after successful real render smoke",
+  "oracles": "current-best body-velocity oracle port must pass byte-identical OR0 and output-identical disabled controls, otherwise report blocked prerequisite",
+  "constraints": [
+    "600GB local dataset cap",
+    "HF bounded downloads",
+    "no hidden evaluator submission",
+    "current best immutable",
+    "no deployment promotion from standalone validation"
+  ]
+}

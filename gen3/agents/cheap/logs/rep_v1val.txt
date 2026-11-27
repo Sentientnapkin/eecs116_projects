@@ -1,0 +1,6 @@
+pool v1val, flights in common 120
+net_auto_727_sp10    raw 0.653 sw 0.615 med 0.545 >3m   0 | ro 0.336 wa 1.025 fo 0.898 | d_goats -3.149 [-3.882,-2.474] | peak 4.44M p95 2.95M | est pts vs best +0.00
+cg_goats             raw 3.802 sw 3.374 med 1.302 >3m  54 | ro 0.673 wa 5.616 fo 7.926 | d_goats +0.000 [+0.000,+0.000] | peak 0.42M p95 0.37M | est pts vs best -2.83
+cg_bAll              raw 3.109 sw 2.739 med 1.301 >3m  49 | ro 0.488 wa 4.415 fo 6.759 | d_goats -0.693 [-1.029,-0.388] | peak 0.59M p95 0.51M | est pts vs best -2.51
+cg_aN6               raw 3.238 sw 3.046 med 2.048 >3m  50 | ro 0.616 wa 5.088 fo 6.395 | d_goats -0.564 [-0.973,-0.190] | peak 1.24M p95 1.14M | est pts vs best -3.04
+cg_cAll6             raw 3.093 sw 2.861 med 1.546 >3m  52 | ro 0.470 wa 4.680 fo 6.489 | d_goats -0.709 [-1.130,-0.320] | peak 1.41M p95 1.21M | est pts vs best -2.95

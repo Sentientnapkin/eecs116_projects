@@ -1,0 +1,65 @@
+21:44:57 start s3v3va-ro-9300044
+hyperlux: preparing renderer (OPTIX); downloading build dependencies if needed...
+hyperlux: compiling renderer core (OPTIX)...
+#rl_tools::hyperlux::datasets: Loaded assembly with 236 part(s)
+hyperlux: compiling renderer configuration (OPTIX)...
+#rl_tools::hyperlux: backend=optix
+hyperlux: compiling renderer configuration (OPTIX)...
+#rl_tools::hyperlux: backend=optix
+hyperlux: compiling renderer configuration (OPTIX)...
+#rl_tools::hyperlux: backend=optix
+hyperlux: compiling renderer configuration (OPTIX)...
+#rl_tools::hyperlux: backend=optix
+hyperlux: compiling renderer configuration (OPTIX)...
+#rl_tools::hyperlux: backend=optix
+	User time (seconds): 337.38
+	System time (seconds): 51.34
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 4:30.28
+	Maximum resident set size (kbytes): 1750636
+21:49:27 end s3v3va-ro-9300044
+21:49:27 start s3v3va-wa-9300318
+#rl_tools::hyperlux::datasets: Loaded assembly with 272 part(s)
+#rl_tools::hyperlux: backend=optix
+#rl_tools::hyperlux: backend=optix
+#rl_tools::hyperlux: backend=optix
+#rl_tools::hyperlux: backend=optix
+#rl_tools::hyperlux: backend=optix
+	User time (seconds): 46.28
+	System time (seconds): 15.87
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:56.31
+	Maximum resident set size (kbytes): 1159904
+21:50:24 end s3v3va-wa-9300318
+21:50:24 start s3v3va-fo-9300459
+conta: refreshing the index from https://conta.rl.tools/version/1/meta.json
+conta: refreshing the index from https://raw.githubusercontent.com/rl-tools/conta-index/main/version/1/meta.json
+Traceback (most recent call last):
+    test(sys.argv[1], sys.argv[2])
+    t0 = time.time(); path = conta.resolve(F.scene); sc = hyperlux.load_scene(path, fidelity='high', preserve_instances=True); res['scene_load_s'] = time.time()-t0
+                             ^^^^^^^^^^^^^^^^^^^^^^
+    return _acquire_one(config, _Session(_wanted([reference])), reference)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    raise ContaError(_failure_message(session, sha1, report))
+conta.ContaError: conta: cannot resolve 87f1223919fee81a3dcd8ea1407f8905237f0e4c, which no reachable index lists
+  /data/backups/rganapa/Sebastian/gen/conta/index-1.json: does not list it
+  https://conta.rl.tools/version/1/meta.json: serves the index already searched
+  https://raw.githubusercontent.com/rl-tools/conta-index/main/version/1/meta.json: serves the index already searched
+A copy you already have works with CONTA_SEARCH_PATH=<directory> holding it as 87f1223919fee81a3dcd8ea1407f8905237f0e4c or 87f1223919fee81a3dcd8ea1407f8905237f0e4c.gz.
+	User time (seconds): 0.69
+	System time (seconds): 0.28
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.80
+	Maximum resident set size (kbytes): 62368
+21:50:24 end s3v3va-fo-9300459
+21:50:24 start s3v3va-fo-9300452
+#rl_tools::hyperlux::datasets: Loaded assembly with 808 part(s)
+#rl_tools::hyperlux: backend=optix
+/data/backups/rganapa/Sebastian/gen3/research/i5/rr.py:91: RuntimeWarning: invalid value encountered in matmul
+  Rc1, pc1 = F.cam_world(F.ft[i]); Rc0, pc0 = F.cam_world(F.ft[i-1]); d = D[j].reshape(-1).astype(float); ok = np.isfinite(d) & (d > 0)
+#rl_tools::hyperlux: backend=optix
+#rl_tools::hyperlux: backend=optix
+#rl_tools::hyperlux: backend=optix
+#rl_tools::hyperlux: backend=optix
+	User time (seconds): 145.11
+	System time (seconds): 19.37
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:40.45
+	Maximum resident set size (kbytes): 2638988
+21:53:05 end s3v3va-fo-9300452

@@ -1,0 +1,5 @@
+{
+  "utc": "2026-11-27T16:00:05.155100+00:00",
+  "terminated_owned_gpu_processes": [],
+  "note": "Only explicitly owned overnight GPU commands matched; no other user jobs were stopped. Last checkpoints may represent incomplete experiments."
+}

@@ -1,0 +1,7 @@
+30 episodes, 0 cached, workers=14 (no video)
+20/30 finished, 26.3s
+30/30 finished, 36.0s
+nv2_eqref nv2sub30 n 30 / 30 mean ATE 0.978 median 0.973 >3m 0
+  setting_class {'forest': '0.954 (n=8)', 'room': '0.609 (n=12)', 'warehouse': '1.440 (n=10)'}
+  regime {'benchmark': '0.755 (n=11)', 'free-yaw': '1.107 (n=19)'}
+  start {'hover': '1.206 (n=13)', 'mid-flight': '0.804 (n=17)'}

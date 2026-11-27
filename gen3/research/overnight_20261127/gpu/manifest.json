@@ -1,0 +1,31 @@
+{
+  "deadline_utc": "2026-11-27T16:00:00Z",
+  "gpu": "7 only",
+  "stages": [
+    {
+      "name": "seed4_small",
+      "seed": 4,
+      "train_list": "train727.txt",
+      "arms": [
+        2,
+        5
+      ],
+      "epochs": 100,
+      "steps_per_epoch": 400,
+      "batch_size": 256
+    },
+    {
+      "name": "seed5_large",
+      "seed": 5,
+      "train_list": "trainall1.txt",
+      "arms": [
+        2,
+        5
+      ],
+      "epochs": 100,
+      "steps_per_epoch": 400,
+      "batch_size": 256
+    }
+  ],
+  "notes": "Existing caches only; matched K2/K5 pairs; common validation anchors pos>=3; CPU threads=2. Seed is applied before smoke/model init and reset before run. Output checkpoints live in /dev/shm; final model and prediction summaries copied here."
+}

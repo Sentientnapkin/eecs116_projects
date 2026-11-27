@@ -1,0 +1,7 @@
+24 episodes, 24 cached, workers=14 (no video)
+20/24 finished, 3.0s
+24/24 finished, 3.3s
+tw_gslvlj twin24 n 24 / 24 mean ATE 1.433 median 1.107 >3m 3
+  setting_class {'forest': '2.923 (n=6)', 'room': '0.678 (n=12)', 'warehouse': '1.455 (n=6)'}
+  regime {'benchmark': '1.057 (n=7)', 'free-yaw': '1.588 (n=17)'}
+  start {'hover': '0.919 (n=4)', 'mid-flight': '1.536 (n=20)'}

@@ -1,0 +1,1 @@
+NET_SIG=0.6 RG=3e-3f RA=3e-3f

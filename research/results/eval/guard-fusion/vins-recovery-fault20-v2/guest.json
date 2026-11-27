@@ -1,0 +1,9 @@
+{
+ "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/guard_fusion/vio/artifacts/vins_recovery_fault20_v2.wasm",
+ "sha256": "d2bf4be8b92f053e213dee9bac5b1c2ad0bfb5ea8092d79785f788afd430fe1b",
+ "evaluator_src": "/dev/shm/sebastian-vio/viobench",
+ "archives": [
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fast-106366104_174226329-01.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fast-ProcTHOR-Train-159-00.zip"
+ ]
+}

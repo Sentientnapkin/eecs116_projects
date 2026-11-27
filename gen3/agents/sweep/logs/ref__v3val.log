@@ -1,0 +1,43 @@
+749 episodes, 430 cached, workers=20 (no video)
+20/749 finished, 6.0s
+40/749 finished, 9.8s
+60/749 finished, 14.8s
+80/749 finished, 20.6s
+100/749 finished, 25.7s
+120/749 finished, 33.4s
+140/749 finished, 39.9s
+160/749 finished, 57.6s
+180/749 finished, 76.4s
+200/749 finished, 88.9s
+220/749 finished, 93.9s
+240/749 finished, 96.8s
+260/749 finished, 100.5s
+280/749 finished, 106.3s
+300/749 finished, 110.8s
+320/749 finished, 115.9s
+340/749 finished, 120.3s
+360/749 finished, 124.3s
+380/749 finished, 129.1s
+400/749 finished, 134.4s
+420/749 finished, 138.6s
+440/749 finished, 143.2s
+460/749 finished, 152.8s
+480/749 finished, 158.5s
+500/749 finished, 162.5s
+520/749 finished, 168.9s
+540/749 finished, 174.8s
+560/749 finished, 180.7s
+580/749 finished, 185.0s
+600/749 finished, 189.7s
+620/749 finished, 195.8s
+640/749 finished, 202.0s
+660/749 finished, 217.9s
+680/749 finished, 235.6s
+700/749 finished, 254.9s
+720/749 finished, 272.3s
+740/749 finished, 287.8s
+749/749 finished, 288.5s
+sw_ref v3val n 749 / 749 mean ATE 0.927 median 0.772 >3m 17
+  setting_class {'forest': '0.967 (n=200)', 'room': '0.494 (n=299)', 'warehouse': '1.411 (n=250)'}
+  regime {'benchmark': '0.749 (n=254)', 'free-yaw': '1.018 (n=495)'}
+  start {'hover': '1.031 (n=251)', 'mid-flight': '0.874 (n=498)'}

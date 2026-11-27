@@ -1,0 +1,12 @@
+{
+  "declared_at": "2026-11-20T03:08:33.981619+00:00",
+  "max_speed": 6.0,
+  "max_accel": 12.0,
+  "arms": [
+    "physical",
+    "physical_n2",
+    "origin_n2"
+  ],
+  "tuned": false,
+  "metric": "mean_unaligned_ate_m"
+}

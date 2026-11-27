@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/data/backups/rganapa/Sebastian/eecs116_projects/research/single_model/ensemble2/replay.py", line 70, in one
+    sb.close()
+    ^^^^^^^^
+AttributeError: 'Sandbox' object has no attribute 'close'

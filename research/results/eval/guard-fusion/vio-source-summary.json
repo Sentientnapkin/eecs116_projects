@@ -1,0 +1,1221 @@
+{
+  "vins-recovery-probe": {
+    "tag": "vins-recovery-probe",
+    "planned": 8,
+    "scored": 8,
+    "slices": {
+      "all": {
+        "n": 8,
+        "before_mean": 18.027463007596182,
+        "after_mean": 71.46367873570945,
+        "max_regression": 253.46881059876665,
+        "pose_bytes_equal": false,
+        "completed": 8
+      },
+      "clean_under1": {
+        "n": 6,
+        "before_mean": 0.1666304632275523,
+        "after_mean": 0.1666304632275523,
+        "max_regression": 0.0,
+        "pose_bytes_equal": true,
+        "completed": 6
+      },
+      "baseline_over10": {
+        "n": 2,
+        "before_mean": 71.60996064070207,
+        "after_mean": 285.35482355315514,
+        "max_regression": 253.46881059876665,
+        "pose_bytes_equal": false,
+        "completed": 2
+      }
+    },
+    "rows": [
+      {
+        "episode": "fastmid-104348361_171513414-02",
+        "before": 44.60286079244972,
+        "after": 218.62377601858924,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 3029340045,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [
+          10.795
+        ],
+        "initializations_s": [
+          1.295,
+          15.045
+        ]
+      },
+      {
+        "episode": "fastmid-108294897_176710602-00",
+        "before": 98.61706048895441,
+        "after": 352.08587108772105,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 2227305466,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [
+          28.045
+        ],
+        "initializations_s": [
+          1.145,
+          29.395
+        ]
+      },
+      {
+        "episode": "fast-104348202_171513150-01",
+        "before": 0.12323794375763703,
+        "after": 0.12323794375763703,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 1914148884,
+        "pose_bytes_equal": true,
+        "twist_bytes_equal": true,
+        "recoveries_s": [],
+        "initializations_s": [
+          1.095
+        ]
+      },
+      {
+        "episode": "fast-108294417_176709879-01",
+        "before": 0.14816475041582589,
+        "after": 0.14816475041582589,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 943894860,
+        "pose_bytes_equal": true,
+        "twist_bytes_equal": true,
+        "recoveries_s": [],
+        "initializations_s": [
+          0.945
+        ]
+      },
+      {
+        "episode": "fast-106366104_174226329-01",
+        "before": 0.16407985835607514,
+        "after": 0.16407985835607514,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 1680090613,
+        "pose_bytes_equal": true,
+        "twist_bytes_equal": true,
+        "recoveries_s": [],
+        "initializations_s": [
+          0.945
+        ]
+      },
+      {
+        "episode": "fast-107734158_175999998-00",
+        "before": 0.17323676233907961,
+        "after": 0.17323676233907961,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 1628312690,
+        "pose_bytes_equal": true,
+        "twist_bytes_equal": true,
+        "recoveries_s": [],
+        "initializations_s": [
+          1.095
+        ]
+      },
+      {
+        "episode": "fast-ProcTHOR-Train-159-00",
+        "before": 0.19222494857079067,
+        "after": 0.19222494857079067,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 1840741552,
+        "pose_bytes_equal": true,
+        "twist_bytes_equal": true,
+        "recoveries_s": [],
+        "initializations_s": [
+          0.945
+        ]
+      },
+      {
+        "episode": "fast-103997460_171030507-01",
+        "before": 0.19883851592590548,
+        "after": 0.19883851592590548,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 1302793333,
+        "pose_bytes_equal": true,
+        "twist_bytes_equal": true,
+        "recoveries_s": [],
+        "initializations_s": [
+          1.095
+        ]
+      }
+    ],
+    "status": "exploratory"
+  },
+  "vins-recovery-v2-probe": {
+    "tag": "vins-recovery-v2-probe",
+    "planned": 8,
+    "scored": 8,
+    "slices": {
+      "all": {
+        "n": 8,
+        "before_mean": 18.027463007596182,
+        "after_mean": 79.6221287023091,
+        "max_regression": 289.01433463233076,
+        "pose_bytes_equal": false,
+        "completed": 8
+      },
+      "clean_under1": {
+        "n": 6,
+        "before_mean": 0.1666304632275523,
+        "after_mean": 0.1666304632275523,
+        "max_regression": 0.0,
+        "pose_bytes_equal": true,
+        "completed": 6
+      },
+      "baseline_over10": {
+        "n": 2,
+        "before_mean": 71.60996064070207,
+        "after_mean": 317.98862341955373,
+        "max_regression": 289.01433463233076,
+        "pose_bytes_equal": false,
+        "completed": 2
+      }
+    },
+    "rows": [
+      {
+        "episode": "fastmid-104348361_171513414-02",
+        "before": 44.60286079244972,
+        "after": 248.34585171782228,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 3030558138,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [
+          10.795
+        ],
+        "initializations_s": [
+          1.295,
+          15.045
+        ]
+      },
+      {
+        "episode": "fastmid-108294897_176710602-00",
+        "before": 98.61706048895441,
+        "after": 387.63139512128515,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 2228806872,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [
+          28.045
+        ],
+        "initializations_s": [
+          1.145,
+          29.395
+        ]
+      },
+      {
+        "episode": "fast-104348202_171513150-01",
+        "before": 0.12323794375763703,
+        "after": 0.12323794375763703,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 1914171472,
+        "pose_bytes_equal": true,
+        "twist_bytes_equal": true,
+        "recoveries_s": [],
+        "initializations_s": [
+          1.095
+        ]
+      },
+      {
+        "episode": "fast-108294417_176709879-01",
+        "before": 0.14816475041582589,
+        "after": 0.14816475041582589,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 943935274,
+        "pose_bytes_equal": true,
+        "twist_bytes_equal": true,
+        "recoveries_s": [],
+        "initializations_s": [
+          0.945
+        ]
+      },
+      {
+        "episode": "fast-106366104_174226329-01",
+        "before": 0.16407985835607514,
+        "after": 0.16407985835607514,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 1680021620,
+        "pose_bytes_equal": true,
+        "twist_bytes_equal": true,
+        "recoveries_s": [],
+        "initializations_s": [
+          0.945
+        ]
+      },
+      {
+        "episode": "fast-107734158_175999998-00",
+        "before": 0.17323676233907961,
+        "after": 0.17323676233907961,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 1628383416,
+        "pose_bytes_equal": true,
+        "twist_bytes_equal": true,
+        "recoveries_s": [],
+        "initializations_s": [
+          1.095
+        ]
+      },
+      {
+        "episode": "fast-ProcTHOR-Train-159-00",
+        "before": 0.19222494857079067,
+        "after": 0.19222494857079067,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 1840594675,
+        "pose_bytes_equal": true,
+        "twist_bytes_equal": true,
+        "recoveries_s": [],
+        "initializations_s": [
+          0.945
+        ]
+      },
+      {
+        "episode": "fast-103997460_171030507-01",
+        "before": 0.19883851592590548,
+        "after": 0.19883851592590548,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 1302701903,
+        "pose_bytes_equal": true,
+        "twist_bytes_equal": true,
+        "recoveries_s": [],
+        "initializations_s": [
+          1.095
+        ]
+      }
+    ],
+    "status": "exploratory"
+  },
+  "vins-recovery-v3-tails": {
+    "tag": "vins-recovery-v3-tails",
+    "planned": 2,
+    "scored": 2,
+    "slices": {
+      "all": {
+        "n": 2,
+        "before_mean": 71.60996064070207,
+        "after_mean": 317.9934876661266,
+        "max_regression": 289.15185263106997,
+        "pose_bytes_equal": false,
+        "completed": 2
+      },
+      "baseline_over10": {
+        "n": 2,
+        "before_mean": 71.60996064070207,
+        "after_mean": 317.9934876661266,
+        "max_regression": 289.15185263106997,
+        "pose_bytes_equal": false,
+        "completed": 2
+      }
+    },
+    "rows": [
+      {
+        "episode": "fastmid-104348361_171513414-02",
+        "before": 44.60286079244972,
+        "after": 248.2180622122289,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 3030556932,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [
+          10.795
+        ],
+        "initializations_s": [
+          1.295,
+          15.045
+        ]
+      },
+      {
+        "episode": "fastmid-108294897_176710602-00",
+        "before": 98.61706048895441,
+        "after": 387.76891312002437,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 2228806311,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [
+          28.045
+        ],
+        "initializations_s": [
+          1.145,
+          29.395
+        ]
+      }
+    ],
+    "status": "exploratory"
+  },
+  "vins-recovery-fault20-v3": {
+    "tag": "vins-recovery-fault20-v3",
+    "planned": 2,
+    "scored": 2,
+    "slices": {
+      "all": {
+        "n": 2,
+        "before_mean": 0.17815240346343292,
+        "after_mean": 3.8045130396816385,
+        "max_regression": 4.629130606574096,
+        "pose_bytes_equal": false,
+        "completed": 2
+      },
+      "clean_under1": {
+        "n": 2,
+        "before_mean": 0.17815240346343292,
+        "after_mean": 3.8045130396816385,
+        "max_regression": 4.629130606574096,
+        "pose_bytes_equal": false,
+        "completed": 2
+      }
+    },
+    "rows": [
+      {
+        "episode": "fast-106366104_174226329-01",
+        "before": 0.16407985835607514,
+        "after": 2.787670524218391,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 2306260319,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [
+          20.045,
+          23.245
+        ],
+        "initializations_s": [
+          0.945,
+          21.795,
+          24.845
+        ]
+      },
+      {
+        "episode": "fast-ProcTHOR-Train-159-00",
+        "before": 0.19222494857079067,
+        "after": 4.821355555144886,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 2691990048,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [
+          20.045
+        ],
+        "initializations_s": [
+          0.945,
+          21.445
+        ]
+      }
+    ],
+    "status": "exploratory"
+  },
+  "openvins-physical-probe": {
+    "tag": "openvins-physical-probe",
+    "planned": 23,
+    "scored": 23,
+    "slices": {
+      "all": {
+        "n": 23,
+        "before_mean": 204.6091133678696,
+        "after_mean": 131.40789021152048,
+        "max_regression": 233.85139852229463,
+        "pose_bytes_equal": false,
+        "completed": 21
+      },
+      "clean_under1": {
+        "n": 6,
+        "before_mean": 0.17875169071908528,
+        "after_mean": 0.17872958399138314,
+        "max_regression": 3.621286825469805e-05,
+        "pose_bytes_equal": false,
+        "completed": 6
+      },
+      "baseline_over10": {
+        "n": 17,
+        "before_mean": 276.76100572451094,
+        "after_mean": 177.7240645506484,
+        "max_regression": 233.85139852229463,
+        "pose_bytes_equal": false,
+        "completed": 15
+      }
+    },
+    "rows": [
+      {
+        "episode": "fast-103997445_171030492-01",
+        "before": 71.3771950305593,
+        "after": 71.36200115752732,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 3877350505,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [],
+        "initializations_s": [
+          12.895,
+          12.895
+        ],
+        "telemetry_frames": 1200,
+        "graph_guarded_frames": 28,
+        "spread_range": [
+          0.0,
+          5.602766
+        ],
+        "cost_range": [
+          0.0,
+          224.153
+        ],
+        "factors_range": [
+          0.0,
+          466.0
+        ]
+      },
+      {
+        "episode": "fast-ProcTHOR-Train-167-00",
+        "before": 18.05564560134807,
+        "after": 18.55300720466906,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 3860980203,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [],
+        "initializations_s": [
+          10.495,
+          10.495
+        ],
+        "telemetry_frames": 1200,
+        "graph_guarded_frames": 221,
+        "spread_range": [
+          0.0,
+          136.766119
+        ],
+        "cost_range": [
+          0.0,
+          789.165
+        ],
+        "factors_range": [
+          0.0,
+          343.0
+        ]
+      },
+      {
+        "episode": "fast-ProcTHOR-Train-167-01",
+        "before": 2168.274045310236,
+        "after": 1479.0682329915326,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 3971577298,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [],
+        "initializations_s": [
+          3.645,
+          3.645
+        ],
+        "telemetry_frames": 1200,
+        "graph_guarded_frames": 1063,
+        "spread_range": [
+          0.0,
+          768.089196
+        ],
+        "cost_range": [
+          0.0,
+          91.6902
+        ],
+        "factors_range": [
+          0.0,
+          20.0
+        ]
+      },
+      {
+        "episode": "fast-ProcTHOR-Train-167-05",
+        "before": 19.074248156019372,
+        "after": 20.29879438133003,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 3861443833,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [],
+        "initializations_s": [
+          1.095,
+          1.095
+        ],
+        "telemetry_frames": 1200,
+        "graph_guarded_frames": 266,
+        "spread_range": [
+          0.0,
+          745.207451
+        ],
+        "cost_range": [
+          0.0,
+          356.902
+        ],
+        "factors_range": [
+          0.0,
+          575.0
+        ]
+      },
+      {
+        "episode": "fast-ProcTHOR-Train-63-02",
+        "before": 251.9172367640034,
+        "after": 74.39215694620998,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 3882971420,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [],
+        "initializations_s": [
+          3.095,
+          3.095
+        ],
+        "telemetry_frames": 1200,
+        "graph_guarded_frames": 826,
+        "spread_range": [
+          0.0,
+          369.735613
+        ],
+        "cost_range": [
+          0.0,
+          480.389
+        ],
+        "factors_range": [
+          0.0,
+          190.0
+        ]
+      },
+      {
+        "episode": "fast-ProcTHOR-Train-91-00",
+        "before": 63.81734094823208,
+        "after": 63.81425380609683,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 3849585626,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [],
+        "initializations_s": [
+          9.745,
+          9.745
+        ],
+        "telemetry_frames": 1200,
+        "graph_guarded_frames": 0,
+        "spread_range": [
+          0.0,
+          0.991073
+        ],
+        "cost_range": [
+          0.0,
+          255.489
+        ],
+        "factors_range": [
+          0.0,
+          491.0
+        ]
+      },
+      {
+        "episode": "fastmid-102815859-01",
+        "before": 21.91349687675156,
+        "after": 21.91360908224648,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 3166935240,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [],
+        "initializations_s": [
+          9.745,
+          9.745
+        ],
+        "telemetry_frames": 1200,
+        "graph_guarded_frames": 0,
+        "spread_range": [
+          0.0,
+          1.064467
+        ],
+        "cost_range": [
+          0.0,
+          496.314
+        ],
+        "factors_range": [
+          0.0,
+          561.0
+        ]
+      },
+      {
+        "episode": "fastmid-103997643_171030747-01",
+        "before": 14.926621857509948,
+        "after": 11.230525428143222,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 3140004717,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [],
+        "initializations_s": [
+          0.945,
+          0.945
+        ],
+        "telemetry_frames": 1200,
+        "graph_guarded_frames": 76,
+        "spread_range": [
+          0.0,
+          2764.318794
+        ],
+        "cost_range": [
+          0.0,
+          981.419
+        ],
+        "factors_range": [
+          0.0,
+          653.0
+        ]
+      },
+      {
+        "episode": "fastmid-ProcTHOR-Train-0-01",
+        "before": 59.576776423676435,
+        "after": 95.60968393229618,
+        "completed": false,
+        "failure": "step failed (status -1)",
+        "peak_fuel": 3954304448,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [],
+        "initializations_s": [
+          15.345,
+          15.345
+        ],
+        "telemetry_frames": 838,
+        "graph_guarded_frames": 190,
+        "spread_range": [
+          0.0,
+          2360.92543
+        ],
+        "cost_range": [
+          0.0,
+          246.365
+        ],
+        "factors_range": [
+          0.0,
+          330.0
+        ]
+      },
+      {
+        "episode": "fastmid-ProcTHOR-Train-151-07",
+        "before": 533.2491637784981,
+        "after": 473.4409337470752,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 3833879902,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [],
+        "initializations_s": [
+          19.295,
+          19.295
+        ],
+        "telemetry_frames": 1200,
+        "graph_guarded_frames": 687,
+        "spread_range": [
+          0.0,
+          1961.214042
+        ],
+        "cost_range": [
+          0.0,
+          450.394
+        ],
+        "factors_range": [
+          0.0,
+          115.0
+        ]
+      },
+      {
+        "episode": "fastmid-ProcTHOR-Train-151-08",
+        "before": 62.38235757244681,
+        "after": 71.08334466750446,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 3798767640,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [],
+        "initializations_s": [
+          14.645,
+          14.645
+        ],
+        "telemetry_frames": 1200,
+        "graph_guarded_frames": 32,
+        "spread_range": [
+          0.0,
+          1177.744104
+        ],
+        "cost_range": [
+          0.0,
+          490.901
+        ],
+        "factors_range": [
+          0.0,
+          551.0
+        ]
+      },
+      {
+        "episode": "fastmid-ProcTHOR-Train-151-10",
+        "before": 82.04248864293967,
+        "after": 82.04194015058115,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 2665496227,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [],
+        "initializations_s": [
+          17.345,
+          17.345
+        ],
+        "telemetry_frames": 1200,
+        "graph_guarded_frames": 2,
+        "spread_range": [
+          0.0,
+          2.993734
+        ],
+        "cost_range": [
+          0.0,
+          352.21
+        ],
+        "factors_range": [
+          0.0,
+          361.0
+        ]
+      },
+      {
+        "episode": "fastmid-ProcTHOR-Train-167-02",
+        "before": 48.51766850731848,
+        "after": 282.3690670296131,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 3873014101,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [],
+        "initializations_s": [
+          15.995,
+          15.995
+        ],
+        "telemetry_frames": 1200,
+        "graph_guarded_frames": 153,
+        "spread_range": [
+          0.0,
+          1768.174828
+        ],
+        "cost_range": [
+          0.0,
+          1137.12
+        ],
+        "factors_range": [
+          0.0,
+          601.0
+        ]
+      },
+      {
+        "episode": "fastmid-ProcTHOR-Train-167-04",
+        "before": 194.19121045617675,
+        "after": 193.93776601429946,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 3864306599,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [],
+        "initializations_s": [
+          50.845,
+          50.845
+        ],
+        "telemetry_frames": 1200,
+        "graph_guarded_frames": 41,
+        "spread_range": [
+          0.0,
+          12.959365
+        ],
+        "cost_range": [
+          0.0,
+          312.458
+        ],
+        "factors_range": [
+          0.0,
+          431.0
+        ]
+      },
+      {
+        "episode": "fastmid-ProcTHOR-Train-57-01",
+        "before": 16.896369634415542,
+        "after": 16.899226659472657,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 3869781223,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [],
+        "initializations_s": [
+          7.495,
+          7.495
+        ],
+        "telemetry_frames": 1200,
+        "graph_guarded_frames": 34,
+        "spread_range": [
+          0.0,
+          3.647985
+        ],
+        "cost_range": [
+          0.0,
+          709.513
+        ],
+        "factors_range": [
+          0.0,
+          482.0
+        ]
+      },
+      {
+        "episode": "fastmid-ProcTHOR-Train-65-02",
+        "before": 31.63043912732657,
+        "after": 31.653915405367762,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 3847293537,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [],
+        "initializations_s": [
+          17.945,
+          17.945
+        ],
+        "telemetry_frames": 1200,
+        "graph_guarded_frames": 25,
+        "spread_range": [
+          0.0,
+          25.97299
+        ],
+        "cost_range": [
+          0.0,
+          234.118
+        ],
+        "factors_range": [
+          0.0,
+          434.0
+        ]
+      },
+      {
+        "episode": "fastmid-ProcTHOR-Train-72-02",
+        "before": 1047.0947926292274,
+        "after": 13.640638757057308,
+        "completed": false,
+        "failure": "step failed (status -1)",
+        "peak_fuel": 3166131748,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [],
+        "initializations_s": [
+          3.895,
+          3.895
+        ],
+        "telemetry_frames": 302,
+        "graph_guarded_frames": 86,
+        "spread_range": [
+          0.0,
+          189.925251
+        ],
+        "cost_range": [
+          0.0,
+          712.264
+        ],
+        "factors_range": [
+          0.0,
+          157.0
+        ]
+      },
+      {
+        "episode": "fast-104862639_172226823-01",
+        "before": 0.11793946108009172,
+        "after": 0.11793920759930804,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 3253263559,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [],
+        "initializations_s": [
+          1.145,
+          1.145
+        ],
+        "telemetry_frames": 1200,
+        "graph_guarded_frames": 0,
+        "spread_range": [
+          0.0,
+          0.458541
+        ],
+        "cost_range": [
+          0.0,
+          377.03
+        ],
+        "factors_range": [
+          0.0,
+          561.0
+        ]
+      },
+      {
+        "episode": "fastmid-ProcTHOR-Train-101-02",
+        "before": 0.1542898734592784,
+        "after": 0.1542005504547625,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 2992184916,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [],
+        "initializations_s": [
+          0.945,
+          0.945
+        ],
+        "telemetry_frames": 1200,
+        "graph_guarded_frames": 0,
+        "spread_range": [
+          0.0,
+          0.310645
+        ],
+        "cost_range": [
+          0.0,
+          262.368
+        ],
+        "factors_range": [
+          0.0,
+          468.0
+        ]
+      },
+      {
+        "episode": "fast-ProcTHOR-Train-143-02",
+        "before": 0.1791639652000803,
+        "after": 0.17913498059748031,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 3196952997,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [],
+        "initializations_s": [
+          0.945,
+          0.945
+        ],
+        "telemetry_frames": 1200,
+        "graph_guarded_frames": 0,
+        "spread_range": [
+          0.0,
+          0.558979
+        ],
+        "cost_range": [
+          0.0,
+          366.377
+        ],
+        "factors_range": [
+          0.0,
+          558.0
+        ]
+      },
+      {
+        "episode": "fast-106366104_174226329-01",
+        "before": 0.19484053205144686,
+        "after": 0.19480772256874324,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 3054437856,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [],
+        "initializations_s": [
+          1.145,
+          1.145
+        ],
+        "telemetry_frames": 1200,
+        "graph_guarded_frames": 0,
+        "spread_range": [
+          0.0,
+          0.618193
+        ],
+        "cost_range": [
+          0.0,
+          390.223
+        ],
+        "factors_range": [
+          0.0,
+          594.0
+        ]
+      },
+      {
+        "episode": "fast-ProcTHOR-Train-6-02",
+        "before": 0.20065906031617983,
+        "after": 0.20064157765231538,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 3491754227,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [],
+        "initializations_s": [
+          1.145,
+          1.145
+        ],
+        "telemetry_frames": 1200,
+        "graph_guarded_frames": 0,
+        "spread_range": [
+          0.0,
+          0.387927
+        ],
+        "cost_range": [
+          0.0,
+          296.952
+        ],
+        "factors_range": [
+          0.0,
+          715.0
+        ]
+      },
+      {
+        "episode": "fast-103997478_171030525-01",
+        "before": 0.22561725220743462,
+        "after": 0.2256534650756893,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 3032723553,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [],
+        "initializations_s": [
+          1.345,
+          1.345
+        ],
+        "telemetry_frames": 1200,
+        "graph_guarded_frames": 0,
+        "spread_range": [
+          0.0,
+          0.830911
+        ],
+        "cost_range": [
+          0.0,
+          339.776
+        ],
+        "factors_range": [
+          0.0,
+          531.0
+        ]
+      }
+    ],
+    "status": "exploratory"
+  },
+  "openvins-telemetry-parity": {
+    "tag": "openvins-telemetry-parity",
+    "planned": 2,
+    "scored": 2,
+    "slices": {
+      "all": {
+        "n": 2,
+        "before_mean": 1084.195992385658,
+        "after_mean": 1084.4129481124723,
+        "max_regression": 0.43395936882097885,
+        "pose_bytes_equal": false,
+        "completed": 2
+      },
+      "clean_under1": {
+        "n": 1,
+        "before_mean": 0.11793946108009172,
+        "after_mean": 0.11789154588757908,
+        "max_regression": -4.7915192512640314e-05,
+        "pose_bytes_equal": false,
+        "completed": 1
+      },
+      "baseline_over10": {
+        "n": 1,
+        "before_mean": 2168.274045310236,
+        "after_mean": 2168.708004679057,
+        "max_regression": 0.43395936882097885,
+        "pose_bytes_equal": false,
+        "completed": 1
+      }
+    },
+    "rows": [
+      {
+        "episode": "fast-104862639_172226823-01",
+        "before": 0.11793946108009172,
+        "after": 0.11789154588757908,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 3253215509,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [],
+        "initializations_s": [
+          1.145,
+          1.145
+        ],
+        "telemetry_frames": 1200,
+        "graph_guarded_frames": 0,
+        "spread_range": [
+          0.0,
+          0.458999
+        ],
+        "cost_range": [
+          0.0,
+          377.03
+        ],
+        "factors_range": [
+          0.0,
+          561.0
+        ]
+      },
+      {
+        "episode": "fast-ProcTHOR-Train-167-01",
+        "before": 2168.274045310236,
+        "after": 2168.708004679057,
+        "completed": true,
+        "failure": null,
+        "peak_fuel": 3971776815,
+        "pose_bytes_equal": false,
+        "twist_bytes_equal": false,
+        "recoveries_s": [],
+        "initializations_s": [
+          3.645,
+          3.645
+        ],
+        "telemetry_frames": 1200,
+        "graph_guarded_frames": 0,
+        "spread_range": [
+          0.0,
+          2291.545662
+        ],
+        "cost_range": [
+          0.0,
+          91.6902
+        ],
+        "factors_range": [
+          0.0,
+          20.0
+        ]
+      }
+    ],
+    "status": "exploratory"
+  }
+}

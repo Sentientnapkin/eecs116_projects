@@ -1,0 +1,41 @@
+{
+  "wasm": "research/artifacts/guard-composite-v2/composite.wasm",
+  "sha256": "05103cf4374945071124de22218bb3c798ccab3c7c30d506d8477d73042c6384",
+  "results": [
+    {
+      "fixture": "/dev/shm/sebastian-vio/guard-fixtures/static.npz",
+      "prefix_frames": 600,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    },
+    {
+      "fixture": "/dev/shm/sebastian-vio/guard-fixtures/mid.npz",
+      "prefix_frames": 600,
+      "checks": {
+        "repeat": true,
+        "prefix": true,
+        "poison": true
+      },
+      "failures": {
+        "full": null,
+        "repeat": null,
+        "prefix": null,
+        "poison": null
+      },
+      "poisoned_frames": "indices >= prefix_frames",
+      "pass": true
+    }
+  ],
+  "pass": true
+}

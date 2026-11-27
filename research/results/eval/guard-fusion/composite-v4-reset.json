@@ -1,0 +1,10 @@
+{
+  "wasm_sha256": "665f4bca8e187d2f2b9987c7c32e8614bfe13d835918abe56b85ec82117ea0e5",
+  "frames": 200,
+  "fixture": "/dev/shm/sebastian-vio/guard-fixtures/static.npz",
+  "second_init_status": 0,
+  "first_pose_identity": true,
+  "init_twice_reproduces": false,
+  "max_component_delta": 0.19855610363989162,
+  "pass": false
+}

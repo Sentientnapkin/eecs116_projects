@@ -1,0 +1,95 @@
+SN current anchor oracle screen
+
+$ /data/backups/rganapa/Sebastian/venv-teacher/bin/python -B /data/backups/rganapa/Sebastian/gen3/evalpool.py sn_anchor_screen /data/backups/rganapa/Sebastian/gen3/agents/anchors/builds/snace6e1/solution.wasm /tmp/vio_overnight/oracles/pool24 3
+24 episodes, 0 cached, workers=3 (no video)
+20/24 finished, 99.2s
+24/24 finished, 115.0s
+sn_anchor_screen pool24 n 24 / 24 mean ATE 0.723 median 0.726 >3m 0
+  setting_class {'forest': '0.723 (n=24)'}
+  regime {'benchmark': '0.671 (n=8)', 'free-yaw': '0.749 (n=16)'}
+  start {'hover': '0.586 (n=5)', 'mid-flight': '0.758 (n=19)'}
+
+
+$ /data/backups/rganapa/Sebastian/venv-teacher/bin/python /data/backups/rganapa/Sebastian/gen3/research/i3/tools/mk.py sn_or_control PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 AB_ZUPT=0 ITER_UPD=1 INV_LAT=0 INV_VZ=0 EDGE=0 SN=1 NS_GCOST=1 MAX_CLONES=8 MAX_OBS=10 AN_ACE=1 AN_DTH=4.0 AN_CEF=6 EDGE=1 EDGE_MYTH=10.0 OR=1 /tmp/vio_overnight/oracles/sn_or.c
+/data/backups/rganapa/Sebastian/gen3/research/i3/builds/sn_or_control/solution.wasm 33c11448448719ab
+
+
+$ /data/backups/rganapa/Sebastian/venv-teacher/bin/python -B /data/backups/rganapa/Sebastian/gen3/evalpool.py sn_or_control /data/backups/rganapa/Sebastian/gen3/research/i3/builds/sn_or_control/solution.wasm /tmp/vio_overnight/oracles/pool24 3
+24 episodes, 0 cached, workers=3 (no video)
+20/24 finished, 96.6s
+24/24 finished, 111.5s
+sn_or_control pool24 n 24 / 24 mean ATE 0.723 median 0.726 >3m 0
+  setting_class {'forest': '0.723 (n=24)'}
+  regime {'benchmark': '0.671 (n=8)', 'free-yaw': '0.749 (n=16)'}
+  start {'hover': '0.586 (n=5)', 'mid-flight': '0.758 (n=19)'}
+
+
+$ /data/backups/rganapa/Sebastian/venv-teacher/bin/python /data/backups/rganapa/Sebastian/gen3/research/i3/tools/mk.py sn_or_perfect02_ev10 PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 AB_ZUPT=0 ITER_UPD=1 INV_LAT=0 INV_VZ=0 EDGE=0 SN=1 NS_GCOST=1 MAX_CLONES=8 MAX_OBS=10 AN_ACE=1 AN_DTH=4.0 AN_CEF=6 EDGE=1 EDGE_MYTH=10.0 OR=1 OR_VEL=0.02 OR_VEL_EV=10 OR_VEL_ON=1 OR_NK=0 /tmp/vio_overnight/oracles/sn_or.c
+/data/backups/rganapa/Sebastian/gen3/research/i3/builds/sn_or_perfect02_ev10/solution.wasm 9a769a7d4f73f39f
+
+
+$ /data/backups/rganapa/Sebastian/venv-teacher/bin/python -B /data/backups/rganapa/Sebastian/gen3/evalpool.py sn_or_perfect02_ev10 /data/backups/rganapa/Sebastian/gen3/research/i3/builds/sn_or_perfect02_ev10/solution.wasm /tmp/vio_overnight/oracles/pool24 3
+24 episodes, 0 cached, workers=3 (no video)
+20/24 finished, 96.8s
+24/24 finished, 111.6s
+sn_or_perfect02_ev10 pool24 n 24 / 24 mean ATE 0.234 median 0.210 >3m 0
+  setting_class {'forest': '0.234 (n=24)'}
+  regime {'benchmark': '0.148 (n=8)', 'free-yaw': '0.278 (n=16)'}
+  start {'hover': '0.219 (n=5)', 'mid-flight': '0.238 (n=19)'}
+
+
+$ /data/backups/rganapa/Sebastian/venv-teacher/bin/python /data/backups/rganapa/Sebastian/gen3/research/i3/tools/mk.py sn_or_iid01_ev10 PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 AB_ZUPT=0 ITER_UPD=1 INV_LAT=0 INV_VZ=0 EDGE=0 SN=1 NS_GCOST=1 MAX_CLONES=8 MAX_OBS=10 AN_ACE=1 AN_DTH=4.0 AN_CEF=6 EDGE=1 EDGE_MYTH=10.0 OR=1 OR_VEL=0.1 OR_VEL_EV=10 OR_VEL_ON=1 OR_NK=1 OR_NT=0 /tmp/vio_overnight/oracles/sn_or.c
+/data/backups/rganapa/Sebastian/gen3/research/i3/builds/sn_or_iid01_ev10/solution.wasm b971be91921593c5
+
+
+$ /data/backups/rganapa/Sebastian/venv-teacher/bin/python -B /data/backups/rganapa/Sebastian/gen3/evalpool.py sn_or_iid01_ev10 /data/backups/rganapa/Sebastian/gen3/research/i3/builds/sn_or_iid01_ev10/solution.wasm /tmp/vio_overnight/oracles/pool24 3
+24 episodes, 0 cached, workers=3 (no video)
+20/24 finished, 96.4s
+24/24 finished, 111.6s
+sn_or_iid01_ev10 pool24 n 24 / 24 mean ATE 0.468 median 0.436 >3m 0
+  setting_class {'forest': '0.468 (n=24)'}
+  regime {'benchmark': '0.386 (n=8)', 'free-yaw': '0.510 (n=16)'}
+  start {'hover': '0.424 (n=5)', 'mid-flight': '0.480 (n=19)'}
+
+
+$ /data/backups/rganapa/Sebastian/venv-teacher/bin/python /data/backups/rganapa/Sebastian/gen3/research/i3/tools/mk.py sn_or_corr01_tau2_ev10 PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 AB_ZUPT=0 ITER_UPD=1 INV_LAT=0 INV_VZ=0 EDGE=0 SN=1 NS_GCOST=1 MAX_CLONES=8 MAX_OBS=10 AN_ACE=1 AN_DTH=4.0 AN_CEF=6 EDGE=1 EDGE_MYTH=10.0 OR=1 OR_VEL=0.1 OR_VEL_EV=10 OR_VEL_ON=1 OR_NK=1 OR_NT=1 OR_TAU=2.0 /tmp/vio_overnight/oracles/sn_or.c
+/data/backups/rganapa/Sebastian/gen3/research/i3/builds/sn_or_corr01_tau2_ev10/solution.wasm 59fda8629dee62c8
+
+
+$ /data/backups/rganapa/Sebastian/venv-teacher/bin/python -B /data/backups/rganapa/Sebastian/gen3/evalpool.py sn_or_corr01_tau2_ev10 /data/backups/rganapa/Sebastian/gen3/research/i3/builds/sn_or_corr01_tau2_ev10/solution.wasm /tmp/vio_overnight/oracles/pool24 3
+24 episodes, 0 cached, workers=3 (no video)
+20/24 finished, 96.7s
+24/24 finished, 111.5s
+sn_or_corr01_tau2_ev10 pool24 n 24 / 24 mean ATE 0.751 median 0.669 >3m 0
+  setting_class {'forest': '0.751 (n=24)'}
+  regime {'benchmark': '0.655 (n=8)', 'free-yaw': '0.798 (n=16)'}
+  start {'hover': '0.752 (n=5)', 'mid-flight': '0.750 (n=19)'}
+
+
+$ /data/backups/rganapa/Sebastian/venv-teacher/bin/python /data/backups/rganapa/Sebastian/gen3/research/i3/tools/mk.py sn_or_iid01_initial PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 AB_ZUPT=0 ITER_UPD=1 INV_LAT=0 INV_VZ=0 EDGE=0 SN=1 NS_GCOST=1 MAX_CLONES=8 MAX_OBS=10 AN_ACE=1 AN_DTH=4.0 AN_CEF=6 EDGE=1 EDGE_MYTH=10.0 OR=1 OR_VEL=0.1 OR_VEL_EV=1 OR_VEL_T1=0 OR_VEL_ON=1 OR_NK=1 OR_NT=0 /tmp/vio_overnight/oracles/sn_or.c
+/data/backups/rganapa/Sebastian/gen3/research/i3/builds/sn_or_iid01_initial/solution.wasm c8573f03d5b4f8fa
+
+
+$ /data/backups/rganapa/Sebastian/venv-teacher/bin/python -B /data/backups/rganapa/Sebastian/gen3/evalpool.py sn_or_iid01_initial /data/backups/rganapa/Sebastian/gen3/research/i3/builds/sn_or_iid01_initial/solution.wasm /tmp/vio_overnight/oracles/pool24 3
+24 episodes, 0 cached, workers=3 (no video)
+20/24 finished, 96.7s
+24/24 finished, 111.5s
+sn_or_iid01_initial pool24 n 24 / 24 mean ATE 0.658 median 0.624 >3m 0
+  setting_class {'forest': '0.658 (n=24)'}
+  regime {'benchmark': '0.512 (n=8)', 'free-yaw': '0.732 (n=16)'}
+  start {'hover': '0.491 (n=5)', 'mid-flight': '0.702 (n=19)'}
+
+
+$ /data/backups/rganapa/Sebastian/venv-teacher/bin/python /data/backups/rganapa/Sebastian/gen3/research/i3/tools/mk.py sn_or_iid01_first1s PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 AB_ZUPT=0 ITER_UPD=1 INV_LAT=0 INV_VZ=0 EDGE=0 SN=1 NS_GCOST=1 MAX_CLONES=8 MAX_OBS=10 AN_ACE=1 AN_DTH=4.0 AN_CEF=6 EDGE=1 EDGE_MYTH=10.0 OR=1 OR_VEL=0.1 OR_VEL_EV=1 OR_VEL_T1=20 OR_VEL_ON=1 OR_NK=1 OR_NT=0 /tmp/vio_overnight/oracles/sn_or.c
+/data/backups/rganapa/Sebastian/gen3/research/i3/builds/sn_or_iid01_first1s/solution.wasm f09de9f0a88ff2e8
+
+
+$ /data/backups/rganapa/Sebastian/venv-teacher/bin/python -B /data/backups/rganapa/Sebastian/gen3/evalpool.py sn_or_iid01_first1s /data/backups/rganapa/Sebastian/gen3/research/i3/builds/sn_or_iid01_first1s/solution.wasm /tmp/vio_overnight/oracles/pool24 3
+24 episodes, 0 cached, workers=3 (no video)
+20/24 finished, 96.6s
+24/24 finished, 111.3s
+sn_or_iid01_first1s pool24 n 24 / 24 mean ATE 0.667 median 0.599 >3m 0
+  setting_class {'forest': '0.667 (n=24)'}
+  regime {'benchmark': '0.484 (n=8)', 'free-yaw': '0.759 (n=16)'}
+  start {'hover': '0.602 (n=5)', 'mid-flight': '0.685 (n=19)'}
+

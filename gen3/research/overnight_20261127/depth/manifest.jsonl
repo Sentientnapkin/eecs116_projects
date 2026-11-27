@@ -1,0 +1,20 @@
+{"id": "s3v3va-fo-9300452", "split": "val", "scene": "Forest"}
+{"id": "s3v3va-fo-9300457", "split": "val", "scene": "forest-021"}
+{"id": "s3v3va-fo-9300463", "split": "val", "scene": "forest-022"}
+{"id": "s3v3va-ro-9300005", "split": "val", "scene": "ProcTHOR-Train-49"}
+{"id": "s3v3va-ro-9300009", "split": "val", "scene": "ProcTHOR-Train-50"}
+{"id": "s3v3va-ro-9300014", "split": "val", "scene": "106366248_174226527"}
+{"id": "s3v3va-ro-9300016", "split": "val", "scene": "102816729"}
+{"id": "s3v3va-wa-9300300", "split": "val", "scene": "Warehouse"}
+{"id": "s3v3va-wa-9300305", "split": "val", "scene": "warehouse-021"}
+{"id": "s3v3va-wa-9300313", "split": "val", "scene": "warehouse-022"}
+{"id": "s3tr-fo-9007521", "split": "train", "scene": "/data/backups/rganapa/Sebastian/gen3/scenes/forest-016.glb", "sha256": "b7b3023028541095d3945b0b7ccf6d734be60dba7aaa03e8184e8fcf42e7f562"}
+{"id": "s3tr-fo-9007525", "split": "train", "scene": "/data/backups/rganapa/Sebastian/gen3/scenes/forest-010.glb", "sha256": "a78ffdda4ea5d1fbba24463cc4ef46741cc4ea75778df457e04478d8082e6b68"}
+{"id": "s3tr-fo-9007575", "split": "train", "scene": "/data/backups/rganapa/Sebastian/gen3/scenes/forest-015.glb", "sha256": "79a7356c9c52cbd6c4ae210d94b876188a1db9a8e291662a2ed057bf04c25fd4"}
+{"id": "s3tr-ro-9000117", "split": "train", "scene": "104348160_171513093", "sha256": "ba211b19c2a75d319bc63dec19a8daef602d8502c9c6b831bbfc20ec886cb9e7"}
+{"id": "s3tr-ro-9000133", "split": "train", "scene": "104862639_172226823", "sha256": "f6461142e92b2f87b0c783b53a73eb63248e309cddf77009dca4ba9ea20640fa"}
+{"id": "s3tr-ro-9000150", "split": "train", "scene": "107734338_176000244", "sha256": "5b6690711341944bced7779bbf1d2416fa13fda72434d309ccebc08282a1bef2"}
+{"id": "s3tr-ro-9000183", "split": "train", "scene": "ProcTHOR-Train-59", "sha256": "4101caae403d90cdc48c9cb9ed467f29a0d77070571c8ffbc659864b907f1ec8"}
+{"id": "s3tr-wa-9005281", "split": "train", "scene": "/data/backups/rganapa/Sebastian/gen3/scenes/warehouse-005.glb", "sha256": "3f93f6e0473db9e0ae12bc06bde09b00bbff23d8711e5721caa982cbb3894a56"}
+{"id": "s3tr-wa-9005429", "split": "train", "scene": "/data/backups/rganapa/Sebastian/gen3/scenes/warehouse-019.glb", "sha256": "112ff99217a487619a949c9f25fa6afdaa014e4541bcc11e1132ef9663f40099"}
+{"id": "s3tr-wa-9005453", "split": "train", "scene": "/data/backups/rganapa/Sebastian/gen3/scenes/warehouse-020.glb", "sha256": "85df5e3776e83a1155404219abdf0cb07cd7c6d6e4931c94c800b872d95c75d3"}

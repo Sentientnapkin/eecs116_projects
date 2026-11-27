@@ -1,0 +1,11 @@
+2026-11-27T09:57:11Z ERROR ModuleNotFoundError("No module named 'numpy'")
+2026-11-27T09:58:15Z DONE screen24/control_g30_c8 n=24 mean=0.498412 worst=1.021974 peakfuel=15206653 p95max=7650667.949999999
+2026-11-27T09:58:33Z DONE screen24/capacity_g30_c12_o14 n=24 mean=0.438609 worst=1.047535 peakfuel=32111168 p95max=13620382.299999999
+2026-11-27T09:58:33Z SCREEN capacity_g30_c12_o14 {"n": 24, "mean_delta": -0.05980295381956655, "median_delta": -0.03160906941897564, "worst_regression": 0.2582857886726365, "improved": 17, "ci95": [-0.1257618032408507, 0.002045356346237428]}
+2026-11-27T09:58:59Z DONE screen24/control_g100_c8 n=24 mean=0.498412 worst=1.021974 peakfuel=15206653 p95max=7650667.949999999
+2026-11-27T09:59:18Z DONE screen24/capacity_g100_c20_o22 n=24 mean=0.489471 worst=1.051943 peakfuel=128214625 p95max=32488245.9
+2026-11-27T09:59:18Z SCREEN capacity_g100_c20_o22 {"n": 24, "mean_delta": -0.008940536429311296, "median_delta": -0.010999827134211805, "worst_regression": 0.14090818097942365, "improved": 14, "ci95": [-0.05123928431090959, 0.02914822872251509]}
+2026-11-27T09:59:18Z QUEUE COMPLETE
+2026-11-27T10:00:41Z DONE confirm48/control_g30_c8 n=48 mean=0.550504 worst=2.320314 peakfuel=14423539 p95max=7597938.499999997
+2026-11-27T10:01:18Z DONE confirm48/capacity_g30_c12_o14 n=48 mean=0.558745 worst=2.015173 peakfuel=30565755 p95max=15822106.4
+2026-11-27T10:01:19Z CONFIRM capacity_g30_c12_o14 {"n_candidate": 48, "candidate_mean_ate": 0.5587451003085695, "control_mean_ate": 0.5505044154041953, "candidate_max_peak_fuel": 30565755, "candidate_max_p95_fuel": 15822106.4, "paired": {"n": 48, "mean_delta": 0.008240684904374204, "median_delta": -0.0194078859859221, "worst_regression": 0.4543585184845441, "improved": 25, "ci95": [-0.04811957213176155, 0.06321047707032655]}}

@@ -1,0 +1,23 @@
+24 episodes, 0 cached, workers=4 (no video)
+20/24 finished, 14.7s
+24/24 finished, 17.3s
+24 episodes, 0 cached, workers=4 (no video)
+20/24 finished, 14.6s
+24/24 finished, 17.2s
+24 episodes, 0 cached, workers=4 (no video)
+20/24 finished, 14.5s
+24/24 finished, 17.0s
+24 episodes, 0 cached, workers=4 (no video)
+20/24 finished, 14.1s
+24/24 finished, 16.7s
+24 episodes, 0 cached, workers=4 (no video)
+20/24 finished, 14.2s
+24/24 finished, 16.7s
+Traceback (most recent call last):
+  File "/tmp/vio_loop2/extreme/runner.py", line 78, in <module>
+    try: main()
+         ^^^^^^
+  File "/tmp/vio_loop2/extreme/runner.py", line 71, in main
+    rr=evalone(exp,build(exp,dict(EXPS)[[e for e,_ in EXPS].index(exp)]),'confirm48')
+                             ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 0

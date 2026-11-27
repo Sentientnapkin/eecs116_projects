@@ -1,0 +1,6 @@
+# Keep compact JSON evidence; per-flight evaluator videos/caches stay local.
+**/report/
+**/cache/
+**/evaluate.log
+*.npz
+*-logs/

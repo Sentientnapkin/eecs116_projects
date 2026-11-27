@@ -1,0 +1,81 @@
+{
+  "status": "complete",
+  "zero_change_rebuild_byte_equal": true,
+  "screen_candidates": [
+    "capacity_g30_c12_o14",
+    "capacity_g100_c20_o22"
+  ],
+  "screen_paired": {
+    "capacity_g30_c12_o14": {
+      "control": "control_g30_c8",
+      "screen": {
+        "n": 24,
+        "mean_delta": -0.05980295381956655,
+        "median_delta": -0.03160906941897564,
+        "worst_regression": 0.2582857886726365,
+        "improved": 17,
+        "ci95": [
+          -0.1257618032408507,
+          0.002045356346237428
+        ]
+      }
+    },
+    "capacity_g100_c20_o22": {
+      "control": "control_g100_c8",
+      "screen": {
+        "n": 24,
+        "mean_delta": -0.008940536429311296,
+        "median_delta": -0.010999827134211805,
+        "worst_regression": 0.14090818097942365,
+        "improved": 14,
+        "ci95": [
+          -0.05123928431090959,
+          0.02914822872251509
+        ]
+      }
+    }
+  },
+  "confirmation": {
+    "candidate": "capacity_g30_c12_o14",
+    "n_complete": 48,
+    "n_control_complete": 48,
+    "paired_candidate_vs_matched_control": {
+      "n": 48,
+      "mean_delta": 0.008240684904374204,
+      "median_delta": -0.0194078859859221,
+      "worst_regression": 0.4543585184845441,
+      "improved": 25,
+      "ci95": [
+        -0.04811957213176155,
+        0.06321047707032655
+      ]
+    },
+    "candidate_vs_current_anchor": {
+      "n": 48,
+      "mean_delta": -0.02249891350838358,
+      "median_delta": -0.019481572494668975,
+      "worst_regression": 0.6239449321099465,
+      "improved": 30,
+      "ci95": [
+        -0.08461198887672002,
+        0.0398546944031008
+      ]
+    },
+    "control_vs_current_anchor": {
+      "n": 48,
+      "mean_delta": -0.030739598412757783,
+      "median_delta": -0.016259896247013655,
+      "worst_regression": 0.8068943829789906,
+      "improved": 26,
+      "ci95": [
+        -0.09516629752794796,
+        0.037574768273411024
+      ]
+    },
+    "candidate_peak_fuel": 30565755,
+    "candidate_max_per_flight_p95_fuel": 15822106.4
+  },
+  "confirmed_improvements": [],
+  "full_358_expansion": "not run; confirmation CI includes zero and tail gate was not met",
+  "limitations": "finite causal MSCKF capacity tests only; not a full nonlinear VIBA/smoothing/ceiling evaluation; development split flight pairing only"
+}

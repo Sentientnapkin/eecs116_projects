@@ -1,0 +1,58 @@
+2026-11-27 02:37:15 UTC queue start
+2026-11-27 02:37:20 UTC ERROR ImportError("cannot import name 'Empty' from 'queue' (/tmp/vio_loop2/extreme/queue.py)")
+Traceback (most recent call last):
+  File "/tmp/vio_loop2/extreme/queue.py", line 74, in <module>
+    try: main()
+         ^^^^^^
+  File "/tmp/vio_loop2/extreme/queue.py", line 56, in main
+    w=build(exp,extra); rr=evalone(exp,w,'screen24'); dif=[rr['by_episode'][k]-sb[k] for k in sb]
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/vio_loop2/extreme/queue.py", line 40, in evalone
+    score=run_guest_fast(wasm,PAN/batch,OUT/'evals'/batch,workers=NWORK,name=f'extreme_{batch}_{exp}')
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/backups/rganapa/Sebastian/eecs116_projects/research/single_model/run_variant.py", line 70, in run_guest_fast
+    from research.guard_fusion.composite.score import sha
+  File "/data/backups/rganapa/Sebastian/eecs116_projects/research/guard_fusion/composite/score.py", line 12, in <module>
+    from ..evaluate import summary
+  File "/data/backups/rganapa/Sebastian/eecs116_projects/research/guard_fusion/evaluate.py", line 8, in <module>
+    from concurrent.futures import ProcessPoolExecutor
+  File "/home/rganapa/miniforge3/lib/python3.12/concurrent/futures/__init__.py", line 45, in __getattr__
+    from .process import ProcessPoolExecutor as pe
+  File "/home/rganapa/miniforge3/lib/python3.12/concurrent/futures/process.py", line 55, in <module>
+    from multiprocessing.queues import Queue
+  File "/home/rganapa/miniforge3/lib/python3.12/multiprocessing/queues.py", line 21, in <module>
+    from queue import Empty, Full
+ImportError: cannot import name 'Empty' from 'queue' (/tmp/vio_loop2/extreme/queue.py)
+
+2026-11-27 02:37:30 UTC queue start
+2026-11-27 02:37:47 UTC queue start
+2026-11-27 02:38:37 UTC queue start
+2026-11-27 02:38:54 UTC complete screen24/uniform_ce6 mean=0.481018 median=0.449661 fuel=3795677 sha=7f8661506ffcc5682b20bf5b00420caad427dbb3bed734ce8c21bde515d33db7
+2026-11-27 02:38:54 UTC screen gate uniform_ce6: mean_delta=-0.043598 maxreg=0.167510 confirm=True
+2026-11-27 02:39:16 UTC complete screen24/uniform_ce8 mean=0.509923 median=0.495095 fuel=3748346 sha=1421ec06f26296ecbf904a927abffa3b04568427ee997bd57f12328ca5009721
+2026-11-27 02:39:16 UTC screen gate uniform_ce8: mean_delta=-0.014693 maxreg=0.486777 confirm=False
+2026-11-27 02:39:37 UTC complete screen24/depth_adapt_4_8 mean=0.477947 median=0.397277 fuel=3851866 sha=b1f1777017fe02af5a0a3d9f33080a7a95f5fb4ad3d1c70450156e339df92416
+2026-11-27 02:39:37 UTC screen gate depth_adapt_4_8: mean_delta=-0.046668 maxreg=0.378402 confirm=True
+2026-11-27 02:39:59 UTC complete screen24/long_window_4x12 mean=0.649051 median=0.488580 fuel=3106475 sha=fd3ae1d60b44352965ee53bdf07e9d41af4d562de7931b09956da569c2324fb0
+2026-11-27 02:39:59 UTC screen gate long_window_4x12: mean_delta=0.124435 maxreg=0.780826 confirm=False
+2026-11-27 02:40:20 UTC complete screen24/long_window_3x18 mean=0.740634 median=0.604012 fuel=2964880 sha=f4797717e73f5b90aad4ed33fa66b9d3b8eaa2c59ca9faa1b3e05c1124bd1536
+2026-11-27 02:40:20 UTC screen gate long_window_3x18: mean_delta=0.216018 maxreg=1.503946 confirm=False
+2026-11-27 02:40:20 UTC ERROR KeyError(0)
+Traceback (most recent call last):
+  File "/tmp/vio_loop2/extreme/runner.py", line 78, in <module>
+    try: main()
+         ^^^^^^
+  File "/tmp/vio_loop2/extreme/runner.py", line 71, in main
+    rr=evalone(exp,build(exp,dict(EXPS)[[e for e,_ in EXPS].index(exp)]),'confirm48')
+                             ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 0
+
+2026-11-27 02:41:02 UTC queue start
+2026-11-27 02:41:02 UTC screen gate uniform_ce6: mean_delta=-0.043598 maxreg=0.167510 confirm=True
+2026-11-27 02:41:02 UTC screen gate uniform_ce8: mean_delta=-0.014693 maxreg=0.486777 confirm=False
+2026-11-27 02:41:02 UTC screen gate depth_adapt_4_8: mean_delta=-0.046668 maxreg=0.378402 confirm=True
+2026-11-27 02:41:02 UTC screen gate long_window_4x12: mean_delta=0.124435 maxreg=0.780826 confirm=False
+2026-11-27 02:41:02 UTC screen gate long_window_3x18: mean_delta=0.216018 maxreg=1.503946 confirm=False
+2026-11-27 02:41:39 UTC complete confirm48/uniform_ce6 mean=0.577289 median=0.531399 fuel=3952273 sha=7f8661506ffcc5682b20bf5b00420caad427dbb3bed734ce8c21bde515d33db7
+2026-11-27 02:42:16 UTC complete confirm48/depth_adapt_4_8 mean=0.570191 median=0.457443 fuel=4032236 sha=b1f1777017fe02af5a0a3d9f33080a7a95f5fb4ad3d1c70450156e339df92416
+2026-11-27 02:42:16 UTC queue done

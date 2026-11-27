@@ -1,0 +1,14 @@
+[
+  {
+    "model": "deepsets",
+    "permutation_max_abs_mu_delta": 2.384185791015625e-07,
+    "permutation_max_abs_lv_delta": 4.76837158203125e-07,
+    "batch256_forward_ms": 0.17079535871744156
+  },
+  {
+    "model": "attention",
+    "permutation_max_abs_mu_delta": 7.152557373046875e-07,
+    "permutation_max_abs_lv_delta": 1.430511474609375e-06,
+    "batch256_forward_ms": 0.4470379650592804
+  }
+]

@@ -1,0 +1,58 @@
+152 episodes, 0 cached, workers=14 (no video)
+20/152 finished, 38.5s
+40/152 finished, 60.8s
+60/152 finished, 77.5s
+80/152 finished, 93.9s
+100/152 finished, 108.1s
+120/152 finished, 125.0s
+140/152 finished, 146.0s
+152/152 finished, 156.9s
+net_ft2 v3val n 152 / 152 mean ATE 1.015 median 0.784 >3m 4
+  setting_class {'forest': '1.375 (n=44)', 'room': '0.499 (n=71)', 'warehouse': '1.579 (n=37)'}
+  regime {'benchmark': '0.723 (n=50)', 'free-yaw': '1.159 (n=102)'}
+  start {'hover': '0.802 (n=29)', 'mid-flight': '1.066 (n=123)'}
+152 episodes, 0 cached, workers=14 (no video)
+20/152 finished, 41.9s
+40/152 finished, 65.4s
+60/152 finished, 82.5s
+80/152 finished, 97.5s
+100/152 finished, 111.3s
+120/152 finished, 128.7s
+140/152 finished, 145.4s
+152/152 finished, 162.5s
+net_ft2b v3val n 152 / 152 mean ATE 1.003 median 0.862 >3m 4
+  setting_class {'forest': '1.344 (n=44)', 'room': '0.490 (n=71)', 'warehouse': '1.581 (n=37)'}
+  regime {'benchmark': '0.730 (n=50)', 'free-yaw': '1.136 (n=102)'}
+  start {'hover': '0.889 (n=29)', 'mid-flight': '1.029 (n=123)'}
+210 episodes, 0 cached, workers=14 (no video)
+20/210 finished, 54.5s
+40/210 finished, 82.7s
+60/210 finished, 107.4s
+80/210 finished, 123.8s
+100/210 finished, 142.8s
+120/210 finished, 161.2s
+140/210 finished, 181.0s
+160/210 finished, 204.2s
+180/210 finished, 228.0s
+200/210 finished, 250.2s
+210/210 finished, 265.3s
+net_ft2 v1val n 210 / 210 mean ATE 0.739 median 0.589 >3m 1
+  setting_class {'forest': '1.057 (n=55)', 'room': '0.373 (n=104)', 'warehouse': '1.140 (n=51)'}
+  regime {'benchmark': '0.739 (n=189)', 'independent-yaw': '0.734 (n=21)'}
+  start {'hover': '0.670 (n=48)', 'mid-flight': '0.759 (n=162)'}
+210 episodes, 0 cached, workers=14 (no video)
+20/210 finished, 41.7s
+40/210 finished, 66.0s
+60/210 finished, 91.6s
+80/210 finished, 113.6s
+100/210 finished, 134.3s
+120/210 finished, 152.2s
+140/210 finished, 175.8s
+160/210 finished, 196.1s
+180/210 finished, 220.6s
+200/210 finished, 237.8s
+210/210 finished, 246.5s
+gslvlj v1val n 210 / 210 mean ATE 1.143 median 0.811 >3m 8
+  setting_class {'forest': '1.889 (n=55)', 'room': '0.447 (n=104)', 'warehouse': '1.757 (n=51)'}
+  regime {'benchmark': '1.072 (n=189)', 'independent-yaw': '1.776 (n=21)'}
+  start {'hover': '0.712 (n=48)', 'mid-flight': '1.270 (n=162)'}

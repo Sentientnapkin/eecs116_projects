@@ -1,0 +1,25 @@
+{
+  "baseline_ate": 0.43485038359560874,
+  "baseline_peak": 4030586,
+  "passed": [],
+  "experiments": [
+    {
+      "name": "mc5",
+      "batch": "screen",
+      "sha256": "2456855c312d24e4611f748fddd13936a06cfe1dcb338ead11b605329cd8ab17",
+      "n": 18,
+      "ate_raw": 0.5156995140983597,
+      "median": 0.5070632871950221,
+      "peak_fuel": 3192448
+    },
+    {
+      "name": "mc4",
+      "batch": "screen",
+      "sha256": "e4a4902a489511db560daf5b69a47bd9dba39dc6e904592fd0d35a597f8b616f",
+      "n": 18,
+      "ate_raw": 0.49699370406182114,
+      "median": 0.48873862671203866,
+      "peak_fuel": 3016986
+    }
+  ]
+}

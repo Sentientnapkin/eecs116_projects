@@ -1,0 +1,58 @@
+{
+  "source_sha256": "b1981fd57e8e87c15e2a8ab999bf8ce950d05a0259f4e52db4eb9be6382b3a68",
+  "old_zpe_reference": "/data/backups/rganapa/Sebastian/gen3/scratch_up/gslv_s3_A160ft_Ze0.wasm",
+  "pool_episodes": [
+    "s3v3va-fo-9300457.zip",
+    "s3v3va-fo-9300460.zip",
+    "s3v3va-fo-9300463.zip",
+    "s3v3va-fo-9300467.zip",
+    "s3v3va-fo-9300477.zip",
+    "s3v3va-fo-9300497.zip",
+    "s3v3va-fo-9300514.zip",
+    "s3v3va-fo-9300522.zip",
+    "s3v3va-fo-9300526.zip",
+    "s3v3va-fo-9300530.zip",
+    "s3v3va-fo-9300535.zip",
+    "s3v3va-fo-9300536.zip",
+    "s3v3va-fo-9300541.zip",
+    "s3v3va-fo-9300542.zip",
+    "s3v3va-fo-9300546.zip",
+    "s3v3va-fo-9300547.zip",
+    "s3v3va-fo-9300567.zip",
+    "s3v3va-fo-9300570.zip",
+    "s3v3va-fo-9300584.zip",
+    "s3v3va-fo-9300585.zip",
+    "s3v3va-fo-9300587.zip",
+    "s3v3va-fo-9300596.zip",
+    "s3v3va-fo-9300597.zip",
+    "s3v3va-fo-h9500101.zip"
+  ],
+  "n": 24,
+  "depth_semantics": "independent zero-mean Gaussian fractional noise on GT-pose triangulated feature depth; OR_DEP_ON hook, not renderer depth or exact correspondences",
+  "sigma_fraction": [
+    0.02,
+    0.05,
+    0.1
+  ],
+  "covariance": "independent per landmark; no shared frame/episode scale term in this first sensitivity screen",
+  "experiments": [
+    [
+      "baseline",
+      null
+    ],
+    [
+      "sd02",
+      "OR_DEP=0.02"
+    ],
+    [
+      "sd05",
+      "OR_DEP=0.05"
+    ],
+    [
+      "sd10",
+      "OR_DEP=0.1"
+    ]
+  ],
+  "deadline_seconds": 3600,
+  "workers": 4
+}

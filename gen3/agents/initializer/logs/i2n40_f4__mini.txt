@@ -1,0 +1,6 @@
+8 episodes, 0 cached, workers=4 (no video)
+8/8 finished, 31.4s
+ini_i2n40_f4 mini n 8 / 8 mean ATE 2.652 median 2.288 >3m 3
+  setting_class {'forest': '2.713 (n=3)', 'room': '0.481 (n=3)', 'warehouse': '5.815 (n=2)'}
+  regime {'free-yaw': '2.652 (n=8)'}
+  start {'mid-flight': '2.652 (n=8)'}

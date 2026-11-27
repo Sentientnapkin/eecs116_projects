@@ -8,3 +8,23 @@ __pycache__/
 # Local research checkouts and immutable binary packages
 .worktrees/
 research/artifacts/
+
+# Local credentials, agent state, and reproducible bulk data
+.aws/
+.codex/
+.agents/
+*.npy
+*.npz
+*.pkl
+*.db
+*.db-shm
+*.db-wal
+*.zip
+research/single_model/**/work/
+research/single_model/**/cache/
+research/results/single_model/
+*.o
+*.a
+*.so
+# Per-frame evaluator dumps; root JSON summaries are retained.
+/gen3/evals/*/

@@ -1,0 +1,38 @@
+{
+ "guest": {
+  "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/guard_fusion/vio/artifacts/vins_recovery_fault20.wasm",
+  "sha256": "8a2e01556bd4086a9201f88049c9a3e218977442fcb6ed322a55739255eac4af",
+  "evaluator_src": "/dev/shm/sebastian-vio/viobench",
+  "archives": [
+   "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fast-106366104_174226329-01.zip",
+   "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fast-ProcTHOR-Train-159-00.zip"
+  ]
+ },
+ "rows": [
+  {
+   "episode": "fast-106366104_174226329-01",
+   "frames": 1200,
+   "frames_attempted": 1200,
+   "completed": true,
+   "failure": null,
+   "peak_fuel_per_frame": 2306260193,
+   "median_fuel_per_frame": 503328449.0,
+   "p95_fuel_per_frame": 827948355.9999998,
+   "scene": "106366104_174226329",
+   "duration_s": 59.949999999999996,
+   "ate_30s": 1.478293551828287,
+   "filled_30s": 0,
+   "ate_60s": 2.5948523514624218,
+   "filled_60s": 0,
+   "ate_full": 2.5948523514624218,
+   "filled_full": 0,
+   "initialized_at_s": 0.945,
+   "full_vio_at_s": null,
+   "ate_reported_full": 2.5948523514332367
+  },
+  {
+   "episode": "fast-ProcTHOR-Train-159-00",
+   "error": "no report"
+  }
+ ]
+}

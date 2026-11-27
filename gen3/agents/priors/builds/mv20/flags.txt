@@ -1,0 +1,1 @@
+MOVE_VEL_STD=2.0

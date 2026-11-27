@@ -1,0 +1,19 @@
+2026-11-27T02:35:38Z waiting for orchestrator exact baseline panel controls
+2026-11-27T02:36:16Z ERROR ModuleNotFoundError("No module named 'numpy'")
+2026-11-27T02:37:22Z DONE screen24/tri_tight mean=0.524615 peak=3849899 sha=1a169f28916acd813f86a7b526efb8e8b646b3dda73e48cba51b12845c69b1b8
+2026-11-27T02:37:22Z SCREEN tri_tight {"n": 24, "mean_delta": 0.0, "median_delta": 0.0, "ci95": [0.0, 0.0], "max_regression": 0.0, "regressions_gt_0_1": 0}
+2026-11-27T02:37:44Z DONE screen24/gate_tight mean=0.528275 peak=4046197 sha=c465897b81ac192c220468dfed85c6190fe9ce192022e5b9acdba5edbf2df6e3
+2026-11-27T02:37:44Z SCREEN gate_tight {"n": 24, "mean_delta": 0.003660146413416736, "median_delta": -0.0021903146546746743, "ci95": [-0.06207421823396845, 0.06522560590108469], "max_regression": 0.27656175048974896, "regressions_gt_0_1": 6}
+2026-11-27T02:38:06Z DONE screen24/depth25 mean=0.487527 peak=3849899 sha=49e0a1bae96c3d4857b457cfcdb3fd4c71ca0bb9978fff146a9a055f5ec2b0e4
+2026-11-27T02:38:06Z SCREEN depth25 {"n": 24, "mean_delta": -0.03708812411677331, "median_delta": 0.0, "ci95": [-0.10671690607933886, 0.02371358493713735], "max_regression": 0.1801925655958383, "regressions_gt_0_1": 4}
+2026-11-27T02:38:27Z DONE screen24/obs12 mean=0.524615 peak=3850285 sha=88d30c66ca2f9539224f55fb055f19a23134b10071f584cf5bfcb074ee420361
+2026-11-27T02:38:27Z SCREEN obs12 {"n": 24, "mean_delta": 0.0, "median_delta": 0.0, "ci95": [0.0, 0.0], "max_regression": 0.0, "regressions_gt_0_1": 0}
+2026-11-27T02:38:27Z QUEUE COMPLETE
+2026-11-27T02:41:30Z DONE confirm48/depth25 mean=0.585929 peak=3844417 sha=49e0a1bae96c3d4857b457cfcdb3fd4c71ca0bb9978fff146a9a055f5ec2b0e4
+2026-11-27T02:41:30Z FOLLOWUP CONFIRM depth25 {"n": 48, "mean_delta": 0.004685384969906582, "median_delta": 0.0, "ci95": [-0.04577644250170535, 0.06060778276136025], "max_regression": 0.7113936129097348, "regressions_gt_0_1": 8}
+2026-11-27T02:41:52Z DONE screen24/tri_cond1 mean=0.556919 peak=3903125 sha=0666432d2f39e7c77efe3d0ec1aabae583794e554bde4e7e550fd2d272c838f1
+2026-11-27T02:41:52Z FOLLOWUP SCREEN tri_cond1 {"n": 24, "mean_delta": 0.03230376369680471, "median_delta": 0.025660400072367043, "ci95": [-0.05719788823783933, 0.1193379943905314], "max_regression": 0.47616369517702944, "regressions_gt_0_1": 7}
+2026-11-27T02:42:14Z DONE screen24/tri_cond2 mean=0.512766 peak=3794412 sha=d0faba80f8485d41965528f0a93b54c44a8daccbbdee52d08688029292566fa4
+2026-11-27T02:42:14Z FOLLOWUP SCREEN tri_cond2 {"n": 24, "mean_delta": -0.011848961358087063, "median_delta": -0.0009757383724857405, "ci95": [-0.07319754786727502, 0.04707470974367906], "max_regression": 0.36026577509938107, "regressions_gt_0_1": 4}
+2026-11-27T02:42:50Z DONE confirm48/tri_cond2 mean=0.635793 peak=4055140 sha=d0faba80f8485d41965528f0a93b54c44a8daccbbdee52d08688029292566fa4
+2026-11-27T02:42:50Z FOLLOWUP CONFIRM tri_cond2 {"n": 48, "mean_delta": 0.05454883495174536, "median_delta": 0.03971858705781961, "ci95": [-0.00724110163576133, 0.11984221280908215], "max_regression": 0.7069648899008513, "regressions_gt_0_1": 15}

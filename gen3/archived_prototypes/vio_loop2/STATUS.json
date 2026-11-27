@@ -1,0 +1,17 @@
+{
+  "state": "running",
+  "mode": "bounded multi-round scripts plus Luna review",
+  "baseline_sha256": "1a169f28916acd813f86a7b526efb8e8b646b3dda73e48cba51b12845c69b1b8",
+  "shared_screen": 24,
+  "shared_confirmation": 48,
+  "max_wall_seconds_per_lane": 7200,
+  "max_bulk_bytes_per_lane": 4000000000,
+  "no_hidden_submissions": true,
+  "lanes": [
+    "accuracy",
+    "fuel",
+    "extreme",
+    "learned"
+  ],
+  "note": "A finite script queue does not automatically reactivate an AI agent or imply indefinite autonomous ideation."
+}

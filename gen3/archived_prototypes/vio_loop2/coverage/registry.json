@@ -1,0 +1,660 @@
+{
+  "protocol_version": 1,
+  "baseline": {
+    "artifact": "gslv_s3_snace6e1.wasm",
+    "sha256": "1a169f28916acd813f86a7b526efb8e8b646b3dda73e48cba51b12845c69b1b8",
+    "server_mean_ate": 0.4443728206485426,
+    "server_peak_fuel": 4032692,
+    "live_score_percent_user_report": 1.29,
+    "repository_commit": "c54dde30e46bb1c911abc0ffb77c04f440cf0792",
+    "commit_note": "Working tree contains additional experiment sources; source and binary hashes are authoritative."
+  },
+  "principles": [
+    "audit existing evidence before repeating",
+    "standalone measurement/solver before filter integration where feasible",
+    "oracle and realistic-noise ceilings",
+    "one intervention per causal comparison",
+    "same-source zero-change rebuild",
+    "causal information boundary",
+    "matched latency/frequency/covariance",
+    "separate scene-heldout and trajectory-heldout validation",
+    "actual peak WASM fuel",
+    "frozen best and untouched stage-3 test",
+    "600 GB global local dataset policy; bounded HF streaming",
+    "no hidden evaluator submissions",
+    "finite resumable scripts; agent reasoning only at review points"
+  ],
+  "rows": [
+    {
+      "id": "G01",
+      "title": "Gyro-compensated direction",
+      "lanes": [
+        "accuracy",
+        "extreme"
+      ],
+      "variants": [
+        "gyro-predicted tracking",
+        "derotated flow",
+        "finite-frame known-rotation epipolar geometry",
+        "two-point RANSAC",
+        "weighted 3x3 eigensolver",
+        "IRLS",
+        "eigen-gap/parallax/spatial confidence",
+        "cheirality sign",
+        "short and long baselines",
+        "lever arm and gyro bias"
+      ],
+      "evidence": [
+        "research/r1",
+        "research/i6/REPORT.md"
+      ],
+      "next_test": "Audit standalone direction accuracy and revisit only demonstrable missing regimes or formulations.",
+      "status": "audit_pending"
+    },
+    {
+      "id": "G02",
+      "title": "Metric velocity from direction and acceleration",
+      "lanes": [
+        "accuracy",
+        "extreme"
+      ],
+      "variants": [
+        "projected velocity-change LS",
+        "finite-displacement epipolar LS",
+        "2/3/5/10/20/30/40 frame windows",
+        "oracle then estimated gravity/bias",
+        "observable-component fusion",
+        "constant velocity and longitudinal/lateral excitation"
+      ],
+      "evidence": [
+        "research/r2"
+      ],
+      "next_test": "Compare direction and finite-displacement solvers on matched tracks with conditioning and latency.",
+      "status": "audit_pending"
+    },
+    {
+      "id": "G03",
+      "title": "Direct joint inertial initialization",
+      "lanes": [
+        "accuracy",
+        "extreme"
+      ],
+      "variants": [
+        "3D velocity",
+        "6D velocity+gravity",
+        "9D velocity+gravity+accel bias",
+        "gravity norm",
+        "gyro-bias refinement",
+        "Manhattan and learned priors",
+        "regularization",
+        "robust loss",
+        "scaled conditioning",
+        "incremental normal equations"
+      ],
+      "evidence": [
+        "research/r3"
+      ],
+      "next_test": "Audit prior results, then test missing observability/noise regimes standalone before any filter injection.",
+      "status": "audit_pending"
+    },
+    {
+      "id": "G04",
+      "title": "Metric depth to geometric motion",
+      "lanes": [
+        "accuracy",
+        "learned"
+      ],
+      "variants": [
+        "8x8/16x12/32x24 depth",
+        "sparse feature depth",
+        "effective scene depth",
+        "relative depth+metric scale",
+        "inverse depth",
+        "depth uncertainty",
+        "floor plane/camera height",
+        "instantaneous flow versus finite translation",
+        "shared versus feature-specific errors"
+      ],
+      "evidence": [
+        "research/r4",
+        "research/i3/results.tsv",
+        "research/i5/REPORT.md",
+        "/tmp/vio_fourlane_20261127/learned/stratified"
+      ],
+      "next_test": "Establish valid noisy-depth and correlated-scale ceilings, then compare standalone finite-motion solvers and learned targets.",
+      "status": "running"
+    },
+    {
+      "id": "G05",
+      "title": "Information-aware feature management",
+      "lanes": [
+        "accuracy",
+        "fuel",
+        "extreme"
+      ],
+      "variants": [
+        "depth-aware",
+        "parallax-aware",
+        "marginalized-information ranking",
+        "near translation versus distant rotation",
+        "rotation-only constraints",
+        "long-track gyro bias",
+        "quality/depth/blur covariance",
+        "epipole ambiguity"
+      ],
+      "evidence": [
+        "research/r5/NOTES.md",
+        "research/r5/results.tsv",
+        "research/i4/REPORT.md"
+      ],
+      "next_test": "Current-build standalone information diagnostics; selectively port prior successful low-budget observation decimation, not every ranking switch.",
+      "status": "audit_pending"
+    },
+    {
+      "id": "G06",
+      "title": "Multi-view landmark elimination",
+      "lanes": [
+        "accuracy",
+        "extreme"
+      ],
+      "variants": [
+        "flow-magnitude preliminary test",
+        "bearing-space LS",
+        "normalized reprojection",
+        "Schur/nullspace elimination",
+        "depth-dependent weighting",
+        "far landmarks",
+        "longitudinal scale recovery",
+        "bounded incremental updates"
+      ],
+      "evidence": [
+        "research/r6"
+      ],
+      "next_test": "Compare against G02/G03 on identical tracks; do not assume fixed depth across moving views.",
+      "status": "audit_pending"
+    },
+    {
+      "id": "G07",
+      "title": "Blur as a supplemental measurement",
+      "lanes": [
+        "accuracy",
+        "extreme",
+        "learned"
+      ],
+      "variants": [
+        "gradient direction",
+        "autocorrelation",
+        "blur length",
+        "spatial rotational/translational blur",
+        "gyro exposure estimation",
+        "first-frame hover/moving",
+        "sign ambiguity",
+        "depth-conditioned blur velocity",
+        "blur-aware covariance",
+        "tiny learned blur model"
+      ],
+      "evidence": [
+        "research/r7",
+        "research/i5/REPORT.md"
+      ],
+      "next_test": "First validate renderer exposure averaging; measure standalone label predictability without claiming metric velocity from blur alone.",
+      "status": "audit_pending"
+    },
+    {
+      "id": "G08",
+      "title": "Exposure and synchronization",
+      "lanes": [
+        "accuracy",
+        "fuel"
+      ],
+      "variants": [
+        "start/mid/end timestamp audit",
+        "fixed offset",
+        "episode offset",
+        "exposure-dependent offset",
+        "visual-gyro rotational consistency",
+        "gyro bias versus offset",
+        "effective pose interpolation",
+        "causality"
+      ],
+      "evidence": [
+        "research/r8",
+        "research/i5/REPORT.md"
+      ],
+      "next_test": "Use actual mid-exposure source conventions; only test a correction after a reproducible rotational timing mismatch.",
+      "status": "audit_pending"
+    },
+    {
+      "id": "G09",
+      "title": "Multi-hypothesis initialization",
+      "lanes": [
+        "accuracy",
+        "extreme",
+        "learned"
+      ],
+      "variants": [
+        "8-32 speed posterior",
+        "velocity Gaussian mixture",
+        "hover/moving",
+        "geometric direction with speed hypotheses",
+        "shared-track particles",
+        "delayed commitment",
+        "MAP/mean/mixture filter prior"
+      ],
+      "evidence": [
+        "research/r9"
+      ],
+      "next_test": "Audit existing evidence; score hypotheses using shared geometric sufficient statistics without multiple full filters.",
+      "status": "audit_pending"
+    },
+    {
+      "id": "G10",
+      "title": "Origin-anchored state refinement",
+      "lanes": [
+        "accuracy",
+        "learned"
+      ],
+      "variants": [
+        "early clone retention",
+        "anchor landmarks",
+        "secondary initial-state estimator",
+        "bounded early smoothing",
+        "measurement replay",
+        "initial covariance propagation",
+        "current-position correction with correlations"
+      ],
+      "evidence": [
+        "research/r10",
+        "research/i2/REPORT.md"
+      ],
+      "next_test": "Separate noncausal posthoc attribution from deployable correction; require a positive oracle ceiling on current build before backend work.",
+      "status": "audit_pending"
+    },
+    {
+      "id": "G11",
+      "title": "Small learned missing-information priors",
+      "lanes": [
+        "accuracy",
+        "fuel",
+        "extreme",
+        "learned"
+      ],
+      "variants": [
+        "speed only",
+        "metric/effective depth",
+        "relative depth and scale",
+        "hover probability",
+        "heteroscedastic/multimodal velocity",
+        "gravity",
+        "bias priors if identifiable",
+        "feature uncertainty/reliability",
+        "exposure/blur",
+        "observability/init confidence",
+        "shared encoder versus tiny heads",
+        "quantization",
+        "distillation"
+      ],
+      "evidence": [
+        "research/r11",
+        "research/i6/REPORT.md"
+      ],
+      "next_test": "Compare physically observed versus motion-distribution shortcuts, uncertainty and measured fuel; select targets by oracle value.",
+      "status": "audit_pending"
+    },
+    {
+      "id": "L01",
+      "title": "Geometric-token initializer",
+      "lanes": [
+        "learned",
+        "extreme"
+      ],
+      "variants": [
+        "track history tokens",
+        "derotated bearings/flow",
+        "age/quality/depth/residual",
+        "IMU/preintegration tokens",
+        "intrinsics",
+        "Transformer",
+        "Deep Sets",
+        "teacher 128-256 tracks/256-512 width/8-12 layers",
+        "student 32-64 tracks/32-64 width/2-4 layers",
+        "20-40 versus 5-20 frame context",
+        "initial-state distribution"
+      ],
+      "evidence": [
+        "research/i5/shard",
+        "research/i6/REPORT.md"
+      ],
+      "next_test": "Verify reusable track labels, then compare permutation-invariant pooling against attention on identical causal inputs, including oracle geometry and uncertainty.",
+      "status": "audit_pending"
+    },
+    {
+      "id": "L02",
+      "title": "Task-optimized metric depth teacher",
+      "lanes": [
+        "learned"
+      ],
+      "variants": [
+        "Depth Anything V2",
+        "UniDepth V2",
+        "simulator fine-tuning",
+        "intrinsics and FOV conditioning",
+        "sparse informative depths",
+        "global scale uncertainty",
+        "depth+velocity+trajectory loss",
+        "differentiable regularized geometric solver",
+        "teacher-student depth distillation"
+      ],
+      "evidence": [
+        "research/i5/REPORT.md",
+        "research/i3/results.tsv"
+      ],
+      "next_test": "Validate exact sparse-depth supervision and shared-scale fusion before large teacher fine-tuning; verify paper and weight licenses/rules.",
+      "status": "audit_pending"
+    },
+    {
+      "id": "L03",
+      "title": "Simulator-trained gyro-guided patch tracker",
+      "lanes": [
+        "learned",
+        "accuracy",
+        "fuel"
+      ],
+      "variants": [
+        "gyro-centered patch pairs",
+        "subpixel residual",
+        "visibility",
+        "measurement covariance",
+        "wide FOV and blur",
+        "fallback on hard tracks",
+        "DPVO-inspired recurrent refinement",
+        "large matcher teacher/distillation"
+      ],
+      "evidence": [
+        "research/i4/REPORT.md",
+        "research/i5/REPORT.md"
+      ],
+      "next_test": "Measure KLT subpixel errors against renderer truth and occlusion, then train a standalone matcher only where a measured deficit exists.",
+      "status": "audit_pending"
+    },
+    {
+      "id": "L04",
+      "title": "Recurrent estimator residual model",
+      "lanes": [
+        "learned",
+        "accuracy"
+      ],
+      "variants": [
+        "velocity residual",
+        "metric scale residual",
+        "gravity residual",
+        "feature noise multiplier",
+        "degraded-vision velocity",
+        "origin error",
+        "bias uncertainty",
+        "MSCKF states/P/innovations/tracks/depth/flow",
+        "multi-configuration training"
+      ],
+      "evidence": [
+        "research/i2/REPORT.md",
+        "research/i5/REPORT.md"
+      ],
+      "next_test": "Export causal estimator statistics; establish a constrained measurable target and perturbation robustness before inserting pose corrections.",
+      "status": "audit_pending"
+    },
+    {
+      "id": "L05",
+      "title": "Expensive VIO teacher and distillation",
+      "lanes": [
+        "learned"
+      ],
+      "variants": [
+        "high-resolution geometry",
+        "large correspondence model",
+        "metric depth",
+        "causal long-window VI BA",
+        "multiple initial hypotheses",
+        "persistent landmarks",
+        "robust uncertainty",
+        "offline noncausal smoother as separately labeled teacher",
+        "feature reliability/observability/optimizer supervision"
+      ],
+      "evidence": [
+        "research/i4/REPORT.md",
+        "research/i5/REPORT.md"
+      ],
+      "next_test": "First establish unrestricted causal geometry and offline smoothing ceilings separately; teacher must add observation interpretation beyond GT labels.",
+      "status": "audit_pending"
+    },
+    {
+      "id": "L06",
+      "title": "Recurrent end-to-end VIO comparisons",
+      "lanes": [
+        "learned"
+      ],
+      "variants": [
+        "fully learned recurrent pose/velocity",
+        "physics-informed inertial propagation+residuals",
+        "differentiable measurements+filter/BA",
+        "GRU/state-space memory",
+        "long-range uncertainty",
+        "trajectory losses",
+        "initial constant-velocity ambiguity"
+      ],
+      "evidence": [
+        "research/i6/REPORT.md",
+        "research/n1/REPORT.md"
+      ],
+      "next_test": "Matched causal input/split/latency controls; evaluate generalization and actual fuel before assuming a recurrent state resolves metric ambiguity.",
+      "status": "audit_pending"
+    },
+    {
+      "id": "L07",
+      "title": "Context, capacity and scheduling Pareto",
+      "lanes": [
+        "learned",
+        "fuel"
+      ],
+      "variants": [
+        "2/3/5/long image contexts",
+        "multi-baseline context",
+        "wider encoders",
+        "token pruning",
+        "integer quantization",
+        "incremental activations across calls",
+        "delayed historical clone association",
+        "latency-aware uncertainty",
+        "distillation to C"
+      ],
+      "evidence": [
+        "research/i1/bench.tsv",
+        "research/i6/REPORT.md"
+      ],
+      "next_test": "Train short matched temporal-context pilots with saved checkpoints; separate velocity validation from downstream ATE and fuel.",
+      "status": "running"
+    },
+    {
+      "id": "D01",
+      "title": "Counterfactual supervision",
+      "lanes": [
+        "learned",
+        "accuracy"
+      ],
+      "variants": [
+        "same orientation/different velocities",
+        "same IMU/different v0",
+        "same flow/different depth",
+        "same motion/different FOV",
+        "same trajectory/different exposure",
+        "same geometry/different texture",
+        "similar appearance/different scale",
+        "constant velocity",
+        "longitudinal/lateral excitation",
+        "hover+rapid rotation",
+        "arbitrary roll/pitch",
+        "bias/noise realizations"
+      ],
+      "evidence": [
+        "research/i5/REPORT.md",
+        "g3.py"
+      ],
+      "next_test": "Classify each variation as replay-only, re-render, dynamics regeneration or unsupported; do not label transformed trajectories as physical counterfactuals.",
+      "status": "audit_pending"
+    },
+    {
+      "id": "D02",
+      "title": "Reusable geometric and estimator dataset",
+      "lanes": [
+        "learned",
+        "accuracy",
+        "fuel",
+        "extreme"
+      ],
+      "variants": [
+        "calibrated image windows",
+        "raw IMU and preintegrations",
+        "track histories/quality",
+        "derotated rays",
+        "depth/visibility/correspondences",
+        "MSCKF states/covariance/innovations/gains",
+        "GT poses/velocity/gravity",
+        "approximate versus exact biases",
+        "scene/motion metadata",
+        "mid-flight frame re-anchoring",
+        "HF streaming/cache budgeting"
+      ],
+      "evidence": [
+        "research/i5/REPORT.md",
+        "research/i5/shard",
+        "storage_policy.json"
+      ],
+      "next_test": "Reuse existing compact data, verify conventions and target provenance; stream bounded scene-grouped supervision rather than duplicate full raw datasets.",
+      "status": "audit_pending"
+    },
+    {
+      "id": "N01",
+      "title": "Persistent common metric-scale nuisance",
+      "lanes": [
+        "learned",
+        "accuracy"
+      ],
+      "variants": [
+        "shared scalar depth scale state",
+        "rank-one correlated covariance",
+        "independent residual uncertainty",
+        "persistent versus per-window scale",
+        "covariance inflation control"
+      ],
+      "evidence": [
+        "/tmp/vio_fourlane_20261127/learned/stratified/INTERPRETATION.md"
+      ],
+      "next_test": "Prototype scale-aware solver/fusion with controlled shared bias before training; compare to independent-row fusion under identical observations.",
+      "status": "hypothesis"
+    },
+    {
+      "id": "N02",
+      "title": "Measurement value per fuel and latency",
+      "lanes": [
+        "fuel",
+        "extreme",
+        "learned"
+      ],
+      "variants": [
+        "marginalized information gain",
+        "weak-mode covariance",
+        "age of last independent observation",
+        "calibrated remaining-cost prediction",
+        "bounded scheduling",
+        "measurement arrival-time conditioning"
+      ],
+      "evidence": [
+        "research/i1/REPORT.md",
+        "/tmp/vio_loop2/fuel"
+      ],
+      "next_test": "Use current-model profiles; test scheduling benefits independently of measurement quality.",
+      "status": "hypothesis"
+    },
+    {
+      "id": "N03",
+      "title": "Dual rotation/translation track budgets",
+      "lanes": [
+        "accuracy",
+        "extreme"
+      ],
+      "variants": [
+        "few high-parallax translation tracks",
+        "distant rotation-only tracks",
+        "long baselines with small covariance",
+        "adaptive clone geometry",
+        "depth versus epipole classification"
+      ],
+      "evidence": [
+        "research/r5/NOTES.md",
+        "/tmp/vio_loop2/extreme"
+      ],
+      "next_test": "Find information-preserving low-compute configurations; smaller state alone has demonstrated regressions.",
+      "status": "hypothesis"
+    },
+    {
+      "id": "N04",
+      "title": "Causal ambiguity-aware teacher targets",
+      "lanes": [
+        "learned"
+      ],
+      "variants": [
+        "teacher feature reliability",
+        "observable-mode labels",
+        "causal suffix masking",
+        "future-information exclusion",
+        "conditional distribution targets"
+      ],
+      "evidence": [
+        "research/i5/REPORT.md"
+      ],
+      "next_test": "Test whether teacher uncertainty/observability supervision improves causal students beyond GT point targets.",
+      "status": "hypothesis"
+    },
+    {
+      "id": "N05",
+      "title": "Temporal error correlation as a learned target",
+      "lanes": [
+        "learned",
+        "accuracy"
+      ],
+      "variants": [
+        "signed bias",
+        "correlation time",
+        "shared scale versus frame noise",
+        "innovation whitening",
+        "conservative repeated-measurement fusion"
+      ],
+      "evidence": [
+        "research/i3/results.tsv",
+        "/tmp/vio_loop2/learned"
+      ],
+      "next_test": "Measure correlation on unseen flights and train/fuse a distribution over persistent error, not just independent per-frame sigma.",
+      "status": "hypothesis"
+    },
+    {
+      "id": "N06",
+      "title": "Origin versus local-shape diagnostic separation",
+      "lanes": [
+        "accuracy",
+        "learned"
+      ],
+      "variants": [
+        "origin frame error",
+        "scale",
+        "global heading",
+        "time-varying drift",
+        "causal versus noncausal fixes",
+        "horizontal/gravity-vertical decomposition"
+      ],
+      "evidence": [
+        "research/i2/REPORT.md"
+      ],
+      "next_test": "Recompute decomposition for current small-net baseline; never call camera-forward z vertical.",
+      "status": "hypothesis"
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+n 358 mean ATE 0.655 median 0.598
+
+## horizon table (mean / median over flights)
+h | pos | pos_h | |z| | vel | tilt deg | yaw deg(abs) | |bg| | |ba|
+0.25 0.224/0.172 | 0.200/0.152 | 0.078/0.025 | 0.858/0.681 | 5.481/3.089 | 0.196/0.174 | 0.020/0.020 | 0.114/0.106
+0.5 0.110/0.083 | 0.087/0.062 | 0.054/0.036 | 0.344/0.264 | 4.905/2.640 | 0.292/0.249 | 0.020/0.020 | 0.102/0.095
+1 0.235/0.144 | 0.202/0.120 | 0.091/0.063 | 0.426/0.224 | 2.854/1.261 | 0.439/0.331 | 0.015/0.014 | 0.077/0.060
+2 0.366/0.191 | 0.320/0.146 | 0.137/0.081 | 0.333/0.159 | 1.262/0.732 | 0.669/0.488 | 0.012/0.011 | 0.060/0.039
+5 0.367/0.267 | 0.314/0.223 | 0.147/0.087 | 0.209/0.147 | 0.751/0.588 | 1.062/0.704 | 0.007/0.006 | 0.037/0.021
+10 0.425/0.326 | 0.378/0.273 | 0.143/0.091 | 0.144/0.115 | 0.509/0.468 | 1.554/1.092 | 0.005/0.004 | 0.016/0.013
+20 0.511/0.399 | 0.464/0.345 | 0.156/0.104 | 0.135/0.104 | 0.477/0.420 | 2.034/1.403 | 0.004/0.003 | 0.012/0.011
+40 0.681/0.566 | 0.627/0.523 | 0.191/0.122 | 0.133/0.115 | 0.478/0.431 | 2.864/1.922 | 0.004/0.003 | 0.011/0.011
+end 0.829/0.668 | 0.768/0.592 | 0.216/0.154 | 0.145/0.113 | 0.465/0.407 | 3.395/2.305 | 0.004/0.003 | 0.013/0.012
+
+## ATE decomposition: share of squared ATE from vertical 0.114 mean ate_h 0.609 mean ate_v 0.208
+median ate_v/ate_h 0.319
+
+## growth: slope median 0.35 IQR [0.12 0.58]
+median pos err at 2/5/10/20/40/end: [np.float64(0.191), np.float64(0.267), np.float64(0.326), np.float64(0.399), np.float64(0.566), np.float64(0.668)]
+RPE1 mean 0.207 RPE5 0.429 rel1 median 0.121 rel5 0.069
+scale LS median 0.993 IQR [0.973 1.011] plen ratio median 1.081 IQR [1.054 1.111]
+vel err rms mean 0.213 speed err rms 0.154
+vel-err autocorr lag 5,10,20,40,80,160 frames (frames=0.05 s?) mean [ 0.81  0.62  0.44  0.18 -0.01 -0.03]
+
+## start share: error at 1s,2s vs end; fraction of flights where pos_2 > 0.5*ate
+0.5 mean pos 0.11 rms-equiv share (pos_h/ATE mean ratio) 0.169
+1 mean pos 0.235 rms-equiv share (pos_h/ATE mean ratio) 0.358
+2 mean pos 0.366 rms-equiv share (pos_h/ATE mean ratio) 0.559
+5 mean pos 0.367 rms-equiv share (pos_h/ATE mean ratio) 0.561
+
+worst 10% share of sum ATE 0.235 worst 25% 0.458 ATE pct 50/90/99 [0.598 1.129 2.009]
+worst 10% share of sum ATE^2 0.425
+
+## Spearman corr of ATE with variables
+path: rho +0.43 (p=nan, n=358)
+spd_mean: rho +0.43 (p=nan, n=358)
+spd0: rho +0.05 (p=nan, n=358)
+acc_rms: rho -0.41 (p=nan, n=358)
+gyro_rms: rho -0.44 (p=nan, n=358)
+accel_hf: rho -0.08 (p=nan, n=358)
+fov_deg: rho -0.11 (p=nan, n=358)
+exposure_s: rho +0.04 (p=nan, n=358)
+live_mean: rho +0.25 (p=nan, n=358)
+live_lt5: rho -0.14 (p=nan, n=358)
+gt_zstd: rho +0.49 (p=nan, n=358)
+vz_rms: rho +0.42 (p=nan, n=358)
+tilt_mean2: rho +0.19 (p=nan, n=358)
+baz_abs2: rho +0.17 (p=nan, n=358)
+pos_1: rho +0.16 (p=nan, n=358)
+pos_2: rho +0.34 (p=nan, n=358)
+vel_1: rho +0.12 (p=nan, n=358)
+tilt_5: rho +0.08 (p=nan, n=358)
+start_fwd_speed: rho -0.02 (p=nan, n=358)
+Ez_off: rho +0.01 (p=nan, n=358)
+plen_ratio: rho +0.22 (p=nan, n=358)
+scale: rho -0.10 (p=nan, n=358)
+rpe1: rho +0.73 (p=nan, n=358)
+rpe5: rho +0.83 (p=nan, n=358)
+
+## breakdowns (mean ATE, n)
+scene room: 0.468 (n=143); warehouse: 0.829 (n=120); forest: 0.716 (n=95)
+start hover: 0.670 (n=120); mid-flight: 0.648 (n=238)
+regime benchmark: 0.575 (n=121); free-yaw: 0.696 (n=237)
+initial speed 0-0.1: 0.660 (n=133); 0.1-0.5: 0.616 (n=39); 0.5-1: 0.578 (n=37); 1-1.5: 0.713 (n=62); 1.5-3.000001: 0.653 (n=86)
+FoV 0-95: 0.721 (n=102); 95-105: 0.655 (n=53); 105-115: 0.668 (n=66); 115-200.000001: 0.600 (n=137)
+exposure s -1-0.001: nan (n=0); 0.001-0.015: 0.682 (n=81); 0.015-0.035: 0.573 (n=138); 0.035-1.000001: 0.722 (n=139)
+gyro rms 0.18-0.47: 0.826 (n=88); 0.47-0.65: 0.749 (n=90); 0.65-1.07: 0.543 (n=89); 1.07-1.770001: 0.500 (n=89)
+acc rms 0.56-1.21: 0.784 (n=90); 1.21-1.68: 0.818 (n=88); 1.68-2.36: 0.468 (n=89); 2.36-3.9300010000000003: 0.544 (n=89)
+path len 22.7-66.6: 0.452 (n=89); 66.6-75.9: 0.597 (n=90); 75.9-87.9: 0.758 (n=89); 87.9-120.000001: 0.815 (n=89)
+mean live tracks 4.0-33.2: 0.587 (n=90); 33.2-52.1: 0.576 (n=89); 52.1-58.4: 0.731 (n=89); 58.4-59.900000999999996: 0.727 (n=90)
+room ATE 0.468 h 0.436 v 0.148 pos_1 0.31 pos_end 0.492 tilt_5 1.0 plen 61.8
+warehouse ATE 0.829 h 0.785 v 0.232 pos_1 0.189 pos_end 1.104 tilt_5 0.61 plen 88.8
+forest ATE 0.716 h 0.645 v 0.267 pos_1 0.179 pos_end 0.988 tilt_5 0.56 plen 81.8
+
+## vertical (Q7)
+GT z std (m) mean/median 1.215 1.543 z range mean 4.274 vz rms (m/s) 0.591 speed mean 1.27
+est z std mean 1.219
+vert gain (est/true vertical motion LS) median 0.99 IQR [0.95 1.04] n 358
+Ez: offset |.| mean 0.109 drift rate |.| m/s 0.004 resid rms 0.113 Ez_std 0.139
+mean ate_v by gt_zstd tercile: [np.float64(0.149), np.float64(0.23), np.float64(0.243)]
+ate_v vs gt_zstd: rho +0.46 p=nan
+ate_v vs vz_rms: rho +0.46 p=nan
+ate_v vs v0z: rho +0.11 p=nan
+ate_v vs tilt_5: rho +0.07 p=nan
+ate_v vs tilt_mean2: rho +0.21 p=nan
+ate_v vs baz_abs2: rho +0.27 p=nan
+ate_v vs pos_1: rho +0.23 p=nan
+ate_v vs Ez_end: rho +0.72 p=nan
+corr(|ba| err, |Ez drift|) 0.17
+ate_v by scene: {'room': 0.148, 'warehouse': 0.232, 'forest': 0.267} gt_zstd by scene {'room': 0.381, 'warehouse': 1.803, 'forest': 1.729}
+flat flights (gt_zstd<0.1): n 143 ate_v 0.148 est zstd (false vertical motion) 0.406 ate_h 0.436
+ATE if vertical error zeroed (mean) 0.609 vs 0.655
+yaw err deg end |.| mean 3.4 median 2.3

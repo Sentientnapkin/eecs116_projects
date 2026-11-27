@@ -1,0 +1,32 @@
+{
+  "lane": "fuel+extreme",
+  "protocol_version": 1,
+  "state": "complete",
+  "objective": "Port the prior low-budget R5 observation-decimation mechanism onto the exact current source, measuring fuel/ATE tradeoff only.",
+  "source": "/data/backups/rganapa/Sebastian/gen3/agents/anchors/base_sn.c",
+  "source_sha256": "b09f81004e37646f32df6f5ba9f0e802ee2a1b9a9caa6b94caf2164c0a37a777",
+  "reference_mechanism": "/data/backups/rganapa/Sebastian/gen3/research/r5/base.c:R5_DEC",
+  "baseline_wasm_sha256": "1a169f28916acd813f86a7b526efb8e8b646b3dda73e48cba51b12845c69b1b8",
+  "screen_panel": "/tmp/vio_loop2/shared/screen24",
+  "confirm_panel": "/tmp/vio_loop2/shared/confirm48",
+  "screen_control": "/tmp/vio_loop2/shared/screen24_baseline.json",
+  "confirm_control": "/tmp/vio_loop2/shared/confirm48_baseline.json",
+  "arms": [
+    "r5dec3_current",
+    "r5dec4_current"
+  ],
+  "queue": "/tmp/vio_loop3/efficient/queue.jsonl",
+  "runner": "/tmp/vio_loop3/efficient/run_queue.py",
+  "task_output": "/tmp/vio_loop3/efficient",
+  "bulk_output": "/dev/shm/vio_loop3/efficient",
+  "max_arms": 8,
+  "max_wall_seconds": 7200,
+  "max_bulk_bytes": 2000000000,
+  "cpu_workers": 4,
+  "gpu": false,
+  "confirmation": "conditional: only if screen paired mean delta <= 0.005 and peak fuel <= 99% of baseline; disjoint shared confirm48 panel",
+  "stage3_test": "not touched",
+  "best_or_submission_updates": false,
+  "status_file": "/tmp/vio_loop3/efficient/status.jsonl",
+  "note": "Both arms screened; neither crossed conditional confirmation gate. Five episodes returned no usable ATE in both arms, so summaries report 19 paired scores and retain all 24 records."
+}

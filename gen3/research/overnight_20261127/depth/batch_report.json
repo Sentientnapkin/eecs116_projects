@@ -1,0 +1,19 @@
+{
+  "flights": 20,
+  "counts": {
+    "val": 10,
+    "train": 10
+  },
+  "by_class": {
+    "val_forest": 3,
+    "val_room": 4,
+    "val_warehouse": 3,
+    "train_forest": 3,
+    "train_room": 4,
+    "train_warehouse": 3
+  },
+  "npz_files": 21,
+  "total_npz_bytes": 18627817,
+  "source_sha_verified_train": 10,
+  "remaining_owned_raw_zips": 0
+}

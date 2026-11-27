@@ -1,0 +1,3 @@
+{"id":"gov34","delta":"GOV_B=3.4e6","hypothesis":"Reduce per-frame row budget using active governor variable; may lower update spikes with a small ATE cost."}
+{"id":"gov32","delta":"GOV_B=3.2e6","hypothesis":"Stronger current-governor budget reduction to test fuel/ATE response and tails."}
+{"id":"full_update_scalar","delta":"F_UPD2=0","hypothesis":"Use alternate exact covariance-update loop rather than 4-row blocked mirror; test actual WASM fuel without changing math."}

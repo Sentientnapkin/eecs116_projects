@@ -90,12 +90,12 @@ A slide-by-slide plan for a ~20-slide talk. Each slide lists its title, what goe
 |---|---|---|---|
 | **Training** | most scenes | teaching the learned velocity net | never used to judge a build |
 | **Tuning** | a separate set of scenes | comparing ideas and picking settings | always 3 runs per idea; a dev half to choose, a confirm half to check |
-| **Holdout** | 240 flights in scenes nobody tuned on | the final exam for a finished build | scored exactly once per build |
+| **Holdout** | 240 flights kept separate from tuning (some rooms overlap) | the final exam for a finished build | scored exactly once per build |
 
 Down one side, a strip: "Includes a deliberately hard slice: fast flights in untextured rooms, matched to the server's worst episodes."
 
 **Bullets:**
-- **One dataset,** split by scene so no room appears in two parts. A gain on the holdout can't come from memorising a room.
+- **One dataset,** split mostly by scene. Some holdout rooms also appear in earlier training and tuning flights, so a small benefit from familiar rooms can't be ruled out.
 - **Training → tuning → holdout** is the same discipline as train/validation/test in machine learning.
 - **The hard slice** was added later, when the server showed us which flights we were missing (slide 5D).
 

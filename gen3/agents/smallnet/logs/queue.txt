@@ -1,0 +1,43 @@
+c_ref /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/base727.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0
+c_e0b18_off /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/base727.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 EDGE=0 GOV_B=1.8e6 LC_ENABLE=0
+c_e0b18_free /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/base727.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 EDGE=0 GOV_B=1.8e6 GOV_FREE_NET=1
+c_e0b24_off /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/base727.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 EDGE=0 GOV_B=2.4e6 LC_ENABLE=0
+c_e0b24_free /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/base727.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 EDGE=0 GOV_B=2.4e6 GOV_FREE_NET=1
+t6_e0b18 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/t_Akd6.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 EDGE=0 GOV_B=1.8e6 SN=1
+t6_f36 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/t_Akd6.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 SN=1
+s1_S_f36 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/g_S_lo_kd1.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 SN=1
+s1_S_e0b18 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/g_S_lo_kd1.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 SN=1 EDGE=0 GOV_B=1.8e6
+s1_A_e0b18 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/g_A_lo_kd1.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 SN=1 EDGE=0 GOV_B=1.8e6
+s2_S_e0b18 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/g_S_lo_kd1.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 SN=1 EDGE=0 GOV_B=1.8e6 NS_GCOST=1
+s2_S_e0b30 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/g_S_lo_kd1.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 SN=1 EDGE=0 GOV_B=3.0e6 NS_GCOST=1
+s2_A_e0b30 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/g_A_lo_kd1.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 SN=1 EDGE=0 GOV_B=3.0e6 NS_GCOST=1
+s2_E_e0b30 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/g_E_lo.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 SN=1 EDGE=0 GOV_B=3.0e6 NS_GCOST=1
+s2_S_e0b24 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/g_S_lo_kd1.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 SN=1 EDGE=0 GOV_B=2.4e6 NS_GCOST=1
+s2_E_e0b30_r1 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/g_E_lo.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 SN=1 EDGE=0 GOV_B=3.0e6 NS_GCOST=1 PIXEL_STD=1.515 DETECT_MIN_SCORE=1010.0
+s2_E_e0b30_r2 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/g_E_lo.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 SN=1 EDGE=0 GOV_B=3.0e6 NS_GCOST=1 PIXEL_STD=1.485 DETECT_MIN_SCORE=990.0
+c_e0b30_r1 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/base727.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 EDGE=0 GOV_B=3.0e6 PIXEL_STD=1.515 DETECT_MIN_SCORE=1010.0
+c_e0b30_r2 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/base727.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 EDGE=0 GOV_B=3.0e6 PIXEL_STD=1.485 DETECT_MIN_SCORE=990.0
+s2_E_e0b26 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/g_E_lo.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 SN=1 EDGE=0 GOV_B=2.6e6 NS_GCOST=1
+s2_E_e0b24 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/g_E_lo.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 SN=1 EDGE=0 GOV_B=2.4e6 NS_GCOST=1
+@v1 s2_E_e0b30 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/g_E_lo.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 SN=1 EDGE=0 GOV_B=3.0e6 NS_GCOST=1
+@v1 c_e0b30 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/base727.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 EDGE=0 GOV_B=3.0e6
+s3_A2_e0b30 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/g_A2_kd.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 SN=1 EDGE=0 GOV_B=3.0e6 NS_GCOST=1
+s3_S120_e0b30 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/g_S_kd120.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 SN=1 EDGE=0 GOV_B=3.0e6 NS_GCOST=1
+s3_A2_e0b28 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/g_A2_kd.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 SN=1 EDGE=0 GOV_B=2.8e6 NS_GCOST=1
+s3_C32c_e0b24 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/g_C32c_kd.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 SN=1 EDGE=0 GOV_B=2.4e6 NS_GCOST=1
+s3_A2_e0b28_r1 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/g_A2_kd.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 SN=1 EDGE=0 GOV_B=2.8e6 NS_GCOST=1 PIXEL_STD=1.515 DETECT_MIN_SCORE=1010.0
+s3_A2_e0b28_r2 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/g_A2_kd.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 SN=1 EDGE=0 GOV_B=2.8e6 NS_GCOST=1 PIXEL_STD=1.485 DETECT_MIN_SCORE=990.0
+c_e0b28 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/base727.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 EDGE=0 GOV_B=2.8e6
+@v1 s3_A2_e0b28 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/g_A2_kd.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 SN=1 EDGE=0 GOV_B=2.8e6 NS_GCOST=1
+s3_A2_e0b26 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/g_A2_kd.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 SN=1 EDGE=0 GOV_B=2.6e6 NS_GCOST=1
+c_e0b28_r1 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/base727.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 EDGE=0 GOV_B=2.8e6 PIXEL_STD=1.515 DETECT_MIN_SCORE=1010.0
+c_e0b28_r2 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/base727.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 EDGE=0 GOV_B=2.8e6 PIXEL_STD=1.485 DETECT_MIN_SCORE=990.0
+s2_A_e0b24 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/g_A_lo_kd1.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 SN=1 EDGE=0 GOV_B=2.4e6 NS_GCOST=1
+s2_C_e0b18 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/g_C_lo32_kd1.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 SN=1 EDGE=0 GOV_B=1.8e6 NS_GCOST=1
+s2_E_e0b18 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/g_E_lo.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 SN=1 EDGE=0 GOV_B=1.8e6 NS_GCOST=1
+c160_e0b28 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/A160ft.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 EDGE=0 GOV_B=2.8e6
+c160_e0b28_r1 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/A160ft.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 EDGE=0 GOV_B=2.8e6 PIXEL_STD=1.515 DETECT_MIN_SCORE=1010.0
+c160_e0b28_r2 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/A160ft.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 EDGE=0 GOV_B=2.8e6 PIXEL_STD=1.485 DETECT_MIN_SCORE=990.0
+c160_e0b30 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/A160ft.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 EDGE=0 GOV_B=3.0e6
+c160_e0b30_r1 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/A160ft.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 EDGE=0 GOV_B=3.0e6 PIXEL_STD=1.515 DETECT_MIN_SCORE=1010.0
+c160_e0b30_r2 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/src/A160ft.c PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 EDGE=0 GOV_B=3.0e6 PIXEL_STD=1.485 DETECT_MIN_SCORE=990.0

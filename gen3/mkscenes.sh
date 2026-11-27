@@ -1,0 +1,1 @@
+cd /data/backups/rganapa/Sebastian/gen3/scenes; ls *-0??.py | sed s/.py$// | xargs -P 10 -I{} sh -c '[ -s {}.glb ] || { CUDA_VISIBLE_DEVICES= ../../blender/blender-5.3.0-linux-x64/blender -b --factory-startup -t 8 -P {}.py -- {}.tmp.glb > {}.log 2>&1 && mv {}.tmp.glb {}.glb; }'; touch done

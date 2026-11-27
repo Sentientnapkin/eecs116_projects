@@ -1,0 +1,55 @@
+{
+ "guest": {
+  "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/guard_fusion/vio/artifacts/vins_recovery_v3.wasm",
+  "sha256": "b5bc5211e42b87737272d320e42e47d01f1735db4e6b965f86795d05fc93a4d9",
+  "evaluator_src": "/dev/shm/sebastian-vio/viobench",
+  "archives": [
+   "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fastmid-104348361_171513414-02.zip",
+   "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fastmid-108294897_176710602-00.zip"
+  ]
+ },
+ "rows": [
+  {
+   "episode": "fastmid-104348361_171513414-02",
+   "frames": 1200,
+   "frames_attempted": 1200,
+   "completed": true,
+   "failure": null,
+   "peak_fuel_per_frame": 3030556932,
+   "median_fuel_per_frame": 340292025.0,
+   "p95_fuel_per_frame": 488135020.25,
+   "scene": "104348361_171513414",
+   "duration_s": 59.949999999999996,
+   "ate_30s": 223.6883497798363,
+   "filled_30s": 0,
+   "ate_60s": 248.2180622122289,
+   "filled_60s": 0,
+   "ate_full": 248.2180622122289,
+   "filled_full": 0,
+   "initialized_at_s": 1.295,
+   "full_vio_at_s": null,
+   "ate_reported_full": 248.21806221888576
+  },
+  {
+   "episode": "fastmid-108294897_176710602-00",
+   "frames": 1200,
+   "frames_attempted": 1200,
+   "completed": true,
+   "failure": null,
+   "peak_fuel_per_frame": 2228806311,
+   "median_fuel_per_frame": 457025505.0,
+   "p95_fuel_per_frame": 832954804.5499996,
+   "scene": "108294897_176710602",
+   "duration_s": 59.949999999999996,
+   "ate_30s": 190.07848421101306,
+   "filled_30s": 0,
+   "ate_60s": 387.76891312002437,
+   "filled_60s": 0,
+   "ate_full": 387.76891312002437,
+   "filled_full": 0,
+   "initialized_at_s": 1.145,
+   "full_vio_at_s": null,
+   "ate_reported_full": 387.76891313282374
+  }
+ ]
+}

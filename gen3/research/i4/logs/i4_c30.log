@@ -1,0 +1,9 @@
+80 episodes, 0 cached, workers=8 (no video)
+20/80 finished, 45.2s
+40/80 finished, 63.4s
+60/80 finished, 90.8s
+80/80 finished, 118.6s
+i4_c30 s80 n 80 / 80 mean ATE 0.642 median 0.548 >3m 0
+  setting_class {'forest': '0.789 (n=21)', 'room': '0.540 (n=32)', 'warehouse': '0.647 (n=27)'}
+  regime {'benchmark': '0.484 (n=28)', 'free-yaw': '0.727 (n=52)'}
+  start {'hover': '0.709 (n=26)', 'mid-flight': '0.609 (n=54)'}

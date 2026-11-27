@@ -1,0 +1,86 @@
+08:02 built c_ref /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/c_ref/solution.wasm 9a468ce9d6114e9f67c4eb3719a04c5032e76f1bfa6dc20450732d910b69bf7c
+08:09 done c_ref
+08:09 built c_e0b18_off /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/c_e0b18_off/solution.wasm f24ee5b0fc1b5909c54c57874b4060393ed98e277dc7a6c14f3247d0538dc56d
+08:15 done c_e0b18_off
+08:15 built c_e0b18_free /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/c_e0b18_free/solution.wasm 413161d9c083a93139e2867b9e9d8ae550bbab137b6368cffd2ac82bc96742a8
+08:22 done c_e0b18_free
+08:22 built c_e0b24_off /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/c_e0b24_off/solution.wasm 79aee61e59228f5fd2831cc0f06a704ab07e30274f2272023b1ceff214a5d24d
+08:29 done c_e0b24_off
+08:29 built c_e0b24_free /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/c_e0b24_free/solution.wasm 6510e29a63b4002e38089f9838b5788e5fc6f75f80aa479e20f63d9cabcd350f
+08:36 done c_e0b24_free
+08:36 built t6_e0b18 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/t6_e0b18/solution.wasm d9734dea37e255767f6fd0299cf86822fa041ec1d63c03eca1e6e3ce51ec2462
+08:43 done t6_e0b18
+08:43 built t6_f36 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/t6_f36/solution.wasm dc8bc85576e195e206af1916f6aed9e7e78fe62eb9ccce8f94a24646ebea650a
+08:51 done t6_f36
+10:49 built s1_S_f36 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/s1_S_f36/solution.wasm cf4f574ef4db87b58c132b9b9000a7ced36363b03250b877f114e375df36b749
+11:07 done s1_S_f36
+11:07 built s1_S_e0b18 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/s1_S_e0b18/solution.wasm 5ee0aef799fc82b9c0461923f05b01f0f965f090efa71f6ee8f705b1704414d8
+11:21 done s1_S_e0b18
+11:21 built s1_A_e0b18 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/s1_A_e0b18/solution.wasm 40bac8d2559800adfa1dd3e3ed124b48b008a656dda23296da1a70698fab6ca1
+11:30 done s1_A_e0b18
+11:31 built s2_S_e0b18 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/s2_S_e0b18/solution.wasm c2cfb2fc11525b5fabc179738bf48d90fbae68c31c3b31ec08a5f6f8dc295544
+11:39 done s2_S_e0b18
+11:39 built s2_S_e0b30 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/s2_S_e0b30/solution.wasm 516aa135bf2cf9665c483f322b85f060da05f56fb3aafcbe248e6d5cba073398
+11:45 done s2_S_e0b30
+11:45 built s2_A_e0b30 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/s2_A_e0b30/solution.wasm f3d3daa15f0a941ea0694c63f0fcb9f31ac43cceaa62f39f3c98b122aa94ead1
+11:52 done s2_A_e0b30
+11:52 built s2_E_e0b30 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/s2_E_e0b30/solution.wasm 18b3e17c14f0c0dc9c8bafa79acc31f256572ed2f067a4dfde2abf757b859044
+11:59 done s2_E_e0b30
+11:59 built s2_S_e0b24 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/s2_S_e0b24/solution.wasm a3f36ab7db7f290f13b53c8fdb679e1d638385ed8a1a15c4565fb9a29bccb866
+12:05 done s2_S_e0b24
+12:05 built s2_E_e0b30_r1 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/s2_E_e0b30_r1/solution.wasm aca5c11e5a4fc223edb505dc764030da0fdb64a044d41e05c770e804098e2b95
+12:12 done s2_E_e0b30_r1
+12:12 built s2_E_e0b30_r2 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/s2_E_e0b30_r2/solution.wasm 6c0169d6bb259739986bd5f9c91a78537796184f3ccf22d37f9062bdfa2857de
+12:23 done s2_E_e0b30_r2
+12:23 built c_e0b30_r1 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/c_e0b30_r1/solution.wasm 8a1fb0b174358f6bf5a1690f2dbdea192f4d10397f2ac78a00e0090b940229be
+12:49 done c_e0b30_r1
+12:49 built c_e0b30_r2 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/c_e0b30_r2/solution.wasm e3747f08a7693cb296de5a2d5678afcd870c768e64657322f85714e5ae11baae
+12:55 done c_e0b30_r2
+12:56 built s2_E_e0b26 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/s2_E_e0b26/solution.wasm abc101df3216d7dfb56b88443203ee7d6c0a183612e512919e65fadafc6e1725
+13:02 done s2_E_e0b26
+13:02 built s2_E_e0b24 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/s2_E_e0b24/solution.wasm 13dd41acf3abf78c5d44fb056f30e2c768397bd2af7051a8e9eee62c1b7a0202
+13:08 done s2_E_e0b24
+13:09 built s2_E_e0b30 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/s2_E_e0b30/solution.wasm 18b3e17c14f0c0dc9c8bafa79acc31f256572ed2f067a4dfde2abf757b859044
+13:11 done s2_E_e0b30
+13:11 built c_e0b30 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/c_e0b30/solution.wasm 266a6da9668ea6fb241d42905c3a9006ba05fd523683684a2b696d57aa2ecce9
+13:14 done c_e0b30
+13:15 built s3_A2_e0b30 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/s3_A2_e0b30/solution.wasm 562d346db28b5fc6d2788dc41c09d34a6534b3c79b83db8f469fd5597c63b541
+13:20 done s3_A2_e0b30
+13:20 built s3_S120_e0b30 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/s3_S120_e0b30/solution.wasm 27280ef1cd4b59814ff71022a06799a58a88074d0645d1f4be787b642f613106
+13:27 done s3_S120_e0b30
+13:27 built s3_A2_e0b28 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/s3_A2_e0b28/solution.wasm 83cffddf59a78eb4a98d8fa4d2c72af421d17877a8815cec40a822f9d59b7263
+13:37 done s3_A2_e0b28
+13:37 built s3_C32c_e0b24 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/s3_C32c_e0b24/solution.wasm 5c17cfb4de1bcbf842450d042cb30196978cb3f9230faf2cfbc0fd95ddff3d22
+13:51 done s3_C32c_e0b24
+13:51 built s3_A2_e0b28_r1 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/s3_A2_e0b28_r1/solution.wasm e80ea19911f3f3b1ae7329ac4b195c64acd788f2cc6c2b84750bcc71bfbadad5
+14:02 done s3_A2_e0b28_r1
+14:02 built s3_A2_e0b28_r2 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/s3_A2_e0b28_r2/solution.wasm cd2e6e335850eca659c61fcde36077864bafc584f30a41a2fa383614405386ce
+14:09 done s3_A2_e0b28_r2
+14:09 built c_e0b28 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/c_e0b28/solution.wasm ec1b9f44dc095381aadcad2787b00f1137ecf755e5691c5201a765bc0792c40b
+14:19 done c_e0b28
+14:19 built s3_A2_e0b28 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/s3_A2_e0b28/solution.wasm 83cffddf59a78eb4a98d8fa4d2c72af421d17877a8815cec40a822f9d59b7263
+14:21 done s3_A2_e0b28
+14:21 built s3_A2_e0b26 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/s3_A2_e0b26/solution.wasm 0fec8384f6c970c032e535bdf2e859e8a1298f325308932387758694236bad8e
+14:27 done s3_A2_e0b26
+14:27 built c_e0b28_r1 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/c_e0b28_r1/solution.wasm d39e980a3a383542cc78ab185c0760ae22fdf19129c4b13ea137475950f52130
+14:33 done c_e0b28_r1
+14:33 built c_e0b28_r2 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/c_e0b28_r2/solution.wasm 2fe8acdd4b1bd40090708dd6548ef4f9223d433ec9fde7542dad43909168fc1b
+14:38 done c_e0b28_r2
+14:38 built s2_A_e0b24 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/s2_A_e0b24/solution.wasm 75652fca8f7be0a78cd63d07ee25d93b46f894a6fc1d73e894701595e4a099ef
+14:44 done s2_A_e0b24
+14:44 built s2_C_e0b18 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/s2_C_e0b18/solution.wasm 4ab035b1204b3525cd1fe4d7175eb09008b5d0923f082ace6c6c690ddad8b947
+14:50 done s2_C_e0b18
+14:50 built s2_E_e0b18 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/s2_E_e0b18/solution.wasm 3443a4ac3460d56ee1132619b286289deae474f1ee7a44109974690e05e2ba58
+14:56 done s2_E_e0b18
+16:34 built c160_e0b28 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/c160_e0b28/solution.wasm db18fc2f2f7f25653e2cbb4da4bef193e204dcda4eb642f953cb32e4acf66cec
+16:39 done c160_e0b28
+16:39 built c160_e0b28_r1 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/c160_e0b28_r1/solution.wasm 9a3cde63003e28703a1f0713900e9ad786f5506a03f9ca8e18fc0d4ff73f870a
+16:45 done c160_e0b28_r1
+16:45 built c160_e0b28_r2 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/c160_e0b28_r2/solution.wasm f1212813976f767a9e86433752096ff4fb6464f5f1481165aa5fed689b489082
+16:50 done c160_e0b28_r2
+16:50 built c160_e0b30 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/c160_e0b30/solution.wasm 29292041401d8b848c8237ae553451e602539a9204c7baea337a982d7f0ddafa
+16:55 done c160_e0b30
+16:55 built c160_e0b30_r1 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/c160_e0b30_r1/solution.wasm 8706a5f54dd86345078fa722a0ac956013ac58481b7d81f1ad952d638f51441f
+16:59 done c160_e0b30_r1
+16:59 built c160_e0b30_r2 /data/backups/rganapa/Sebastian/gen3/agents/smallnet/builds/c160_e0b30_r2/solution.wasm 54d6d0864e0d7d1a74924506aa133d14e6c39c1931208f7877e6ec373da34381
+17:04 done c160_e0b30_r2

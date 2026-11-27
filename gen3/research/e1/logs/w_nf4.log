@@ -1,0 +1,5 @@
+40 episodes, 0 cached, workers=8 (no video)
+20/40 finished, 31.0s
+40/40 finished, 54.7s
+e1_w_nf4_s40	s40	n=40/40	mean 7.778	med 6.737	peak 19910	gain 0.00
+  {'forest': '9.46(n=11)', 'room': '4.15(n=16)', 'warehouse': '10.82(n=13)'}

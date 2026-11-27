@@ -1,0 +1,5 @@
+{"utc": "2026-11-27T09:33:43Z", "event": "built", "id": "r5dec3_current", "wasm_sha256": "0d67332964de6f2eee1bdb34dd8a082b83bc6878bd977c5e29f76495273df6c2", "flags": "PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 AB_ZUPT=0 ITER_UPD=1 INV_LAT=0 INV_VZ=0 EDGE=0 SN=1 NS_GCOST=1 MAX_CLONES=8 MAX_OBS=10 AN_ACE=1 AN_DTH=4.0 AN_CEF=6 EDGE=1 EDGE_MYTH=10.0 EDGE=1 EDGE_MYTH=10.0 R5_DEC=3", "bytes": 447222}
+{"utc": "2026-11-27T09:33:58Z", "event": "screen24", "id": "r5dec3_current", "n": 19, "paired_delta": 0.06160220236588147, "peak": 3738538}
+{"utc": "2026-11-27T09:34:03Z", "event": "built", "id": "r5dec4_current", "wasm_sha256": "4c959293fa54dbf5c36752b7601d66f9684e9580d3d6f444119fb4ccf832def4", "flags": "PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 AB_ZUPT=0 ITER_UPD=1 INV_LAT=0 INV_VZ=0 EDGE=0 SN=1 NS_GCOST=1 MAX_CLONES=8 MAX_OBS=10 AN_ACE=1 AN_DTH=4.0 AN_CEF=6 EDGE=1 EDGE_MYTH=10.0 EDGE=1 EDGE_MYTH=10.0 R5_DEC=4", "bytes": 447316}
+{"utc": "2026-11-27T09:34:18Z", "event": "screen24", "id": "r5dec4_current", "n": 19, "paired_delta": 0.01712053641805436, "peak": 3617639}
+{"utc": "2026-11-27T09:34:18Z", "event": "complete"}

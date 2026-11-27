@@ -1,0 +1,8 @@
+60 episodes, 0 cached, workers=14 (no video)
+20/60 finished, 25.7s
+40/60 finished, 35.9s
+60/60 finished, 51.2s
+an_acedbg s60 n 60 / 60 mean ATE 0.601 median 0.537 >3m 0
+  setting_class {'forest': '0.743 (n=20)', 'room': '0.319 (n=20)', 'warehouse': '0.741 (n=20)'}
+  regime {'benchmark': '0.581 (n=24)', 'free-yaw': '0.614 (n=36)'}
+  start {'hover': '0.668 (n=20)', 'mid-flight': '0.567 (n=40)'}

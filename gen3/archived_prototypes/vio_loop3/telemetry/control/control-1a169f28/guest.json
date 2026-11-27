@@ -1,0 +1,20 @@
+{
+  "name": "control",
+  "wasm": "/data/backups/rganapa/Sebastian/gen3/scratch_up/gslv_s3_snace6e1.wasm",
+  "sha256": "1a169f28916acd813f86a7b526efb8e8b646b3dda73e48cba51b12845c69b1b8",
+  "archives": [
+    "/tmp/vio_loop3/telemetry/pool/s3v3va-ro-9300016.zip",
+    "/tmp/vio_loop3/telemetry/pool/s3v3va-ro-9300157.zip",
+    "/tmp/vio_loop3/telemetry/pool/s3v3va-ro-9300201.zip",
+    "/tmp/vio_loop3/telemetry/pool/s3v3va-ro-9300224.zip",
+    "/tmp/vio_loop3/telemetry/pool/s3v3va-ro-9300231.zip",
+    "/tmp/vio_loop3/telemetry/pool/s3v3va-ro-9300242.zip",
+    "/tmp/vio_loop3/telemetry/pool/s3v3va-ro-9300284.zip",
+    "/tmp/vio_loop3/telemetry/pool/s3v3va-wa-9300313.zip",
+    "/tmp/vio_loop3/telemetry/pool/s3v3va-wa-9300423.zip"
+  ],
+  "evaluator_src": "/dev/shm/sebastian-vio/viobench",
+  "shared_cache": "/dev/shm/sebastian-vio/guard-cache/1a169f28916acd813f86a7b526efb8e8b646b3dda73e48cba51b12845c69b1b8",
+  "compile_lock": "/dev/shm/sebastian-vio/guard-cache/1a169f28916acd813f86a7b526efb8e8b646b3dda73e48cba51b12845c69b1b8/compile.lock",
+  "video": false
+}

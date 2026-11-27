@@ -1,0 +1,15 @@
+{
+ "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/guard_fusion/vio/artifacts/vins_recovery_v2.wasm",
+ "sha256": "13ec443676be9f33a94a13a0da8d026b5b8c8f67353880076b61f744c84348c2",
+ "evaluator_src": "/dev/shm/sebastian-vio/viobench",
+ "archives": [
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fastmid-104348361_171513414-02.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fastmid-108294897_176710602-00.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fast-104348202_171513150-01.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fast-108294417_176709879-01.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fast-106366104_174226329-01.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fast-107734158_175999998-00.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fast-ProcTHOR-Train-159-00.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fast-103997460_171030507-01.zip"
+ ]
+}

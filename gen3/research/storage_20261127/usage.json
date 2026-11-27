@@ -1,0 +1,56 @@
+{
+  "cap_bytes": 600000000000,
+  "measured_bytes": 579444137984,
+  "under_cap": true,
+  "roots": [
+    {
+      "bytes": 166875537408,
+      "path": "/data/backups/rganapa/Sebastian/gen"
+    },
+    {
+      "bytes": 211814899712,
+      "path": "/data/backups/rganapa/Sebastian/gen3/out"
+    },
+    {
+      "bytes": 60522790912,
+      "path": "/data/backups/rganapa/Sebastian/gen3/agents/net/cache"
+    },
+    {
+      "bytes": 50086543360,
+      "path": "/data/backups/rganapa/Sebastian/gen3/twin/zips"
+    },
+    {
+      "bytes": 19881205760,
+      "path": "/data/backups/rganapa/Sebastian/gen3/pilot"
+    },
+    {
+      "bytes": 1432707072,
+      "path": "/data/backups/rganapa/Sebastian/gen3/scenes"
+    },
+    {
+      "bytes": 52148051968,
+      "path": "/data/backups/rganapa/Sebastian/eecs116_projects/research/data"
+    },
+    {
+      "bytes": 9762381824,
+      "path": "/data/backups/rganapa/Sebastian/gen3/research"
+    },
+    {
+      "bytes": 5572026368,
+      "path": "/data/backups/rganapa/Sebastian/tmp/stlearn_hf"
+    },
+    {
+      "bytes": 1062813696,
+      "path": "/dev/shm/vio_fourlane_20261127"
+    },
+    {
+      "bytes": 285179904,
+      "path": "/tmp/vio-research-20261126"
+    },
+    {
+      "bytes": 579444137984,
+      "path": "total"
+    }
+  ],
+  "note": "Conservative includes entire legacy gen and research directories; one du invocation counts hardlinks once."
+}

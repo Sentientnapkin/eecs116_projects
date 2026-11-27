@@ -1,0 +1,11 @@
+120 episodes, 0 cached, workers=14 (no video)
+20/120 finished, 30.5s
+40/120 finished, 41.8s
+60/120 finished, 56.0s
+80/120 finished, 69.9s
+100/120 finished, 82.3s
+120/120 finished, 97.1s
+tw_gate twin120 n 120 / 120 mean ATE 2.084 median 1.151 >3m 24
+  setting_class {'forest': '3.143 (n=30)', 'room': '1.774 (n=60)', 'warehouse': '1.645 (n=30)'}
+  regime {'benchmark': '1.609 (n=42)', 'free-yaw': '2.339 (n=78)'}
+  start {'hover': '1.494 (n=20)', 'mid-flight': '2.202 (n=100)'}

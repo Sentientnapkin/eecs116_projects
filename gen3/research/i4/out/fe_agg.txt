@@ -1,0 +1,277 @@
+## all n=79
+ surv>=2 0.954 surv>=5 0.872 surv>=10 0.774 surv>=20 0.645 surv>=40 0.484 surv>=80 0.289
+ life_mean                79.101
+ live_mean                29.199
+ frac_frames_lt10         0.357
+ coverage12               0.475
+ n_tri                    300.392
+ reproj_track_rms_med     2.729
+ reproj_obs_med           2.066
+ reproj_obs_rms_clip3     1.776
+ frac_tracks_rms_gt2px    0.348
+ frac_tracks_rms_lt05px   0.366
+ depth_pct                1.837 4.858 10.736
+ frac_depth_gt10          0.176
+ parallax_deg_pct         2.315 14.050 46.228
+ frac_par_lt1deg          0.057
+ rot_per_frame_deg_med    1.462
+ rot_per_frame_deg_p90    3.174
+ gyro_resid_deg_med       0.115
+ gyro_resid_px_med        0.248
+ gyro_resid_px_p90        0.400
+ flow_px_med              3.835
+ flow_derot_px_med        1.156
+ tri_rej_rate             0.030
+ gate_rej_rate            0.019
+ klt_fail_per_frame       1.081
+ fb_rej_per_frame         0.748
+ det_per_frame            5.260
+ detnew_per_frame         1.891
+ rows_per_frame           15.436
+ reproj_by_age(<5,<10,<20,<40,<80,80+) [ 1.061  0.797  1.297  2.064  4.266 10.045]
+## room n=32
+ surv>=2 0.939 surv>=5 0.820 surv>=10 0.683 surv>=20 0.512 surv>=40 0.311 surv>=80 0.103
+ life_mean                35.139
+ live_mean                24.726
+ frac_frames_lt10         0.288
+ coverage12               0.447
+ n_tri                    436.969
+ reproj_track_rms_med     1.856
+ reproj_obs_med           1.343
+ reproj_obs_rms_clip3     1.657
+ frac_tracks_rms_gt2px    0.309
+ frac_tracks_rms_lt05px   0.356
+ depth_pct                0.867 1.840 3.725
+ frac_depth_gt10          0.004
+ parallax_deg_pct         2.996 15.458 41.052
+ frac_par_lt1deg          0.037
+ rot_per_frame_deg_med    2.090
+ rot_per_frame_deg_p90    4.875
+ gyro_resid_deg_med       0.119
+ gyro_resid_px_med        0.238
+ gyro_resid_px_p90        0.388
+ flow_px_med              5.550
+ flow_derot_px_med        1.785
+ tri_rej_rate             0.035
+ gate_rej_rate            0.023
+ klt_fail_per_frame       1.222
+ fb_rej_per_frame         0.870
+ det_per_frame            7.462
+ detnew_per_frame         2.126
+ rows_per_frame           9.295
+ reproj_by_age(<5,<10,<20,<40,<80,80+) [0.882 0.704 0.924 1.628 2.634 5.825]
+## warehouse n=27
+ surv>=2 0.952 surv>=5 0.881 surv>=10 0.798 surv>=20 0.689 surv>=40 0.548 surv>=80 0.360
+ life_mean                89.960
+ live_mean                32.129
+ frac_frames_lt10         0.376
+ coverage12               0.469
+ n_tri                    267.296
+ reproj_track_rms_med     1.941
+ reproj_obs_med           1.294
+ reproj_obs_rms_clip3     1.699
+ frac_tracks_rms_gt2px    0.320
+ frac_tracks_rms_lt05px   0.409
+ depth_pct                2.775 7.520 16.277
+ frac_depth_gt10          0.343
+ parallax_deg_pct         1.882 14.254 44.654
+ frac_par_lt1deg          0.061
+ rot_per_frame_deg_med    1.040
+ rot_per_frame_deg_p90    2.022
+ gyro_resid_deg_med       0.112
+ gyro_resid_px_med        0.261
+ gyro_resid_px_p90        0.419
+ flow_px_med              2.616
+ flow_derot_px_med        0.702
+ tri_rej_rate             0.029
+ gate_rej_rate            0.012
+ klt_fail_per_frame       0.860
+ fb_rej_per_frame         0.453
+ det_per_frame            4.455
+ detnew_per_frame         1.388
+ rows_per_frame           19.235
+ reproj_by_age(<5,<10,<20,<40,<80,80+) [1.139 0.885 1.262 1.429 1.827 4.21 ]
+## forest n=20
+ surv>=2 0.982 surv>=5 0.942 surv>=10 0.887 surv>=20 0.798 surv>=40 0.677 surv>=80 0.491
+ life_mean                134.778
+ live_mean                32.401
+ frac_frames_lt10         0.443
+ coverage12               0.527
+ n_tri                    126.550
+ reproj_track_rms_med     5.189
+ reproj_obs_med           4.267
+ reproj_obs_rms_clip3     2.072
+ frac_tracks_rms_gt2px    0.447
+ frac_tracks_rms_lt05px   0.325
+ depth_pct                2.121 6.095 14.473
+ frac_depth_gt10          0.226
+ parallax_deg_pct         1.810 11.520 56.634
+ frac_par_lt1deg          0.082
+ rot_per_frame_deg_med    1.026
+ rot_per_frame_deg_p90    2.007
+ gyro_resid_deg_med       0.114
+ gyro_resid_px_med        0.246
+ gyro_resid_px_p90        0.394
+ flow_px_med              2.737
+ flow_derot_px_med        0.761
+ tri_rej_rate             0.024
+ gate_rej_rate            0.020
+ klt_fail_per_frame       1.155
+ fb_rej_per_frame         0.952
+ det_per_frame            2.823
+ detnew_per_frame         2.193
+ rows_per_frame           20.134
+ reproj_by_age(<5,<10,<20,<40,<80,80+) [ 1.243  0.826  1.94   3.618 10.168 24.465]
+## exp>35ms n=22
+ surv>=2 0.963 surv>=5 0.892 surv>=10 0.798 surv>=20 0.677 surv>=40 0.514 surv>=80 0.298
+ life_mean                75.661
+ live_mean                29.691
+ frac_frames_lt10         0.350
+ coverage12               0.469
+ n_tri                    339.273
+ reproj_track_rms_med     1.237
+ reproj_obs_med           1.240
+ reproj_obs_rms_clip3     1.675
+ frac_tracks_rms_gt2px    0.298
+ frac_tracks_rms_lt05px   0.352
+ depth_pct                2.290 6.145 12.939
+ frac_depth_gt10          0.245
+ parallax_deg_pct         1.977 13.306 47.215
+ frac_par_lt1deg          0.059
+ rot_per_frame_deg_med    1.426
+ rot_per_frame_deg_p90    2.877
+ gyro_resid_deg_med       0.113
+ gyro_resid_px_med        0.245
+ gyro_resid_px_p90        0.394
+ flow_px_med              3.582
+ flow_derot_px_med        0.874
+ tri_rej_rate             0.031
+ gate_rej_rate            0.016
+ klt_fail_per_frame       0.837
+ fb_rej_per_frame         0.544
+ det_per_frame            5.193
+ detnew_per_frame         1.440
+ rows_per_frame           16.011
+ reproj_by_age(<5,<10,<20,<40,<80,80+) [ 0.68   0.537  0.661  1.047  3.448 10.313]
+## exp<=15ms n=24
+ surv>=2 0.947 surv>=5 0.856 surv>=10 0.757 surv>=20 0.627 surv>=40 0.476 surv>=80 0.312
+ life_mean                87.342
+ live_mean                30.784
+ frac_frames_lt10         0.365
+ coverage12               0.494
+ n_tri                    264.625
+ reproj_track_rms_med     3.531
+ reproj_obs_med           2.590
+ reproj_obs_rms_clip3     1.964
+ frac_tracks_rms_gt2px    0.418
+ frac_tracks_rms_lt05px   0.351
+ depth_pct                1.417 4.053 9.533
+ frac_depth_gt10          0.135
+ parallax_deg_pct         2.412 15.094 51.963
+ frac_par_lt1deg          0.063
+ rot_per_frame_deg_med    1.484
+ rot_per_frame_deg_p90    3.417
+ gyro_resid_deg_med       0.116
+ gyro_resid_px_med        0.241
+ gyro_resid_px_p90        0.392
+ flow_px_med              4.044
+ flow_derot_px_med        1.435
+ tri_rej_rate             0.025
+ gate_rej_rate            0.020
+ klt_fail_per_frame       1.382
+ fb_rej_per_frame         1.056
+ det_per_frame            5.106
+ detnew_per_frame         2.508
+ rows_per_frame           16.285
+ reproj_by_age(<5,<10,<20,<40,<80,80+) [ 1.516  1.177  2.261  3.168  5.319 11.767]
+## hover n=26
+ surv>=2 0.959 surv>=5 0.888 surv>=10 0.805 surv>=20 0.695 surv>=40 0.527 surv>=80 0.324
+ life_mean                83.675
+ live_mean                30.664
+ frac_frames_lt10         0.386
+ coverage12               0.489
+ n_tri                    261.231
+ reproj_track_rms_med     3.750
+ reproj_obs_med           2.793
+ reproj_obs_rms_clip3     1.809
+ frac_tracks_rms_gt2px    0.362
+ frac_tracks_rms_lt05px   0.384
+ depth_pct                1.981 5.617 12.851
+ frac_depth_gt10          0.216
+ parallax_deg_pct         1.657 13.672 52.198
+ frac_par_lt1deg          0.090
+ rot_per_frame_deg_med    1.334
+ rot_per_frame_deg_p90    2.718
+ gyro_resid_deg_med       0.115
+ gyro_resid_px_med        0.273
+ gyro_resid_px_p90        0.438
+ flow_px_med              3.663
+ flow_derot_px_med        0.984
+ tri_rej_rate             0.038
+ gate_rej_rate            0.018
+ klt_fail_per_frame       1.119
+ fb_rej_per_frame         0.780
+ det_per_frame            4.683
+ detnew_per_frame         1.973
+ rows_per_frame           17.087
+ reproj_by_age(<5,<10,<20,<40,<80,80+) [ 0.964  0.754  1.136  2.261  6.473 13.772]
+## mid n=53
+ surv>=2 0.952 surv>=5 0.864 surv>=10 0.759 surv>=20 0.620 surv>=40 0.463 surv>=80 0.272
+ life_mean                76.856
+ live_mean                28.480
+ frac_frames_lt10         0.343
+ coverage12               0.468
+ n_tri                    319.604
+ reproj_track_rms_med     2.228
+ reproj_obs_med           1.710
+ reproj_obs_rms_clip3     1.760
+ frac_tracks_rms_gt2px    0.341
+ frac_tracks_rms_lt05px   0.358
+ depth_pct                1.766 4.486 9.698
+ frac_depth_gt10          0.157
+ parallax_deg_pct         2.638 14.235 43.299
+ frac_par_lt1deg          0.040
+ rot_per_frame_deg_med    1.525
+ rot_per_frame_deg_p90    3.397
+ gyro_resid_deg_med       0.116
+ gyro_resid_px_med        0.235
+ gyro_resid_px_p90        0.382
+ flow_px_med              3.920
+ flow_derot_px_med        1.240
+ tri_rej_rate             0.026
+ gate_rej_rate            0.019
+ klt_fail_per_frame       1.063
+ fb_rej_per_frame         0.733
+ det_per_frame            5.544
+ detnew_per_frame         1.851
+ rows_per_frame           14.627
+ reproj_by_age(<5,<10,<20,<40,<80,80+) [1.109 0.818 1.375 1.967 3.183 8.182]
+## spearman-ish corr with ctl ATE (log)
+ life_mean                rho=+0.48
+ live_mean                rho=+0.24
+ frac_frames_lt10         rho=+0.40
+ coverage12               rho=-0.19
+ n_tri                    rho=-0.36
+ reproj_track_rms_med     rho=+0.13
+ reproj_obs_med           rho=+0.14
+ reproj_obs_rms_clip3     rho=+0.22
+ frac_tracks_rms_gt2px    rho=+0.20
+ frac_tracks_rms_lt05px   rho=-0.10
+ depth_pct                rho=+0.51
+ frac_depth_gt10          rho=+0.54
+ parallax_deg_pct         rho=-0.00
+ frac_par_lt1deg          rho=-0.03
+ rot_per_frame_deg_med    rho=-0.49
+ rot_per_frame_deg_p90    rho=-0.54
+ gyro_resid_deg_med       rho=-0.12
+ gyro_resid_px_med        rho=+0.15
+ gyro_resid_px_p90        rho=+0.15
+ flow_px_med              rho=-0.49
+ flow_derot_px_med        rho=-0.47
+ tri_rej_rate             rho=-0.08
+ gate_rej_rate            rho=-0.03
+ klt_fail_per_frame       rho=-0.39
+ fb_rej_per_frame         rho=-0.28
+ det_per_frame            rho=-0.46
+ detnew_per_frame         rho=-0.35
+ rows_per_frame           rho=+0.42

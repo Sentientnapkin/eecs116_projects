@@ -1,0 +1,5 @@
+{"utc": "2026-11-27T10:09:00.190762+00:00", "message": "waiting for matched 100-epoch curriculum before capacity decision"}
+{"utc": "2026-11-27T10:49:00.325250+00:00", "message": "start matched wide teacher K2"}
+{"utc": "2026-11-27T11:06:10.069421+00:00", "message": "finished K2, returncode=0"}
+{"utc": "2026-11-27T11:06:10.070426+00:00", "message": "start matched wide teacher K5"}
+{"utc": "2026-11-27T11:40:23.891166+00:00", "message": "finished K5, returncode=0"}

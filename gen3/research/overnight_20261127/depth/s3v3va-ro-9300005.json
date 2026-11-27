@@ -1,0 +1,21 @@
+{
+  "id": "s3v3va-ro-9300005",
+  "scene": "conta:03d081472d66dbc7b6816ec4cc7c3f38b2f11820",
+  "n": 20,
+  "rgb_shape": [
+    20,
+    120,
+    160,
+    3
+  ],
+  "depth_shape": [
+    20,
+    120,
+    160
+  ],
+  "valid_fraction": 1.0,
+  "scene_load_s": 2.076512575149536,
+  "exposure_s": null,
+  "label_timing": "sharp mid-exposure render",
+  "depth_units": "meters; optical-axis z; inf invalid"
+}

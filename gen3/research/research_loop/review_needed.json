@@ -1,0 +1,41 @@
+{
+  "updated_utc": "2026-11-27 12:49:08 UTC",
+  "lanes": {
+    "current_accuracy": {
+      "state": "needs_review",
+      "active_processes": [],
+      "root": "/tmp/vio_loop3/telemetry",
+      "markers": [
+        "COMPLETE"
+      ]
+    },
+    "fuel_and_extreme": {
+      "state": "needs_review",
+      "active_processes": [],
+      "root": "/tmp/vio_loop3/efficient_round2",
+      "markers": [
+        "results.json",
+        "COMPLETE"
+      ]
+    },
+    "learned_context": {
+      "state": "needs_review",
+      "active_processes": [],
+      "root": "/tmp/vio_loop3/context_replication",
+      "markers": []
+    },
+    "learned_geometry": {
+      "state": "needs_review",
+      "active_processes": [],
+      "root": "/tmp/vio_loop3/scale_init",
+      "markers": [
+        "COMPLETE"
+      ]
+    }
+  },
+  "elapsed_seconds": 10785.56063966453,
+  "review_policy": "Finite scripted hypotheses screen and conditionally confirm. New ideation requires a Luna review turn; this watcher does not reactivate models. needs_review may mean completed or failed: inspect logs.",
+  "best_artifact_untouched": true,
+  "no_hidden_submissions": true,
+  "max_local_dataset_bytes": 600000000000
+}

@@ -1,0 +1,130 @@
+{
+  "scene_overlap": [],
+  "frames_per_flight": 20,
+  "valid_fraction_minmax": [
+    0.9209192708333334,
+    1.0
+  ],
+  "flight_metrics": {
+    "s3v3va-fo-9300452": {
+      "images": 20,
+      "valid_fraction": 0.9252786458333333,
+      "depth_median_m": 10.0703125,
+      "size_bytes": 1359710
+    },
+    "s3v3va-fo-9300457": {
+      "images": 20,
+      "valid_fraction": 0.9526536458333333,
+      "depth_median_m": 13.6015625,
+      "size_bytes": 1385197
+    },
+    "s3v3va-fo-9300463": {
+      "images": 20,
+      "valid_fraction": 0.930796875,
+      "depth_median_m": 5.8125,
+      "size_bytes": 1337501
+    },
+    "s3v3va-ro-9300005": {
+      "images": 20,
+      "valid_fraction": 1.0,
+      "depth_median_m": 1.06640625,
+      "size_bytes": 711714
+    },
+    "s3v3va-ro-9300009": {
+      "images": 20,
+      "valid_fraction": 1.0,
+      "depth_median_m": 1.7021484375,
+      "size_bytes": 431579
+    },
+    "s3v3va-ro-9300014": {
+      "images": 20,
+      "valid_fraction": 1.0,
+      "depth_median_m": 2.005859375,
+      "size_bytes": 880703
+    },
+    "s3v3va-ro-9300016": {
+      "images": 20,
+      "valid_fraction": 0.9987317708333333,
+      "depth_median_m": 1.2734375,
+      "size_bytes": 571185
+    },
+    "s3v3va-wa-9300300": {
+      "images": 20,
+      "valid_fraction": 1.0,
+      "depth_median_m": 7.21875,
+      "size_bytes": 762438
+    },
+    "s3v3va-wa-9300305": {
+      "images": 20,
+      "valid_fraction": 1.0,
+      "depth_median_m": 3.7734375,
+      "size_bytes": 863179
+    },
+    "s3v3va-wa-9300313": {
+      "images": 20,
+      "valid_fraction": 1.0,
+      "depth_median_m": 5.171875,
+      "size_bytes": 721894
+    },
+    "s3tr-fo-9007521": {
+      "images": 20,
+      "valid_fraction": 0.9209192708333334,
+      "depth_median_m": 9.3359375,
+      "size_bytes": 1339702
+    },
+    "s3tr-fo-9007525": {
+      "images": 20,
+      "valid_fraction": 0.9543203125,
+      "depth_median_m": 8.578125,
+      "size_bytes": 1320011
+    },
+    "s3tr-fo-9007575": {
+      "images": 20,
+      "valid_fraction": 0.9700390625,
+      "depth_median_m": 9.109375,
+      "size_bytes": 1372235
+    },
+    "s3tr-ro-9000117": {
+      "images": 20,
+      "valid_fraction": 0.9984739583333333,
+      "depth_median_m": 1.396484375,
+      "size_bytes": 795742
+    },
+    "s3tr-ro-9000133": {
+      "images": 20,
+      "valid_fraction": 1.0,
+      "depth_median_m": 1.875,
+      "size_bytes": 753559
+    },
+    "s3tr-ro-9000150": {
+      "images": 20,
+      "valid_fraction": 1.0,
+      "depth_median_m": 1.490234375,
+      "size_bytes": 790621
+    },
+    "s3tr-ro-9000183": {
+      "images": 20,
+      "valid_fraction": 0.9999947916666667,
+      "depth_median_m": 1.203125,
+      "size_bytes": 787367
+    },
+    "s3tr-wa-9005281": {
+      "images": 20,
+      "valid_fraction": 1.0,
+      "depth_median_m": 4.2109375,
+      "size_bytes": 781495
+    },
+    "s3tr-wa-9005429": {
+      "images": 20,
+      "valid_fraction": 1.0,
+      "depth_median_m": 6.2890625,
+      "size_bytes": 761086
+    },
+    "s3tr-wa-9005453": {
+      "images": 20,
+      "valid_fraction": 1.0,
+      "depth_median_m": 4.2265625,
+      "size_bytes": 776729
+    }
+  }
+}

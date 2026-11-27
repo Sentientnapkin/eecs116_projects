@@ -1,0 +1,1 @@
+R=/data/backups/rganapa/Sebastian; export CUDAARCHS=90 HYPERLUX_CACHE_DIR=/dev/shm/sebastian-g3/hyperlux VIOBENCH_CACHE=/dev/shm/sebastian-g3/viobench-c TMPDIR=$R/tmp CONTA_CACHE=$R/gen/conta VIOBENCH_SPOOL=/dev/shm/sebastian-g3/spool XDG_CACHE_HOME=$R/gen/xdg HF_HOME=$R/hf PATH=$R/venv-sim11/bin:/usr/local/cuda/bin:$PATH PYTHONHASHSEED=0

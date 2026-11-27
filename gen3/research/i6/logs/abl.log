@@ -1,0 +1,365 @@
+train flights 727 anchors 346052 val 749 178262 load 56s
+all {"epoch": 0, "train": 0.6653336239606142} 8s
+all {"epoch": 1, "train": -0.41561447009909896} 16s
+all {"epoch": 2, "train": -0.5129970311373472} 24s
+all {"epoch": 3, "train": -0.5447478611767292} 31s
+all {"epoch": 4, "train": -0.5574281729757786, "val": 0.48860910534858704} 45s
+all {"epoch": 5, "train": -0.5654917883872986} 54s
+all {"epoch": 6, "train": -0.569647528603673} 62s
+all {"epoch": 7, "train": -0.574054414331913} 71s
+all {"epoch": 8, "train": -0.579223574846983} 79s
+all {"epoch": 9, "train": -0.5807379420846701} 87s
+all {"epoch": 10, "train": -0.5830448875576257} 95s
+all {"epoch": 11, "train": -0.5822537191212177} 102s
+all {"epoch": 12, "train": -0.5850359112024307, "val": 0.37534934282302856} 114s
+all {"epoch": 13, "train": -0.5872683124989271} 122s
+all {"epoch": 14, "train": -0.585631181076169} 130s
+all {"epoch": 15, "train": -0.587458363622427} 137s
+all {"epoch": 16, "train": -0.5896141925454139} 144s
+all {"epoch": 17, "train": -0.5878797762095929} 152s
+all {"epoch": 18, "train": -0.5890800204873085} 160s
+all {"epoch": 19, "train": -0.5866683839261532} 167s
+all {"epoch": 20, "train": -0.5884764210879803} 174s
+all {"epoch": 21, "train": -0.5888411730527878} 181s
+all {"epoch": 22, "train": -0.5879004119336605} 188s
+all {"epoch": 23, "train": -0.5888906927406787} 195s
+all {"epoch": 24, "train": -0.5888710743188859, "val": 0.34871840476989746} 208s
+DONE all {"n": 178262, "all": 0.34871840476989746, "fast": 0.4350765347480774, "zrms": 1.0795775651931763, "scale_gt1": 0.9424548149108887, "fwd": 0.33989351987838745, "side": 0.4059124290943146, "back": 0.38770592212677, "class": {"forest": 0.3224, "room": 0.38, "warehouse": 0.3323}, "regime": {"benchmark":
+imu_only {"epoch": 0, "train": 0.9981511995196343} 3s
+imu_only {"epoch": 1, "train": 0.5296153543144464} 7s
+imu_only {"epoch": 2, "train": 0.44301483280956744} 11s
+imu_only {"epoch": 3, "train": 0.40105404242873194} 14s
+imu_only {"epoch": 4, "train": 0.3589305502176285, "val": 1.1152762174606323} 18s
+imu_only {"epoch": 5, "train": 0.3484828409552574} 21s
+imu_only {"epoch": 6, "train": 0.3327527168020606} 25s
+imu_only {"epoch": 7, "train": 0.3225161553174257} 28s
+imu_only {"epoch": 8, "train": 0.30751915339380503} 32s
+imu_only {"epoch": 9, "train": 0.30212678339332344} 36s
+imu_only {"epoch": 10, "train": 0.2862560589332134} 39s
+imu_only {"epoch": 11, "train": 0.2899127142317593} 43s
+imu_only {"epoch": 12, "train": 0.28379923693835735, "val": 1.0761669874191284} 47s
+imu_only {"epoch": 13, "train": 0.26739010291174053} 51s
+imu_only {"epoch": 14, "train": 0.2685924468562007} 54s
+imu_only {"epoch": 15, "train": 0.26157664265483616} 57s
+imu_only {"epoch": 16, "train": 0.256996651943773} 61s
+imu_only {"epoch": 17, "train": 0.24874170956201852} 64s
+imu_only {"epoch": 18, "train": 0.25454439168795945} 68s
+imu_only {"epoch": 19, "train": 0.25258228918537495} 71s
+imu_only {"epoch": 20, "train": 0.24537150774151087} 75s
+imu_only {"epoch": 21, "train": 0.24386052019894122} 79s
+imu_only {"epoch": 22, "train": 0.2396101259160787} 82s
+imu_only {"epoch": 23, "train": 0.23976374298334122} 86s
+imu_only {"epoch": 24, "train": 0.2447702137567103, "val": 1.0616321563720703} 89s
+DONE imu_only {"n": 178262, "all": 1.0616321563720703, "fast": 1.3268216848373413, "zrms": 1.0348374843597412, "scale_gt1": 0.29331618547439575, "fwd": 0.9768018126487732, "side": 1.2516449689865112, "back": 1.389784812927246, "class": {"forest": 1.143, "room": 0.8479, "warehouse": 1.2522}, "regime": {"benchmark"
+img_only {"epoch": 0, "train": 0.6681505776941776} 6s
+img_only {"epoch": 1, "train": -0.36893973269034175} 13s
+img_only {"epoch": 2, "train": -0.4738175614923239} 20s
+img_only {"epoch": 3, "train": -0.5084581807255745} 27s
+img_only {"epoch": 4, "train": -0.5237166742235422, "val": 0.4935722351074219} 39s
+img_only {"epoch": 5, "train": -0.532176099717617} 46s
+img_only {"epoch": 6, "train": -0.5372640789300204} 53s
+img_only {"epoch": 7, "train": -0.5421719512343407} 60s
+img_only {"epoch": 8, "train": -0.5475655223429203} 66s
+img_only {"epoch": 9, "train": -0.5499226109683514} 73s
+img_only {"epoch": 10, "train": -0.5543393805623055} 80s
+img_only {"epoch": 11, "train": -0.554147869348526} 86s
+img_only {"epoch": 12, "train": -0.5597819076478481, "val": 0.43569087982177734} 98s
+img_only {"epoch": 13, "train": -0.5606906273961068} 104s
+img_only {"epoch": 14, "train": -0.5617117387056351} 111s
+img_only {"epoch": 15, "train": -0.5641839354485273} 117s
+img_only {"epoch": 16, "train": -0.5661125741899014} 124s
+img_only {"epoch": 17, "train": -0.5663038264960051} 130s
+img_only {"epoch": 18, "train": -0.5681569113582373} 137s
+img_only {"epoch": 19, "train": -0.5676731526106596} 144s
+img_only {"epoch": 20, "train": -0.5691239050030709} 151s
+img_only {"epoch": 21, "train": -0.5696423874050379} 157s
+img_only {"epoch": 22, "train": -0.5691933442652225} 163s
+img_only {"epoch": 23, "train": -0.5722657482326031} 169s
+img_only {"epoch": 24, "train": -0.5687159584462642, "val": 0.40037399530410767} 179s
+DONE img_only {"n": 178262, "all": 0.40037399530410767, "fast": 0.5099104046821594, "zrms": 1.0644861459732056, "scale_gt1": 0.920188844203949, "fwd": 0.3947782516479492, "side": 0.46352505683898926, "back": 0.43470966815948486, "class": {"forest": 0.3654, "room": 0.4434, "warehouse": 0.3769}, "regime": {"benchma
+single_img {"epoch": 0, "train": 1.0222907926142215} 8s
+single_img {"epoch": 1, "train": 0.5733637687563896} 15s
+single_img {"epoch": 2, "train": 0.4894011556357145} 23s
+single_img {"epoch": 3, "train": 0.44301622681319713} 32s
+single_img {"epoch": 4, "train": 0.40508765291422605, "val": 1.1420283317565918} 45s
+single_img {"epoch": 5, "train": 0.3594615786522627} 53s
+single_img {"epoch": 6, "train": 0.3233472562581301} 61s
+single_img {"epoch": 7, "train": 0.3004537517949939} 70s
+single_img {"epoch": 8, "train": 0.28106729248538614} 77s
+single_img {"epoch": 9, "train": 0.2672897158190608} 85s
+single_img {"epoch": 10, "train": 0.25560890400782227} 93s
+single_img {"epoch": 11, "train": 0.2374492620304227} 101s
+single_img {"epoch": 12, "train": 0.23408850522711874, "val": 1.0961241722106934} 114s
+single_img {"epoch": 13, "train": 0.22437052723020315} 122s
+single_img {"epoch": 14, "train": 0.21689092644490301} 130s
+single_img {"epoch": 15, "train": 0.19876302200369536} 138s
+single_img {"epoch": 16, "train": 0.19952206429094077} 145s
+single_img {"epoch": 17, "train": 0.18783693619072436} 153s
+single_img {"epoch": 18, "train": 0.18177756117656826} 161s
+single_img {"epoch": 19, "train": 0.17793826847337185} 169s
+single_img {"epoch": 20, "train": 0.17599440054502338} 177s
+single_img {"epoch": 21, "train": 0.16547575171804055} 185s
+single_img {"epoch": 22, "train": 0.16472397551406176} 192s
+single_img {"epoch": 23, "train": 0.16554950665682555} 200s
+single_img {"epoch": 24, "train": 0.1626424282696098, "val": 1.079607605934143} 213s
+DONE single_img {"n": 178262, "all": 1.079607605934143, "fast": 1.3537755012512207, "zrms": 1.1093682050704956, "scale_gt1": 0.2933412790298462, "fwd": 0.9673543572425842, "side": 1.283787727355957, "back": 1.4523112773895264, "class": {"forest": 1.1707, "room": 0.8557, "warehouse": 1.2745}, "regime": {"benchmark":
+raw2 {"epoch": 0, "train": 0.9549846394360065} 7s
+raw2 {"epoch": 1, "train": 0.1549445406650193} 14s
+raw2 {"epoch": 2, "train": -0.13240178045118228} 21s
+raw2 {"epoch": 3, "train": -0.23490734174847602} 29s
+raw2 {"epoch": 4, "train": -0.2871737987548113, "val": 0.7162226438522339} 40s
+raw2 {"epoch": 5, "train": -0.32818145245313646} 48s
+raw2 {"epoch": 6, "train": -0.3493776103854179} 55s
+raw2 {"epoch": 7, "train": -0.36858676120638845} 63s
+raw2 {"epoch": 8, "train": -0.3850750582292676} 70s
+raw2 {"epoch": 9, "train": -0.39675184797495605} 77s
+raw2 {"epoch": 10, "train": -0.40931080128997566} 84s
+raw2 {"epoch": 11, "train": -0.41849274769425393} 91s
+raw2 {"epoch": 12, "train": -0.4274195308983326, "val": 0.6316598653793335} 102s
+raw2 {"epoch": 13, "train": -0.43656296595931054} 109s
+raw2 {"epoch": 14, "train": -0.4380160169303417} 116s
+raw2 {"epoch": 15, "train": -0.44816959351301194} 123s
+raw2 {"epoch": 16, "train": -0.453327926248312} 131s
+raw2 {"epoch": 17, "train": -0.4594091008603573} 138s
+raw2 {"epoch": 18, "train": -0.4642483545094728} 145s
+raw2 {"epoch": 19, "train": -0.46748791687190533} 152s
+raw2 {"epoch": 20, "train": -0.47120686262845995} 159s
+raw2 {"epoch": 21, "train": -0.47637640096247197} 166s
+raw2 {"epoch": 22, "train": -0.476947313696146} 173s
+raw2 {"epoch": 23, "train": -0.4781929141283035} 181s
+raw2 {"epoch": 24, "train": -0.4798580311238766, "val": 0.5809534192085266} 191s
+DONE raw2 {"n": 178262, "all": 0.5809534192085266, "fast": 0.7128251791000366, "zrms": 1.0817936658859253, "scale_gt1": 0.8052390217781067, "fwd": 0.5581337213516235, "side": 0.652080237865448, "back": 0.6774783134460449, "class": {"forest": 0.6155, "room": 0.5582, "warehouse": 0.5805}, "regime": {"benchmark"
+flow_derot {"epoch": 0, "train": 0.4537381389737129} 16s
+flow_derot {"epoch": 1, "train": -0.38723003104329107} 32s
+flow_derot {"epoch": 2, "train": -0.4536188941448927} 49s
+flow_derot {"epoch": 3, "train": -0.4848990488052368} 66s
+flow_derot {"epoch": 4, "train": -0.5015039463341237, "val": 0.5195114016532898} 98s
+flow_derot {"epoch": 5, "train": -0.5106397278606891} 115s
+flow_derot {"epoch": 6, "train": -0.5159792236238718} 132s
+flow_derot {"epoch": 7, "train": -0.523545132651925} 148s
+flow_derot {"epoch": 8, "train": -0.5307436779886484} 165s
+flow_derot {"epoch": 9, "train": -0.5325535896420479} 181s
+flow_derot {"epoch": 10, "train": -0.5396670660376549} 197s
+flow_derot {"epoch": 11, "train": -0.542078568637371} 214s
+flow_derot {"epoch": 12, "train": -0.5432394923269749, "val": 0.4497052729129791} 248s
+flow_derot {"epoch": 13, "train": -0.5462342695891858} 265s
+flow_derot {"epoch": 14, "train": -0.5504796628654003} 281s
+flow_derot {"epoch": 15, "train": -0.5537948211282492} 298s
+flow_derot {"epoch": 16, "train": -0.5525204653292894} 314s
+flow_derot {"epoch": 17, "train": -0.5553173504024744} 331s
+flow_derot {"epoch": 18, "train": -0.5566564370691777} 347s
+flow_derot {"epoch": 19, "train": -0.5569100912660361} 364s
+flow_derot {"epoch": 20, "train": -0.5595957826822996} 381s
+flow_derot {"epoch": 21, "train": -0.5600355613231659} 398s
+flow_derot {"epoch": 22, "train": -0.5620891121029854} 414s
+flow_derot {"epoch": 23, "train": -0.5609727763384581} 430s
+flow_derot {"epoch": 24, "train": -0.5605296798795462, "val": 0.4228246212005615} 464s
+DONE flow_derot {"n": 178262, "all": 0.4228246212005615, "fast": 0.5252609848976135, "zrms": 1.0493227243423462, "scale_gt1": 0.9150190353393555, "fwd": 0.4073695242404938, "side": 0.48529061675071716, "back": 0.49855414032936096, "class": {"forest": 0.4182, "room": 0.4274, "warehouse": 0.4211}, "regime": {"benchma
+flow_raw {"epoch": 0, "train": 0.7690927095711231} 15s
+flow_raw {"epoch": 1, "train": 0.024971399736823514} 30s
+flow_raw {"epoch": 2, "train": -0.11340935270767659} 44s
+flow_raw {"epoch": 3, "train": -0.19277335045626387} 58s
+flow_raw {"epoch": 4, "train": -0.23621806672774256, "val": 0.7307064533233643} 88s
+flow_raw {"epoch": 5, "train": -0.26717464696615933} 103s
+flow_raw {"epoch": 6, "train": -0.28708588078618047} 118s
+flow_raw {"epoch": 7, "train": -0.3025001589208841} 133s
+flow_raw {"epoch": 8, "train": -0.3259511050209403} 149s
+flow_raw {"epoch": 9, "train": -0.3352339160069823} 164s
+flow_raw {"epoch": 10, "train": -0.3506886783614755} 179s
+flow_raw {"epoch": 11, "train": -0.3575434621796012} 193s
+flow_raw {"epoch": 12, "train": -0.3648158997669816, "val": 0.6611049771308899} 220s
+flow_raw {"epoch": 13, "train": -0.3721683441847563} 235s
+flow_raw {"epoch": 14, "train": -0.3839671429619193} 249s
+flow_raw {"epoch": 15, "train": -0.392903138063848} 264s
+flow_raw {"epoch": 16, "train": -0.3948660258203745} 278s
+flow_raw {"epoch": 17, "train": -0.4013552658632398} 292s
+flow_raw {"epoch": 18, "train": -0.4054570510238409} 307s
+flow_raw {"epoch": 19, "train": -0.40956730872392655} 321s
+flow_raw {"epoch": 20, "train": -0.41535637956112625} 335s
+flow_raw {"epoch": 21, "train": -0.4197428934276104} 348s
+flow_raw {"epoch": 22, "train": -0.42583128809928894} 363s
+flow_raw {"epoch": 23, "train": -0.4229987961053848} 377s
+flow_raw {"epoch": 24, "train": -0.4188269366696477, "val": 0.6200101375579834} 407s
+DONE flow_raw {"n": 178262, "all": 0.6200101375579834, "fast": 0.7578111290931702, "zrms": 1.0451735258102417, "scale_gt1": 0.7822461724281311, "fwd": 0.5797954201698303, "side": 0.7053598165512085, "back": 0.7337719798088074, "class": {"forest": 0.6461, "room": 0.5837, "warehouse": 0.6425}, "regime": {"benchmark
+tracks_imu {"epoch": 0, "train": 0.5532697269320488} 15s
+tracks_imu {"epoch": 1, "train": -0.36263256217353046} 31s
+tracks_imu {"epoch": 2, "train": -0.43195413865149024} 46s
+tracks_imu {"epoch": 3, "train": -0.4617850352078676} 61s
+tracks_imu {"epoch": 4, "train": -0.47539742320775985, "val": 0.5439238548278809} 92s
+tracks_imu {"epoch": 5, "train": -0.4863071460276842} 108s
+tracks_imu {"epoch": 6, "train": -0.49642395086586477} 123s
+tracks_imu {"epoch": 7, "train": -0.5013726059347391} 137s
+tracks_imu {"epoch": 8, "train": -0.5053571981191635} 154s
+tracks_imu {"epoch": 9, "train": -0.5128996813297272} 169s
+tracks_imu {"epoch": 10, "train": -0.5173367258161307} 184s
+tracks_imu {"epoch": 11, "train": -0.5217740521579981} 199s
+tracks_imu {"epoch": 12, "train": -0.5239627867937088, "val": 0.5016832947731018} 230s
+tracks_imu {"epoch": 13, "train": -0.528666559830308} 246s
+tracks_imu {"epoch": 14, "train": -0.5332920861244201} 261s
+tracks_imu {"epoch": 15, "train": -0.5341165955364704} 276s
+tracks_imu {"epoch": 16, "train": -0.5341758370399475} 291s
+tracks_imu {"epoch": 17, "train": -0.5410137044638396} 306s
+tracks_imu {"epoch": 18, "train": -0.5418662895262242} 320s
+tracks_imu {"epoch": 19, "train": -0.5442551206052303} 335s
+tracks_imu {"epoch": 20, "train": -0.5470915739238262} 349s
+tracks_imu {"epoch": 21, "train": -0.547523283213377} 364s
+tracks_imu {"epoch": 22, "train": -0.5484397300332785} 379s
+tracks_imu {"epoch": 23, "train": -0.548727852255106} 394s
+tracks_imu {"epoch": 24, "train": -0.5482282092422247, "val": 0.4879460334777832} 425s
+DONE tracks_imu {"n": 178262, "all": 0.4879460334777832, "fast": 0.6404843330383301, "zrms": 1.1588810682296753, "scale_gt1": 0.8207677602767944, "fwd": 0.4886442720890045, "side": 0.555054783821106, "back": 0.5854383707046509, "class": {"forest": 0.4994, "room": 0.4576, "warehouse": 0.515}, "regime": {"benchmark":
+seq3 {"epoch": 0, "train": 0.5914413388073444} 9s
+seq3 {"epoch": 1, "train": -0.45868164690211416} 19s
+seq3 {"epoch": 2, "train": -0.5483782860636711} 29s
+seq3 {"epoch": 3, "train": -0.5686710080504418} 38s
+seq3 {"epoch": 4, "train": -0.5819453167915344, "val": 0.4398777484893799} 56s
+seq3 {"epoch": 5, "train": -0.5841929845511913} 66s
+seq3 {"epoch": 6, "train": -0.5879284562170506} 75s
+seq3 {"epoch": 7, "train": -0.5911854720115661} 85s
+seq3 {"epoch": 8, "train": -0.59176817946136} 95s
+seq3 {"epoch": 9, "train": -0.5930481082946062} 106s
+seq3 {"epoch": 10, "train": -0.5930096585303545} 116s
+seq3 {"epoch": 11, "train": -0.5931644164770842} 126s
+seq3 {"epoch": 12, "train": -0.5940262258797884, "val": 0.39920058846473694} 146s
+seq3 {"epoch": 13, "train": -0.5941460842639208} 156s
+seq3 {"epoch": 14, "train": -0.5938505059480668} 166s
+seq3 {"epoch": 15, "train": -0.5943917173892259} 176s
+seq3 {"epoch": 16, "train": -0.5940262768417597} 186s
+seq3 {"epoch": 17, "train": -0.5949241608381272} 195s
+seq3 {"epoch": 18, "train": -0.5927976781129837} 206s
+seq3 {"epoch": 19, "train": -0.5926435978710651} 216s
+seq3 {"epoch": 20, "train": -0.59266721829772} 226s
+seq3 {"epoch": 21, "train": -0.5906809151172638} 236s
+seq3 {"epoch": 22, "train": -0.5916026969254017} 246s
+seq3 {"epoch": 23, "train": -0.5914542870223523} 255s
+seq3 {"epoch": 24, "train": -0.5919589371979237, "val": 0.3383568823337555} 274s
+DONE seq3 {"n": 178262, "all": 0.3383568823337555, "fast": 0.4038090407848358, "zrms": 1.0760455131530762, "scale_gt1": 0.9625994563102722, "fwd": 0.3287712633609772, "side": 0.38620737195014954, "back": 0.3721541464328766, "class": {"forest": 0.3118, "room": 0.3736, "warehouse": 0.3175}, "regime": {"benchmar
+orient_only {"epoch": 0, "train": 1.0566254590451718} 4s
+orient_only {"epoch": 1, "train": 0.6628363537788391} 8s
+orient_only {"epoch": 2, "train": 0.6242592425644398} 12s
+orient_only {"epoch": 3, "train": 0.6144735300540924} 16s
+orient_only {"epoch": 4, "train": 0.6019499511271715, "val": 1.1909701824188232} 21s
+orient_only {"epoch": 5, "train": 0.6077345553785563} 25s
+orient_only {"epoch": 6, "train": 0.6013654190301895} 30s
+orient_only {"epoch": 7, "train": 0.6058171851933003} 34s
+orient_only {"epoch": 8, "train": 0.5941938400268555} 39s
+orient_only {"epoch": 9, "train": 0.5958395902067423} 43s
+orient_only {"epoch": 10, "train": 0.5902627062797546} 47s
+orient_only {"epoch": 11, "train": 0.5998066627234221} 52s
+orient_only {"epoch": 12, "train": 0.6036413000524044, "val": 1.1876524686813354} 56s
+orient_only {"epoch": 13, "train": 0.5914240102469921} 60s
+orient_only {"epoch": 14, "train": 0.588513197824359} 64s
+orient_only {"epoch": 15, "train": 0.5910861036926508} 68s
+orient_only {"epoch": 16, "train": 0.5874488808214664} 72s
+orient_only {"epoch": 17, "train": 0.5834527388960123} 76s
+orient_only {"epoch": 18, "train": 0.5929639174044132} 80s
+orient_only {"epoch": 19, "train": 0.588710749000311} 84s
+orient_only {"epoch": 20, "train": 0.5837320885062218} 89s
+orient_only {"epoch": 21, "train": 0.5850799418985844} 93s
+orient_only {"epoch": 22, "train": 0.5800298000872135} 97s
+orient_only {"epoch": 23, "train": 0.5845632177591323} 101s
+orient_only {"epoch": 24, "train": 0.5895879656821489, "val": 1.1831166744232178} 106s
+DONE orient_only {"n": 178262, "all": 1.1831166744232178, "fast": 1.657295823097229, "zrms": 1.0166747570037842, "scale_gt1": 0.14541885256767273, "fwd": 1.1537412405014038, "side": 1.4163013696670532, "back": 1.561316967010498, "class": {"forest": 1.2773, "room": 0.9554, "warehouse": 1.3801}, "regime": {"benchmark"
+no_intr {"epoch": 0, "train": 0.6628259872645139} 8s
+no_intr {"epoch": 1, "train": -0.4122027073055506} 16s
+no_intr {"epoch": 2, "train": -0.5170269849151373} 25s
+no_intr {"epoch": 3, "train": -0.5480168687552214} 33s
+no_intr {"epoch": 4, "train": -0.5589343445748091, "val": 0.4555668532848358} 47s
+no_intr {"epoch": 5, "train": -0.5647571529448032} 56s
+no_intr {"epoch": 6, "train": -0.5679130586981773} 64s
+no_intr {"epoch": 7, "train": -0.5719552556425334} 73s
+no_intr {"epoch": 8, "train": -0.5760986699908972} 81s
+no_intr {"epoch": 9, "train": -0.5775626543164253} 90s
+no_intr {"epoch": 10, "train": -0.5799135387688875} 98s
+no_intr {"epoch": 11, "train": -0.5800533571839332} 107s
+no_intr {"epoch": 12, "train": -0.582261727526784, "val": 0.38749998807907104} 121s
+no_intr {"epoch": 13, "train": -0.5835426434129477} 130s
+no_intr {"epoch": 14, "train": -0.5834251576662064} 138s
+no_intr {"epoch": 15, "train": -0.5839340309798717} 146s
+no_intr {"epoch": 16, "train": -0.5866518248617649} 155s
+no_intr {"epoch": 17, "train": -0.5859165577590466} 163s
+no_intr {"epoch": 18, "train": -0.586286179125309} 171s
+no_intr {"epoch": 19, "train": -0.5846493594348431} 180s
+no_intr {"epoch": 20, "train": -0.5865572692453861} 188s
+no_intr {"epoch": 21, "train": -0.5866024108231067} 196s
+no_intr {"epoch": 22, "train": -0.5851106250286102} 203s
+no_intr {"epoch": 23, "train": -0.5869430364668369} 210s
+no_intr {"epoch": 24, "train": -0.5850142574310303, "val": 0.3616029918193817} 222s
+DONE no_intr {"n": 178262, "all": 0.3616029918193817, "fast": 0.45437073707580566, "zrms": 1.077964425086975, "scale_gt1": 0.9435027241706848, "fwd": 0.36351659893989563, "side": 0.41384372115135193, "back": 0.4071861803531647, "class": {"forest": 0.341, "room": 0.3838, "warehouse": 0.3514}, "regime": {"benchmar
+rays {"epoch": 0, "train": 0.6904812116920948} 8s
+rays {"epoch": 1, "train": -0.4093503609416075} 15s
+rays {"epoch": 2, "train": -0.5125256295502186} 22s
+rays {"epoch": 3, "train": -0.546458400040865} 30s
+rays {"epoch": 4, "train": -0.5598335663229227, "val": 0.43652743101119995} 43s
+rays {"epoch": 5, "train": -0.5664295110106469} 52s
+rays {"epoch": 6, "train": -0.5698220853507519} 59s
+rays {"epoch": 7, "train": -0.5724410556256772} 67s
+rays {"epoch": 8, "train": -0.5773221408575773} 75s
+rays {"epoch": 9, "train": -0.5789520848542452} 83s
+rays {"epoch": 10, "train": -0.5814768325537443} 91s
+rays {"epoch": 11, "train": -0.5806034044921398} 98s
+rays {"epoch": 12, "train": -0.5839882828295231, "val": 0.3828924298286438} 110s
+rays {"epoch": 13, "train": -0.5845603955537081} 118s
+rays {"epoch": 14, "train": -0.584259149953723} 126s
+rays {"epoch": 15, "train": -0.5857933846861124} 135s
+rays {"epoch": 16, "train": -0.5874582517892122} 143s
+rays {"epoch": 17, "train": -0.5858657617866992} 152s
+rays {"epoch": 18, "train": -0.5878031174093485} 160s
+rays {"epoch": 19, "train": -0.5865108485519887} 168s
+rays {"epoch": 20, "train": -0.5868886895477772} 176s
+rays {"epoch": 21, "train": -0.587098251581192} 185s
+rays {"epoch": 22, "train": -0.5861434848606586} 194s
+rays {"epoch": 23, "train": -0.5875304907560348} 203s
+rays {"epoch": 24, "train": -0.586156814545393, "val": 0.3476804792881012} 217s
+DONE rays {"n": 178262, "all": 0.3476804792881012, "fast": 0.43492892384529114, "zrms": 1.0783991813659668, "scale_gt1": 0.9402875304222107, "fwd": 0.3420069217681885, "side": 0.4026889204978943, "back": 0.38645869493484497, "class": {"forest": 0.3227, "room": 0.3774, "warehouse": 0.3321}, "regime": {"benchma
+flow_derot_noimu {"epoch": 0, "train": 0.4755037768930197} 16s
+flow_derot_noimu {"epoch": 1, "train": -0.34320239710621536} 32s
+flow_derot_noimu {"epoch": 2, "train": -0.402156623378396} 49s
+flow_derot_noimu {"epoch": 3, "train": -0.4345243337750435} 65s
+flow_derot_noimu {"epoch": 4, "train": -0.4510505785048008, "val": 0.559386670589447} 99s
+flow_derot_noimu {"epoch": 5, "train": -0.46098806358873845} 115s
+flow_derot_noimu {"epoch": 6, "train": -0.46723852805793287} 131s
+flow_derot_noimu {"epoch": 7, "train": -0.4735091131925583} 147s
+flow_derot_noimu {"epoch": 8, "train": -0.48093251772224904} 163s
+flow_derot_noimu {"epoch": 9, "train": -0.48373901814222336} 179s
+flow_derot_noimu {"epoch": 10, "train": -0.4901019344478846} 194s
+flow_derot_noimu {"epoch": 11, "train": -0.4920359977334738} 209s
+flow_derot_noimu {"epoch": 12, "train": -0.49483123667538165, "val": 0.5045133233070374} 242s
+flow_derot_noimu {"epoch": 13, "train": -0.4991605311632156} 257s
+flow_derot_noimu {"epoch": 14, "train": -0.5038264930248261} 272s
+flow_derot_noimu {"epoch": 15, "train": -0.5077663747221232} 287s
+flow_derot_noimu {"epoch": 16, "train": -0.5060221257805825} 302s
+flow_derot_noimu {"epoch": 17, "train": -0.5095299419015646} 316s
+flow_derot_noimu {"epoch": 18, "train": -0.5115965710580349} 329s
+flow_derot_noimu {"epoch": 19, "train": -0.5141779163479805} 343s
+flow_derot_noimu {"epoch": 20, "train": -0.5170151614397764} 357s
+flow_derot_noimu {"epoch": 21, "train": -0.517647300735116} 370s
+flow_derot_noimu {"epoch": 22, "train": -0.5209070433676243} 384s
+flow_derot_noimu {"epoch": 23, "train": -0.5188741464167833} 399s
+flow_derot_noimu {"epoch": 24, "train": -0.5201614229381084, "val": 0.4833140969276428} 428s
+DONE flow_derot_noimu {"n": 178262, "all": 0.4833140969276428, "fast": 0.6103293895721436, "zrms": 1.0385537147521973, "scale_gt1": 0.8864758014678955, "fwd": 0.4693984389305115, "side": 0.5499650835990906, "back": 0.5625554323196411, "class": {"forest": 0.4721, "room": 0.5006, "warehouse": 0.4716}, "regime": {"benchmark
+all_s1 {"epoch": 0, "train": 0.6591307284682989} 7s
+all_s1 {"epoch": 1, "train": -0.4058308547514025} 13s
+all_s1 {"epoch": 2, "train": -0.5168251161277294} 19s
+all_s1 {"epoch": 3, "train": -0.5475468599796295} 26s
+all_s1 {"epoch": 4, "train": -0.5619670917838812, "val": 0.47692179679870605} 38s
+all_s1 {"epoch": 5, "train": -0.5651392013579607} 45s
+all_s1 {"epoch": 6, "train": -0.5719302543252707} 52s
+all_s1 {"epoch": 7, "train": -0.5754334565997123} 58s
+all_s1 {"epoch": 8, "train": -0.5788747892528773} 65s
+all_s1 {"epoch": 9, "train": -0.5804784612357616} 72s
+all_s1 {"epoch": 10, "train": -0.5809687665849924} 80s
+all_s1 {"epoch": 11, "train": -0.5832703576236963} 87s
+all_s1 {"epoch": 12, "train": -0.5842221921682358, "val": 0.37833622097969055} 99s
+all_s1 {"epoch": 13, "train": -0.5844926265627146} 107s
+all_s1 {"epoch": 14, "train": -0.5851669709384442} 114s
+all_s1 {"epoch": 15, "train": -0.5854810974001885} 122s
+all_s1 {"epoch": 16, "train": -0.5861638186126947} 130s
+all_s1 {"epoch": 17, "train": -0.5855714666098356} 138s
+all_s1 {"epoch": 18, "train": -0.5873049676418305} 146s
+all_s1 {"epoch": 19, "train": -0.5863647282868624} 154s
+all_s1 {"epoch": 20, "train": -0.5869770187139511} 162s
+all_s1 {"epoch": 21, "train": -0.5856263197958469} 170s
+all_s1 {"epoch": 22, "train": -0.5860792095214129} 177s
+all_s1 {"epoch": 23, "train": -0.5871223850548267} 185s
+all_s1 {"epoch": 24, "train": -0.5871739338338375, "val": 0.345514178276062} 198s
+DONE all_s1 {"n": 178262, "all": 0.345514178276062, "fast": 0.4320208728313446, "zrms": 1.0772361755371094, "scale_gt1": 0.9442183971405029, "fwd": 0.3378874361515045, "side": 0.4023035168647766, "back": 0.3836628794670105, "class": {"forest": 0.3198, "room": 0.3778, "warehouse": 0.3274}, "regime": {"benchmark"

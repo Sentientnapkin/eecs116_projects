@@ -1,0 +1,10 @@
+{
+  "agent": "bounded_research_reviews",
+  "model": "gpt-6-luna",
+  "max_review_cycles": 2,
+  "max_review_wall_minutes": 45,
+  "cycle1": "matched explicit-seed-3 K2/K5 short-recipe replication on GPU7",
+  "cycle2": "independent 48-flight confirmation of cheaper gov27_0 current-MSCKF point on CPU",
+  "review_workspace": "/tmp/vio_research_loop/reviews",
+  "note": "Bounded AI review rounds; scripted tests do compute. Further rounds need a new review turn. No hidden submissions or best replacement."
+}

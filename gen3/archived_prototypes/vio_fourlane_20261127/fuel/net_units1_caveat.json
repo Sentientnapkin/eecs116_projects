@@ -1,0 +1,15 @@
+{
+  "candidate": "net_units1",
+  "result_interpretation": "confounded component ablation; not evidence of neural scheduling effects",
+  "baseline_edge": 1,
+  "candidate_edge": 0,
+  "missing_flags": [
+    "EDGE=1",
+    "EDGE_MYTH=10.0"
+  ],
+  "net_units_effect": "likely inactive because GOV=1, NS_GCOST=1 overrides unit scheduling; verify preprocessing before causal use",
+  "ate_mean": 0.503190840948472,
+  "baseline_ate_mean": 0.45710985477467,
+  "peak_fuel": 3507219,
+  "baseline_peak_fuel": 3769529
+}

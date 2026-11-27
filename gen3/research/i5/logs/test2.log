@@ -1,0 +1,29 @@
+21:50:45 start s3v3va-fo-9300459
+#rl_tools::hyperlux::datasets: Loaded assembly with 781 part(s)
+#rl_tools::hyperlux: backend=optix
+/data/backups/rganapa/Sebastian/gen3/research/i5/rr.py:95: RuntimeWarning: invalid value encountered in matmul
+  Xw = Xc @ Rc1.T + pc1; X0 = (Xw - pc0) @ Rc0; q = X0 @ F.K.T; q = q[:, :2]/q[:, 2:3]; fl = q - pix[:, :2]
+#rl_tools::hyperlux: backend=optix
+#rl_tools::hyperlux: backend=optix
+#rl_tools::hyperlux: backend=optix
+#rl_tools::hyperlux: backend=optix
+	User time (seconds): 146.19
+	System time (seconds): 17.66
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:37.81
+	Maximum resident set size (kbytes): 1308804
+21:53:22 end s3v3va-fo-9300459
+21:53:22 start s3v3va-ro-9300051
+#rl_tools::hyperlux::datasets: Loaded assembly with 60 part(s)
+#rl_tools::hyperlux::datasets: Scene file has no lights: adding 3 directional fill lights
+#rl_tools::hyperlux: backend=optix
+/data/backups/rganapa/Sebastian/gen3/research/i5/rr.py:95: RuntimeWarning: invalid value encountered in matmul
+  Xw = Xc @ Rc1.T + pc1; X0 = (Xw - pc0) @ Rc0; q = X0 @ F.K.T; q = q[:, :2]/q[:, 2:3]; fl = q - pix[:, :2]
+#rl_tools::hyperlux: backend=optix
+#rl_tools::hyperlux: backend=optix
+#rl_tools::hyperlux: backend=optix
+#rl_tools::hyperlux: backend=optix
+	User time (seconds): 34.38
+	System time (seconds): 17.57
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:44.70
+	Maximum resident set size (kbytes): 1169072
+21:54:07 end s3v3va-ro-9300051

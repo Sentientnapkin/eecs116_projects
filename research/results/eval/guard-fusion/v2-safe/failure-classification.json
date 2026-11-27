@@ -1,0 +1,149 @@
+[
+  {
+    "episode": "fast-106366104_174226329-00",
+    "cv_ate": 5.274555878824625,
+    "best_single": "vins",
+    "singles": {
+      "vins": 1.3265856904053845,
+      "openvins": 6.5198265123728785,
+      "n2": 6.3030023878957016
+    },
+    "classification": "wrong_VIO_selection; learned_fallback_bad",
+    "weight_change_count": 7,
+    "VIO_agreement_fraction": 0.0,
+    "source_weight_mean": {
+      "vins": 0.6091666666666666,
+      "openvins": 0.0,
+      "n2": 0.3908333333333333
+    },
+    "squared_error_share_during_VIO_agreement": 0.0,
+    "squared_error_share_within_1s_switch": 0.07929622090758816,
+    "max_output_step_m": 0.8500484916781388
+  },
+  {
+    "episode": "fastmid-103997643_171030747-01",
+    "cv_ate": 5.502645982259696,
+    "best_single": "n2",
+    "singles": {
+      "vins": 8.615097898180467,
+      "openvins": 14.926621857509948,
+      "n2": 2.205676664254026
+    },
+    "classification": "both_VIOs_bad",
+    "weight_change_count": 9,
+    "VIO_agreement_fraction": 0.225,
+    "source_weight_mean": {
+      "vins": 0.20666666666666667,
+      "openvins": 0.18166666666666667,
+      "n2": 0.6116666666666667
+    },
+    "squared_error_share_during_VIO_agreement": 0.6308376959227376,
+    "squared_error_share_within_1s_switch": 0.15204825906362,
+    "max_output_step_m": 1.0173126125456036
+  },
+  {
+    "episode": "fastmid-106366104_174226329-01",
+    "cv_ate": 5.047327667724988,
+    "best_single": "n2",
+    "singles": {
+      "vins": 37.0057799560275,
+      "openvins": 5.73748525670969,
+      "n2": 5.047327667724988
+    },
+    "classification": "both_VIOs_bad; learned_fallback_bad",
+    "weight_change_count": 0,
+    "VIO_agreement_fraction": 0.0,
+    "source_weight_mean": {
+      "vins": 0.0,
+      "openvins": 0.0,
+      "n2": 1.0
+    },
+    "squared_error_share_during_VIO_agreement": 0.0,
+    "squared_error_share_within_1s_switch": 0.0,
+    "max_output_step_m": 0.039902071710514124
+  },
+  {
+    "episode": "fastmid-106366104_174226329-02",
+    "cv_ate": 5.2451001343649,
+    "best_single": "openvins",
+    "singles": {
+      "vins": 28.56707209793879,
+      "openvins": 4.843364501812701,
+      "n2": 5.003044929566345
+    },
+    "classification": "both_VIOs_bad; learned_fallback_bad",
+    "weight_change_count": 2,
+    "VIO_agreement_fraction": 0.0,
+    "source_weight_mean": {
+      "vins": 0.08,
+      "openvins": 0.0,
+      "n2": 0.92
+    },
+    "squared_error_share_during_VIO_agreement": 0.0,
+    "squared_error_share_within_1s_switch": 0.050934615657601795,
+    "max_output_step_m": 0.6153802877250026
+  },
+  {
+    "episode": "fastmid-107734146_175999971-01",
+    "cv_ate": 7.455647019993737,
+    "best_single": "openvins",
+    "singles": {
+      "vins": 6.267193523708967,
+      "openvins": 0.896094760549595,
+      "n2": 9.162990055992468
+    },
+    "classification": "wrong_VIO_selection; learned_fallback_bad",
+    "weight_change_count": 6,
+    "VIO_agreement_fraction": 0.0,
+    "source_weight_mean": {
+      "vins": 0.7075,
+      "openvins": 0.145,
+      "n2": 0.1475
+    },
+    "squared_error_share_during_VIO_agreement": 0.0,
+    "squared_error_share_within_1s_switch": 0.09116841545882401,
+    "max_output_step_m": 0.7799198644237446
+  },
+  {
+    "episode": "fastmid-108294897_176710602-01",
+    "cv_ate": 5.619703934033783,
+    "best_single": "openvins",
+    "singles": {
+      "vins": 6.215932955212301,
+      "openvins": 1.833336673852428,
+      "n2": 5.66777834625809
+    },
+    "classification": "wrong_VIO_selection; learned_fallback_bad",
+    "weight_change_count": 4,
+    "VIO_agreement_fraction": 0.0,
+    "source_weight_mean": {
+      "vins": 0.7966666666666666,
+      "openvins": 0.18833333333333332,
+      "n2": 0.015
+    },
+    "squared_error_share_during_VIO_agreement": 0.0,
+    "squared_error_share_within_1s_switch": 0.013996386494680305,
+    "max_output_step_m": 0.7085739043108821
+  },
+  {
+    "episode": "fastmid-ProcTHOR-Train-158-07",
+    "cv_ate": 5.107565278213921,
+    "best_single": "n2",
+    "singles": {
+      "vins": 6.491493453381391,
+      "openvins": 3.955075156666115,
+      "n2": 2.9105031465906377
+    },
+    "classification": "both_VIOs_bad",
+    "weight_change_count": 16,
+    "VIO_agreement_fraction": 0.0,
+    "source_weight_mean": {
+      "vins": 0.4766666666666667,
+      "openvins": 0.42833333333333334,
+      "n2": 0.095
+    },
+    "squared_error_share_during_VIO_agreement": 0.0,
+    "squared_error_share_within_1s_switch": 0.1672305419831783,
+    "max_output_step_m": 0.8066495737792638
+  }
+]

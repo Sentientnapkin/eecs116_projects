@@ -1,0 +1,11 @@
+120 episodes, 0 cached, workers=14 (no video)
+20/120 finished, 29.7s
+40/120 finished, 43.2s
+60/120 finished, 54.2s
+80/120 finished, 66.3s
+100/120 finished, 83.3s
+120/120 finished, 95.9s
+st_a1_v0m v1val n 120 / 120 mean ATE 0.620 median 0.487 >3m 0
+  setting_class {'forest': '0.821 (n=32)', 'room': '0.289 (n=59)', 'warehouse': '1.072 (n=29)'}
+  regime {'benchmark': '0.623 (n=108)', 'independent-yaw': '0.595 (n=12)'}
+  start {'hover': '0.566 (n=28)', 'mid-flight': '0.637 (n=92)'}

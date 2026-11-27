@@ -1,0 +1,74 @@
+[
+  [
+    "st2P1m-ProcTHOR-Train-130-010",
+    {
+      "error": "Traceback (most recent call last):\n  File \"/data/backups/rganapa/Sebastian/eecs116_projects/research/single_model/ensemble2/replay.py\", line 70, in one\n    sb.close()\n    ^^^^^^^^\nAttributeError: 'Sandbox' object has no attribute 'close'\n"
+    }
+  ],
+  [
+    "st2P1s-ProcTHOR-Train-130-007",
+    {
+      "error": "Traceback (most recent call last):\n  File \"/data/backups/rganapa/Sebastian/eecs116_projects/research/single_model/ensemble2/replay.py\", line 70, in one\n    sb.close()\n    ^^^^^^^^\nAttributeError: 'Sandbox' object has no attribute 'close'\n"
+    }
+  ],
+  [
+    "st2Ks-ProcTHOR-Train-130-006",
+    {
+      "error": "Traceback (most recent call last):\n  File \"/data/backups/rganapa/Sebastian/eecs116_projects/research/single_model/ensemble2/replay.py\", line 70, in one\n    sb.close()\n    ^^^^^^^^\nAttributeError: 'Sandbox' object has no attribute 'close'\n"
+    }
+  ],
+  [
+    "st2Km-ProcTHOR-Train-130-009",
+    {
+      "error": "Traceback (most recent call last):\n  File \"/data/backups/rganapa/Sebastian/eecs116_projects/research/single_model/ensemble2/replay.py\", line 70, in one\n    sb.close()\n    ^^^^^^^^\nAttributeError: 'Sandbox' object has no attribute 'close'\n"
+    }
+  ],
+  [
+    "st2Ks-104862573_172226682-000",
+    {
+      "error": "Traceback (most recent call last):\n  File \"/data/backups/rganapa/Sebastian/eecs116_projects/research/single_model/ensemble2/replay.py\", line 70, in one\n    sb.close()\n    ^^^^^^^^\nAttributeError: 'Sandbox' object has no attribute 'close'\n"
+    }
+  ],
+  [
+    "st2Km-104862573_172226682-003",
+    {
+      "error": "Traceback (most recent call last):\n  File \"/data/backups/rganapa/Sebastian/eecs116_projects/research/single_model/ensemble2/replay.py\", line 70, in one\n    sb.close()\n    ^^^^^^^^\nAttributeError: 'Sandbox' object has no attribute 'close'\n"
+    }
+  ],
+  [
+    "st2P1s-104862573_172226682-001",
+    {
+      "error": "Traceback (most recent call last):\n  File \"/data/backups/rganapa/Sebastian/eecs116_projects/research/single_model/ensemble2/replay.py\", line 70, in one\n    sb.close()\n    ^^^^^^^^\nAttributeError: 'Sandbox' object has no attribute 'close'\n"
+    }
+  ],
+  [
+    "st2P1m-104862573_172226682-004",
+    {
+      "error": "Traceback (most recent call last):\n  File \"/data/backups/rganapa/Sebastian/eecs116_projects/research/single_model/ensemble2/replay.py\", line 70, in one\n    sb.close()\n    ^^^^^^^^\nAttributeError: 'Sandbox' object has no attribute 'close'\n"
+    }
+  ],
+  [
+    "st2P4s-ProcTHOR-Train-130-008",
+    {
+      "error": "Traceback (most recent call last):\n  File \"/data/backups/rganapa/Sebastian/eecs116_projects/research/single_model/ensemble2/replay.py\", line 70, in one\n    sb.close()\n    ^^^^^^^^\nAttributeError: 'Sandbox' object has no attribute 'close'\n"
+    }
+  ],
+  [
+    "st2P4m-ProcTHOR-Train-130-011",
+    {
+      "error": "Traceback (most recent call last):\n  File \"/data/backups/rganapa/Sebastian/eecs116_projects/research/single_model/ensemble2/replay.py\", line 70, in one\n    sb.close()\n    ^^^^^^^^\nAttributeError: 'Sandbox' object has no attribute 'close'\n"
+    }
+  ],
+  [
+    "st2P4m-104862573_172226682-005",
+    {
+      "error": "Traceback (most recent call last):\n  File \"/data/backups/rganapa/Sebastian/eecs116_projects/research/single_model/ensemble2/replay.py\", line 70, in one\n    sb.close()\n    ^^^^^^^^\nAttributeError: 'Sandbox' object has no attribute 'close'\n"
+    }
+  ],
+  [
+    "st2P4s-104862573_172226682-002",
+    {
+      "error": "Traceback (most recent call last):\n  File \"/data/backups/rganapa/Sebastian/eecs116_projects/research/single_model/ensemble2/replay.py\", line 70, in one\n    sb.close()\n    ^^^^^^^^\nAttributeError: 'Sandbox' object has no attribute 'close'\n"
+    }
+  ]
+]

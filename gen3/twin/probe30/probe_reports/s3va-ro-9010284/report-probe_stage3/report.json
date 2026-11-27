@@ -1,0 +1,96 @@
+{
+ "solution": "/data/backups/rganapa/Sebastian/eecs116_projects/eecs116_vio/submissions/probe_stage3.wasm",
+ "solution_bytes": 29370,
+ "wasmtime": "50.0.1",
+ "host": "Linux-5.15.0-164-generic-x86_64-with-glibc2.35",
+ "limits": {
+  "init_fuel": 200000000000,
+  "step_fuel": 20000000000,
+  "memory_bytes": 2147483648,
+  "table_elements": 1048576,
+  "init_wall_seconds": 300.0,
+  "step_wall_seconds": 60.0
+ },
+ "elapsed_s": 20.837468069046736,
+ "summary": {
+  "overall": {
+   "episodes": 1,
+   "completed": 1,
+   "duration_s_median": 59.95,
+   "rpe_translation_rmse_median": 0.9282630253531574,
+   "rpe_rotation_rmse_median": 0.014581368901901301,
+   "ate_rmse_median": 2.8083033010363696,
+   "rotation_rmse_median": 0.0587532164170579,
+   "velocity_rmse_median": 28867.513399262007,
+   "angular_velocity_rmse_median": 999999.9985110908,
+   "frames_attempted": 1200,
+   "fuel_per_frame_max": 9232425142,
+   "fuel_per_frame_mean": 53157861.40083333,
+   "fuel_per_frame_median": 13465370.0,
+   "fuel_per_frame_p95": 276859798.0,
+   "fuel_per_frame_p99": 1944459666.0,
+   "fuel_total": 63789433681,
+   "wall_per_frame_median_ms": 2.1476466208696365
+  },
+  "datasets": {
+   "probe30": {
+    "episodes": 1,
+    "completed": 1,
+    "duration_s_median": 59.95,
+    "rpe_translation_rmse_median": 0.9282630253531574,
+    "rpe_rotation_rmse_median": 0.014581368901901301,
+    "ate_rmse_median": 2.8083033010363696,
+    "rotation_rmse_median": 0.0587532164170579,
+    "velocity_rmse_median": 28867.513399262007,
+    "angular_velocity_rmse_median": 999999.9985110908,
+    "frames_attempted": 1200,
+    "fuel_per_frame_max": 9232425142,
+    "fuel_per_frame_mean": 53157861.40083333,
+    "fuel_per_frame_median": 13465370.0,
+    "fuel_per_frame_p95": 276859798.0,
+    "fuel_per_frame_p99": 1944459666.0,
+    "fuel_total": 63789433681,
+    "wall_per_frame_median_ms": 2.1476466208696365
+   }
+  }
+ },
+ "episodes": [
+  {
+   "name": "s3va-ro-9010284",
+   "dataset": "probe30",
+   "frames": 1200,
+   "frames_attempted": 1200,
+   "duration_s": 59.95,
+   "completed": true,
+   "failure": null,
+   "fuel_init": 1190040974,
+   "fuel_per_frame_max": 9232425142,
+   "fuel_per_frame_median": 13465370.0,
+   "fuel_per_frame_p95": 276859798.0,
+   "fuel_per_frame_p99": 1944459666.0,
+   "fuel_per_frame_mean": 53157861.40083333,
+   "fuel_total": 63789433681,
+   "wall_init_s": 0.26083869859576225,
+   "wall_per_frame_median_ms": 2.1476466208696365,
+   "wall_per_frame_p95_ms": 53.77886705100536,
+   "metrics": {
+    "frames": 1200,
+    "held": 0,
+    "rpe_translation_rmse": 0.9282630253531574,
+    "rpe_rotation_rmse": 0.014581368901901301,
+    "rpe_pairs": 1180,
+    "ate_rmse": 2.8083033010363696,
+    "rotation_rmse": 0.0587532164170579,
+    "rotation_max": 0.10353465923281026,
+    "velocity_rmse": 28867.513399262007,
+    "angular_velocity_rmse": 999999.9985110908,
+    "sim3_scale": 1.0,
+    "sim3_ate_rmse": 2.3880773163632534,
+    "distance_travelled": 45.62608875537869,
+    "final_drift": 3.085232797357638,
+    "drift_per_metre": 0.06761992714078371
+   },
+   "stderr_tail": ""
+  }
+ ]
+}

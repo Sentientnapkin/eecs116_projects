@@ -1,0 +1,82 @@
+Traceback (most recent call last):
+  File "/tmp/vio_loop2/geometry/init_compare/run_compare.py", line 47, in <module>
+    r=run(z); print(r['id'],r['observations'],r['seconds'],flush=True)
+      ^^^^^^
+  File "/tmp/vio_loop2/geometry/init_compare/run_compare.py", line 22, in run
+    pred=M0.centres(np.empty(0)); truth=gt['p']+np.einsum('nij,j->ni',gt['Rrel'],F.p_bc)
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/backups/rganapa/Sebastian/gen3/research/r6/tools/solve.py", line 47, in centres
+    return np.einsum('nij,j->ni', self.F, x) + self.e
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/backups/rganapa/Sebastian/venv-teacher/lib/python3.12/site-packages/numpy/_core/einsumfunc.py", line 1608, in einsum
+    return c_einsum(*operands, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: operands could not be broadcast together with remapped shapes [original->remapped]: (41,3,6)->(41,3,6) (0,)->(0) 
+Traceback (most recent call last):
+  File "/tmp/vio_loop2/geometry/init_compare/run_compare.py", line 47, in <module>
+    r=run(z); print(r['id'],r['observations'],r['seconds'],flush=True)
+      ^^^^^^
+  File "/tmp/vio_loop2/geometry/init_compare/run_compare.py", line 22, in run
+    pred=M0.centres(np.empty(0)); truth=gt['p']+np.einsum('nij,j->ni',gt['Rrel'],F.p_bc)
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/backups/rganapa/Sebastian/gen3/research/r6/tools/solve.py", line 47, in centres
+    return np.einsum('nij,j->ni', self.F, x) + self.e
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/backups/rganapa/Sebastian/venv-teacher/lib/python3.12/site-packages/numpy/_core/einsumfunc.py", line 1608, in einsum
+    return c_einsum(*operands, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: operands could not be broadcast together with remapped shapes [original->remapped]: (41,3,6)->(41,3,6) (0,)->(0) 
+s3v3va-fo-9300479 187 2.6345434188842773
+s3v3va-ro-9300065 229 2.1537117958068848
+Traceback (most recent call last):
+  File "/tmp/vio_loop2/geometry/init_compare/run_compare.py", line 47, in <module>
+    r=run(z); print(r['id'],r['observations'],r['seconds'],flush=True)
+      ^^^^^^
+  File "/tmp/vio_loop2/geometry/init_compare/run_compare.py", line 15, in run
+    st=time.time(); F=fl.Flight(str(z),nframes=41,frames=True)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/backups/rganapa/Sebastian/gen3/research/r6/tools/fl.py", line 30, in __init__
+    ep = read_episode(zpath, frames='lazy' if frames else 'none')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/dev/shm/sebastian-vio/viobench/viobench/tools/datasets/storage.py", line 244, in read_episode
+    manifest = json.loads(tree.read_bytes("episode.json").decode("utf-8"))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/dev/shm/sebastian-vio/viobench/viobench/tools/datasets/storage.py", line 185, in read_bytes
+    return (self.root / name).read_bytes()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rganapa/miniforge3/lib/python3.12/pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/home/rganapa/miniforge3/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/vio_loop2/shared/screen24/s3v3va-wa-9300316.zip/episode.json'
+Traceback (most recent call last):
+  File "/tmp/vio_loop2/geometry/init_compare/run_compare.py", line 47, in <module>
+    r=run(z); print(r['id'],r['observations'],r['seconds'],flush=True)
+      ^^^^^^
+  File "/tmp/vio_loop2/geometry/init_compare/run_compare.py", line 15, in run
+    st=time.time(); F=fl.Flight(str(z),nframes=41,frames=True)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/backups/rganapa/Sebastian/gen3/research/r6/tools/fl.py", line 30, in __init__
+    ep = read_episode(zpath, frames='lazy' if frames else 'none')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/dev/shm/sebastian-vio/viobench/viobench/tools/datasets/storage.py", line 244, in read_episode
+    manifest = json.loads(tree.read_bytes("episode.json").decode("utf-8"))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/dev/shm/sebastian-vio/viobench/viobench/tools/datasets/storage.py", line 185, in read_bytes
+    return (self.root / name).read_bytes()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rganapa/miniforge3/lib/python3.12/pathlib.py", line 1019, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/home/rganapa/miniforge3/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/vio_loop2/shared/screen24/s3v3va-wa-9300316.zip/episode.json'
+s3v3va-fo-9300479 187 2.6345434188842773
+s3v3va-ro-9300065 229 2.1537117958068848
+s3v3va-wa-9300338 145 2.344931125640869
+s3v3va-fo-9300479 187 2.655998468399048
+s3v3va-ro-9300065 229 2.05452299118042
+s3v3va-wa-9300338 145 2.1045992374420166

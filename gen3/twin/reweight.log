@@ -1,0 +1,17 @@
+pool: 604 flights with GSLV ATE + features; k=5 nearest
+in-sample (all 24 eps): rms log err after offset / spearman
+  rand21         0.577  spearman +0.761
+  no_motion      0.593  spearman +0.730
+  rand38         0.596  spearman +0.828
+  x4_fov         0.610  spearman +0.783
+  rand2          0.620  spearman +0.728
+  rand22         0.620  spearman +0.735
+  rand0          0.624  spearman +0.731
+  rand28         0.634  spearman +0.797
+  only_start     0.637  spearman +0.708
+  x4_image       0.644  spearman +0.714
+  no_image       0.644  spearman +0.710
+  rand9          0.651  spearman +0.655
+  default        0.656  spearman +0.698
+nested LOO-episode rms log err: learned weights 0.688  vs default weights 0.685
+  chosen per fold: rand0, rand21, rand38

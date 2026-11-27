@@ -1,0 +1,4 @@
+{"id": "b-HE", "regime": "free-yaw", "scene": "ProcTHOR-Train-3", "catalog": "procthor-train", "seconds": 60, "hold_seconds": 0.2, "build_only": 1, "ok": 1, "s": 41}
+{"id": "b-DE", "regime": "free-yaw", "scene": "ProcTHOR-Train-3", "catalog": "procthor-train", "seconds": 60, "hold_seconds": 0.2, "build_only": 1, "ok": 1, "s": 38}
+{"id": "b-AE", "regime": "free-yaw", "scene": "ProcTHOR-Train-3", "catalog": "procthor-train", "seconds": 60, "hold_seconds": 0.2, "build_only": 1, "ok": 1, "s": 38}
+{"id": "b-HL", "regime": "free-yaw", "scene": "ProcTHOR-Train-3", "catalog": "procthor-train", "seconds": 60, "hold_seconds": 0.2, "build_only": 1, "ok": 1, "s": 38}

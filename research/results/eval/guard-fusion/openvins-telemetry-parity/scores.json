@@ -1,0 +1,55 @@
+{
+ "guest": {
+  "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/guard_fusion/vio/artifacts/openvins_telemetry.wasm",
+  "sha256": "3e52c1d67b14fb34c74e50a5df9cd7ac6a0320f74c6ddbb28ad7381c20ae2849",
+  "evaluator_src": "/dev/shm/sebastian-vio/viobench",
+  "archives": [
+   "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fast-104862639_172226823-01.zip",
+   "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fast-ProcTHOR-Train-167-01.zip"
+  ]
+ },
+ "rows": [
+  {
+   "episode": "fast-104862639_172226823-01",
+   "frames": 1200,
+   "frames_attempted": 1200,
+   "completed": true,
+   "failure": null,
+   "peak_fuel_per_frame": 3253215509,
+   "median_fuel_per_frame": 314679525.0,
+   "p95_fuel_per_frame": 2638044595.9,
+   "scene": "104862639_172226823",
+   "duration_s": 59.949999999999996,
+   "ate_30s": 0.1364896337440406,
+   "filled_30s": 0,
+   "ate_60s": 0.11789154588757908,
+   "filled_60s": 0,
+   "ate_full": 0.11789154588757908,
+   "filled_full": 0,
+   "initialized_at_s": 1.145,
+   "full_vio_at_s": 3.145,
+   "ate_reported_full": 0.11789154596354275
+  },
+  {
+   "episode": "fast-ProcTHOR-Train-167-01",
+   "frames": 1200,
+   "frames_attempted": 1200,
+   "completed": true,
+   "failure": null,
+   "peak_fuel_per_frame": 3971776815,
+   "median_fuel_per_frame": 142051628.0,
+   "p95_fuel_per_frame": 2955896556.0499997,
+   "scene": "ProcTHOR-Train-167",
+   "duration_s": 59.949999999999996,
+   "ate_30s": 417.21846512055333,
+   "filled_30s": 0,
+   "ate_60s": 2168.708004679057,
+   "filled_60s": 0,
+   "ate_full": 2168.708004679057,
+   "filled_full": 0,
+   "initialized_at_s": 3.645,
+   "full_vio_at_s": 4.645,
+   "ate_reported_full": 2168.7080045580633
+  }
+ ]
+}

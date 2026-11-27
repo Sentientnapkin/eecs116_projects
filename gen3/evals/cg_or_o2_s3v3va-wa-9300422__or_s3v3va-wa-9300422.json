@@ -1,0 +1,16 @@
+[
+{
+"id": "s3v3va-wa-9300422",
+"ate": 1.1788832505867903,
+"err": null,
+"peak": 8126437,
+"setting_class": "warehouse",
+"regime": "free-yaw",
+"motion_style": "DE",
+"start": "mid-flight",
+"start_fwd_speed": -1.3148366838333416,
+"fov_deg": 122.479965,
+"exposure_s": 0.005,
+"scene_variant": "official"
+}
+]

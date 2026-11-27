@@ -9,6 +9,7 @@ gravity input stand in for filter attitude error. Split: scene hash % 12 == 0 ->
 """
 import argparse, hashlib, json, math, os, time
 from pathlib import Path
+from collections import OrderedDict
 import numpy as np
 import torch
 import torch.nn.functional as F
@@ -45,16 +46,22 @@ class Flights:
             pi, pm = Path(cache) / f"{key}.img.npy", Path(cache) / f"{key}.meta.npz"
             if pi.exists() and pm.exists():
                 self.items.append((pi, pm, r["scene"]))
-        self._img, self._meta = {}, {}
+        self._img, self._meta = OrderedDict(), {}
 
     def img(self, i):
-        if i not in self._img:
+        if i in self._img:
+            self._img.move_to_end(i)
+        else:
             self._img[i] = np.load(self.items[i][0], mmap_mode="r")
+            while len(self._img) > 32:
+                _, old = self._img.popitem(last=False)
+                old._mmap.close()
         return self._img[i]
 
     def meta(self, i):
         if i not in self._meta:
-            z = np.load(self.items[i][1]); self._meta[i] = {k: z[k] for k in z.files}
+            with np.load(self.items[i][1], allow_pickle=False) as z:
+                self._meta[i] = {k: z[k] for k in z.files}
         return self._meta[i]
 
 

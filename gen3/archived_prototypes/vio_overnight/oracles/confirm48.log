@@ -1,0 +1,57 @@
+48-flight oracle confirmations
+
+$ /data/backups/rganapa/Sebastian/venv-teacher/bin/python -B /data/backups/rganapa/Sebastian/gen3/evalpool.py sn_anchor_confirm48 /data/backups/rganapa/Sebastian/gen3/agents/anchors/builds/snace6e1/solution.wasm /tmp/vio_overnight/oracles/pool48 3
+48 episodes, 0 cached, workers=3 (no video)
+20/48 finished, 94.8s
+40/48 finished, 169.9s
+48/48 finished, 189.9s
+sn_anchor_confirm48 pool48 n 48 / 48 mean ATE 0.568 median 0.583 >3m 0
+  setting_class {'forest': '0.673 (n=32)', 'room': '0.359 (n=16)'}
+  regime {'benchmark': '0.593 (n=14)', 'free-yaw': '0.558 (n=34)'}
+  start {'hover': '0.538 (n=16)', 'mid-flight': '0.584 (n=32)'}
+
+
+$ /data/backups/rganapa/Sebastian/venv-teacher/bin/python /data/backups/rganapa/Sebastian/gen3/research/i3/tools/mk.py sn_or_control_confirm48 PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 AB_ZUPT=0 ITER_UPD=1 INV_LAT=0 INV_VZ=0 EDGE=0 SN=1 NS_GCOST=1 MAX_CLONES=8 MAX_OBS=10 AN_ACE=1 AN_DTH=4.0 AN_CEF=6 EDGE=1 EDGE_MYTH=10.0 OR=1 /tmp/vio_overnight/oracles/sn_or.c
+/data/backups/rganapa/Sebastian/gen3/research/i3/builds/sn_or_control_confirm48/solution.wasm 33c11448448719ab
+
+
+$ /data/backups/rganapa/Sebastian/venv-teacher/bin/python -B /data/backups/rganapa/Sebastian/gen3/evalpool.py sn_or_control_confirm48 /data/backups/rganapa/Sebastian/gen3/research/i3/builds/sn_or_control_confirm48/solution.wasm /tmp/vio_overnight/oracles/pool48 3
+48 episodes, 0 cached, workers=3 (no video)
+20/48 finished, 96.5s
+40/48 finished, 170.8s
+48/48 finished, 190.4s
+sn_or_control_confirm48 pool48 n 48 / 48 mean ATE 0.568 median 0.583 >3m 0
+  setting_class {'forest': '0.673 (n=32)', 'room': '0.359 (n=16)'}
+  regime {'benchmark': '0.593 (n=14)', 'free-yaw': '0.558 (n=34)'}
+  start {'hover': '0.538 (n=16)', 'mid-flight': '0.584 (n=32)'}
+
+
+$ /data/backups/rganapa/Sebastian/venv-teacher/bin/python /data/backups/rganapa/Sebastian/gen3/research/i3/tools/mk.py sn_or_perfect02_confirm48 PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 AB_ZUPT=0 ITER_UPD=1 INV_LAT=0 INV_VZ=0 EDGE=0 SN=1 NS_GCOST=1 MAX_CLONES=8 MAX_OBS=10 AN_ACE=1 AN_DTH=4.0 AN_CEF=6 EDGE=1 EDGE_MYTH=10.0 OR=1 OR_VEL=0.02 OR_VEL_EV=10 OR_VEL_ON=1 OR_NK=0 /tmp/vio_overnight/oracles/sn_or.c
+/data/backups/rganapa/Sebastian/gen3/research/i3/builds/sn_or_perfect02_confirm48/solution.wasm 9a769a7d4f73f39f
+
+
+$ /data/backups/rganapa/Sebastian/venv-teacher/bin/python -B /data/backups/rganapa/Sebastian/gen3/evalpool.py sn_or_perfect02_confirm48 /data/backups/rganapa/Sebastian/gen3/research/i3/builds/sn_or_perfect02_confirm48/solution.wasm /tmp/vio_overnight/oracles/pool48 3
+48 episodes, 0 cached, workers=3 (no video)
+20/48 finished, 96.8s
+40/48 finished, 171.1s
+48/48 finished, 190.3s
+sn_or_perfect02_confirm48 pool48 n 48 / 48 mean ATE 0.185 median 0.157 >3m 0
+  setting_class {'forest': '0.223 (n=32)', 'room': '0.110 (n=16)'}
+  regime {'benchmark': '0.116 (n=14)', 'free-yaw': '0.213 (n=34)'}
+  start {'hover': '0.171 (n=16)', 'mid-flight': '0.192 (n=32)'}
+
+
+$ /data/backups/rganapa/Sebastian/venv-teacher/bin/python /data/backups/rganapa/Sebastian/gen3/research/i3/tools/mk.py sn_or_iid01_confirm48 PRIOR_MODE=1 START_STD=2.0 SPEED_STD=1.0 AB_ZUPT=0 ITER_UPD=1 INV_LAT=0 INV_VZ=0 EDGE=0 SN=1 NS_GCOST=1 MAX_CLONES=8 MAX_OBS=10 AN_ACE=1 AN_DTH=4.0 AN_CEF=6 EDGE=1 EDGE_MYTH=10.0 OR=1 OR_VEL=0.1 OR_VEL_EV=10 OR_VEL_ON=1 OR_NK=1 OR_NT=0 /tmp/vio_overnight/oracles/sn_or.c
+/data/backups/rganapa/Sebastian/gen3/research/i3/builds/sn_or_iid01_confirm48/solution.wasm b971be91921593c5
+
+
+$ /data/backups/rganapa/Sebastian/venv-teacher/bin/python -B /data/backups/rganapa/Sebastian/gen3/evalpool.py sn_or_iid01_confirm48 /data/backups/rganapa/Sebastian/gen3/research/i3/builds/sn_or_iid01_confirm48/solution.wasm /tmp/vio_overnight/oracles/pool48 3
+48 episodes, 0 cached, workers=3 (no video)
+20/48 finished, 96.4s
+40/48 finished, 170.3s
+48/48 finished, 189.6s
+sn_or_iid01_confirm48 pool48 n 48 / 48 mean ATE 0.398 median 0.331 >3m 0
+  setting_class {'forest': '0.482 (n=32)', 'room': '0.231 (n=16)'}
+  regime {'benchmark': '0.355 (n=14)', 'free-yaw': '0.416 (n=34)'}
+  start {'hover': '0.440 (n=16)', 'mid-flight': '0.378 (n=32)'}
+

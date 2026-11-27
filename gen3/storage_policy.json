@@ -1,0 +1,26 @@
+{
+  "max_local_dataset_bytes": 600000000000,
+  "preferred_working_set_bytes": 540000000000,
+  "source_of_record": "SentientNapkin/viobench-stage3",
+  "fetch_mode": "stream or fetch only requested shards/episodes in bounded batches",
+  "retain": [
+    "pinned development evaluation flights",
+    "compact training cache",
+    "unuploaded or remotely unverified unique data"
+  ],
+  "evict_priority": [
+    "checksum-identical duplicate caches",
+    "unused remotely verified raw archives",
+    "least-recently-used remotely verified shards"
+  ],
+  "never_evict": [
+    "active job inputs",
+    "unuploaded unique flights",
+    "models/configs/manifests/results"
+  ],
+  "new_experiment_tmpfs_max_bytes_per_lane": 4000000000,
+  "old_cache_deduplication_log": "/tmp/vio_storage_20261127/dedupe.jsonl",
+  "note": "600 GB global user policy; all new fetches require budget availability. Existing legacy loaders are not globally intercepted. Four simultaneous 4 GB experiment caps fit the currently audited headroom.",
+  "latest_audited_local_dataset_bytes": 579444137984,
+  "latest_audit_path": "/data/backups/rganapa/Sebastian/gen3/research/storage_20261127/usage.json"
+}

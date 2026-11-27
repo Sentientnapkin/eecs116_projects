@@ -1,0 +1,11 @@
+{
+  "name": "sched_copy_prof",
+  "off": false,
+  "profile": true,
+  "sync": false,
+  "cap": 4600000,
+  "pixel": 1.515,
+  "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/single_model/ensemble2/build/sched_copy_prof/solution.wasm",
+  "sha256": "6be653efae39c828bf88411d88830f87a31a8117f7c8e33090076d089d1977b6",
+  "base_sha256": "ee31d769c5230e43429690a560d82df508bf18755fd4f1038e11807ee91a9813"
+}

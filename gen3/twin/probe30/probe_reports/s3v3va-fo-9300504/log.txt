@@ -1,0 +1,3 @@
+probe30/s3v3va-fo-9300504: ok RPE 1.171 m/1 s  ATE 12.977 m  rot 32.5 deg  vel 28867.513 m/s  held 0  fuel/frame max 8,863,512,950 (p95 371,667,698)  wall/frame 2.1 ms
+report: /data/backups/rganapa/Sebastian/gen3/twin/probe30/probe_reports/s3v3va-fo-9300504/report-probe_stage3/report.json
+overall: 1/1 episodes completed, RPE median 1.171 m/1 s, fuel/frame max (all datasets) 8,863,512,950 (mean 56,396,251, median 13,475,842, p95 371,667,698, p99 1,947,188,854)

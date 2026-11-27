@@ -1,0 +1,23 @@
+{
+  "mode": "Luna review; detached bounded scripts",
+  "training": {
+    "script": "/tmp/vio_loop2/learned/context_train.py",
+    "pid": 3900287,
+    "gpu": 7,
+    "variants": [
+      2,
+      3,
+      5
+    ],
+    "epochs_per_variant": 25,
+    "data": "existing train727/val749 cache",
+    "checkpoints": "per epoch",
+    "no_downstream_ate_claim": true
+  },
+  "standalone_direction_results": "direction_diagnostics.json",
+  "standalone_initializer_comparison": "/tmp/vio_loop2/geometry/init_compare (being prepared)",
+  "coverage": "coverage.json: 26 tracks and 213 sub-ideas; audit-pending does not mean implemented/tested",
+  "no_hidden_submission": true,
+  "best_artifact_unchanged": true,
+  "dataset_limit_bytes": 600000000000
+}

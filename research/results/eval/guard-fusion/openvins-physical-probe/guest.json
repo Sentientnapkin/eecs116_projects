@@ -1,0 +1,30 @@
+{
+ "wasm": "/data/backups/rganapa/Sebastian/eecs116_projects/research/guard_fusion/vio/artifacts/openvins_physical_telemetry.wasm",
+ "sha256": "70329521ee89e450116b1ec72e3162a710906e6e1ad926012039f06a1dbd08fd",
+ "evaluator_src": "/dev/shm/sebastian-vio/viobench",
+ "archives": [
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fast-103997445_171030492-01.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fast-ProcTHOR-Train-167-00.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fast-ProcTHOR-Train-167-01.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fast-ProcTHOR-Train-167-05.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fast-ProcTHOR-Train-63-02.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fast-ProcTHOR-Train-91-00.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fastmid-102815859-01.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fastmid-103997643_171030747-01.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fastmid-ProcTHOR-Train-0-01.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fastmid-ProcTHOR-Train-151-07.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fastmid-ProcTHOR-Train-151-08.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fastmid-ProcTHOR-Train-151-10.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fastmid-ProcTHOR-Train-167-02.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fastmid-ProcTHOR-Train-167-04.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fastmid-ProcTHOR-Train-57-01.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fastmid-ProcTHOR-Train-65-02.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fastmid-ProcTHOR-Train-72-02.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fast-104862639_172226823-01.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fastmid-ProcTHOR-Train-101-02.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fast-ProcTHOR-Train-143-02.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fast-106366104_174226329-01.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fast-ProcTHOR-Train-6-02.zip",
+  "/data/backups/rganapa/Sebastian/gen/raw-fast/selected/fast-103997478_171030525-01.zip"
+ ]
+}
