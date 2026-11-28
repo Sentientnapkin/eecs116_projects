@@ -1,0 +1,14 @@
+# server id | local wasm (relative to repo root, or ~ for WSL home)
+6b316c1f9da012f7|eecs116_vio/submissions/probe_stage3.wasm
+049eb610e7b78afc|eecs116_vio/submissions/cheap_mlp16_proxy.wasm
+fbd48a479fe639a2|eecs116_vio/submissions/cheap_mlp16_full.wasm
+41e08d67acd6a988|~/ws_m/ms_gslv.wasm
+c90dc9062be107ac|research/single_model/proxy/final/gp_msckf_m7_s2k3.wasm
+9cf6355f3141edd0|research/single_model/disp_teacher/final/gp_msckf_b17_dtstudent.wasm
+a16af7a14468a650|eecs116_vio/b16/submit/b16_lowfuel_c2_EXPERIMENT.wasm
+5977fe125ff0b4cd|eecs116_vio/b16/submit/b16_mid_m7_UNVERIFIED.wasm
+7a36ac4d8939c543|~/ws_m/ms_b16ref.wasm
+7ed7d12441fda0e9|eecs116_vio/submissions/vio_v4d.wasm
+59022b14e9003c79|research/single_model/final/submit/gp_msckf_startup_gate.wasm
+5674e74f2668d012|Final Project/classical_vio/gp_msckf/gp_msckf.wasm
+67b8a4d97b9f161b|eecs116_vio/submissions/vio_c_v2.wasm

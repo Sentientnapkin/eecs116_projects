@@ -13,6 +13,7 @@ case $SET in
   hf)   ls ~/data/hfcal/fast/*.zip ~/data/hfcal/fastmid/*.zip > $OUT/list ;;
   fuel) ls ~/data/hfcal/fast/*.zip ~/data/hfcal/fastmid/*.zip | awk 'NR%7==1' > $OUT/list ;;
   pub)  : > $OUT/list ;;
+  ho)   ls ~/data/ho240/*.zip > $OUT/list ;;
 esac
 if [ "$SET" = pub ]; then
   viobench evaluate $W -o $OUT/r0 > $OUT/r0.log 2>&1
@@ -31,8 +32,16 @@ for f in sorted(glob.glob(f"{out}/r*/report.json")):
     eps += json.load(open(f))["episodes"]
 lists = open(f"{out}/list").read().split()
 kind = {}
-for p in lists:
-    kind[os.path.basename(p)[:-4]] = "mid" if "/fastmid/" in p else "rest"
+tags = json.load(open(os.path.expanduser("~/data/ho240_tags.json"))) if s == "ho" else {}
+if s == "ho":   # episode hash = sha1 of the zip (cached in ~/data/ho240/sha1.txt)
+    import hashlib
+    cf = os.path.expanduser("~/data/ho240/sha1.txt"); cache = {}
+    if os.path.exists(cf): cache = dict(l.split()[::-1] for l in open(cf))
+    for p in lists:
+        b = os.path.basename(p)[:-4]
+        if b not in cache: cache[b] = hashlib.sha1(open(p, "rb").read()).hexdigest()
+        kind[cache[b]] = tags.get(b, {}).get("start", "?")
+    open(cf, "w").write("".join(h + " " + b + chr(10) for b, h in cache.items()))
 rows = []
 for e in eps:
     m = e.get("metrics") or {}
@@ -41,5 +50,9 @@ for e in eps:
 json.dump(rows, open(os.path.expanduser(f"~/ws_m/ev_{name}_{s}.json"), "w"), indent=0)
 a = np.array([r["ate"] for r in rows]); fu = np.array([r["fuel"] for r in rows])
 bad = sum(1 for r in rows if not r["completed"] or r["filled"])
+if s == "ho":
+    for k in ("static", "mid"):
+        ak = np.array([r["ate"] for r in rows if kind.get(r["hash"]) == k])
+        if len(ak): print(f"  {k:6s} n={len(ak):3d} ATE mean {np.nanmean(ak):.3f} median {np.nanmedian(ak):.3f}")
 print(f"{name:14s} {s:4s} n={len(rows):3d} ATE mean {np.nanmean(a):.3f} median {np.nanmedian(a):.3f} >3m {int(np.sum(a>3)):2d} | fuel max {np.nanmax(fu):>11,.0f} p90(ep max) {np.nanpercentile(fu,90):>11,.0f} | incomplete/filled {bad}")
 PY

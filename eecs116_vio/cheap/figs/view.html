@@ -1,0 +1,11 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>fig</title>
+<style>html,body{margin:0;background:#fff;overflow:hidden}img{display:block;width:100vw;height:100vh;object-fit:contain}
+#cp{position:fixed;left:10px;top:10px;width:200px;height:80px;font-size:30px;z-index:9}</style>
+</head><body><button id="cp">COPY</button><img id="i"><script>
+const f = new URLSearchParams(location.search).get('f'); document.getElementById('i').src = f;
+document.getElementById('cp').onclick = async () => {
+  try { const b = await (await fetch(f)).blob(); await navigator.clipboard.write([new ClipboardItem({'image/png': b})]); document.title = 'copied ' + f; }
+  catch (e) { document.title = 'ERR ' + e; }
+};
+</script></body></html>

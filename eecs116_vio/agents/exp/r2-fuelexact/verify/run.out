@@ -1,0 +1,62 @@
+120
+43
+waiting for lock
+lock 23:06:39
+twin120 done 23:09:47
+all done 23:10:49
+=== twin120
+flights 120  frames 144000  bit-identical 120/120
+DIFFERENT: []
+non-finite rows (base, cand): []
+failures: []
+peak base 4,005,177 (s3v3tr-ro-9301412)  cand 2,843,959 (s3v3tr-ro-9305136)  ratio 0.7101
+per-flight max: median base 3,537,682 cand 2,558,079; p90 3,760,627 2,697,862
+mean fuel ratio 0.7166; max per-frame cand/base ratio 0.903
+top cand flights: [('s3v3tr-ro-9305136', 2843959, 3873083), ('s3v3tr-ro-9304782', 2810107, 3711931), ('s3v3tr-ro-9305583', 2778363, 3782607), ('s3v3tr-ro-9304585', 2754126, 3931570), ('s3v3tr-ro-9305221', 2738859, 3661962), ('s3v3tr-fo-9308959', 2736187, 3734986)]
+per-class cand max: {'ro': 2843959, 'wa': 2606560, 'fo': 2736187}
+per-class flights: {'ro': 60, 'wa': 30, 'fo': 30}
+twin120 (episode means) base 0.5936 cand 0.5936
+=== hard
+flights 19  frames 16800  bit-identical 19/19
+DIFFERENT: []
+non-finite rows (base, cand): []
+failures: []
+peak base 4,109,167 (sim-ProcTHOR-Train-25-0000)  cand 2,709,915 (sim-ProcTHOR-Train-170-0000)  ratio 0.6595
+per-flight max: median base 3,520,711 cand 2,596,943; p90 3,855,837 2,696,672
+mean fuel ratio 0.7150; max per-frame cand/base ratio 0.902
+top cand flights: [('sim-ProcTHOR-Train-170-0000', 2709915, 3836016), ('sim-ProcTHOR-Train-133-0000', 2701382, 3611606), ('sim-ProcTHOR-Train-25-0000', 2695494, 4109167), ('sim-ProcTHOR-Train-151-0000', 2673233, 3577476), ('sim-ProcTHOR-Train-71-0000', 2660753, 3935120), ('sim-ProcTHOR-Train-9-0000', 2647637, 3737518)]
+per-class cand max: {}
+per-class flights: {'ro': 0, 'wa': 0, 'fo': 0}
+=== black
+flights 8  frames 9600  bit-identical 8/8
+DIFFERENT: []
+non-finite rows (base, cand): []
+failures: []
+peak base 3,592,956 (s3v3tr-fo-9309819)  cand 2,765,046 (s3v3tr-fo-9309819)  ratio 0.7696
+per-flight max: median base 3,477,470 cand 2,534,872; p90 3,581,314 2,731,254
+mean fuel ratio 0.7189; max per-frame cand/base ratio 0.899
+top cand flights: [('s3v3tr-fo-9309819', 2765046, 3592956), ('s3tr-ro-9001773', 2716772, 3522334), ('s3v3tr-ro-9302348', 2649635, 3437729), ('s3v3tr-wa-9306255', 2595389, 3517212), ('s3v3tr-ro-9303599', 2474354, 3576325), ('s3v3tr-ro-9305383', 2471866, 3430089)]
+per-class cand max: {'ro': 2716772, 'wa': 2595389, 'fo': 2765046}
+per-class flights: {'ro': 4, 'wa': 2, 'fo': 2}
+=== blank
+flights 8  frames 9600  bit-identical 8/8
+DIFFERENT: []
+non-finite rows (base, cand): []
+failures: []
+peak base 3,687,752 (s3v3tr-fo-9308725)  cand 2,716,772 (s3tr-ro-9001773)  ratio 0.7367
+per-flight max: median base 3,489,328 cand 2,513,927; p90 3,609,753 2,674,194
+mean fuel ratio 0.7188; max per-frame cand/base ratio 0.899
+top cand flights: [('s3tr-ro-9001773', 2716772, 3522334), ('s3v3tr-ro-9302348', 2655947, 3506981), ('s3v3tr-fo-9308725', 2564318, 3687752), ('s3v3tr-fo-9309819', 2555988, 3471676), ('s3v3tr-ro-9305383', 2471866, 3399337), ('s3v3tr-ro-9303599', 2463128, 3576325)]
+per-class cand max: {'ro': 2716772, 'wa': 2438729, 'fo': 2564318}
+per-class flights: {'ro': 4, 'wa': 2, 'fo': 2}
+=== dark
+flights 8  frames 9600  bit-identical 8/8
+DIFFERENT: []
+non-finite rows (base, cand): []
+failures: []
+peak base 3,777,624 (s3tr-ro-9001773)  cand 2,716,772 (s3tr-ro-9001773)  ratio 0.7192
+per-flight max: median base 3,526,284 cand 2,496,524; p90 3,683,180 2,669,056
+mean fuel ratio 0.7258; max per-frame cand/base ratio 0.899
+top cand flights: [('s3tr-ro-9001773', 2716772, 3777624), ('s3v3tr-ro-9302348', 2648606, 3476242), ('s3v3tr-fo-9309819', 2640262, 3608233), ('s3v3tr-wa-9306255', 2529921, 3642704), ('s3v3tr-ro-9303599', 2463128, 3576325), ('s3v3tr-fo-9308725', 2451679, 3374741)]
+per-class cand max: {'ro': 2716772, 'wa': 2529921, 'fo': 2640262}
+per-class flights: {'ro': 4, 'wa': 2, 'fo': 2}
